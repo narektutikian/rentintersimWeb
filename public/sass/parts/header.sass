@@ -1,0 +1,144 @@
+
+header
+  background: $light_blue
+  height: 80px
+  line-height: 79px
+  margin-bottom: 50px
+  position: relative
+  .logo
+    display: inline-block
+    vertical-align: middle
+    margin-right: 75px
+    width: 60px
+    height: 60px
+    img
+      display: block
+      width: 100%
+
+  .main_nav
+    display: inline-block
+    vertical-align: middle
+    ul
+      overflow: hidden
+      li
+        float: left
+        a
+          padding: 8px 10px
+          color: $white
+          border: 1px solid transparent
+          text-transform: capitalize
+          @include border_radius(5px)
+          @include fonts_stack(15px)
+          &:hover
+            color: $white
+            border: 1px solid $active_yellow
+  .personal_info
+    text-align: right
+    display: block
+    > li
+      display: inline-block
+      &.date_time
+        data
+          display: inline-block
+          vertical-align: middle
+          margin-right: 60px
+          color: $white
+          @include fonts_stack(15px)
+          i
+            vertical-align: middle
+            font-size: 24px
+            color: $active_yellow
+      &.profile
+        position: relative
+        display: inline-block
+        vertical-align: middle
+        margin-right: 30px
+        color: $white
+        @include fonts_stack(15px)
+        .profile_name
+          cursor: pointer
+          i
+            color: $white
+            font-size: 8px
+        .choose_user
+          left: -10px
+          min-width: 100px
+          z-index: 100
+
+
+      &.languages
+        position: relative
+        display: inline-block
+        .current_language
+          display: inline-block
+          vertical-align: middle
+          color: $white
+          cursor: pointer
+          @include fonts_stack(15px)
+          i
+            color: $white
+            font-size: 8px
+        .choose_language
+          left: -15px
+          min-width: 100px
+          z-index: 100
+
+
+  .mobile_nav
+    display: none
+
+@media (max-width: 992px)
+  header
+    border-bottom: 1px solid $table_head
+    .logo
+      margin-right: 0
+    .main_nav
+      display: none
+    .personal_info
+      li
+        &.profile
+          data
+            margin-right: 20px
+          .profile
+            margin-right: 20px
+
+    .mobile_nav
+      position: absolute
+      top: 80px
+      left: 0
+      right: 0
+      z-index: 55
+      li
+        line-height: 1
+        a
+          display: block
+          background: $light_blue
+          color: $white
+          padding: 15px 8px
+          border-bottom: 1px solid $table_head
+          text-align: center
+          @include fonts_stack(15px)
+          &:hover
+            background: #14B7FF
+
+
+@media (max-width: 768px)
+  header
+    .personal_info
+      > li
+        display: inline-block
+        &.date_time
+          data
+            margin-right: 20px
+
+@media (max-width: 600px)
+  header
+    .personal_info
+      > li
+        display: inline-block
+        &.date_time
+          data
+            display: none
+
+@media (max-width: 480px)
+

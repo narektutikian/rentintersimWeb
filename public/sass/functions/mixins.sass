@@ -1,0 +1,115 @@
+
+@mixin fonts_stack($font16)
+  font-size: $font16
+  font-weight: normal
+  font-style: normal
+  font-family: 'proxima_nova_rgregular', Arial, Helvetica, sans-serif
+
+@mixin fonts_stack_semi_bold($font16)
+  font-size: $font16
+  font-weight: 500
+  font-style: normal
+  font-family: 'proxima_nova_rgregular', Arial, Helvetica, sans-serif
+
+@mixin border_radius($radius)
+  -webkit-border-radius: $radius
+  -moz-border-radius: $radius
+  -ms-border-radius: $radius
+  border-radius: $radius
+
+@mixin total_numbers_title
+  color: $total_numbers_title
+  text-align: center
+  @include fonts_stack($font20)
+
+@mixin login_input_icon
+  position: absolute
+  top: 50%
+  transform: translateY(-50%)
+  left: 14px
+  color: $dark_blue
+  font-size: 22px
+
+@mixin light_blue_btn($font16)
+  background: $light-blue
+  border: 1px solid $light-blue
+  color: $white
+  border-radius: 5px
+  cursor: pointer
+  @include fonts-stack($font16)
+  &:hover
+    background: #149ec4
+    border: 1px solid #149ec4
+    color: $white
+    text-decoration: none
+
+@mixin light_green_btn($font16)
+  background: $active_green
+  border: 1px solid $active_green
+  color: $white
+  border-radius: 5px
+  cursor: pointer
+  @include fonts-stack($font16)
+  &:hover
+    background: #33E876
+    border: 1px solid #33E876
+    color: $white
+    text-decoration: none
+
+@mixin input_with_icon
+  text-align: left
+  padding: 0 0 0 48px
+  border-radius: 5px
+  border: 1px solid #5390c3
+  color: #000000
+  @include fonts-stack($font16)
+
+
+/* Background gradients for status */
+@mixin status
+  display: inline-block
+  vertical-align: middle
+  width: 10px
+  height: 10px
+
+@mixin active_gradient
+  background: $active-green /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(#29e6a1, #32cd95) /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#29e6a1, #32cd95) /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#29e6a1, #32cd95) /* For Firefox 3.6 to 15 */
+  background: linear-gradient(#29e6a1, #32cd95) /* Standard syntax */
+
+@mixin inactive_gradient
+  background: $dark_yellow /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(#fec068, #f9a023) /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#fec068, #f9a023) /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#fec068, #f9a023) /* For Firefox 3.6 to 15 */
+  background: linear-gradient(#fec068, #f9a023) /* Standard syntax */
+
+@mixin available
+  background: $available /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(#81ceff, #3eb4ff) /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#81ceff, #3eb4ff) /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#81ceff, #3eb4ff) /* For Firefox 3.6 to 15 */
+  background: linear-gradient(#81ceff, #3eb4ff) /* Standard syntax */
+
+@mixin disabled
+  background: $disabled /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(#c6d0e1, #adb0b5) /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#c6d0e1, #adb0b5) /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#c6d0e1, #adb0b5) /* For Firefox 3.6 to 15 */
+  background: linear-gradient(#c6d0e1, #adb0b5) /* Standard syntax */
+
+@mixin waiting
+  background: $waiting /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(#d9b9ff, #b48be7) /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#d9b9ff, #b48be7) /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#d9b9ff, #b48be7) /* For Firefox 3.6 to 15 */
+  background: linear-gradient(#d9b9ff, #b48be7) /* Standard syntax */
+
+@mixin transform($deg)
+  -webkit-transform: rotate(-90deg)
+  -moz-transform: rotate(-90deg)
+  -o-transform: rotate(-90deg)
+  -ms-transform: rotate(-90deg)
+  transform: rotate(-90deg)

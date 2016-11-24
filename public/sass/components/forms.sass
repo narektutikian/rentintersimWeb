@@ -1,0 +1,96 @@
+.form_row
+  position: relative
+  margin-bottom: 30px
+
+.block_btn
+  display: block
+  width: 100%
+  height: 35px
+  line-height: 35px
+
+.block_btn_30
+  display: block
+  width: 100%
+  height: 30px
+  line-height: 30px
+
+.login_input
+  @include input_with_icon
+  color: $login_gray
+
+.input_icon
+  color: $login_gray
+  @include login_input_icon
+
+.light_blue_btn
+  @include light_blue_btn(16px)
+
+.light_green_btn
+  @include light_green_btn(16px)
+
+// style select element
+
+.s-hidden
+  visibility: hidden
+  padding-right: 10px
+
+.select
+  cursor: pointer
+  display: inline-block
+  position: relative
+  @include fonts_stack(15px)
+  text-align: left
+
+.styled_select
+  position: absolute
+  top: 0
+  right: 0
+  bottom: 0
+  left: 0
+  padding: 0 10px 0 48px
+
+.select > .icon-dropdown
+  position: absolute
+  top: 12px
+  right: 7px
+  color: $tab_border
+  font-size: 10px
+
+
+.styled_select:active, .styled_select.active
+  border-top-left-radius: 5px
+  border-top-right-radius: 5px
+  border-bottom-left-radius: 0px
+  border-bottom-right-radius: 0px
+  padding-left: 48px
+
+.options
+  display: none
+  position: absolute
+  top: 100%
+  right: -1px
+  left: -1px
+  z-index: 999
+  margin: 0 0
+  padding: 0 0
+  list-style: none
+  background-color: $white
+  border: 1px solid $login_gray
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2)
+  -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2)
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2)
+  margin-top: -2px
+  border-bottom-left-radius: 5px
+  border-bottom-right-radius: 5px
+
+.options li
+  margin: 0 6px
+  padding: 0 10px 0 48px
+  background: $white
+  border-bottom: 1px solid $login_gray
+  &:last-child
+    border-bottom: none
+
+.options li:hover
+  background-color: $gray_border
+

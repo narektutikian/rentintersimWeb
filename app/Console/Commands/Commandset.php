@@ -51,7 +51,7 @@ class Commandset extends Command
         foreach ($arguments as $value) {            
         
         $this::callSilent('make:model', ['name' => 'Models\\'.ucfirst($value)]);
-        $this::callSilent('make:migration', ['name' => 'create_'.$value.'s_table', '--create' => $value.'s']);
+        $this::callSilent('make:migration', ['name' => 'create_'.lcfirst($value).'s_table', '--create' => lcfirst($value).'s']);
         $this::callSilent('make:seeder', ['name' => ucfirst($value).'sTableSeeder']);
         if ($this->option('route')=='api')
             $this::callSilent('make:controller',  ['name' => 'Api\\' .ucfirst($value).'Controller', '--resource' => true]);
@@ -63,6 +63,6 @@ class Commandset extends Command
          $bar->advance();
          }
          $bar->finish();
-         $this->info('Entities are creted succesfully');
+         $this->info(' \n Entities are creted succesfully');
     }
 }

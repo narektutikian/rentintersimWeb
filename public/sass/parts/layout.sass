@@ -1,0 +1,209 @@
+.layout
+  .tab_nav
+    display: block
+    background: $dark_blue
+    .nav-tabs
+      > li
+        &.open
+          a.dropdown-toggle
+            color: $dark_blue
+        > a
+          color: $white
+          @include border_radius(0)
+          @include fonts_stack(15px)
+          border: none
+          border-right: 1px solid $tab_border
+
+          &:hover
+            background: $white
+            color: $dark_blue
+            border-bottom: 1px solid transparent
+        &.active
+          a
+            background: $white
+            color: $dark_blue
+            border-bottom: 1px solid transparent
+
+  .tab-content
+    background: $white
+    #dashboard
+      padding: 15px
+      .distributors
+        text-align: center
+        margin-top: 45px
+        margin-bottom: 82px
+      .dashboard_charts
+        .total_numbers
+          height: 270px
+          text-align: center
+          border: 1px solid $gray_border
+          @include border_radius(4px)
+          margin-bottom: 15px
+        .phone_charts
+          display: inline-block
+          vertical-align: middle
+          width: 115px
+          text-align: center
+          &.middle
+            margin: 0 38px
+          .phone_chart_status
+            display: inline-block
+            margin-top: 23px
+        .average_numbers
+          height: 270px
+          text-align: center
+          border: 1px solid $gray_border
+          @include border_radius(4px)
+          .wrap_average
+            position: relative
+            .average_value
+              display: inline-block
+              vertical-align: top
+              text-align: center
+              .value
+                display: block
+                text-align: center
+                color: $pie_value
+                @include fonts_stack_semi_bold(25px)
+              .av_status
+                color: $dark_gray
+                @include fonts_stack_semi_bold(15px)
+            .phone_charts
+              margin: 0 10px
+            .remainder_value
+              display: inline-block
+              vertical-align: top
+              .value
+                display: block
+                text-align: center
+                color: $pie_value
+                @include fonts_stack_semi_bold(25px)
+              .status
+                color: $dark_gray
+                @include fonts_stack_semi_bold(15px)
+        .total_numbers_title
+          margin-top: 22px
+          margin-bottom: 45px
+    #user_management
+      padding-top: 45px
+      .user_management_wrapper
+        padding: 15px
+
+    #number_management
+      padding-top: 45px
+      .filter_status
+        .number_management_wrapper
+          padding: 15px
+          .filter_buttons
+            font-size: 0
+            .search_management_option
+              .export_user
+                text-align: left
+              .add_new_user
+                text-align: left
+
+    #sim_management
+      padding-top: 45px
+      .filter_status
+        .sim_management_wrapper
+          padding: 15px
+          .filter_buttons
+            font-size: 0
+            .search_management_option
+              .search_form_option
+                @media (min-width: 1200px)
+                  width: 180px
+                @media (max-width: 768px)
+                  display: block
+                  width: 80%
+                  margin: 0 auto 15px
+              .export_user
+                text-align: left
+              .add_new_user
+                text-align: left
+
+    // Settings
+    #type_management
+      padding-top: 45px
+      .filter_status
+        .type_management_wrapper
+          padding: 15px
+            @include fonts-stack(16px)
+          .filter_buttons
+            font-size: 0
+            .search_management_option
+              .export_user
+                text-align: left
+              .add_new_user
+                text-align: left
+
+  #orders_list
+    background: $white
+    padding-top: 45px
+    .orders_list_wrapper
+      padding: 15px
+      .filter_buttons
+        font-size: 0
+
+@media (max-width: 1200px)
+
+  .layout
+    .tab-content
+      #user_management
+
+      #number_management
+        .filter_status
+          .filter_status_wrapper
+            .filter_buttons
+              display: block
+              .filter_option
+                width: 22%
+                margin-right: 4%
+                &.last
+                  margin-right: 0
+
+
+@media (max-width: 768px)
+  .layout
+    .tab_nav
+      .nav-tabs
+        > li.open
+          display: block
+          a.dropdown-toggle
+        > li.active
+          a
+            background: $dark_blue
+            color: $white
+
+      .open
+        >.sub_menu
+          display: block
+          padding: 0
+          right: 0
+
+    .tab-content
+      #user_management
+
+      #number_management
+        .filter_status
+          .filter_status_wrapper
+            .filter_buttons
+              font-size: 0
+              display: block
+
+
+@media (max-width: 640px)
+  .layout
+    .tab-content
+      #dashboard
+        .dashboard_charts
+          .total_numbers
+            height: auto
+            .phone_charts
+              display: block
+              margin: 0 auto 15px
+              width: 115px
+              &.middle
+                margin: 0 auto 15px
+              .phone_chart_status
+                margin-top: 15px

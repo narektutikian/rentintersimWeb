@@ -1,0 +1,63 @@
+*
+  margin: 0
+  padding: 0
+  box-sizing: border-box
+  -moz-box-sizing: border-box /*Firefox 1-3*/
+  -webkit-box-sizing: border-box /* Safari */
+
+html, body
+  margin: 0
+  padding: 0
+
+body
+  background: $body_bg
+  color: $dark_gray
+  @include fonts_stack($font16)
+
+div
+  box-sizing: border-box
+  -moz-box-sizing: border-box /*Firefox 1-3*/
+  -webkit-box-sizing: border-box /* Safari */
+
+img
+  height: auto
+  border: none
+
+input, select, button, textarea
+  outline: none
+
+select:focus
+  outline: none
+
+a:hover
+  text-decoration: none
+
+h1, h2, h3, h4, h5, h6
+  margin: 0
+  padding: 0
+
+h1
+  font-size: 24px
+h2
+  font-size: 22px
+h3
+  font-size: 18px
+h4
+  font-size: 16px
+h5
+  font-size: 12px
+h6
+  font-size: 10px
+
+a
+  text-decoration: none
+
+.width100
+  width: 100%
+.width75
+  width: 75%
+.width50
+  width: 50%
+
+.clear
+  clear: both

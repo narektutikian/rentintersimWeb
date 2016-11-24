@@ -1,3 +1,38 @@
+{{--<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Vodafone</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body class="login_page">
+
+<div class="login_wrapper">
+    <h2>Welcome to InterSIM</h2>
+
+    <div class="login_form tall">
+        <h3>User login </h3>
+        <form action="/">
+            <div class="form-group form_row">
+                <input type="text" class="block_btn login_input" placeholder="Username"/>
+                <i class="input_icon icon-username"></i>
+            </div>
+            <div class="form-group form_row">
+                <input type="password" class="block_btn login_input" placeholder="Password"/>
+                <i class="input_icon icon-password"></i>
+            </div>
+            <div class="form-group form_row short_bottom">
+                <input type="submit" class="block_btn light_green_btn" value="Login"/>
+            </div>
+            <a class="login_hint" href="#">forgot your password?</a>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>--}}
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
