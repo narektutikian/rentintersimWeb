@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Order;
 
 class OrderController extends Controller
 {
@@ -15,6 +16,8 @@ class OrderController extends Controller
     public function index()
     {
         //
+
+
     }
 
     /**
@@ -25,6 +28,7 @@ class OrderController extends Controller
     public function create()
     {
         //
+        return view('ordercreate');
     }
 
     /**
@@ -35,7 +39,20 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate(request(), [
+//        'from' => 'required',
+//        'until' =>  'required',
+        'landing' =>  'required',
+        'departure' =>  'required',
+//        'reference_number' =>  'required',
+//        'status' =>  'required',
+//        'remark' =>  'required',
+//        'costomer_id' =>  'required',
+//        'employee_id' =>  'required',
+//        'created_by' =>  'required',
+//        'updated_by' =>  'required',
+//        'is_deleted' =>  'required'
+        ]);
     }
 
     /**

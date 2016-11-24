@@ -120,7 +120,9 @@
                                 <button type="submit" class="search_button"><i class="icon-search"></i></button>
                             </form>
                             <a href="#" class="export_user"><i class="icon-export"></i>Export</a>
+                            @if (Auth::user()->type == 'admin')
                             <a href="#" class="add_new_user"><i class="icon-add_user"></i>Add new user</a>
+                            @endif
                         </div>
                         <div class="clear"></div>
                     </div>

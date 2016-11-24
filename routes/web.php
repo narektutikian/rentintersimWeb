@@ -12,10 +12,11 @@
 */
 
 use App\User;
+use App\Models\Order;
 //use Auth;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('/home');
 })->middleware('auth');
 
 Auth::routes();
@@ -25,6 +26,7 @@ Route::get('/dashboard', 'HomeController@dashboard');
 
 Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
     Route::resource('user', 'UserController');
+    Route::resource('order', 'OrderController');
 
     Route::get('imitate', 'UserController@showImitation');
 
@@ -34,7 +36,7 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
 });
 
 Route::get('/test', function (){
-    $net = User::select('id', 'login')->where('id', '!=', Auth::user()->id)->get()->toArray();
-    return view('auth.imitate', compact('net'));
+    $net = Order::find(1)->creator->name;
+    print_r($net);
 });
 
