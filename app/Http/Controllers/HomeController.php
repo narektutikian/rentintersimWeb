@@ -26,17 +26,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $orders = Order::get();
-        $ordersArray = $orders->toArray();
-        foreach ($orders as $key => $order) {
-            $ordersArray[$key]['created_by'] = $order->creator->login;
-            $ordersArray[$key]['edited_by'] = $order->editor->login;
-            $ordersArray[$key]['sim_id'] = $order->sim->number;
-            if ($ordersArray[$key]['phone_id'] != 0)
-            $ordersArray[$key]['phone_id'] = $order->phone->phone;
-            $ordersArray[$key]['provider'] = $order->sim->provider->name;
+        $id = Auth::user()->id;
+        $orders = Order::employee($id)->get();
+       $ordersArray = $this->solveOrderList($orders);
 
-        }
+//        var_dump($ordersArray);
         return view('home', compact('ordersArray'));
 
     }
@@ -46,5 +40,18 @@ class HomeController extends Controller
         if (Auth::user()->type == 'employee')
             return redirect('home');
         return view('dashboard');
+    }
+
+    public static function solveOrderList($orders){
+    $ordersArray = $orders->toArray();
+    foreach ($orders as $key => $order) {
+        $ordersArray[$key]['created_by'] = $order->creator->login;
+        $ordersArray[$key]['updated_by'] = $order->editor->login;
+        $ordersArray[$key]['sim_id'] = $order->sim->number;
+        if ($ordersArray[$key]['phone_id'] != 0)
+            $ordersArray[$key]['phone_id'] = $order->phone->phone;
+        $ordersArray[$key]['provider'] = $order->sim->provider->name;
+    }
+    return $ordersArray;
     }
 }

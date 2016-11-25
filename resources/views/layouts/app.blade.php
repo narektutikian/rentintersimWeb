@@ -27,7 +27,7 @@
             <div class="row">
                 <div class="col-md-6 col-sm-2 col-xs-2">
                     <div class="logo">
-                        <a href="{{url('/dashboard')}}"><img src="{{Auth::user()->logo}}" alt="Logo"></a>
+                        <a href="{{url('/dashboard')}}"><img src="/{{Auth::user()->logo}}" alt="Logo"></a>
                     </div>
                     <nav class="main_nav">
                         <ul>
