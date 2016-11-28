@@ -17,10 +17,10 @@ class PhoneController extends Controller
     {
         //
 
-        $phones = Phone::get();
+        $phones = Phone::where('is_deleted', 0)->get();
         $phonesArray = $this->solvePhoneList($phones);
 
-//        var_dump($phonesArray);
+//      dd($phonesArray);
         return view('phone', compact('phonesArray'));
     }
 
@@ -164,5 +164,6 @@ class PhoneController extends Controller
         $phonesArray = $this->solvePhoneList($phones);
 
         return view('phone', compact('phonesArray'));
+//        dd($phonesArray);
     }
 }

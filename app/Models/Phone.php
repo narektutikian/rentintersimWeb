@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Phone extends Model
 {
     //
+
+    protected $hidden = ['is_deleted'];
+
     public function sim()
     {
         return $this->belongsTo('App\Models\Sim', 'current_sim_id');
@@ -24,6 +27,6 @@ class Phone extends Model
 
     public function scopeFilter($query, $filter)
     {
-        return $query->where('state', $filter);
+        return $query->where('is_deleted', 0)->where('state', $filter);
     }
 }

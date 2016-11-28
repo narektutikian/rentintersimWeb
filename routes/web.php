@@ -13,6 +13,7 @@
 
 use App\User;
 use App\Models\Order;
+
 //use Auth;
 use Carbon\Carbon;
 
@@ -39,20 +40,11 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
     /*Filter Routes*/
     Route::get('filter-orderlist/{filter}', 'OrderController@filter');
     Route::get('filter-phonelist/{filter}', 'PhoneController@filter');
+    Route::get('filter-simlist/{filter}', 'SIMController@filter');
+    Route::get('filter-packagelist/{filter}', 'PackageController@filter');
 });
 
-Route::get('/test', function (){
-/*
-    print_r(Order::where
-    ([
-        ['is_deleted', '!=', 0],
-        ['status', '=', 'Active'],
-        ['created_by', 30]
-    ])
-        ->orWhere('updated_by', 30)->get());*/
-//$order = Order::where([['created_by', '20'],['status', 'Waiting']])->orWhere([['updated_by', '20'],['status', 'Waiting']])->get()->toArray();
-//
-    $order = Order::employee(20)->filter('Waiting')->get()->toArray();
-    dd($order);
-});
+
+Route::get('/test', 'Api\PackageController@index');
+
 

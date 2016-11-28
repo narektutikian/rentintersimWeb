@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\Package;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -14,7 +15,11 @@ class PackageController extends Controller
      */
     public function index()
     {
-        //
+        $sims = Package::where('is_deleted', 0)->get();
+        $packageArray = $this->solvePackageList($sims);
+
+//      dd($packageArray);
+        return view('package', compact('packageArray'));
     }
 
     /**
@@ -36,6 +41,29 @@ class PackageController extends Controller
     public function store(Request $request)
     {
         //
+
+        $this->validate(request(), [
+
+            'type_code' => 'required|unique:sims',
+            'name' => 'required',
+            'description' => 'required',
+            'provider_id' => 'required',
+//            'status' => 'required',
+//            'is_deleted' => 'required',
+
+        ]);
+
+        $newPackage = Package::forceCreate([
+
+            'type_code' => $request->input('type_code'),
+            'name' => $request->input('name'),
+            'description' => $request->input('description'),
+            'provider_id' => $request->input('provider_id'),
+            'status' => $request->input('status'),
+            'is_deleted' => 0
+        ]);
+
+
     }
 
     /**
@@ -70,6 +98,28 @@ class PackageController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $this->validate(request(), [
+
+            'type_code' => 'required|unique:sims',
+            'name' => 'required',
+            'description' => 'required',
+            'provider_id' => 'required',
+//            'status' => 'required',
+//            'is_deleted' => 'required',
+
+        ]);
+
+        $package=Package::find($id);
+
+        $package->type_code = $request->input('type_code');
+        $package->name = $request->input('name');
+        $package->description = $request->input('description');
+        $package->provider_id = $request->input('provider_id');
+        $package->status = $request->input('status');
+//        $package->is_deleted = 0;
+        $package->save();
+
+
     }
 
     /**
@@ -81,5 +131,26 @@ class PackageController extends Controller
     public function destroy($id)
     {
         //
+        $package=Package::find($id);
+        $package->is_deleted = 1;
+        $package->save();
+
+    }
+
+    public static function solvePackageList($packages){
+        $packagesArray = $packages->toArray();
+        foreach ($packages as $key => $package) {
+            $packagesArray[$key]['provider_id'] = $package->provider->name;
+        }
+        return $packagesArray;
+    }
+
+    public function filter($filter){
+
+        $packages = Package::filter($filter)->get();
+        $packagesArray = $this->solvePackageList($packages);
+
+        dd($packagesArray);
+//        return view('package', compact('packagesArray'));
     }
 }

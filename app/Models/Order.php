@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     //
+
+    protected $hidden = ['is_deleted'];
+
     public function creator()
     {
         return $this->belongsTo('App\User', 'created_by');
