@@ -3,8 +3,10 @@
 @section('content')
     <div class="layout">
         <div class="container">
+
             <div id="orders_list">
                 <section class="filter_status">
+                    
                     <div class="orders_list_wrapper">
                         <div class="filter_text">Filter by status:</div>
                         <div class="filter_buttons">
