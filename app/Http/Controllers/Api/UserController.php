@@ -71,6 +71,71 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //
+        $user = Auth::user();
+        $submiter = $user;
+        $this->validate(request(), [
+
+            'name' => 'required',
+            'email' => 'required|unique:users',
+//            'logo' => 'required',
+            'username' => 'required',
+            'password' => 'required',
+            'type' => 'required',
+            'level' => 'required',
+//            'time_zone' => 'required',
+            'email2' => 'required|unique:users',
+//            'phone' => 'required',
+//            'language_id' => 'required',
+//            'sim_balance' => 'required',
+//            'phone_balance' => 'required',
+//            'supervisor_id' => 'required',
+//            'is_active' => 'required',
+//            'is_deleted' => 'required',
+
+        ]);
+
+
+
+        $newUser = [
+
+
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+//            'logo' => $request->input('name
+            'login' => $request->input('username'),
+            'password' => $request->input('password'),
+            'type' => $request->input('type'),
+            'level' => $request->input('level'),
+//            'time_zone' => $request->input('name
+              'email2' => $request->input('email2'),
+//            'phone' => $request->input('name
+            'language_id' => 1,
+//            'sim_balance' => $request->input('name'),
+//            'phone_balance' => $request->input('name'),
+          'supervisor_id' => $user->id,
+            'is_active' => 1,
+            'is_deleted' => 0
+
+       ];
+        if ($user->level == 'Super admin'){
+            if($request->has('supervisor_id') && $request->input('supervisor_id') != $user->id){
+                $submiter = User::find($request->input('supervisor_id'));
+                $newUser['supervisor_id'] =  $request->input('supervisor_id');
+            }
+        }
+
+        if ($this->manager->UserCreation($newUser, $submiter)){
+            $createdUser = User::forceCreate($newUser);
+        }
+        else {
+            return response('You cannot create this type of user', 401);
+        }
+
+
+
+
+        if($createdUser)
+            return $createdUser;
     }
 
     /**

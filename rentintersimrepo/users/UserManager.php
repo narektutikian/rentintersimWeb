@@ -64,4 +64,26 @@ class UserManager
         return $flatArray;
     }
 
+    function typeValidator($level){
+        if($level == 'Super admin')
+            return ['Distributor', 'Dealer', 'Subdealer'];
+        elseif ($level == 'Distributor')
+            return ['Dealer', 'Subdealer'];
+        elseif ($level == 'Dealer')
+            return ['Subdealer'];
+        else return array();
+
+    }
+
+    function UserCreation($newUser, $user){
+        if (in_array($newUser->level, $this->typeValidator($user->level))){
+            if ($newUser->type == 'admin')
+                return true;
+        }
+        elseif ($newUser->type != 'admin' && $newUser->level == $user->level)
+            return true;
+
+        return false;
+    }
+
 }
