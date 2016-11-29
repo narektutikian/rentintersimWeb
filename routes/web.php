@@ -30,7 +30,9 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
     /* Resource Routes */
     Route::resource('user', 'UserController');
     Route::resource('order', 'OrderController');
-    Route::resource('phone', 'PhoneController');
+    Route::resource('number', 'PhoneController');
+    Route::resource('sim', 'SIMController');
+    Route::resource('type', 'PackageController');
 
 
     /*Auth Routes*/

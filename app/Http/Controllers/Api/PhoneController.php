@@ -21,7 +21,7 @@ class PhoneController extends Controller
         $phonesArray = $this->solvePhoneList($phones);
 
 //      dd($phonesArray);
-        return view('phone', compact('phonesArray'));
+        return view('number', compact('phonesArray'));
     }
 
     /**

@@ -19,7 +19,7 @@ class PackageController extends Controller
         $packageArray = $this->solvePackageList($sims);
 
 //      dd($packageArray);
-        return view('package', compact('packageArray'));
+        return view('type', compact('packageArray'));
     }
 
     /**
