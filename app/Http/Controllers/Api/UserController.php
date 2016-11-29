@@ -8,6 +8,7 @@ use App\User;
 use Illuminate\Support\Facades\Auth;
 use Rentintersimrepo\users\UserManager as Manager;
 
+
 class UserController extends Controller
 {
     protected $manager;
@@ -25,7 +26,7 @@ class UserController extends Controller
     public function index()
     {
         //
-        $user = Auth::user()->id;
+//        $user = Auth::user()->id;
        /* $myNetwork = array();
 
         $distributors = User::distributor($user)->get()->toArray();
@@ -40,14 +41,14 @@ class UserController extends Controller
 
          dd($myNetwork);*/
         $done = array();
-       $net = $this->manager->getMyNetwork($user);
+//       $net = $this->manager->getMyNetwork($user);
 //        $new = $net[0];
 //        unset($new['child']);
 //        $done[] = $new;
 //        $done[] = $net[0];
 //        echo '<pre>';
-        dd($net);
-//        return view('user');
+//        dd($net);
+        return view('user');
     }
 
 

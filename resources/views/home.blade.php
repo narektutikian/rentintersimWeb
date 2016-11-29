@@ -29,7 +29,7 @@
                                 <a href="{{url('/order/create')}}" class="add_new_user"><i class="icon-new_order"></i>New Order</a>
                             </div>
                         </div>
-                        
+
                         <div class="clear"></div>
                     </div>
                 </section>
