@@ -45,6 +45,6 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
 });
 
 
-Route::get('/test', 'Api\PackageController@index');
+Route::get('/test', 'Api\UserController@index');
 
 

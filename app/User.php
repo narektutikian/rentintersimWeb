@@ -32,5 +32,32 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Order');
     }
 
+    public function scopeNetwork($query, $id)
+    {
+        return $query->where('supervisor_id', $id);
+    }
+
+    public function scopeMyNetwork($query, $id)
+    {
+        return $query->where([['supervisor_id', $id],['type', '!=', 'admin']]);
+    }
+
+
+    public function scopeDistributor($query, $id)
+    {
+        return $query->where([['supervisor_id', $id], ['level', 'Distributor']]);
+    }
+
+    public function scopeDealer($query, $id)
+    {
+        return $query->where([['supervisor_id', $id], ['level', 'Dealer']]);
+    }
+
+    public function scopeSubdealer($query, $id)
+    {
+        return $query->where([['supervisor_id', $id], ['level', 'Subdealer']]);
+    }
+
+
 
 }

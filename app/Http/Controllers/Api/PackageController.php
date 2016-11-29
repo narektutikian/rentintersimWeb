@@ -150,7 +150,7 @@ class PackageController extends Controller
         $packages = Package::filter($filter)->get();
         $packagesArray = $this->solvePackageList($packages);
 
-        dd($packagesArray);
-//        return view('package', compact('packagesArray'));
+//        dd($packagesArray);
+        return view('package', compact('packagesArray'));
     }
 }

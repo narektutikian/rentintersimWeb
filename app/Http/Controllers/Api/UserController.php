@@ -6,9 +6,17 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use Rentintersimrepo\users\UserManager as Manager;
 
 class UserController extends Controller
 {
+    protected $manager;
+
+    public function __construct(Manager $manager)
+    {
+        $this->manager = $manager;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +25,31 @@ class UserController extends Controller
     public function index()
     {
         //
+        $user = Auth::user()->id;
+       /* $myNetwork = array();
+
+        $distributors = User::distributor($user)->get()->toArray();
+        $dealers = User::dealer($user)->get()->toArray();
+        $subDealers = User::subdealer($user)->get()->toArray();
+        $net = User::myNetwork($user)->get()->toArray();
+
+        $myNetwork['distributors'] = $distributors;
+        $myNetwork['dealers'] = $dealers;
+        $myNetwork['subdealers'] = $subDealers;
+        $myNetwork['myNetwork'] = $net;
+
+         dd($myNetwork);*/
+        $done = array();
+       $net = $this->manager->getMyNetwork($user);
+//        $new = $net[0];
+//        unset($new['child']);
+//        $done[] = $new;
+//        $done[] = $net[0];
+//        echo '<pre>';
+        dd($net);
+//        return view('user');
     }
+
 
     /**
      * Show the form for creating a new resource.

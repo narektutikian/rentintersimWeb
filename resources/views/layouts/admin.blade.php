@@ -84,9 +84,28 @@
             @endif
         </ul>
     </header>
-         @yield('content')
-        @yield('content_admin')
-
+    <div class="layout">
+        <div class="container">
+            <nav class="tab_nav">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#dashboard" aria-controls="home" role="tab" data-toggle="tab">Dashboard</a></li>
+                    <li role="presentation"><a href="#user_management" aria-controls="profile" role="tab" data-toggle="tab">User Management</a></li>
+                    <li role="presentation"><a href="#number_management" aria-controls="messages" role="tab" data-toggle="tab">Number Management</a></li>
+                    <li role="presentation"><a href="#sim_management" aria-controls="settings" role="tab" data-toggle="tab">SIM Management</a></li>
+                    <li class="dropdown" role="presentation">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Settings <span class="caret"></span></a>
+                        <ul class="dropdown-menu sub_menu">
+                            <li><a href="#type_management" data-toggle="tab">Type management</a></li>
+                            <li><a href="#tab_d2" data-toggle="tab">Submenu 1-2</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <div class="tab-content">
+         @yield('content-admin')
+            </div>
+        </div>
+    </div>
 </div>
 <script src="/js/jquery-2.2.4.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
