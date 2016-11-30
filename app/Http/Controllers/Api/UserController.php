@@ -60,6 +60,10 @@ class UserController extends Controller
     public function create()
     {
         //
+        $supervisors = array();
+        if (Auth::user()->level == 'Super admin')
+          $supervisors =  User::select('id', 'login', 'supervisor_id')->where('id', '!=', Auth::user()->id)->get()->toArray();
+        return view('usercreate', compact('supervisors'));
     }
 
     /**
@@ -71,6 +75,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //
+
         $user = Auth::user();
         $submiter = $user;
         $this->validate(request(), [
@@ -117,8 +122,10 @@ class UserController extends Controller
             'is_deleted' => 0
 
        ];
+
         if ($user->level == 'Super admin'){
             if($request->has('supervisor_id') && $request->input('supervisor_id') != $user->id){
+
                 $submiter = User::find($request->input('supervisor_id'));
                 $newUser['supervisor_id'] =  $request->input('supervisor_id');
             }
@@ -128,6 +135,7 @@ class UserController extends Controller
             $createdUser = User::forceCreate($newUser);
         }
         else {
+
             return response('You cannot create this type of user', 401);
         }
 
