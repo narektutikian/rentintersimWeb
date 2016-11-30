@@ -1127,7 +1127,8 @@ input[type="radio"].toggle.checked + label {
         width: calc(100% - 90px); } }
 .vdf_modal {
   width: 1140px;
-  padding: 0; }
+  padding: 0;
+  margin-top: 20px; }
   .vdf_modal .vdf_modal_content {
     width: 1140px; }
   .vdf_modal .vdf_modal_header {
