@@ -323,7 +323,9 @@ input[type="radio"].toggle + label {
 .table_status_text {
   display: inline-block;
   vertical-align: middle;
-  width: 65px; }
+  width: 65px;
+  height: 22px;
+  line-height: 22px; }
 
 /*input[type="radio"].toggle:checked + label, */
 input[type="radio"].toggle.checked + label {

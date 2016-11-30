@@ -323,7 +323,9 @@ input[type="radio"].toggle + label {
 .table_status_text {
   display: inline-block;
   vertical-align: middle;
-  width: 65px; }
+  width: 65px;
+  height: 22px;
+  line-height: 22px; }
 
 /*input[type="radio"].toggle:checked + label, */
 input[type="radio"].toggle.checked + label {
@@ -863,7 +865,7 @@ input[type="radio"].toggle.checked + label {
     color: #079fff;
     font-size: 18px; }
 
-.add_new_user {
+.add_new_btn {
   display: inline-block;
   vertical-align: middle;
   margin-left: 12px;
@@ -880,7 +882,7 @@ input[type="radio"].toggle.checked + label {
   -moz-border-radius: 4px;
   -ms-border-radius: 4px;
   border-radius: 4px; }
-  .add_new_user i {
+  .add_new_btn i {
     display: inline-block;
     vertical-align: middle;
     margin-right: 5px;
@@ -1071,7 +1073,7 @@ input[type="radio"].toggle.checked + label {
       margin-right: 5%;
       margin-left: 0;
       text-align: center; }
-    .search_management_option .add_new_user {
+    .search_management_option .add_new_btn {
       width: 30%;
       margin-right: 0;
       margin-left: 0;
@@ -1094,7 +1096,7 @@ input[type="radio"].toggle.checked + label {
       margin-right: auto;
       margin-left: auto;
       margin-bottom: 15px; }
-    .search_management_option .add_new_user {
+    .search_management_option .add_new_btn {
       display: block;
       width: 80%;
       margin-right: auto;
