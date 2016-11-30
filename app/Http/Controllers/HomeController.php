@@ -29,9 +29,11 @@ class HomeController extends Controller
         $id = Auth::user()->id;
         $orders = Order::employee($id)->get();
        $ordersArray = $this->solveOrderList($orders);
+        $counts = $this->getCounts($id);
+
 
 //        var_dump($ordersArray);
-        return view('home', compact('ordersArray'));
+        return view('home', compact('ordersArray'), compact('counts'));
 
     }
 
@@ -53,5 +55,16 @@ class HomeController extends Controller
         $ordersArray[$key]['provider'] = $order->sim->provider->name;
     }
     return $ordersArray;
+    }
+
+    public static function getCounts($id){
+        $orders = Order::employee($id);
+        $counts = ([
+            'All' => $orders->count(),
+            'Active' => $orders->filter('Active')->count(),
+            'Pending' => Order::employee($id)->filter('Pending')->count(),
+            'Waiting' => Order::employee($id)->filter('Waiting')->count(),
+        ]);
+        return $counts;
     }
 }

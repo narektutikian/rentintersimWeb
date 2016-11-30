@@ -9,16 +9,16 @@
                         <div class="filter_text">Filter by status:</div>
                         <div class="filter_buttons">
                                     <span class="filter_option blue">
-                                        <i class="icon-company_status"></i><a href="{{url('/home')}}"> All (7) </a>
+                                        <i class="icon-company_status"></i><a href="{{url('/home')}}"> All ({{$counts['All']}}) </a>
                                     </span>
                             <span class="filter_option light_blue">
-                                        <span class="status active"></span><a href="{{url('filter-orderlist/Active')}}"> active (2)</a>
+                                        <span class="status active blue" ></span><a href="{{url('filter-orderlist/Active')}}"> active ({{$counts['Active']}})</a>
                                     </span>
                             <span class="filter_option light_blue">
-                                        <span class="status inactive"></span><a href="{{url('filter-orderlist/Pending')}}"> Pending (3) </a>
+                                        <span class="status inactive"></span><a href="{{url('filter-orderlist/Pending')}}"> Pending ({{$counts['Pending']}}) </a>
                                     </span>
                             <span class="filter_option light_blue last">
-                                        <span class="status waiting"></span><a href="{{url('filter-orderlist/Waiting')}}"> Waiting (2) </a>
+                                        <span class="status waiting"></span><a href="{{url('filter-orderlist/Waiting')}}"> Waiting ({{$counts['Waiting']}}) </a>
                                     </span>
                             <div class="search_management_option">
                                 <form action="/" class="search_form_option">

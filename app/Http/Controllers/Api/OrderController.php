@@ -179,7 +179,8 @@ class OrderController extends Controller
         $id = Auth::user()->id;
         $orders = Order::employee($id)->filter($filter)->get();
         $ordersArray = HomeController::solveOrderList($orders);
+        $counts = HomeController::getCounts($id);
 
-        return view('home', compact('ordersArray'));
+        return view('home', compact('ordersArray'), compact('counts'));
     }
 }
