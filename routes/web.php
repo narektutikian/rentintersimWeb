@@ -41,7 +41,7 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
 
     /*Filter Routes*/
     Route::get('filter-orderlist/{filter}', 'OrderController@filter');
-    Route::get('filter-phonelist/{filter}', 'PhoneController@filter');
+    Route::get('filter-numberlist/{filter}', 'PhoneController@filter');
     Route::get('filter-simlist/{filter}', 'SIMController@filter');
     Route::get('filter-packagelist/{filter}', 'PackageController@filter');
 });

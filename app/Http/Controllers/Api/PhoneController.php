@@ -19,9 +19,10 @@ class PhoneController extends Controller
 
         $phones = Phone::where('is_deleted', 0)->get();
         $phonesArray = $this->solvePhoneList($phones);
+        $counts = $this->getCounts();
 
 //      dd($phonesArray);
-        return view('number', compact('phonesArray'));
+        return view('number', compact('phonesArray'), compact('counts'));
     }
 
     /**
@@ -162,8 +163,20 @@ class PhoneController extends Controller
 
         $phones = Phone::filter($filter)->get();
         $phonesArray = $this->solvePhoneList($phones);
+        $counts = $this->getCounts();
 
-        return view('phone', compact('phonesArray'));
+        return view('number', compact('phonesArray'), compact('counts'));
 //        dd($phonesArray);
+    }
+
+    public function getCounts(){
+
+        $counts = ([
+            'All' => Phone::where('is_deleted', 0)->count(),
+            'Active' => Phone::where('is_deleted',  0)->filter('Active')->count(),
+            'Pending' => Phone::where('is_deleted',  0)->filter('Pending')->count(),
+            'Not in use' => Phone::where('is_deleted',  0)->filter('Not in use')->count(),
+        ]);
+        return $counts;
     }
 }
