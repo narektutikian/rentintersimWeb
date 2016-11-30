@@ -1,31 +1,8 @@
 .layout
-  .tab_nav
-    display: block
-    background: $dark_blue
-    .nav-tabs
-      > li
-        &.open
-          a.dropdown-toggle
-            color: $dark_blue
-        > a
-          color: $white
-          @include border_radius(0)
-          @include fonts_stack(15px)
-          border: none
-          border-right: 1px solid $tab_border
-
-          &:hover
-            background: $white
-            color: $dark_blue
-            border-bottom: 1px solid transparent
-        &.active
-          a
-            background: $white
-            color: $dark_blue
-            border-bottom: 1px solid transparent
-
-  .tab-content
+  .content
     background: $white
+    padding-top: 45px
+    padding-bottom: 45px
     #dashboard
       padding: 15px
       .distributors
@@ -85,12 +62,10 @@
           margin-top: 22px
           margin-bottom: 45px
     #user_management
-      padding-top: 45px
       .user_management_wrapper
         padding: 15px
 
     #number_management
-      padding-top: 45px
       .filter_status
         .number_management_wrapper
           padding: 15px
@@ -103,7 +78,6 @@
                 text-align: left
 
     #sim_management
-      padding-top: 45px
       .filter_status
         .sim_management_wrapper
           padding: 15px
@@ -124,7 +98,6 @@
 
     // Settings
     #type_management
-      padding-top: 45px
       .filter_status
         .type_management_wrapper
           padding: 15px
@@ -139,7 +112,6 @@
 
   #orders_list
     background: $white
-    padding-top: 45px
     .orders_list_wrapper
       padding: 15px
       .filter_buttons
@@ -148,62 +120,43 @@
 @media (max-width: 1200px)
 
   .layout
-    .tab-content
-      #user_management
+    #user_management
 
-      #number_management
-        .filter_status
-          .filter_status_wrapper
-            .filter_buttons
-              display: block
-              .filter_option
-                width: 22%
-                margin-right: 4%
-                &.last
-                  margin-right: 0
+    #number_management
+      .filter_status
+        .filter_status_wrapper
+          .filter_buttons
+            display: block
+            .filter_option
+              width: 22%
+              margin-right: 4%
+              &.last
+                margin-right: 0
 
 
 @media (max-width: 768px)
   .layout
-    .tab_nav
-      .nav-tabs
-        > li.open
-          display: block
-          a.dropdown-toggle
-        > li.active
-          a
-            background: $dark_blue
-            color: $white
+    #user_management
 
-      .open
-        >.sub_menu
-          display: block
-          padding: 0
-          right: 0
-
-    .tab-content
-      #user_management
-
-      #number_management
-        .filter_status
-          .filter_status_wrapper
-            .filter_buttons
-              font-size: 0
-              display: block
+    #number_management
+      .filter_status
+        .filter_status_wrapper
+          .filter_buttons
+            font-size: 0
+            display: block
 
 
 @media (max-width: 640px)
   .layout
-    .tab-content
-      #dashboard
-        .dashboard_charts
-          .total_numbers
-            height: auto
-            .phone_charts
-              display: block
+    #dashboard
+      .dashboard_charts
+        .total_numbers
+          height: auto
+          .phone_charts
+            display: block
+            margin: 0 auto 15px
+            width: 115px
+            &.middle
               margin: 0 auto 15px
-              width: 115px
-              &.middle
-                margin: 0 auto 15px
-              .phone_chart_status
-                margin-top: 15px
+            .phone_chart_status
+              margin-top: 15px

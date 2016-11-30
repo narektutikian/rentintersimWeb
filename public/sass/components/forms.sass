@@ -14,6 +14,11 @@
   height: 30px
   line-height: 30px
 
+.inline_block_btn
+  display: inline-block
+  height: 30px
+  line-height: 30px
+
 .login_input
   @include input_with_icon
   color: $login_gray
@@ -27,6 +32,18 @@
 
 .light_green_btn
   @include light_green_btn(16px)
+
+.light_gray_btn
+  @include gray_btn(16px)
+
+.modal_textarea
+  @include input_without_icon
+  display: block
+  width: 100%
+  height: 50px
+  color: $total_numbers_title
+  @include fonts_stack(15px)
+  border: 1px solid $search_border
 
 // style select element
 
@@ -94,3 +111,199 @@
 .options li:hover
   background-color: $gray_border
 
+
+
+/* Styling radio button */
+.vdf_radio
+  display: inline-block
+  vertical-align: middle
+  margin-left: 5px
+.vdf_radio
+  float: right
+  .toggle_container
+    position: relative
+    background: $active_green
+    border: 1px solid $active_green
+    height: 22px
+    width: 47px
+    border-radius: 12px
+    font-size: 0
+    &.disabled
+      background: $white
+      border: 1px solid #D4E1EA
+      label
+        .input-checked
+          border: 1px solid #D4E1EA
+    label
+      display: inline-block
+      vertical-align: middle
+      border-radius: 12px
+      &:last-child
+        margin-left: 4px
+      input[type="radio"]
+        position: absolute
+        top: -99em
+        visibility: hidden
+      .input-checked
+        background-color: $white
+        border: 1px solid $white
+      span
+        width: 20px
+        height: 20px
+        border-radius: 12px
+        display: block
+        cursor: pointer
+        border: 1px solid transparent
+
+
+input[type="radio"].toggle + label
+  display: inline-block
+  text-align: center
+  width: 20px
+  height: 20px
+  border-radius: 12px
+  background-color: transparent
+  cursor: pointer
+
+.status_text
+  display: inline-block
+  vertical-align: middle
+  width: 75px
+  margin-top: 6px
+  &.active
+    color: $total_numbers_title
+    @include fonts-stack(14px)
+  &.enable
+    color: $total_numbers_title
+    @include fonts-stack(14px)
+  &.disable
+    color: $disabled2
+    @include fonts-stack(14px)
+  &.pending
+    color: $pending_yellow
+    @include fonts-stack(14px)
+
+.table_status_text
+  display: inline-block
+  vertical-align: middle
+  width: 65px
+
+
+/*input[type="radio"].toggle:checked + label,*/
+input[type="radio"].toggle.checked + label
+  background-color: $white
+  border-radius: 12px
+  border: 1px solid #dcdee2
+  cursor: default
+
+/* end of Styling radio button */
+
+.table_label
+  display: block
+  margin-bottom: 14px
+  color: $dark_blue
+  @include fonts-stack(15px)
+  @media (max-width: 768px)
+    margin-bottom: 10px
+
+
+/* Styling Select element*/
+.select_wrapper
+  background-color: #FFF
+  display: block
+  position: relative
+  select
+    padding: 0px 40px 0px 10px
+    background-color: transparent
+    @include border-radius(6px)
+    position: relative
+    cursor: pointer
+    z-index: 10
+    @include appearance_none
+    &::-ms-expand
+      display: none
+
+.select_wrapper:after
+  content: "\276e"
+  font-size: 12px
+  position: absolute
+  top: 8px
+  right: 10px
+  z-index: 5
+  color: $dark_blue
+  -webkit-transform: rotate(-90deg)
+  -moz-transform: rotate(-90deg)
+  -o-transform: rotate(-90deg)
+  -ms-transform: rotate(-90deg)
+  transform: rotate(-90deg)
+
+
+// style input type=file in modal
+.file_container
+  display: inline-block
+  vertical-align: middle
+  height: 30px
+  @include white_button(15px)
+  padding: 0 20px
+  @media (min-width: 992px) and (max-width: 1200px)
+    padding: 0 10px
+
+.file_container
+  input[type=file]
+    cursor: inherit
+    display: block
+    font-size: 999px
+    filter: alpha(opacity=0)
+    min-height: 100%
+    min-width: 100%
+    opacity: 0
+    position: absolute
+    right: 0
+    text-align: right
+    top: 0
+    cursor: pointer
+
+.modal_input
+  @include input_with_icon
+  padding: 0 0 0 35px
+  color: $light-blue
+  border: 1px solid $search_border
+
+.modal_input_without_icon
+  @include input_without_icon
+  color: $total_numbers_title
+  @include fonts_stack(15px)
+  border: 1px solid $search_border
+
+.download_file
+  display: inline-block
+  vertical-align: middle
+  @include orange_plus_x_small
+  background: none
+  i
+    font-size: 28px
+
+@media (max-width: 640px)
+  .rwd-table
+    .status_cell
+      overflow: hidden
+
+
+
+@media (min-width: 768px) and (max-width: 992px)
+  .vdf_radio
+    //display: block
+    //float: none
+    // margin: 5px auto
+
+@media (min-width: 640px) and (max-width: 768px)
+  .rwd-table
+    .status_cell
+      .status_text
+        width: auto
+        margin-top: 2px
+        margin-bottom: 2px
+        margin-right: 5px
+      .vdf_radio
+        margin-left: 0px
+        margin-right: 5px

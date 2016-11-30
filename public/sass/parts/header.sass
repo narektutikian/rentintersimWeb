@@ -18,6 +18,8 @@ header
   .main_nav
     display: inline-block
     vertical-align: middle
+    height: 37px
+    line-height: 37px
     ul
       overflow: hidden
       li
@@ -32,57 +34,114 @@ header
           &:hover
             color: $white
             border: 1px solid $active_yellow
-  .personal_info
-    text-align: right
+
+  .profile_nav
     display: block
-    > li
-      display: inline-block
-      &.date_time
-        data
-          display: inline-block
-          vertical-align: middle
-          margin-right: 60px
-          color: $white
-          @include fonts_stack(15px)
-          i
+    vertical-align: middle
+    .personal_info
+      text-align: right
+      display: block
+      > li
+        display: inline-block
+        line-height: 76px
+        &.date_time
+          data
+            display: inline-block
             vertical-align: middle
-            font-size: 24px
-            color: $active_yellow
-      &.profile
-        position: relative
-        display: inline-block
-        vertical-align: middle
-        margin-right: 30px
-        color: $white
-        @include fonts_stack(15px)
-        .profile_name
-          cursor: pointer
-          i
+            margin-right: 60px
             color: $white
-            font-size: 8px
-        .choose_user
-          left: -10px
-          min-width: 100px
-          z-index: 100
-
-
-      &.languages
-        position: relative
-        display: inline-block
-        .current_language
+            @include fonts_stack(15px)
+            i
+              vertical-align: middle
+              font-size: 24px
+              color: $active_yellow
+        &.profile
+          position: relative
           display: inline-block
           vertical-align: middle
-          color: $white
-          cursor: pointer
+          margin-right: 15px
+          padding-right: 15px
+          border-right: 1px solid $nav_border
           @include fonts_stack(15px)
-          i
+          .profile_name
             color: $white
-            font-size: 8px
-        .choose_language
-          left: -15px
-          min-width: 100px
-          z-index: 100
+            cursor: pointer
+            i
+              font-size: 8px
+          .choose_user
+            left: -10px
+            min-width: 100px
+            z-index: 100
+        &.languages
+          position: relative
+          display: inline-block
+          border-right: 1px solid $nav_border
+          padding-right: 15px
+          .current_language
+            display: inline-block
+            vertical-align: middle
+            color: $white
+            cursor: pointer
+            @include fonts_stack(15px)
+            i
+              color: $white
+              font-size: 8px
+          .choose_language
+            left: -15px
+            min-width: 100px
+            z-index: 100
 
+  .header_dropdown
+    display: none
+    position: absolute
+    top: 75%
+    left: 0
+    right: 0
+    border: 1px solid $active_gray
+    @include border_radius(5px)
+    &:before
+      content: ''
+      width: 0
+      height: 0
+      border-left: 10px solid transparent
+      border-right: 10px solid transparent
+      border-bottom: 9px solid #c8cfd4
+      position: absolute
+      top: -9px
+      right: 50%
+      margin-right: -9px
+    &:after
+      content: ''
+      width: 0
+      height: 0
+      border-left: 8px solid transparent
+      border-right: 8px solid transparent
+      border-bottom: 8px solid $white
+      position: absolute
+      top: -8px
+      right: 50%
+      margin-right: -7px
+    li
+      line-height: 1
+      &:first-child
+        a
+          border-top-left-radius: 5px
+          border-top-right-radius: 5px
+      &:last-child
+        a
+          border-bottom: none
+          border-bottom-left-radius: 5px
+          border-bottom-right-radius: 5px
+
+      a
+        display: block
+        background: $white
+        color: $dark_blue
+        text-align: center
+        height: 30px
+        line-height: 30px
+        border-bottom: 1px solid $active_gray
+        @include fonts_stack(15px)
 
   .mobile_nav
     display: none
@@ -121,6 +180,24 @@ header
           &:hover
             background: #14B7FF
 
+    .mobile_nav_button
+      display: inline-block
+      vertical-align: middle
+      margin-left: 15px
+      background: $white
+      padding: 10px 8px
+      cursor: pointer
+      @include border_radius(5px)
+      &:hover
+        background: $gray_border
+      span
+        display: block
+        height: 4px
+        width: 30px
+        background: $light_blue
+        margin-bottom: 3px
+        &:last-child
+          margin-bottom: 0
 
 @media (max-width: 768px)
   header
@@ -131,14 +208,16 @@ header
           data
             margin-right: 20px
 
-@media (max-width: 600px)
+@media (max-width: 640px)
+
   header
-    .personal_info
-      > li
-        display: inline-block
-        &.date_time
-          data
-            display: none
+    .profile_nav
+      .personal_info
+        > li
+          display: inline-block
+          &.date_time
+            data
+              display: none
 
 @media (max-width: 480px)
 

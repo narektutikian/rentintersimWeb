@@ -13,6 +13,11 @@ $( document ).ready(function() {
         $(this).siblings('.header_dropdown').slideToggle();
     });
 
+    $('.layout_nav .show_settings').on('click', function(){
+        $(this).siblings('.setting_types').slideToggle();
+    });
+
+
     /************* Pie Charts ***********/
     $('#chart_active').pieChart({
         barColor: '#2cc763',
@@ -85,7 +90,7 @@ $( document ).ready(function() {
 
     /**************** Style select tag ******************/
 
-        // Iterate over each select element
+    // Iterate over each select element
     $('.styled_select').each(function () {
 
         // Cache the number of options
@@ -154,6 +159,107 @@ $( document ).ready(function() {
     });
 
     /************ end of styling select tag *************/
+
+
+    /* Modal Windows */
+    $('#modal_details_window, #modal_edit_number, #modal_add_number ' +
+        '#modal_new_order').modal('hide');
+
+
+
+    /************ Styling Radio buttons *************/
+
+    $('.toggle_container > label').on('click', function(e){
+        // prevent label from being called twice
+        e.stopPropagation();
+        e.preventDefault();
+        e.stopImmediatePropagation();
+
+        if($(this).closest('.toggle_container').hasClass('disabled')){
+
+            console.log('hasClass disabled');
+            $(this).closest('.toggle_container').removeClass('disabled');
+        }else if(!$(this).closest('.toggle_container').hasClass('disabled')){
+            console.log('addClass ');
+            $(this).closest('.toggle_container').addClass('disabled');
+        }
+        if(!$(this).children('span').hasClass('input-checked')){
+
+            $(this).children('span').addClass('input-checked');
+            $(this).siblings('label').children('span').removeClass('input-checked');
+        }
+    });
+
+    /********** end of Styling Radio buttons ***********/
+
+
+    // rotate arrow for nested rows
+    $('.open_nested').on('click', function (e) {
+        e.preventDefault();
+        console.log('open_nested');
+        $(this).find('.icon-dropdown').toggleClass('expanded');
+    });
+
+
+    /********** Uploaded Image Name ***********/
+    $('.modal .file_container').on('click', function(e){
+
+        $(this).find('.modal_image_name').click(function(e){
+            e.stopImmediatePropagation();
+        });
+    });
+
+    $('.modal_image_name').change(function (e) {
+
+        if (this.files && this.files[0]) {
+
+            console.log(this.files[0].type);
+
+            var file_ext = this.files[0].type.split('/')[1].toLowerCase();
+
+            if($.inArray(file_ext, ['gif','png','jpg','jpeg']) == -1) {
+
+                $(this).parent('.file_container').siblings('.uploaded_file_links').find('.download_file').addClass('disabled');
+                alert('invalid extension!');
+
+            }else{
+                var file_name = this.files[0].name;
+                var tmp_path = URL.createObjectURL(e.target.files[0]);
+
+                $(this).parent().siblings('.keep_file_name').html(file_name);
+                $(this).parent('.file_container').siblings('.uploaded_file_links').find('.download_file').removeClass('disabled');
+                $(this).parent('.file_container').siblings('.uploaded_file_links').find('.download_file').attr({
+                    'href': tmp_path,
+                    'download' : this.files[0].name
+                });
+            }
+
+        }
+
+
+    });
+    /********** end of Uploaded Image Name ***********/
+
+    /* Perfect Scrollbar */
+
+
+
+    $('#modal_new_order').on('show.bs.modal', function () {
+        // do something…
+
+        setTimeout(function(){
+            console.log("setTimeout");
+
+            $('#wrap_package_list').perfectScrollbar();
+
+            console.log($('#modal_new_order').hasClass('in'));
+        }, 800);
+
+    });
+
+
+
+
 
 
 });

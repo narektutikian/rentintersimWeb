@@ -19,26 +19,6 @@
 .total_numbers_title
   @include total_numbers_title
 
-
-.mobile_nav_button
-  display: none
-  vertical-align: middle
-  margin-left: 15px
-  background: $white
-  padding: 10px 8px
-  cursor: pointer
-  @include border_radius(5px)
-  &:hover
-    background: $gray_border
-  span
-    display: block
-    height: 4px
-    width: 30px
-    background: $light_blue
-    margin-bottom: 3px
-    &:last-child
-      margin-bottom: 0
-
 .distributors
   .align_first
     text-align: right
@@ -81,113 +61,12 @@
         line-height: 1
         @include fonts_stack_semi_bold(15px)
 
-// responsive tabs
-.tab-pane
-  padding: 15px 5px
-
-.responsive-tabs.nav-tabs
-  position: relative
-  z-index: 10
-  height: 42px
-  overflow: visible
-  border-bottom: none
-  i.arrow-icon
-    position: absolute
-    top: 14px
-    right: 22px
-    font-size: 8px
-    color: white
-    &.icon-dropdown
-      display: none
-    &.icon-up
-      -webkit-transform: rotate(180deg)
-      -moz-transform: rotate(180deg)
-      -o-transform: rotate(180deg)
-      -ms-transform: rotate(180deg)
-      transform: rotate(180deg)
-  > li
-    display: none
-    float: none
-    text-align: center
-    &:last-of-type > a
-      margin-right: 0
-    > a
-      margin-right: 0
-    background: $dark_blue
-    color: $white
-    > a:hover
-      color: #ffff00
-    &.active
-      display: block
-      a
-        color: $white
-  &.open
-    i.arrow-icon
-      &.icon-dropdown
-        display: block
-      &.icon-up
-        display: none
-    > li
-      display: block
-      a
-        border-radius: 0
-      &:first-of-type a
-        border-radius: 2px 2px 0 0
-      &:last-of-type a
-        border-radius: 0 0 2px 2px
-
-
-.header_dropdown
-  display: none
-  position: absolute
-  top: 75%
-  left: 0
-  right: 0
-  border: 1px solid $active_gray
-  @include border_radius(4px)
-  &:before
-    content: ''
-    width: 0
-    height: 0
-    border-left: 10px solid transparent
-    border-right: 10px solid transparent
-    border-bottom: 9px solid #c8cfd4
-    position: absolute
-    top: -9px
-    right: 50%
-    margin-right: -9px
-  &:after
-    content: ''
-    width: 0
-    height: 0
-    border-left: 8px solid transparent
-    border-right: 8px solid transparent
-    border-bottom: 8px solid $white
-    position: absolute
-    top: -8px
-    right: 50%
-    margin-right: -7px
-  li
-    line-height: 1
-    &:last-child
-      a
-        border-bottom: none
-    a
-      display: block
-      background: $white
-      color: $dark_blue
-      text-align: center
-      height: 30px
-      line-height: 30px
-      border-bottom: 1px solid $active_gray
-      @include fonts_stack(15px)
-
 .filter_option
   display: inline-block
   vertical-align: middle
   margin-right: 12px
   height: 30px
-  line-height: 30px
+  line-height: 28px
   padding: 0 10px 0 5px
   text-align: center
   @include border-radius(4px)
@@ -201,7 +80,6 @@
     border: 1px solid $dark_blue
   &.light_blue
     border: 1px solid $search_border
-
 
 .filter_text
   float: left
@@ -285,8 +163,100 @@
   &.waiting
     @include waiting
 
-@media (max-width: 1200px)
+.uploaded_files
+  font-size: 0
 
+#wrap_package_list
+  width: 520px
+  height: 109px
+  margin: 50px auto 0 auto
+  position: relative
+  .choose_package_list
+    display: block
+    min-width: 950px
+    li
+      float: left
+      width: 148px
+      height: 89px
+      margin-right: 32px
+      a
+        display: block
+        text-align: center
+        border: 1px solid $gray_modal_border
+        @include border-radius(10px)
+        h4
+          color: $active_green
+          margin-top: 12px
+          margin-bottom: 25px
+          text-transform: uppercase
+          @include fonts_stack(15px)
+        span
+          color: $total_numbers_title
+          margin-bottom: 5px
+          @include fonts_stack(13px)
+
+
+.always_visible.ps-container > .ps-scrollbar-x-rail
+  opacity: 0.6
+
+.always_visible.ps-container > .ps-scrollbar-x-rail > .ps-scrollbar-x
+  background-color: $active_green
+
+.ps-container > .ps-scrollbar-x-rail
+  background-color: $gray_modal_scroll
+  height: 6px
+
+.ps-container > .ps-scrollbar-x-rail > .ps-scrollbar-x
+  bottom: 0
+
+.ps-container.ps-active-x > .ps-scrollbar-x-rail
+  background-color: $gray_modal_scroll !important
+
+.ps-container:hover.ps-in-scrolling.ps-x > .ps-scrollbar-x-rail > .ps-scrollbar-x,
+.ps-container.ps-in-scrolling.ps-x > .ps-scrollbar-x-rail > .ps-scrollbar-x
+  background-color: $active_green
+  height: 7px
+
+.ps-container:hover > .ps-scrollbar-x-rail:hover > .ps-scrollbar-x
+  background-color: $active_green
+  height: 6px
+
+
+.uploaded_file_links
+  display: inline-block
+  vertical-align: top
+  margin-left: 30px
+  @include fonts_stack(15px)
+  @media (min-width: 992px) and (max-width: 1200px)
+    margin-left: 10px
+    font-size: 14px
+  @media (max-width: 992px)
+    margin: 20px auto
+    display: block
+    text-align: center
+
+.keep_file_name
+  display: inline-block
+  vertical-align: middle
+  width: 220px
+  height: 30px
+  line-height: 30px
+  padding-left: 5px
+  overflow: hidden
+  border: 1px solid $gray_border
+  border-top-left-radius: 6px
+  border-bottom-left-radius: 6px
+  border-top-right-radius: 0px
+  border-bottom-right-radius: 0px
+  @include fonts_stack(15px)
+  @media (max-width: 1200px)
+    width: 160px
+  @media (max-width: 992px)
+    width: 70%
+  @media (max-width: 640px)
+    width: 60%
+
+@media (max-width: 1200px)
   .filter_text
     float: none
     display: block
@@ -321,7 +291,7 @@
       margin-left: 0
       text-align: center
 
-@media (max-width: 768px)
+@media (max-width: 992px)
 
   .search_management_option
     float: none
@@ -346,39 +316,17 @@
       margin-right: auto
       margin-left: auto
       margin-bottom: 15px
-
-
-@media (min-width: 768px)
-  .responsive-tabs.nav-tabs
-    border-bottom: 1px solid #ddd
-
-@media (min-width: 768px)
-  .responsive-tabs.nav-tabs i.arrow-icon
-    display: none
-
-@media (min-width: 768px)
-  .responsive-tabs.nav-tabs > li > a
-    margin-right: 0
-
-@media (min-width: 768px)
-  .responsive-tabs.nav-tabs > li.active a
-    border-bottom-color: transparent
-
-@media (min-width: 768px)
-  .responsive-tabs.nav-tabs > li
+  .filter_option
     display: block
-    float: left
-
-@media (min-width: 768px)
-  .responsive-tabs.nav-tabs.open i.arrow-icon .icon-dropdown
-    display: none
-
-
-
-@media (max-width: 992px)
-  .mobile_nav_button
-    display: inline-block
-
+    width: 80%
+    margin-left: auto
+    margin-right: auto
+    margin-bottom: 15px
+    &.full
+      width: 80%
+    &.last
+      margin-left: auto
+      margin-right: auto
 
 @media (max-width: 768px)
   .distributors
@@ -393,15 +341,3 @@
       width: auto
       .distributor_item_options
         width: calc(100% - 90px)
-
-  .filter_option
-    display: block
-    width: 80%
-    margin-left: auto
-    margin-right: auto
-    margin-bottom: 15px
-    &.full
-      width: 80%
-    &.last
-      margin-left: auto
-      margin-right: auto

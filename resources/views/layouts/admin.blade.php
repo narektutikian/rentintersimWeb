@@ -30,8 +30,9 @@
                     </li>
                 </ul>
             </nav>
-
-            @yield('dashboard')
+            <div class="content">
+                @yield('dashboard')
+            </div>
         </div>
 
     </div>

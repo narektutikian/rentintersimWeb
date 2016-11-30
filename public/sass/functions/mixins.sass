@@ -34,7 +34,7 @@
   background: $light-blue
   border: 1px solid $light-blue
   color: $white
-  border-radius: 5px
+  @include border-radius(5px)
   cursor: pointer
   @include fonts-stack($font16)
   &:hover
@@ -47,7 +47,7 @@
   background: $active_green
   border: 1px solid $active_green
   color: $white
-  border-radius: 5px
+  @include border-radius(5px)
   cursor: pointer
   @include fonts-stack($font16)
   &:hover
@@ -56,13 +56,72 @@
     color: $white
     text-decoration: none
 
+@mixin gray_btn($font16)
+  background: $light_gray
+  border: 1px solid $light_gray
+  color: $white
+  @include border-radius(5px)
+  cursor: pointer
+  @include fonts-stack($font16)
+  &:hover
+    background: #BBCFDD
+    border: 1px solid #BBCFDD
+    color: $white
+    text-decoration: none
+
 @mixin input_with_icon
   text-align: left
   padding: 0 0 0 48px
-  border-radius: 5px
-  border: 1px solid #5390c3
-  color: #000000
+  @include border-radius(5px)
+  border: 1px solid $tab_border
+  color: $black
   @include fonts-stack($font16)
+
+@mixin input_without_icon
+  text-align: left
+  padding: 2px 5px
+  @include border-radius(5px)
+  border: 1px solid $tab_border
+  color: $black
+  @include fonts-stack($font16)
+
+@mixin white_button($font16)
+  overflow: hidden
+  position: relative
+  height: 30px
+  line-height: 27px
+  background: $dark_blue
+  color: $white
+  border: 1px solid $light-blue
+  padding: 2px 3px
+  @include border-radius(6px)
+  text-align: center
+  @include fonts-stack($font16)
+  cursor: pointer
+  &:hover
+    background: $light-blue
+    color: $white
+    text-decoration: none
+
+@mixin orange_plus_x_small
+  background: $dark-yellow
+  text-align: center
+  width: 32px
+  height: 32px
+  @include border-radius(16px)
+  line-height: 32px
+  text-align: center
+  color: $white
+  &:hover i
+    background: $white
+    text-decoration: none
+  i
+    display: inline-block
+    background: $white
+    border: 1px solid $dark-yellow
+    @include border-radius(20px)
+    color: $dark-yellow
+    font-size: 20px
 
 
 /* Background gradients for status */
@@ -108,8 +167,15 @@
   background: linear-gradient(#d9b9ff, #b48be7) /* Standard syntax */
 
 @mixin transform($deg)
-  -webkit-transform: rotate(-90deg)
-  -moz-transform: rotate(-90deg)
-  -o-transform: rotate(-90deg)
-  -ms-transform: rotate(-90deg)
-  transform: rotate(-90deg)
+  -webkit-transform: rotate($deg)
+  -moz-transform: rotate($deg)
+  -o-transform: rotate($deg)
+  -ms-transform: rotate($deg)
+  transform: rotate($deg)
+
+
+@mixin appearance_none
+  -webkit-appearance: none
+  -ms-appearance: none
+  -moz-appearance: none
+  appearance: none
