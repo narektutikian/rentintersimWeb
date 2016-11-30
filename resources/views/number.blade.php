@@ -174,4 +174,98 @@
         </section>
     </div><!--#number_management-->
 
+
+
+    <!-- Edit Number Modal -->
+    <div class="modal fade" id="modal_edit_number" tabindex="-1" role="dialog" aria-labelledby="modal_edit_number">
+
+        <div class="modal-dialog vdf_modal" role="document">
+            <div class="modal-content vdf_modal_content">
+                <div class="modal-header vdf_modal_header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <div class="vdf_modal_sub_header">
+                        <h3>Edit number</h3>
+                    </div>
+                </div>
+                <div class="modal-body vdf_modal_body">
+                    <form action="/" class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-md-6 vdf_modal_left">
+                                <div class="form_row form-group">
+                                    <div class="col-md-6">
+                                        <label class="table_label">Phone Number</label>
+                                        <div class="form_row">
+                                            <input type="text" class="block_btn_30 modal_input" value=""/>
+                                            <i class="input_icon icon-phone_number"></i>
+                                        </div>
+                                        <label class="table_label">Provider </label>
+                                        <div class="form_row">
+                                            <div class="select_wrapper">
+                                                <select class="block_btn_30 modal_input">
+                                                    <option value=""></option>
+                                                    <option value="Admin">type 1</option>
+                                                    <option value="Dealer">type 2</option>
+                                                    <option value="Sub-Dealer">type 3</option>
+                                                </select>
+                                                <i class="input_icon icon-provider"></i>
+                                            </div>
+                                        </div>
+                                        <div class="special_number">
+                                            <span class="table_icon"><i class="icon-special"></i></span>
+                                            <span>Special number</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="table_label">Parking SIM number</label>
+                                        <div class="form_row">
+                                            <div class="select_wrapper">
+                                                <select class="block_btn_30 modal_input">
+                                                    <option value=""></option>
+                                                    <option value="Admin">Parking SIM number</option>
+                                                    <option value="Dealer">Parking SIM number</option>
+                                                    <option value="Sub-Dealer">Parking SIM number</option>
+                                                </select>
+                                                <i class="input_icon icon-sim"></i>
+                                            </div>
+                                        </div>
+                                        <label class="table_label">Type</label>
+                                        <div class="form_row">
+                                            <input type="text" class="block_btn_30 modal_input" value=""/>
+                                            <i class="input_icon icon-username"></i>
+                                        </div>
+                                        <span class="or">OR</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 vdf_modal_right">
+                                <div class="form_row form-group">
+                                    <div class="col-md-12">
+                                        <label class="table_label">Add from file</label>
+                                        <div class="form_row">
+                                            <span class="uploaded_files">
+                                                <span class="keep_file_name"></span>
+                                                <span class="file_container"> Browse
+                                                    <input class="modal_image_name" type="file" />
+                                                </span>
+                                                <span class="uploaded_file_links"> File example
+                                                    <a href="#" class="download_file disable" download=""><i class="icon-download"></i></a>
+                                                </span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer vdf_modal_footer">
+                    <a href="#" class="inline_block_btn light_gray_btn close" data-dismiss="modal" aria-label="Close">Cancel</a>
+                    <a href="#" class="inline_block_btn light_green_btn">Create User</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end of Edit Number Modal -->
+    
 @endsection
