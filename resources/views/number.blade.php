@@ -96,7 +96,7 @@
                     </div>
                 </div>
                 <div class="modal-body vdf_modal_body">
-                    <form action="/" class="form-horizontal">
+                    <form action="/" method="post" class="form-horizontal">
                         <div class="form-group">
                             <div class="col-md-6 vdf_modal_left">
                                 <div class="form_row form-group">
