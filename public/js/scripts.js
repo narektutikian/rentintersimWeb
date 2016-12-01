@@ -179,11 +179,13 @@ $( document ).ready(function() {
 
             $(this).closest('.toggle_container').removeClass('disabled');
             $(this).closest('.table_status_cell').prevAll('td').removeClass('disable');
+            $(this).closest('.vdf_radio').siblings('.table_status_text').removeClass('disable');
         }else if(!$(this).closest('.toggle_container').hasClass('disabled')){
 
             $(this).closest('.toggle_container').addClass('disabled');
             /* Disable rows in table */
             $(this).closest('.table_status_cell').prevAll('td').addClass('disable');
+            $(this).closest('.vdf_radio').siblings('.table_status_text').addClass('disable');
         }
 
         if(!$(this).children('span').hasClass('input-checked')){
