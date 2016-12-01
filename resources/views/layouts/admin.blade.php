@@ -19,11 +19,11 @@
             <!-- content navigation -->
             <nav class="layout_nav">
                 <ul>
-                    <li class="active"><a href="{{url('/dashboard')}}" title="DashboardUser Management">DashboardUser Management</a></li>
-                    <li><a href="{{url('/user')}}" title="User Management">User Management</a></li>
-                    <li><a href="{{url('/number')}}" title="Number Management">Number Management</a></li>
-                    <li><a href="{{url('/sim')}}" title="SIM Management">SIM Management</a></li>
-                    <li class="show_settings">
+                    <li class="{{ (Request::is('dashboard')) ? 'active' : '' }}"><a href="{{url('/dashboard')}}" title="DashboardUser Management">DashboardUser Management</a></li>
+                    <li class="{{ (Request::is('user')) ? 'active' : '' }}"><a href="{{url('/user')}}" title="User Management">User Management</a></li>
+                    <li class="{{ (Request::is('number')) ? 'active' : '' }}"><a href="{{url('/number')}}" title="Number Management">Number Management</a></li>
+                    <li class="{{ (Request::is('sim')) ? 'active' : '' }}"><a href="{{url('/sim')}}" title="SIM Management">SIM Management</a></li>
+                    <li class="show_settings {{ (Request::is('type')) ? 'active' : '' }}">
                         <a href="#" title="Settings" class="show_settings">Settings <i class="icon-dropdown"></i></a>
                         <ul class="setting_types">
                             <li><a href="{{url('/type')}}" title="Type Management">Type Management</a></li>

@@ -15,7 +15,7 @@ class PackageController extends Controller
      */
     public function index()
     {
-        $sims = Package::all()->get();
+        $sims = Package::get();
         $packageArray = $this->solvePackageList($sims);
 
 //      dd($packageArray);

@@ -12,7 +12,7 @@
                     <a class="filter_option {{ (Request::is('filter-numberlist/Active')) ? 'blue' : 'light_blue' }}" href="{{url('/filter-numberlist/Active')}}">
                         <span class="status active"></span> active ({{$counts['Active']}})
                     </a>
-                    <a class="filter_option {{ (Request::is('filter-numberlist/Pending')) ? 'blue' : 'light_blue' }}" href="{{url('/filter-numberlist/Pending')}}">
+                        <a class="filter_option {{ (Request::is('filter-numberlist/Pending')) ? 'blue' : 'light_blue' }}" href="{{url('/filter-numberlist/Pending')}}">
                         <span class="status inactive"></span> inactive ({{$counts['Pending']}})
                     </a>
                     <a class="filter_option {{ (Request::is('filter-numberlist/Not in use')) ? 'blue' : 'light_blue' }} last" href="{{url('/filter-numberlist/Not in use')}}">
@@ -111,9 +111,7 @@
                                             <div class="select_wrapper">
                                                 <select class="block_btn_30 modal_input">
                                                     <option value=""></option>
-                                                    <option value="Admin">type 1</option>
-                                                    <option value="Dealer">type 2</option>
-                                                    <option value="Sub-Dealer">type 3</option>
+                                                    <option value="1">Vodafone</option>
                                                 </select>
                                                 <i class="input_icon icon-provider"></i>
                                             </div>
@@ -129,9 +127,9 @@
                                             <div class="select_wrapper">
                                                 <select class="block_btn_30 modal_input">
                                                     <option value=""></option>
-                                                    <option value="Admin">Parking SIM number</option>
-                                                    <option value="Dealer">Parking SIM number</option>
-                                                    <option value="Sub-Dealer">Parking SIM number</option>
+                                                    @foreach($sims as $sim)
+                                                    <option value="{{$sim['id']}}">{{$sim['number']}}</option>
+                                                    @endforeach
                                                 </select>
                                                 <i class="input_icon icon-sim"></i>
                                             </div>
@@ -141,9 +139,9 @@
                                             <div class="select_wrapper">
                                                 <select class="block_btn_30 modal_input">
                                                     <option value=""></option>
-                                                    <option value="Choose Typ 1">Choose Typ 1</option>
-                                                    <option value="Choose Typ 2">Choose Typ 2</option>
-                                                    <option value="Choose Typ 3">Choose Typ 3</option>
+                                                    @foreach($packages as $package)
+                                                    <option value="{{$package['id']}}">{{$package['name']}}</option>
+                                                    @endforeach
                                                 </select>
                                                 <i class="input_icon icon-username"></i>
                                             </div>

@@ -10,6 +10,7 @@ namespace App\Http\ViewComposers;
 use Illuminate\View\View;
 use App\Models\Phone;
 use App\Models\Sim;
+use App\Models\Package;
 
 
 class NumberComposer
@@ -41,6 +42,7 @@ class NumberComposer
      */
     public function compose(View $view)
     {
-        $view->with('sims', Sim::select('id', 'state', 'number')->where('state', 'parking')->get()->toArray());
+        $view->with('sims', Sim::select('id', 'state', 'number')->where('state', 'parking')->get()->toArray())
+            ->with('packages', Package::select('id', 'name')->get()->toArray());
     }
 }

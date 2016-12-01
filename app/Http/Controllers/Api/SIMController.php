@@ -16,7 +16,7 @@ class SIMController extends Controller
     public function index()
     {
         //
-        $sims = Sim::all()->get();
+        $sims = Sim::get();
         $simsArray = $this->solveSimList($sims);
 
 //      dd($simsArray);
