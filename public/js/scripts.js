@@ -263,7 +263,7 @@ $( document ).ready(function() {
         format: 'DD/MM/YYYY'
     });
 
-    $('#choose_hour').jStepper({minValue:0, maxValue:23, minLength:2});
+    // $('#choose_hour').jStepper({minValue:0, maxValue:23, minLength:2});
 
 
 
