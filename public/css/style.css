@@ -353,7 +353,6 @@ input[type="radio"].toggle.checked + label {
   display: block;
   position: relative; }
   .select_wrapper select {
-    padding: 0px 40px 0px 10px;
     background-color: transparent;
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
