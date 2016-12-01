@@ -35,7 +35,7 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
     Route::resource('type', 'PackageController');
 
 
-    /*Auth Routes*/
+    /*****Auth Routes******/
     Route::get('imitate', 'UserController@showImitation');
     Route::post('imitate', 'UserController@imitate');
 
@@ -47,6 +47,9 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
 
     /***Ajax requests***/
     Route::get('user-tree', 'UserController@getUserTree');
+
+    /******Export routes******/
+    Route::get('exportsims', 'SIMController@export');
 });
 
 

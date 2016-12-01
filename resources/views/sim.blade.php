@@ -27,7 +27,7 @@
                             <input type="text" class="block_btn_30 search_input" value="search">
                             <button type="submit" class="search_button"><i class="icon-search"></i></button>
                         </form>
-                        <a href="#" class="export_user"><i class="icon-export"></i>Export</a>
+                        <a href="{{url('/exportsims')}}" class="export_user"><i class="icon-export"></i>Export</a>
                         <a href="#" class="add_new_btn" data-toggle="modal" data-target="#modal_add_sim"><i class="icon-add_number"></i>Add SIM</a>
                     </div>
                 </div>
@@ -50,10 +50,10 @@
                         <tbody>
                         @foreach($simsArray as $sim)
                         <tr>
-                            <td class="rwd-td0 table_id_cell" data-toggle="modal" data-target="#modal_edit_sim" data-th="Id">{{$sim['id']}}</td>
-                            <td class="rwd-td1" data-toggle="modal" data-target="#modal_edit_sim" data-th="SIM Number">{{$sim['number']}}</td>
-                            <td class="rwd-td2" data-toggle="modal" data-target="#modal_edit_sim" data-th="Provider">{{$sim['provider_id']}}</td>
-                            <td class="rwd-td3 table_action_cell" data-th="Action">
+                            <td class="rwd-td0 table_id_cell {{ ((!$sim['is_active']) ? 'disable' : '') }}" data-toggle="modal" data-target="#modal_edit_sim" data-th="Id">{{$sim['id']}}</td>
+                            <td class="rwd-td1 {{ ((!$sim['is_active']) ? 'disable' : '') }}" data-toggle="modal" data-target="#modal_edit_sim" data-th="SIM Number">{{$sim['number']}}</td>
+                            <td class="rwd-td2 {{ ((!$sim['is_active']) ? 'disable' : '') }}" data-toggle="modal" data-target="#modal_edit_sim" data-th="Provider">{{$sim['provider_id']}}</td>
+                            <td class="rwd-td3 table_action_cell {{ ((!$sim['is_active']) ? 'disable' : '') }}" data-th="Action">
                                             <span class="table_icon" data-toggle="modal" data-target="#modal_edit_sim">
                                                 <i class="icon-edit"></i>
                                             </span>
@@ -69,7 +69,7 @@
                                         </label>
                                     </div>
                                 </div>
-                                <span class="table_status_text not_used">{{$sim['state']}}</span>
+                                <span class="table_status_text not_used ">{{$sim['state']}}</span>
 
                             </td>
                         </tr>

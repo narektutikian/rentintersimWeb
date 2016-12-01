@@ -160,4 +160,16 @@ class SIMController extends Controller
 //        dd($simsArray);
         return view('sim', compact('simsArray'));
     }
+
+    public function export(){
+        $data = Sim::get()->toArray();
+
+//        fputcsv($out, array_keys($data[1]));
+        $out = fopen('php://output', 'w');
+        foreach($data as $line)
+        {
+            fputcsv($out, $line);
+        }
+        fclose($out);
+    }
 }
