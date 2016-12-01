@@ -8,6 +8,9 @@
 
 namespace App\Http\ViewComposers;
 use Illuminate\View\View;
+use App\User;
+use App\Models\Phone;
+use Auth;
 
 
 
@@ -40,8 +43,21 @@ class DashboardComposer
      */
     public function compose(View $view)
     {
+        $id = Auth::user()->id;
+        $net = ([
+           'distributors' => User::distributor($id)->count(),
+           'dealers' => User::dealer($id)->count(),
+           'subdealers' => User::subdealer($id)->count(),
+        ]);
+        $counts = ([
+            'All' => Phone::all()->count(),
+            'Active' => Phone::filter('Active')->count(),
+            'Pending' => Phone::filter('Pending')->count(),
+            'Not in use' => Phone::filter('Not in use')->count(),
+        ]);
 
-
-        $view->with('viewName', $view->getName());
+        $view->with('viewName', $view->getName())
+            ->with('net', $net)
+            ->with('counts', $counts);
     }
 }

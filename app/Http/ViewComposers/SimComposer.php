@@ -9,6 +9,7 @@
 namespace App\Http\ViewComposers;
 use Illuminate\View\View;
 use App\Models\Sim;
+use App\Models\Provider;
 
 
 
@@ -50,6 +51,7 @@ class SimComposer
         ]);
 
         $view->with('viewName', $view->getName())
-            ->with('counts', $counts);
+            ->with('counts', $counts)
+            ->with('providers', Provider::select('id', 'name')->get()->toArray());
     }
 }

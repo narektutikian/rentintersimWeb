@@ -120,7 +120,9 @@
                                             <div class="select_wrapper">
                                                 <select class="block_btn_30 modal_input">
                                                     <option value=""></option>
-                                                    <option value="1">Vodafone</option>
+                                                    @foreach($providers as $provider)
+                                                    <option value="{{$provider['id']}}">{{$provider['name']}}</option>
+                                                        @endforeach
                                                 </select>
                                                 <i class="input_icon icon-sim"></i>
                                             </div>
@@ -174,7 +176,7 @@
                     </div>
                 </div>
                 <div class="modal-body vdf_modal_body">
-                    <form action="/" class="form-horizontal">
+                    <form action="" class="form-horizontal">
                         <div class="form-group">
                             <div class="col-md-6 vdf_modal_left">
                                 <div class="form_row form-group">
@@ -196,9 +198,9 @@
                                             <div class="select_wrapper">
                                                 <select class="block_btn_30 modal_input">
                                                     <option value=""></option>
-                                                    <option value="Admin">Parking SIM number</option>
-                                                    <option value="Dealer">Parking SIM number</option>
-                                                    <option value="Sub-Dealer">Parking SIM number</option>
+                                                    @foreach($providers as $provider)
+                                                        <option value="{{$provider['id']}}">{{$provider['name']}}</option>
+                                                    @endforeach
                                                 </select>
                                                 <i class="input_icon icon-sim"></i>
                                             </div>
