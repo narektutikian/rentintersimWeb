@@ -7,19 +7,19 @@
             <div class="sim_management_wrapper">
                 <div class="filter_text">Filter by status:</div>
                 <div class="filter_buttons">
-                    <a class="filter_option blue full" href="{{url('/sim')}}">
+                    <a class="filter_option  {{ (Request::is('sim')) ? 'blue' : 'light_blue' }}" href="{{url('/sim')}}">
                         <i class="icon-company_status"></i> All ({{$counts['All']}})
                     </a>
-                    <a class="filter_option light_blue" href="{{url('/filter-simlist/active')}}">
+                    <a class="filter_option  {{ (Request::is('filter-simlist/active')) ? 'blue' : 'light_blue' }}" href="{{url('/filter-simlist/active')}}">
                         <span class="status active"></span> active ({{$counts['Active']}})
                     </a>
-                    <a class="filter_option light_blue" href="{{url('/filter-simlist/pending')}}">
+                    <a class="filter_option  {{ (Request::is('filter-simlist/pending')) ? 'blue' : 'light_blue' }}" href="{{url('/filter-simlist/pending')}}">
                         <span class="status inactive"></span> Pending ({{$counts['Pending']}})
                     </a>
-                    <a class="filter_option light_blue" href="{{url('/filter-simlist/available')}}">
+                    <a class="filter_option  {{ (Request::is('filter-simlist/available')) ? 'blue' : 'light_blue' }}" href="{{url('/filter-simlist/available')}}">
                         <span class="status available"></span> Available ({{$counts['Available']}})
                     </a>
-                    <a class="filter_option light_blue last" href="{{url('/filter-simlist/parking')}}">
+                    <a class="filter_option  {{ (Request::is('filter-simlist/parking')) ? 'blue' : 'light_blue' }} last" href="{{url('/filter-simlist/parking')}}">
                         <span class="status disabled"></span> Parking ({{$counts['Parking']}})
                     </a>
                     <div class="search_management_option">

@@ -8,6 +8,7 @@
 
 namespace App\Http\ViewComposers;
 use Illuminate\View\View;
+use App\Models\Package;
 
 
 
@@ -41,7 +42,12 @@ class TypeComposer
     public function compose(View $view)
     {
 
-
-        $view->with('viewName', $view->getName());
+        $counts = ([
+            'All' => Package::all()->count(),
+            'Enable' => Package::filter('Enable')->count(),
+            'Disable' => Package::filter('Disable')->count(),
+        ]);
+        $view->with('viewName', $view->getName())
+            ->with('counts', $counts);
     }
 }

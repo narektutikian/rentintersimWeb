@@ -15,11 +15,11 @@ class PackageController extends Controller
      */
     public function index()
     {
-        $sims = Package::get();
-        $packageArray = $this->solvePackageList($sims);
+        $sims = Package::orderby('id', 'desc')->paginate(env('PAGINATE_DEFAULT'));
+        $packagesArray = $this->solvePackageList($sims);
 
 //      dd($packageArray);
-        return view('type', compact('packageArray'));
+        return view('type', compact('packagesArray'));
     }
 
     /**
@@ -136,7 +136,7 @@ class PackageController extends Controller
     }
 
     public static function solvePackageList($packages){
-        $packagesArray = $packages->toArray();
+        $packagesArray = $packages;
         foreach ($packages as $key => $package) {
             $packagesArray[$key]['provider_id'] = $package->provider->name;
         }
@@ -145,10 +145,10 @@ class PackageController extends Controller
 
     public function filter($filter){
 
-        $packages = Package::filter($filter)->get();
+        $packages = Package::filter($filter)->orderby('id', 'desc')->paginate(env('PAGINATE_DEFAULT'));
         $packagesArray = $this->solvePackageList($packages);
 
 //        dd($packagesArray);
-        return view('package', compact('packagesArray'));
+        return view('type', compact('packagesArray'));
     }
 }
