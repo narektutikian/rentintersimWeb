@@ -177,12 +177,15 @@ $( document ).ready(function() {
 
         if($(this).closest('.toggle_container').hasClass('disabled')){
 
-            console.log('hasClass disabled');
             $(this).closest('.toggle_container').removeClass('disabled');
+            $(this).closest('.table_status_cell').prevAll('td').removeClass('disable');
         }else if(!$(this).closest('.toggle_container').hasClass('disabled')){
-            console.log('addClass ');
+
             $(this).closest('.toggle_container').addClass('disabled');
+            /* Disable rows in table */
+            $(this).closest('.table_status_cell').prevAll('td').addClass('disable');
         }
+
         if(!$(this).children('span').hasClass('input-checked')){
 
             $(this).children('span').addClass('input-checked');
