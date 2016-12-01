@@ -17,12 +17,11 @@ class PhoneController extends Controller
     {
         //
 
-        $phones = Phone::get();
+        $phones = Phone::orderby('id', 'desc')->paginate(3);
         $phonesArray = $this->solvePhoneList($phones);
-        $counts = $this->getCounts();
 
 //      dd($phonesArray);
-        return view('number', compact('phonesArray'), compact('counts'));
+        return view('number', compact('phonesArray'));
     }
 
     /**
@@ -148,7 +147,7 @@ class PhoneController extends Controller
     }
 
     public static function solvePhoneList($phones){
-        $phonesArray = $phones->toArray();
+        $phonesArray = $phones;
         foreach ($phones as $key => $phone) {
 
             $phonesArray[$key]['current_sim_id'] = $phone->sim->number;
@@ -160,22 +159,12 @@ class PhoneController extends Controller
 
     public function filter($filter){
 
-        $phones = Phone::filter($filter)->get();
+        $phones = Phone::filter($filter)->orderby('id', 'desc')->paginate(3);
         $phonesArray = $this->solvePhoneList($phones);
-        $counts = $this->getCounts();
 
-        return view('number', compact('phonesArray'), compact('counts'));
+        return view('number', compact('phonesArray'));
 //        dd($phonesArray);
     }
 
-    public function getCounts(){
 
-        $counts = ([
-            'All' => Phone::all()->count(),
-            'Active' => Phone::filter('Active')->count(),
-            'Pending' => Phone::filter('Pending')->count(),
-            'Not in use' => Phone::filter('Not in use')->count(),
-        ]);
-        return $counts;
-    }
 }

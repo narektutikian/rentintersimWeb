@@ -8,12 +8,10 @@
 
 namespace App\Http\ViewComposers;
 use Illuminate\View\View;
-use App\Models\Phone;
-use App\Models\Sim;
-use App\Models\Package;
 
 
-class NumberComposer
+
+class TypeComposer
 {
     /**
      * The user repository implementation.
@@ -42,16 +40,8 @@ class NumberComposer
      */
     public function compose(View $view)
     {
-        $counts = ([
-            'All' => Phone::all()->count(),
-            'Active' => Phone::filter('Active')->count(),
-            'Pending' => Phone::filter('Pending')->count(),
-            'Not in use' => Phone::filter('Not in use')->count(),
-        ]);
 
-        $view->with('sims', Sim::select('id', 'state', 'number')->where('state', 'parking')->get()->toArray())
-            ->with('packages', Package::select('id', 'name')->get()->toArray())
-            ->with('counts', $counts)
-            ->with('viewName', $view->getName());
+
+        $view->with('viewName', $view->getName());
     }
 }

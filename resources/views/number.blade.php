@@ -78,6 +78,7 @@
 
                         </tbody>
                     </table>
+                    {{$phonesArray->links()}}
                 </div>
             </div>
         </section>
@@ -177,7 +178,7 @@
                 </div>
                 <div class="modal-footer vdf_modal_footer">
                     <a href="#" class="inline_block_btn light_gray_btn close" data-dismiss="modal" aria-label="Close">Cancel</a>
-                    <a href="#" class="inline_block_btn light_green_btn">Create User</a>
+                    <a href="#" class="inline_block_btn light_green_btn">Create Number</a>
                 </div>
             </div>
         </div>

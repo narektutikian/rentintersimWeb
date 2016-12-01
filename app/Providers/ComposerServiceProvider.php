@@ -21,9 +21,13 @@ class ComposerServiceProvider extends ServiceProvider
     public function boot()
     {
         // Using class based composers...
-        View::composer(
-            'number', 'App\Http\ViewComposers\NumberComposer'
-        );
+        View::composer('number', 'App\Http\ViewComposers\NumberComposer');
+        View::composer('dashboard', 'App\Http\ViewComposers\DashboardComposer');
+        View::composer('user', 'App\Http\ViewComposers\UserComposer');
+        View::composer('type', 'App\Http\ViewComposers\TypeComposer');
+        View::composer('sim', 'App\Http\ViewComposers\SimComposer');
+
+
 
         // Using Closure based composers...
         View::composer('dashboard', function ($view) {
