@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/bootstrap-table.min.css">
     <link rel="stylesheet" href="/js/perfect-scrollbar/css/perfect-scrollbar.css">
+    <link rel="stylesheet" href="css/bootstrap-datepicker3.css">
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
@@ -50,6 +51,8 @@
 <script src="/js/bootstrap-table-zh-CN.min.js"></script>
 <script src="/js/perfect-scrollbar/js/perfect-scrollbar.min.js"></script>
 <script src="/js/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js"></script>
+<script src="/js/moment.min.js"></script>
+<script src="/js/bootstrap-datetimepicker.js"></script>
 <script src="/js/scripts.js"></script>
 </body>
 </html>

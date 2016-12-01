@@ -258,6 +258,12 @@ $( document ).ready(function() {
     });
 
 
+    /* Bootstrap Datepicker */
+    $('.date').datetimepicker({
+        format: 'DD/MM/YYYY'
+    });
+
+    $('#choose_hour').jStepper({minValue:0, maxValue:23, minLength:2});
 
 
 

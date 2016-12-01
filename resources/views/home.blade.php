@@ -26,7 +26,7 @@
                                     <button type="submit" class="search_button"><i class="icon-search"></i></button>
                                 </form>
                                 <a href="#" class="export_user"><i class="icon-export"></i>Export</a>
-                                <a href="{{url('/order/create')}}" class="add_new_user"><i class="icon-new_order"></i>New Order</a>
+                                <a href="{{url('/order/create')}}" class="add_new_btn"><i class="icon-new_order"></i>New Order</a>
                             </div>
                         </div>
 

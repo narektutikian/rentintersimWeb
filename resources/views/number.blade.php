@@ -138,8 +138,15 @@
                                         </div>
                                         <label class="table_label">Type</label>
                                         <div class="form_row">
-                                            <input type="text" class="block_btn_30 modal_input" value=""/>
-                                            <i class="input_icon icon-username"></i>
+                                            <div class="select_wrapper">
+                                                <select class="block_btn_30 modal_input">
+                                                    <option value=""></option>
+                                                    <option value="Choose Typ 1">Choose Typ 1</option>
+                                                    <option value="Choose Typ 2">Choose Typ 2</option>
+                                                    <option value="Choose Typ 3">Choose Typ 3</option>
+                                                </select>
+                                                <i class="input_icon icon-username"></i>
+                                            </div>
                                         </div>
                                         <span class="or">OR</span>
                                     </div>
