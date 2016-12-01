@@ -152,7 +152,7 @@ class PhoneController extends Controller
 
             $phonesArray[$key]['current_sim_id'] = $phone->sim->number;
             $phonesArray[$key]['provider_id'] = $phone->sim->provider->name;
-            $phonesArray[$key]['package_id'] = $phone->package->name;
+//            $phonesArray[$key]['package_id'] = $phone->package->name;
         }
         return $phonesArray;
     }
