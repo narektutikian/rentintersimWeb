@@ -24,7 +24,7 @@
                             <button type="submit" class="search_button"><i class="icon-search"></i></button>
                         </form>
                         <a href="#" class="export_user"><i class="icon-export"></i>Export</a>
-                        <a href="#" class="add_new_user" data-toggle="modal" data-target="#modal_add_number"><i class="icon-add_number"></i>Add number</a>
+                        <a href="#" class="add_new_btn" data-toggle="modal" data-target="#modal_add_number"><i class="icon-add_number"></i>Add number</a>
                     </div>
                 </div>
                 <div class="clear"></div>
