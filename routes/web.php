@@ -44,6 +44,9 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
     Route::get('filter-numberlist/{filter}', 'PhoneController@filter');
     Route::get('filter-simlist/{filter}', 'SIMController@filter');
     Route::get('filter-packagelist/{filter}', 'PackageController@filter');
+
+    /***Ajax requests***/
+    Route::get('user-tree', 'UserController@getUserTree');
 });
 
 

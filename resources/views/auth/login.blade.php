@@ -20,7 +20,7 @@
                 {{ csrf_field() }}
             </div>
 
-                @if ($errors->has('email'))
+                @if ($errors->has('login'))
                     <span class="help-block">
                                         <strong>{{ $errors->first('login') }}</strong>
                                     </span>

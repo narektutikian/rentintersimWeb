@@ -63,7 +63,7 @@ class OrderController extends Controller
 //        'employee_id' =>  'required',
 //        'created_by' =>  'required',
 //        'updated_by' =>  'required',
-//        'is_deleted' =>  'required'
+
         ]);
 
         $newOrder = Order::forceCreate([
@@ -79,7 +79,7 @@ class OrderController extends Controller
             'created_by' =>  Auth::user()->id,
             'updated_by' =>  Auth::user()->id,
             'sim_id' => $request->input('sim_id'),
-            'is_deleted' =>  '0'
+
         ]);
 
         if($newOrder)
@@ -135,7 +135,7 @@ class OrderController extends Controller
 //        'employee_id' =>  'required',
 //        'created_by' =>  'required',
 //        'updated_by' =>  'required',
-//        'is_deleted' =>  'required'
+
         ]);
 
         $Order = Order::find($id);
@@ -171,7 +171,7 @@ class OrderController extends Controller
     {
         //
         $Order = Order::find($id);
-        $Order->is_deleted =  1;
+
 
     }
 

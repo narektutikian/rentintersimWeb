@@ -17,9 +17,9 @@ class UserManager
     public function getMyNetwork($id){
         $users = User::get()->toArray();
        $network = $this->buildTree($users, $id);
-        $flat = $this->flatten($network);
-        return $flat;
-//        return $network;
+//        $flat = $this->flatten($network);
+//        return $flat;
+        return $network;
     }
 
 

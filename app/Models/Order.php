@@ -3,12 +3,21 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Order extends Model
 {
     //
+//    use SoftDeletes;
 
-    protected $hidden = ['is_deleted'];
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = ['deleted_at'];
+
+
 
     public function creator()
     {
@@ -32,7 +41,7 @@ class Order extends Model
 
     public function scopeEmployee($query, $id)
     {
-        return $query->where([['created_by', $id], ['is_deleted', 0]])->orWhere('updated_by', $id);
+        return $query->where('created_by', $id)->orWhere('updated_by', $id);
     }
 
     public function scopeFilter($query, $filter)

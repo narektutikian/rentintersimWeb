@@ -16,7 +16,7 @@ class SIMController extends Controller
     public function index()
     {
         //
-        $sims = Sim::where('is_deleted', 0)->get();
+        $sims = Sim::all()->get();
         $simsArray = $this->solveSimList($sims);
 
 //      dd($simsArray);
@@ -51,7 +51,7 @@ class SIMController extends Controller
 //            'phone_id' => 'required',
 //            'user_id' => 'required',
 //            'is_active' => 1,
-//            'is_deleted' => 0,
+
 
         ]);
 
@@ -64,7 +64,7 @@ class SIMController extends Controller
 //            'phone_id' => $request->input('number'),
 //            'user_id' => $request->input('number'),
             'is_active' => 1,
-            'is_deleted' => 0,
+
 
 
 
@@ -114,7 +114,7 @@ class SIMController extends Controller
 //            'phone_id' => 'required',
 //            'user_id' => 'required',
 //            'is_active' => 1,
-//            'is_deleted' => 0,
+
 
         ]);
 
@@ -126,7 +126,6 @@ class SIMController extends Controller
 //        $sim->phone_id = $request->input('initial_sim_id');
 //        $sim->user_id = $request->input('initial_sim_id');
         $sim->is_active = $request->input('is_active');
-//        $sim->is_deleted = $request->input('initial_sim_id');
         $sim->save();
 
         return $sim;
@@ -142,7 +141,6 @@ class SIMController extends Controller
     {
         //
         $sim=Sim::find($id);
-        $sim->is_deleted = 1;
         $sim->save();
     }
 

@@ -95,7 +95,7 @@ class UserController extends Controller
 //            'phone_balance' => 'required',
 //            'supervisor_id' => 'required',
 //            'is_active' => 'required',
-//            'is_deleted' => 'required',
+
 
         ]);
 
@@ -119,7 +119,7 @@ class UserController extends Controller
 //            'phone_balance' => $request->input('name'),
           'supervisor_id' => $user->id,
             'is_active' => 1,
-            'is_deleted' => 0
+
 
        ];
 
@@ -207,6 +207,11 @@ class UserController extends Controller
         Auth::login($user);
         $request->session()->put('imitator', $admin->id);
         return redirect('home');
+    }
+
+    public function getUserTree(){
+        $tree = $this->manager->getMyNetwork(Auth::user()->id);
+        return response()->json($tree);
     }
 
 

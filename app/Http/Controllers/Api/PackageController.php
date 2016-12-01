@@ -15,7 +15,7 @@ class PackageController extends Controller
      */
     public function index()
     {
-        $sims = Package::where('is_deleted', 0)->get();
+        $sims = Package::all()->get();
         $packageArray = $this->solvePackageList($sims);
 
 //      dd($packageArray);
@@ -49,7 +49,7 @@ class PackageController extends Controller
             'description' => 'required',
             'provider_id' => 'required',
 //            'status' => 'required',
-//            'is_deleted' => 'required',
+
 
         ]);
 
@@ -60,7 +60,7 @@ class PackageController extends Controller
             'description' => $request->input('description'),
             'provider_id' => $request->input('provider_id'),
             'status' => $request->input('status'),
-            'is_deleted' => 0
+
         ]);
 
 
@@ -105,7 +105,7 @@ class PackageController extends Controller
             'description' => 'required',
             'provider_id' => 'required',
 //            'status' => 'required',
-//            'is_deleted' => 'required',
+
 
         ]);
 
@@ -116,7 +116,6 @@ class PackageController extends Controller
         $package->description = $request->input('description');
         $package->provider_id = $request->input('provider_id');
         $package->status = $request->input('status');
-//        $package->is_deleted = 0;
         $package->save();
 
 
@@ -132,7 +131,6 @@ class PackageController extends Controller
     {
         //
         $package=Package::find($id);
-        $package->is_deleted = 1;
         $package->save();
 
     }

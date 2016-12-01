@@ -3,12 +3,21 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Phone extends Model
 {
     //
+//    use SoftDeletes;
 
-    protected $hidden = ['is_deleted'];
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = ['deleted_at'];
+
+
 
     public function sim()
     {
@@ -27,6 +36,6 @@ class Phone extends Model
 
     public function scopeFilter($query, $filter)
     {
-        return $query->where('is_deleted', 0)->where('state', $filter);
+        return $query->where('state', $filter);
     }
 }

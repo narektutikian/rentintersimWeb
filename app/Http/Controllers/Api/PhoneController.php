@@ -17,7 +17,7 @@ class PhoneController extends Controller
     {
         //
 
-        $phones = Phone::where('is_deleted', 0)->get();
+        $phones = Phone::get();
         $phonesArray = $this->solvePhoneList($phones);
         $counts = $this->getCounts();
 
@@ -53,7 +53,7 @@ class PhoneController extends Controller
             'provider_id' => 'required',
 //            'is_special' => 'required',
 //            'is_active' => 'required',
-//            'is_deleted' => 'required'
+//
         ]);
 
         $newPhone = Phone::forceCreate([
@@ -66,7 +66,7 @@ class PhoneController extends Controller
             'provider_id' => $request->input('provider_id'),
             'is_special' => '0',
 //            'is_active' => '1',
-            'is_deleted' => '0',
+
 
         ]);
 
@@ -115,7 +115,7 @@ class PhoneController extends Controller
 //            'provider_id' => 'required',
 //            'is_special' => 'required',
 //            'is_active' => 'required',
-//            'is_deleted' => 'required'
+
         ]);
         //
         $phone = Phone::find($id);
@@ -128,7 +128,7 @@ class PhoneController extends Controller
 //        $phone->provider_id = $request->input('provider_id');
         $phone->is_special = '0';
         $phone->is_active = $request->input('is_active');
-//        $phone->is_deleted = '0';
+
         $phone->save();
 
     }
@@ -142,9 +142,8 @@ class PhoneController extends Controller
     public function destroy($id)
     {
         //
-        $phone = Phone::find($id);
-        $phone->is_deleted = 1;
-        $phone->save();
+        Phone::find($id)->delete();
+
 
     }
 
@@ -172,10 +171,10 @@ class PhoneController extends Controller
     public function getCounts(){
 
         $counts = ([
-            'All' => Phone::where('is_deleted', 0)->count(),
-            'Active' => Phone::where('is_deleted',  0)->filter('Active')->count(),
-            'Pending' => Phone::where('is_deleted',  0)->filter('Pending')->count(),
-            'Not in use' => Phone::where('is_deleted',  0)->filter('Not in use')->count(),
+            'All' => Phone::all()->count(),
+            'Active' => Phone::filter('Active')->count(),
+            'Pending' => Phone::filter('Pending')->count(),
+            'Not in use' => Phone::filter('Not in use')->count(),
         ]);
         return $counts;
     }
