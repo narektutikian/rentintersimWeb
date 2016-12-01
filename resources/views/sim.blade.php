@@ -7,20 +7,20 @@
             <div class="sim_management_wrapper">
                 <div class="filter_text">Filter by status:</div>
                 <div class="filter_buttons">
-                    <a class="filter_option blue full">
-                        <i class="icon-company_status"></i> All (7)
+                    <a class="filter_option blue full" href="{{url('/sim')}}">
+                        <i class="icon-company_status"></i> All ({{$counts['All']}})
                     </a>
-                    <a class="filter_option light_blue">
-                        <span class="status active"></span> active (2)
+                    <a class="filter_option light_blue" href="{{url('/filter-simlist/active')}}">
+                        <span class="status active"></span> active ({{$counts['Active']}})
                     </a>
-                    <a class="filter_option light_blue">
-                        <span class="status inactive"></span> Pending (1)
+                    <a class="filter_option light_blue" href="{{url('/filter-simlist/pending')}}">
+                        <span class="status inactive"></span> Pending ({{$counts['Pending']}})
                     </a>
-                    <a class="filter_option light_blue">
-                        <span class="status available"></span> Available (1)
+                    <a class="filter_option light_blue" href="{{url('/filter-simlist/available')}}">
+                        <span class="status available"></span> Available ({{$counts['Available']}})
                     </a>
-                    <a class="filter_option light_blue last">
-                        <span class="status disabled"></span> Parking (1)
+                    <a class="filter_option light_blue last" href="{{url('/filter-simlist/parking')}}">
+                        <span class="status disabled"></span> Parking ({{$counts['Parking']}})
                     </a>
                     <div class="search_management_option">
                         <form action="/" class="search_form_option">
@@ -48,10 +48,11 @@
                         </tr>
                         </thead>
                         <tbody>
+                        @foreach($simsArray as $sim)
                         <tr>
-                            <td class="rwd-td0 table_id_cell" data-toggle="modal" data-target="#modal_edit_sim" data-th="Id">1</td>
-                            <td class="rwd-td1" data-toggle="modal" data-target="#modal_edit_sim" data-th="SIM Number">5457100145122458729</td>
-                            <td class="rwd-td2" data-toggle="modal" data-target="#modal_edit_sim" data-th="Provider">Vodafone 1</td>
+                            <td class="rwd-td0 table_id_cell" data-toggle="modal" data-target="#modal_edit_sim" data-th="Id">{{$sim['id']}}</td>
+                            <td class="rwd-td1" data-toggle="modal" data-target="#modal_edit_sim" data-th="SIM Number">{{$sim['number']}}</td>
+                            <td class="rwd-td2" data-toggle="modal" data-target="#modal_edit_sim" data-th="Provider">{{$sim['provider_id']}}</td>
                             <td class="rwd-td3 table_action_cell" data-th="Action">
                                             <span class="table_icon" data-toggle="modal" data-target="#modal_edit_sim">
                                                 <i class="icon-edit"></i>
@@ -59,7 +60,7 @@
                             </td>
                             <td class="rwd-td4 table_status_cell" data-th="Status">
                                 <div class="vdf_radio">
-                                    <div class="toggle_container">
+                                    <div class="toggle_container {{ ((!$sim['is_active']) ? 'disabled' : '') }}">
                                         <label>
                                             <input type="radio" name="toggle" value="1"><span></span>
                                         </label>
@@ -68,105 +69,14 @@
                                         </label>
                                     </div>
                                 </div>
-                                <span class="table_status_text not_used">Not in use</span>
+                                <span class="table_status_text not_used">{{$sim['state']}}</span>
 
                             </td>
                         </tr>
-                        <tr>
-                            <td class="rwd-td0 table_id_cell" data-toggle="modal" data-target="#modal_edit_sim" data-th="Id">2</td>
-                            <td class="rwd-td1" data-toggle="modal" data-target="#modal_edit_sim" data-th="SIM Number">5457100145122458729</td>
-                            <td class="rwd-td2" data-toggle="modal" data-target="#modal_edit_sim" data-th="Provider">Vodafone 2</td>
-                            <td class="rwd-td3 table_action_cell" data-th="Action">
-                                            <span class="table_icon" data-toggle="modal" data-target="#modal_edit_sim">
-                                                <i class="icon-edit"></i>
-                                            </span>
-                            </td>
-                            <td class="rwd-td4 table_status_cell" data-th="Status">
-                                <span class="table_status_text not_used">Not in use</span>
-                                <div class="vdf_radio">
-                                    <div class="toggle_container disabled">
-                                        <label>
-                                            <input type="radio" name="toggle" value="1"><span></span>
-                                        </label>
-                                        <label>
-                                            <input type="radio" name="toggle" value="0"><span class="input-checked"></span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="rwd-td0 table_id_cell" data-toggle="modal" data-target="#modal_edit_sim" data-th="Id">3</td>
-                            <td class="rwd-td1" data-toggle="modal" data-target="#modal_edit_sim" data-th="SIM Number">5457100145122458729</td>
-                            <td class="rwd-td2" data-toggle="modal" data-target="#modal_edit_sim" data-th="Provider">Vodafone</td>
-                            <td class="rwd-td3 table_action_cell" data-th="Action">
-                                            <span class="table_icon" data-toggle="modal" data-target="#modal_edit_sim">
-                                                <i class="icon-edit"></i>
-                                            </span>
-                            </td>
-                            <td class="rwd-td4 table_status_cell" data-th="Status">
-                                <span class="table_status_text not_used">Not in use</span>
-                                <div class="vdf_radio">
-                                    <div class="toggle_container">
-                                        <label>
-                                            <input type="radio" name="toggle" value="1"><span></span>
-                                        </label>
-                                        <label>
-                                            <input type="radio" name="toggle" value="0"><span class="input-checked"></span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="rwd-td0 table_id_cell" data-toggle="modal" data-target="#modal_edit_sim" data-th="Id">4</td>
-                            <td class="rwd-td1" data-toggle="modal" data-target="#modal_edit_sim" data-th="SIM Number">5457100145122458729</td>
-                            <td class="rwd-td2" data-toggle="modal" data-target="#modal_edit_sim" data-th="Provider">Vodafone 5</td>
-                            <td class="rwd-td3 table_action_cell" data-th="Action">
-                                            <span class="table_icon" data-toggle="modal" data-target="#modal_edit_sim">
-                                                <i class="icon-edit"></i>
-                                            </span>
-                            </td>
-                            <td class="rwd-td4 table_status_cell" data-th="Status">
-                                <span class="table_status_text active">Active</span>
-                                <div class="vdf_radio">
-                                    <div class="toggle_container disabled">
-                                        <label>
-                                            <input type="radio" name="toggle" value="1"><span></span>
-                                        </label>
-                                        <label>
-                                            <input type="radio" name="toggle" value="0"><span class="input-checked"></span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="rwd-td0 table_id_cell" data-toggle="modal" data-target="#modal_edit_sim" data-th="Id">5</td>
-                            <td class="rwd-td1" data-toggle="modal" data-target="#modal_edit_sim" data-th="SIM Number">5457100145122458729</td>
-                            <td class="rwd-td2" data-toggle="modal" data-target="#modal_edit_sim" data-th="Provider">Vodafone</td>
-                            <td class="rwd-td3 table_action_cell" data-th="Action">
-                                            <span class="table_icon" data-toggle="modal" data-target="#modal_edit_sim">
-                                                <i class="icon-edit"></i>
-                                            </span>
-                            </td>
-                            <td class="rwd-td4 table_status_cell" data-th="Status">
-                                <span class="table_status_text not_used">Not in use</span>
-                                <div class="vdf_radio">
-                                    <div class="toggle_container">
-                                        <label>
-                                            <input type="radio" name="toggle" value="1"><span></span>
-                                        </label>
-                                        <label>
-                                            <input type="radio" name="toggle" value="0"><span class="input-checked"></span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-
+                        @endforeach
                         </tbody>
                     </table>
+                    {{$simsArray->links()}}
                 </div>
             </div>
         </section>
@@ -210,9 +120,7 @@
                                             <div class="select_wrapper">
                                                 <select class="block_btn_30 modal_input">
                                                     <option value=""></option>
-                                                    <option value="Admin">Parking SIM number</option>
-                                                    <option value="Dealer">Parking SIM number</option>
-                                                    <option value="Sub-Dealer">Parking SIM number</option>
+                                                    <option value="1">Vodafone</option>
                                                 </select>
                                                 <i class="input_icon icon-sim"></i>
                                             </div>

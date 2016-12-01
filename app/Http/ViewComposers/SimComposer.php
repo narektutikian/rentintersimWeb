@@ -8,6 +8,7 @@
 
 namespace App\Http\ViewComposers;
 use Illuminate\View\View;
+use App\Models\Sim;
 
 
 
@@ -40,8 +41,15 @@ class SimComposer
      */
     public function compose(View $view)
     {
+        $counts = ([
+            'All' => Sim::all()->count(),
+            'Active' => Sim::filter('Active')->count(),
+            'Pending' => Sim::filter('Pending')->count(),
+            'Available' => Sim::filter('available')->count(),
+            'Parking' => Sim::filter('parking')->count(),
+        ]);
 
-
-        $view->with('viewName', $view->getName());
+        $view->with('viewName', $view->getName())
+            ->with('counts', $counts);
     }
 }

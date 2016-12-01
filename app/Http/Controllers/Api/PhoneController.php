@@ -17,7 +17,7 @@ class PhoneController extends Controller
     {
         //
 
-        $phones = Phone::orderby('id', 'desc')->paginate(3);
+        $phones = Phone::orderby('id', 'desc')->paginate(env('PAGINATE_DEFAULT'));
         $phonesArray = $this->solvePhoneList($phones);
 
 //      dd($phonesArray);
@@ -159,7 +159,7 @@ class PhoneController extends Controller
 
     public function filter($filter){
 
-        $phones = Phone::filter($filter)->orderby('id', 'desc')->paginate(3);
+        $phones = Phone::filter($filter)->orderby('id', 'desc')->paginate(env('PAGINATE_DEFAULT'));
         $phonesArray = $this->solvePhoneList($phones);
 
         return view('number', compact('phonesArray'));

@@ -16,7 +16,7 @@ class SIMController extends Controller
     public function index()
     {
         //
-        $sims = Sim::get();
+        $sims = Sim::orderby('id', 'desc')->paginate(env('PAGINATE_DEFAULT'));
         $simsArray = $this->solveSimList($sims);
 
 //      dd($simsArray);
@@ -145,7 +145,7 @@ class SIMController extends Controller
     }
 
     public static function solveSimList($sims){
-        $simsArray = $sims->toArray();
+        $simsArray = $sims;
         foreach ($sims as $key => $sim) {
             $simsArray[$key]['provider_id'] = $sim->provider->name;
         }
@@ -154,7 +154,7 @@ class SIMController extends Controller
 
     public function filter($filter){
 
-        $sims = Sim::filter($filter)->get();
+        $sims = Sim::filter($filter)->orderby('id', 'desc')->paginate(env('PAGINATE_DEFAULT'));
         $simsArray = $this->solvesimList($sims);
 
 //        dd($simsArray);
