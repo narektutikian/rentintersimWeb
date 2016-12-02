@@ -44,7 +44,7 @@ class PackageController extends Controller
 
         $this->validate(request(), [
 
-            'type_code' => 'required|unique:sims',
+            'type_code' => 'required|unique:packages',
             'name' => 'required',
             'description' => 'required',
             'provider_id' => 'required',
@@ -63,7 +63,7 @@ class PackageController extends Controller
 
         ]);
 
-
+        return response($newPackage);
     }
 
     /**

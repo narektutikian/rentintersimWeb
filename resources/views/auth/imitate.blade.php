@@ -17,7 +17,7 @@
             <h3>User imitation</h3>
             <div class="form-group form_row">
                 <select class="block_btn login_input styled_select" name="login">
-                    <option value="" >-- Select User --</option>
+                    <option value="{{Auth::user()->id}}" >{{Auth::user()->login}}</option>
                     @foreach($net as $user)
                         <option value="{{$user['id']}}" >{{$user['login']}}</option>
                     @endforeach
@@ -41,9 +41,6 @@
             @endif
             <div class="form-group form_row short_bottom">
                 <input type="submit" class="block_btn light_green_btn" value="Start"/>
-                <a class="btn btn-link" href="{{ url('/dashboard') }}">
-                    Skip Imitation
-                </a>
             </div>
         </form>
     </div>

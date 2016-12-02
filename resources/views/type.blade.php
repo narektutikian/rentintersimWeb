@@ -92,19 +92,20 @@
                     </div>
                 </div>
                 <div class="modal-body vdf_modal_body">
-                    <form action="/" class="form-horizontal">
+                    <form action="{{url('type')}}" method="post" class="form-horizontal">
+                        {{csrf_field()}}
                         <div class="form-group">
                             <div class="col-md-6 vdf_modal_left">
                                 <div class="form_row form-group">
                                     <div class="col-md-6">
                                         <label class="table_label">Type Name</label>
                                         <div class="form_row">
-                                            <input type="text" class="block_btn_30 modal_input" value=""/>
+                                            <input type="text" class="block_btn_30 modal_input" id="name" name="name" value=""/>
                                             <i class="input_icon icon-add_type"></i>
                                         </div>
                                         <label class="table_label">Type Code</label>
                                         <div class="form_row">
-                                            <input type="text" class="block_btn_30 modal_input" value=""/>
+                                            <input type="text" class="block_btn_30 modal_input" id="type_code" name="type_code" value=""/>
                                             <i class="input_icon icon-type"></i>
                                         </div>
 
@@ -113,7 +114,7 @@
                                         <label class="table_label">Provider</label>
                                         <div class="form_row">
                                             <div class="select_wrapper">
-                                                <select class="block_btn_30 modal_input">
+                                                <select class="block_btn_30 modal_input" id="provider_id" name="provider_id">
                                                     <option value=""></option>
                                                     <option value="1">Vodafone</option>
                                                 </select>
@@ -122,7 +123,7 @@
                                         </div>
                                         <label class="table_label">Description</label>
                                         <div class="form_row">
-                                            <textarea class="modal_textarea"></textarea>
+                                            <textarea class="modal_textarea" id="description" name="description"></textarea>
                                         </div>
                                     </div>
 
@@ -148,12 +149,17 @@
                                 </div>
 
                             </div>
+                            {{--<button type="submit">Submit</button>--}}
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer vdf_modal_footer">
-                    <a href="#" class="inline_block_btn light_gray_btn close" data-dismiss="modal" aria-label="Close">Cancel</a>
-                    <a href="#" class="inline_block_btn light_green_btn">Create User</a>
+                    <a href="#"  class="inline_block_btn light_gray_btn close" data-dismiss="modal" aria-label="Close">Cancel</a>
+                    <a href="#" id="submit" class="inline_block_btn light_green_btn">Create New Type</a>
+
+                </div>
+                <div id="ajaxResponse">
+
                 </div>
             </div>
         </div>
@@ -241,5 +247,6 @@
         </div>
     </div>
     <!-- end of Edit new type Modal -->
+
 
 @endsection
