@@ -33,84 +33,75 @@
                         <div class="clear"></div>
                     </div>
                 </section>
-                    <div>
-                        <table class="table table-bordered table-striped table-hover table-condensed">
-                            <thead>
+                <section class="section_table">
+                    <!--rwd-table responsive_table table-->sdsd
+                    <table class="rwd-table responsive_table table" data-toggle="table">
+                        <thead>
                             <tr>
-                                <td>
-                                    Phone
-                                </td>
-                                <td>
-                                    Sim Number
-                                </td>
-                                <td>
-                                    Provider
-                                </td>
-                                <td>
-                                    From
-                                </td>
-                                <td>
-                                    To
-                                </td>
-                                <td>
-                                    Dealer
-                                </td>
-                                <td>
-                                    Updated By
-                                </td>
-                                <td>
-                                    Reference Number
-                                </td>
-                                <td>
-                                    Action
-                                </td>
-                                <td>
-                                    Status
-                                </td>
+                                <th data-th="Phone">Phone</th>
+                                <th data-th="SIM Number">SIM Number</th>
+                                <th data-field="provider" data-sortable="true" data-th="Provider">Provider</th>
+                                <th data-field="from" data-sortable="true" data-th="From">From</th>
+                                <th data-field="to" data-sortable="true" data-th="To">To</th>
+                                <th data-field="dealer" data-sortable="true" data-th="Dealer">Dealer </th>
+                                <th data-field="updated by" data-sortable="true" data-th="Updated by">Updated by</th>
+                                <th data-th="reference number">Reference Number</th>
+                                <th data-th="action">Action</th>
+                                <th data-field="status" data-sortable="true" data-th="Status">Status</th>
                             </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($ordersArray as $order)
-                            <tr>
-                                <td>
-                                    @if($order['phone_id']==0)
-                                        <a href="#">Get Number</a>
-                                    @else
-                                    {{$order['phone_id']}}
-                                    @endif
-                                </td>
-                                <td>
-                                    {{$order['sim_id']}}
-                                </td>
-                                <td>
-                                    {{$order['provider']}}
-                                </td>
-                                <td>
-                                    {{$order['from']}}
-                                </td>
-                                <td>
-                                    {{$order['to']}}
-                                </td>
-                                <td>
-                                    {{$order['created_by']}}
-                                </td>
-                                <td>
-                                    {{$order['updated_by']}}
-                                </td>
-                                <td>
-                                    {{$order['reference_number']}}
-                                </td>
-                                <td>
-                                    Buttons
-                                </td>
-                                <td>
-                                    {{$order['status']}}
-                                </td>
-                            </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+                        </thead>
+                        <tbody>
+                        @foreach($ordersArray as $order)
+                        <tr>
+                            <!--<td class="rwd-td0 table_id_cell editable_cell" data-form="#modal_edit_sim" data-th="Id">1</td>-->
+                            <td class="rwd-td0 table_id_cell editable_cell">
+                                @if($order['phone_id']==0)
+                                    <a href="#">Get Number</a>
+                                @else
+                                {{$order['phone_id']}}
+                                @endif
+                            </td>
+                            <td class="rwd-td0">
+                                {{$order['sim_id']}}
+                            </td>
+                            <td class="rwd-td0">
+                                {{$order['provider']}}
+                            </td>
+                            <td class="rwd-td0">
+                                {{$order['from']}}
+                            </td>
+                            <td class="rwd-td0">
+                                {{$order['to']}}
+                            </td>
+                            <td class="rwd-td0">
+                                {{$order['created_by']}}
+                            </td>
+                            <td class="rwd-td0">
+                                {{$order['updated_by']}}
+                            </td>
+                            <td>
+                                {{$order['reference_number']}}
+                            </td>
+                            <td class="rwd-td0 table_action_cell_large ">
+                                <span class="table_icon" data-toggle="modal" data-target="#modal_edit_number">
+                                    <i class="icon-edit"></i>
+                                </span>
+                                <span class="table_icon">
+                                    <i class="icon-print"></i>
+                                </span>
+                                <span class="table_icon">
+                                    <i class="icon-special"></i>
+                                </span>
+                            </td>
+                            <td class="rwd-td0 table_id_cell table_status_cell">
+                                {{$order['status']}}
+                            </td>
+                        </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+
+                </section>
             </div>
         </div>
     </div>
