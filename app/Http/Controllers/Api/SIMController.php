@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Sim;
+use Excel;
 
 class SIMController extends Controller
 {
@@ -148,6 +149,11 @@ class SIMController extends Controller
         $simsArray = $sims;
         foreach ($sims as $key => $sim) {
             $simsArray[$key]['provider_id'] = $sim->provider->name;
+            unset($simsArray[$key]['phone_id']);
+            unset($simsArray[$key]['user_id']);
+            unset($simsArray[$key]['deleted_at']);
+            unset($simsArray[$key]['created_at']);
+            unset($simsArray[$key]['updated_at']);
         }
         return $simsArray;
     }
@@ -161,8 +167,20 @@ class SIMController extends Controller
         return view('sim', compact('simsArray'));
     }
 
-    public function export(){
-        $data = Sim::get()->toArray();
+    public function export()
+    {
+        $data = $this->solveSimList(Sim::get());
+        Excel::create('Sims', function($excel) use ($data) {
+
+            $excel->sheet('Sim', function($sheet) use($data) {
+
+                $sheet->fromArray($data);
+
+            });
+
+        })->download('xlsx');
+
+       /*
 
 //        fputcsv($out, array_keys($data[1]));
         $out = fopen('php://output', 'w');
@@ -170,6 +188,6 @@ class SIMController extends Controller
         {
             fputcsv($out, $line);
         }
-        fclose($out);
+        fclose($out);*/
     }
 }
