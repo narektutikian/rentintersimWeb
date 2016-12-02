@@ -39,8 +39,6 @@
 
     </div>
 
-
-
 </div>
 
 
@@ -48,7 +46,7 @@
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/pie-chart/pie-chart.js"></script>
 <script src="/js/bootstrap-table.min.js"></script>
-<script src="/js/bootstrap-table-zh-CN.min.js"></script>
+<script src="/js/bootstrap-table-en-US.min.js"></script>
 <script src="/js/perfect-scrollbar/js/perfect-scrollbar.min.js"></script>
 <script src="/js/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js"></script>
 <script src="/js/moment.min.js"></script>

@@ -273,13 +273,13 @@ $( document ).ready(function() {
 
 
     /* Put Editable values inside modal window */
-    $('.table .editable_cell').on('click', function () {
+    $('.table .table_action_cell .edit').on('click', function () {
 
         var target_form_id;
 
-        $(this).parents('tr').find('.editable_cell').each(function () {
+        $(this).closest('tr').find('.editable_cell').each(function () {
 
-            target_form_id = $(this).attr('data-target');
+            target_form_id = $(this).attr('data-form');
             var attribute_title = $(this).attr('data-th');
             var cell_value = $(this)[0].innerHTML;
 
@@ -291,19 +291,20 @@ $( document ).ready(function() {
                     var form_action = $(this).find('form').attr('action');
                     $(this).find('form').attr('action', form_action + cell_value);
                 }
-
                 var prop_name = $(this).find('[data-th="' + attribute_title + '"]').prop("tagName");
-
+                
                 if(prop_name){
                     if(prop_name.toUpperCase()  == "INPUT"){
 
                         $(this).find('input[data-th="' + attribute_title + '"]').val(cell_value);
                     }else if(prop_name.toUpperCase()  == "SELECT"){
 
-                        $(this).find('select[data-th="' + attribute_title + '"] option').filter(function() {
-
-                            return $.trim($(this).text()) == cell_value;
-                        }).attr('selected', true);
+                        $(this).find('select[data-th="' + attribute_title + '"] option').each(function () {
+                            if ($(this).text().toLowerCase() == cell_value.toLowerCase()) {
+                                $(this).prop('selected','selected');
+                                return;
+                            }
+                        });
 
                     }
                 }else {
@@ -319,9 +320,13 @@ $( document ).ready(function() {
             var form_action = $(this).find('form').attr('action');
             var reset_form_action = form_action.split('/')[0];
             $(this).find('form').attr('action', reset_form_action + '/');
+
+            $(this).find('form')[0].reset();
         });
 
     });
+
+
 
 
 
