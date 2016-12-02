@@ -300,12 +300,11 @@ $( document ).ready(function() {
                         $(this).find('input[data-th="' + attribute_title + '"]').val(cell_value);
                     }else if(prop_name.toUpperCase()  == "SELECT"){
 
-                        $(this).find('select[data-th="' + attribute_title + '"]').filter(function() {
-                            //may want to use $.trim in here
-                            console.log('$(this).text() ', $.trim($(this).text()));
-                            console.log('cell_value ', cell_value);
-                            return $(this).text() == cell_value;
+                        $(this).find('select[data-th="' + attribute_title + '"] option').filter(function() {
+
+                            return $.trim($(this).text()) == cell_value;
                         }).attr('selected', true);
+
                     }
                 }else {
                     console.log('Property data-th="' + attribute_title + '" not found');
