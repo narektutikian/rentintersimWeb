@@ -64,6 +64,8 @@
   .vdf_modal_right
     position: relative
     padding-top: 15px
+  .ovh
+    overflow: hidden
   .file_container
     border-top-left-radius: 0
     border-bottom-left-radius: 0
@@ -79,12 +81,10 @@
   color: $white
   text-align: center
   @include fonts_stack(15px)
+  margin-bottom: 15px
 
 .flight_dates
-  display: inline-block
-  vertical-align: middle
-  width: 120px
-  margin-right: 7px
+  margin: 0 auto
   font-size: 0
   .input-group-addon
     display: inline-block
@@ -124,8 +124,9 @@
 #departure_date
   vertical-align: middle
   padding: 0 4px
-  width: 83px
-  font-size: 14px
+  width: 150px
+  @include fonts_stack(14px)
+  color: $total_numbers_title
 
 
 @media (max-width: 1200px)
@@ -158,3 +159,16 @@
         margin-left: 5px
         margin-right: 5px
         padding: 0 20px
+
+
+@media (max-width: 768px)
+  .vdf_modal
+    width: 90%
+    .vdf_modal_content
+      width: 95%
+
+@media (max-width: 640px)
+  .vdf_modal
+    width: 92%
+    .vdf_modal_content
+      width: 100%

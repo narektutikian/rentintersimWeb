@@ -264,9 +264,7 @@ $( document ).ready(function() {
 
 
     /* Bootstrap Datepicker */
-    $('.date').datetimepicker({
-        format: 'DD/MM/YYYY'
-    });
+    $('.date').datetimepicker();
 
     // $('#choose_hour').jStepper({minValue:0, maxValue:23, minLength:2});
 
@@ -292,7 +290,7 @@ $( document ).ready(function() {
                     $(this).find('form').attr('action', form_action + cell_value);
                 }
                 var prop_name = $(this).find('[data-th="' + attribute_title + '"]').prop("tagName");
-                
+
                 if(prop_name){
                     if(prop_name.toUpperCase()  == "INPUT"){
 

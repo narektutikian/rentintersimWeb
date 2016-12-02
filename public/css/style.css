@@ -1076,7 +1076,10 @@ input[type="radio"].toggle.checked + label {
       width: 30%;
       margin-right: 0;
       margin-left: 0;
-      text-align: center; } }
+      text-align: center; }
+
+  #wrap_package_list {
+    width: 100%; } }
 @media (max-width: 992px) {
   .search_management_option {
     float: none;
@@ -1125,7 +1128,13 @@ input[type="radio"].toggle.checked + label {
       display: block;
       width: auto; }
       .distributors .distributor_item .distributor_item_options {
-        width: calc(100% - 90px); } }
+        width: calc(100% - 90px); }
+
+  #wrap_package_list .choose_package_list li {
+    width: 140px; } }
+@media (max-width: 640px) {
+  #wrap_package_list .choose_package_list li {
+    width: 140px; } }
 .vdf_modal {
   width: 1140px;
   padding: 0;
@@ -1196,6 +1205,8 @@ input[type="radio"].toggle.checked + label {
   .vdf_modal .vdf_modal_right {
     position: relative;
     padding-top: 15px; }
+  .vdf_modal .ovh {
+    overflow: hidden; }
   .vdf_modal .file_container {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0; }
@@ -1215,13 +1226,11 @@ input[type="radio"].toggle.checked + label {
   font-size: 15px;
   font-weight: normal;
   font-style: normal;
-  font-family: "proxima_nova_rgregular", Arial, Helvetica, sans-serif; }
+  font-family: "proxima_nova_rgregular", Arial, Helvetica, sans-serif;
+  margin-bottom: 15px; }
 
 .flight_dates {
-  display: inline-block;
-  vertical-align: middle;
-  width: 120px;
-  margin-right: 7px;
+  margin: 0 auto;
   font-size: 0; }
   .flight_dates .input-group-addon {
     display: inline-block;
@@ -1261,8 +1270,12 @@ input[type="radio"].toggle.checked + label {
 #departure_date {
   vertical-align: middle;
   padding: 0 4px;
-  width: 83px;
-  font-size: 14px; }
+  width: 150px;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-family: "proxima_nova_rgregular", Arial, Helvetica, sans-serif;
+  color: #69717e; }
 
 @media (max-width: 1200px) {
   .vdf_modal {
@@ -1291,6 +1304,16 @@ input[type="radio"].toggle.checked + label {
         margin-left: 5px;
         margin-right: 5px;
         padding: 0 20px; } }
+@media (max-width: 768px) {
+  .vdf_modal {
+    width: 90%; }
+    .vdf_modal .vdf_modal_content {
+      width: 95%; } }
+@media (max-width: 640px) {
+  .vdf_modal {
+    width: 92%; }
+    .vdf_modal .vdf_modal_content {
+      width: 100%; } }
 * {
   margin: 0;
   padding: 0;

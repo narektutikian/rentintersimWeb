@@ -26,7 +26,7 @@
                                     <button type="submit" class="search_button"><i class="icon-search"></i></button>
                                 </form>
                                 <a href="#" class="export_user"><i class="icon-export"></i>Export</a>
-                                <a href="{{url('/order/create')}}" class="add_new_btn"><i class="icon-new_order"></i>New Order</a>
+                                <a href="#" class="add_new_btn" data-toggle="modal" data-target="#modal_new_order"><i class="icon-new_order"></i>New Order</a>
                             </div>
                         </div>
 
@@ -114,4 +114,154 @@
             </div>
         </div>
     </div>
+
+
+
+
+    <!-- Add User Modal -->
+    <div class="modal fade" id="modal_new_order" tabindex="-1" role="dialog" aria-labelledby="modal_new_order">
+        <div class="modal-dialog vdf_modal" role="document">
+            <div class="modal-content vdf_modal_content">
+                <div class="modal-header vdf_modal_header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <div class="vdf_modal_sub_header">
+                        <h3>New Order</h3>
+                    </div>
+                </div>
+                <div class="modal-body vdf_modal_body">
+                    <form action="/" class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-md-6 vdf_modal_left ovh">
+                                <div class="form_row form-group">
+                                    <div class="col-md-6">
+                                        <label class="table_label">Enter a SIM number</label>
+                                        <div class="form_row">
+                                            <input type="text" class="block_btn_30 modal_input_without_icon" value=""/>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="table_label">SIM provider</label>
+                                        <div class="form_row">
+                                            <input type="text" class="block_btn_30 modal_input_without_icon" value=""/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form_row form-group">
+                                    <div class="col-md-12">
+                                        <label class="table_label">Choose a SIM package </label>
+                                        <div id="wrap_package_list" class="always_visible">
+                                            <ul class="choose_package_list">
+                                                <li>
+                                                    <a href="#" title="Basic Package">
+                                                        <h4>Basic Package</h4>
+                                                        <span>8 Mb Data</span>
+                                                        <span>Unlimited local</span>
+                                                        <span>Call + SMS</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" title="Cruiser">
+                                                        <h4>Cruiser</h4>
+                                                        <span>8 Mb Data</span>
+                                                        <span>Unlimited local</span>
+                                                        <span>Call + SMS</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" title="De Luxe">
+                                                        <h4>De Luxe</h4>
+                                                        <span>8 Mb Data</span>
+                                                        <span>Unlimited local</span>
+                                                        <span>Call + SMS</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" title="Cruiser">
+                                                        <h4>Cruiser</h4>
+                                                        <span>8 Mb Data</span>
+                                                        <span>Unlimited local</span>
+                                                        <span>Call + SMS</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" title="De Luxe">
+                                                        <h4>De Luxe</h4>
+                                                        <span>8 Mb Data</span>
+                                                        <span>Unlimited local</span>
+                                                        <span>Call + SMS</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="form_row form-group">
+                                    <div class="col-md-12">
+                                        <label class="table_label">Enter remarks</label>
+                                        <textarea class="modal_textarea"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 vdf_modal_right">
+                                <label class="table_label">Destination flight details</label>
+                                <div class="form_row form-group">
+
+                                    <div class="col-md-6">
+                                        <div class="form_row">
+                                            <div class="departure"><i class="icon-landing"></i> Landing date and time</div>
+                                            <div class="input-group date flight_dates" data-provide="datepicker">
+                                                <div class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </div>
+                                                <input type="text" class="inline_block_btn" id="departure_date">
+                                            </div>
+                                        </div>
+                                        <div class="form_row">
+                                            <label class="table_label">Reference Number</label>
+                                            <input type="text" class="block_btn_30 modal_input_without_icon" value="">
+                                        </div>
+                                        <div class="form_row">
+                                            <label class="table_label">Customer phone number</label>
+                                            <div class="select_wrapper">
+                                                <select class="block_btn_30 modal_input">
+                                                    <option value=""></option>
+                                                    <option value="1">1111111111</option>
+                                                    <option value="2">22222222222</option>
+                                                    <option value="3">333333333333</option>
+                                                </select>
+                                                <i class="input_icon icon-sim"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form_row">
+                                            <div class="departure"><i class="icon-departure"></i> Departure date and time</div>
+                                            <div class="input-group date flight_dates" data-provide="datepicker">
+                                                <div class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </div>
+                                                <input type="text" class="inline_block_btn" id="landing_date">
+                                            </div>
+                                        </div>
+                                        <div class="form_row">
+                                            <label class="table_label">Order Status</label>
+                                            <input type="text" class="block_btn_30 modal_input_without_icon" value="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer vdf_modal_footer">
+                    <a href="#" class="inline_block_btn light_gray_btn close" data-dismiss="modal" aria-label="Close">Cancel</a>
+                    <button type="submit" href="#" class="inline_block_btn light_green_btn">Create User</button>
+                </div>
+            </div>
+        </div>
+    </div><!-- end Add User Modal -->
+
 @endsection
