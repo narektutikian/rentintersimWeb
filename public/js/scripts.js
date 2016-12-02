@@ -272,5 +272,62 @@ $( document ).ready(function() {
 
 
 
+    /* Put Editable values inside modal window */
+    $('.table .editable_cell').on('click', function () {
+
+        var target_form_id;
+
+        $(this).parents('tr').find('.editable_cell').each(function () {
+
+            target_form_id = $(this).attr('data-target');
+            var attribute_title = $(this).attr('data-th');
+            var cell_value = $(this)[0].innerHTML;
+
+            // Capture Modal Open Event
+            $(target_form_id).one('shown.bs.modal', function () {
+
+                if(attribute_title == "Id"){ // set form action id
+
+                    var form_action = $(this).find('form').attr('action');
+                    $(this).find('form').attr('action', form_action + cell_value);
+                }
+
+                var prop_name = $(this).find('[data-th="' + attribute_title + '"]').prop("tagName");
+
+                if(prop_name){
+                    if(prop_name.toUpperCase()  == "INPUT"){
+
+                        $(this).find('input[data-th="' + attribute_title + '"]').val(cell_value);
+                    }else if(prop_name.toUpperCase()  == "SELECT"){
+
+                        //$(this).find('select[data-th="' + attribute_title + '"]').css('background-color', 'red');
+                        //console.log('SELECT cell_value ', cell_value);
+
+                        $(this).find('select[data-th="' + attribute_title + '"]').filter(function() {
+                            //may want to use $.trim in here
+                            console.log('$(this).text() ', $.trim($(this).text()));
+                            console.log('cell_value ', cell_value);
+                            return $(this).text() == cell_value;
+                        }).attr('selected', true);
+                    }
+                }else {
+                    console.log('Property data-th="' + attribute_title + '" not found');
+                }
+            });
+
+        });
+
+        // Capture Modal Open Event
+        $(target_form_id).one("hidden.bs.modal", function () {
+            // put your default event here
+            var form_action = $(this).find('form').attr('action');
+            var reset_form_action = form_action.split('/')[0];
+            $(this).find('form').attr('action', reset_form_action + '/');
+        });
+
+    });
+
+
+
 
 });

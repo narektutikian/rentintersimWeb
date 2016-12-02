@@ -50,9 +50,9 @@
                         <tbody>
                         @foreach($simsArray as $sim)
                         <tr>
-                            <td class="rwd-td0 table_id_cell {{ ((!$sim['is_active']) ? 'disable' : '') }}" data-toggle="modal" data-target="#modal_edit_sim" data-th="Id">{{$sim['id']}}</td>
-                            <td class="rwd-td1 {{ ((!$sim['is_active']) ? 'disable' : '') }}" data-toggle="modal" data-target="#modal_edit_sim" data-th="SIM Number">{{$sim['number']}}</td>
-                            <td class="rwd-td2 {{ ((!$sim['is_active']) ? 'disable' : '') }}" data-toggle="modal" data-target="#modal_edit_sim" data-th="Provider">{{$sim['provider_id']}}</td>
+                            <td class="rwd-td0 table_id_cell editable_cell {{ ((!$sim['is_active']) ? 'disable' : '') }}" data-toggle="modal" data-target="#modal_edit_sim" data-th="Id">{{$sim['id']}}</td>
+                            <td class="rwd-td1 editable_cell {{ ((!$sim['is_active']) ? 'disable' : '') }}" data-toggle="modal" data-target="#modal_edit_sim" data-th="SIM Number">{{$sim['number']}}</td>
+                            <td class="rwd-td2 editable_cell {{ ((!$sim['is_active']) ? 'disable' : '') }}" data-toggle="modal" data-target="#modal_edit_sim" data-th="Provider">{{$sim['provider_id']}}</td>
                             <td class="rwd-td3 table_action_cell {{ ((!$sim['is_active']) ? 'disable' : '') }}" data-th="Action">
                                             <span class="table_icon" data-toggle="modal" data-target="#modal_edit_sim">
                                                 <i class="icon-edit"></i>
@@ -157,7 +157,7 @@
                 </div>
                 <div class="modal-footer vdf_modal_footer">
                     <a href="#" class="inline_block_btn light_gray_btn close" data-dismiss="modal" aria-label="Close">Cancel</a>
-                    <a href="#" class="inline_block_btn light_green_btn">Create User</a>
+                    <input type="submit" class="inline_block_btn light_green_btn" value="Add SIM">
                 </div>
             </div>
         </div>
@@ -172,18 +172,19 @@
                 <div class="modal-header vdf_modal_header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <div class="vdf_modal_sub_header">
-                        <h3>Edit SIM number</h3>
+                        <h3>Edit SIM number AAA</h3>
                     </div>
                 </div>
                 <div class="modal-body vdf_modal_body">
-                    <form action="" class="form-horizontal">
+                    <form action="sim/" class="form-horizontal">
                         <div class="form-group">
                             <div class="col-md-6 vdf_modal_left">
                                 <div class="form_row form-group">
                                     <div class="col-md-6">
-                                        <label class="table_label">SIM Number</label>
+                                        <label class="table_label">SIM Number FFF</label>
                                         <div class="form_row">
-                                            <input type="text" class="block_btn_30 modal_input" value=""/>
+                                            <input type="hidden" class="block_btn_30 modal_input" data-th="Id" value=""/>
+                                            <input type="text" class="block_btn_30 modal_input" data-th="SIM Number" value=""/>
                                             <i class="input_icon icon-phone_number"></i>
                                         </div>
 
@@ -196,12 +197,13 @@
                                         <label class="table_label">Provider</label>
                                         <div class="form_row">
                                             <div class="select_wrapper">
-                                                <select class="block_btn_30 modal_input">
+                                                <select class="block_btn_30 modal_input"  data-th="Provider">
                                                     <option value=""></option>
                                                     @foreach($providers as $provider)
                                                         <option value="{{$provider['id']}}">{{$provider['name']}}</option>
                                                     @endforeach
                                                 </select>
+
                                                 <i class="input_icon icon-sim"></i>
                                             </div>
                                         </div>
@@ -235,7 +237,7 @@
                 </div>
                 <div class="modal-footer vdf_modal_footer">
                     <a href="#" class="inline_block_btn light_gray_btn close" data-dismiss="modal" aria-label="Close">Cancel</a>
-                    <a href="#" class="inline_block_btn light_green_btn">Create User</a>
+                    <input type="submit" class="inline_block_btn light_green_btn" value="Edit SIM">
                 </div>
             </div>
         </div>
