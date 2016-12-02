@@ -8,14 +8,17 @@ use App\Models\Order;
 use Rentintersimrepo\orders\CreateHelper as Helper;
 use Auth;
 use App\Http\Controllers\HomeController;
+use Rentintersimrepo\orders\ViewHelper;
 
 class OrderController extends Controller
 {
     protected $helper;
+    protected $viewHelper;
 
-    public function __construct(Helper $helper)
+    public function __construct(Helper $helper, ViewHelper $viewHelper)
     {
         $this->helper = $helper;
+        $this->viewHelper = $viewHelper;
     }
 
     /**
@@ -49,10 +52,13 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
+        $number = null;
+        $numberId = 0;
+        $status ='Waiting';
         $this->validate(request(), [
 //        'from' => 'required',
 //        'to' =>  'required',
-        'sim_id' => 'required',
+        'sim' => 'required',
         'landing' =>  'required',
         'departure' =>  'required',
             'package_id' => 'required'
@@ -65,20 +71,27 @@ class OrderController extends Controller
 //        'updated_by' =>  'required',
 
         ]);
+            $simId = $this->helper->getSimId($request->input('sim'));
+            $number = $this->getNumber($simId, $request->input('package_id'));
+        if ($number != null){
+            $numberId = $number->id;
+            $status = 'Panding';
+        }
 
         $newOrder = Order::forceCreate([
-            'from' => $this->helper->setStartTime($request->input('lending')),
+            'from' => $this->helper->setStartTime($request->input('landing')),
             'to' =>  $this->helper->setEndTime($request->input('departure')),
-            'landing' =>  $request->input('lending'),
+            'landing' =>  $request->input('landing'),
             'departure' =>  $request->input('departure'),
             'reference_number' =>  $request->input('package_id'),
-            'status' =>  'Waiting',
+            'status' =>  $status,
             'costumer_number' =>  $request->input('costumer_number'),
             'package_id' => $request->input('package_id'),
             'remark' =>  $request->input('remark'),
             'created_by' =>  Auth::user()->id,
             'updated_by' =>  Auth::user()->id,
-            'sim_id' => $request->input('sim_id'),
+            'sim_id' => $simId,
+            'phone_id' => $numberId,
 
         ]);
 
@@ -178,9 +191,15 @@ class OrderController extends Controller
     public function filter($filter){
         $id = Auth::user()->id;
         $orders = Order::employee($id)->filter($filter)->get();
-        $ordersArray = HomeController::solveOrderList($orders);
+        $ordersArray = HomeController::solveOrderList($orders, $this->viewHelper);
         $counts = HomeController::getCounts($id);
 
         return view('home', compact('ordersArray'), compact('counts'));
+    }
+
+    public function getNumber($simId, $packageId)
+    {   $number = null;
+        $number = $this->helper->getNumber($simId,$packageId);
+        return $number;
     }
 }

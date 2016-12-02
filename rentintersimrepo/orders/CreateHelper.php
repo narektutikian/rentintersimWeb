@@ -9,20 +9,42 @@
 namespace Rentintersimrepo\orders;
 
 use Carbon\Carbon;
+use App\Models\Sim;
+use App\Models\Phone;
 
 
 class CreateHelper
 {
     public function setStartTime($datetime){
-        return Carbon::createFromFormat('Y-m-d H:i:s', $datetime)
+        return Carbon::createFromTimestamp($datetime)
             ->subMinutes(30)
             ->toDateTimeString();
     }
 
     public function setEndTime($datetime){
-        return Carbon::createFromFormat('Y-m-d H:i:s', $datetime)
+        return Carbon::createFromTimestamp($datetime)
             ->subMinutes(30)
             ->toDateTimeString();
+    }
+
+    public function getSimId($sim){
+        return Sim::where('number', $sim)->first()->id;
+    }
+    public function getNumber($simId, $packageId){
+        $number = null;
+        $sim = Sim::find($simId);
+        if ($sim->state == 'available'){
+            $number = Phone::where([['is_active', 1],['package_id', $packageId], ['state', 'Not in use']])->first();
+
+            if ($number){
+                $number->state = 'Pending';
+                $number->save();
+                $sim->state = 'pending';
+                $sim->save();
+                return $number;
+            }
+        }
+        return null;
     }
 
 }

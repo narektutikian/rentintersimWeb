@@ -5,18 +5,22 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\Models\Order;
+use Rentintersimrepo\orders\ViewHelper;
 
 
 class HomeController extends Controller
 {
+    protected $viewHelper;
+
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(ViewHelper $viewHelper)
     {
         $this->middleware('auth');
+        $this->viewHelper = $viewHelper;
     }
 
     /**
@@ -28,7 +32,7 @@ class HomeController extends Controller
     {
         $id = Auth::user()->id;
         $orders = Order::employee($id)->get();
-       $ordersArray = $this->solveOrderList($orders);
+       $ordersArray = $this->solveOrderList($orders, $this->viewHelper);
         $counts = $this->getCounts($id);
 
 
@@ -44,7 +48,7 @@ class HomeController extends Controller
         return view('dashboard');
     }
 
-    public static function solveOrderList($orders){
+    public static function solveOrderList($orders, $viewHelper){
     $ordersArray = $orders->toArray();
     foreach ($orders as $key => $order) {
         $ordersArray[$key]['created_by'] = $order->creator->login;
@@ -53,6 +57,9 @@ class HomeController extends Controller
         if ($ordersArray[$key]['phone_id'] != 0)
             $ordersArray[$key]['phone_id'] = $order->phone->phone;
         $ordersArray[$key]['provider'] = $order->sim->provider->name;
+        $ordersArray[$key]['from'] = $viewHelper->present($ordersArray[$key]['from']);
+        $ordersArray[$key]['to'] = $viewHelper->present($ordersArray[$key]['to']);
+
     }
     return $ordersArray;
     }

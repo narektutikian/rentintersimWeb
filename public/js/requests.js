@@ -24,32 +24,32 @@ $( document ).ready(function() {
         });
     });
 
+/****** Order Creation ******/
+    $('#create-order').on('click', function (e) {
+        e.preventDefault();
+        var data = {
+            _token : CSRF_TOKEN,
+            sim: $('#sim').val(),
+            landing: Date.parse($('#landing').val())/1000,
+            departure: Date.parse($('#departure').val())/1000,
+            package_id: $('#package_id').val(),
+            reference_number: $('#reference_number').val(),
+            remark: $('#remark').val(),
+                    };
 
+        $.ajax({
+            type: "POST",
+            url: '/order',
+            data: data,
+            success: function( msg ) {
+                $("#order-create-div").append("<div>"+"DONE"+"</div>");
+            },
+            error: function (error) {
+                $("#order-create-div").append("<div>"+"ERROR"+"</div>");
+            }
+        });
+    });
 
-
-    /*
-     $(document).ready(function() {
-     $('#submit').on('submit', function (e) {
-     e.preventDefault();
-     var name = $('#name').val();
-     var type_code = $('#type_code').val();
-     var provider_id = $('#provider_id').val();
-     var description = $('#description').val();
-     $.ajax({
-     type: "POST",
-     url: <?php// echo url('type')?>,
-     data: {name: name, type_code: type_code, provider_id: provider_id, description: description},
-     success: function( msg ) {
-     $("#ajaxResponse").append("<div>"+msg+"</div>");
-     }
-     });
-     });
-     });
-     */
-
-
-
-
-});
+}); // closes document ready
 
 
