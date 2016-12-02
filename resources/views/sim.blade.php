@@ -83,8 +83,6 @@
 
     </div><!--end of SIM management-->
 
-
-
     <!-- Add SIM Modal -->
     <div class="modal fade" id="modal_add_sim" tabindex="-1" role="dialog" aria-labelledby="modal_add_sim">
 
