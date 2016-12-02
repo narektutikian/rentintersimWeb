@@ -54,5 +54,6 @@
 <script src="/js/moment.min.js"></script>
 <script src="/js/bootstrap-datetimepicker.js"></script>
 <script src="/js/scripts.js"></script>
+<script src="/js/requests.js"></script>
 </body>
 </html>

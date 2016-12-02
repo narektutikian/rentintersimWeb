@@ -201,6 +201,8 @@ class UserController extends Controller
     }
 
     public function imitate(Request $request){
+        if($request->input('login')==Auth::user()->id)
+            return redirect('dashboard');
         $admin = Auth::user();
         $user = User::find($request->input('login'));
 //        print_r ($request->input('login'));
