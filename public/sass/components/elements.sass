@@ -184,16 +184,28 @@
         text-align: center
         border: 1px solid $gray_modal_border
         @include border-radius(10px)
+        outline: none
         h4
           color: $active_green
-          margin-top: 12px
-          margin-bottom: 25px
+          margin-top: 10px
+          margin-bottom: 12px
           text-transform: uppercase
           @include fonts_stack(15px)
         span
           color: $total_numbers_title
+          margin-left: 5px
+          margin-right: 5px
           margin-bottom: 5px
+          display: block
           @include fonts_stack(13px)
+          line-height: 15px
+        &.selected_package
+          background: $active_green
+          color: $white
+          h4
+            color: $white
+          span
+            color: $white
 
 
 .always_visible.ps-container > .ps-scrollbar-x-rail

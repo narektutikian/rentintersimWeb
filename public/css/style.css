@@ -975,11 +975,12 @@ input[type="radio"].toggle.checked + label {
         -webkit-border-radius: 10px;
         -moz-border-radius: 10px;
         -ms-border-radius: 10px;
-        border-radius: 10px; }
+        border-radius: 10px;
+        outline: none; }
         #wrap_package_list .choose_package_list li a h4 {
           color: #2cc763;
-          margin-top: 12px;
-          margin-bottom: 25px;
+          margin-top: 10px;
+          margin-bottom: 12px;
           text-transform: uppercase;
           font-size: 15px;
           font-weight: normal;
@@ -987,11 +988,22 @@ input[type="radio"].toggle.checked + label {
           font-family: "proxima_nova_rgregular", Arial, Helvetica, sans-serif; }
         #wrap_package_list .choose_package_list li a span {
           color: #69717e;
+          margin-left: 5px;
+          margin-right: 5px;
           margin-bottom: 5px;
+          display: block;
           font-size: 13px;
           font-weight: normal;
           font-style: normal;
-          font-family: "proxima_nova_rgregular", Arial, Helvetica, sans-serif; }
+          font-family: "proxima_nova_rgregular", Arial, Helvetica, sans-serif;
+          line-height: 15px; }
+        #wrap_package_list .choose_package_list li a.selected_package {
+          background: #2cc763;
+          color: #ffffff; }
+          #wrap_package_list .choose_package_list li a.selected_package h4 {
+            color: #ffffff; }
+          #wrap_package_list .choose_package_list li a.selected_package span {
+            color: #ffffff; }
 
 .always_visible.ps-container > .ps-scrollbar-x-rail {
   opacity: 0.6; }

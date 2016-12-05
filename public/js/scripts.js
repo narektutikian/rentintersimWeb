@@ -325,6 +325,12 @@ $( document ).ready(function() {
     });
 
 
+    $(document).on('click', '.choose_package_list li a', function () {
+        console.log('AAAAAA ');
+        $(this).addClass('selected_package');
+        $(this).parents('li').siblings().find('a').removeClass('selected_package');
+        return false;
+    });
 
 
 

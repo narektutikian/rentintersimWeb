@@ -25,17 +25,18 @@ $( document ).ready(function() {
     });
 
 /****** Order Creation ******/
+    var package_id;
     $('#create-order').on('click', function (e) {
+
         var data = {
             _token : CSRF_TOKEN,
             sim: $('#sim').val(),
             landing: Date.parse($('#landing_date').val())/1000,
             departure: Date.parse($('#departure_date').val())/1000,
-            // package_id: $('#package_id').val(),
-            package_id: 25,
+            package_id: package_id, // put package id
             reference_number: $('#reference_number').val(),
             remark: $('#remark').val(),
-                    };
+        };
 
         $.ajax({
             type: "POST",
@@ -52,13 +53,23 @@ $( document ).ready(function() {
 
     $.get("/type-provider/1", function(data, status){
         if (status == "success"){
-        $.each(data, function(i, item) {
-            console.log(item.name + "\n");
-            // alert(data[i].description);
-            $("#n-list-package").append("<li><a href=\"#\" " +
-                "title=\"Basic Package\"><h4>"+ item.name +"</h4><span>"+
-                item.description + "</span></a></li>");
-        }); }
+            $.each(data, function(i, item) {
+                console.log(item.name + "\n");
+
+                $("#n-list-package").append("<li>" +
+                    "<a href='#' class='package_item' data-id='" + item.id + "' title='Basic Package'>" +
+                    "<h4>"+ item.name +"</h4>" +
+                    "<span>" + item.description + "</span>" +
+                    "</a>" +
+                "</li>");
+            });
+
+            $(document).on('click', '.package_item', function () {
+
+                package_id = $(this).attr('data-id');
+                return false;
+            });
+        }
     });
 
 }); // closes document ready
