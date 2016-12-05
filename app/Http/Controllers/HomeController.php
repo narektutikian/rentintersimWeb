@@ -31,7 +31,7 @@ class HomeController extends Controller
     public function index()
     {
         $id = Auth::user()->id;
-        $orders = Order::employee($id)->get();
+        $orders = Order::employee($id)->orderby('id', 'desc')->paginate(env('PAGINATE_DEFAULT'));
        $ordersArray = $this->solveOrderList($orders, $this->viewHelper);
         $counts = $this->getCounts($id);
 
@@ -49,7 +49,7 @@ class HomeController extends Controller
     }
 
     public static function solveOrderList($orders, $viewHelper){
-    $ordersArray = $orders->toArray();
+    $ordersArray = $orders;
     foreach ($orders as $key => $order) {
         $ordersArray[$key]['created_by'] = $order->creator->login;
         $ordersArray[$key]['updated_by'] = $order->editor->login;

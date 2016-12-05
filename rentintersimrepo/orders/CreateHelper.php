@@ -18,13 +18,13 @@ class CreateHelper
     public function setStartTime($datetime){
         return Carbon::createFromTimestamp($datetime)
             ->subMinutes(30)
-            ->toDateTimeString();
+            ->timestamp;
     }
 
     public function setEndTime($datetime){
         return Carbon::createFromTimestamp($datetime)
             ->subMinutes(30)
-            ->toDateTimeString();
+            ->timestamp;
     }
 
     public function getSimId($sim){

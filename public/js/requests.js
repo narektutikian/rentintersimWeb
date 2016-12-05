@@ -29,9 +29,10 @@ $( document ).ready(function() {
         var data = {
             _token : CSRF_TOKEN,
             sim: $('#sim').val(),
-            landing: Date.parse($('#landing').val())/1000,
-            departure: Date.parse($('#departure').val())/1000,
-            package_id: $('#package_id').val(),
+            landing: Date.parse($('#landing_date').val())/1000,
+            departure: Date.parse($('#departure_date').val())/1000,
+            // package_id: $('#package_id').val(),
+            package_id: 25,
             reference_number: $('#reference_number').val(),
             remark: $('#remark').val(),
                     };
@@ -50,12 +51,14 @@ $( document ).ready(function() {
     });
 
     $.get("/type-provider/1", function(data, status){
-        console.log(data);
+        if (status == "success"){
         $.each(data, function(i, item) {
             console.log(item.name + "\n");
             // alert(data[i].description);
-            $("#n-list-package").append("<li><a href=\"#\" title=\"Basic Package\"><h4>"+ item.name +"</h4><span>"+ item.description + "</span></a></li>");
-        });
+            $("#n-list-package").append("<li><a href=\"#\" " +
+                "title=\"Basic Package\"><h4>"+ item.name +"</h4><span>"+
+                item.description + "</span></a></li>");
+        }); }
     });
 
 }); // closes document ready

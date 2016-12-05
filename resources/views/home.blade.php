@@ -8,18 +8,18 @@
                     <div class="orders_list_wrapper">
                         <div class="filter_text">Filter by status:</div>
                         <div class="filter_buttons">
-                                    <span class="filter_option blue">
-                                        <i class="icon-company_status"></i><a href="{{url('/home')}}"> All ({{$counts['All']}}) </a>
-                                    </span>
-                            <span class="filter_option light_blue">
-                                        <span class="status active blue" ></span><a href="{{url('filter-orderlist/Active')}}"> active ({{$counts['Active']}})</a>
-                                    </span>
-                            <span class="filter_option light_blue">
-                                        <span class="status inactive"></span><a href="{{url('filter-orderlist/Pending')}}"> Pending ({{$counts['Pending']}}) </a>
-                                    </span>
-                            <span class="filter_option light_blue last">
-                                        <span class="status waiting"></span><a href="{{url('filter-orderlist/Waiting')}}"> Waiting ({{$counts['Waiting']}}) </a>
-                                    </span>
+                                    <a class="filter_option  {{ (Request::is('home')) ? 'blue' : 'light_blue' }}" href="{{url('/home')}}">
+                                        <i class="icon-company_status"></i>All ({{$counts['All']}})
+                                    </a>
+                            <a class="filter_option  {{ (Request::is('filter-orderlist/Active')) ? 'blue' : 'light_blue' }}" href="{{url('filter-orderlist/Active')}}">
+                                        <span class="status active blue" ></span>active ({{$counts['Active']}})
+                                    </a>
+                            <a class="filter_option  {{ (Request::is('filter-orderlist/Pending')) ? 'blue' : 'light_blue' }}" href="{{url('filter-orderlist/Pending')}}">
+                                        <span class="status inactive"></span> Pending ({{$counts['Pending']}})
+                                    </a>
+                            <a class="filter_option  {{ (Request::is('filter-orderlist/Waiting')) ? 'blue' : 'light_blue' }} last" href="{{url('filter-orderlist/Waiting')}}">
+                                        <span class="status waiting"></span> Waiting ({{$counts['Waiting']}}) </a>
+                                    </a>
                             <div class="search_management_option">
                                 <form action="/" class="search_form_option">
                                     <input type="text" class="block_btn_30 search_input" value="search">
@@ -34,7 +34,7 @@
                     </div>
                 </section>
                 <section class="section_table">
-                    <!--rwd-table responsive_table table-->sdsd
+                    <!--rwd-table responsive_table table-->
                     <table class="rwd-table responsive_table table" data-toggle="table">
                         <thead>
                             <tr>
@@ -100,7 +100,7 @@
                         @endforeach
                         </tbody>
                     </table>
-
+                    {{$ordersArray->links()}}
                 </section>
             </div>
         </div>
@@ -127,14 +127,14 @@
                                     <div class="col-md-6">
                                         <label class="table_label">Enter a SIM number</label>
                                         <div class="form_row">
-                                            <input type="text" class="block_btn_30 modal_input_without_icon" value=""/>
+                                            <input type="text" id="sim" class="block_btn_30 modal_input_without_icon" value=""/>
                                         </div>
 
                                     </div>
                                     <div class="col-md-6">
                                         <label class="table_label">SIM provider</label>
                                         <div class="form_row">
-                                            <input type="text" class="block_btn_30 modal_input_without_icon" value=""/>
+                                            <input type="text" class="block_btn_30 modal_input_without_icon" value="Vodafone"/>
                                         </div>
                                     </div>
                                 </div>
@@ -152,7 +152,7 @@
                                 <div class="form_row form-group">
                                     <div class="col-md-12">
                                         <label class="table_label">Enter remarks</label>
-                                        <textarea class="modal_textarea"></textarea>
+                                        <textarea id="remark" class="modal_textarea"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -167,12 +167,12 @@
                                                 <div class="input-group-addon">
                                                     <span class="glyphicon glyphicon-calendar"></span>
                                                 </div>
-                                                <input type="text" class="inline_block_btn" id="departure_date">
+                                                <input type="text"  class="inline_block_btn" id="departure_date">
                                             </div>
                                         </div>
                                         <div class="form_row">
                                             <label class="table_label">Reference Number</label>
-                                            <input type="text" class="block_btn_30 modal_input_without_icon" value="">
+                                            <input type="text" id="reference_number" class="block_btn_30 modal_input_without_icon" value="">
                                         </div>
                                         <div class="form_row">
                                             <label class="table_label">Customer phone number</label>
@@ -210,7 +210,7 @@
                 </div>
                 <div class="modal-footer vdf_modal_footer">
                     <a href="#" class="inline_block_btn light_gray_btn close" data-dismiss="modal" aria-label="Close">Cancel</a>
-                    <button type="submit" href="#" class="inline_block_btn light_green_btn">Create User</button>
+                    <button type="submit" href="#" class="inline_block_btn light_green_btn" id="create-order">Create User</button>
                 </div>
             </div>
         </div>
