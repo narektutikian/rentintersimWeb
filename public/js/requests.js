@@ -26,7 +26,6 @@ $( document ).ready(function() {
 
 /****** Order Creation ******/
     $('#create-order').on('click', function (e) {
-        e.preventDefault();
         var data = {
             _token : CSRF_TOKEN,
             sim: $('#sim').val(),
@@ -47,6 +46,15 @@ $( document ).ready(function() {
             error: function (error) {
                 $("#order-create-div").append("<div>"+"ERROR"+"</div>");
             }
+        });
+    });
+
+    $.get("/type-provider/1", function(data, status){
+        console.log(data);
+        $.each(data, function(i, item) {
+            console.log(item.name + "\n");
+            // alert(data[i].description);
+            $("#n-list-package").append("<li><a href=\"#\" title=\"Basic Package\"><h4>"+ item.name +"</h4><span>"+ item.description + "</span></a></li>");
         });
     });
 

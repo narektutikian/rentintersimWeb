@@ -142,47 +142,8 @@
                                     <div class="col-md-12">
                                         <label class="table_label">Choose a SIM package </label>
                                         <div id="wrap_package_list" class="always_visible">
-                                            <ul class="choose_package_list">
-                                                <li>
-                                                    <a href="#" title="Basic Package">
-                                                        <h4>Basic Package</h4>
-                                                        <span>8 Mb Data</span>
-                                                        <span>Unlimited local</span>
-                                                        <span>Call + SMS</span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" title="Cruiser">
-                                                        <h4>Cruiser</h4>
-                                                        <span>8 Mb Data</span>
-                                                        <span>Unlimited local</span>
-                                                        <span>Call + SMS</span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" title="De Luxe">
-                                                        <h4>De Luxe</h4>
-                                                        <span>8 Mb Data</span>
-                                                        <span>Unlimited local</span>
-                                                        <span>Call + SMS</span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" title="Cruiser">
-                                                        <h4>Cruiser</h4>
-                                                        <span>8 Mb Data</span>
-                                                        <span>Unlimited local</span>
-                                                        <span>Call + SMS</span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" title="De Luxe">
-                                                        <h4>De Luxe</h4>
-                                                        <span>8 Mb Data</span>
-                                                        <span>Unlimited local</span>
-                                                        <span>Call + SMS</span>
-                                                    </a>
-                                                </li>
+                                            <ul class="choose_package_list" id="n-list-package">
+
                                             </ul>
                                         </div>
 

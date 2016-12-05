@@ -23,6 +23,23 @@ class PackageController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @param int
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function typeofProvider($providerId)
+    {
+        $sims = Package::where([['provider_id', $providerId], ['is_active', 1]])->get();
+
+
+//      dd($packageArray);
+        return response()->json($sims);
+    }
+
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
