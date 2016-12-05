@@ -314,6 +314,7 @@ $( document ).ready(function() {
 
         // Capture Modal Open Event
         $(target_form_id).one("hidden.bs.modal", function () {
+
             // put your default event here
             var form_action = $(this).find('form').attr('action');
             var reset_form_action = form_action.split('/')[0];
@@ -326,7 +327,7 @@ $( document ).ready(function() {
 
 
     $(document).on('click', '.choose_package_list li a', function () {
-        console.log('AAAAAA ');
+
         $(this).addClass('selected_package');
         $(this).parents('li').siblings().find('a').removeClass('selected_package');
         return false;

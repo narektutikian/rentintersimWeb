@@ -167,7 +167,7 @@
                                                 <div class="input-group-addon">
                                                     <span class="glyphicon glyphicon-calendar"></span>
                                                 </div>
-                                                <input type="text"  class="inline_block_btn" id="departure_date">
+                                                <input type="text"  class="inline_block_btn" id="departure_date" data-date-format="DD/MM/YYYY HH:mm">
                                             </div>
                                         </div>
                                         <div class="form_row">
@@ -194,7 +194,7 @@
                                                 <div class="input-group-addon">
                                                     <span class="glyphicon glyphicon-calendar"></span>
                                                 </div>
-                                                <input type="text" class="inline_block_btn" id="landing_date">
+                                                <input type="text" class="inline_block_btn" id="landing_date" data-date-format="DD/MM/YYYY HH:mm">
                                             </div>
                                         </div>
                                         <div class="form_row">
