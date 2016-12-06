@@ -190,4 +190,14 @@ class SIMController extends Controller
         }
         fclose($out);*/
     }
+
+    public function search(Request $request)
+    {
+        $result = Sim::where('number', 'LIKE', '%'.$request->input('query').'%')->paginate(env('PAGINATE_DEFAULT'));
+        $simsArray = $this->solvesimList($result);
+
+//        dd($simsArray);
+        return view('sim', compact('simsArray'));
+    }
+
 }

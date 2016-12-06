@@ -38,4 +38,9 @@ class Phone extends Model
     {
         return $query->where('state', $filter);
     }
+
+    public function orders()
+    {
+        return $this->belongsToMany('App\Models\Order');
+    }
 }

@@ -23,8 +23,9 @@
                         <span class="status disabled"></span> Parking ({{$counts['Parking']}})
                     </a>
                     <div class="search_management_option">
-                        <form action="/" class="search_form_option">
-                            <input type="text" class="block_btn_30 search_input" value="search">
+                        <form action="{{url('search/sim')}}" class="search_form_option">
+                            <input type="text" class="block_btn_30 search_input" placeholder="Search" name="query" value="">
+                            {{csrf_field()}}
                             <button type="submit" class="search_button"><i class="icon-search"></i></button>
                         </form>
                         <a href="{{url('/exportsims')}}" class="export_user"><i class="icon-export"></i>Export</a>

@@ -51,9 +51,15 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
 
     /******Export routes******/
     Route::get('exportsims', 'SIMController@export');
+
+    /******Search  routes******/
+    Route::get('search/sim', 'SIMController@search');
 });
 
 
-Route::get('/test', 'Api\UserController@index');
+Route::get('/test', function (){
+    $oldOrders = Order::where([['status', 'Pending'], ['package_id', 28]])->orderby('to', 'asc')->get();
+    dd($oldOrders);
+});
 
 

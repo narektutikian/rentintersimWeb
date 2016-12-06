@@ -12,7 +12,7 @@
         </div>
     @endif
     <div id="order-create-div"></div>
-    <form class="form-horizontal" method="post" action="/user">
+    <form class="form-horizontal" method="post" action="/order">
         <fieldset>
 
             <!-- Form Name -->

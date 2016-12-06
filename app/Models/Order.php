@@ -48,4 +48,9 @@ class Order extends Model
     {
         return $query->where('status', $filter);
     }
+
+    public function phones()
+    {
+        return $this->belongsToMany('App\Models\Phone');
+    }
 }

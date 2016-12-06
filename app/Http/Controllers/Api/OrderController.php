@@ -72,18 +72,14 @@ class OrderController extends Controller
 
         ]);
             $simId = $this->helper->getSimId($request->input('sim'));
-            $number = $this->getNumber($simId, $request->input('package_id'));
-        if ($number != null){
-            $numberId = $number->id;
-            $status = 'Panding';
-        }
+//                dd($simId);
 
         $newOrder = Order::forceCreate([
             'from' => $this->helper->setStartTime($request->input('landing')),
             'to' =>  $this->helper->setEndTime($request->input('departure')),
             'landing' =>  $request->input('landing'),
             'departure' =>  $request->input('departure'),
-            'reference_number' =>  $request->input('package_id'),
+            'reference_number' =>  $request->input('reference_number'),
             'status' =>  $status,
             'costumer_number' =>  $request->input('costumer_number'),
             'package_id' => $request->input('package_id'),
@@ -95,7 +91,14 @@ class OrderController extends Controller
 
         ]);
 
-        if($newOrder)
+//        if($newOrder){
+            $number = $this->getNumber($newOrder);
+            if ($number != null){
+                $numberId = $number->id;
+                $status = 'Panding';
+
+//            }
+        }
         return $newOrder;
 
 
@@ -197,9 +200,9 @@ class OrderController extends Controller
         return view('home', compact('ordersArray'), compact('counts'));
     }
 
-    public function getNumber($simId, $packageId)
+    public function getNumber($order)
     {   $number = null;
-        $number = $this->helper->getNumber($simId,$packageId);
+        $number = $this->helper->getNumber($order);
         return $number;
     }
 }

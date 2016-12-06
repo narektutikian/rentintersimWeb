@@ -31,8 +31,9 @@ $( document ).ready(function() {
         var data = {
             _token : CSRF_TOKEN,
             sim: $('#sim').val(),
-            landing: Date.parse($('#landing_date').val())/1000,
-            departure: Date.parse($('#departure_date').val())/1000,
+
+            landing: moment($('#landing_date').val(), "DD/MM/YYYY HH:mm").valueOf()/1000,
+            departure: moment($('#departure_date').val(), "DD/MM/YYYY HH:mm").valueOf()/1000,
             package_id: package_id, // put package id
             reference_number: $('#reference_number').val(),
             remark: $('#remark').val(),
