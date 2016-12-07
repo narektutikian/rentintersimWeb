@@ -17,7 +17,7 @@
                         <span class="status disabled"></span> disable ({{$counts['Disable']}})
                     </a>
                     <div class="search_management_option">
-                        <form action="/" class="search_form_option">
+                        <form action="/" class="search_form_option vd_form">
                             <input type="text" class="block_btn_30 search_input" value="search">
                             <button type="submit" class="search_button"><i class="icon-search"></i></button>
                         </form>
@@ -91,73 +91,77 @@
                         <h3>Add new type number</h3>
                     </div>
                 </div>
-                <div class="modal-body vdf_modal_body">
-                    <form action="{{url('type')}}" method="post" class="form-horizontal">
+                <form action="{{url('type')}}" method="post" class="form-horizontal vd_form">
+                    <div class="modal-body vdf_modal_body">
+
                         {{csrf_field()}}
                         <div class="form-group">
                             <div class="col-md-6 vdf_modal_left">
-                                <div class="form_row form-group">
+                                <div class="form-group">
                                     <div class="col-md-6">
                                         <label class="table_label">Type Name</label>
-                                        <div class="form_row">
-                                            <input type="text" class="block_btn_30 modal_input" id="name" name="name" value=""/>
+                                        <div class="relative">
+                                            <input type="text" class="block_btn_30 modal_input vd_required" id="name" name="name" value=""/>
                                             <i class="input_icon icon-add_type"></i>
                                         </div>
-                                        <label class="table_label">Type Code</label>
-                                        <div class="form_row">
-                                            <input type="text" class="block_btn_30 modal_input" id="type_code" name="type_code" value=""/>
-                                            <i class="input_icon icon-type"></i>
-                                        </div>
-
                                     </div>
                                     <div class="col-md-6">
                                         <label class="table_label">Provider</label>
-                                        <div class="form_row">
-                                            <div class="select_wrapper">
-                                                <select class="block_btn_30 modal_input" id="provider_id" name="provider_id">
-                                                    <option value=""></option>
-                                                    <option value="1">Vodafone</option>
-                                                </select>
-                                                <i class="input_icon icon-sim"></i>
-                                            </div>
+
+                                        <div class="select_wrapper">
+                                            <select name="provider_id" class="block_btn_30 modal_input vd_select" id="provider_id" >
+                                                <option value=""></option>
+                                                <option value="1">Vodafone</option>
+                                            </select>
+                                            <i class="input_icon icon-sim"></i>
                                         </div>
-                                        <label class="table_label">Description</label>
-                                        <div class="form_row">
-                                            <textarea class="modal_textarea" id="description" name="description"></textarea>
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-6">
+                                        <label class="table_label">Type Code</label>
+                                        <div class="relative">
+                                            <input type="text" class="block_btn_30 modal_input vd_number" id="type_code" name="type_code" value=""/>
+                                            <i class="input_icon icon-type"></i>
                                         </div>
                                     </div>
-
+                                    <div class="col-md-6">
+                                        <label class="table_label">Description</label>
+                                        <textarea class="modal_textarea vd_required" id="description" name="description"></textarea>
+                                    </div>
                                 </div>
                                 <span class="or">OR</span>
                             </div>
                             <div class="col-md-6 vdf_modal_right">
-                                <div class="form_row form-group">
+                                <div class="form-group">
                                     <div class="col-md-12">
                                         <label class="table_label">Add from file</label>
-                                        <div class="form_row">
-                                            <span class="uploaded_files">
-                                                <span class="keep_file_name"></span>
-                                                <span class="file_container"> Browse
-                                                    <input class="modal_image_name" type="file" />
-                                                </span>
-                                                <span class="uploaded_file_links"> File example
-                                                    <a href="#" class="download_file disable" download=""><i class="icon-download"></i></a>
-                                                </span>
+
+                                        <span class="uploaded_files">
+                                            <span class="keep_file_name"></span>
+                                            <span class="file_container"> Browse
+                                                <input class="modal_image_name" type="file" />
                                             </span>
-                                        </div>
+                                            <span class="uploaded_file_links"> File example
+                                                <a href="#" class="download_file disable" download=""><i class="icon-download"></i></a>
+                                            </span>
+                                        </span>
+
                                     </div>
                                 </div>
 
                             </div>
                             {{--<button type="submit">Submit</button>--}}
                         </div>
-                    </form>
-                </div>
-                <div class="modal-footer vdf_modal_footer">
-                    <a href="#"  class="inline_block_btn light_gray_btn close" data-dismiss="modal" aria-label="Close">Cancel</a>
-                    <a href="#" id="submit" class="inline_block_btn light_green_btn">Create New Type</a>
 
-                </div>
+                    </div>
+                    <div class="modal-footer vdf_modal_footer">
+                        <a href="#"  class="inline_block_btn light_gray_btn close vd_form_reset" data-dismiss="modal" aria-label="Close">Cancel</a>
+                        <a href="#" id="submit" class="inline_block_btn light_green_btn vd_form_submit">Create New Type</a>
+
+                    </div>
+                </form>
                 <div id="ajaxResponse">
 
                 </div>
@@ -177,72 +181,71 @@
                         <h3>Edit type</h3>
                     </div>
                 </div>
-                <div class="modal-body vdf_modal_body">
-                    <form action="/" class="form-horizontal">
+                <form action="/" class="form-horizontal vd_form">
+                    <div class="modal-body vdf_modal_body">
+
                         <div class="form-group">
                             <div class="col-md-6 vdf_modal_left">
-                                <div class="form_row form-group">
+                                <div class="form-group">
                                     <div class="col-md-6">
                                         <label class="table_label">Type Name</label>
-                                        <div class="form_row">
-                                            <input type="text" class="block_btn_30 modal_input" value=""/>
+                                        <div class="relative">
+                                            <input type="text" name="type_name2" class="block_btn_30 modal_input vd_number" value=""/>
                                             <i class="input_icon icon-add_type"></i>
                                         </div>
-                                        <label class="table_label">Type Code</label>
-                                        <div class="form_row">
-                                            <input type="text" class="block_btn_30 modal_input" value=""/>
-                                            <i class="input_icon icon-type"></i>
-                                        </div>
-
                                     </div>
                                     <div class="col-md-6">
                                         <label class="table_label">Provider</label>
-                                        <div class="form_row">
-                                            <div class="select_wrapper">
-                                                <select class="block_btn_30 modal_input">
-                                                    <option value=""></option>
-                                                    <option value="Admin">Parking SIM number</option>
-                                                    <option value="Dealer">Parking SIM number</option>
-                                                    <option value="Sub-Dealer">Parking SIM number</option>
-                                                </select>
-                                                <i class="input_icon icon-sim"></i>
-                                            </div>
-                                        </div>
-                                        <label class="table_label">Description</label>
-                                        <div class="form_row">
-                                            <textarea class="modal_textarea"></textarea>
+                                        <div class="select_wrapper">
+                                            <select name="type_nm1" class="block_btn_30 modal_input vd_select">
+                                                <option value=""></option>
+                                                <option value="Admin">Parking SIM number</option>
+                                                <option value="Dealer">Parking SIM number</option>
+                                                <option value="Sub-Dealer">Parking SIM number</option>
+                                            </select>
+                                            <i class="input_icon icon-sim"></i>
                                         </div>
                                     </div>
-
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-6">
+                                        <label class="table_label">Type Code</label>
+                                        <div class="relative">
+                                            <input type="text" name="type_name3" class="block_btn_30 modal_input vd_number" value=""/>
+                                            <i class="input_icon icon-type"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="table_label">Description</label>
+                                        <textarea class="modal_textarea vd_required"></textarea>
+                                    </div>
                                 </div>
                                 <span class="or">OR</span>
                             </div>
                             <div class="col-md-6 vdf_modal_right">
-                                <div class="form_row form-group">
+                                <div class="form-group">
                                     <div class="col-md-12">
                                         <label class="table_label">Add from file</label>
-                                        <div class="form_row">
-                                            <span class="uploaded_files">
-                                                <span class="keep_file_name"></span>
-                                                <span class="file_container"> Browse
-                                                    <input class="modal_image_name" type="file" />
-                                                </span>
-                                                <span class="uploaded_file_links"> File example
-                                                    <a href="#" class="download_file disable" download=""><i class="icon-download"></i></a>
-                                                </span>
+                                        <span class="uploaded_files">
+                                            <span class="keep_file_name"></span>
+                                            <span class="file_container"> Browse
+                                                <input class="modal_image_name" type="file" />
                                             </span>
-                                        </div>
+                                            <span class="uploaded_file_links"> File example
+                                                <a href="#" class="download_file disable" download=""><i class="icon-download"></i></a>
+                                            </span>
+                                        </span>
+
                                     </div>
                                 </div>
-
                             </div>
                         </div>
-                    </form>
-                </div>
-                <div class="modal-footer vdf_modal_footer">
-                    <a href="#" class="inline_block_btn light_gray_btn close" data-dismiss="modal" aria-label="Close">Cancel</a>
-                    <a href="#" class="inline_block_btn light_green_btn">Create User</a>
-                </div>
+                    </div>
+                    <div class="modal-footer vdf_modal_footer">
+                        <a href="#" class="inline_block_btn light_gray_btn close vd_form_reset" data-dismiss="modal" aria-label="Close">Cancel</a>
+                        <a href="#" class="inline_block_btn light_green_btn vd_form_submit">Edit type</a>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

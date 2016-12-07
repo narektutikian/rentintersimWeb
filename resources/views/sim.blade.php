@@ -109,16 +109,14 @@
                                     </div>
                                     <div class="col-md-6">
                                         <label class="table_label">Provider</label>
-                                        <div class="form_row">
-                                            <div class="select_wrapper">
-                                                <select name="sim_select" class="block_btn_30 modal_input vd_select">
-                                                    <option value=""></option>
-                                                    @foreach($providers as $provider)
-                                                    <option value="{{$provider['id']}}">{{$provider['name']}}</option>
-                                                        @endforeach
-                                                </select>
-                                                <i class="input_icon icon-sim"></i>
-                                            </div>
+                                        <div class="select_wrapper">
+                                            <select name="sim_select" class="block_btn_30 modal_input vd_select">
+                                                <option value=""></option>
+                                                @foreach($providers as $provider)
+                                                <option value="{{$provider['id']}}">{{$provider['name']}}</option>
+                                                    @endforeach
+                                            </select>
+                                            <i class="input_icon icon-sim"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -134,7 +132,7 @@
                                 <span class="or">OR</span>
                             </div>
                             <div class="col-md-6 vdf_modal_right">
-                                <div class="form_row form-group">
+                                <div class="form-group">
                                     <div class="col-md-12">
                                         <label class="table_label">Add from file</label>
                                         <span class="uploaded_files">
@@ -148,10 +146,8 @@
                                         </span>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
-
                     </div>
                     <div class="modal-footer vdf_modal_footer">
                         <a href="#" class="inline_block_btn light_gray_btn close vd_form_reset" data-dismiss="modal" aria-label="Close">Cancel</a>
@@ -216,17 +212,17 @@
                                 <div class="form-group">
                                     <div class="col-md-12">
                                         <label class="table_label">Add from file</label>
-                                        <div class="form_row">
-                                            <span class="uploaded_files">
-                                                <span class="keep_file_name"></span>
-                                                <span class="file_container"> Browse
-                                                    <input class="modal_image_name" type="file" />
-                                                </span>
-                                                <span class="uploaded_file_links"> File example
-                                                    <a href="#" class="download_file disable" download=""><i class="icon-download"></i></a>
-                                                </span>
+
+                                        <span class="uploaded_files">
+                                            <span class="keep_file_name"></span>
+                                            <span class="file_container"> Browse
+                                                <input class="modal_image_name" type="file" />
                                             </span>
-                                        </div>
+                                            <span class="uploaded_file_links"> File example
+                                                <a href="#" class="download_file disable" download=""><i class="icon-download"></i></a>
+                                            </span>
+                                        </span>
+
                                     </div>
                                 </div>
 
