@@ -79,7 +79,7 @@ $( document ).ready(function() {
 
             });
 
-            $(document).on('click', '.package_item', function () {
+            $(document).on('click', '.package_item > a', function () {
 
                 package_id = $(this).attr('data-id');
                 console.log('package_id ', package_id);
