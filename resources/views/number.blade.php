@@ -111,17 +111,16 @@
                                     </div>
                                     <div class="col-md-6">
                                         <label class="table_label">Parking SIM number</label>
-                                        <div class="form_row">
-                                            <div class="select_wrapper">
-                                                <select name="prk_sim_num" class="block_btn_30 modal_input vd_select">
-                                                    <option value=""></option>
-                                                    @foreach($sims as $sim)
-                                                    <option value="{{$sim['id']}}">{{$sim['number']}}</option>
-                                                    @endforeach
-                                                </select>
-                                                <i class="input_icon icon-sim"></i>
-                                            </div>
+                                        <div class="select_wrapper">
+                                            <select name="prk_sim_num" class="block_btn_30 modal_input vd_select">
+                                                <option value=""></option>
+                                                @foreach($sims as $sim)
+                                                <option value="{{$sim['id']}}">{{$sim['number']}}</option>
+                                                @endforeach
+                                            </select>
+                                            <i class="input_icon icon-sim"></i>
                                         </div>
+
                                     </div>
                                 </div>
                                 <div class="form-group">

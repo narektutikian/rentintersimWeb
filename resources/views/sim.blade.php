@@ -23,7 +23,7 @@
                         <span class="status disabled"></span> Parking ({{$counts['Parking']}})
                     </a>
                     <div class="search_management_option">
-                        <form action="{{url('search/sim')}}" class="search_form_option">
+                        <form action="{{url('search/sim')}}" class="search_form_option vd_form">
                             <input type="text" class="block_btn_30 search_input" placeholder="Search" name="query" value="">
                             {{csrf_field()}}
                             <button type="submit" class="search_button"><i class="icon-search"></i></button>
@@ -95,28 +95,23 @@
                         <h3>Add SIM number</h3>
                     </div>
                 </div>
-                <div class="modal-body vdf_modal_body">
-                    <form action="/" class="form-horizontal">
+                <form action="/" class="form-horizontal vd_form">
+                    <div class="modal-body vdf_modal_body">
                         <div class="form-group">
                             <div class="col-md-6 vdf_modal_left">
-                                <div class="form_row form-group">
+                                <div class="form-group">
                                     <div class="col-md-6">
                                         <label class="table_label">SIM Number</label>
-                                        <div class="form_row">
-                                            <input type="text" class="block_btn_30 modal_input" value=""/>
+                                        <div class="relative">
+                                            <input type="text" name="some_sim_edit" class="block_btn_30 modal_input vd_number" value=""/>
                                             <i class="input_icon icon-phone_number"></i>
-                                        </div>
-
-                                        <div class="special_number">
-                                            <span class="table_icon"><i class="icon-parking_sim"></i></span>
-                                            <span>Parking SIM</span>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <label class="table_label">Provider</label>
                                         <div class="form_row">
                                             <div class="select_wrapper">
-                                                <select class="block_btn_30 modal_input">
+                                                <select name="sim_select" class="block_btn_30 modal_input vd_select">
                                                     <option value=""></option>
                                                     @foreach($providers as $provider)
                                                     <option value="{{$provider['id']}}">{{$provider['name']}}</option>
@@ -125,9 +120,16 @@
                                                 <i class="input_icon icon-sim"></i>
                                             </div>
                                         </div>
-
                                     </div>
-
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12 special_number">
+                                        <label class="vdf_checkbox">
+                                            <input type="checkbox" name="num_chkb" value="" />
+                                            <i class="icon-parking_sim"></i>
+                                        </label>
+                                        <span class="vdf_checkbox_text">Parking SIM</span>
+                                    </div>
                                 </div>
                                 <span class="or">OR</span>
                             </div>
@@ -135,28 +137,27 @@
                                 <div class="form_row form-group">
                                     <div class="col-md-12">
                                         <label class="table_label">Add from file</label>
-                                        <div class="form_row">
-                                            <span class="uploaded_files">
-                                                <span class="keep_file_name"></span>
-                                                <span class="file_container"> Browse
-                                                    <input class="modal_image_name" type="file" />
-                                                </span>
-                                                <span class="uploaded_file_links"> File example
-                                                    <a href="#" class="download_file disable" download=""><i class="icon-download"></i></a>
-                                                </span>
+                                        <span class="uploaded_files">
+                                            <span class="keep_file_name"></span>
+                                            <span class="file_container"> Browse
+                                                <input class="modal_image_name" type="file" />
                                             </span>
-                                        </div>
+                                            <span class="uploaded_file_links"> File example
+                                                <a href="#" class="download_file disable" download=""><i class="icon-download"></i></a>
+                                            </span>
+                                        </span>
                                     </div>
                                 </div>
 
                             </div>
                         </div>
-                    </form>
-                </div>
-                <div class="modal-footer vdf_modal_footer">
-                    <a href="#" class="inline_block_btn light_gray_btn close" data-dismiss="modal" aria-label="Close">Cancel</a>
-                    <input type="submit" class="inline_block_btn light_green_btn" value="Add SIM">
-                </div>
+
+                    </div>
+                    <div class="modal-footer vdf_modal_footer">
+                        <a href="#" class="inline_block_btn light_gray_btn close vd_form_reset" data-dismiss="modal" aria-label="Close">Cancel</a>
+                        <input type="submit" class="inline_block_btn light_green_btn vd_form_submit" value="Add SIM">
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -173,46 +174,46 @@
                         <h3>Edit SIM number AAA</h3>
                     </div>
                 </div>
-                <div class="modal-body vdf_modal_body">
-                    <form action="sim/" class="form-horizontal">
+                <form action="sim/" class="form-horizontal vd_form">
+                    <div class="modal-body vdf_modal_body">
+
                         <div class="form-group">
                             <div class="col-md-6 vdf_modal_left">
-                                <div class="form_row form-group">
+                                <div class="form-group">
                                     <div class="col-md-6">
                                         <label class="table_label">SIM Number FFF</label>
-                                        <div class="form_row">
-                                            <input type="hidden" class="block_btn_30 modal_input" data-th="Id" value=""/>
-                                            <input type="text" class="block_btn_30 modal_input" data-th="SIM Number" value=""/>
+                                        <div class="relative">
+                                            <input type="hidden" name="some_sim_edit_id" class="block_btn_30 modal_input" data-th="Id" value=""/>
+                                            <input type="text" name="some_sim_edit2" class="block_btn_30 modal_input vd_number vd_number" data-th="SIM Number" value=""/>
                                             <i class="input_icon icon-phone_number"></i>
-                                        </div>
-
-                                        <div class="special_number">
-                                            <span class="table_icon"><i class="icon-parking_sim"></i></span>
-                                            <span>Parking SIM</span>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <label class="table_label">Provider</label>
-                                        <div class="form_row">
-                                            <div class="select_wrapper">
-                                                <select class="block_btn_30 modal_input"  data-th="Provider">
-                                                    <option value=""></option>
-                                                    @foreach($providers as $provider)
-                                                        <option value="{{$provider['id']}}">{{$provider['name']}}</option>
-                                                    @endforeach
-                                                </select>
-
-                                                <i class="input_icon icon-sim"></i>
-                                            </div>
+                                        <div class="select_wrapper">
+                                            <select name="sim_select" class="block_btn_30 modal_input vd_select"  data-th="Provider">
+                                                <option value=""></option>
+                                                @foreach($providers as $provider)
+                                                    <option value="{{$provider['id']}}">{{$provider['name']}}</option>
+                                                @endforeach
+                                            </select>
+                                            <i class="input_icon icon-sim"></i>
                                         </div>
-
                                     </div>
-
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12 special_number">
+                                        <label class="vdf_checkbox">
+                                            <input type="checkbox" name="num_chkb" value="" />
+                                            <i class="icon-parking_sim"></i>
+                                        </label>
+                                        <span class="vdf_checkbox_text">Parking SIM</span>
+                                    </div>
                                 </div>
                                 <span class="or">OR</span>
                             </div>
                             <div class="col-md-6 vdf_modal_right">
-                                <div class="form_row form-group">
+                                <div class="form-group">
                                     <div class="col-md-12">
                                         <label class="table_label">Add from file</label>
                                         <div class="form_row">
@@ -231,12 +232,13 @@
 
                             </div>
                         </div>
-                    </form>
+
                 </div>
                 <div class="modal-footer vdf_modal_footer">
-                    <a href="#" class="inline_block_btn light_gray_btn close" data-dismiss="modal" aria-label="Close">Cancel</a>
-                    <input type="submit" class="inline_block_btn light_green_btn" value="Edit SIM">
+                    <a href="#" class="inline_block_btn light_gray_btn close vd_form_reset" data-dismiss="modal" aria-label="Close">Cancel</a>
+                    <input type="submit" class="inline_block_btn light_green_btn vd_form_submit" value="Edit SIM">
                 </div>
+                </form>
             </div>
         </div>
     </div>

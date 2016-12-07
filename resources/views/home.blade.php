@@ -45,7 +45,7 @@
                                 <th data-field="to" data-sortable="true" data-th="To">To</th>
                                 <th data-field="dealer" data-sortable="true" data-th="Dealer">Dealer </th>
                                 <th data-field="updated by" data-sortable="true" data-th="Updated by">Updated by</th>
-                                <th data-th="reference number">Reference Number</th>
+                                <th data-th="Reference N">Reference N</th>
                                 <th data-th="action">Action</th>
                                 <th data-field="status" data-sortable="true" data-th="Status">Status</th>
                             </tr>
