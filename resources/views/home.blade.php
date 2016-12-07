@@ -141,12 +141,7 @@
                                 <div class="form_row form-group">
                                     <div class="col-md-12">
                                         <label class="table_label">Choose a SIM package </label>
-                                        <div id="wrap_package_list" class="always_visible">
-                                            <ul class="choose_package_list" id="n-list-package">
-
-                                            </ul>
-                                        </div>
-
+                                        <div id="wrap_package_list" class="always_visible"></div>
                                     </div>
                                 </div>
                                 <div class="form_row form-group">

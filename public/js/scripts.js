@@ -253,12 +253,34 @@ $( document ).ready(function() {
         // do something…
 
         setTimeout(function(){
-            console.log("setTimeout");
 
-            $('#wrap_package_list').perfectScrollbar();
-
-            console.log($('#modal_new_order').hasClass('in'));
-        }, 800);
+            $('#wrap_package_list').show(); // show package list after modal was open
+            //
+            $('#wrap_package_list').owlCarousel({
+                nav : true,
+                navText : ['<i class="prev icon-dropdown"></i>', '<i class="next icon-dropdown"></i>'],
+                margin : 22,
+                responsive:{
+                    0:{
+                        items:1
+                    },
+                    480:{
+                        items:2,
+                        margin : 48
+                    },
+                    640:{
+                        items:3,
+                        margin : 28
+                    },
+                    1000:{
+                        items:2
+                    },
+                    1200:{
+                        items:3
+                    }
+                }
+            });
+        }, 600);
 
     });
 
@@ -325,11 +347,11 @@ $( document ).ready(function() {
 
     });
 
-
-    $(document).on('click', '.choose_package_list li a', function () {
+    /* highlight selected package */
+    $(document).on('click', '.package_item a', function () {
 
         $(this).addClass('selected_package');
-        $(this).parents('li').siblings().find('a').removeClass('selected_package');
+        $(this).parents('.owl-item').siblings('.owl-item').find('a').removeClass('selected_package');
         return false;
     });
 

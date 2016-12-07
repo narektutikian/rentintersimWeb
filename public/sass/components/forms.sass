@@ -199,6 +199,49 @@ input[type="radio"].toggle.checked + label
 
 /* end of Styling radio button */
 
+/* Styling Checkbox */
+.vdf_checkbox_text
+  display: inline-block
+  vertical-align: middle
+  color: $total_numbers_title
+  margin-left: 10px
+  @include fonts_stack(14px)
+
+.vdf_checkbox
+  display: inline-block
+  vertical-align: middle
+  cursor: pointer
+  user-select: none
+  -webkit-user-select: none
+  -webkit-touch-callout: none
+
+.vdf_checkbox > input /* HIDE ORG RADIO & CHECKBOX */
+  visibility: hidden
+  position: absolute
+
+/* CHECKBOX OVERWRITE STYLES */
+.vdf_checkbox > i
+  display: inline-block
+  vertical-align: middle
+  width: 30px
+  height: 30px
+  line-height: 29px
+  text-align: center
+  color: $total_numbers_title
+  transition: 0.2s
+  font-size: 18px
+  @include border_radius(3px)
+  border: 1px solid $total_numbers_title
+
+/* CHECKBOX */
+
+.vdf_checkbox > input:checked + i /* (RADIO CHECKED) <i> STYLE */
+  color: $active_green
+  border: 1px solid $active_green
+  background:  #F3F3F3
+
+/* end of Styling Checkbox */
+
 .table_label
   display: block
   margin-bottom: 14px

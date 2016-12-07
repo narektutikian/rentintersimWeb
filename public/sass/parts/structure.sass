@@ -29,14 +29,35 @@ input, select, button, textarea
 select:focus
   outline: none
 
-a:hover
+a
+  cursor: pointer
+
+a,
+a:hover,
+a:active,
+a:focus,
+a:visited
   text-decoration: none
+
+label.error
+  display: block
+  text-align: left
+  color: red
+  @include fonts-stack(12px)
+  margin: 1px 2px 1px 7px
+
+.relative
+  position: relative
+
+input.error,
+select.error,
+textarea.error
+  border: 1px solid red !important
 
 .disable
   pointer-events: none
   cursor: default
   opacity: 0.6
-
 
 h1, h2, h3, h4, h5, h6
   margin: 0
@@ -65,7 +86,6 @@ a
 .width50
   width: 50%
 
-
 .w_160_status
   width: 142px
   min-width: 142px
@@ -79,7 +99,6 @@ a
 .w90
   width: 90px
   text-align: center
-
 
 .w80
   width: 80px

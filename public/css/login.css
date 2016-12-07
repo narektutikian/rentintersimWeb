@@ -87,7 +87,7 @@ table {
 .input_icon {
   color: #8da1b0;
   position: absolute;
-  top: 50%;
+  top: 15px;
   transform: translateY(-50%);
   left: 14px;
   color: #1b6db2;
@@ -335,6 +335,53 @@ input[type="radio"].toggle.checked + label {
   cursor: default; }
 
 /* end of Styling radio button */
+/* Styling Checkbox */
+.vdf_checkbox_text {
+  display: inline-block;
+  vertical-align: middle;
+  color: #69717e;
+  margin-left: 10px;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-family: "proxima_nova_rgregular", Arial, Helvetica, sans-serif; }
+
+.vdf_checkbox {
+  display: inline-block;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none; }
+
+.vdf_checkbox > input {
+  visibility: hidden;
+  position: absolute; }
+
+/* CHECKBOX OVERWRITE STYLES */
+.vdf_checkbox > i {
+  display: inline-block;
+  vertical-align: middle;
+  width: 30px;
+  height: 30px;
+  line-height: 29px;
+  text-align: center;
+  color: #69717e;
+  transition: 0.2s;
+  font-size: 18px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  border-radius: 3px;
+  border: 1px solid #69717e; }
+
+/* CHECKBOX */
+.vdf_checkbox > input:checked + i {
+  color: #2cc763;
+  border: 1px solid #2cc763;
+  background: #F3F3F3; }
+
+/* end of Styling Checkbox */
 .table_label {
   display: block;
   margin-bottom: 14px;
@@ -541,8 +588,33 @@ input, select, button, textarea {
 select:focus {
   outline: none; }
 
-a:hover {
+a {
+  cursor: pointer; }
+
+a,
+a:hover,
+a:active,
+a:focus,
+a:visited {
   text-decoration: none; }
+
+label.error {
+  display: block;
+  text-align: left;
+  color: red;
+  font-size: 12px;
+  font-weight: normal;
+  font-style: normal;
+  font-family: "proxima_nova_rgregular", Arial, Helvetica, sans-serif;
+  margin: 1px 2px 1px 7px; }
+
+.relative {
+  position: relative; }
+
+input.error,
+select.error,
+textarea.error {
+  border: 1px solid red !important; }
 
 .disable {
   pointer-events: none;

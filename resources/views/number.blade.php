@@ -49,13 +49,13 @@
 
                         @foreach($phonesArray as $number)
                             <tr>
-                                <td class="rwd-td0 table_id_cell" data-toggle="modal" data-target="#modal_edit_number" data-th="Id">{{$number['id']}}</td>
-                                <td class="rwd-td1" data-toggle="modal" data-target="#modal_edit_number" data-th="Phone Number">{{$number['phone']}}</td>
-                                <td class="rwd-td2" data-toggle="modal" data-target="#modal_edit_number" data-th="SIM Number">{{$number['current_sim_id']}}</td>
-                                <td class="rwd-td3" data-toggle="modal" data-target="#modal_edit_number" data-th="Provider">{{$number['provider_id']}}</td>
-                                <td class="rwd-td4" data-toggle="modal" data-target="#modal_edit_number" data-th="Type">{{$number['package_id']}}</td>
+                                <td class="rwd-td0 table_id_cell" data-toggle="modal" data-th="Id">{{$number['id']}}</td>
+                                <td class="rwd-td1" data-toggle="modal" data-th="Phone Number">{{$number['phone']}}</td>
+                                <td class="rwd-td2" data-toggle="modal" data-th="SIM Number">{{$number['current_sim_id']}}</td>
+                                <td class="rwd-td3" data-toggle="modal" data-th="Provider">{{$number['provider_id']}}</td>
+                                <td class="rwd-td4" data-toggle="modal" data-th="Type">{{$number['package_id']}}</td>
                                 <td class="rwd-td5 table_action_cell" data-th="Action">
-                                    <span class="table_icon"><i class="icon-edit"></i></span>
+                                    <span class="table_icon"  data-toggle="modal" data-target="#modal_edit_number"><i class="icon-edit"></i></span>
                                     <span class="table_icon {{ (($number['is_special']) ? 'active' : '') }}"><i class="icon-special"></i></span>
                                 </td>
                                 <td class="rwd-td6 w_160_status" data-th="Status">
@@ -96,37 +96,24 @@
                         <h3>Add one by one</h3>
                     </div>
                 </div>
-                <div class="modal-body vdf_modal_body">
-                    <form method="post" action="{{url('/number')}}" class="form-horizontal">
+                <form method="post" action="{{url('/number')}}" class="form-horizontal vd_form">
+                    <div class="modal-body vdf_modal_body">
+
                         <div class="form-group">
                             <div class="col-md-6 vdf_modal_left">
-                                <div class="form_row form-group">
+                                <div class="form-group">
                                     <div class="col-md-6">
                                         <label class="table_label">Phone Number</label>
-                                        <div class="form_row">
-                                            <input type="text" class="block_btn_30 modal_input" value=""/>
+                                        <div class="relative">
+                                            <input type="text" name="num_phone_num" class="block_btn_30 modal_input vd_number" value=""/>
                                             <i class="input_icon icon-phone_number"></i>
-                                        </div>
-                                        <label class="table_label">Provider </label>
-                                        <div class="form_row">
-                                            <div class="select_wrapper">
-                                                <select class="block_btn_30 modal_input">
-                                                    <option value=""></option>
-                                                    <option value="1">Vodafone</option>
-                                                </select>
-                                                <i class="input_icon icon-provider"></i>
-                                            </div>
-                                        </div>
-                                        <div class="special_number">
-                                            <span class="table_icon"><i class="icon-special"></i></span>
-                                            <span>Special number</span>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <label class="table_label">Parking SIM number</label>
                                         <div class="form_row">
                                             <div class="select_wrapper">
-                                                <select class="block_btn_30 modal_input">
+                                                <select name="prk_sim_num" class="block_btn_30 modal_input vd_select">
                                                     <option value=""></option>
                                                     @foreach($sims as $sim)
                                                     <option value="{{$sim['id']}}">{{$sim['number']}}</option>
@@ -135,51 +122,69 @@
                                                 <i class="input_icon icon-sim"></i>
                                             </div>
                                         </div>
-                                        <label class="table_label">Type</label>
-                                        <div class="form_row">
-                                            <div class="select_wrapper">
-                                                <select class="block_btn_30 modal_input">
-                                                    <option value=""></option>
-                                                    @foreach($packages as $package)
-                                                    <option value="{{$package['id']}}">{{$package['name']}}</option>
-                                                    @endforeach
-                                                </select>
-                                                <i class="input_icon icon-username"></i>
-                                            </div>
-                                        </div>
-                                        <span class="or">OR</span>
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <div class="col-md-6">
+                                        <label class="table_label">Provider </label>
+                                        <div class="select_wrapper">
+                                            <select name="some_prov_num" class="block_btn_30 modal_input vd_select">
+                                                <option value=""></option>
+                                                <option value="1">Vodafone</option>
+                                            </select>
+                                            <i class="input_icon icon-provider"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="table_label">Type</label>
+                                        <div class="select_wrapper">
+                                            <select name="prk_sim_num2" class="block_btn_30 modal_input vd_select">
+                                                <option value=""></option>
+                                                @foreach($packages as $package)
+                                                    <option value="{{$package['id']}}">{{$package['name']}}</option>
+                                                @endforeach
+                                            </select>
+                                            <i class="input_icon icon-username"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <div class="special_number">
+                                            <label class="vdf_checkbox">
+                                                <input type="checkbox" value="b" />
+                                                <i class="icon-special"></i>
+                                            </label>
+                                            <span class="vdf_checkbox_text">Special number</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="or">OR</span>
                             </div>
                             <div class="col-md-6 vdf_modal_right">
                                 <div class="form_row form-group">
                                     <div class="col-md-12">
                                         <label class="table_label moved_label">Add from file</label>
-                                        <div class="form_row">
-                                            <span class="uploaded_files">
-                                                <span class="keep_file_name"></span>
-                                                <span class="file_container"> Browse
-                                                    <input class="modal_image_name" type="file" />
-                                                </span>
-
+                                        <span class="uploaded_files">
+                                            <span class="keep_file_name"></span>
+                                            <span class="file_container"> Browse
+                                                <input class="modal_image_name" type="file" />
                                             </span>
-                                            <span class="uploaded_file_links"> File example
-                                                <a href="#" class="download_file disable" download=""><i class="icon-download"></i></a>
-                                            </span>
-
-                                        </div>
+                                        </span>
+                                        <span class="uploaded_file_links"> File example
+                                            <a href="#" class="download_file disable" download=""><i class="icon-download"></i></a>
+                                        </span>
                                     </div>
                                 </div>
 
                             </div>
                         </div>
-
-                    </form>
-                </div>
-                <div class="modal-footer vdf_modal_footer">
-                    <a href="#" class="inline_block_btn light_gray_btn close" data-dismiss="modal" aria-label="Close">Cancel</a>
-                    <a href="#" class="inline_block_btn light_green_btn">Create Number</a>
-                </div>
+                    </div>
+                    <div class="modal-footer vdf_modal_footer">
+                        <a href="#" class="inline_block_btn light_gray_btn close vd_form_reset" data-dismiss="modal" aria-label="Close">Cancel</a>
+                        <a href="#" class="inline_block_btn light_green_btn vd_form_submit">Add Number</a>
+                    </div>
+                </form>
             </div>
         </div>
     </div><!-- end Add User Modal -->
@@ -196,55 +201,69 @@
                         <h3>Edit number</h3>
                     </div>
                 </div>
-                <div class="modal-body vdf_modal_body">
-                    <form action="/" class="form-horizontal">
+                <form action="/" class="form-horizontal vd_form">
+                    <div class="modal-body vdf_modal_body">
                         <div class="form-group">
                             <div class="col-md-6 vdf_modal_left">
-                                <div class="form_row form-group">
+                                <div class="form-group">
                                     <div class="col-md-6">
                                         <label class="table_label">Phone Number</label>
-                                        <div class="form_row">
-                                            <input type="text" class="block_btn_30 modal_input" value=""/>
+                                        <div class="relative">
+                                            <input type="text" name="some_phone_edit" class="block_btn_30 modal_input vd_number" value=""/>
                                             <i class="input_icon icon-phone_number"></i>
-                                        </div>
-                                        <label class="table_label">Provider </label>
-                                        <div class="form_row">
-                                            <div class="select_wrapper">
-                                                <select class="block_btn_30 modal_input">
-                                                    <option value=""></option>
-                                                    <option value="Admin">type 1</option>
-                                                    <option value="Dealer">type 2</option>
-                                                    <option value="Sub-Dealer">type 3</option>
-                                                </select>
-                                                <i class="input_icon icon-provider"></i>
-                                            </div>
-                                        </div>
-                                        <div class="special_number">
-                                            <span class="table_icon"><i class="icon-special"></i></span>
-                                            <span>Special number</span>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <label class="table_label">Parking SIM number</label>
-                                        <div class="form_row">
-                                            <div class="select_wrapper">
-                                                <select class="block_btn_30 modal_input">
-                                                    <option value=""></option>
-                                                    <option value="Admin">Parking SIM number</option>
-                                                    <option value="Dealer">Parking SIM number</option>
-                                                    <option value="Sub-Dealer">Parking SIM number</option>
-                                                </select>
-                                                <i class="input_icon icon-sim"></i>
-                                            </div>
+                                        <div class="select_wrapper">
+                                            <select name="select_s_type2" class="block_btn_30 modal_input vd_select">
+                                                <option value=""></option>
+                                                <option value="Admin">Parking SIM number</option>
+                                                <option value="Dealer">Parking SIM number</option>
+                                                <option value="Sub-Dealer">Parking SIM number</option>
+                                            </select>
+                                            <i class="input_icon icon-sim"></i>
                                         </div>
-                                        <label class="table_label">Type</label>
-                                        <div class="form_row">
-                                            <input type="text" class="block_btn_30 modal_input" value=""/>
-                                            <i class="input_icon icon-username"></i>
-                                        </div>
-                                        <span class="or">OR</span>
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <div class="col-md-6">
+                                        <label class="table_label">Provider </label>
+                                        <div class="select_wrapper">
+                                            <select name="select_s_type" class="block_btn_30 modal_input vd_select">
+                                                <option value=""></option>
+                                                <option value="Admin">type 1</option>
+                                                <option value="Dealer">type 2</option>
+                                                <option value="Sub-Dealer">type 3</option>
+                                            </select>
+                                            <i class="input_icon icon-provider"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="table_label">Type</label>
+                                        <div class="select_wrapper">
+                                            <select name="select_s_type3" class="block_btn_30 modal_input vd_select">
+                                                <option value=""></option>
+                                                <option value="Admin">type 1</option>
+                                                <option value="Dealer">type 2</option>
+                                                <option value="Sub-Dealer">type 3</option>
+                                            </select>
+                                            <i class="input_icon icon-provider"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <div class="special_number">
+                                            <label class="vdf_checkbox">
+                                                <input type="checkbox" value="b" />
+                                                <i class="icon-special"></i>
+                                            </label>
+                                            <span class="vdf_checkbox_text">Special number</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="or">OR</span>
                             </div>
                             <div class="col-md-6 vdf_modal_right">
                                 <div class="form_row form-group">
@@ -266,12 +285,13 @@
 
                             </div>
                         </div>
-                    </form>
-                </div>
-                <div class="modal-footer vdf_modal_footer">
-                    <a href="#" class="inline_block_btn light_gray_btn close" data-dismiss="modal" aria-label="Close">Cancel</a>
-                    <a href="#" class="inline_block_btn light_green_btn">Create User</a>
-                </div>
+
+                    </div>
+                    <div class="modal-footer vdf_modal_footer">
+                        <a href="#" class="inline_block_btn light_gray_btn close vd_form_reset" data-dismiss="modal" aria-label="Close">Cancel</a>
+                        <a href="#" class="inline_block_btn light_green_btn vd_form_submit">Edit Number</a>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

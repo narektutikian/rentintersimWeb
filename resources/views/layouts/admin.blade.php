@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/css/bootstrap-table.min.css">
     <link rel="stylesheet" href="/js/perfect-scrollbar/css/perfect-scrollbar.css">
     <link rel="stylesheet" href="/css/bootstrap-datepicker3.css">
+    <link rel="stylesheet" href="js/owl-carousel/assets/owl.carousel.css">
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
@@ -43,6 +44,7 @@
 
 
 <script src="/js/jquery-2.2.4.min.js"></script>
+<script src="/js/jquery-validation/jquery.validate.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/pie-chart/pie-chart.js"></script>
 <script src="/js/bootstrap-table.min.js"></script>
@@ -51,7 +53,10 @@
 <script src="/js/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js"></script>
 <script src="/js/moment.min.js"></script>
 <script src="/js/bootstrap-datetimepicker.js"></script>
+<script src="js/owl-carousel/owl.carousel.js"></script>
 <script src="/js/scripts.js"></script>
+<script src="/js/validation.js"></script>
 <script src="/js/requests.js"></script>
+
 </body>
 </html>

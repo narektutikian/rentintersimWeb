@@ -57,17 +57,32 @@ $( document ).ready(function() {
             $.each(data, function(i, item) {
                 console.log(item.name + "\n");
 
-                $("#n-list-package").append("<li>" +
-                    "<a href='#' class='package_item' data-id='" + item.id + "' title='Basic Package'>" +
-                    "<h4>"+ item.name +"</h4>" +
-                    "<span>" + item.description + "</span>" +
+                $("#wrap_package_list").append("<div class='package_item'>" +
+                    "<a href='#' data-id='" + item.id + "' title='Basic Package'>" +
+                        "<h4>"+ item.name +"</h4>" +
+                        "<span>" + item.description + "</span>" +
                     "</a>" +
-                "</li>");
+                "</div>");
+
+                /*
+                     <div id="wrap_package_list">
+                         <div class="package_item">
+                             <a href="#" title="Basic Package">
+                                 <h4>Basic Package</h4>
+                                 <span>8 Mb Data</span>
+                                 <span>Unlimited local</span>
+                                 <span>Call + SMS</span>
+                             </a>
+                        </div>
+                     </div>
+                 */
+
             });
 
             $(document).on('click', '.package_item', function () {
 
                 package_id = $(this).attr('data-id');
+                console.log('package_id ', package_id);
                 return false;
             });
         }

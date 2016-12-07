@@ -167,72 +167,70 @@
   font-size: 0
 
 #wrap_package_list
-  width: 520px
-  height: 109px
-  margin: 50px auto 0 auto
   position: relative
-  .choose_package_list
-    display: block
-    min-width: 950px
-    li
-      float: left
-      width: 148px
-      height: 89px
-      margin-right: 32px
-      a
+  display: none
+  width: 100%
+  height: 95px
+  margin: 0 auto
+  overflow: hidden
+  padding: 0 30px
+  .package_item
+    height: 95px
+    a
+      display: block
+      text-align: center
+      border: 1px solid $gray_modal_border
+      @include border-radius(10px)
+      h4
+        color: $active_green
+        margin-top: 15px
+        margin-bottom: 18px
+        text-transform: uppercase
+        @include fonts_stack(15px)
+      span
         display: block
-        text-align: center
-        border: 1px solid $gray_modal_border
-        @include border-radius(10px)
-        outline: none
+        margin-bottom: 8px
+        line-height: 18px
+        color: $total_numbers_title
+        @include fonts_stack(14px)
+      &.selected_package
+        background: $active_green
+        color: $white
         h4
-          color: $active_green
-          margin-top: 10px
-          margin-bottom: 12px
-          text-transform: uppercase
-          @include fonts_stack(15px)
-        span
-          color: $total_numbers_title
-          margin-left: 5px
-          margin-right: 5px
-          margin-bottom: 5px
-          display: block
-          @include fonts_stack(13px)
-          line-height: 15px
-        &.selected_package
-          background: $active_green
           color: $white
-          h4
-            color: $white
-          span
-            color: $white
+        span
+          color: $white
 
-
-.always_visible.ps-container > .ps-scrollbar-x-rail
-  opacity: 0.6
-
-.always_visible.ps-container > .ps-scrollbar-x-rail > .ps-scrollbar-x
-  background-color: $active_green
-
-.ps-container > .ps-scrollbar-x-rail
-  background-color: $gray_modal_scroll
-  height: 6px
-
-.ps-container > .ps-scrollbar-x-rail > .ps-scrollbar-x
-  bottom: 0
-
-.ps-container.ps-active-x > .ps-scrollbar-x-rail
-  background-color: $gray_modal_scroll !important
-
-.ps-container:hover.ps-in-scrolling.ps-x > .ps-scrollbar-x-rail > .ps-scrollbar-x,
-.ps-container.ps-in-scrolling.ps-x > .ps-scrollbar-x-rail > .ps-scrollbar-x
-  background-color: $active_green
-  height: 7px
-
-.ps-container:hover > .ps-scrollbar-x-rail:hover > .ps-scrollbar-x
-  background-color: $active_green
-  height: 6px
-
+  .owl-controls
+    position: absolute
+    top: 50%
+    left: 0
+    right: 0
+    margin-top: -15px
+    .owl-prev,
+    .owl-next
+      border: 1px solid $gray_modal_border
+      position: absolute
+      background: $white
+      padding: 2px 0px
+      &:hover
+        background: $active_green
+      &:hover .prev.icon-dropdown,
+      &:hover .next.icon-dropdown
+        color: $white
+    .owl-prev
+      left: 0
+    .owl-next
+      right: 0
+    .prev.icon-dropdown,
+    .next.icon-dropdown
+      color: $active_green
+      font-size: 26px
+      display: inline-block
+    .prev.icon-dropdown
+      @include transform(90deg)
+    .next.icon-dropdown
+      @include transform(-90deg)
 
 .uploaded_file_links
   display: inline-block
@@ -357,14 +355,15 @@
       .distributor_item_options
         width: calc(100% - 90px)
 
-  #wrap_package_list
-    .choose_package_list
-      li
-        width: 140px
 
 @media (max-width: 640px)
 
   #wrap_package_list
-    .choose_package_list
-      li
-        width: 140px
+    .package_item
+      margin: 0 auto
+
+@media (max-width: 480px)
+
+  #wrap_package_list
+    .package_item
+      margin: 0 auto
