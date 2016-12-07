@@ -11,10 +11,10 @@
                         <i class="icon-company_status"></i> All ({{$counts['All']}})
                     </a>
                     <a class="filter_option  {{ (Request::is('filter-simlist/active')) ? 'blue' : 'light_blue' }}" href="{{url('/filter-simlist/active')}}">
-                        <span class="status active"></span> active ({{$counts['Active']}})
+                        <span class="status active"></span> active ({{$counts['active']}})
                     </a>
                     <a class="filter_option  {{ (Request::is('filter-simlist/pending')) ? 'blue' : 'light_blue' }}" href="{{url('/filter-simlist/pending')}}">
-                        <span class="status inactive"></span> Pending ({{$counts['Pending']}})
+                        <span class="status inactive"></span> pending ({{$counts['pending']}})
                     </a>
                     <a class="filter_option  {{ (Request::is('filter-simlist/available')) ? 'blue' : 'light_blue' }}" href="{{url('/filter-simlist/available')}}">
                         <span class="status available"></span> Available ({{$counts['Available']}})

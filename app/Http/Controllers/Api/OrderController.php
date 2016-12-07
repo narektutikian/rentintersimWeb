@@ -53,8 +53,8 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         $number = null;
-        $numberId = 0;
-        $status ='Waiting';
+
+        $status ='waiting';
         $this->validate(request(), [
 //        'from' => 'required',
 //        'to' =>  'required',
@@ -71,7 +71,11 @@ class OrderController extends Controller
 //        'updated_by' =>  'required',
 
         ]);
-            $simId = $this->helper->getSimId($request->input('sim'));
+            $sim = $this->helper->getSim($request->input('sim'));
+        if($sim->state != 'available')
+            return response()->json(['sim'=>'sim is already taken'], 403);
+        $sim->state = 'pending';
+        $sim->save();
 //                dd($simId);
 
         $newOrder = Order::forceCreate([
@@ -86,16 +90,16 @@ class OrderController extends Controller
             'remark' =>  $request->input('remark'),
             'created_by' =>  Auth::user()->id,
             'updated_by' =>  Auth::user()->id,
-            'sim_id' => $simId,
-            'phone_id' => $numberId,
+            'sim_id' => $sim->id,
+            'phone_id' => 0,
 
         ]);
 
 //        if($newOrder){
-            $number = $this->getNumber($newOrder);
+            $number = $this->getNumber($newOrder->id);
             if ($number != null){
                 $numberId = $number->id;
-                $status = 'Panding';
+                $status = 'pending';
 
 //            }
         }
@@ -168,7 +172,7 @@ class OrderController extends Controller
             $Order->updated_by =  Auth::user()->id;
             if ($request->has('sim_id')){
                 $Order->sim_id = $request->input('sim_id');
-                $Order->status =  'Waiting';
+                $Order->status =  'waiting';
             }
             $Order->save();
 
@@ -200,9 +204,15 @@ class OrderController extends Controller
         return view('home', compact('ordersArray'), compact('counts'));
     }
 
-    public function getNumber($order)
+    public function getNumber($orderid)
     {   $number = null;
+        $order = Order::find($orderid);
+        if($order->exists){
+            if ($order->phone_id == 0)
         $number = $this->helper->getNumber($order);
+        else return $order->phone_id;
+        }
+
         return $number;
     }
 }

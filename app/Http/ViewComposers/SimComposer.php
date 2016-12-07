@@ -44,8 +44,8 @@ class SimComposer
     {
         $counts = ([
             'All' => Sim::all()->count(),
-            'Active' => Sim::filter('Active')->count(),
-            'Pending' => Sim::filter('Pending')->count(),
+            'active' => Sim::filter('active')->count(),
+            'pending' => Sim::filter('pending')->count(),
             'Available' => Sim::filter('available')->count(),
             'Parking' => Sim::filter('parking')->count(),
         ]);

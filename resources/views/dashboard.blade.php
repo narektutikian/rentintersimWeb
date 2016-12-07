@@ -50,22 +50,22 @@
                     <div class="total_numbers">
                         <h2 class="total_numbers_title">Total phone numbers</h2>
                         <div class="phone_charts">
-                            <div id="chart_active"  class="pie-title-center" data-percent="{{($counts['Active']/$counts['All'])*100}}">
+                            <div id="chart_active"  class="pie-title-center" data-percent="{{($counts['active']/$counts['All'])*100}}">
                                 <span class="pie-value"></span>
                             </div>
-                            <span class="phone_chart_status">Active</span>
+                            <span class="phone_chart_status">active</span>
                         </div>
                         <div class="phone_charts middle">
-                            <div id="chart_pending"  class="pie-title-center" data-percent="{{($counts['Pending']/$counts['All'])*100}}">
+                            <div id="chart_pending"  class="pie-title-center" data-percent="{{($counts['pending']/$counts['All'])*100}}">
                                 <span class="pie-value"></span>
                             </div>
-                            <span class="phone_chart_status">Pending</span>
+                            <span class="phone_chart_status">pending</span>
                         </div>
                         <div class="phone_charts">
-                            <div id="chart_not_used"  class="pie-title-center" data-percent="{{($counts['Not in use']/$counts['All'])*100}}">
+                            <div id="chart_not_used"  class="pie-title-center" data-percent="{{($counts['not in use']/$counts['All'])*100}}">
                                 <span class="pie-value"></span>
                             </div>
-                            <span class="phone_chart_status">Not in use</span>
+                            <span class="phone_chart_status">not in use</span>
                         </div>
                     </div>
                 </div>
@@ -85,7 +85,7 @@
                             </div>
                             <div class="remainder_value">
                                 <span class="value"></span>
-                                <span class="av_status">Active</span>
+                                <span class="av_status">active</span>
                             </div>
                         </div>
                     </div>

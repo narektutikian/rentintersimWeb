@@ -50,6 +50,7 @@ class HomeController extends Controller
 
     public static function solveOrderList($orders, $viewHelper){
     $ordersArray = $orders;
+//        dd($orders);
     foreach ($orders as $key => $order) {
         $ordersArray[$key]['created_by'] = $order->creator->login;
         $ordersArray[$key]['updated_by'] = $order->editor->login;
@@ -68,9 +69,9 @@ class HomeController extends Controller
         $orders = Order::employee($id);
         $counts = ([
             'All' => $orders->count(),
-            'Active' => $orders->filter('Active')->count(),
-            'Pending' => Order::employee($id)->filter('Pending')->count(),
-            'Waiting' => Order::employee($id)->filter('Waiting')->count(),
+            'active' => $orders->filter('active')->count(),
+            'pending' => Order::employee($id)->filter('pending')->count(),
+            'waiting' => Order::employee($id)->filter('waiting')->count(),
         ]);
         return $counts;
     }

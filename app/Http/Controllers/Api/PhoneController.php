@@ -58,7 +58,7 @@ class PhoneController extends Controller
         $newPhone = Phone::forceCreate([
 
             'phone' => $request->input('phone'),
-            'state' => 'Not in use',
+            'state' => 'not in use',
             'initial_sim_id' => $request->input('initial_sim_id'),
 //            'current_sim_id' => $request->input('lending'),
             'package_id' => $request->input('package_id'),
@@ -120,7 +120,7 @@ class PhoneController extends Controller
         $phone = Phone::find($id);
 
         $phone->phone = $request->input('phone');
-//        $phone->state = 'Not in use';
+//        $phone->state = 'not in use';
         $phone->initial_sim_id = $request->input('initial_sim_id');
 //         $phone-> current_sim_id = $request->input('lending');
         $phone->package_id = $request->input('package_id');

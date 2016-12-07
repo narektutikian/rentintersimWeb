@@ -34,6 +34,9 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
     Route::resource('sim', 'SIMController');
     Route::resource('type', 'PackageController');
 
+    /*****Get new Number******/
+
+    Route::get('get-number/{orderId}', 'OrderController@getNumber');
 
     /*****Auth Routes******/
     Route::get('imitate', 'UserController@showImitation');
@@ -58,7 +61,7 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
 
 
 Route::get('/test', function (){
-    $oldOrders = Order::where([['status', 'Pending'], ['package_id', 28]])->orderby('to', 'asc')->get();
+    $oldOrders = Order::where([['status', 'pending'], ['package_id', 28]])->orderby('to', 'asc')->get();
     dd($oldOrders);
 });
 

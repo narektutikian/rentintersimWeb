@@ -9,14 +9,14 @@
                     <a class="filter_option {{ (Request::is('number')) ? 'blue' : 'light_blue' }} " href="{{url('/number')}}">
                         <i class="icon-company_status"></i> All ({{$counts['All']}})
                     </a>
-                    <a class="filter_option {{ (Request::is('filter-numberlist/Active')) ? 'blue' : 'light_blue' }}" href="{{url('/filter-numberlist/Active')}}">
-                        <span class="status active"></span> active ({{$counts['Active']}})
+                    <a class="filter_option {{ (Request::is('filter-numberlist/active')) ? 'blue' : 'light_blue' }}" href="{{url('/filter-numberlist/active')}}">
+                        <span class="status active"></span> active ({{$counts['active']}})
                     </a>
-                        <a class="filter_option {{ (Request::is('filter-numberlist/Pending')) ? 'blue' : 'light_blue' }}" href="{{url('/filter-numberlist/Pending')}}">
-                        <span class="status inactive"></span> inactive ({{$counts['Pending']}})
+                        <a class="filter_option {{ (Request::is('filter-numberlist/pending')) ? 'blue' : 'light_blue' }}" href="{{url('/filter-numberlist/pending')}}">
+                        <span class="status inactive"></span> inactive ({{$counts['pending']}})
                     </a>
-                    <a class="filter_option {{ (Request::is('filter-numberlist/Not in use')) ? 'blue' : 'light_blue' }} last" href="{{url('/filter-numberlist/Not in use')}}">
-                        <span class="status disabled"></span> not in use ({{$counts['Not in use']}})
+                    <a class="filter_option {{ (Request::is('filter-numberlist/not in use')) ? 'blue' : 'light_blue' }} last" href="{{url('/filter-numberlist/not in use')}}">
+                        <span class="status disabled"></span> not in use ({{$counts['not in use']}})
                     </a>
                     <div class="search_management_option">
                         <form action="/" class="search_form_option">

@@ -44,9 +44,9 @@ class NumberComposer
     {
         $counts = ([
             'All' => Phone::all()->count(),
-            'Active' => Phone::filter('Active')->count(),
-            'Pending' => Phone::filter('Pending')->count(),
-            'Not in use' => Phone::filter('Not in use')->count(),
+            'active' => Phone::filter('active')->count(),
+            'pending' => Phone::filter('pending')->count(),
+            'not in use' => Phone::filter('not in use')->count(),
         ]);
 
         $view->with('sims', Sim::select('id', 'state', 'number')->where('state', 'parking')->get()->toArray())

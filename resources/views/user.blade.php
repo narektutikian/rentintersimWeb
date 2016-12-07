@@ -13,10 +13,10 @@
                         <span class="status active"></span> active (2)
                     </span>
                     <span class="filter_option light_blue">
-                        <span class="status inactive"></span> Pending (3)
+                        <span class="status inactive"></span> pending (3)
                     </span>
                     <span class="filter_option light_blue last">
-                        <span class="status waiting"></span> Waiting (2)
+                        <span class="status waiting"></span> waiting (2)
                     </span>
 
                     <div class="search_management_option">

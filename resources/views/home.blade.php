@@ -11,14 +11,14 @@
                                     <a class="filter_option  {{ (Request::is('home')) ? 'blue' : 'light_blue' }}" href="{{url('/home')}}">
                                         <i class="icon-company_status"></i>All ({{$counts['All']}})
                                     </a>
-                            <a class="filter_option  {{ (Request::is('filter-orderlist/Active')) ? 'blue' : 'light_blue' }}" href="{{url('filter-orderlist/Active')}}">
-                                        <span class="status active blue" ></span>active ({{$counts['Active']}})
+                            <a class="filter_option  {{ (Request::is('filter-orderlist/active')) ? 'blue' : 'light_blue' }}" href="{{url('filter-orderlist/active')}}">
+                                        <span class="status active blue" ></span>active ({{$counts['active']}})
                                     </a>
-                            <a class="filter_option  {{ (Request::is('filter-orderlist/Pending')) ? 'blue' : 'light_blue' }}" href="{{url('filter-orderlist/Pending')}}">
-                                        <span class="status inactive"></span> Pending ({{$counts['Pending']}})
+                            <a class="filter_option  {{ (Request::is('filter-orderlist/pending')) ? 'blue' : 'light_blue' }}" href="{{url('filter-orderlist/pending')}}">
+                                        <span class="status inactive"></span> pending ({{$counts['pending']}})
                                     </a>
-                            <a class="filter_option  {{ (Request::is('filter-orderlist/Waiting')) ? 'blue' : 'light_blue' }} last" href="{{url('filter-orderlist/Waiting')}}">
-                                        <span class="status waiting"></span> Waiting ({{$counts['Waiting']}}) </a>
+                            <a class="filter_option  {{ (Request::is('filter-orderlist/waiting')) ? 'blue' : 'light_blue' }} last" href="{{url('filter-orderlist/waiting')}}">
+                                        <span class="status waiting"></span> waiting ({{$counts['waiting']}}) </a>
                                     </a>
                             <div class="search_management_option">
                                 <form action="/" class="search_form_option">
@@ -56,7 +56,7 @@
                             <!--<td class="rwd-td0 table_id_cell editable_cell" data-form="#modal_edit_sim" data-th="Id">1</td>-->
                             <td class="rwd-td0 table_id_cell editable_cell">
                                 @if($order['phone_id']==0)
-                                    <a href="#">Get Number</a>
+                                    <a href="{{url('get-number/'.$order['id'])}}">Get Number</a>
                                 @else
                                 {{$order['phone_id']}}
                                 @endif

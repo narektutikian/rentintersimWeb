@@ -28,58 +28,75 @@ class CreateHelper
             ->timestamp;
     }
 
-    public function getSimId($sim){
-        return Sim::where('number', $sim)->first()->id;
+    public function getSim($sim){
+        $simObj = Sim::where('number', $sim)->first();
+//        if ($simObj->count())
+//            return 'sim not found';
+        return $simObj;
     }
 
     public function getNumber($order){
 //        dd($order);
         $number = null;
-        $sim = $order->sim;
-        if ($sim->state == 'available'){
-            $number = Phone::where([['is_active', 1],['package_id', $order->package_id], ['state', 'Not in use']])->first();
-
-            if ($number != null){
-
-                $this->setStatus($number, $sim, 'pending');
-//                dd($number);
-                return $number;
-            }
-            else {
-
-                return $this->retryGetNumber($order);
-            }
+        $number = $this->retryGetNumber($order);
+        if ($number == null){
+             $number = $this->getNewNumber($order);
         }
+        return $number;
+    }
+
+    protected function getNewNumber($order)
+    {
+        $number = null;
+
+            $phone = Phone::where([['is_active', 1], ['package_id', $order->package_id], ['state', 'not in use']])->first();
+//            dd($phone);
+            if ($phone != null)
+                if($phone->exists){
+                $number = $phone->id;
+//                dd($number);
+                $order->phone_id = $number;
+                $order->save();
+                $this->setStatus($order, 'pending');
+
+            }
+
         return $number;
     }
 
     public function retryGetNumber($order)
     {
         $number = null;
-        if ($order->sim->state == 'available'){
-            $oldOrders = Order::where([['status', 'Pending'], ['package_id', $order->package_id]])->orderby('to', 'asc')->get();
 
+            $oldOrders = Order::where([['package_id', $order->package_id], ['phone_id', '!=', 0]])->orderby('to', 'asc')->get();
             foreach ($oldOrders as $oldOrder){
                 if ($this->isTimeCompatible($order, $oldOrder)) {
                     if ($this->isNumberCompatible($order, $oldOrder)){
-                        $number = Phone::find($oldOrder->phone_id);
-                        $order->status = 'Pending';
-                        $order->phone_id = $number->id;
+                        $number = $oldOrder->phone_id;
+
+                        $order->phone_id = $number;
                         $order->save();
+
+                        $this->setStatus($order, 'pending');
 //                        dd($number);
                          break;
                      }
                 }
                 continue;
             }
-        }
+
         return $number;
     }
 
-    protected function setStatus($number, $sim, $status)
+    protected function setStatus($order, $status)
     {
+        $order->status = $status;
+        $order->save();
+        $number = $order->phone;
+//        dd($order);
         $number->state = $status;
         $number->save();
+        $sim = $order->sim;
         $sim->state = $status;
         $sim->save();
     }
@@ -98,11 +115,10 @@ class CreateHelper
 
     protected function isNumberCompatible($newOrder, $oldOrder)
     {
-        $phone= Phone::find($oldOrder->phone_id);
-        $allOrders = $phone->orders;
+        $allOrders = Order::where('phone_id', $oldOrder->phone_id);
         if($allOrders->count() > 0){
 //            dd($allOrders);
-            foreach ($allOrders as $order){
+            foreach ($allOrders->get() as $order){
                   if($this->isTimeCompatible($newOrder, $order))
                     continue;
                     else return false;
