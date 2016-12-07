@@ -83,7 +83,7 @@
                                 {{$order['reference_number']}}
                             </td>
                             <td class="rwd-td0 table_action_cell_large ">
-                                <span class="table_icon" data-toggle="modal" data-target="#modal_edit_number">
+                                <span class="table_icon" data-toggle="modal" data-target="#modal_edit_order">
                                     <i class="icon-edit"></i>
                                 </span>
                                 <span class="table_icon">
@@ -109,7 +109,7 @@
 
 
 
-    <!-- Add User Modal -->
+    <!-- Add Order Modal -->
     <div class="modal fade" id="modal_new_order" tabindex="-1" role="dialog" aria-labelledby="modal_new_order">
         <div class="modal-dialog vdf_modal" role="document">
             <div class="modal-content vdf_modal_content">
@@ -119,96 +119,190 @@
                         <h3>New Order</h3>
                     </div>
                 </div>
-                <div class="modal-body vdf_modal_body">
-                    <form action="/" class="form-horizontal">
+                <form action="/" class="form-horizontal vd_form">
+                    <div class="modal-body vdf_modal_body">
+
                         <div class="form-group">
                             <div class="col-md-6 vdf_modal_left ovh">
-                                <div class="form_row form-group">
+                                <div class="form-group">
                                     <div class="col-md-6">
                                         <label class="table_label">Enter a SIM number</label>
-                                        <div class="form_row">
-                                            <input type="text" id="sim" class="block_btn_30 modal_input_without_icon" value=""/>
-                                        </div>
-
+                                        <input type="text" name="sim1" id="sim" class="block_btn_30 modal_input_without_icon vd_number" value=""/>
                                     </div>
                                     <div class="col-md-6">
                                         <label class="table_label">SIM provider</label>
-                                        <div class="form_row">
-                                            <input type="text" class="block_btn_30 modal_input_without_icon" value="Vodafone"/>
-                                        </div>
+                                        <input type="text" name="sim_prv1" class="block_btn_30 modal_input_without_icon vd_required" value="Vodafone"/>
                                     </div>
                                 </div>
-                                <div class="form_row form-group">
+                                <div class="form-group">
                                     <div class="col-md-12">
                                         <label class="table_label">Choose a SIM package </label>
                                         <div id="wrap_package_list" class="always_visible"></div>
                                     </div>
                                 </div>
-                                <div class="form_row form-group">
+                                <div class="form-group">
                                     <div class="col-md-12">
                                         <label class="table_label">Enter remarks</label>
-                                        <textarea id="remark" class="modal_textarea"></textarea>
+                                        <textarea name="rem_txt1" id="remark" class="modal_textarea"></textarea>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6 vdf_modal_right">
                                 <label class="table_label">Destination flight details</label>
-                                <div class="form_row form-group">
-
+                                <div class="form-group">
                                     <div class="col-md-6">
-                                        <div class="form_row">
-                                            <div class="departure"><i class="icon-landing"></i> Landing date and time</div>
-                                            <div class="input-group date flight_dates" data-provide="datepicker">
-                                                <div class="input-group-addon">
-                                                    <span class="glyphicon glyphicon-calendar"></span>
-                                                </div>
-                                                <input type="text"  class="inline_block_btn" id="departure_date" data-date-format="DD/MM/YYYY HH:mm">
+                                        <div class="departure"><i class="icon-landing"></i> Landing date and time</div>
+                                        <div class="input-group date flight_dates" data-provide="datepicker">
+                                            <div class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
                                             </div>
-                                        </div>
-                                        <div class="form_row">
-                                            <label class="table_label">Reference Number</label>
-                                            <input type="text" id="reference_number" class="block_btn_30 modal_input_without_icon" value="">
-                                        </div>
-                                        <div class="form_row">
-                                            <label class="table_label">Customer phone number</label>
-                                            <div class="select_wrapper">
-                                                <select class="block_btn_30 modal_input">
-                                                    <option value=""></option>
-                                                    <option value="1">1111111111</option>
-                                                    <option value="2">22222222222</option>
-                                                    <option value="3">333333333333</option>
-                                                </select>
-                                                <i class="input_icon icon-sim"></i>
-                                            </div>
+                                            <input type="text" name="departure_date" class="inline_block_btn vd_required" id="departure_date" data-date-format="DD/MM/YYYY HH:mm">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form_row">
-                                            <div class="departure"><i class="icon-departure"></i> Departure date and time</div>
-                                            <div class="input-group date flight_dates" data-provide="datepicker">
-                                                <div class="input-group-addon">
-                                                    <span class="glyphicon glyphicon-calendar"></span>
-                                                </div>
-                                                <input type="text" class="inline_block_btn" id="landing_date" data-date-format="DD/MM/YYYY HH:mm">
+                                        <div class="departure"><i class="icon-departure"></i> Departure date and time</div>
+                                        <div class="input-group date flight_dates" data-provide="datepicker">
+                                            <div class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
                                             </div>
+                                            <input type="text" name="landing_date" class="inline_block_btn vd_required" id="landing_date" data-date-format="DD/MM/YYYY HH:mm">
                                         </div>
-                                        <div class="form_row">
-                                            <label class="table_label">Order Status</label>
-                                            <input type="text" class="block_btn_30 modal_input_without_icon" value="">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-6">
+                                        <label class="table_label">Reference Number</label>
+                                        <input type="text" id="reference_number" class="block_btn_30 modal_input_without_icon vd_number" value="">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="table_label">Order Status</label>
+                                        <input type="text" name="order_status1" class="block_btn_30 modal_input_without_icon" value="">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-6">
+                                        <label class="table_label">Customer phone number</label>
+                                        <div class="select_wrapper">
+                                            <select name="customer_phone1" class="block_btn_30 modal_input">
+                                                <option value=""></option>
+                                                <option value="1">1111111111</option>
+                                                <option value="2">22222222222</option>
+                                                <option value="3">333333333333</option>
+                                            </select>
+                                            <i class="input_icon icon-sim"></i>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                    </form>
-                </div>
-                <div class="modal-footer vdf_modal_footer">
-                    <a href="#" class="inline_block_btn light_gray_btn close" data-dismiss="modal" aria-label="Close">Cancel</a>
-                    <button type="submit" href="#" class="inline_block_btn light_green_btn" id="create-order">Create User</button>
-                </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer vdf_modal_footer">
+                        <a href="#" class="inline_block_btn light_gray_btn close vd_form_reset" data-dismiss="modal" aria-label="Close">Cancel</a>
+                        <button type="submit" href="#" class="inline_block_btn light_green_btn vd_form_submit" id="create-order">Create order</button>
+                    </div>
+                </form>
             </div>
         </div>
-    </div><!-- end Add User Modal -->
+    </div><!-- end Add Order Modal -->
+
+    <!-- Edit Order Modal -->
+    <div class="modal fade" id="modal_edit_order" tabindex="-1" role="dialog" aria-labelledby="modal_edit_order">
+        <div class="modal-dialog vdf_modal" role="document">
+            <div class="modal-content vdf_modal_content">
+                <div class="modal-header vdf_modal_header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <div class="vdf_modal_sub_header">
+                        <h3>Edit Order</h3>
+                    </div>
+                </div>
+                <form action="/" class="form-horizontal vd_form">
+                    <div class="modal-body vdf_modal_body">
+
+                        <div class="form-group">
+                            <div class="col-md-6 vdf_modal_left ovh">
+                                <div class="form-group">
+                                    <div class="col-md-6">
+                                        <label class="table_label">Enter a SIM number</label>
+                                        <input type="text" name="sim2" id="sim2" class="block_btn_30 modal_input_without_icon vd_number" value=""/>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="table_label">SIM provider</label>
+                                        <input type="text" name="sim_prv2" class="block_btn_30 modal_input_without_icon vd_required" value="Vodafone"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <label class="table_label">Choose a SIM package </label>
+                                        <div id="wrap_package_list" class="always_visible"></div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <label class="table_label">Enter remarks</label>
+                                        <textarea name="rem_txt2" id="remark" class="modal_textarea"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 vdf_modal_right">
+                                <label class="table_label">Destination flight details</label>
+                                <div class="form-group">
+                                    <div class="col-md-6">
+                                        <div class="departure"><i class="icon-landing"></i> Landing date and time</div>
+                                        <div class="input-group date flight_dates" data-provide="datepicker">
+                                            <div class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </div>
+                                            <input type="text" name="departure_date2" class="inline_block_btn vd_required" id="departure_date" data-date-format="DD/MM/YYYY HH:mm">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="departure"><i class="icon-departure"></i> Departure date and time</div>
+                                        <div class="input-group date flight_dates" data-provide="datepicker">
+                                            <div class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </div>
+                                            <input type="text" name="landing_date2" class="inline_block_btn vd_required" id="landing_date" data-date-format="DD/MM/YYYY HH:mm">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-6">
+                                        <label class="table_label">Reference Number</label>
+                                        <input type="text" id="reference_number" class="block_btn_30 modal_input_without_icon vd_number" value="">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="table_label">Order Status</label>
+                                        <input type="text" name="order_status1" class="block_btn_30 modal_input_without_icon" value="">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-6">
+                                        <label class="table_label">Customer phone number</label>
+                                        <div class="select_wrapper">
+                                            <select name="customer_phone1" class="block_btn_30 modal_input">
+                                                <option value=""></option>
+                                                <option value="1">1111111111</option>
+                                                <option value="2">22222222222</option>
+                                                <option value="3">333333333333</option>
+                                            </select>
+                                            <i class="input_icon icon-sim"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer vdf_modal_footer">
+                        <a href="#" class="inline_block_btn light_gray_btn close vd_form_reset" data-dismiss="modal" aria-label="Close">Cancel</a>
+                        <button type="submit" href="#" class="inline_block_btn light_green_btn vd_form_submit" id="create-order">Edit order</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div><!-- end dit Order Modal -->
 
 @endsection
