@@ -166,7 +166,7 @@
 .uploaded_files
   font-size: 0
 
-#wrap_package_list
+.wrap_package_list
   position: relative
   display: none
   width: 100%
@@ -231,6 +231,44 @@
       @include transform(90deg)
     .next.icon-dropdown
       @include transform(-90deg)
+
+.single_package
+  display: inline-block
+  vertical-align: middle
+  width: 145px
+  float: right
+  a
+    display: block
+    text-align: center
+    border: 1px solid $gray_modal_border
+    @include border-radius(10px)
+    h4
+      color: $active_green
+      margin-top: 15px
+      margin-bottom: 18px
+      text-transform: uppercase
+      @include fonts_stack(15px)
+    span
+      display: block
+      margin-bottom: 8px
+      line-height: 18px
+      color: $total_numbers_title
+      @include fonts_stack(14px)
+    &.selected_package
+      background: $active_green
+      color: $white
+      h4
+        color: $white
+      span
+        color: $white
+
+.print_image
+  display: block
+  margin: 0 auto
+  width: 100%
+  max-width: 370px
+  max-height: 230px
+  outline: none
 
 .uploaded_file_links
   display: inline-block
@@ -301,7 +339,7 @@
       margin-left: 0
       text-align: center
 
-  #wrap_package_list
+  .wrap_package_list
     width: 100%
 
 @media (max-width: 992px)
@@ -358,12 +396,12 @@
 
 @media (max-width: 640px)
 
-  #wrap_package_list
+  .wrap_package_list
     .package_item
       margin: 0 auto
 
 @media (max-width: 480px)
 
-  #wrap_package_list
+  .wrap_package_list
     .package_item
       margin: 0 auto

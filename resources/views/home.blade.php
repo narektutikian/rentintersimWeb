@@ -61,39 +61,40 @@
                                 {{$order['phone_id']}}
                                 @endif
                             </td>
-                            <td class="rwd-td0">
+                            <td class="rwd-td1">
                                 {{$order['sim_id']}}
                             </td>
-                            <td class="rwd-td0">
-                                {{$order['package_id']}}
+                            <td class="rwd-td2">
+                                {{$order['provider']}}
                             </td>
-                            <td class="rwd-td0">
+                            <td class="rwd-td3">
                                 {{$order['from']}}
                             </td>
-                            <td class="rwd-td0">
+                            <td class="rwd-td4">
                                 {{$order['to']}}
                             </td>
-                            <td class="rwd-td0">
+                            <td class="rwd-td5">
                                 {{$order['created_by']}}
                             </td>
-                            <td class="rwd-td0">
+                            <td class="rwd-td6">
                                 {{$order['updated_by']}}
                             </td>
                             <td>
                                 {{$order['reference_number']}}
                             </td>
-                            <td class="rwd-td0 table_action_cell_large ">
+                            <td class="rwd-td7 table_action_cell_large ">
                                 <span class="table_icon" data-toggle="modal" data-target="#modal_edit_order">
                                     <i class="icon-edit"></i>
                                 </span>
-                                <span class="table_icon">
+                                <span class="table_icon" data-toggle="modal" data-target="#modal_order_print">
                                     <i class="icon-print"></i>
                                 </span>
-                                <span class="table_icon">
+                                <label class="vdf_checkbox">
+                                    <input type="checkbox" name="num_chkb_ol" value="" />
                                     <i class="icon-special"></i>
-                                </span>
+                                </label>
                             </td>
-                            <td class="rwd-td0 table_id_cell table_status_cell">
+                            <td class="rwd-td8 table_id_cell table_status_cell">
                                 {{$order['status']}}
                             </td>
                         </tr>
@@ -137,7 +138,7 @@
                                 <div class="form-group">
                                     <div class="col-md-12">
                                         <label class="table_label">Choose a SIM package </label>
-                                        <div id="wrap_package_list" class="always_visible"></div>
+                                        <div class="wrap_package_list" class="always_visible"></div>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -156,7 +157,7 @@
                                             <div class="input-group-addon">
                                                 <span class="glyphicon glyphicon-calendar"></span>
                                             </div>
-                                            <input type="text" name="departure_date" class="inline_block_btn vd_required" id="departure_date" data-date-format="DD/MM/YYYY HH:mm">
+                                            <input type="text" name="departure_date" class="inline_block_btn departure_date vd_required" data-date-format="DD/MM/YYYY HH:mm">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -165,7 +166,7 @@
                                             <div class="input-group-addon">
                                                 <span class="glyphicon glyphicon-calendar"></span>
                                             </div>
-                                            <input type="text" name="landing_date" class="inline_block_btn vd_required" id="landing_date" data-date-format="DD/MM/YYYY HH:mm">
+                                            <input type="text" name="landing_date" class="inline_block_btn landing_date vd_required" data-date-format="DD/MM/YYYY HH:mm">
                                         </div>
                                     </div>
                                 </div>
@@ -235,7 +236,7 @@
                                 <div class="form-group">
                                     <div class="col-md-12">
                                         <label class="table_label">Choose a SIM package </label>
-                                        <div id="wrap_package_list" class="always_visible"></div>
+                                        <div class="wrap_package_list" class="always_visible"></div>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -254,7 +255,7 @@
                                             <div class="input-group-addon">
                                                 <span class="glyphicon glyphicon-calendar"></span>
                                             </div>
-                                            <input type="text" name="departure_date2" class="inline_block_btn vd_required" id="departure_date" data-date-format="DD/MM/YYYY HH:mm">
+                                            <input type="text" name="departure_date2" class="inline_block_btn departure_date vd_required" data-date-format="DD/MM/YYYY HH:mm">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -263,7 +264,7 @@
                                             <div class="input-group-addon">
                                                 <span class="glyphicon glyphicon-calendar"></span>
                                             </div>
-                                            <input type="text" name="landing_date2" class="inline_block_btn vd_required" id="landing_date" data-date-format="DD/MM/YYYY HH:mm">
+                                            <input type="text" name="landing_date2" class="inline_block_btn vd_required landing_date" data-date-format="DD/MM/YYYY HH:mm">
                                         </div>
                                     </div>
                                 </div>
@@ -304,5 +305,82 @@
             </div>
         </div>
     </div><!-- end dit Order Modal -->
+
+
+    <!--Print Modal-->
+    <div class="modal fade" id="modal_order_print" tabindex="-1" role="dialog" aria-labelledby="modal_order_print">
+        <div class="modal-dialog vdf_modal" role="document">
+            <div class="modal-content vdf_modal_content">
+                <div class="modal-header vdf_modal_header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <div class="vdf_modal_sub_header">
+                        <h3>Mail message: Order <span class="mail_order">#124875</span></h3>
+                    </div>
+                </div>
+                <form action="/" class="form-horizontal vd_form">
+                    <div class="modal-body vdf_modal_body">
+                        <div class="form-group">
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    <div class="col-md-8">
+                                        <label class="table_label">Phone Number </label>
+                                        <div class="relative">
+                                            <input type="text" name="type_name4" class="block_btn_30 modal_input vd_number" value=""/>
+                                            <i class="input_icon icon-phone_number"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="single_package">
+                                            <label class="table_label">Selected Package </label>
+                                            <a class="selected_package" title="Basic Package">
+                                                <h4>Basic Package</h4>
+                                                <span>8 Mb Data Unlimited local Call + SMS</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <label class="table_label">Active Period</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="departure">From</div>
+                                        <div class="input-group date flight_dates" data-provide="datepicker">
+                                            <div class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </div>
+                                            <input type="text" class="inline_block_btn departure_date vd_required" name="some_departure_1" data-date-format="DD/MM/YYYY HH:mm">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="departure"> To</div>
+                                        <div class="input-group date flight_dates" data-provide="datepicker">
+                                            <div class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </div>
+                                            <input type="text" class="inline_block_btn landing_date vd_required" name="some_departure_2" data-date-format="DD/MM/YYYY HH:mm">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <img src="img/print_image.jpg" class="print_image" alt="print image">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer vdf_modal_footer">
+                        <span class="c_support">Customer support: +373 95 728 147</span>
+                        <a href="#" class="inline_block_btn light_gray_btn close vd_form_reset" data-dismiss="modal" aria-label="Close">Cancel</a>
+                        <a href="#" class="inline_block_btn light_green_btn vd_form_submit">Send</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--end of Print Modal-->
 
 @endsection

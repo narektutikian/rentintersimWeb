@@ -84,16 +84,21 @@
   margin-bottom: 15px
 
 .flight_dates
-  margin: 0 auto
-  font-size: 0
+  display: inline-block
+  vertical-align: middle
+  width: 100%
+  margin-right: 7px
+  font-size: 0 
   .input-group-addon
     display: inline-block
     background: transparent
-    padding: 6px 0px
+    padding: 0
     font-size: 14px
     color: $dark_blue
-    border: 1px solid transparent
-    width: 32px
+    border: 1px solid $gray_border
+    width: 15%
+    height: 30px
+    line-height: 31px
   .inline_block_btn
     border: 1px solid $gray_border
 
@@ -120,14 +125,21 @@
   padding: 6px 12px
   font-size: 14px
 
-#landing_date,
-#departure_date
+.landing_date,
+.departure_date
   vertical-align: middle
   padding: 0 4px
-  width: 150px
+  width: 85%
   @include fonts_stack(14px)
   color: $total_numbers_title
+  border-top-right-radius: 5px
+  border-bottom-right-radius: 5px
 
+.c_support
+  float: left
+  margin-top: 8px
+  color: $light_gray
+  @include fonts_stack(15px)
 
 @media (max-width: 1200px)
 
