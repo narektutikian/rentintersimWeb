@@ -32,7 +32,6 @@ $( document ).ready(function() {
     });
     $('.vd_form .vd_number').each(function() {
         $(this).rules('add', {
-            required: true,
             number: true,
             minlength: 2
         });

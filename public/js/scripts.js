@@ -116,28 +116,28 @@ $( document ).ready(function() {
         $styledSelect.text($this.children('option').eq(0).text());
 
         // Insert an unordered list after the styled div and also cache the list
-        var $list = $('<ul />', {
-            'class': 'options'
-        }).insertAfter($styledSelect);
+        var $list = $('<div class="options"></div>').insertAfter($styledSelect);
 
         // Insert a list item into the unordered list for each select option
         for (var i = 0; i < numberOfOptions; i++) {
-            $('<li />', {
+            $('<div />', {
+                class: 'imitation_item',
                 text: $this.children('option').eq(i).text(),
-                rel: $this.children('option').eq(i).val()
+                //rel: $this.children('option').eq(i).val()
             }).appendTo($list);
         }
 
         // Cache the list items
-        var $listItems = $list.children('li');
+        var $listItems = $list.children('.imitation_item');
 
         // Show the unordered list when the styled div is clicked (also hides it if the div is clicked again)
         $styledSelect.click(function (e) {
+            console.log('option click');
             e.stopPropagation();
-            $('div.styled_select.active').each(function () {
-                $(this).removeClass('active').next('ul.options').hide();
-            });
-            $(this).toggleClass('active').next('ul.options').toggle();
+            //$('div.styled_select.active').each(function () {
+            //    $(this).removeClass('active').next('.options').hide();
+            //});
+            $(this).toggleClass('active').next('.options').toggle();
         });
 
         // Hides the unordered list when a list item is clicked and updates the styled div to show the selected list item
@@ -152,12 +152,13 @@ $( document ).ready(function() {
 
         // Hides the unordered list when clicking outside of it
         $(document).click(function () {
-            $styled_select.removeClass('active');
+            $styledSelect.removeClass('active');
             $list.hide();
         });
 
     });
 
+    $('.options').perfectScrollbar();
     /************ end of styling select tag *************/
 
 

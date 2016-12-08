@@ -132,7 +132,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <label class="table_label">SIM provider</label>
-                                        <input type="text" name="sim_prv1" class="block_btn_30 modal_input_without_icon vd_required" value="Vodafone"/>
+                                        <input type="text" name="sim_prv1" class="block_btn_30 modal_input_without_icon" value=""/>
                                     </div>
                                 </div>
                                 <div class="form-group">
