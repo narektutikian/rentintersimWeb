@@ -169,6 +169,39 @@ $( document ).ready(function() {
             }
     });
 
+    /******  Edit sim ********/
+
+    $('#edit-sim').on('click', function (e) {
+
+        // if(!$(this).closest('.vd_form').find('.error')){
+        //
+        //     console.log('has error');
+
+            var data = {
+                _token : CSRF_TOKEN,
+                number: $('#number').val(),
+                provider_id: $('#provider_id').val(),
+                is_parking: $('#is_parking').val()
+            };
+            var id = $('#id').val();
+
+            $.ajax({
+                type: "PUT",
+                url: '/sim/'+id,
+                data: data,
+                success: function( msg ) {
+                    $("#sim-edit-response").append("<div>"+"DONE "+msg+"</div>");
+                },
+                error: function (error) {
+                    $("#sim-edit-response").append("<div>"+"ERROR" +"</div>");
+                    // $("#sim-edit-response").append("<div>"+"ERROR "+ error.responseJSON.number[0]+ " ," +error.responseJSON.provider_id[0] +"</div>");
+                    console.log(error.responseJSON.number[0]);
+                }
+            });
+        // }
+
+    });
+
 }); // closes document ready
 
 

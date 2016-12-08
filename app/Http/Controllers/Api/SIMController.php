@@ -115,25 +115,28 @@ class SIMController extends Controller
 
             'number' => 'required|unique:sims',
             'provider_id' => 'required',
-            'state' => 'required',
+//            'is_parking' => 'required',
 //            'phone_id' => 'required',
 //            'user_id' => 'required',
 //            'is_active' => 1,
-
-
         ]);
-
         $sim=Sim::find($id);
+        $simState = '';
+        if ($request->input('is_parking') == 0)
+            $simState = 'parking';
+        else $simState = $sim->state;
+
+
 
         $sim->number= $request->input('number');
         $sim->provider_id = $request->input('provider_id');
-        $sim->state = $request->input('state');
+        $sim->state = $simState;
 //        $sim->phone_id = $request->input('initial_sim_id');
 //        $sim->user_id = $request->input('initial_sim_id');
-        $sim->is_active = $request->input('is_active');
+//        $sim->is_active = $request->input('is_active');
         $sim->save();
 
-        return $sim;
+        return response()->json(['sim updated'], 200);
     }
 
     /**
@@ -146,7 +149,7 @@ class SIMController extends Controller
     {
         //
         $sim=Sim::find($id);
-        $sim->save();
+        $sim->delete();
     }
 
     public static function solveSimList($sims){
@@ -221,6 +224,7 @@ class SIMController extends Controller
 //                dd($row);
             $query = Sim::forceCreate($row->toArray());
                 if ($query) continue;
+                else {return response()->json(['file content error']. 443);}
 //
             }
 

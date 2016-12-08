@@ -169,27 +169,27 @@
                 <div class="modal-header vdf_modal_header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <div class="vdf_modal_sub_header">
-                        <h3>Edit SIM number AAA</h3>
+                        <h3>Edit SIM number</h3>
                     </div>
                 </div>
-                <form action="sim/" class="form-horizontal vd_form">
+                <form action="sim/" id="sim-edit" class="form-horizontal vd_form">
                     <div class="modal-body vdf_modal_body">
 
                         <div class="form-group">
                             <div class="col-md-6 vdf_modal_left">
                                 <div class="form-group">
                                     <div class="col-md-6">
-                                        <label class="table_label">SIM Number FFF</label>
+                                        <label class="table_label">SIM Number</label>
                                         <div class="relative">
-                                            <input type="hidden" name="some_sim_edit_id" class="block_btn_30 modal_input" data-th="Id" value=""/>
-                                            <input type="text" name="some_sim_edit2" class="block_btn_30 modal_input vd_number vd_number" data-th="SIM Number" value=""/>
+                                            <input type="hidden" name="some_sim_edit_id" class="block_btn_30 modal_input" data-th="Id" id="id" value=""/>
+                                            <input type="text" name="some_sim_edit2" class="block_btn_30 modal_input vd_number vd_number" id="number" data-th="SIM Number" value=""/>
                                             <i class="input_icon icon-phone_number"></i>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <label class="table_label">Provider</label>
                                         <div class="select_wrapper">
-                                            <select name="sim_select" class="block_btn_30 modal_input vd_select"  data-th="Provider">
+                                            <select name="sim_select" class="block_btn_30 modal_input vd_select" id="provider_id" data-th="Provider">
                                                 <option value=""></option>
                                                 @foreach($providers as $provider)
                                                     <option value="{{$provider['id']}}">{{$provider['name']}}</option>
@@ -208,35 +208,36 @@
                                         <span class="vdf_checkbox_text">Parking SIM</span>
                                     </div>
                                 </div>
-                                <span class="or">OR</span>
+                                {{--<span class="or">OR</span>--}}
                             </div>
-                            <div class="col-md-6 vdf_modal_right">
-                                <div class="form-group">
-                                    <div class="col-md-12">
-                                        <label class="table_label">Add from file</label>
+                            {{--<div class="col-md-6 vdf_modal_right">--}}
+                                {{--<div class="form-group">--}}
+                                    {{--<div class="col-md-12">--}}
+                                        {{--<label class="table_label">Add from file</label>--}}
 
-                                        <span class="uploaded_files">
-                                            <span class="keep_file_name"></span>
-                                            <span class="file_container"> Browse
-                                                <input class="modal_image_name" type="file" />
-                                            </span>
-                                            <span class="uploaded_file_links"> File example
-                                                <a href="#" class="download_file disable" download=""><i class="icon-download"></i></a>
-                                            </span>
-                                        </span>
+                                        {{--<span class="uploaded_files">--}}
+                                            {{--<span class="keep_file_name"></span>--}}
+                                            {{--<span class="file_container"> Browse--}}
+                                                {{--<input class="modal_image_name" type="file" />--}}
+                                            {{--</span>--}}
+                                            {{--<span class="uploaded_file_links"> File example--}}
+                                                {{--<a href="#" class="download_file disable" download=""><i class="icon-download"></i></a>--}}
+                                            {{--</span>--}}
+                                        {{--</span>--}}
 
-                                    </div>
-                                </div>
+                                    {{--</div>--}}
+                                {{--</div>--}}
 
-                            </div>
+                            {{--</div>--}}
                         </div>
 
                 </div>
                 <div class="modal-footer vdf_modal_footer">
                     <a href="#" class="inline_block_btn light_gray_btn close vd_form_reset" data-dismiss="modal" aria-label="Close">Cancel</a>
-                    <input type="submit" class="inline_block_btn light_green_btn vd_form_submit" value="Edit SIM">
+                    <input type="submit" class="inline_block_btn light_green_btn vd_form_submit" id="edit-sim" value="Edit SIM">
                 </div>
                 </form>
+                <div style="padding: 10px; color:red" id="sim-edit-response"></div>
             </div>
         </div>
     </div>
