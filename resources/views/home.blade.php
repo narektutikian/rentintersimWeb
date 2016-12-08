@@ -65,7 +65,7 @@
                                 {{$order['sim_id']}}
                             </td>
                             <td class="rwd-td0">
-                                {{$order['provider']}}
+                                {{$order['package_id']}}
                             </td>
                             <td class="rwd-td0">
                                 {{$order['from']}}

@@ -75,4 +75,6 @@ class HomeController extends Controller
         ]);
         return $counts;
     }
+
+
 }

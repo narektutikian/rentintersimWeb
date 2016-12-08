@@ -24,6 +24,11 @@ class Phone extends Model
         return $this->belongsTo('App\Models\Sim', 'current_sim_id');
     }
 
+    public function parking_sim()
+    {
+        return $this->belongsTo('App\Models\Sim', 'initial_sim_id');
+    }
+
     public function provider()
     {
         return $this->belongsTo('App\Models\Provide', 'provider_id');

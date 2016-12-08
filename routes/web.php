@@ -35,8 +35,11 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
     Route::resource('type', 'PackageController');
 
     /*****Get new Number******/
-
     Route::get('get-number/{orderId}', 'OrderController@getNumber');
+
+    /*****Activate - Deactivate******/
+    Route::get('activate', 'OrderController@activate');
+    Route::get('deactivate', 'OrderController@deactivate');
 
     /*****Auth Routes******/
     Route::get('imitate', 'UserController@showImitation');

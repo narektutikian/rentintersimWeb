@@ -24,7 +24,7 @@ class CreateHelper
 
     public function setEndTime($datetime){
         return Carbon::createFromTimestamp($datetime)
-            ->subMinutes(30)
+            ->addMinutes(30)
             ->timestamp;
     }
 
@@ -126,6 +126,71 @@ class CreateHelper
 
         }
         return true;
+    }
+
+    public function startActivation()
+    {
+     $now = Carbon::now('Asia/Yerevan');
+//        dd($now->timestamp);
+        $orders = Order::where('status', 'pending')->where('from', '<', $now->timestamp+150)->where('from', '>', $now->timestamp-150)->get();
+        if ($orders != null){
+            foreach ($orders as $order){
+                $this->activate($order->id);
+            }
+        }
+//        dd($orders, $now->timestamp);
+    }
+
+    public function activate ($orderId)
+    {
+        $order = Order::find($orderId);
+        if ($order == null)
+            exit();
+//        $res = file_get_contents(
+//            "http://176.35.171.143:8085/api/vfapi.php?key=7963ad6960b1088b94db2c32f2975e86&call=simswap&cli=0"
+//            .$order->phone->number."&sim=".$order->sim->number);
+        $phone = $order->phone;
+        $phone->current_sim_id = $order->sim_id;
+        $phone->save();
+        $this->setStatus($order, 'active');
+    }
+
+    public function startDeactivation()
+    {
+     $now = Carbon::now();
+//        dd($now->timestamp);
+        $orders = Order::where('status', 'active')->where('to', '<', $now->timestamp+150)->where('to', '>', $now->timestamp-150)->get();
+        if ($orders != null){
+            foreach ($orders as $order){
+                $this->deactivate($order->id);
+            }
+        }
+//        dd($orders, $now->timestamp);
+    }
+
+    public function deactivate ($orderId)
+    {
+        $order = Order::find($orderId);
+        if ($order == null)
+            exit();
+        $phone = $order->phone;
+        $phone->current_sim_id = $phone->initial_sim_id;
+        $order->status = 'finished';
+        $order->save();
+//        $res = file_get_contents(
+//            "http://176.35.171.143:8085/api/vfapi.php?key=7963ad6960b1088b94db2c32f2975e86&call=simswap&cli=0"
+//            .$order->phone->number."&sim=".$phone->parking_sim->number);
+        if(Order::where('phone_id', $order->phone_id)->count() > 0)
+            $phone->state = 'not in use';
+        else $phone->state = 'pending';
+
+        $sim = $order->sim;
+        $sim->state = 'available';
+
+        $sim->save();
+        $phone->save();
+        $order->delete();
+
     }
 
 }

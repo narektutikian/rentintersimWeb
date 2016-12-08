@@ -215,4 +215,14 @@ class OrderController extends Controller
 
         return $number;
     }
+
+    public function activate()
+    {
+        $this->helper->startActivation();
+    }
+
+    public function deactivate()
+    {
+        $this->helper->startDeactivation();
+    }
 }
