@@ -222,10 +222,10 @@ $( document ).ready(function() {
 
             var file_ext = this.files[0].type.split('/')[1].toLowerCase();
 
-            if($.inArray(file_ext, ['gif','png','jpg','jpeg']) == -1) {
+            if($.inArray(file_ext, ['xls','xlsx']) == -1) {
 
                 $(this).parent('.file_container').siblings('.uploaded_file_links').find('.download_file').addClass('disabled');
-                alert('invalid extension!');
+                alert('invalid extension!!!!');
 
             }else{
                 var file_name = this.files[0].name;
