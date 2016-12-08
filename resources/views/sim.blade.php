@@ -153,9 +153,12 @@
                     <div class="modal-footer vdf_modal_footer">
                         <a href="#" class="inline_block_btn light_gray_btn close vd_form_reset" data-dismiss="modal" aria-label="Close">Cancel</a>
                         <input type="submit" class="inline_block_btn light_green_btn vd_form_submit" id="add-sim" value="Add SIM">
+
+                        <span class="success_response"></span>
+                        <span class="error_response"></span>
                     </div>
                 </form>
-                <div id="response-add-sim"></div>
+
             </div>
         </div>
     </div>
@@ -235,9 +238,12 @@
                 <div class="modal-footer vdf_modal_footer">
                     <a href="#" class="inline_block_btn light_gray_btn close vd_form_reset" data-dismiss="modal" aria-label="Close">Cancel</a>
                     <input type="submit" class="inline_block_btn light_green_btn vd_form_submit" id="edit-sim" value="Edit SIM">
+
+                    <span class="success_response"></span>
+                    <span class="error_response"></span>
                 </div>
                 </form>
-                <div style="padding: 10px; color:red" id="sim-edit-response"></div>
+
             </div>
         </div>
     </div>

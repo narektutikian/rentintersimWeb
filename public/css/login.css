@@ -631,6 +631,26 @@ select.error,
 textarea.error {
   border: 1px solid red !important; }
 
+.success_response {
+  position: absolute;
+  bottom: 10px;
+  left: 25px;
+  color: #2cc763;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-family: "proxima_nova_rgregular", Arial, Helvetica, sans-serif; }
+
+.error_response {
+  position: absolute;
+  bottom: 10px;
+  left: 25px;
+  color: red;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-family: "proxima_nova_rgregular", Arial, Helvetica, sans-serif; }
+
 .disable {
   pointer-events: none;
   cursor: default;

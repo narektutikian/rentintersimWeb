@@ -173,10 +173,7 @@ $( document ).ready(function() {
 
     $('#edit-sim').on('click', function (e) {
 
-        // if(!$(this).closest('.vd_form').find('.error')){
-        //
-        //     console.log('has error');
-
+        var this_id = $(this).attr('id');
             var data = {
                 _token : CSRF_TOKEN,
                 number: $('#number').val(),
@@ -190,10 +187,16 @@ $( document ).ready(function() {
                 url: '/sim/'+id,
                 data: data,
                 success: function( msg ) {
-                    $("#sim-edit-response").append("<div>"+"DONE "+msg+"</div>");
+                    $(".error_response").empty();
+                    $(".success_response").empty();
+                    $(".success_response").append("DONE "+msg);
                 },
                 error: function (error) {
-                    $("#sim-edit-response").append("<div>"+"ERROR" +"</div>");
+
+
+                    $(".error_response").empty();
+                    $(".success_response").empty();
+                    $(".error_response").append("ERROR");
                     // $("#sim-edit-response").append("<div>"+"ERROR "+ error.responseJSON.number[0]+ " ," +error.responseJSON.provider_id[0] +"</div>");
                     console.log(error.responseJSON.number[0]);
                 }
