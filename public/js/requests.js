@@ -28,10 +28,9 @@ $( document ).ready(function() {
     var package_id;
     $('#create-order').on('click', function (e) {
 
-        if($(this).closest('.vd_form').find('.error')){
+        if(!$(this).closest('.vd_form').find('.error')){
 
             console.log('has error');
-        }else{
 
             var data = {
                 _token : CSRF_TOKEN,
