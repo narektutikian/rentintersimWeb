@@ -49,20 +49,23 @@ class SIMController extends Controller
 
             'number' => 'required|unique:sims',
             'provider_id' => 'required',
-            'state' => 'required',
+//            'state' => 'required',
 //            'phone_id' => 'required',
 //            'user_id' => 'required',
 //            'is_active' => 1,
 
 
         ]);
+        $simState = 'available';
+        if ($request->input('is_parking') == 0)
+            $simState = 'parking';
 
         $newsim = Sim::forceCreate([
 
 
             'number' => $request->input('number'),
             'provider_id' => $request->input('provider_id'),
-            'state' => $request->input('state'),
+            'state' => $simState,
 //            'phone_id' => $request->input('number'),
 //            'user_id' => $request->input('number'),
             'is_active' => 1,
@@ -201,9 +204,15 @@ class SIMController extends Controller
         return view('sim', compact('simsArray'));
     }
 
-    public function import ()
+    public function import (Request $request)
     {
-        Excel::load('../storage/app/public/Sim.xlsx', function($reader) {
+        $file = null;
+
+        if ($request->hasFile('sim-file')){
+            $file =  $request->file('sim-file')->storeAs('public/sim', 'sim_import.xlsx');
+
+
+        Excel::load('../storage/app/'.$file, function($reader) {
 
             // Getting all results
             $reader->ignoreEmpty();
@@ -217,6 +226,9 @@ class SIMController extends Controller
 
 
         });
+        }
+        else {return response()->json(['error uploading file'], 403);}
+        return response()->json($file);
 
     }
 

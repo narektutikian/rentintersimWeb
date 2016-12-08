@@ -95,7 +95,7 @@
                         <h3>Add SIM number</h3>
                     </div>
                 </div>
-                <form action="/" class="form-horizontal vd_form" enctype='multipart/form-data'>
+                <form action="/" class="form-horizontal vd_form" id="insert-sim" enctype='multipart/form-data'>
                     <div class="modal-body vdf_modal_body">
                         <div class="form-group">
                             <div class="col-md-6 vdf_modal_left">
@@ -103,14 +103,15 @@
                                     <div class="col-md-6">
                                         <label class="table_label">SIM Number</label>
                                         <div class="relative">
-                                            <input type="text" name="some_sim_edit" class="block_btn_30 modal_input vd_number" value=""/>
+                                            <input type="text" name="some_sim_edit" id="sim-number" class="block_btn_30 modal_input vd_number" value=""/>
+                                            {{csrf_field()}}
                                             <i class="input_icon icon-phone_number"></i>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <label class="table_label">Provider</label>
                                         <div class="select_wrapper">
-                                            <select name="sim_select" class="block_btn_30 modal_input vd_select">
+                                            <select name="sim_select" id="provider-id" class="block_btn_30 modal_input vd_select">
                                                 <option value=""></option>
                                                 @foreach($providers as $provider)
                                                 <option value="{{$provider['id']}}">{{$provider['name']}}</option>
@@ -123,7 +124,7 @@
                                 <div class="form-group">
                                     <div class="col-md-12 special_number">
                                         <label class="vdf_checkbox">
-                                            <input type="checkbox" name="num_chkb" value="" />
+                                            <input type="checkbox" id="is-parking" name="num_chkb" value="" />
                                             <i class="icon-parking_sim"></i>
                                         </label>
                                         <span class="vdf_checkbox_text">Parking SIM</span>
@@ -154,6 +155,7 @@
                         <input type="submit" class="inline_block_btn light_green_btn vd_form_submit" id="add-sim" value="Add SIM">
                     </div>
                 </form>
+                <div id="response-add-sim"></div>
             </div>
         </div>
     </div>

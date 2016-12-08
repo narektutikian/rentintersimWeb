@@ -92,39 +92,72 @@ $( document ).ready(function() {
 
     $('#add-sim').on('click', function (e) {
         e.preventDefault();
-        console.log('clicked');
+        // console.log('clicked');
         var fileVal = $('#sim-file').val();
         if (fileVal == '') {
 
             var data = {
                 _token : CSRF_TOKEN,
-                sim: $('#sim').val(),
-                package_id: package_id, // put package id
-                reference_number: $('#reference_number').val(),
-                remark: $('#remark').val(),
+                number: $('#sim-number').val(),
+                provider_id: $('#provider-id').val(),
+                is_parking: $('#is-parking').val()
             };
 
                $.ajax({
              type: "POST",
-             url: '/import-sim',
-             data: {
-             _token: CSRF_TOKEN,
-             name: name,
-             type_code: type_code,
-             provider_id: provider_id,
-             description: description
-             },
+             url: '/sim',
+             data: data,
              success: function (msg) {
-             $("#ajaxResponse").append("<div>" + "DONE" + "</div>");
+             $("#response-add-sim").append("<div>" + "DONE" + "</div>");
              },
              error: function (error) {
-             $("#ajaxResponse").append("<div>" + "ERROR" + "</div>");
+             $("#response-add-sim").append("<div>" + "ERROR" + "</div>");
              }
              });
 
         }
         else {
-            alert($('#sim-file').val());
+                // alert($('#sim-file').val());
+
+                e.stopPropagation(); // Stop stuff happening
+
+               //  var files = new FormData($("#sim-file")[0]);
+               //  console.log(files.name);
+               //  var data = new FormData();
+               // /* $.each(files, function(key, value)
+               //  {
+               //      data.append(key, value);
+               //
+               //  });*/
+               //      data.append('_token', CSRF_TOKEN);
+            $.ajax({
+                url: 'import-sim',
+                type: 'POST',
+                data: new FormData($("#insert-sim")[0]),
+                cache: false,
+                dataType: 'json',
+                processData: false, // Don't process the files
+                contentType: false, // Set content type to false as jQuery will tell the server its a query string request
+                success: function(data, textStatus, jqXHR)
+                {
+                    if(typeof data.error === 'undefined')
+                    {
+                        // Success so call function to process the form
+                        // submitForm(event, data);
+                    }
+                    else
+                    {
+                        // Handle errors here
+                        console.log('ERRORS: ' + data.error);
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown)
+                {
+                    // Handle errors here
+                    console.log('ERRORS: ' + textStatus);
+                    // STOP LOADING SPINNER
+                }
+            });
 
 
             }
