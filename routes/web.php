@@ -55,8 +55,9 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
     Route::get('user-tree', 'UserController@getUserTree');
     Route::get('type-provider/{providerId}', 'PackageController@typeofProvider');
 
-    /******Export routes******/
+    /******Export Import routes******/
     Route::get('exportsims', 'SIMController@export');
+    Route::get('import-sim', 'SIMController@import');
 
     /******Search  routes******/
     Route::get('search/sim', 'SIMController@search');

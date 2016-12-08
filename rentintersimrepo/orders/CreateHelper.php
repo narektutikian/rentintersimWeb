@@ -180,7 +180,7 @@ class CreateHelper
 //        $res = file_get_contents(
 //            "http://176.35.171.143:8085/api/vfapi.php?key=7963ad6960b1088b94db2c32f2975e86&call=simswap&cli=0"
 //            .$order->phone->number."&sim=".$phone->parking_sim->number);
-        if(Order::where('phone_id', $order->phone_id)->count() > 0)
+        if(Order::where('phone_id', $order->phone_id)->count() > 0) //not tested
             $phone->state = 'not in use';
         else $phone->state = 'pending';
 

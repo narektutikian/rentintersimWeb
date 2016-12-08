@@ -95,7 +95,7 @@
                         <h3>Add SIM number</h3>
                     </div>
                 </div>
-                <form action="/" class="form-horizontal vd_form">
+                <form action="/" class="form-horizontal vd_form" enctype='multipart/form-data'>
                     <div class="modal-body vdf_modal_body">
                         <div class="form-group">
                             <div class="col-md-6 vdf_modal_left">
@@ -138,10 +138,10 @@
                                         <span class="uploaded_files">
                                             <span class="keep_file_name"></span>
                                             <span class="file_container"> Browse
-                                                <input class="modal_image_name" type="file" />
+                                                <input class="modal_image_name" type="file" name="sim-file" id="sim-file" accept=".xls,.xlsx"/>
                                             </span>
                                             <span class="uploaded_file_links"> File example
-                                                <a href="#" class="download_file disable" download=""><i class="icon-download"></i></a>
+                                                <a href="/storage/Sim.xlsx" class="download_file" download=""><i class="icon-download"></i></a>
                                             </span>
                                         </span>
                                     </div>

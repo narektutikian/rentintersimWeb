@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Sim;
@@ -198,6 +199,25 @@ class SIMController extends Controller
 
 //        dd($simsArray);
         return view('sim', compact('simsArray'));
+    }
+
+    public function import ()
+    {
+        Excel::load('../storage/app/public/Sim.xlsx', function($reader) {
+
+            // Getting all results
+            $reader->ignoreEmpty();
+            $results = $reader->get();
+            foreach ($results as $row){
+//                dd($row);
+            $query = Sim::forceCreate($row->toArray());
+                if ($query) continue;
+//
+            }
+
+
+        });
+
     }
 
 }

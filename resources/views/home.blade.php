@@ -45,7 +45,7 @@
                                 <th data-field="to" data-sortable="true" data-th="To">To</th>
                                 <th data-field="dealer" data-sortable="true" data-th="Dealer">Dealer </th>
                                 <th data-field="updated by" data-sortable="true" data-th="Updated by">Updated by</th>
-                                <th data-th="Reference N">Reference N</th>
+                                <th data-th="Reference N">Reference #</th>
                                 <th data-th="action">Action</th>
                                 <th data-field="status" data-sortable="true" data-th="Status">Status</th>
                             </tr>
@@ -157,7 +157,7 @@
                                             <div class="input-group-addon">
                                                 <span class="glyphicon glyphicon-calendar"></span>
                                             </div>
-                                            <input type="text" name="departure_date" class="inline_block_btn departure_date vd_required" data-date-format="DD/MM/YYYY HH:mm">
+                                            <input type="text" name="landing_date" class="inline_block_btn vd_required" id="landing_date" data-date-format="DD/MM/YYYY HH:mm">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -166,7 +166,7 @@
                                             <div class="input-group-addon">
                                                 <span class="glyphicon glyphicon-calendar"></span>
                                             </div>
-                                            <input type="text" name="landing_date" class="inline_block_btn landing_date vd_required" data-date-format="DD/MM/YYYY HH:mm">
+                                            <input type="text" name="departure_date" class="inline_block_btn vd_required" id="departure_date" data-date-format="DD/MM/YYYY HH:mm">
                                         </div>
                                     </div>
                                 </div>
