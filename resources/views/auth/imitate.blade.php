@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Vodafone</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="js/perfect-scrollbar/css/perfect-scrollbar.css">
     <link rel="stylesheet" href="css/login.css">
 </head>
 
@@ -27,17 +28,13 @@
             <div class="form-group form_row">
                 <select class="block_btn login_input styled_select">
                     <option value="Level" style="background-color: red; border-bottom: 1px solid #ffff00;">Level</option>
-                    {{--<option value="Superadmin" style="background-color: red; border-bottom: 1px solid #ffff00;">Superadmin</option>--}}
-                    {{--<option value="Distributor" style="background-color: red; border-bottom: 1px solid #ffff00;">Distributor</option>--}}
-                    {{--<option value="Dealer">Dealer</option>--}}
-                    {{--<option value="Subdealer">Subdealer</option>--}}
                 </select>
                 <i class="input_icon icon-level"></i>
             </div>
             @if ($errors->has('login'))
                 <span class="help-block">
-                                        <strong>{{ $errors->first('login') }}</strong>
-                                    </span>
+                    <strong>{{ $errors->first('login') }}</strong>
+                </span>
             @endif
             <div class="form-group form_row short_bottom">
                 <input type="submit" class="block_btn light_green_btn" value="Start"/>
@@ -49,6 +46,10 @@
 <script src="js/jquery-2.2.4.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/pie-chart/pie-chart.js"></script>
+<script src="js/perfect-scrollbar/js/perfect-scrollbar.min.js"></script>
+<script src="js/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js"></script>
+<script src="js/moment.min.js"></script>
+<script src="js/bootstrap-datetimepicker.js"></script>
 <script src="js/scripts.js"></script>
 </body>
 </html>

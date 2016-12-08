@@ -28,28 +28,35 @@ $( document ).ready(function() {
     var package_id;
     $('#create-order').on('click', function (e) {
 
-        var data = {
-            _token : CSRF_TOKEN,
-            sim: $('#sim').val(),
+        if($(this).closest('.vd_form').find('.error')){
 
-            landing: moment($('#landing_date').val(), "DD/MM/YYYY HH:mm").valueOf()/1000,
-            departure: moment($('#departure_date').val(), "DD/MM/YYYY HH:mm").valueOf()/1000,
-            package_id: package_id, // put package id
-            reference_number: $('#reference_number').val(),
-            remark: $('#remark').val(),
-        };
+            console.log('has error');
+        }else{
 
-        $.ajax({
-            type: "POST",
-            url: '/order',
-            data: data,
-            success: function( msg ) {
-                $("#order-create-div").append("<div>"+"DONE"+"</div>");
-            },
-            error: function (error) {
-                $("#order-create-div").append("<div>"+"ERROR"+"</div>");
-            }
-        });
+            var data = {
+                _token : CSRF_TOKEN,
+                sim: $('#sim').val(),
+
+                landing: moment($('#landing_date').val(), "DD/MM/YYYY HH:mm").valueOf()/1000,
+                departure: moment($('#departure_date').val(), "DD/MM/YYYY HH:mm").valueOf()/1000,
+                package_id: package_id, // put package id
+                reference_number: $('#reference_number').val(),
+                remark: $('#remark').val(),
+            };
+
+            $.ajax({
+                type: "POST",
+                url: '/order',
+                data: data,
+                success: function( msg ) {
+                    $("#order-create-div").append("<div>"+"DONE"+"</div>");
+                },
+                error: function (error) {
+                    $("#order-create-div").append("<div>"+"ERROR"+"</div>");
+                }
+            });
+        }
+
     });
 
     $.get("/type-provider/1", function(data, status){

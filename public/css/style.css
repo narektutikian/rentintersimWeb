@@ -210,15 +210,13 @@ table {
   padding-left: 48px; }
 
 .options {
+  height: 300px;
   display: none;
   position: absolute;
   top: 100%;
   right: -1px;
   left: -1px;
   z-index: 999;
-  margin: 0 0;
-  padding: 0 0;
-  list-style: none;
   background-color: #ffffff;
   border: 1px solid #8da1b0;
   -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
@@ -226,18 +224,35 @@ table {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
   margin-top: -2px;
   border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px; }
+  border-bottom-right-radius: 5px;
+  margin: 0 0;
+  padding: 0 0;
+  list-style: none; }
 
-.options li {
+.options .imitation_item {
+  height: 36px;
   margin: 0 6px;
   padding: 0 10px 0 48px;
   background: #ffffff;
   border-bottom: 1px solid #8da1b0; }
-  .options li:last-child {
+  .options .imitation_item:last-child {
     border-bottom: none; }
 
-.options li:hover {
+.options .imitation_item:hover {
   background-color: #d4e1ea; }
+
+.ps-container > .ps-scrollbar-y-rail > .ps-scrollbar-y {
+  background-color: #2cc763; }
+
+.options.ps-container > .ps-scrollbar-y-rail > .ps-scrollbar-y {
+  background-color: #2cc763; }
+
+.ps-container:hover.ps-in-scrolling.ps-y > .ps-scrollbar-y-rail > .ps-scrollbar-y,
+.ps-container.ps-in-scrolling.ps-y > .ps-scrollbar-y-rail > .ps-scrollbar-y {
+  background-color: #2cc763; }
+
+.ps-container:hover > .ps-scrollbar-y-rail:hover > .ps-scrollbar-y {
+  background-color: #2cc763; }
 
 /* Styling radio button */
 .vdf_radio {
