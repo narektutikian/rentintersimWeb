@@ -88,6 +88,48 @@ $( document ).ready(function() {
         }
     });
 
+    /***** ADD NEW SIM *****/
+
+    $('#add-sim').on('click', function (e) {
+        e.preventDefault();
+        console.log('clicked');
+        var fileVal = $('#sim-file').val();
+        if (fileVal == '') {
+
+            var data = {
+                _token : CSRF_TOKEN,
+                sim: $('#sim').val(),
+                package_id: package_id, // put package id
+                reference_number: $('#reference_number').val(),
+                remark: $('#remark').val(),
+            };
+
+               $.ajax({
+             type: "POST",
+             url: '/import-sim',
+             data: {
+             _token: CSRF_TOKEN,
+             name: name,
+             type_code: type_code,
+             provider_id: provider_id,
+             description: description
+             },
+             success: function (msg) {
+             $("#ajaxResponse").append("<div>" + "DONE" + "</div>");
+             },
+             error: function (error) {
+             $("#ajaxResponse").append("<div>" + "ERROR" + "</div>");
+             }
+             });
+
+        }
+        else {
+            alert($('#sim-file').val());
+
+
+            }
+    });
+
 }); // closes document ready
 
 

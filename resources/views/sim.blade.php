@@ -151,7 +151,7 @@
                     </div>
                     <div class="modal-footer vdf_modal_footer">
                         <a href="#" class="inline_block_btn light_gray_btn close vd_form_reset" data-dismiss="modal" aria-label="Close">Cancel</a>
-                        <input type="submit" class="inline_block_btn light_green_btn vd_form_submit" value="Add SIM">
+                        <input type="submit" class="inline_block_btn light_green_btn vd_form_submit" id="add-sim" value="Add SIM">
                     </div>
                 </form>
             </div>

@@ -57,7 +57,7 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
 
     /******Export Import routes******/
     Route::get('exportsims', 'SIMController@export');
-    Route::get('import-sim', 'SIMController@import');
+    Route::post('import-sim', 'SIMController@import');
 
     /******Search  routes******/
     Route::get('search/sim', 'SIMController@search');

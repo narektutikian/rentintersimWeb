@@ -222,7 +222,7 @@ $( document ).ready(function() {
 
             var file_ext = this.files[0].type.split('/')[1].toLowerCase();
 
-            if($.inArray(file_ext, ['xls','xlsx']) == -1) {
+            if($.inArray(file_ext, ['xls','xlsx', 'vnd.openxmlformats-officedocument.spreadsheetml.sheet']) == -1) {
 
                 $(this).parent('.file_container').siblings('.uploaded_file_links').find('.download_file').addClass('disabled');
                 alert('invalid extension!!!!');
@@ -232,11 +232,11 @@ $( document ).ready(function() {
                 var tmp_path = URL.createObjectURL(e.target.files[0]);
 
                 $(this).parent().siblings('.keep_file_name').html(file_name);
-                $(this).parent('.file_container').siblings('.uploaded_file_links').find('.download_file').removeClass('disabled');
-                $(this).parent('.file_container').siblings('.uploaded_file_links').find('.download_file').attr({
-                    'href': tmp_path,
-                    'download' : this.files[0].name
-                });
+                // $(this).parent('.file_container').siblings('.uploaded_file_links').find('.download_file').removeClass('disabled');
+                // $(this).parent('.file_container').siblings('.uploaded_file_links').find('.download_file').attr({
+                //     'href': tmp_path,
+                //     'download' : this.files[0].name
+                // });
             }
 
         }
