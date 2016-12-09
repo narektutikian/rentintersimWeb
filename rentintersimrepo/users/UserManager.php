@@ -23,8 +23,8 @@ class UserManager
         return $network;
     }
     public function getMyFlatNetwork($id){
-            $users = User::get()->toArray();
-           $network = $this->buildTree($users, $id);
+        $users = User::select('id', 'login', 'level', 'type', 'supervisor_id', 'name', 'is_active')->get()->toArray();
+        $network = $this->buildTree($this->solveUsers($users), $id);
             $flat = $this->flatten($network);
             return $flat;
 //            return $network;
@@ -48,16 +48,22 @@ class UserManager
         return $branch;
     }
 
+    function isAssoc(array $arr)
+    {
+        if (array() === $arr) return false;
+        return array_keys($arr) !== range(0, count($arr) - 1);
+    }
+
     function flatten($element)
     {
         $flatArray = array();
-        if (count($element) == 1 && !array_key_exists('child', $element) && !is_array($element)) {
-            $flatArray[] = $element;
+        if (!array_key_exists('child', $element) && $this->isAssoc($element)) {
+            $flatArray += $element;
         }
             foreach ($element as $key => $node) {
 //            if (is_array($node))
                 if (array_key_exists('child', $node)) {
-                    $flatArray[] =  $this->flatten($node['child']);
+                    $flatArray +=  $this->flatten($node['child']);
                     unset($node['child']);
                     $flatArray[] = $node;
 //                    if (count($flat)>1)
