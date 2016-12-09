@@ -1025,41 +1025,41 @@ input[type="radio"].toggle.checked + label {
   margin: 0 auto;
   overflow: hidden;
   padding: 0 30px; }
-  .wrap_package_list .package_item {
-    height: 95px; }
-    .wrap_package_list .package_item a {
+  .wrap_package_list .package_item a {
+    display: block;
+    height: 95px;
+    text-align: center;
+    border: 1px solid #ecf3f9;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    border-radius: 10px;
+    padding: 0 2px; }
+    .wrap_package_list .package_item a h4 {
+      color: #2cc763;
+      margin-top: 12px;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      font-size: 15px;
+      font-weight: normal;
+      font-style: normal;
+      font-family: "proxima_nova_rgregular", Arial, Helvetica, sans-serif; }
+    .wrap_package_list .package_item a span {
       display: block;
-      text-align: center;
-      border: 1px solid #ecf3f9;
-      -webkit-border-radius: 10px;
-      -moz-border-radius: 10px;
-      -ms-border-radius: 10px;
-      border-radius: 10px; }
-      .wrap_package_list .package_item a h4 {
-        color: #2cc763;
-        margin-top: 15px;
-        margin-bottom: 18px;
-        text-transform: uppercase;
-        font-size: 15px;
-        font-weight: normal;
-        font-style: normal;
-        font-family: "proxima_nova_rgregular", Arial, Helvetica, sans-serif; }
-      .wrap_package_list .package_item a span {
-        display: block;
-        margin-bottom: 8px;
-        line-height: 18px;
-        color: #69717e;
-        font-size: 14px;
-        font-weight: normal;
-        font-style: normal;
-        font-family: "proxima_nova_rgregular", Arial, Helvetica, sans-serif; }
-      .wrap_package_list .package_item a.selected_package {
-        background: #2cc763;
+      margin-bottom: 8px;
+      line-height: 18px;
+      color: #69717e;
+      font-size: 14px;
+      font-weight: normal;
+      font-style: normal;
+      font-family: "proxima_nova_rgregular", Arial, Helvetica, sans-serif; }
+    .wrap_package_list .package_item a.selected_package {
+      background: #2cc763;
+      color: #ffffff; }
+      .wrap_package_list .package_item a.selected_package h4 {
         color: #ffffff; }
-        .wrap_package_list .package_item a.selected_package h4 {
-          color: #ffffff; }
-        .wrap_package_list .package_item a.selected_package span {
-          color: #ffffff; }
+      .wrap_package_list .package_item a.selected_package span {
+        color: #ffffff; }
   .wrap_package_list .owl-controls {
     position: absolute;
     top: 50%;

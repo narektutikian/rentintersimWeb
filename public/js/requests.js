@@ -61,27 +61,14 @@ $( document ).ready(function() {
     $.get("/type-provider/1", function(data, status){
         if (status == "success"){
             $.each(data, function(i, item) {
-                console.log(item.name + "\n");
+                //console.log(item.name + "\n");
 
-                $("#wrap_package_list").append("<div class='package_item'>" +
+                $(".wrap_package_list").append("<div class='package_item'>" +
                     "<a href='#' data-id='" + item.id + "' title='Basic Package'>" +
                         "<h4>"+ item.name +"</h4>" +
                         "<span>" + item.description + "</span>" +
                     "</a>" +
                 "</div>");
-
-                /*
-                     <div id="wrap_package_list">
-                         <div class="package_item">
-                             <a href="#" title="Basic Package">
-                                 <h4>Basic Package</h4>
-                                 <span>8 Mb Data</span>
-                                 <span>Unlimited local</span>
-                                 <span>Call + SMS</span>
-                             </a>
-                        </div>
-                     </div>
-                 */
 
             });
 
@@ -98,7 +85,7 @@ $( document ).ready(function() {
 
     $('#add-sim').on('click', function (e) {
         e.preventDefault();
-        // console.log('clicked');
+
         var fileVal = $('#sim-file').val();
         if (fileVal == '') {
 
@@ -203,6 +190,80 @@ $( document ).ready(function() {
             });
         // }
 
+    });
+
+
+    /* User Management Nested Table */
+    $.ajax({
+        url: 'http://localhost:8000/user-tree',
+        //dataType: 'jsonp',
+        success: function(json) {
+
+            console.log(json);
+
+            for(var i = 0; i < json.length; i++){
+
+
+                $('#tree_table tbody').prepend(
+                    '<tr>' +
+                    '<td></td>' +
+                    '<td>' +
+                        json[i].name +
+                    '</td>' +
+                    '<td>' +
+                        json[i].name +
+                    '</td>' +
+                    '<td>' +
+                        json[i].level +
+                    '</td>' +
+                    '<td>15</td>' +
+                    '<td>24</td>' +
+                    '<td>0</td>' +
+                    '<td>' +
+                    '<span class="table_icon"><i class="icon-edit"></i></span>' +
+                    '</td>' +
+                    '<td>' +
+                    '<div class="vdf_radio">' +
+                    '<div class="toggle_container disabled">' +
+                    '<label><input type="radio" name="toggle" value="1"><span></span></label>' +
+                    '<label><input type="radio" name="toggle" value="0"><span class="input-checked"></span></label>' +
+                    '</div>' +
+                    '</div>' +
+                    '<span class="status_text_small not_used">Not in use</span>' +
+                    '</td>' +
+                    '</tr>'
+                );
+            }
+
+            function recursiveIteration(object) {
+                for (var property in object) {
+
+                    console.log('property 1 ',property);
+
+                    if (object.hasOwnProperty("child")) {
+                        console.log('child found ', property);
+                        /*
+                        if (typeof object[property] == "object"){
+                            recursiveIteration(object[property]);
+                            console.log('property 2 ',property);
+                            console.log('object[property] ', object[property]);
+                        }else{
+                            //console.log('found a property which is not an object, check for your conditions here....');
+                            //found a property which is not an object, check for your conditions here
+                        } */
+                    }
+                }
+            }
+            recursiveIteration(json[i]);
+
+
+
+        }
+    }).fail(function (jqXHR, textStatus, errorThrown) {
+
+        console.log(jqXHR);
+        console.log(textStatus);
+        console.log(errorThrown);
     });
 
 }); // closes document ready

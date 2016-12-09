@@ -255,9 +255,9 @@ $( document ).ready(function() {
 
         setTimeout(function(){
 
-            $('#wrap_package_list').show(); // show package list after modal was open
+            $('.wrap_package_list').show(); // show package list after modal was open
             //
-            $('#wrap_package_list').owlCarousel({
+            $('.wrap_package_list').owlCarousel({
                 nav : true,
                 navText : ['<i class="prev icon-dropdown"></i>', '<i class="next icon-dropdown"></i>'],
                 margin : 22,

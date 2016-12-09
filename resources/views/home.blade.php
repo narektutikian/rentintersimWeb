@@ -138,7 +138,7 @@
                                 <div class="form-group">
                                     <div class="col-md-12">
                                         <label class="table_label">Choose a SIM package </label>
-                                        <div class="wrap_package_list" class="always_visible"></div>
+                                        <div class="wrap_package_list always_visible"></div>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -235,8 +235,14 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-12">
-                                        <label class="table_label">Choose a SIM package </label>
-                                        <div class="wrap_package_list" class="always_visible"></div>
+
+                                        <div class="single_package">
+                                            <label class="table_label">Selected Package </label>
+                                            <a class="selected_package" title="Basic Package">
+                                                <h4>Basic Package</h4>
+                                                <span>8 Mb Data Unlimited local Call + SMS</span>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
