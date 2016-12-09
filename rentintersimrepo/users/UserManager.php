@@ -9,18 +9,26 @@
 namespace Rentintersimrepo\users;
 
 use App\User;
+use App\Models\Order;
 
 
 
 class UserManager
 {
     public function getMyNetwork($id){
-        $users = User::get()->toArray();
-       $network = $this->buildTree($users, $id);
+        $users = User::select('id', 'login', 'level', 'type', 'supervisor_id', 'name', 'is_active')->get()->toArray();
+       $network = $this->buildTree($this->solveUsers($users), $id);
 //        $flat = $this->flatten($network);
 //        return $flat;
         return $network;
     }
+    public function getMyFlatNetwork($id){
+            $users = User::get()->toArray();
+           $network = $this->buildTree($users, $id);
+            $flat = $this->flatten($network);
+            return $flat;
+//            return $network;
+        }
 
 
     function buildTree($elements, $parentId = 0)
@@ -49,7 +57,7 @@ class UserManager
             foreach ($element as $key => $node) {
 //            if (is_array($node))
                 if (array_key_exists('child', $node)) {
-                    $flatArray =  $this->flatten($node['child']);
+                    $flatArray[] =  $this->flatten($node['child']);
                     unset($node['child']);
                     $flatArray[] = $node;
 //                    if (count($flat)>1)
@@ -84,6 +92,20 @@ class UserManager
             return true;
 
         return false;
+    }
+
+    protected function solveUsers($users)
+    {
+
+        foreach ($users as $key => $user) {
+
+            $users[$key]['active'] = Order::employee($user['id'])->filter('active')->count();
+            $users[$key]['pending'] = Order::employee($user['id'])->filter('pending')->count();
+            $users[$key]['waiting'] = Order::employee($user['id'])->filter('waiting')->count();
+
+        }
+        return $users;
+
     }
 
 }

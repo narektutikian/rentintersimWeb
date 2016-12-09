@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Models\Package;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Excel;
 
 class PackageController extends Controller
 {
@@ -156,6 +157,10 @@ class PackageController extends Controller
         $packagesArray = $packages;
         foreach ($packages as $key => $package) {
             $packagesArray[$key]['provider_id'] = $package->provider->name;
+            unset($packagesArray[$key]['deleted_at']);
+            unset($packagesArray[$key]['created_at']);
+            unset($packagesArray[$key]['updated_at']);
+            unset($packagesArray[$key]['status']);
         }
         return $packagesArray;
     }
@@ -167,5 +172,70 @@ class PackageController extends Controller
 
 //        dd($packagesArray);
         return view('type', compact('packagesArray'));
+    }
+
+    public function export()
+    {
+        $data = $this->solvePackageList(Package::get());
+        Excel::create('Types', function($excel) use ($data) {
+
+            $excel->sheet('Types', function($sheet) use($data) {
+
+                $sheet->fromArray($data);
+
+            });
+
+        })->download('xlsx');
+
+        /*
+
+ //        fputcsv($out, array_keys($data[1]));
+         $out = fopen('php://output', 'w');
+         foreach($data as $line)
+         {
+             fputcsv($out, $line);
+         }
+         fclose($out);*/
+    }
+
+    public function search(Request $request)
+    {
+        $result = Package::where('name', 'LIKE', '%'.$request->input('query').'%')
+            ->orWhere('description', 'LIKE', '%'.$request->input('query').'%')
+            ->paginate(env('PAGINATE_DEFAULT'));
+        $packagesArray = $this->solvePackageList($result);
+
+//        dd($simsArray);
+        return view('type', compact('packagesArray'));
+    }
+
+    public function import (Request $request)
+    {
+        $file = null;
+
+        if ($request->hasFile('type-file')){
+            $file =  $request->file('type-file')->storeAs('public/type', 'sim_import.xlsx');
+
+
+            Excel::load('../storage/app/'.$file, function($reader) {
+
+                // Getting all results
+                $reader->ignoreEmpty();
+                $results = $reader->get();
+                foreach ($results as $row){
+//                dd($row);
+                    $query = Package::forceCreate($row->toArray());
+                    if ($query) continue;
+                    else {return response()->json(['file content error']. 443);}
+//
+                }
+
+
+            });
+            Storage::delete($file);
+        }
+        else {return response()->json(['error uploading file'], 443);}
+        return response()->json([$file]);
+
     }
 }

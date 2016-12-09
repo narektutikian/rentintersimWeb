@@ -17,11 +17,12 @@
                         <span class="status disabled"></span> disable ({{$counts['Disable']}})
                     </a>
                     <div class="search_management_option">
-                        <form action="/" class="search_form_option vd_form">
-                            <input type="text" class="block_btn_30 search_input" value="search">
+                        <form action="{{url('search/type')}}" class="search_form_option vd_form">
+                            <input type="text" class="block_btn_30 search_input" name="query" placeholder="Search" value="">
+                            {{csrf_field()}}
                             <button type="submit" class="search_button"><i class="icon-search"></i></button>
                         </form>
-                        <a href="#" class="export_user"><i class="icon-export"></i>Export</a>
+                        <a href="{{url('/exporttypes')}}" class="export_user"><i class="icon-export"></i>Export</a>
                         <a href="#" class="add_new_btn" data-toggle="modal" data-target="#modal_add_new_type"><i class="icon-add_number"></i>Add new type</a>
                     </div>
                 </div>

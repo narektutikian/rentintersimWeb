@@ -5,6 +5,10 @@
 $( document ).ready(function() {
     var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
+    $('.close').click(function() {
+        location.reload();
+    });
+
     $('#submit').on('click', function (e) {
         e.preventDefault();
         var name = $('#name').val();

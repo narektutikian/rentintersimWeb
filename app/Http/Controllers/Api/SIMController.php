@@ -230,6 +230,7 @@ class SIMController extends Controller
 
 
         });
+            Storage::delete($file);
         }
         else {return response()->json(['error uploading file'], 403);}
         return response()->json($file);

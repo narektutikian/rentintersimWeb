@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Phone;
+use Excel;
 
 class PhoneController extends Controller
 {
@@ -164,6 +165,70 @@ class PhoneController extends Controller
 
         return view('number', compact('phonesArray'));
 //        dd($phonesArray);
+    }
+
+    public function export()
+    {
+        $data = $this->solvePhoneList(Phone::get());
+        Excel::create('Phones', function($excel) use ($data) {
+
+            $excel->sheet('Phones', function($sheet) use($data) {
+
+                $sheet->fromArray($data);
+
+            });
+
+        })->download('xlsx');
+
+        /*
+
+ //        fputcsv($out, array_keys($data[1]));
+         $out = fopen('php://output', 'w');
+         foreach($data as $line)
+         {
+             fputcsv($out, $line);
+         }
+         fclose($out);*/
+    }
+
+    public function search(Request $request)
+    {
+        $result = Phone::where('phone', 'LIKE', '%'.$request->input('query').'%')
+                ->paginate(env('PAGINATE_DEFAULT'));
+        $packagesArray = $this->solvePhoneList($result);
+
+//        dd($simsArray);
+        return view('number', compact('numbersArray'));
+    }
+
+    public function import (Request $request)
+    {
+        $file = null;
+
+        if ($request->hasFile('number-file')){
+            $file =  $request->file('number-file')->storeAs('public/phone', 'sim_import.xlsx');
+
+
+            Excel::load('../storage/app/'.$file, function($reader) {
+
+                // Getting all results
+                $reader->ignoreEmpty();
+                $results = $reader->get();
+                foreach ($results as $row){
+//                dd($row);
+                    $query = Package::forceCreate($row->toArray());
+                    if ($query) continue;
+                    else {return response()->json(['file content error']. 443);}
+//
+                }
+
+
+            });
+            Storage::delete($file);
+        }
+        else {return response()->json(['error uploading file'], 443);}
+        return response()->json([$file]);
+
     }
 
 

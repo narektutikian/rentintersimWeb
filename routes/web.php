@@ -53,14 +53,18 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
 
     /***Ajax requests***/
     Route::get('user-tree', 'UserController@getUserTree');
+    Route::get('user-flat-tree', 'UserController@getFlatTree');
     Route::get('type-provider/{providerId}', 'PackageController@typeofProvider');
 
     /******Export Import routes******/
     Route::get('exportsims', 'SIMController@export');
     Route::post('import-sim', 'SIMController@import');
+    Route::get('exporttypes', 'PackageController@export');
+    Route::post('import-type', 'PackageController@import');
 
     /******Search  routes******/
     Route::get('search/sim', 'SIMController@search');
+    Route::get('search/type', 'PackageController@search');
 });
 
 

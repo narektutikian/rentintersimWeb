@@ -123,7 +123,7 @@ $( document ).ready(function() {
             $('<div />', {
                 class: 'imitation_item',
                 text: $this.children('option').eq(i).text(),
-                rel: $this.children('option').eq(i).val()
+                //rel: $this.children('option').eq(i).val()
             }).appendTo($list);
         }
 
