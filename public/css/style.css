@@ -629,18 +629,21 @@ input[type="radio"].toggle.checked + label {
       -ms-transform: rotate(0deg);
       transform: rotate(0deg); }
 
-.bootstrap-table .table tbody tr.nested_row {
+.user_management_table tbody tr.nested_row {
   border: none; }
-.bootstrap-table .table tbody tr td.nested_cell {
-  padding: 0; }
-.bootstrap-table .table tbody tr td .nested_div .table {
-  border: none; }
-  .bootstrap-table .table tbody tr td .nested_div .table .nested_inner_row {
+.user_management_table tbody tr td {
+  border-top: 1px solid red;
+  border-left: 1px solid red; }
+  .user_management_table tbody tr td.nested_cell {
+    padding: 0; }
+  .user_management_table tbody tr td .nested_div .table {
     border: none; }
-    .bootstrap-table .table tbody tr td .nested_div .table .nested_inner_row td:first-child {
-      padding: 0 !important;
-      border: none;
-      text-align: center; }
+    .user_management_table tbody tr td .nested_div .table .nested_inner_row {
+      border: none; }
+      .user_management_table tbody tr td .nested_div .table .nested_inner_row td:first-child {
+        padding: 0 !important;
+        border: none;
+        text-align: center; }
 
 .table_icon {
   display: inline-block;

@@ -201,62 +201,57 @@ $( document ).ready(function() {
 
             console.log(json);
 
-            for(var i = 0; i < json.length; i++){
+            var string = '';
+            function recursiveIteration(json) {
 
+                string +=
+                    '<table class="responsive_table table user_management_table" data-toggle="table" id="tree_table">' +
+                        '<thead>' +
+                        '</thead>' +
+                    '<tbody>';
 
-                $('#tree_table tbody').prepend(
-                    '<tr>' +
-                    '<td></td>' +
-                    '<td>' +
-                        json[i].name +
-                    '</td>' +
-                    '<td>' +
-                        json[i].name +
-                    '</td>' +
-                    '<td>' +
-                        json[i].level +
-                    '</td>' +
-                    '<td>15</td>' +
-                    '<td>24</td>' +
-                    '<td>0</td>' +
-                    '<td>' +
-                    '<span class="table_icon"><i class="icon-edit"></i></span>' +
-                    '</td>' +
-                    '<td>' +
-                    '<div class="vdf_radio">' +
-                    '<div class="toggle_container disabled">' +
-                    '<label><input type="radio" name="toggle" value="1"><span></span></label>' +
-                    '<label><input type="radio" name="toggle" value="0"><span class="input-checked"></span></label>' +
-                    '</div>' +
-                    '</div>' +
-                    '<span class="status_text_small not_used">Not in use</span>' +
-                    '</td>' +
-                    '</tr>'
-                );
-            }
+                for(var prop in json){
+                    var icon = '<a href="#" class="open_nested" data-toggle="collapse" data-target="#demo' + (json[prop]["id"] || "0") + '"><i class="icon-dropdown"></i></a>';
+                    icon = (json[prop]["child"])? icon : '';
 
-            function recursiveIteration(object) {
-                for (var property in object) {
+                    string += '<tr>' +
+                            '<td>' +
+                                  icon +
+                            '</td>' +
+                            '<td>' + json[prop]["name"] + '</td><td>' + json[prop]["name"] + '</td><td>' + json[prop]["level"] + '</td><td>15</td>' +
+                            '<td>24</td><td>0</td><td>' +
+                            '<span class="table_icon"><i class="icon-edit"></i></span>' +
+                            '</td>' +
+                            '<td>' +
+                            '<div class="vdf_radio">' +
+                            '<div class="toggle_container disabled">' +
+                            '<label><input type="radio" name="toggle" value="1"><span></span></label>' +
+                            '<label><input type="radio" name="toggle" value="0"><span class="input-checked"></span></label>' +
+                            '</div>' +
+                            '</div>' +
+                            '<span class="status_text_small not_used">Not in use</span>' +
+                            '</td>' +
+                        '</tr>';
 
-                    console.log('property 1 ',property);
-
-                    if (object.hasOwnProperty("child")) {
-                        console.log('child found ', property);
-                        /*
-                        if (typeof object[property] == "object"){
-                            recursiveIteration(object[property]);
-                            console.log('property 2 ',property);
-                            console.log('object[property] ', object[property]);
-                        }else{
-                            //console.log('found a property which is not an object, check for your conditions here....');
-                            //found a property which is not an object, check for your conditions here
-                        } */
+                    if(json[prop]["child"]) {
+                        string += '<tr class="nested_row">' +
+                            '<td></td><td colspan="8" class="nested_cell">' +
+                            '<div class="collapse nested_div" id="demo' + (json[prop]["id"] || "0") + '">';
+                                recursiveIteration(json[prop]["child"]);
+                        string += '</div></td></tr>';
                     }
+
                 }
+
+                string += '</tbody></table>';
+
             }
-            recursiveIteration(json[i]);
 
+           recursiveIteration(json);
 
+            $('#wrap_tree_table').prepend(
+                string
+            );
 
         }
     }).fail(function (jqXHR, textStatus, errorThrown) {

@@ -200,7 +200,7 @@ $( document ).ready(function() {
 
 
     // rotate arrow for nested rows
-    $('.open_nested').on('click', function (e) {
+    $(document).on('click', '.open_nested', function (e) {
         e.preventDefault();
         console.log('open_nested');
         $(this).find('.icon-dropdown').toggleClass('expanded');

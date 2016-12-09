@@ -55,24 +55,25 @@
       @include transform(0deg)
 
 
-.bootstrap-table
-  .table
-    tbody
-      tr
-        &.nested_row
-          border: none
-        td
-          &.nested_cell
-            padding: 0
-          .nested_div
-            .table
+.user_management_table
+  tbody
+    tr
+      &.nested_row
+        border: none
+      td
+        border-top: 1px solid red
+        border-left: 1px solid red
+        &.nested_cell
+          padding: 0
+        .nested_div
+          .table
+            border: none
+            .nested_inner_row
               border: none
-              .nested_inner_row
+              td:first-child
+                padding: 0 !important
                 border: none
-                td:first-child
-                  padding: 0 !important
-                  border: none
-                  text-align: center
+                text-align: center
 
 .table_icon
   display: inline-block

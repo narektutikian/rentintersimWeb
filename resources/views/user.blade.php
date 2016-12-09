@@ -339,17 +339,17 @@
                     </table>
                 </div>
             </div>
+
+
+        <br>
+            <div class="row">
+                <div class="col-md-12">
+                <div id="wrap_tree_table">
+
+                </div>
+            </div>
+        </div>
         </section>
 
-        <table class="responsive_table table user_management_table" data-toggle="table" id="tree_table">
-            <thead>
-            <tr>
-                <th class="w25"></th><th>Name</th><th class="w180">Username</th><th class="w110left">Level</th>
-                <th class="w65">Active</th><th class="w73">Pending</th><th class="w65">Waiting</th><th class="w65">Action</th><th class="w_160_status">Status</th>
-                </tr>
-            </thead>
-            <tbody>
 
-            </tbody>
-        </table>
 @endsection
