@@ -95,7 +95,17 @@
                                 </label>
                             </td>
                             <td class="rwd-td8 table_id_cell table_status_cell">
-                                {{$order['status']}}
+                                <div class="vdf_radio">
+                                    <div class="toggle_container {{ ((!$order['is_active']) ? 'disabled' : '') }}">
+                                        <label class="label_unchecked">
+                                            <input type="radio" name="toggle" value="1"><span></span>
+                                        </label>
+                                        <label class="label_checked">
+                                            <input type="radio" name="toggle" value="0"><span></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <span class="table_status_text not_used">{{$order['status']}}</span>
                             </td>
                         </tr>
                         @endforeach
