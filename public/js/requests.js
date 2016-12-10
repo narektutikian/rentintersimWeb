@@ -196,7 +196,6 @@ $( document ).ready(function() {
 
     });
 
-
     /* User Management Nested Table */
     $.ajax({
         url: 'http://localhost:8000/user-tree',
