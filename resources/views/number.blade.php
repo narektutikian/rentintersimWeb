@@ -55,7 +55,7 @@
                                 <td class="rwd-td3 editable_cell" data-toggle="modal" data-th="Provider">{{$number['provider_id']}}</td>
                                 <td class="rwd-td4 editable_cell" data-toggle="modal" data-th="Type">{{$number['package_id']}}</td>
                                 <td class="rwd-td5 table_action_cell" data-th="Action">
-                                    <span class="table_icon edit"  data-toggle="modal" data-target="#modal_edit_number" data-form="#modal_edit_number">
+                                    <span class="table_icon edit" data-toggle="modal" data-target="#modal_edit_number" data-form="#modal_edit_number">
                                         <i class="icon-edit"></i>
                                     </span>
 

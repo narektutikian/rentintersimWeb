@@ -274,18 +274,18 @@ $( document ).ready(function() {
                     '<td class="w80" data-th="Pending">' + json[prop]["pending"] + '</td>' +
                     '<td class="w65" data-th="Waiting">' + json[prop]["waiting"] + '</td>' +
                     '<td class="w60c table_action_cell" data-th="Action">' +
-                        '<span class="table_icon edit"><i class="icon-edit"></i></span>' +
+                        '<span class="table_icon edit" data-toggle="modal" data-target="#modal_edit_user" data-form="#modal_edit_user"><i class="icon-edit"></i></span>' +
                     '</td>' +
                     '<td class="w_160_status table_status_cell" data-th="Status">' +
                         '<div class="vdf_radio">' +
                             '<div class="toggle_container disabled">' +
                                 '<label class="label_unchecked">' +
                                     '<input type="radio" name="toggle" value="1"><span></span>' +
-                                '</label' +
+                                '</label>' +
                                 '<label class="label_checked">' +
                                     '<input type="radio" name="toggle" value="0"><span></span>' +
-                                    '</label>' +
-                                '</div>' +
+                                '</label>' +
+                            '</div>' +
                         '</div>' +
                     '<span class="status_text_small not_used">' + status_text + '</span>' +
                     '</td>' +
