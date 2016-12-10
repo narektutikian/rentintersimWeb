@@ -47,27 +47,18 @@
                         <tbody>
                         @foreach($packagesArray as $package)
                         <tr>
-                            <td class="rwd-td0 table_id_cell" data-toggle="modal" data-target="#modal_edit_new_type" data-th="Id">{{$package['id']}}</td>
-                            <td class="rwd-td1" data-toggle="modal" data-target="#modal_edit_new_type" data-th="Type Name">{{$package['name']}}</td>
-                            <td class="rwd-td2" data-toggle="modal" data-target="#modal_edit_new_type" data-th="Provider">{{$package['provider_id']}}</td>
-                            <td class="rwd-td3" data-toggle="modal" data-target="#modal_edit_new_type" data-th="Type Code">{{$package['type_code']}}</td>
-                            <td class="rwd-td5" data-toggle="modal" data-target="#modal_edit_new_type" data-th="Description">{{$package['description']}}</td>
+                            <td class="rwd-td0 table_id_cell editable_cell" data-toggle="modal" data-th="Id">{{$package['id']}}</td>
+                            <td class="rwd-td1 editable_cell" data-th="Type Name">{{$package['name']}}</td>
+                            <td class="rwd-td2 editable_cell" data-th="Provider">{{$package['provider_id']}}</td>
+                            <td class="rwd-td3 editable_cell" data-th="Type Code">{{$package['type_code']}}</td>
+                            <td class="rwd-td5 editable_cell" data-th="Description">{{$package['description']}}</td>
                             <td class="rwd-td6 table_action_cell" data-th="Action">
-                                            <span class="table_icon" data-toggle="modal" data-target="#modal_edit_new_type">
-                                                <i class="icon-edit"></i>
-                                            </span>
+                                <span class="table_icon edit" data-toggle="modal" data-target="#modal_edit_new_type" data-form="#modal_edit_new_type">
+                                    <i class="icon-edit"></i>
+                                </span>
                             </td>
                             <td class="rwd-td7 table_status_cell" data-th="Status">
-                            <!--<div class="vdf_radio">
-                                    <div class="toggle_container {{ ((!$package['is_active']) ? 'disabled' : '') }}">
-                                        <label>
-                                            <input type="radio" name="toggle" value="1"><span></span>
-                                        </label>
-                                        <label>
-                                            <input type="radio" name="toggle" value="0"><span class="input-checked"></span>
-                                        </label>
-                                    </div>
-                                </div>-->
+
                                 <div class="vdf_radio">
                                     <div class="toggle_container {{ ((!$package['is_active']) ? 'disabled' : '') }}">
                                         <label class="label_unchecked">
@@ -195,7 +186,7 @@
                         <h3>Edit type</h3>
                     </div>
                 </div>
-                <form action="/" class="form-horizontal vd_form">
+                <form action="{{url('type')}}" class="form-horizontal vd_form">
                     <div class="modal-body vdf_modal_body">
 
                         <div class="form-group">
@@ -204,14 +195,15 @@
                                     <div class="col-md-6">
                                         <label class="table_label">Type Name</label>
                                         <div class="relative">
-                                            <input type="text" name="name" id="name" class="block_btn_30 modal_input vd_number" value=""/>
+                                        <input type="hidden" name="some_type_edit_id" data-th="Id" value=""/>
+                                            <input type="text" name="name" id="name" class="block_btn_30 modal_input vd_number" data-th="Type Name" value=""/>
                                             <i class="input_icon icon-add_type"></i>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <label class="table_label">Provider</label>
                                         <div class="select_wrapper">
-                                            <select name="provider_id" id="provider_id" class="block_btn_30 modal_input vd_select">
+                                            <select name="provider_id" id="provider_id" class="block_btn_30 modal_input vd_select" data-th="Provider">
                                                 <option value=""></option>
                                                 <option value="1">Vodafone</option>
                                             </select>
@@ -223,13 +215,13 @@
                                     <div class="col-md-6">
                                         <label class="table_label">Type Code</label>
                                         <div class="relative">
-                                            <input type="text" name="code" id="type_code" class="block_btn_30 modal_input vd_number" value=""/>
+                                            <input type="text" name="code" id="type_code" class="block_btn_30 modal_input vd_number" data-th="Type Code" value=""/>
                                             <i class="input_icon icon-type"></i>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <label class="table_label">Description</label>
-                                        <textarea class="modal_textarea vd_required" id="description"></textarea>
+                                        <textarea class="modal_textarea vd_required" id="description" data-th="Description"></textarea>
                                     </div>
                                 </div>
                                 <span class="or">OR</span>

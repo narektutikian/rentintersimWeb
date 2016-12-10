@@ -51,9 +51,9 @@
                         <tbody>
                         @foreach($simsArray as $sim)
                         <tr>
-                            <td class="rwd-td0 table_id_cell editable_cell {{ ((!$sim['is_active']) ? 'disable' : '') }}" data-toggle="modal" data-form="#modal_edit_sim" data-th="Id">{{$sim['id']}}</td>
-                            <td class="rwd-td1 editable_cell {{ ((!$sim['is_active']) ? 'disable' : '') }}" data-toggle="modal" data-form="#modal_edit_sim" data-th="SIM Number">{{$sim['number']}}</td>
-                            <td class="rwd-td2 editable_cell {{ ((!$sim['is_active']) ? 'disable' : '') }}" data-toggle="modal" data-form="#modal_edit_sim" data-th="Provider">{{$sim['provider_id']}}</td>
+                            <td class="rwd-td0 table_id_cell editable_cell {{ ((!$sim['is_active']) ? 'disable' : '') }}" data-th="Id">{{$sim['id']}}</td>
+                            <td class="rwd-td1 editable_cell {{ ((!$sim['is_active']) ? 'disable' : '') }}" data-th="SIM Number">{{$sim['number']}}</td>
+                            <td class="rwd-td2 editable_cell {{ ((!$sim['is_active']) ? 'disable' : '') }}" data-th="Provider">{{$sim['provider_id']}}</td>
                             <td class="rwd-td3 table_action_cell {{ ((!$sim['is_active']) ? 'disable' : '') }}" data-th="Action">
                                 <span class="table_icon edit" data-toggle="modal" data-target="#modal_edit_sim">
                                     <i class="icon-edit"></i>
@@ -95,7 +95,7 @@
                         <h3>Add SIM number</h3>
                     </div>
                 </div>
-                <form action="/" class="form-horizontal vd_form" id="insert-sim" enctype='multipart/form-data'>
+                <form action="sim/" class="form-horizontal vd_form" id="insert-sim" enctype='multipart/form-data'>
                     <div class="modal-body vdf_modal_body">
                         <div class="form-group">
                             <div class="col-md-6 vdf_modal_left">
