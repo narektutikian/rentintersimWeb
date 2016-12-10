@@ -202,6 +202,9 @@
                     <div class="modal-footer vdf_modal_footer">
                         <a href="#" class="inline_block_btn light_gray_btn close vd_form_reset" data-dismiss="modal" aria-label="Close">Cancel</a>
                         <button type="submit" href="#" class="inline_block_btn light_green_btn vd_form_submit" id="create-order">Create order</button>
+
+                        <span class="success_response"></span>
+                        <span class="error_response"></span>
                     </div>
                 </form>
             </div>
@@ -387,6 +390,9 @@
                         <span class="c_support">Customer support: +373 95 728 147</span>
                         <a href="#" class="inline_block_btn light_gray_btn close vd_form_reset" data-dismiss="modal" aria-label="Close">Cancel</a>
                         <a href="#" class="inline_block_btn light_green_btn vd_form_submit">Send</a>
+
+                        <span class="success_response"></span>
+                        <span class="error_response"></span>
                     </div>
                 </form>
             </div>
