@@ -13,8 +13,10 @@ $( document ).ready(function() {
         $(this).siblings('.header_dropdown').slideToggle();
     });
 
-    $('.layout_nav .show_settings').on('click', function(){
+    $('.show_settings_link').on('click', function(){
+
         $(this).siblings('.setting_types').slideToggle();
+        return false;
     });
 
 
@@ -123,7 +125,7 @@ $( document ).ready(function() {
             $('<div />', {
                 class: 'imitation_item',
                 text: $this.children('option').eq(i).text(),
-                rel: $this.children('option').eq(i).val() 
+                rel: $this.children('option').eq(i).val()
             }).appendTo($list);
         }
 
@@ -170,7 +172,7 @@ $( document ).ready(function() {
 
     /************ Styling Radio buttons *************/
 
-    $('.toggle_container > label').on('click', function(e){
+    $(document).on('click', 'label.label_unchecked', function(e){
         // prevent label from being called twice
         e.stopPropagation();
         e.preventDefault();
@@ -179,8 +181,10 @@ $( document ).ready(function() {
         if($(this).closest('.toggle_container').hasClass('disabled')){
 
             $(this).closest('.toggle_container').removeClass('disabled');
+            /* Enable rows in table */
             $(this).closest('.table_status_cell').prevAll('td').removeClass('disable');
             $(this).closest('.vdf_radio').siblings('.table_status_text').removeClass('disable');
+
         }else if(!$(this).closest('.toggle_container').hasClass('disabled')){
 
             $(this).closest('.toggle_container').addClass('disabled');
@@ -188,11 +192,10 @@ $( document ).ready(function() {
             $(this).closest('.table_status_cell').prevAll('td').addClass('disable');
             $(this).closest('.vdf_radio').siblings('.table_status_text').addClass('disable');
         }
+        if($(this).hasClass('label_unchecked')){
 
-        if(!$(this).children('span').hasClass('input-checked')){
-
-            $(this).children('span').addClass('input-checked');
-            $(this).siblings('label').children('span').removeClass('input-checked');
+            $(this).removeClass('label_unchecked').addClass('label_checked');
+            $(this).siblings('label').addClass('label_unchecked').removeClass('label_checked');
         }
     });
 

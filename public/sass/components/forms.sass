@@ -81,8 +81,6 @@
   border-bottom-right-radius: 0px
   padding-left: 48px
 
-.wrap_opt
-
 
 .options
   height: 300px
@@ -177,9 +175,10 @@
         position: absolute
         top: -99em
         visibility: hidden
-      .input-checked
-        background-color: $white
-        border: 1px solid $white
+      &.label_checked
+        span
+          background-color: $white
+          border: 1px solid $gray_border
       span
         width: 20px
         height: 20px

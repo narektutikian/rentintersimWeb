@@ -57,8 +57,8 @@
                                                 <i class="icon-edit"></i>
                                             </span>
                             </td>
-                            <td class="rwd-td+ table_status_cell" data-th="Status">
-                                <div class="vdf_radio">
+                            <td class="rwd-td7 table_status_cell" data-th="Status">
+                            <!--<div class="vdf_radio">
                                     <div class="toggle_container {{ ((!$package['is_active']) ? 'disabled' : '') }}">
                                         <label>
                                             <input type="radio" name="toggle" value="1"><span></span>
@@ -67,7 +67,18 @@
                                             <input type="radio" name="toggle" value="0"><span class="input-checked"></span>
                                         </label>
                                     </div>
+                                </div>-->
+                                <div class="vdf_radio">
+                                    <div class="toggle_container {{ ((!$package['is_active']) ? 'disabled' : '') }}">
+                                        <label class="label_unchecked">
+                                            <input type="radio" name="toggle" value="1"><span></span>
+                                        </label>
+                                        <label class="label_checked">
+                                            <input type="radio" name="toggle" value="0"><span></span>
+                                        </label>
+                                    </div>
                                 </div>
+
                                 <span class="table_status_text not_used">{{$package['status']}}</span>
                             </td>
                         </tr>

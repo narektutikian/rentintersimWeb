@@ -227,11 +227,23 @@ $( document ).ready(function() {
                             '</td>' +
                             '<td>' +
                             '<div class="vdf_radio">' +
-                            '<div class="toggle_container disabled">' +
-                            '<label><input type="radio" name="toggle" value="1"><span></span></label>' +
-                            '<label><input type="radio" name="toggle" value="0"><span class="input-checked"></span></label>' +
+                                '<div class="toggle_container">' +
+                                    '<label class="label_unchecked">' +
+                                        '<input type="radio" name="toggle" value="1"><span></span>' +
+                                    '</label>' +
+                                    '<label class="label_checked">' +
+                                        '<input type="radio" name="toggle" value="0"><span></span>' +
+                                        '</label>' +
+                                    '</div>' +
+                                '</div>' +
                             '</div>' +
-                            '</div>' +
+
+                            // '<div class="vdf_radio">' +
+                            // '<div class="toggle_container disabled">' +
+                            // '<label><input type="radio" name="toggle" value="1"><span></span></label>' +
+                            // '<label><input type="radio" name="toggle" value="0"><span class="input-checked"></span></label>' +
+                            // '</div>' +
+                            // '</div>' +
                             '<span class="status_text_small not_used">Not in use</span>' +
                             '</td>' +
                         '</tr>';

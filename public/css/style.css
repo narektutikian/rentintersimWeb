@@ -285,9 +285,9 @@ table {
         position: absolute;
         top: -99em;
         visibility: hidden; }
-      .vdf_radio .toggle_container label .input-checked {
+      .vdf_radio .toggle_container label.label_checked span {
         background-color: #ffffff;
-        border: 1px solid #ffffff; }
+        border: 1px solid #d4e1ea; }
       .vdf_radio .toggle_container label span {
         width: 20px;
         height: 20px;
@@ -628,6 +628,10 @@ input[type="radio"].toggle.checked + label {
       -o-transform: rotate(0deg);
       -ms-transform: rotate(0deg);
       transform: rotate(0deg); }
+
+#wrap_tree_table {
+  margin: 40px 0 20px 0;
+  border-bottom: 1px solid #ddd; }
 
 .user_management_table tbody tr.nested_row {
   border: none; }

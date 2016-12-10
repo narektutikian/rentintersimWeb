@@ -49,18 +49,21 @@
 
                         @foreach($phonesArray as $number)
                             <tr>
-                                <td class="rwd-td0 table_id_cell" data-toggle="modal" data-th="Id">{{$number['id']}}</td>
-                                <td class="rwd-td1" data-toggle="modal" data-th="Phone Number">{{$number['phone']}}</td>
-                                <td class="rwd-td2" data-toggle="modal" data-th="SIM Number">{{$number['current_sim_id']}}</td>
-                                <td class="rwd-td3" data-toggle="modal" data-th="Provider">{{$number['provider_id']}}</td>
-                                <td class="rwd-td4" data-toggle="modal" data-th="Type">{{$number['package_id']}}</td>
+                                <td class="rwd-td0 table_id_cell editable_cell" data-toggle="modal" data-th="Id">{{$number['id']}}</td>
+                                <td class="rwd-td1 editable_cell" data-toggle="modal" data-th="Phone Number">{{$number['phone']}}</td>
+                                <td class="rwd-td2 editable_cell" data-toggle="modal" data-th="SIM Number">{{$number['current_sim_id']}}</td>
+                                <td class="rwd-td3 editable_cell" data-toggle="modal" data-th="Provider">{{$number['provider_id']}}</td>
+                                <td class="rwd-td4 editable_cell" data-toggle="modal" data-th="Type">{{$number['package_id']}}</td>
                                 <td class="rwd-td5 table_action_cell" data-th="Action">
-                                    <span class="table_icon"  data-toggle="modal" data-target="#modal_edit_number"><i class="icon-edit"></i></span>
-                                    <span class="table_icon {{ (($number['is_special']) ? 'active' : '') }}"><i class="icon-special"></i></span>
+                                    <span class="table_icon edit"  data-toggle="modal" data-target="#modal_edit_number"><i class="icon-edit"></i></span>
+                                    <!--<span class="table_icon {{ (($number['is_special']) ? 'active' : '') }}"><i class="icon-special"></i></span>-->
+                                    <label class="vdf_checkbox">
+                                        <input type="checkbox" name="num_chkb{{$number['id']}}" value="" />
+                                        <i class="icon-special"></i>
+                                    </label>
                                 </td>
-                                <td class="rwd-td6 w_160_status" data-th="Status">
-                                    <span class="table_status_text not_used">{{$number['state']}}</span>
-                                    <div class="vdf_radio">
+                                <td class="rwd-td6 table_status_cell" data-th="Status">
+                                <!--<div class="vdf_radio">
                                         <div class="toggle_container {{ ((!$number['is_active']) ? 'disabled' : '') }}">
                                             <label>
                                                 <input type="radio" name="toggle" value="1"><span ></span>
@@ -69,7 +72,18 @@
                                                 <input type="radio" name="toggle" value="0"><span class="input-checked"></span>
                                             </label>
                                         </div>
+                                    </div>-->
+                                     <div class="vdf_radio">
+                                        <div class="toggle_container {{ ((!$number['is_active']) ? 'disabled' : '') }}">
+                                            <label class="label_unchecked">
+                                                <input type="radio" name="toggle" value="1"><span></span>
+                                            </label>
+                                            <label class="label_checked">
+                                                <input type="radio" name="toggle" value="0"><span></span>
+                                            </label>
+                                        </div>
                                     </div>
+                                    <span class="table_status_text not_used">{{$number['state']}}</span>
                                 </td>
                             </tr>
 
