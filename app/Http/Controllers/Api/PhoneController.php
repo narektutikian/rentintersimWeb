@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Phone;
 use Excel;
+use Storage;
 
 class PhoneController extends Controller
 {
@@ -61,11 +62,11 @@ class PhoneController extends Controller
             'phone' => $request->input('phone'),
             'state' => 'not in use',
             'initial_sim_id' => $request->input('initial_sim_id'),
-//            'current_sim_id' => $request->input('lending'),
+            'current_sim_id' => $request->input('initial_sim_id'),
             'package_id' => $request->input('package_id'),
             'provider_id' => $request->input('provider_id'),
             'is_special' => '0',
-//            'is_active' => '1',
+            'is_active' => '1',
 
 
         ]);
@@ -195,10 +196,10 @@ class PhoneController extends Controller
     {
         $result = Phone::where('phone', 'LIKE', '%'.$request->input('query').'%')
                 ->paginate(env('PAGINATE_DEFAULT'));
-        $packagesArray = $this->solvePhoneList($result);
+        $phonesArray = $this->solvePhoneList($result);
 
 //        dd($simsArray);
-        return view('number', compact('numbersArray'));
+        return view('number', compact('phonesArray'));
     }
 
     public function import (Request $request)
@@ -216,7 +217,7 @@ class PhoneController extends Controller
                 $results = $reader->get();
                 foreach ($results as $row){
 //                dd($row);
-                    $query = Package::forceCreate($row->toArray());
+                    $query = Phone::forceCreate($row->toArray());
                     if ($query) continue;
                     else {return response()->json(['file content error']. 443);}
 //

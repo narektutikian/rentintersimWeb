@@ -61,10 +61,13 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
     Route::post('import-sim', 'SIMController@import');
     Route::get('exporttypes', 'PackageController@export');
     Route::post('import-type', 'PackageController@import');
+    Route::get('exportnumber', 'PhoneController@export');
+    Route::post('import-number', 'PhoneController@import');
 
     /******Search  routes******/
     Route::get('search/sim', 'SIMController@search');
     Route::get('search/type', 'PackageController@search');
+    Route::get('search/number', 'PhoneController@search');
 });
 
 

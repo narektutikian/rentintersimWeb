@@ -106,11 +106,19 @@ $( document ).ready(function() {
                 type: "POST",
                 url: '/order',
                 data: data,
-                success: function( msg ) {
-                    $("#order-create-div").append("<div>"+"DONE"+"</div>");
+                success: function( msg )
+                {
+                    $(".error_response").empty();
+                    $(".success_response").empty();
+                    $(".success_response").append("DONE "+msg);
                 },
-                error: function (error) {
-                    $("#order-create-div").append("<div>"+"ERROR"+"</div>");
+                error: function (error)
+                {
+                    $(".error_response").empty();
+                    $(".success_response").empty();
+                    $(".error_response").append("ERROR");
+                    // $("#sim-edit-response").append("<div>"+"ERROR "+ error.responseJSON.number[0]+ " ," +error.responseJSON.provider_id[0] +"</div>");
+                    // console.log(error.responseJSON.number[0]);
                 }
             });
         }
@@ -159,12 +167,20 @@ $( document ).ready(function() {
              type: "POST",
              url: '/sim',
              data: data,
-             success: function (msg) {
-             $("#response-add-sim").append("<div>" + "DONE" + "</div>");
+             success:function( msg )
+             {
+                 $(".error_response").empty();
+                 $(".success_response").empty();
+                 $(".success_response").append("DONE "+msg);
              },
-             error: function (error) {
-             $("#response-add-sim").append("<div>" + "ERROR" + "</div>");
-             }
+             error: function (error)
+                   {
+                       $(".error_response").empty();
+                       $(".success_response").empty();
+                       $(".error_response").append("ERROR");
+                       // $("#sim-edit-response").append("<div>"+"ERROR "+ error.responseJSON.number[0]+ " ," +error.responseJSON.provider_id[0] +"</div>");
+                       // console.log(error.responseJSON.number[0]);
+                   }
              });
 
         }
@@ -172,16 +188,6 @@ $( document ).ready(function() {
                 // alert($('#sim-file').val());
 
                 e.stopPropagation(); // Stop stuff happening
-
-               //  var files = new FormData($("#sim-file")[0]);
-               //  console.log(files.name);
-               //  var data = new FormData();
-               // /* $.each(files, function(key, value)
-               //  {
-               //      data.append(key, value);
-               //
-               //  });*/
-               //      data.append('_token', CSRF_TOKEN);
             $.ajax({
                 url: 'import-sim',
                 type: 'POST',
@@ -227,24 +233,95 @@ $( document ).ready(function() {
                 type: "PUT",
                 url: '/sim/'+id,
                 data: data,
-                success: function( msg ) {
+                success: function( msg )
+                {
                     $(".error_response").empty();
                     $(".success_response").empty();
                     $(".success_response").append("DONE "+msg);
                 },
-                error: function (error) {
-
-
+                error: function (error)
+                {
                     $(".error_response").empty();
                     $(".success_response").empty();
                     $(".error_response").append("ERROR");
                     // $("#sim-edit-response").append("<div>"+"ERROR "+ error.responseJSON.number[0]+ " ," +error.responseJSON.provider_id[0] +"</div>");
-                    console.log(error.responseJSON.number[0]);
+                    // console.log(error.responseJSON.number[0]);
                 }
             });
         // }
 
     });
+
+    /***** ADD NEW NUMBER *****/
+
+    $('#insert-number').on('click', function (e) {
+        e.preventDefault();
+
+        var fileVal = $('#number-file').val();
+        if (fileVal == '') {
+
+            var data = {
+                _token : CSRF_TOKEN,
+                phone: $('#number').val(),
+                provider_id: $('#provider_id').val(),
+                package_id: $('#package_id').val(),
+                initial_sim_id: $('#sim_id').val(),
+                is_special: $('#is_special').val()
+            };
+
+            $.ajax({
+                type: "POST",
+                url: '/number',
+                data: data,
+                success: function( msg )
+                {
+                    $(".error_response").empty();
+                    $(".success_response").empty();
+                    $(".success_response").append("DONE "+msg);
+                },
+                error: function (error)
+                {
+                    $(".error_response").empty();
+                    $(".success_response").empty();
+                    $(".error_response").append("ERROR");
+                    // $("#sim-edit-response").append("<div>"+"ERROR "+ error.responseJSON.number[0]+ " ," +error.responseJSON.provider_id[0] +"</div>");
+                    // console.log(error.responseJSON.number[0]);
+                }
+            });
+
+        }
+        else {
+            // alert($('#sim-file').val());
+
+            e.stopPropagation(); // Stop stuff happening
+            $.ajax({
+                url: 'import-number',
+                type: 'POST',
+                data: new FormData($("#add-number-form")[0]),
+                cache: false,
+                dataType: 'json',
+                processData: false, // Don't process the files
+                contentType: false, // Set content type to false as jQuery will tell the server its a query string request
+                success: function( msg )
+                {
+                    $(".error_response").empty();
+                    $(".success_response").empty();
+                    $(".success_response").append("DONE "+msg);
+                },
+                error: function (error)
+                {
+                    $(".error_response").empty();
+                    $(".success_response").empty();
+                    $(".error_response").append("ERROR");
+                    // $("#sim-edit-response").append("<div>"+"ERROR "+ error.responseJSON.number[0]+ " ," +error.responseJSON.provider_id[0] +"</div>");
+                    // console.log(error.responseJSON.number[0]);
+                }
+            });
+
+
+        }
+    });
+
 
     /* User Management Nested Table */
     $.ajax({

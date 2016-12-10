@@ -19,11 +19,11 @@
                         <span class="status disabled"></span> not in use ({{$counts['not in use']}})
                     </a>
                     <div class="search_management_option">
-                        <form action="/" class="search_form_option">
-                            <input type="text" class="block_btn_30 search_input" value="search">
+                        <form action="{{url('search/number')}}" class="search_form_option">
+                            <input type="text" class="block_btn_30 search_input" name="query" placeholder="Search" value="">
                             <button type="submit" class="search_button"><i class="icon-search"></i></button>
                         </form>
-                        <a href="#" class="export_user"><i class="icon-export"></i>Export</a>
+                        <a href="{{url('/exportnumber')}}" class="export_user"><i class="icon-export"></i>Export</a>
                         <a href="#" class="add_new_btn" data-toggle="modal" data-target="#modal_add_number"><i class="icon-add_number"></i>Add number</a>
                     </div>
                 </div>
@@ -103,7 +103,7 @@
                         <h3>Add one by one</h3>
                     </div>
                 </div>
-                <form method="post" action="{{url('/number')}}" class="form-horizontal vd_form">
+                <form method="post" action="{{url('/number')}}" id="add-number-form" class="form-horizontal vd_form">
                     <div class="modal-body vdf_modal_body">
 
                         <div class="form-group">
@@ -112,14 +112,15 @@
                                     <div class="col-md-6">
                                         <label class="table_label">Phone Number</label>
                                         <div class="relative">
-                                            <input type="text" name="num_phone_num" class="block_btn_30 modal_input vd_number" value=""/>
+                                            <input type="text" name="phone_number" id="number" class="block_btn_30 modal_input vd_number" value=""/>
+                                            {{csrf_field()}}
                                             <i class="input_icon icon-phone_number"></i>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <label class="table_label">Parking SIM number</label>
                                         <div class="select_wrapper">
-                                            <select name="prk_sim_num" class="block_btn_30 modal_input vd_select">
+                                            <select name="prk_sim_num" id="sim_id" class="block_btn_30 modal_input vd_select">
                                                 <option value=""></option>
                                                 @foreach($sims as $sim)
                                                 <option value="{{$sim['id']}}">{{$sim['number']}}</option>
@@ -134,7 +135,7 @@
                                     <div class="col-md-6">
                                         <label class="table_label">Provider </label>
                                         <div class="select_wrapper">
-                                            <select name="some_prov_num" class="block_btn_30 modal_input vd_select">
+                                            <select name="some_prov_num" id="provider_id" class="block_btn_30 modal_input vd_select">
                                                 <option value=""></option>
                                                 <option value="1">Vodafone</option>
                                             </select>
@@ -144,7 +145,7 @@
                                     <div class="col-md-6">
                                         <label class="table_label">Type</label>
                                         <div class="select_wrapper">
-                                            <select name="prk_sim_num2" class="block_btn_30 modal_input vd_select">
+                                            <select name="prk_sim_num2" id="package_id" class="block_btn_30 modal_input vd_select">
                                                 <option value=""></option>
                                                 @foreach($packages as $package)
                                                     <option value="{{$package['id']}}">{{$package['name']}}</option>
@@ -174,11 +175,11 @@
                                         <span class="uploaded_files">
                                             <span class="keep_file_name"></span>
                                             <span class="file_container"> Browse
-                                                <input class="modal_image_name" type="file" />
+                                                <input class="modal_image_name" name="number-file" id="number-file" type="file" />
                                             </span>
                                         </span>
                                         <span class="uploaded_file_links"> File example
-                                            <a href="#" class="download_file disable" download=""><i class="icon-download"></i></a>
+                                            <a href="{{url('/storage/number.xlsx')}}" class="download_file" download=""><i class="icon-download"></i></a>
                                         </span>
                                     </div>
                                 </div>
@@ -219,14 +220,15 @@
                                         <label class="table_label">Phone Number</label>
                                         <div class="relative">
                                             <input type="hidden" name="some_numb_edit_id" data-th="Id" value=""/>
-                                            <input type="text" name="some_phone_edit" class="block_btn_30 modal_input vd_number" data-th="Phone Number" value=""/>
+                                            <input type="text" name="some_phone_edit" id="number" class="block_btn_30 modal_input vd_number" data-th="Phone Number" value=""/>
+
                                             <i class="input_icon icon-phone_number"></i>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <label class="table_label">Parking SIM number</label>
                                         <div class="select_wrapper">
-                                            <select name="select_s_type2" class="block_btn_30 modal_input vd_select" data-th="SIM Number">
+                                            <select name="select_s_type2"  id="sim_id" class="block_btn_30 modal_input vd_select" data-th="SIM Number">
                                                 <option value=""></option>
                                                 @foreach($sims as $sim)
                                                 <option value="{{$sim['id']}}">{{$sim['number']}}</option>
@@ -240,11 +242,10 @@
                                     <div class="col-md-6">
                                         <label class="table_label">Provider </label>
                                         <div class="select_wrapper">
-                                            <select name="select_s_type" class="block_btn_30 modal_input vd_select" data-th="Provider">
+                                            <select name="select_s_type" id="provider_id" class="block_btn_30 modal_input vd_select" data-th="Provider">
                                                 <option value=""></option>
-                                                <option value="Admin">type 1</option>
-                                                <option value="Dealer">type 2</option>
-                                                <option value="Sub-Dealer">type 3</option>
+                                                <option value="1">Vodafone</option>
+
                                             </select>
                                             <i class="input_icon icon-provider"></i>
                                         </div>
@@ -252,7 +253,7 @@
                                     <div class="col-md-6">
                                         <label class="table_label">Type</label>
                                         <div class="select_wrapper">
-                                            <select name="select_s_type3" class="block_btn_30 modal_input vd_select" data-th="Type">
+                                            <select name="select_s_type3" class="block_btn_30 modal_input vd_select" id="package_id" data-th="Type">
                                                 <option value=""></option>
                                                 @foreach($packages as $package)
                                                     <option value="{{$package['id']}}">{{$package['name']}}</option>
@@ -273,27 +274,27 @@
                                         </div>
                                     </div>
                                 </div>
-                                <span class="or">OR</span>
+                                {{--<span class="or">OR</span>--}}
                             </div>
-                            <div class="col-md-6 vdf_modal_right">
-                                <div class="form_row form-group">
-                                    <div class="col-md-12">
-                                        <label class="table_label">Add from file</label>
-                                        <div class="form_row">
-                                            <span class="uploaded_files">
-                                                <span class="keep_file_name"></span>
-                                                <span class="file_container"> Browse
-                                                    <input class="modal_image_name" type="file" />
-                                                </span>
-                                                <span class="uploaded_file_links"> File example
-                                                    <a href="#" class="download_file disable" download=""><i class="icon-download"></i></a>
-                                                </span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
+                            {{--<div class="col-md-6 vdf_modal_right">--}}
+                                {{--<div class="form_row form-group">--}}
+                                    {{--<div class="col-md-12">--}}
+                                        {{--<label class="table_label">Add from file</label>--}}
+                                        {{--<div class="form_row">--}}
+                                            {{--<span class="uploaded_files">--}}
+                                                {{--<span class="keep_file_name"></span>--}}
+                                                {{--<span class="file_container"> Browse--}}
+                                                    {{--<input class="modal_image_name" type="file" />--}}
+                                                {{--</span>--}}
+                                                {{--<span class="uploaded_file_links"> File example--}}
+                                                    {{--<a href="#" class="download_file disable" download=""><i class="icon-download"></i></a>--}}
+                                                {{--</span>--}}
+                                            {{--</span>--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
 
-                            </div>
+                            {{--</div>--}}
                         </div>
 
                     </div>
