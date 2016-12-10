@@ -117,8 +117,8 @@
                 </form>
             </div>
             <div class="modal-footer vdf_modal_footer">
-                <a href="#" class="inline_block_btn light_gray_btn close" data-dismiss="modal" aria-label="Close">Cancel</a>
-                <a href="#" class="inline_block_btn light_green_btn">Create User</a>
+                <a href="#" class="inline_block_btn light_gray_btn close vd_form_reset" data-dismiss="modal" aria-label="Close">Cancel</a>
+                <a href="#" class="inline_block_btn light_green_btn vd_form_submit">Create User</a>
             </div>
         </div>
     </div>
@@ -138,7 +138,7 @@
                 <form action="/" class="form-horizontal">
                     <div class="form-group">
                         <div class="col-md-6 vdf_modal_left">
-                            <div class="form_row form-group">
+                            <div class="form-group">
                                 <div class="col-md-6">
                                     <label class="table_label">Name</label>
                                         <div class="relative">
@@ -146,18 +146,46 @@
                                             <i class="input_icon icon-username"></i>
                                         </div>
 
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="table_label">Level</label>
+                                    <div class="select_wrapper">
+                                        <select class="block_btn_30 modal_input" data-th="Level">
+                                            <option value=""></option>
+                                            <option value="Admin">Admin</option>
+                                            <option value="Dealer">Dealer</option>
+                                            <option value="Sub-Dealer">SubDealer</option>
+                                        </select>
+                                        <i class="input_icon icon-level"></i>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-6">
 
                                     <label class="table_label">Type</label>
-
-                                        <div class="select_wrapper">
-                                            <select class="block_btn_30 modal_input" data-th="Type">
-                                                <option value=""></option>
-                                                <option value="Admin">type 1</option>
-                                                <option value="Dealer">type 2</option>
-                                                <option value="Sub-Dealer">type 3</option>
-                                            </select>
-                                            <i class="input_icon icon-username"></i>
-                                        </div>
+                                    <div class="select_wrapper">
+                                        <select class="block_btn_30 modal_input" data-th="Type">
+                                            <option value=""></option>
+                                            <option value="Admin">type 1</option>
+                                            <option value="Dealer">type 2</option>
+                                            <option value="Sub-Dealer">type 3</option>
+                                        </select>
+                                        <i class="input_icon icon-username"></i>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="table_label">Parent Username</label>
+                                    <div class="relative">
+                                        <input type="text" class="block_btn_30 modal_input" value=""/>
+                                        <i class="input_icon icon-username"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-6">
 
                                     <label class="table_label">Primary Email</label>
                                     <div class="relative">
@@ -166,23 +194,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <label class="table_label">Level</label>
 
-                                        <div class="select_wrapper">
-                                            <select class="block_btn_30 modal_input" data-th="Level">
-                                                <option value=""></option>
-                                                <option value="Admin">Admin</option>
-                                                <option value="Dealer">Dealer</option>
-                                                <option value="Sub-Dealer">SubDealer</option>
-                                            </select>
-                                            <i class="input_icon icon-level"></i>
-                                        </div>
-
-                                    <label class="table_label">Parent Username</label>
-                                    <div class="relative">
-                                        <input type="text" class="block_btn_30 modal_input" value=""/>
-                                        <i class="input_icon icon-username"></i>
-                                    </div>
                                     <label class="table_label">Secondary Email</label>
                                     <div class="relative">
                                         <input type="text" class="block_btn_30 modal_input" value=""/>
@@ -190,9 +202,10 @@
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                         <div class="col-md-6 vdf_modal_right">
-                            <div class="form_row form-group">
+                            <div class="form-group">
                                 <div class="col-md-6">
                                     <label class="table_label">Username</label>
                                     <div class="relative">
@@ -214,8 +227,8 @@
                 </form>
             </div>
             <div class="modal-footer vdf_modal_footer">
-                <a href="#" class="inline_block_btn light_gray_btn close" data-dismiss="modal" aria-label="Close">Cancel</a>
-                <a href="#" class="inline_block_btn light_green_btn">Create User</a>
+                <a href="#" class="inline_block_btn light_gray_btn close vd_form_reset" data-dismiss="modal" aria-label="Close">Cancel</a>
+                <a href="#" class="inline_block_btn light_green_btn vd_form_submit">Edit User</a>
             </div>
         </div>
     </div>

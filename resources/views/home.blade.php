@@ -54,17 +54,17 @@
                         @foreach($ordersArray as $order)
                         <tr>
                             <!--<td class="rwd-td0 table_id_cell editable_cell" data-form="#modal_edit_sim" data-th="Id">1</td>-->
-                            <td class="rwd-td0 table_id_cell editable_cell">
+                            <td class="rwd-td0 table_id_cell editable_cell" data-th="Phone">
                                 @if($order['phone_id']==0)
                                     <a href="{{url('get-number/'.$order['id'])}}">Get Number</a>
                                 @else
                                 {{$order['phone_id']}}
                                 @endif
                             </td>
-                            <td class="rwd-td1">
+                            <td class="rwd-td1 editable_cell" data-th="SIM Number">
                                 {{$order['sim_id']}}
                             </td>
-                            <td class="rwd-td2">
+                            <td class="rwd-td2 editable_cell" data-th="Id">
                                 {{$order['provider']}}
                             </td>
                             <td class="rwd-td3">
@@ -83,7 +83,7 @@
                                 {{$order['reference_number']}}
                             </td>
                             <td class="rwd-td7 table_action_cell_large ">
-                                <span class="table_icon" data-toggle="modal" data-target="#modal_edit_order">
+                                <span class="table_icon edit" data-toggle="modal" data-target="#modal_edit_order" data-form="modal_edit_order">
                                     <i class="icon-edit"></i>
                                 </span>
                                 <span class="table_icon" data-toggle="modal" data-target="#modal_order_print">
@@ -226,11 +226,11 @@
                                 <div class="form-group">
                                     <div class="col-md-6">
                                         <label class="table_label">Enter a SIM number</label>
-                                        <input type="text" name="sim2" id="sim2" class="block_btn_30 modal_input_without_icon vd_number" value=""/>
+                                        <input type="text" name="sim2" id="sim2" class="block_btn_30 modal_input_without_icon vd_number" data-th="SIM Number" value=""/>
                                     </div>
                                     <div class="col-md-6">
                                         <label class="table_label">SIM provider</label>
-                                        <input type="text" name="sim_prv2" class="block_btn_30 modal_input_without_icon vd_required" value="Vodafone"/>
+                                        <input type="text" name="sim_prv2" class="block_btn_30 modal_input_without_icon vd_required" data-th="SIM Number" value="Vodafone"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
