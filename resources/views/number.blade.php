@@ -55,24 +55,17 @@
                                 <td class="rwd-td3 editable_cell" data-toggle="modal" data-th="Provider">{{$number['provider_id']}}</td>
                                 <td class="rwd-td4 editable_cell" data-toggle="modal" data-th="Type">{{$number['package_id']}}</td>
                                 <td class="rwd-td5 table_action_cell" data-th="Action">
-                                    <span class="table_icon edit"  data-toggle="modal" data-target="#modal_edit_number"><i class="icon-edit"></i></span>
-                                    <!--<span class="table_icon {{ (($number['is_special']) ? 'active' : '') }}"><i class="icon-special"></i></span>-->
+                                    <span class="table_icon edit"  data-toggle="modal" data-target="#modal_edit_number" data-form="#modal_edit_number">
+                                        <i class="icon-edit"></i>
+                                    </span>
+
                                     <label class="vdf_checkbox">
                                         <input type="checkbox" name="num_chkb{{$number['id']}}" value="" />
                                         <i class="icon-special"></i>
                                     </label>
                                 </td>
                                 <td class="rwd-td6 table_status_cell" data-th="Status">
-                                <!--<div class="vdf_radio">
-                                        <div class="toggle_container {{ ((!$number['is_active']) ? 'disabled' : '') }}">
-                                            <label>
-                                                <input type="radio" name="toggle" value="1"><span ></span>
-                                            </label>
-                                            <label>
-                                                <input type="radio" name="toggle" value="0"><span class="input-checked"></span>
-                                            </label>
-                                        </div>
-                                    </div>-->
+
                                      <div class="vdf_radio">
                                         <div class="toggle_container {{ ((!$number['is_active']) ? 'disabled' : '') }}">
                                             <label class="label_unchecked">
@@ -222,18 +215,19 @@
                                     <div class="col-md-6">
                                         <label class="table_label">Phone Number</label>
                                         <div class="relative">
-                                            <input type="text" name="some_phone_edit" class="block_btn_30 modal_input vd_number" value=""/>
+                                            <input type="hidden" name="some_numb_edit_id" data-th="Id" value=""/>
+                                            <input type="text" name="some_phone_edit" class="block_btn_30 modal_input vd_number" data-th="Phone Number" value=""/>
                                             <i class="input_icon icon-phone_number"></i>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <label class="table_label">Parking SIM number</label>
                                         <div class="select_wrapper">
-                                            <select name="select_s_type2" class="block_btn_30 modal_input vd_select">
+                                            <select name="select_s_type2" class="block_btn_30 modal_input vd_select" data-th="SIM Number">
                                                 <option value=""></option>
-                                                <option value="Admin">Parking SIM number</option>
-                                                <option value="Dealer">Parking SIM number</option>
-                                                <option value="Sub-Dealer">Parking SIM number</option>
+                                                @foreach($sims as $sim)
+                                                <option value="{{$sim['id']}}">{{$sim['number']}}</option>
+                                                @endforeach
                                             </select>
                                             <i class="input_icon icon-sim"></i>
                                         </div>
@@ -243,7 +237,7 @@
                                     <div class="col-md-6">
                                         <label class="table_label">Provider </label>
                                         <div class="select_wrapper">
-                                            <select name="select_s_type" class="block_btn_30 modal_input vd_select">
+                                            <select name="select_s_type" class="block_btn_30 modal_input vd_select" data-th="Provider">
                                                 <option value=""></option>
                                                 <option value="Admin">type 1</option>
                                                 <option value="Dealer">type 2</option>
@@ -255,11 +249,11 @@
                                     <div class="col-md-6">
                                         <label class="table_label">Type</label>
                                         <div class="select_wrapper">
-                                            <select name="select_s_type3" class="block_btn_30 modal_input vd_select">
+                                            <select name="select_s_type3" class="block_btn_30 modal_input vd_select" data-th="Type">
                                                 <option value=""></option>
-                                                <option value="Admin">type 1</option>
-                                                <option value="Dealer">type 2</option>
-                                                <option value="Sub-Dealer">type 3</option>
+                                                @foreach($packages as $package)
+                                                    <option value="{{$package['id']}}">{{$package['name']}}</option>
+                                                @endforeach
                                             </select>
                                             <i class="input_icon icon-provider"></i>
                                         </div>
