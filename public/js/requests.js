@@ -8,24 +8,79 @@ $( document ).ready(function() {
     $('.close').click(function() {
         location.reload();
     });
+    /****** type Creation ******/
 
-    $('#submit').on('click', function (e) {
+    $('#add-type').on('click', function (e) {
         e.preventDefault();
-        var name = $('#name').val();
-        var type_code = $('#type_code').val();
-        var provider_id = $('#provider_id').val();
-        var description = $('#description').val();
-        $.ajax({
-            type: "POST",
-            url: '/type',
-            data: {_token: CSRF_TOKEN, name: name, type_code: type_code, provider_id: provider_id, description: description},
-            success: function( msg ) {
-            $("#ajaxResponse").append("<div>"+"DONE"+"</div>");
+        var fileVal = $('#type-file').val();
+        if (fileVal == '') {
+            var name = $('#name').val();
+            var type_code = $('#type_code').val();
+            var provider_id = $('#provider_id').val();
+            var description = $('#description').val();
+            $.ajax({
+                type: "POST",
+                url: '/type',
+                data: {
+                    _token: CSRF_TOKEN,
+                    name: name,
+                    type_code: type_code,
+                    provider_id: provider_id,
+                    description: description
                 },
-            error: function (error) {
-                $("#ajaxResponse").append("<div>"+"ERROR"+"</div>");
-            }
-        });
+                success: function( msg )
+                {
+                    $(".error_response").empty();
+                    $(".success_response").empty();
+                    $(".success_response").append("DONE "+msg);
+                },
+                error: function (error)
+                {
+                    $(".error_response").empty();
+                    $(".success_response").empty();
+                    $(".error_response").append("ERROR");
+                    // $("#sim-edit-response").append("<div>"+"ERROR "+ error.responseJSON.number[0]+ " ," +error.responseJSON.provider_id[0] +"</div>");
+                    // console.log(error.responseJSON.number[0]);
+                }
+            });
+        } else {
+
+            e.stopPropagation(); // Stop stuff happening
+
+            //  var files = new FormData($("#sim-file")[0]);
+            //  console.log(files.name);
+            //  var data = new FormData();
+            // /* $.each(files, function(key, value)
+            //  {
+            //      data.append(key, value);
+            //
+            //  });*/
+            //      data.append('_token', CSRF_TOKEN);
+            $.ajax({
+                url: 'import-type',
+                type: 'POST',
+                data: new FormData($("#insert-type")[0]),
+                cache: false,
+                dataType: 'json',
+                processData: false, // Don't process the files
+                contentType: false, // Set content type to false as jQuery will tell the server its a query string request
+                success:function( msg )
+                {
+                    $(".error_response").empty();
+                    $(".success_response").empty();
+                    $(".success_response").append("DONE "+msg);
+                },
+                error: function (error)
+                {
+                    $(".error_response").empty();
+                    $(".success_response").empty();
+                    $(".error_response").append("ERROR");
+                    // $("#sim-edit-response").append("<div>"+"ERROR "+ error.responseJSON.number[0]+ " ," +error.responseJSON.provider_id[0] +"</div>");
+                    // console.log(error.responseJSON.number[0]);
+                }
+            });
+
+        }
     });
 
 /****** Order Creation ******/
@@ -135,24 +190,19 @@ $( document ).ready(function() {
                 dataType: 'json',
                 processData: false, // Don't process the files
                 contentType: false, // Set content type to false as jQuery will tell the server its a query string request
-                success: function(data, textStatus, jqXHR)
+                success: function( msg )
                 {
-                    if(typeof data.error === 'undefined')
-                    {
-                        // Success so call function to process the form
-                        // submitForm(event, data);
-                    }
-                    else
-                    {
-                        // Handle errors here
-                        console.log('ERRORS: ' + data.error);
-                    }
+                    $(".error_response").empty();
+                    $(".success_response").empty();
+                    $(".success_response").append("DONE "+msg);
                 },
-                error: function(jqXHR, textStatus, errorThrown)
+                error: function (error)
                 {
-                    // Handle errors here
-                    console.log('ERRORS: ' + textStatus);
-                    // STOP LOADING SPINNER
+                    $(".error_response").empty();
+                    $(".success_response").empty();
+                    $(".error_response").append("ERROR");
+                    // $("#sim-edit-response").append("<div>"+"ERROR "+ error.responseJSON.number[0]+ " ," +error.responseJSON.provider_id[0] +"</div>");
+                    console.log(error.responseJSON.number[0]);
                 }
             });
 

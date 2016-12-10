@@ -103,7 +103,7 @@
                         <h3>Add new type number</h3>
                     </div>
                 </div>
-                <form action="{{url('type')}}" method="post" class="form-horizontal vd_form">
+                <form action="{{url('type')}}" method="post" id="insert-type" class="form-horizontal vd_form">
                     <div class="modal-body vdf_modal_body">
 
                         {{csrf_field()}}
@@ -153,10 +153,10 @@
                                         <span class="uploaded_files">
                                             <span class="keep_file_name"></span>
                                             <span class="file_container"> Browse
-                                                <input class="modal_image_name" type="file" />
+                                                <input class="modal_image_name" id="type-file" name="type-file" type="file" />
                                             </span>
                                             <span class="uploaded_file_links"> File example
-                                                <a href="#" class="download_file disable" download=""><i class="icon-download"></i></a>
+                                                <a href="{{url('/storage/type.xlsx')}}" class="download_file" download=""><i class="icon-download"></i></a>
                                             </span>
                                         </span>
 
@@ -170,8 +170,10 @@
                     </div>
                     <div class="modal-footer vdf_modal_footer">
                         <a href="#"  class="inline_block_btn light_gray_btn close vd_form_reset" data-dismiss="modal" aria-label="Close">Cancel</a>
-                        <a href="#" id="submit" class="inline_block_btn light_green_btn vd_form_submit">Create New Type</a>
+                        <a href="#" id="add-type" class="inline_block_btn light_green_btn vd_form_submit">Create New Type</a>
 
+                        <span class="success_response"></span>
+                        <span class="error_response"></span>
                     </div>
                 </form>
                 <div id="ajaxResponse">
@@ -202,18 +204,16 @@
                                     <div class="col-md-6">
                                         <label class="table_label">Type Name</label>
                                         <div class="relative">
-                                            <input type="text" name="type_name2" class="block_btn_30 modal_input vd_number" value=""/>
+                                            <input type="text" name="name" id="name" class="block_btn_30 modal_input vd_number" value=""/>
                                             <i class="input_icon icon-add_type"></i>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <label class="table_label">Provider</label>
                                         <div class="select_wrapper">
-                                            <select name="type_nm1" class="block_btn_30 modal_input vd_select">
+                                            <select name="provider_id" id="provider_id" class="block_btn_30 modal_input vd_select">
                                                 <option value=""></option>
-                                                <option value="Admin">Parking SIM number</option>
-                                                <option value="Dealer">Parking SIM number</option>
-                                                <option value="Sub-Dealer">Parking SIM number</option>
+                                                <option value="1">Vodafone</option>
                                             </select>
                                             <i class="input_icon icon-sim"></i>
                                         </div>
@@ -223,13 +223,13 @@
                                     <div class="col-md-6">
                                         <label class="table_label">Type Code</label>
                                         <div class="relative">
-                                            <input type="text" name="type_name3" class="block_btn_30 modal_input vd_number" value=""/>
+                                            <input type="text" name="code" id="type_code" class="block_btn_30 modal_input vd_number" value=""/>
                                             <i class="input_icon icon-type"></i>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <label class="table_label">Description</label>
-                                        <textarea class="modal_textarea vd_required"></textarea>
+                                        <textarea class="modal_textarea vd_required" id="description"></textarea>
                                     </div>
                                 </div>
                                 <span class="or">OR</span>
@@ -256,6 +256,9 @@
                     <div class="modal-footer vdf_modal_footer">
                         <a href="#" class="inline_block_btn light_gray_btn close vd_form_reset" data-dismiss="modal" aria-label="Close">Cancel</a>
                         <a href="#" class="inline_block_btn light_green_btn vd_form_submit">Edit type</a>
+
+                        <span class="success_response"></span>
+                        <span class="error_response"></span>
                     </div>
                 </form>
             </div>
