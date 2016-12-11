@@ -336,12 +336,20 @@
                 <div class="modal-header vdf_modal_header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <div class="vdf_modal_sub_header">
-                        <h3>Mail message: Order <span class="mail_order">#124875</span></h3>
-                        div.point_
-                        <div class="relative">
-                            <input type="text" name="type_name4" class="block_btn_30 modal_input vd_number" value=""/>
-                            <i class="input_icon icon-special"></i>
+                        <div class="col-md-7">
+                            <h3>Mail message: Order <span class="mail_order">#124875</span></h3>
                         </div>
+                        <div class="col-md-5">
+                            <div class="point_to">
+                                <span class="point_to_text">To</span>
+                                <div class="relative point_to_input">
+                                    <input type="text" name="type_name4" class="block_btn_30 modal_input vd_number" value=""/>
+                                    <i class="input_icon icon-special"></i>
+                                </div>
+                            </div>
+                        </div>
+
+
                     </div>
                 </div>
                 <form action="/" class="form-horizontal vd_form">

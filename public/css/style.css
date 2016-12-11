@@ -1116,6 +1116,7 @@ input[type="radio"].toggle.checked + label {
   .single_package a {
     display: block;
     text-align: center;
+    height: 95px;
     border: 1px solid #ecf3f9;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
@@ -1326,6 +1327,25 @@ input[type="radio"].toggle.checked + label {
       font-weight: normal;
       font-style: normal;
       font-family: "proxima_nova_rgregular", Arial, Helvetica, sans-serif; }
+    .vdf_modal .vdf_modal_sub_header .point_to {
+      font-size: 0; }
+      .vdf_modal .vdf_modal_sub_header .point_to .point_to_text {
+        width: 9%;
+        display: inline-block;
+        vertical-align: middle;
+        color: #1b6db2;
+        font-size: 15px;
+        font-weight: normal;
+        font-style: normal;
+        font-family: "proxima_nova_rgregular", Arial, Helvetica, sans-serif; }
+      .vdf_modal .vdf_modal_sub_header .point_to .point_to_input {
+        width: 90%;
+        display: inline-block;
+        vertical-align: middle;
+        font-size: 15px;
+        font-weight: normal;
+        font-style: normal;
+        font-family: "proxima_nova_rgregular", Arial, Helvetica, sans-serif; }
   .vdf_modal .vdf_modal_body {
     padding: 32px 25px 0 25px; }
   .vdf_modal .vdf_modal_footer {

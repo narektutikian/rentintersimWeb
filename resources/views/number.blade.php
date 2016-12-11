@@ -49,11 +49,11 @@
 
                         @foreach($phonesArray as $number)
                             <tr>
-                                <td class="rwd-td0 table_id_cell editable_cell" data-toggle="modal" data-th="Id">{{$number['id']}}</td>
-                                <td class="rwd-td1 editable_cell" data-toggle="modal" data-th="Phone Number">{{$number['phone']}}</td>
-                                <td class="rwd-td2 editable_cell" data-toggle="modal" data-th="SIM Number">{{$number['current_sim_id']}}</td>
-                                <td class="rwd-td3 editable_cell" data-toggle="modal" data-th="Provider">{{$number['provider_id']}}</td>
-                                <td class="rwd-td4 editable_cell" data-toggle="modal" data-th="Type">{{$number['package_id']}}</td>
+                                <td class="rwd-td0 table_id_cell editable_cell" data-th="Id">{{$number['id']}}</td>
+                                <td class="rwd-td1 editable_cell" data-th="Phone Number">{{$number['phone']}}</td>
+                                <td class="rwd-td2 editable_cell" data-th="SIM Number">{{$number['current_sim_id']}}</td>
+                                <td class="rwd-td3 editable_cell" data-th="Provider">{{$number['provider_id']}}</td>
+                                <td class="rwd-td4 editable_cell" data-th="Type">{{$number['package_id']}}</td>
                                 <td class="rwd-td5 table_action_cell" data-th="Action">
                                     <span class="table_icon edit" data-toggle="modal" data-target="#modal_edit_number" data-form="#modal_edit_number">
                                         <i class="icon-edit"></i>
