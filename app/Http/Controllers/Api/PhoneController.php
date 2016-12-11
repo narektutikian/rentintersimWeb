@@ -108,12 +108,12 @@ class PhoneController extends Controller
     {
         //
         $this->validate(request(), [
-//            'phone' => 'required',
+            'phone' => 'required|unique:phones',
 //            'state' => 'required',
-//            'initial_sim_id' => 'required',
+            'initial_sim_id' => 'required',
 //            'current_sim_id' => 'required',
-//            'package_id' => 'required',
-//            'provider_id' => 'required',
+            'package_id' => 'required',
+            'provider_id' => 'required',
 //            'is_special' => 'required',
 //            'is_active' => 'required',
 
@@ -127,10 +127,14 @@ class PhoneController extends Controller
 //         $phone-> current_sim_id = $request->input('lending');
         $phone->package_id = $request->input('package_id');
 //        $phone->provider_id = $request->input('provider_id');
-        $phone->is_special = '0';
-        $phone->is_active = $request->input('is_active');
+        if ($request->has('is_special'))
+        $phone->is_special = $request->input('is_special');
+
+//        $phone->is_active = $request->input('is_active');
 
         $phone->save();
+
+        return response('number edited.');
 
     }
 

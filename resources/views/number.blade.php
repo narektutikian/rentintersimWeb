@@ -211,7 +211,7 @@
                         <h3>Edit number</h3>
                     </div>
                 </div>
-                <form action="/" class="form-horizontal vd_form">
+                <form action="/" id="edit-number-form" class="form-horizontal vd_form">
                     <div class="modal-body vdf_modal_body">
                         <div class="form-group">
                             <div class="col-md-6 vdf_modal_left">
@@ -219,16 +219,16 @@
                                     <div class="col-md-6">
                                         <label class="table_label">Phone Number</label>
                                         <div class="relative">
-                                            <input type="hidden" name="some_numb_edit_id" data-th="Id" value=""/>
-                                            <input type="text" name="some_phone_edit" id="number" class="block_btn_30 modal_input vd_number" data-th="Phone Number" value=""/>
-
+                                            <input type="hidden" name="some_numb_edit_id" data-th="Id" id="id" value=""/>
+                                            <input type="text" name="phone" id="number-edit" class="block_btn_30 modal_input vd_number" data-th="Phone Number" value=""/>
+                                            {{csrf_field()}}
                                             <i class="input_icon icon-phone_number"></i>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <label class="table_label">Parking SIM number</label>
                                         <div class="select_wrapper">
-                                            <select name="select_s_type2"  id="sim_id" class="block_btn_30 modal_input vd_select" data-th="SIM Number">
+                                            <select name="initial_sim_id"  id="sim_id-edit" class="block_btn_30 modal_input vd_select" data-th="SIM Number">
                                                 <option value=""></option>
                                                 @foreach($sims as $sim)
                                                 <option value="{{$sim['id']}}">{{$sim['number']}}</option>
@@ -242,7 +242,7 @@
                                     <div class="col-md-6">
                                         <label class="table_label">Provider </label>
                                         <div class="select_wrapper">
-                                            <select name="select_s_type" id="provider_id" class="block_btn_30 modal_input vd_select" data-th="Provider">
+                                            <select name="provider_id" id="provider_id-edit" class="block_btn_30 modal_input vd_select" data-th="Provider">
                                                 <option value=""></option>
                                                 <option value="1">Vodafone</option>
 
@@ -253,7 +253,7 @@
                                     <div class="col-md-6">
                                         <label class="table_label">Type</label>
                                         <div class="select_wrapper">
-                                            <select name="select_s_type3" class="block_btn_30 modal_input vd_select" id="package_id" data-th="Type">
+                                            <select name="package_id" class="block_btn_30 modal_input vd_select" id="package_id-edit" data-th="Type">
                                                 <option value=""></option>
                                                 @foreach($packages as $package)
                                                     <option value="{{$package['id']}}">{{$package['name']}}</option>
@@ -300,7 +300,7 @@
                     </div>
                     <div class="modal-footer vdf_modal_footer">
                         <a href="#" class="inline_block_btn light_gray_btn close vd_form_reset" data-dismiss="modal" aria-label="Close">Cancel</a>
-                        <a href="#" class="inline_block_btn light_green_btn vd_form_submit">Edit Number</a>
+                        <a href="#" class="inline_block_btn light_green_btn vd_form_submit" id="edit-number">Edit Number</a>
 
                         <span class="success_response"></span>
                         <span class="error_response"></span>

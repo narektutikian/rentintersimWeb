@@ -83,6 +83,49 @@ $( document ).ready(function() {
         }
     });
 
+    /***** ETIT TYPE  *****/
+
+    $('#type-edit').on('click', function (e) {
+        e.stopPropagation(); // Stop stuff happening
+        var this_id = $(this).attr('id');
+        // console.log(this_id);
+        var data = {
+            _token : CSRF_TOKEN,
+            name: $('#name-edit').val(),
+            type_code: $('#type_code-edit').val(),
+            provider_id: $('#provider_id-edit').val(),
+            description: $('#description-edit').val()
+        };
+        var id = $('#id-edit').val();
+        // console.log( new FormData($("#edit-number-form")[0]));
+        $.ajax({
+            type: "PUT",
+            url: '/type/'+id,
+            // data: new FormData($("#edit-number-form")[0]),
+            data: data,
+            // cache: false,
+            // dataType: 'json',
+            // processData: false, // Don't process the files
+            // contentType: false, // Set content type to false as jQuery will tell the server its a query string request
+            success: function( msg )
+            {
+                $(".error_response").empty();
+                $(".success_response").empty();
+                $(".success_response").append("DONE "+msg);
+            },
+            error: function (error)
+            {
+                $(".error_response").empty();
+                $(".success_response").empty();
+                $(".error_response").append("ERROR");
+                // $("#sim-edit-response").append("<div>"+"ERROR "+ error.responseJSON.number[0]+ " ," +error.responseJSON.provider_id[0] +"</div>");
+                // console.log(error.responseJSON.number[0]);
+            }
+        });
+        // }
+
+    });
+
 /****** Order Creation ******/
     var package_id;
     $('#create-order').on('click', function (e) {
@@ -320,6 +363,50 @@ $( document ).ready(function() {
 
 
         }
+    });
+
+    /******  Edit number ********/
+
+    $('#edit-number').on('click', function (e) {
+        e.stopPropagation(); // Stop stuff happening
+        var this_id = $(this).attr('id');
+        // console.log(this_id);
+        var data = {
+            _token : CSRF_TOKEN,
+            phone: $('#number-edit').val(),
+            initial_sim_id: $('#sim_id-edit').val(),
+            package_id: $('#package_id-edit').val(),
+            provider_id: $('#provider_id-edit').val(),
+            is_special: $('#is_special-edit').val()
+        };
+        var id = $('#id').val();
+        // console.log( new FormData($("#edit-number-form")[0]));
+        $.ajax({
+            type: "PUT",
+            url: '/number/'+id,
+            // data: new FormData($("#edit-number-form")[0]),
+            data: data,
+            // cache: false,
+            // dataType: 'json',
+            // processData: false, // Don't process the files
+            // contentType: false, // Set content type to false as jQuery will tell the server its a query string request
+            success: function( msg )
+            {
+                $(".error_response").empty();
+                $(".success_response").empty();
+                $(".success_response").append("DONE "+msg);
+            },
+            error: function (error)
+            {
+                $(".error_response").empty();
+                $(".success_response").empty();
+                $(".error_response").append("ERROR");
+                // $("#sim-edit-response").append("<div>"+"ERROR "+ error.responseJSON.number[0]+ " ," +error.responseJSON.provider_id[0] +"</div>");
+                // console.log(error.responseJSON.number[0]);
+            }
+        });
+        // }
+
     });
 
 

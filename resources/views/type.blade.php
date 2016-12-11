@@ -186,7 +186,7 @@
                         <h3>Edit type</h3>
                     </div>
                 </div>
-                <form action="{{url('type')}}" class="form-horizontal vd_form">
+                <form action="{{url('type')}}" id="type-edit-form" class="form-horizontal vd_form">
                     <div class="modal-body vdf_modal_body">
 
                         <div class="form-group">
@@ -195,15 +195,16 @@
                                     <div class="col-md-6">
                                         <label class="table_label">Type Name</label>
                                         <div class="relative">
-                                        <input type="hidden" name="some_type_edit_id" data-th="Id" value=""/>
-                                            <input type="text" name="name" id="name" class="block_btn_30 modal_input vd_number" data-th="Type Name" value=""/>
+                                        <input type="hidden" name="some_type_edit_id" data-th="Id" id="id-edit" value=""/>
+                                            <input type="text" name="name" id="name-edit" class="block_btn_30 modal_input vd_number" data-th="Type Name" value=""/>
+                                            {{csrf_field()}}
                                             <i class="input_icon icon-add_type"></i>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <label class="table_label">Provider</label>
                                         <div class="select_wrapper">
-                                            <select name="provider_id" id="provider_id" class="block_btn_30 modal_input vd_select" data-th="Provider">
+                                            <select name="provider_id" id="provider_id-edit" class="block_btn_30 modal_input vd_select" data-th="Provider">
                                                 <option value=""></option>
                                                 <option value="1">Vodafone</option>
                                             </select>
@@ -215,39 +216,39 @@
                                     <div class="col-md-6">
                                         <label class="table_label">Type Code</label>
                                         <div class="relative">
-                                            <input type="text" name="code" id="type_code" class="block_btn_30 modal_input vd_number" data-th="Type Code" value=""/>
+                                            <input type="text" name="type_code" id="type_code-edit" class="block_btn_30 modal_input vd_number" data-th="Type Code" value=""/>
                                             <i class="input_icon icon-type"></i>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <label class="table_label">Description</label>
-                                        <textarea class="modal_textarea vd_required" id="description" data-th="Description"></textarea>
+                                        <textarea class="modal_textarea vd_required" id="description-edit" data-th="Description"></textarea>
                                     </div>
                                 </div>
-                                <span class="or">OR</span>
+                                {{--<span class="or">OR</span>--}}
                             </div>
-                            <div class="col-md-6 vdf_modal_right">
-                                <div class="form-group">
-                                    <div class="col-md-12">
-                                        <label class="table_label">Add from file</label>
-                                        <span class="uploaded_files">
-                                            <span class="keep_file_name"></span>
-                                            <span class="file_container"> Browse
-                                                <input class="modal_image_name" type="file" />
-                                            </span>
-                                            <span class="uploaded_file_links"> File example
-                                                <a href="#" class="download_file disable" download=""><i class="icon-download"></i></a>
-                                            </span>
-                                        </span>
+                            {{--<div class="col-md-6 vdf_modal_right">--}}
+                                {{--<div class="form-group">--}}
+                                    {{--<div class="col-md-12">--}}
+                                        {{--<label class="table_label">Add from file</label>--}}
+                                        {{--<span class="uploaded_files">--}}
+                                            {{--<span class="keep_file_name"></span>--}}
+                                            {{--<span class="file_container"> Browse--}}
+                                                {{--<input class="modal_image_name" type="file" />--}}
+                                            {{--</span>--}}
+                                            {{--<span class="uploaded_file_links"> File example--}}
+                                                {{--<a href="#" class="download_file disable" download=""><i class="icon-download"></i></a>--}}
+                                            {{--</span>--}}
+                                        {{--</span>--}}
 
-                                    </div>
-                                </div>
-                            </div>
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
                         </div>
                     </div>
                     <div class="modal-footer vdf_modal_footer">
                         <a href="#" class="inline_block_btn light_gray_btn close vd_form_reset" data-dismiss="modal" aria-label="Close">Cancel</a>
-                        <a href="#" class="inline_block_btn light_green_btn vd_form_submit">Edit type</a>
+                        <a href="#" class="inline_block_btn light_green_btn vd_form_submit" id="type-edit">Edit type</a>
 
                         <span class="success_response"></span>
                         <span class="error_response"></span>
