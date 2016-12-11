@@ -245,30 +245,29 @@ input[type="radio"].toggle.checked + label
   -webkit-user-select: none
   -webkit-touch-callout: none
 
-.vdf_checkbox > input /* HIDE ORG RADIO & CHECKBOX */
-  visibility: hidden
-  position: absolute
+  > input /* HIDE ORG RADIO & CHECKBOX */
+    visibility: hidden
+    position: absolute
 
-/* CHECKBOX OVERWRITE STYLES */
-.vdf_checkbox > i
-  display: inline-block
-  vertical-align: middle
-  width: 30px
-  height: 30px
-  line-height: 29px
-  text-align: center
-  color: $total_numbers_title
-  transition: 0.2s
-  font-size: 18px
-  @include border_radius(3px)
-  border: 1px solid $total_numbers_title
+  /* CHECKBOX OVERWRITE STYLES */
+  > i
+    display: inline-block
+    vertical-align: middle
+    width: 30px
+    height: 30px
+    line-height: 29px
+    text-align: center
+    color: $total_numbers_title
+    transition: 0.2s
+    font-size: 18px
+    @include border_radius(3px)
+    border: 1px solid $total_numbers_title
 
-/* CHECKBOX */
-
-.vdf_checkbox > input:checked + i /* (RADIO CHECKED) <i> STYLE */
-  color: $active_green
-  border: 1px solid $active_green
-  background:  #F3F3F3
+  /* CHECKBOX */
+  > input:checked + i /* (RADIO CHECKED) <i> STYLE */
+    color: $active_green
+    border: 1px solid $active_green
+    background:  #F3F3F3
 
 /* end of Styling Checkbox */
 
@@ -364,10 +363,12 @@ input[type="radio"].toggle.checked + label
 
 
 @media (min-width: 768px) and (max-width: 992px)
-  .vdf_radio
-    //display: block
-    //float: none
-    // margin: 5px auto
+
+  .vdf_checkbox
+    > i
+      width: 25px
+      height: 25px
+      line-height: 24px
 
 @media (min-width: 640px) and (max-width: 768px)
   .rwd-table

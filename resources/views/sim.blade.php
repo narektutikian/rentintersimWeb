@@ -62,11 +62,11 @@
                             <td class="rwd-td4 table_status_cell" data-th="Status">
                                 <div class="vdf_radio">
                                     <div class="toggle_container {{ ((!$sim['is_active']) ? 'disabled' : '') }}">
-                                        <label>
+                                        <label class="label_unchecked">
                                             <input type="radio" name="toggle" value="1"><span></span>
                                         </label>
-                                        <label>
-                                            <input type="radio" name="toggle" value="0"><span class="input-checked"></span>
+                                        <label class="label_checked">
+                                            <input type="radio" name="toggle" value="0"><span></span>
                                         </label>
                                     </div>
                                 </div>
