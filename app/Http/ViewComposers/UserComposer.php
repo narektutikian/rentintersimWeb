@@ -8,6 +8,8 @@
 
 namespace App\Http\ViewComposers;
 use Illuminate\View\View;
+use App\User;
+use Auth;
 
 
 
@@ -41,7 +43,8 @@ class UserComposer
     public function compose(View $view)
     {
 
-
-        $view->with('viewName', $view->getName());
+        $users = User::select('id', 'login', 'supervisor_id')->where('id', '!=', Auth::user()->id)->where('is_active', 1)->get()->toArray();
+        $view->with('viewName', $view->getName())
+                ->with('users', $users);
     }
 }

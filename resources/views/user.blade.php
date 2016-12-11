@@ -38,24 +38,25 @@
                 </div>
             </div>
             <div class="modal-body vdf_modal_body">
-                <form action="/" class="form-horizontal">
+                <form action="/user" id="add-user" class="form-horizontal">
                     <div class="form-group">
                         <div class="col-md-6 vdf_modal_left">
                             <div class="form_row form-group">
                                 <div class="col-md-6">
                                     <label class="table_label">Name</label>
                                     <div class="form_row">
-                                        <input type="text" class="block_btn_30 modal_input" value=""/>
+                                        <input type="text" name="name" id="name" class="block_btn_30 modal_input" value=""/>
+                                        {{csrf_field()}}
                                         <i class="input_icon icon-username"></i>
                                     </div>
                                     <label class="table_label">Type</label>
                                     <div class="form_row">
                                         <div class="select_wrapper">
-                                            <select class="block_btn_30 modal_input">
+                                            <select class="block_btn_30 modal_input" name="type" id="type">
                                                 <option value=""></option>
-                                                <option value="Admin">type 1</option>
-                                                <option value="Dealer">type 2</option>
-                                                <option value="Sub-Dealer">type 3</option>
+                                                <option value="admin">Admin</option>
+                                                <option value="manager">Manager</option>
+                                                <option value="employee">Employee</option>
                                             </select>
                                             <i class="input_icon icon-username"></i>
                                         </div>
@@ -63,7 +64,7 @@
                                     </div>
                                     <label class="table_label">Primary Email</label>
                                     <div class="form_row">
-                                        <input type="text" class="block_btn_30 modal_input" value=""/>
+                                        <input type="text" class="block_btn_30 modal_input" name="email" id="email" value=""/>
                                         <i class="input_icon icon-email"></i>
                                     </div>
                                 </div>
@@ -71,24 +72,33 @@
                                     <label class="table_label">Level</label>
                                     <div class="form_row">
                                         <div class="select_wrapper">
-                                            <select class="block_btn_30 modal_input">
+                                            <select class="block_btn_30 modal_input" name="level" id="level">
                                                 <option value=""></option>
-                                                <option value="Admin">Admin</option>
+                                                <option value="Distributor">Distributor</option>
                                                 <option value="Dealer">Dealer</option>
-                                                <option value="Sub-Dealer">SubDealer</option>
+                                                <option value="Subdealer">Sub-Dealer</option>
                                             </select>
                                             <i class="input_icon icon-level"></i>
                                         </div>
 
                                     </div>
-                                    <label class="table_label">Parent Username</label>
-                                    <div class="form_row">
-                                        <input type="text" class="block_btn_30 modal_input" value=""/>
-                                        <i class="input_icon icon-username"></i>
+                                    <label class="table_label {{ (Auth::user()->level != 'Super admin') ? 'hidden' : '' }}">Parent Username</label>
+
+                                    <div class="form_row {{ (Auth::user()->level != 'Super admin') ? 'hidden' : '' }}">
+                                        <div class="select_wrapper">
+                                            <select class="block_btn_30 modal_input" name="supervisor_id" id="supervisor_id">
+                                                <option value="{{Auth::user()->id}}">{{Auth::user()->login}}</option>
+                                                @foreach($users as $supervisor)
+                                                    <option value="{{$supervisor['id']}}">{{$supervisor['login']}}</option>
+                                                @endforeach
+                                            </select>
+                                            <i class="input_icon icon-username"></i>
+                                        </div>
+
                                     </div>
                                     <label class="table_label">Secondary Email</label>
                                     <div class="form_row">
-                                        <input type="text" class="block_btn_30 modal_input" value=""/>
+                                        <input type="text" class="block_btn_30 modal_input" id="mail2" name="email2" value=""/>
                                         <i class="input_icon icon-email"></i>
                                     </div>
                                 </div>
@@ -99,14 +109,14 @@
                                 <div class="col-md-6">
                                     <label class="table_label">Username</label>
                                     <div class="form_row">
-                                        <input type="text" class="block_btn_30 modal_input" value=""/>
+                                        <input type="text" class="block_btn_30 modal_input" id="username" name="username" value=""/>
                                         <i class="input_icon icon-username"></i>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <label class="table_label">Password</label>
                                     <div class="form_row">
-                                        <input type="password" class="block_btn_30 modal_input" value=""/>
+                                        <input type="password" class="block_btn_30 modal_input" id="password" name="password" value=""/>
                                         <i class="input_icon icon-password"></i>
                                     </div>
                                 </div>
@@ -118,7 +128,7 @@
             </div>
             <div class="modal-footer vdf_modal_footer">
                 <a href="#" class="inline_block_btn light_gray_btn close vd_form_reset" data-dismiss="modal" aria-label="Close">Cancel</a>
-                <a href="#" class="inline_block_btn light_green_btn vd_form_submit">Create User</a>
+                <a href="#" class="inline_block_btn light_green_btn vd_form_submit" id="create-user">Create User</a>
 
                 <span class="success_response"></span>
                 <span class="error_response"></span>

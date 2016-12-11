@@ -83,7 +83,7 @@ $( document ).ready(function() {
         }
     });
 
-    /***** ETIT TYPE  *****/
+    /***** EdIT TYPE  *****/
 
     $('#type-edit').on('click', function (e) {
         e.stopPropagation(); // Stop stuff happening
@@ -130,9 +130,9 @@ $( document ).ready(function() {
     var package_id;
     $('#create-order').on('click', function (e) {
 
-        if(!$(this).closest('.vd_form').find('.error')){
-
-            console.log('has error');
+        // if(!$(this).closest('.vd_form').find('.error')){
+        //
+        //     console.log('has error');
 
             var data = {
                 _token : CSRF_TOKEN,
@@ -147,16 +147,14 @@ $( document ).ready(function() {
 
             $.ajax({
                 type: "POST",
-                url: '/order',
+                url: 'order',
                 data: data,
-                success: function( msg )
-                {
+                success:  function (msg) {
                     $(".error_response").empty();
                     $(".success_response").empty();
-                    $(".success_response").append("DONE "+msg);
+                    $(".success_response").append("DONE");
                 },
-                error: function (error)
-                {
+                error: function (error) {
                     $(".error_response").empty();
                     $(".success_response").empty();
                     $(".error_response").append("ERROR");
@@ -164,7 +162,7 @@ $( document ).ready(function() {
                     // console.log(error.responseJSON.number[0]);
                 }
             });
-        }
+        // }
 
     });
 
@@ -409,6 +407,33 @@ $( document ).ready(function() {
 
     });
 
+    /***** ADD NEW USER  *****/
+    $('#create-user').on('click', function (e) {
+        e.stopPropagation(); // Stop stuff happening
+            console.log('user create');
+        $.ajax({
+            url: 'user',
+            type: 'POST',
+            data: new FormData($("#add-user")[0]),
+            cache: false,
+            dataType: 'json',
+            processData: false, // Don't process the files
+            contentType: false, // Set content type to false as jQuery will tell the server its a query string request
+            success: function (msg) {
+                $(".error_response").empty();
+                $(".success_response").empty();
+                $(".success_response").append("DONE " + msg);
+            },
+            error: function (error) {
+                $(".error_response").empty();
+                $(".success_response").empty();
+                $(".error_response").append("ERROR" + error);
+                // $("#sim-edit-response").append("<div>"+"ERROR "+ error.responseJSON.number[0]+ " ," +error.responseJSON.provider_id[0] +"</div>");
+                // console.log(error.responseJSON.number[0]);
+            }
+        });
+
+    });
 
     /* User Management Nested Table */
     $.ajax({
