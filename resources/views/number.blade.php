@@ -36,13 +36,13 @@
                     <table class="rwd-table responsive_table table" data-toggle="table">
                         <thead>
                         <tr>
-                            <th class="table_id_cell" data-field="id" data-sortable="true" data-th="Id">Id</th>
-                            <th data-field="phone number" data-sortable="true" data-th="Phone Number">Phone Number</th>
+                            <th class="table_id_cell" data-field="id" data-sortable="true">Id</th>
+                            <th data-field="phone number" data-sortable="true">Phone Number</th>
                             <th>SIM Number</th>
-                            <th data-field="provider" data-sortable="true" data-th="Provider">Provider </th>
-                            <th data-field="type" data-sortable="true" data-th="Type">Type</th>
+                            <th data-field="provider" data-sortable="true">Provider </th>
+                            <th data-field="type" data-sortable="true">Type</th>
                             <th>Action </th>
-                            <th class="w_160_status" data-field="status" data-sortable="true" data-th="Status">Status </th>
+                            <th class="w_160_status" data-field="status" data-sortable="true">Status </th>
                         </tr>
                         </thead>
                         <tbody>

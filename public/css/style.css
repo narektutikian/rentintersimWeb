@@ -684,20 +684,23 @@ input[type="radio"].toggle.checked + label {
   max-width: 90px; }
 
 .table_time_cell_large {
-  width: 140px;
+  width: 136px;
   text-align: center;
-  min-width: 140px;
-  max-width: 140px; }
+  min-width: 136px;
+  max-width: 136px; }
 
 .table_action_cell_large {
-  width: 140px;
+  width: 136px;
   text-align: center;
-  min-width: 140px;
-  max-width: 140px; }
+  min-width: 136px;
+  max-width: 136px; }
 
 .table_status_cell {
   width: 142px;
   min-width: 142px; }
+
+.updated_by {
+  display: block; }
 
 @media (min-width: 768px) and (max-width: 992px) {
   .table_id_cell {
@@ -1045,7 +1048,8 @@ input[type="radio"].toggle.checked + label {
 .uploaded_files {
   font-size: 0; }
 
-.wrap_package_list {
+.wrap_package_list,
+.wrap_package_list_edit {
   position: relative;
   display: none;
   width: 100%;
@@ -1053,7 +1057,8 @@ input[type="radio"].toggle.checked + label {
   margin: 0 auto;
   overflow: hidden;
   padding: 0 30px; }
-  .wrap_package_list .package_item a {
+  .wrap_package_list .package_item a,
+  .wrap_package_list_edit .package_item a {
     display: block;
     height: 95px;
     text-align: center;
@@ -1063,7 +1068,8 @@ input[type="radio"].toggle.checked + label {
     -ms-border-radius: 10px;
     border-radius: 10px;
     padding: 0 2px; }
-    .wrap_package_list .package_item a h4 {
+    .wrap_package_list .package_item a h4,
+    .wrap_package_list_edit .package_item a h4 {
       color: #2cc763;
       margin-top: 12px;
       margin-bottom: 10px;
@@ -1072,7 +1078,8 @@ input[type="radio"].toggle.checked + label {
       font-weight: normal;
       font-style: normal;
       font-family: "proxima_nova_rgregular", Arial, Helvetica, sans-serif; }
-    .wrap_package_list .package_item a span {
+    .wrap_package_list .package_item a span,
+    .wrap_package_list_edit .package_item a span {
       display: block;
       margin-bottom: 8px;
       line-height: 18px;
@@ -1081,48 +1088,66 @@ input[type="radio"].toggle.checked + label {
       font-weight: normal;
       font-style: normal;
       font-family: "proxima_nova_rgregular", Arial, Helvetica, sans-serif; }
-    .wrap_package_list .package_item a.selected_package {
+    .wrap_package_list .package_item a.selected_package,
+    .wrap_package_list_edit .package_item a.selected_package {
       background: #2cc763;
       color: #ffffff; }
-      .wrap_package_list .package_item a.selected_package h4 {
+      .wrap_package_list .package_item a.selected_package h4,
+      .wrap_package_list_edit .package_item a.selected_package h4 {
         color: #ffffff; }
-      .wrap_package_list .package_item a.selected_package span {
+      .wrap_package_list .package_item a.selected_package span,
+      .wrap_package_list_edit .package_item a.selected_package span {
         color: #ffffff; }
-  .wrap_package_list .owl-controls {
+  .wrap_package_list .owl-controls,
+  .wrap_package_list_edit .owl-controls {
     position: absolute;
     top: 50%;
     left: 0;
     right: 0;
     margin-top: -15px; }
     .wrap_package_list .owl-controls .owl-prev,
-    .wrap_package_list .owl-controls .owl-next {
+    .wrap_package_list .owl-controls .owl-next,
+    .wrap_package_list_edit .owl-controls .owl-prev,
+    .wrap_package_list_edit .owl-controls .owl-next {
       border: 1px solid #ecf3f9;
       position: absolute;
       background: #ffffff;
       padding: 2px 0px; }
       .wrap_package_list .owl-controls .owl-prev:hover,
-      .wrap_package_list .owl-controls .owl-next:hover {
+      .wrap_package_list .owl-controls .owl-next:hover,
+      .wrap_package_list_edit .owl-controls .owl-prev:hover,
+      .wrap_package_list_edit .owl-controls .owl-next:hover {
         background: #2cc763; }
       .wrap_package_list .owl-controls .owl-prev:hover .prev.icon-dropdown, .wrap_package_list .owl-controls .owl-prev:hover .next.icon-dropdown,
       .wrap_package_list .owl-controls .owl-next:hover .prev.icon-dropdown,
-      .wrap_package_list .owl-controls .owl-next:hover .next.icon-dropdown {
+      .wrap_package_list .owl-controls .owl-next:hover .next.icon-dropdown,
+      .wrap_package_list_edit .owl-controls .owl-prev:hover .prev.icon-dropdown,
+      .wrap_package_list_edit .owl-controls .owl-prev:hover .next.icon-dropdown,
+      .wrap_package_list_edit .owl-controls .owl-next:hover .prev.icon-dropdown,
+      .wrap_package_list_edit .owl-controls .owl-next:hover .next.icon-dropdown {
         color: #ffffff; }
-    .wrap_package_list .owl-controls .owl-prev {
+    .wrap_package_list .owl-controls .owl-prev,
+    .wrap_package_list_edit .owl-controls .owl-prev {
       left: 0; }
-    .wrap_package_list .owl-controls .owl-next {
+    .wrap_package_list .owl-controls .owl-next,
+    .wrap_package_list_edit .owl-controls .owl-next {
       right: 0; }
     .wrap_package_list .owl-controls .prev.icon-dropdown,
-    .wrap_package_list .owl-controls .next.icon-dropdown {
+    .wrap_package_list .owl-controls .next.icon-dropdown,
+    .wrap_package_list_edit .owl-controls .prev.icon-dropdown,
+    .wrap_package_list_edit .owl-controls .next.icon-dropdown {
       color: #2cc763;
       font-size: 26px;
       display: inline-block; }
-    .wrap_package_list .owl-controls .prev.icon-dropdown {
+    .wrap_package_list .owl-controls .prev.icon-dropdown,
+    .wrap_package_list_edit .owl-controls .prev.icon-dropdown {
       -webkit-transform: rotate(90deg);
       -moz-transform: rotate(90deg);
       -o-transform: rotate(90deg);
       -ms-transform: rotate(90deg);
       transform: rotate(90deg); }
-    .wrap_package_list .owl-controls .next.icon-dropdown {
+    .wrap_package_list .owl-controls .next.icon-dropdown,
+    .wrap_package_list_edit .owl-controls .next.icon-dropdown {
       -webkit-transform: rotate(-90deg);
       -moz-transform: rotate(-90deg);
       -o-transform: rotate(-90deg);
@@ -1259,7 +1284,8 @@ input[type="radio"].toggle.checked + label {
       margin-left: 0;
       text-align: center; }
 
-  .wrap_package_list {
+  .wrap_package_list,
+  .wrap_package_list_edit {
     width: 100%; } }
 @media (max-width: 992px) {
   .search_management_option {
@@ -1311,10 +1337,12 @@ input[type="radio"].toggle.checked + label {
       .distributors .distributor_item .distributor_item_options {
         width: calc(100% - 90px); } }
 @media (max-width: 640px) {
-  .wrap_package_list .package_item {
+  .wrap_package_list .package_item,
+  .wrap_package_list_edit .package_item {
     margin: 0 auto; } }
 @media (max-width: 480px) {
-  .wrap_package_list .package_item {
+  .wrap_package_list .package_item,
+  .wrap_package_list_edit .package_item {
     margin: 0 auto; } }
 .vdf_modal {
   width: 1140px;

@@ -41,7 +41,7 @@
                     <table class="rwd-table responsive_table table" data-toggle="table">
                         <thead>
                         <tr>
-                            <th class="table_id_cell" data-field="id" data-sortable="true" data-th="Id">Id</th>
+                            <th class="table_id_cell" data-field="id" data-sortable="true">Id</th>
                             <th data-th="Sim Number">Sim Number</th>
                             <th data-field="provider" data-sortable="true" data-th="Provider">Provider</th>
                             <th>Action </th>

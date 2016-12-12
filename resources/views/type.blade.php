@@ -34,15 +34,15 @@
                 <div class="col-md-12">
                     <table class="rwd-table responsive_table table" data-toggle="table">
                         <thead>
-                        <tr>
-                            <th class="table_id_cell" data-field="id" data-sortable="true" data-th="Id">Id</th>
-                            <th data-field="type name" data-sortable="true" data-th="Type Name">Type Name</th>
-                            <th data-field="provider" data-sortable="true" data-th="Provider">Provider</th>
-                            <th data-th="Type Code">Type Code</th>
-                            <th data-th="Description">Description</th>
-                            <th>Action </th>
-                            <th data-field="status" data-sortable="true" data-th="Status">Status </th>
-                        </tr>
+                            <tr>
+                                <th class="table_id_cell" data-field="id" data-sortable="true">Id</th>
+                                <th data-field="type name" data-sortable="true">Type Name</th>
+                                <th data-field="provider" data-sortable="true">Provider</th>
+                                <th>Type Code</th>
+                                <th>Description</th>
+                                <th>Action </th>
+                                <th data-field="status" data-sortable="true">Status </th>
+                            </tr>
                         </thead>
                         <tbody>
                         @foreach($packagesArray as $package)

@@ -242,18 +242,49 @@ $( document ).ready(function() {
     });
     /********** end of Uploaded Image Name ***********/
 
-    /* Perfect Scrollbar */
-
-
+    /* Owl Slider in Orders List Modal*/
 
     $('#modal_new_order').on('show.bs.modal', function () {
         // do something…
-
         setTimeout(function(){
 
             $('.wrap_package_list').show(); // show package list after modal was open
-            //
             $('.wrap_package_list').owlCarousel({
+                nav : true,
+                navText : ['<i class="prev icon-dropdown"></i>', '<i class="next icon-dropdown"></i>'],
+                margin : 22,
+                responsive:{
+                    0:{
+                        items:1
+                    },
+                    480:{
+                        items:2,
+                        margin : 48
+                    },
+                    640:{
+                        items:3,
+                        margin : 28
+                    },
+                    1000:{
+                        items:2
+                    },
+                    1200:{
+                        items:3
+                    }
+                }
+            });
+        }, 600);
+
+    });
+
+    $('#modal_edit_order').on('show.bs.modal', function () {
+
+        console.log('modal_edit_order');
+        // do something…
+        setTimeout(function(){
+
+            $('.wrap_package_list_edit').show(); // show package list after modal was open
+            $('.wrap_package_list_edit').owlCarousel({
                 nav : true,
                 navText : ['<i class="prev icon-dropdown"></i>', '<i class="next icon-dropdown"></i>'],
                 margin : 22,

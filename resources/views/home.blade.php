@@ -38,13 +38,13 @@
                     <table class="rwd-table responsive_table table" data-toggle="table">
                         <thead>
                             <tr>
-                                <th data-th="Phone">Phone</th>
-                                <th data-th="SIM Number">SIM Number</th>
+                                <th data-field="Phone">Phone</th>
+                                <th data-field="SIM Number">SIM Number</th>
                                 <th data-field="provider" data-sortable="true" data-th="Provider">Provider</th>
                                 <th data-field="from" data-sortable="true" data-th="From">From</th>
                                 <th data-field="to" data-sortable="true" data-th="To">To</th>
                                 <th data-field="dealer" data-sortable="true" data-th="Dealer">Dealer </th>
-                                <th data-field="updated by" data-sortable="true" data-th="Updated by">Updated by</th>
+                                <th data-field="updated by" data-sortable="true" data-th="Updated by"><span class="updated_by">Updated</span><span class="updated_by">by</span> </th>
                                 <th data-th="Reference N">Reference #</th>
                                 <th data-th="action">Action</th>
                                 <th data-field="status" data-sortable="true" data-th="Status">Status</th>
@@ -64,25 +64,25 @@
                             <td class="rwd-td1 editable_cell" data-th="SIM Number">
                                 {{$order['sim_id']}}
                             </td>
-                            <td class="rwd-td2 editable_cell" data-th="Id">
+                            <td class="rwd-td2 editable_cell" data-th="Provider">
                                 {{$order['provider']}}
                             </td>
-                            <td class="rwd-td3 table_time_cell_large">
+                            <td class="rwd-td3 table_time_cell_large" data-field="From">
                                 {{$order['from']}}
                             </td>
-                            <td class="rwd-td4 table_time_cell_large">
+                            <td class="rwd-td4 table_time_cell_large" data-field="To">
                                 {{$order['to']}}
                             </td>
-                            <td class="rwd-td5">
+                            <td class="rwd-td5" data-field="Created by">
                                 {{$order['created_by']}}
                             </td>
-                            <td class="rwd-td6">
+                            <td class="rwd-td6" data-field="Updated by">
                                 {{$order['updated_by']}}
                             </td>
-                            <td>
+                            <td class="rwd-td6" data-field="Reference Number">
                                 {{$order['reference_number']}}
                             </td>
-                            <td class="rwd-td7 table_action_cell_large ">
+                            <td class="rwd-td7 table_action_cell_large" data-field="Action">
                                 <span class="table_icon edit" data-toggle="modal" data-target="#modal_edit_order" data-form="modal_edit_order">
                                     <i class="icon-edit"></i>
                                 </span>
@@ -94,7 +94,7 @@
                                     <i class="icon-special"></i>
                                 </label>
                             </td>
-                            <td class="rwd-td8 table_id_cell table_status_cell">
+                            <td class="rwd-td8 table_id_cell table_status_cell" data-field="Status">
                                 <div class="vdf_radio">
                                     <div class="toggle_container {{ ((!$order['is_active']) ? 'disabled' : '') }}">
                                         <label class="label_unchecked">
@@ -148,7 +148,7 @@
                                 <div class="form-group">
                                     <div class="col-md-12">
                                         <label class="table_label">Choose a SIM package </label>
-                                        <div class="wrap_package_list always_visible"></div>
+                                        <div class="wrap_package_list"></div>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -249,7 +249,11 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-12">
-
+                                        <div class="wrap_package_list_edit"></div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12">
                                         <div class="single_package">
                                             <label class="table_label">Selected Package </label>
                                             <a class="selected_package" title="Basic Package">

@@ -166,7 +166,8 @@
 .uploaded_files
   font-size: 0
 
-.wrap_package_list
+.wrap_package_list,
+.wrap_package_list_edit
   position: relative
   display: none
   width: 100%
@@ -341,7 +342,8 @@
       margin-left: 0
       text-align: center
 
-  .wrap_package_list
+  .wrap_package_list,
+  .wrap_package_list_edit
     width: 100%
 
 @media (max-width: 992px)
@@ -398,12 +400,14 @@
 
 @media (max-width: 640px)
 
-  .wrap_package_list
+  .wrap_package_list,
+  .wrap_package_list_edit
     .package_item
       margin: 0 auto
 
 @media (max-width: 480px)
 
-  .wrap_package_list
+  .wrap_package_list,
+  .wrap_package_list_edit
     .package_item
       margin: 0 auto

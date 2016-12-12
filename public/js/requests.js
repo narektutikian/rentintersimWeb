@@ -164,6 +164,13 @@ $(document).ready(function () {
                     "</a>" +
                     "</div>");
 
+                $(".wrap_package_list_edit").append("<div class='package_item'>" +
+                    "<a href='#' data-id='" + item.id + "' title='Basic Package'>" +
+                    "<h4>" + item.name + "</h4>" +
+                    "<span>" + item.description + "</span>" +
+                    "</a>" +
+                    "</div>");
+
             });
 
             $(document).on('click', '.package_item > a', function () {
@@ -205,14 +212,11 @@ $(document).ready(function () {
                         $(".success_response").empty();
                         $(".error_response").append("ERROR");
                         // $("#sim-edit-response").append("<div>"+"ERROR "+ error.responseJSON.number[0]+ " ," +error.responseJSON.provider_id[0] +"</div>");
-                        // console.log(error.responseJSON.number[0]);
                     }
                 });
             }
         }
         else {
-            // alert($('#sim-file').val());
-
             e.stopPropagation(); // Stop stuff happening
             $.ajax({
                 url: 'import-sim',
@@ -484,15 +488,15 @@ $(document).ready(function () {
                     '<thead>' +
                         '<tr>' +
                         '<th>' +
-                            '<div class="th-inner "></div>' +
+                            '<div class="th-inner"></div>' +
                             '<div class="fht-cell"></div>' +
                         '</th>' +
                         '<th>' +
-                            '<div class="th-inner ">Name</div>' +
+                            '<div class="th-inner">Name</div>' +
                             '<div class="fht-cell"></div>' +
                         '</th>' +
                         '<th>' +
-                            '<div class="th-inner ">Username</div>' +
+                            '<div class="th-inner">Username</div>' +
                             '<div class="fht-cell"></div>' +
                         '</th>' +
                         '<th>' +
@@ -500,23 +504,23 @@ $(document).ready(function () {
                             '<div class="fht-cell"></div>' +
                         '</th>' +
                         '<th>' +
-                            '<div class="th-inner ">Active</div>' +
+                            '<div class="th-inner">Active</div>' +
                             '<div class="fht-cell"></div>' +
                         '</th>' +
                         '<th>' +
-                            '<div class="th-inner ">Pending</div>' +
+                            '<div class="th-inner">Pending</div>' +
                             '<div class="fht-cell"></div>' +
                         '</th>' +
                         '<th>' +
-                            '<div class="th-inner ">Waiting</div>' +
+                            '<div class="th-inner">Waiting</div>' +
                             '<div class="fht-cell"></div>' +
                         '</th>' +
                         '<th>' +
-                            '<div class="th-inner ">Action</div>' +
+                            '<div class="th-inner">Action</div>' +
                             '<div class="fht-cell"></div>' +
                         '</th>' +
                         '<th>' +
-                            '<div class="th-inner ">Status</div>' +
+                            '<div class="th-inner">Status</div>' +
                             '<div class="fht-cell"></div>' +
                         '</th>' +
                         '</tr>' +
