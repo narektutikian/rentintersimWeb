@@ -45,7 +45,11 @@ class HomeController extends Controller
     {
         if (Auth::user()->type == 'employee')
             return redirect('home');
-        return view('dashboard');
+        if (Auth::user()->level != 'Super admin')
+            return redirect('user');
+        if (Auth::user()->level == 'Super admin')
+            return view('dashboard');
+        return redirect('home');
     }
 
     public static function solveOrderList($orders, $viewHelper){
