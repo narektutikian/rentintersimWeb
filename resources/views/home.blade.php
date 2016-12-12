@@ -67,10 +67,10 @@
                             <td class="rwd-td2 editable_cell" data-th="Id">
                                 {{$order['provider']}}
                             </td>
-                            <td class="rwd-td3">
+                            <td class="rwd-td3 table_time_cell_large">
                                 {{$order['from']}}
                             </td>
-                            <td class="rwd-td4">
+                            <td class="rwd-td4 table_time_cell_large">
                                 {{$order['to']}}
                             </td>
                             <td class="rwd-td5">

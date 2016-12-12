@@ -683,6 +683,12 @@ input[type="radio"].toggle.checked + label {
   min-width: 90px;
   max-width: 90px; }
 
+.table_time_cell_large {
+  width: 140px;
+  text-align: center;
+  min-width: 140px;
+  max-width: 140px; }
+
 .table_action_cell_large {
   width: 140px;
   text-align: center;
@@ -704,6 +710,12 @@ input[type="radio"].toggle.checked + label {
     text-align: center;
     min-width: 70px;
     max-width: 70px; }
+
+  .table_time_cell_large {
+    width: 130px;
+    text-align: center;
+    min-width: 130px;
+    max-width: 130px; }
 
   .table_action_cell_large {
     width: 70px;
@@ -750,6 +762,12 @@ input[type="radio"].toggle.checked + label {
     margin-top: 0; }
 
   .table_action_cell {
+    width: auto;
+    text-align: left;
+    min-width: initial;
+    max-width: initial; }
+
+  .table_time_cell_large {
     width: auto;
     text-align: left;
     min-width: initial;
