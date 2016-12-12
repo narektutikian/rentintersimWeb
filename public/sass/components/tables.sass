@@ -59,15 +59,19 @@
   border-bottom: 1px solid #ddd
 
 .user_management_table
+  &.table
+    margin-bottom: 0
   tbody
-    tr
+    > tr
       &.nested_row
-        border: none
-      td
-        border-top: 1px solid red
-        border-left: 1px solid red
+        td
+
+      > td
+        border-top: 1px solid #ddd
+        border-left: 1px solid #ddd
         &.nested_cell
           padding: 0
+          border-top: none
         .nested_div
           .table
             border: none

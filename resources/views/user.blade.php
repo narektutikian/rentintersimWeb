@@ -1,9 +1,27 @@
 @extends('layouts.admin')
-
+<style>
+    .status_text_small{
+        width: 70px;
+    }
+    .w25{
+        width: 25px;
+        text-align: center;
+    }
+    .w73{
+        width: 73px;
+        text-align: center;
+    }
+    .w180{
+        width: 180px;
+    }
+    .nested_table{
+        border: 1px solid red !important;
+    }
+</style>
 @section('dashboard')
-    <div id="user_management">
+
         <section class="filter_status">
-            <div class="user_management_wrapper">
+            <div class="orders_list_wrapper">
                 <div class="filter_buttons">
                     <div class="search_management_option">
                         <form action="/" class="search_form_option">
@@ -11,7 +29,7 @@
                             <button type="submit" class="search_button"><i class="icon-search"></i></button>
                         </form>
                         <a href="#" class="export_user"><i class="icon-export"></i>Export</a>
-                        <a href="#" class="add_new_btn" data-toggle="modal" data-target="#modal_add_user"><i class="icon-new_order"></i>New User</a>
+                        <a href="#" class="add_new_btn" data-toggle="modal" data-target="#modal_new_order"><i class="icon-new_order"></i>New Order</a>
                     </div>
                 </div>
                 <div class="clear"></div>
@@ -20,234 +38,318 @@
         <section class="section_table">
             <div class="row">
                 <div class="col-md-12">
-                    <div id="wrap_tree_table"></div>
+                    <table class="responsive_table table user_management_table" data-toggle="table">
+                        <thead>
+                        <tr>
+                            <th class="w25"></th>
+                            <th>Name</th>
+                            <th class="w180">Username</th>
+                            <th class="w110left">Level</th>
+                            <th class="w65">Active</th>
+                            <th class="w73">Pending</th>
+                            <th class="w65">Waiting</th>
+                            <th class="w65">Action</th>
+                            <th class="w_160_status">Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td></td>
+                            <td>Michael Davidson(admin)</td>
+                            <td>MikaDav</td>
+                            <td>Distributor</td>
+                            <td>15</td>
+                            <td>24</td>
+                            <td>0</td>
+                            <td>
+                                <span class="table_icon"><i class="icon-edit"></i></span>
+                            </td>
+                            <td>
+                                <div class="vdf_radio">
+                                    <div class="toggle_container disabled">
+                                        <label>
+                                            <input type="radio" name="toggle" value="1"><span></span>
+                                        </label>
+                                        <label>
+                                            <input type="radio" name="toggle" value="0"><span class="input-checked"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <span class="status_text_small not_used">Not in use</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="#" class="open_nested" data-toggle="collapse" data-target="#demo1"><i class="icon-dropdown"></i></a>
+                            </td>
+                            <td>
+                                Benjamin Whitehead(admin)
+                            </td>
+                            <td>Benji1234</td>
+                            <td>Distributor</td>
+                            <td>16</td>
+                            <td>7</td>
+                            <td>1</td>
+                            <td>
+                                <span class="table_icon"><i class="icon-edit"></i></span>
+                            </td>
+                            <td class="w_160_status" data-th="Status">
+                                <div class="vdf_radio">
+                                    <div class="toggle_container disabled">
+                                        <label>
+                                            <input type="radio" name="toggle" value="1"><span></span>
+                                        </label>
+                                        <label>
+                                            <input type="radio" name="toggle" value="0"><span class="input-checked"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <span class="status_text_small not_used">Not in use</span>
+                            </td>
+                        </tr>
+                        <tr class="nested_row">
+                            <td></td>
+                            <td colspan="8" class="nested_cell">
+                                <div class="collapse nested_div" id="demo1">
+                                    <table class="table table-striped nested_table">
+                                        <thead></thead>
+                                        <tbody>
+                                        <tr>
+                                            <td  class="w25"></td>
+                                            <td>Edward Morison(employee)</td>
+                                            <td class="w180">EdwardEdward</td>
+                                            <td class="w110left">Dealer</td>
+                                            <td class="w65">3</td>
+                                            <td class="w73">0</td>
+                                            <td class="w65">0</td>
+                                            <td class="w65">
+                                                <span class="table_icon"><i class="icon-edit"></i></span>
+                                            </td>
+                                            <td class="status_cell w_160_status" data-th="Status">
+                                                <span class="status_text_small not_used">Active</span>
+                                                <div class="vdf_radio">
+                                                    <div class="toggle_container">
+                                                        <label>
+                                                            <input type="radio" name="toggle" value="1"><span></span>
+                                                        </label>
+                                                        <label>
+                                                            <input type="radio" name="toggle" value="0"><span class="input-checked"></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="#" class="open_nested" data-toggle="collapse" data-target="#demo2"><i class="icon-dropdown"></i></a></td>
+                                            <td>Edward Morison(employee)</td>
+                                            <td class="w180">EdwardEdward</td>
+                                            <td class="w110left">Dealer</td>
+                                            <td class="w65">3</td>
+                                            <td class="w73">0</td>
+                                            <td class="w65">0</td>
+                                            <td class="w65">
+                                                <span class="table_icon"><i class="icon-edit"></i></span>
+                                            </td>
+                                            <td class="status_cell w_160_status" data-th="Status">
+                                                <span class="status_text_small not_used">Active</span>
+                                                <div class="vdf_radio">
+                                                    <div class="toggle_container">
+                                                        <label>
+                                                            <input type="radio" name="toggle" value="1"><span></span>
+                                                        </label>
+                                                        <label>
+                                                            <input type="radio" name="toggle" value="0"><span class="input-checked"></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr class="nested_row">
+                                            <td style="padding: 0 !important;"></td>
+                                            <td colspan="8" class="nested_cell">
+                                                <div class="collapse nested_div" id="demo2">
+                                                    <table class="table table-striped nested_table">
+                                                        <thead></thead>
+                                                        <tbody>
+                                                        <tr>
+                                                            <td class="w25">
+                                                                <a href="#" class="open_nested" data-toggle="collapse" data-target="#demo3"><i class="icon-dropdown"></i></a>
+                                                            </td>
+                                                            <td>Level 3 - 1</td>
+                                                            <td class="w180">EdwardEdward</td>
+                                                            <td class="w110left">Dealer</td>
+                                                            <td class="w65">3</td>
+                                                            <td class="w73">0</td>
+                                                            <td class="w65">0</td>
+                                                            <td class="w65">
+                                                                <span class="table_icon"><i class="icon-edit"></i></span>
+                                                            </td>
+                                                            <td class="status_cell w_160_status" data-th="Status">
+                                                                <span class="status_text_small not_used">Active</span>
+                                                                <div class="vdf_radio">
+                                                                    <div class="toggle_container">
+                                                                        <label>
+                                                                            <input type="radio" name="toggle" value="1"><span></span>
+                                                                        </label>
+                                                                        <label>
+                                                                            <input type="radio" name="toggle" value="0"><span class="input-checked"></span>
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="nested_row">
+                                                            <td style="padding: 0 !important;"></td>
+                                                            <td colspan="8" class="nested_cell">
+                                                                <div class="collapse nested_div" id="demo3">
+                                                                    <table class="table table-striped nested_table">
+                                                                        <thead></thead>
+                                                                        <tbody>
+                                                                        <tr>
+                                                                            <td>Level 3 - 1 - 1</td>
+                                                                            <td class="w180">EdwardEdward</td>
+                                                                            <td class="w110left">Dealer</td>
+                                                                            <td class="w65">3</td>
+                                                                            <td class="w73">0</td>
+                                                                            <td class="w65">0</td>
+                                                                            <td class="w65">
+                                                                                <span class="table_icon"><i class="icon-edit"></i></span>
+                                                                            </td>
+                                                                            <td class="status_cell w_160_status" data-th="Status">
+                                                                                <span class="status_text_small not_used">Active</span>
+                                                                                <div class="vdf_radio">
+                                                                                    <div class="toggle_container">
+                                                                                        <label>
+                                                                                            <input type="radio" name="toggle" value="1"><span></span>
+                                                                                        </label>
+                                                                                        <label>
+                                                                                            <input type="radio" name="toggle" value="0"><span class="input-checked"></span>
+                                                                                        </label>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </td>
+                                                                        </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td></td>
+                                                            <td>Level 3 - 2</td>
+                                                            <td class="w180">EdwardEdward</td>
+                                                            <td class="w110left">Dealer</td>
+                                                            <td class="w65">3</td>
+                                                            <td class="w73">0</td>
+                                                            <td class="w65">0</td>
+                                                            <td class="w65">
+                                                                <span class="table_icon"><i class="icon-edit"></i></span>
+                                                            </td>
+                                                            <td class="status_cell w_160_status" data-th="Status">
+                                                                <span class="status_text_small not_used">Active</span>
+                                                                <div class="vdf_radio">
+                                                                    <div class="toggle_container">
+                                                                        <label>
+                                                                            <input type="radio" name="toggle" value="1"><span></span>
+                                                                        </label>
+                                                                        <label>
+                                                                            <input type="radio" name="toggle" value="0"><span class="input-checked"></span>
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <a href="#" class="open_nested" data-toggle="collapse" data-target="#demo4"><i class="icon-dropdown"></i></a>
+                            </td>
+                            <td>Michael Davidson(admin) 2</td>
+                            <td>MikaDav</td>
+                            <td>Distributor</td>
+                            <td>15</td>
+                            <td>24</td>
+                            <td>0</td>
+                            <td>
+                                <span class="table_icon"><i class="icon-edit"></i></span>
+                            </td>
+                            <td>
+                                <div class="vdf_radio">
+                                    <div class="toggle_container">
+                                        <label>
+                                            <input type="radio" name="toggle" value="1"><span></span>
+                                        </label>
+                                        <label>
+                                            <input type="radio" name="toggle" value="0"><span class="input-checked"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <span class="status_text_small not_used">Not in use</span>
+                            </td>
+                        </tr>
+                        <tr class="nested_row">
+                            <td></td>
+                            <td colspan="8" class="nested_cell">
+                                <div class="collapse nested_div" id="demo4">
+                                    <table class="table table-striped nested_table">
+                                        <thead></thead>
+                                        <tbody>
+                                        <tr>
+                                            <td  class="w25"></td>
+                                            <td>Level 4 - 1</td>
+                                            <td class="w180">4444444</td>
+                                            <td class="w110left">Dealer</td>
+                                            <td class="w65">3</td>
+                                            <td class="w73">0</td>
+                                            <td class="w65">0</td>
+                                            <td class="w65">
+                                                <span class="table_icon"><i class="icon-edit"></i></span>
+                                            </td>
+                                            <td class="status_cell w_160_status" data-th="Status">
+                                                <span class="status_text_small not_used">Active</span>
+                                                <div class="vdf_radio">
+                                                    <div class="toggle_container">
+                                                        <label>
+                                                            <input type="radio" name="toggle" value="1"><span></span>
+                                                        </label>
+                                                        <label>
+                                                            <input type="radio" name="toggle" value="0"><span class="input-checked"></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
                 </div>
             </div>
+
+
+        <br>
+            <div class="row">
+                <div class="col-md-12">
+                <div id="wrap_tree_table">
+
+                </div>
+            </div>
+        </div>
         </section>
-    </div><!---#user_management-->
 
-
-<!--Add Use Modal -->
-<div class="modal fade" id="modal_add_user" tabindex="-1" role="dialog" aria-labelledby="modal_add_user">
-    <div class="modal-dialog vdf_modal" role="document">
-        <div class="modal-content vdf_modal_content">
-            <div class="modal-header vdf_modal_header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <div class="vdf_modal_sub_header">
-                    <h3>New User</h3>
-                </div>
-            </div>
-            <div class="modal-body vdf_modal_body">
-                <form action="/user" id="add-user" class="form-horizontal">
-                    <div class="form-group">
-                        <div class="col-md-6 vdf_modal_left">
-                            <div class="form_row form-group">
-                                <div class="col-md-6">
-                                    <label class="table_label">Name</label>
-                                    <div class="form_row">
-                                        <input type="text" name="name" id="name" class="block_btn_30 modal_input" value=""/>
-                                        {{csrf_field()}}
-                                        <i class="input_icon icon-username"></i>
-                                    </div>
-                                    <label class="table_label">Type</label>
-                                    <div class="form_row">
-                                        <div class="select_wrapper">
-                                            <select class="block_btn_30 modal_input" name="type" id="type">
-                                                <option value=""></option>
-                                                <option value="admin">Admin</option>
-                                                <option value="manager">Manager</option>
-                                                <option value="employee">Employee</option>
-                                            </select>
-                                            <i class="input_icon icon-username"></i>
-                                        </div>
-
-                                    </div>
-                                    <label class="table_label">Primary Email</label>
-                                    <div class="form_row">
-                                        <input type="text" class="block_btn_30 modal_input" name="email" id="email" value=""/>
-                                        <i class="input_icon icon-email"></i>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="table_label">Level</label>
-                                    <div class="form_row">
-                                        <div class="select_wrapper">
-                                            <select class="block_btn_30 modal_input" name="level" id="level">
-                                                <option value=""></option>
-                                                <option value="Distributor">Distributor</option>
-                                                <option value="Dealer">Dealer</option>
-                                                <option value="Subdealer">Sub-Dealer</option>
-                                            </select>
-                                            <i class="input_icon icon-level"></i>
-                                        </div>
-
-                                    </div>
-                                    <label class="table_label {{ (Auth::user()->level != 'Super admin') ? 'hidden' : '' }}">Parent Username</label>
-
-                                    <div class="form_row {{ (Auth::user()->level != 'Super admin') ? 'hidden' : '' }}">
-                                        <div class="select_wrapper">
-                                            <select class="block_btn_30 modal_input" name="supervisor_id" id="supervisor_id">
-                                                <option value="{{Auth::user()->id}}">{{Auth::user()->login}}</option>
-                                                @foreach($users as $supervisor)
-                                                    <option value="{{$supervisor['id']}}">{{$supervisor['login']}}</option>
-                                                @endforeach
-                                            </select>
-                                            <i class="input_icon icon-username"></i>
-                                        </div>
-
-                                    </div>
-                                    <label class="table_label">Secondary Email</label>
-                                    <div class="form_row">
-                                        <input type="text" class="block_btn_30 modal_input" id="mail2" name="email2" value=""/>
-                                        <i class="input_icon icon-email"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 vdf_modal_right">
-                            <div class="form_row form-group">
-                                <div class="col-md-6">
-                                    <label class="table_label">Username</label>
-                                    <div class="form_row">
-                                        <input type="text" class="block_btn_30 modal_input" id="username" name="username" value=""/>
-                                        <i class="input_icon icon-username"></i>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="table_label">Password</label>
-                                    <div class="form_row">
-                                        <input type="password" class="block_btn_30 modal_input" id="password" name="password" value=""/>
-                                        <i class="input_icon icon-password"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </form>
-            </div>
-            <div class="modal-footer vdf_modal_footer">
-                <a href="#" class="inline_block_btn light_gray_btn close vd_form_reset" data-dismiss="modal" aria-label="Close">Cancel</a>
-                <a href="#" class="inline_block_btn light_green_btn vd_form_submit" id="create-user">Create User</a>
-
-                <span class="success_response"></span>
-                <span class="error_response"></span>
-            </div>
-        </div>
-    </div>
-</div><!-- end Add User Modal -->
-
-<!--Edit User Modal -->
-<div class="modal fade" id="modal_edit_user" tabindex="-1" role="dialog" aria-labelledby="modal_edit_user">
-    <div class="modal-dialog vdf_modal" role="document">
-        <div class="modal-content vdf_modal_content">
-            <div class="modal-header vdf_modal_header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <div class="vdf_modal_sub_header">
-                    <h3>New User</h3>
-                </div>
-            </div>
-            <div class="modal-body vdf_modal_body">
-                <form action="/" class="form-horizontal">
-                    <div class="form-group">
-                        <div class="col-md-6 vdf_modal_left">
-                            <div class="form-group">
-                                <div class="col-md-6">
-                                    <label class="table_label">Name</label>
-                                        <div class="relative">
-                                            <input type="text" class="block_btn_30 modal_input" data-th="Name" value=""/>
-                                            <i class="input_icon icon-username"></i>
-                                        </div>
-
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="table_label">Level</label>
-                                    <div class="select_wrapper">
-                                        <select class="block_btn_30 modal_input" data-th="Level">
-                                            <option value=""></option>
-                                            <option value="Admin">Admin</option>
-                                            <option value="Dealer">Dealer</option>
-                                            <option value="Sub-Dealer">SubDealer</option>
-                                        </select>
-                                        <i class="input_icon icon-level"></i>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-6">
-
-                                    <label class="table_label">Type</label>
-                                    <div class="select_wrapper">
-                                        <select class="block_btn_30 modal_input" data-th="Type">
-                                            <option value=""></option>
-                                            <option value="Admin">type 1</option>
-                                            <option value="Dealer">type 2</option>
-                                            <option value="Sub-Dealer">type 3</option>
-                                        </select>
-                                        <i class="input_icon icon-username"></i>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="table_label">Parent Username</label>
-                                    <div class="relative">
-                                        <input type="text" class="block_btn_30 modal_input" value=""/>
-                                        <i class="input_icon icon-username"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-6">
-
-                                    <label class="table_label">Primary Email</label>
-                                    <div class="relative">
-                                        <input type="text" class="block_btn_30 modal_input" value="" data-th="Primary Email"/>
-                                        <i class="input_icon icon-email"></i>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-
-                                    <label class="table_label">Secondary Email</label>
-                                    <div class="relative">
-                                        <input type="text" class="block_btn_30 modal_input" value=""/>
-                                        <i class="input_icon icon-email"></i>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="col-md-6 vdf_modal_right">
-                            <div class="form-group">
-                                <div class="col-md-6">
-                                    <label class="table_label">Username</label>
-                                    <div class="relative">
-                                        <input type="text" class="block_btn_30 modal_input" data-th="Username" value=""/>
-                                        <i class="input_icon icon-username"></i>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="table_label">Password</label>
-                                    <div class="relative">
-                                        <input type="password" class="block_btn_30 modal_input" value=""/>
-                                        <i class="input_icon icon-password"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </form>
-            </div>
-            <div class="modal-footer vdf_modal_footer">
-                <a href="#" class="inline_block_btn light_gray_btn close vd_form_reset" data-dismiss="modal" aria-label="Close">Cancel</a>
-                <a href="#" class="inline_block_btn light_green_btn vd_form_submit">Edit User</a>
-
-                <span class="success_response"></span>
-                <span class="error_response"></span>
-            </div>
-        </div>
-    </div>
-</div><!-- end Add User Modal -->
 
 @endsection

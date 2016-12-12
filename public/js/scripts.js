@@ -13,10 +13,8 @@ $( document ).ready(function() {
         $(this).siblings('.header_dropdown').slideToggle();
     });
 
-    $('.show_settings_link').on('click', function(){
-
+    $('.layout_nav .show_settings').on('click', function(){
         $(this).siblings('.setting_types').slideToggle();
-        return false;
     });
 
 
@@ -125,7 +123,7 @@ $( document ).ready(function() {
             $('<div />', {
                 class: 'imitation_item',
                 text: $this.children('option').eq(i).text(),
-                rel: $this.children('option').eq(i).val()
+                //rel: $this.children('option').eq(i).val()
             }).appendTo($list);
         }
 
@@ -172,7 +170,7 @@ $( document ).ready(function() {
 
     /************ Styling Radio buttons *************/
 
-    $(document).on('click', 'label.label_unchecked', function(e){
+    $('.toggle_container > label').on('click', function(e){
         // prevent label from being called twice
         e.stopPropagation();
         e.preventDefault();
@@ -181,10 +179,8 @@ $( document ).ready(function() {
         if($(this).closest('.toggle_container').hasClass('disabled')){
 
             $(this).closest('.toggle_container').removeClass('disabled');
-            /* Enable rows in table */
             $(this).closest('.table_status_cell').prevAll('td').removeClass('disable');
             $(this).closest('.vdf_radio').siblings('.table_status_text').removeClass('disable');
-
         }else if(!$(this).closest('.toggle_container').hasClass('disabled')){
 
             $(this).closest('.toggle_container').addClass('disabled');
@@ -192,10 +188,11 @@ $( document ).ready(function() {
             $(this).closest('.table_status_cell').prevAll('td').addClass('disable');
             $(this).closest('.vdf_radio').siblings('.table_status_text').addClass('disable');
         }
-        if($(this).hasClass('label_unchecked')){
 
-            $(this).removeClass('label_unchecked').addClass('label_checked');
-            $(this).siblings('label').addClass('label_unchecked').removeClass('label_checked');
+        if(!$(this).children('span').hasClass('input-checked')){
+
+            $(this).children('span').addClass('input-checked');
+            $(this).siblings('label').children('span').removeClass('input-checked');
         }
     });
 
@@ -301,17 +298,11 @@ $( document ).ready(function() {
 
         var target_form_id;
 
-        target_form_id = $(this).attr('data-form');
-        console.log('target_form_id ', target_form_id);
-
         $(this).closest('tr').find('.editable_cell').each(function () {
 
-
+            target_form_id = $(this).attr('data-form');
             var attribute_title = $(this).attr('data-th');
             var cell_value = $(this)[0].innerHTML;
-            console.log('attribute_title ', attribute_title);
-            console.log('cell_value ', cell_value);
-
 
             // Capture Modal Open Event
             $(target_form_id).one('shown.bs.modal', function () {
@@ -319,22 +310,16 @@ $( document ).ready(function() {
                 if(attribute_title == "Id"){ // set form action id
 
                     var form_action = $(this).find('form').attr('action');
-                    $(this).find('form').attr('action', form_action + '/' + cell_value);
-
+                    $(this).find('form').attr('action', form_action + cell_value);
                 }
                 var prop_name = $(this).find('[data-th="' + attribute_title + '"]').prop("tagName");
-
-                console.log('prop_name ', prop_name);
 
                 if(prop_name){
                     if(prop_name.toUpperCase()  == "INPUT"){
 
-                        $(this).find('input[data-th="' + attribute_title + '"]').each(function(){
-
-                            $(this).val(cell_value);
-                        });
+                        $(this).find('input[data-th="' + attribute_title + '"]').val(cell_value);
                     }else if(prop_name.toUpperCase()  == "SELECT"){
-                        console.log("SELECT ", cell_value);
+
                         $(this).find('select[data-th="' + attribute_title + '"] option').each(function () {
                             if ($(this).text().toLowerCase() == cell_value.toLowerCase()) {
                                 $(this).prop('selected','selected');
@@ -342,12 +327,6 @@ $( document ).ready(function() {
                             }
                         });
 
-                    }else if(prop_name.toUpperCase()  == "TEXTAREA"){
-
-                        $(this).find('textarea[data-th="' + attribute_title + '"]').each(function(){
-
-                            $(this).val(cell_value);
-                        });
                     }
                 }else {
                     console.log('Property data-th="' + attribute_title + '" not found');
@@ -364,7 +343,7 @@ $( document ).ready(function() {
             var reset_form_action = form_action.split('/')[0];
             $(this).find('form').attr('action', reset_form_action + '/');
 
-            //$(this).find('form')[0].reset();
+            $(this).find('form')[0].reset();
         });
 
     });

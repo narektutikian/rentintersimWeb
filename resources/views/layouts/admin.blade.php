@@ -44,8 +44,8 @@
 
 
 <script src="/js/jquery-2.2.4.min.js"></script>
-{{--<script src="/js/jquery-validation/jquery.validate.min.js"></script>--}}
 <script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery-validation/jquery.validate.min.js"></script>
 <script src="/js/pie-chart/pie-chart.js"></script>
 <script src="/js/bootstrap-table.min.js"></script>
 <script src="/js/bootstrap-table-en-US.min.js"></script>
@@ -55,7 +55,7 @@
 <script src="/js/bootstrap-datetimepicker.js"></script>
 <script src="js/owl-carousel/owl.carousel.js"></script>
 <script src="/js/scripts.js"></script>
-{{--<script src="/js/validation.js"></script>--}}
+<script src="/js/validation.js"></script>
 <script src="/js/requests.js"></script>
 
 </body>

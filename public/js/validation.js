@@ -41,6 +41,7 @@ $( document ).ready(function() {
 
         e.preventDefault();
         $(this).closest(".vd_form").valid();
+        $(this).closest(".vd_form").submit();
     });
 
 

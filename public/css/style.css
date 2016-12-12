@@ -285,9 +285,9 @@ table {
         position: absolute;
         top: -99em;
         visibility: hidden; }
-      .vdf_radio .toggle_container label.label_checked span {
+      .vdf_radio .toggle_container label .input-checked {
         background-color: #ffffff;
-        border: 1px solid #d4e1ea; }
+        border: 1px solid #ffffff; }
       .vdf_radio .toggle_container label span {
         width: 20px;
         height: 20px;
@@ -367,31 +367,34 @@ input[type="radio"].toggle.checked + label {
   cursor: pointer;
   user-select: none;
   -webkit-user-select: none;
-  -webkit-touch-callout: none;
-  /* CHECKBOX OVERWRITE STYLES */
-  /* CHECKBOX */ }
-  .vdf_checkbox > input {
-    visibility: hidden;
-    position: absolute; }
-  .vdf_checkbox > i {
-    display: inline-block;
-    vertical-align: middle;
-    width: 30px;
-    height: 30px;
-    line-height: 29px;
-    text-align: center;
-    color: #69717e;
-    transition: 0.2s;
-    font-size: 18px;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    -ms-border-radius: 3px;
-    border-radius: 3px;
-    border: 1px solid #69717e; }
-  .vdf_checkbox > input:checked + i {
-    color: #2cc763;
-    border: 1px solid #2cc763;
-    background: #F3F3F3; }
+  -webkit-touch-callout: none; }
+
+.vdf_checkbox > input {
+  visibility: hidden;
+  position: absolute; }
+
+/* CHECKBOX OVERWRITE STYLES */
+.vdf_checkbox > i {
+  display: inline-block;
+  vertical-align: middle;
+  width: 30px;
+  height: 30px;
+  line-height: 29px;
+  text-align: center;
+  color: #69717e;
+  transition: 0.2s;
+  font-size: 18px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  border-radius: 3px;
+  border: 1px solid #69717e; }
+
+/* CHECKBOX */
+.vdf_checkbox > input:checked + i {
+  color: #2cc763;
+  border: 1px solid #2cc763;
+  background: #F3F3F3; }
 
 /* end of Styling Checkbox */
 .table_label {
@@ -557,11 +560,6 @@ input[type="radio"].toggle.checked + label {
 @media (max-width: 640px) {
   .rwd-table .status_cell {
     overflow: hidden; } }
-@media (min-width: 768px) and (max-width: 992px) {
-  .vdf_checkbox > i {
-    width: 25px;
-    height: 25px;
-    line-height: 24px; } }
 @media (min-width: 640px) and (max-width: 768px) {
   .rwd-table .status_cell .status_text {
     width: auto;
@@ -631,10 +629,6 @@ input[type="radio"].toggle.checked + label {
       -ms-transform: rotate(0deg);
       transform: rotate(0deg); }
 
-#wrap_tree_table {
-  margin: 40px 0 20px 0;
-  border-bottom: 1px solid #ddd; }
-
 .user_management_table tbody tr.nested_row {
   border: none; }
 .user_management_table tbody tr td {
@@ -699,10 +693,10 @@ input[type="radio"].toggle.checked + label {
     max-width: 40px; }
 
   .table_action_cell {
-    width: 70px;
+    width: 100px;
     text-align: center;
-    min-width: 70px;
-    max-width: 70px; }
+    min-width: 100px;
+    max-width: 100px; }
 
   .table_action_cell_large {
     width: 70px;
@@ -1118,7 +1112,6 @@ input[type="radio"].toggle.checked + label {
   .single_package a {
     display: block;
     text-align: center;
-    height: 95px;
     border: 1px solid #ecf3f9;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
@@ -1329,25 +1322,6 @@ input[type="radio"].toggle.checked + label {
       font-weight: normal;
       font-style: normal;
       font-family: "proxima_nova_rgregular", Arial, Helvetica, sans-serif; }
-    .vdf_modal .vdf_modal_sub_header .point_to {
-      font-size: 0; }
-      .vdf_modal .vdf_modal_sub_header .point_to .point_to_text {
-        width: 9%;
-        display: inline-block;
-        vertical-align: middle;
-        color: #1b6db2;
-        font-size: 15px;
-        font-weight: normal;
-        font-style: normal;
-        font-family: "proxima_nova_rgregular", Arial, Helvetica, sans-serif; }
-      .vdf_modal .vdf_modal_sub_header .point_to .point_to_input {
-        width: 90%;
-        display: inline-block;
-        vertical-align: middle;
-        font-size: 15px;
-        font-weight: normal;
-        font-style: normal;
-        font-family: "proxima_nova_rgregular", Arial, Helvetica, sans-serif; }
   .vdf_modal .vdf_modal_body {
     padding: 32px 25px 0 25px; }
   .vdf_modal .vdf_modal_footer {
@@ -1500,13 +1474,7 @@ input[type="radio"].toggle.checked + label {
       .vdf_modal .vdf_modal_footer .inline_block_btn {
         margin-left: 5px;
         margin-right: 5px;
-        padding: 0 20px; }
-
-  .departure {
-    margin-top: 15px; }
-
-  .table_label {
-    margin-top: 15px; } }
+        padding: 0 20px; } }
 @media (max-width: 768px) {
   .vdf_modal {
     width: 90%; }
