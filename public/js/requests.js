@@ -421,8 +421,6 @@ $(document).ready(function () {
         //dataType: 'jsonp',
         success: function (json) {
 
-            console.log(json);
-
             var string = '';
 
             function recursiveIteration(json) {
@@ -430,35 +428,35 @@ $(document).ready(function () {
 
                 for (var prop in json) {
                     var icon = '<a href="#" class="open_nested" data-toggle="collapse" data-target="#demo' + (json[prop]["id"] || "0") + '"><i class="icon-dropdown"></i></a>';
-                    icon = (json[prop]["child"]) ? icon : '';
+                    icon = (json[prop]["child"])? icon : '';
                     var status_text = (json[prop]["is_active"] == 1) ? ' Active ' : '';
 
                     string += '<tr>' +
                         '<td class="w25">' +
                         icon +
                         '</td>' +
-                        '<td class="editable_cell" data-th="Name">' + json[prop]["name"] + ' (' + json[prop]["type"] + ') ' + '</td>' +
-                        '<td class="w160 editable_cell" data-th="Username">' + json[prop]["login"] + '</td>' +
-                        '<td class="w110left editable_cell" data-th="Level">' + json[prop]["level"] + '</td>' +
-                        '<td class="w65" data-th="Active">' + json[prop]["active"] + '</td>' +
-                        '<td class="w80" data-th="Pending">' + json[prop]["pending"] + '</td>' +
-                        '<td class="w65" data-th="Waiting">' + json[prop]["waiting"] + '</td>' +
-                        '<td class="w60c table_action_cell" data-th="Action">' +
-                        '<span class="table_icon edit" data-toggle="modal" data-target="#modal_edit_user" data-form="#modal_edit_user"><i class="icon-edit"></i></span>' +
-                        '</td>' +
-                        '<td class="w_160_status table_status_cell" data-th="Status">' +
-                        '<div class="vdf_radio">' +
-                        '<div class="toggle_container disabled">' +
-                        '<label class="label_unchecked">' +
-                        '<input type="radio" name="toggle" value="1"><span></span>' +
-                        '</label>' +
-                        '<label class="label_checked">' +
-                        '<input type="radio" name="toggle" value="0"><span></span>' +
-                        '</label>' +
-                        '</div>' +
-                        '</div>' +
-                        '<span class="status_text_small not_used">' + status_text + '</span>' +
-                        '</td>' +
+                            '<td class="editable_cell" data-th="Name">' + json[prop]["name"] + ' (' + json[prop]["type"] + ') ' + '</td>' +
+                            '<td class="w160 editable_cell" data-th="Username">' + json[prop]["login"] + '</td>' +
+                            '<td class="w110left editable_cell" data-th="Level">' + json[prop]["level"] + '</td>' +
+                            '<td class="w65" data-th="Active">' + json[prop]["active"] + '</td>' +
+                            '<td class="w80" data-th="Pending">' + json[prop]["pending"] + '</td>' +
+                            '<td class="w65" data-th="Waiting">' + json[prop]["waiting"] + '</td>' +
+                            '<td class="w60c table_action_cell" data-th="Action">' +
+                                '<span class="table_icon edit" data-toggle="modal" data-target="#modal_edit_user" data-form="#modal_edit_user"><i class="icon-edit"></i></span>' +
+                            '</td>' +
+                            '<td class="w_160_status table_status_cell" data-th="Status">' +
+                                '<div class="vdf_radio">' +
+                                    '<div class="toggle_container disabled">' +
+                                        '<label class="label_unchecked">' +
+                                            '<input type="radio" name="toggle" value="1"><span></span>' +
+                                        '</label>' +
+                                        '<label class="label_checked">' +
+                                            '<input type="radio" name="toggle" value="0"><span></span>' +
+                                        '</label>' +
+                                    '</div>' +
+                                '</div>' +
+                            '<span class="status_text_small not_used">' + status_text + '</span>' +
+                            '</td>' +
                         '</tr>';
 
                     if (json[prop]["child"]) {
@@ -483,46 +481,46 @@ $(document).ready(function () {
 
             $('#wrap_tree_table').prepend(
                 '<table class="responsive_table table user_management_table" data-toggle="table">' +
-                '<thead>' +
-                '<tr>' +
-                '<th>' +
-                '<div class="th-inner "></div>' +
-                '<div class="fht-cell"></div>' +
-                '</th>' +
-                '<th>' +
-                '<div class="th-inner ">Name</div>' +
-                '<div class="fht-cell"></div>' +
-                '</th>' +
-                '<th>' +
-                '<div class="th-inner ">Username</div>' +
-                '<div class="fht-cell"></div>' +
-                '</th>' +
-                '<th>' +
-                '<div class="th-inner">Level</div>' +
-                '<div class="fht-cell"></div>' +
-                '</th>' +
-                '<th>' +
-                '<div class="th-inner ">Active</div>' +
-                '<div class="fht-cell"></div>' +
-                '</th>' +
-                '<th>' +
-                '<div class="th-inner ">Pending</div>' +
-                '<div class="fht-cell"></div>' +
-                '</th>' +
-                '<th>' +
-                '<div class="th-inner ">Waiting</div>' +
-                '<div class="fht-cell"></div>' +
-                '</th>' +
-                '<th>' +
-                '<div class="th-inner ">Action</div>' +
-                '<div class="fht-cell"></div>' +
-                '</th>' +
-                '<th>' +
-                '<div class="th-inner ">Status</div>' +
-                '<div class="fht-cell"></div>' +
-                '</th>' +
-                '</tr>' +
-                '</thead>' +
+                    '<thead>' +
+                        '<tr>' +
+                        '<th>' +
+                            '<div class="th-inner "></div>' +
+                            '<div class="fht-cell"></div>' +
+                        '</th>' +
+                        '<th>' +
+                            '<div class="th-inner ">Name</div>' +
+                            '<div class="fht-cell"></div>' +
+                        '</th>' +
+                        '<th>' +
+                            '<div class="th-inner ">Username</div>' +
+                            '<div class="fht-cell"></div>' +
+                        '</th>' +
+                        '<th>' +
+                            '<div class="th-inner">Level</div>' +
+                            '<div class="fht-cell"></div>' +
+                        '</th>' +
+                        '<th>' +
+                            '<div class="th-inner ">Active</div>' +
+                            '<div class="fht-cell"></div>' +
+                        '</th>' +
+                        '<th>' +
+                            '<div class="th-inner ">Pending</div>' +
+                            '<div class="fht-cell"></div>' +
+                        '</th>' +
+                        '<th>' +
+                            '<div class="th-inner ">Waiting</div>' +
+                            '<div class="fht-cell"></div>' +
+                        '</th>' +
+                        '<th>' +
+                            '<div class="th-inner ">Action</div>' +
+                            '<div class="fht-cell"></div>' +
+                        '</th>' +
+                        '<th>' +
+                            '<div class="th-inner ">Status</div>' +
+                            '<div class="fht-cell"></div>' +
+                        '</th>' +
+                        '</tr>' +
+                    '</thead>' +
                 '<tbody>' +
                 string +
                 '</tbody></table>'
@@ -533,8 +531,6 @@ $(document).ready(function () {
         }
     }).fail(function (jqXHR, textStatus, errorThrown) {
 
-        console.log(jqXHR);
-        console.log(textStatus);
         console.log(errorThrown);
     });
 

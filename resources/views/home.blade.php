@@ -86,7 +86,7 @@
                                 <span class="table_icon edit" data-toggle="modal" data-target="#modal_edit_order" data-form="modal_edit_order">
                                     <i class="icon-edit"></i>
                                 </span>
-                                <span class="table_icon" data-toggle="modal" data-target="#modal_order_print">
+                                <span class="table_icon print" data-toggle="modal" data-target="#modal_order_print">
                                     <i class="icon-print"></i>
                                 </span>
                                 <label class="vdf_checkbox">
