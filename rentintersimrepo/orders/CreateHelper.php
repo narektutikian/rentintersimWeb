@@ -132,8 +132,9 @@ class CreateHelper
     {
      $now = Carbon::now('Asia/Yerevan');
 //        dd($now->timestamp);
+        $orders = Order::where('status', 'pending')->where('from', '<', $now->timestamp+150)->get();
 //        $orders = Order::where('status', 'pending')->where('from', '<', $now->timestamp+150)->where('from', '>', $now->timestamp-150)->get();
-        $orders = Order::where('status', 'pending')->get();
+//        $orders = Order::where('status', 'pending')->get();
         if ($orders != null){
             foreach ($orders as $order){
                 $this->activate($order->id);
@@ -160,8 +161,8 @@ class CreateHelper
     {
      $now = Carbon::now();
 //        dd($now->timestamp);
-//        $orders = Order::where('status', 'active')->where('to', '<', $now->timestamp+150)->where('to', '>', $now->timestamp-150)->get();
-        $orders = Order::where('status', 'active')->get();
+        $orders = Order::where('status', 'active')->where('to', '<', $now->timestamp+150)->where('to', '>', $now->timestamp-150)->get();
+//        $orders = Order::where('status', 'active')->get();
         if ($orders != null){
             foreach ($orders as $order){
                 $this->deactivate($order->id);
