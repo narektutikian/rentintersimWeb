@@ -2,60 +2,53 @@
  * Created by narek on 12/2/16.
  */
 
-$( document ).ready(function() {
+$(document).ready(function () {
     var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
-    $('.close').click(function() {
+    $('.close').click(function () {
         location.reload();
     });
     /****** type Creation ******/
 
     $('#add-type').on('click', function (e) {
         e.preventDefault();
+
         var fileVal = $('#type-file').val();
         if (fileVal == '') {
-            var name = $('#name').val();
-            var type_code = $('#type_code').val();
-            var provider_id = $('#provider_id').val();
-            var description = $('#description').val();
-            $.ajax({
-                type: "POST",
-                url: '/type',
-                data: {
-                    _token: CSRF_TOKEN,
-                    name: name,
-                    type_code: type_code,
-                    provider_id: provider_id,
-                    description: description
-                },
-                success: function( msg )
-                {
-                    $(".error_response").empty();
-                    $(".success_response").empty();
-                    $(".success_response").append("DONE "+msg);
-                },
-                error: function (error)
-                {
-                    $(".error_response").empty();
-                    $(".success_response").empty();
-                    $(".error_response").append("ERROR");
-                    // $("#sim-edit-response").append("<div>"+"ERROR "+ error.responseJSON.number[0]+ " ," +error.responseJSON.provider_id[0] +"</div>");
-                    // console.log(error.responseJSON.number[0]);
-                }
-            });
-        } else {
+            if ($(this).closest(".vd_form").valid()) {
+                var name = $('#name').val();
+                var type_code = $('#type_code').val();
+                var provider_id = $('#provider_id').val();
+                var description = $('#description').val();
+                $.ajax({
+                    type: "POST",
+                    url: '/type',
+                    data: {
+                        _token: CSRF_TOKEN,
+                        name: name,
+                        type_code: type_code,
+                        provider_id: provider_id,
+                        description: description
+                    },
+                    success: function (msg) {
+                        $(".error_response").empty();
+                        $(".success_response").empty();
+                        $(".success_response").append("DONE " + msg);
+                    },
+                    error: function (error) {
+                        $(".error_response").empty();
+                        $(".success_response").empty();
+                        $(".error_response").append("ERROR");
+                        // $("#sim-edit-response").append("<div>"+"ERROR "+ error.responseJSON.number[0]+ " ," +error.responseJSON.provider_id[0] +"</div>");
+                        // console.log(error.responseJSON.number[0]);
+                    }
+                });
+            }
+        }
+        else {
 
             e.stopPropagation(); // Stop stuff happening
 
-            //  var files = new FormData($("#sim-file")[0]);
-            //  console.log(files.name);
-            //  var data = new FormData();
-            // /* $.each(files, function(key, value)
-            //  {
-            //      data.append(key, value);
-            //
-            //  });*/
-            //      data.append('_token', CSRF_TOKEN);
             $.ajax({
                 url: 'import-type',
                 type: 'POST',
@@ -64,14 +57,12 @@ $( document ).ready(function() {
                 dataType: 'json',
                 processData: false, // Don't process the files
                 contentType: false, // Set content type to false as jQuery will tell the server its a query string request
-                success:function( msg )
-                {
+                success: function (msg) {
                     $(".error_response").empty();
                     $(".success_response").empty();
-                    $(".success_response").append("DONE "+msg);
+                    $(".success_response").append("DONE " + msg);
                 },
-                error: function (error)
-                {
+                error: function (error) {
                     $(".error_response").empty();
                     $(".success_response").empty();
                     $(".error_response").append("ERROR");
@@ -79,7 +70,6 @@ $( document ).ready(function() {
                     // console.log(error.responseJSON.number[0]);
                 }
             });
-
         }
     });
 
@@ -87,93 +77,89 @@ $( document ).ready(function() {
 
     $('#type-edit').on('click', function (e) {
         e.stopPropagation(); // Stop stuff happening
-        var this_id = $(this).attr('id');
-        // console.log(this_id);
-        var data = {
-            _token : CSRF_TOKEN,
-            name: $('#name-edit').val(),
-            type_code: $('#type_code-edit').val(),
-            provider_id: $('#provider_id-edit').val(),
-            description: $('#description-edit').val()
-        };
-        var id = $('#id-edit').val();
-        // console.log( new FormData($("#edit-number-form")[0]));
-        $.ajax({
-            type: "PUT",
-            url: '/type/'+id,
-            // data: new FormData($("#edit-number-form")[0]),
-            data: data,
-            // cache: false,
-            // dataType: 'json',
-            // processData: false, // Don't process the files
-            // contentType: false, // Set content type to false as jQuery will tell the server its a query string request
-            success: function( msg )
-            {
-                $(".error_response").empty();
-                $(".success_response").empty();
-                $(".success_response").append("DONE "+msg);
-            },
-            error: function (error)
-            {
-                $(".error_response").empty();
-                $(".success_response").empty();
-                $(".error_response").append("ERROR");
-                // $("#sim-edit-response").append("<div>"+"ERROR "+ error.responseJSON.number[0]+ " ," +error.responseJSON.provider_id[0] +"</div>");
-                // console.log(error.responseJSON.number[0]);
-            }
-        });
-        // }
+        if ($(this).closest(".vd_form").valid()) {
 
+            var this_id = $(this).attr('id');
+            // console.log(this_id);
+            var data = {
+                _token: CSRF_TOKEN,
+                name: $('#name-edit').val(),
+                type_code: $('#type_code-edit').val(),
+                provider_id: $('#provider_id-edit').val(),
+                description: $('#description-edit').val()
+            };
+            var id = $('#id-edit').val();
+            // console.log( new FormData($("#edit-number-form")[0]));
+            $.ajax({
+                type: "PUT",
+                url: '/type/' + id,
+                // data: new FormData($("#edit-number-form")[0]),
+                data: data,
+                // cache: false,
+                // dataType: 'json',
+                // processData: false, // Don't process the files
+                // contentType: false, // Set content type to false as jQuery will tell the server its a query string request
+                success: function (msg) {
+                    $(".error_response").empty();
+                    $(".success_response").empty();
+                    $(".success_response").append("DONE " + msg);
+                },
+                error: function (error) {
+                    $(".error_response").empty();
+                    $(".success_response").empty();
+                    $(".error_response").append("ERROR");
+                    // $("#sim-edit-response").append("<div>"+"ERROR "+ error.responseJSON.number[0]+ " ," +error.responseJSON.provider_id[0] +"</div>");
+                    // console.log(error.responseJSON.number[0]);
+                }
+            });
+        }
     });
 
     /****** Order Creation ******/
     var package_id;
     $('#create-order').on('click', function (e) {
+        e.stopPropagation(); // Stop stuff happening
+        if ($(this).closest(".vd_form").valid()) {
 
-        // if(!$(this).closest('.vd_form').find('.error')){
-        //
-        //     console.log('has error');
+            var data = {
+                _token: CSRF_TOKEN,
+                sim: $('#sim').val(),
 
-        var data = {
-            _token : CSRF_TOKEN,
-            sim: $('#sim').val(),
+                landing: moment($('#landing_date').val(), "DD/MM/YYYY HH:mm").valueOf() / 1000,
+                departure: moment($('#departure_date').val(), "DD/MM/YYYY HH:mm").valueOf() / 1000,
+                package_id: package_id, // put package id
+                reference_number: $('#reference_number').val(),
+                remark: $('#remark').val(),
+            };
 
-            landing: moment($('#landing_date').val(), "DD/MM/YYYY HH:mm").valueOf()/1000,
-            departure: moment($('#departure_date').val(), "DD/MM/YYYY HH:mm").valueOf()/1000,
-            package_id: package_id, // put package id
-            reference_number: $('#reference_number').val(),
-            remark: $('#remark').val(),
-        };
-
-        $.ajax({
-            type: "POST",
-            url: 'order',
-            data: data,
-            success:  function (msg) {
-                $(".error_response").empty();
-                $(".success_response").empty();
-                $(".success_response").append("DONE");
-            },
-            error: function (error) {
-                $(".error_response").empty();
-                $(".success_response").empty();
-                $(".error_response").append("ERROR");
-                // $("#sim-edit-response").append("<div>"+"ERROR "+ error.responseJSON.number[0]+ " ," +error.responseJSON.provider_id[0] +"</div>");
-                // console.log(error.responseJSON.number[0]);
-            }
-        });
-        // }
-
+            $.ajax({
+                type: "POST",
+                url: 'order',
+                data: data,
+                success: function (msg) {
+                    $(".error_response").empty();
+                    $(".success_response").empty();
+                    $(".success_response").append("DONE");
+                },
+                error: function (error) {
+                    $(".error_response").empty();
+                    $(".success_response").empty();
+                    $(".error_response").append("ERROR");
+                    // $("#sim-edit-response").append("<div>"+"ERROR "+ error.responseJSON.number[0]+ " ," +error.responseJSON.provider_id[0] +"</div>");
+                    // console.log(error.responseJSON.number[0]);
+                }
+            });
+        }
     });
 
-    $.get("/type-provider/1", function(data, status){
-        if (status == "success"){
-            $.each(data, function(i, item) {
+    $.get("/type-provider/1", function (data, status) {
+        if (status == "success") {
+            $.each(data, function (i, item) {
                 //console.log(item.name + "\n");
 
                 $(".wrap_package_list").append("<div class='package_item'>" +
                     "<a href='#' data-id='" + item.id + "' title='Basic Package'>" +
-                    "<h4>"+ item.name +"</h4>" +
+                    "<h4>" + item.name + "</h4>" +
                     "<span>" + item.description + "</span>" +
                     "</a>" +
                     "</div>");
@@ -194,36 +180,35 @@ $( document ).ready(function() {
     $('#add-sim').on('click', function (e) {
         e.preventDefault();
 
+
         var fileVal = $('#sim-file').val();
         if (fileVal == '') {
+            if ($(this).closest(".vd_form").valid()) {
+                var data = {
+                    _token: CSRF_TOKEN,
+                    number: $('#sim-number').val(),
+                    provider_id: $('#provider-id').val(),
+                    is_parking: $('#is-parking').val()
+                };
 
-            var data = {
-                _token : CSRF_TOKEN,
-                number: $('#sim-number').val(),
-                provider_id: $('#provider-id').val(),
-                is_parking: $('#is-parking').val()
-            };
-
-            $.ajax({
-                type: "POST",
-                url: '/sim',
-                data: data,
-                success:function( msg )
-                {
-                    $(".error_response").empty();
-                    $(".success_response").empty();
-                    $(".success_response").append("DONE "+msg);
-                },
-                error: function (error)
-                {
-                    $(".error_response").empty();
-                    $(".success_response").empty();
-                    $(".error_response").append("ERROR");
-                    // $("#sim-edit-response").append("<div>"+"ERROR "+ error.responseJSON.number[0]+ " ," +error.responseJSON.provider_id[0] +"</div>");
-                    // console.log(error.responseJSON.number[0]);
-                }
-            });
-
+                $.ajax({
+                    type: "POST",
+                    url: '/sim',
+                    data: data,
+                    success: function (msg) {
+                        $(".error_response").empty();
+                        $(".success_response").empty();
+                        $(".success_response").append("DONE " + msg);
+                    },
+                    error: function (error) {
+                        $(".error_response").empty();
+                        $(".success_response").empty();
+                        $(".error_response").append("ERROR");
+                        // $("#sim-edit-response").append("<div>"+"ERROR "+ error.responseJSON.number[0]+ " ," +error.responseJSON.provider_id[0] +"</div>");
+                        // console.log(error.responseJSON.number[0]);
+                    }
+                });
+            }
         }
         else {
             // alert($('#sim-file').val());
@@ -237,14 +222,12 @@ $( document ).ready(function() {
                 dataType: 'json',
                 processData: false, // Don't process the files
                 contentType: false, // Set content type to false as jQuery will tell the server its a query string request
-                success: function( msg )
-                {
+                success: function (msg) {
                     $(".error_response").empty();
                     $(".success_response").empty();
-                    $(".success_response").append("DONE "+msg);
+                    $(".success_response").append("DONE " + msg);
                 },
-                error: function (error)
-                {
+                error: function (error) {
                     $(".error_response").empty();
                     $(".success_response").empty();
                     $(".error_response").append("ERROR");
@@ -252,45 +235,43 @@ $( document ).ready(function() {
                     console.log(error.responseJSON.number[0]);
                 }
             });
-
-
         }
+
     });
 
     /******  Edit sim ********/
 
     $('#edit-sim').on('click', function (e) {
+        e.stopPropagation(); // Stop stuff happening
+        if ($(this).closest(".vd_form").valid()) {
 
+            var this_id = $(this).attr('id');
+            var data = {
+                _token: CSRF_TOKEN,
+                number: $('#number').val(),
+                provider_id: $('#provider_id').val(),
+                is_parking: $('#is_parking').val()
+            };
+            var id = $('#id').val();
 
-        var this_id = $(this).attr('id');
-        var data = {
-            _token : CSRF_TOKEN,
-            number: $('#number').val(),
-            provider_id: $('#provider_id').val(),
-            is_parking: $('#is_parking').val()
-        };
-        var id = $('#id').val();
-
-        $.ajax({
-            type: "PUT",
-            url: '/sim/'+id,
-            data: data,
-            success: function( msg )
-            {
-                $(".error_response").empty();
-                $(".success_response").empty();
-                $(".success_response").append("DONE "+msg);
-            },
-            error: function (error)
-            {
-                $(".error_response").empty();
-                $(".success_response").empty();
-                $(".error_response").append("ERROR");
-                // $("#sim-edit-response").append("<div>"+"ERROR "+ error.responseJSON.number[0]+ " ," +error.responseJSON.provider_id[0] +"</div>");
-                // console.log(error.responseJSON.number[0]);
-            }
-        });
-        // }
+            $.ajax({
+                type: "PUT",
+                url: '/sim/' + id,
+                data: data,
+                success: function (msg) {
+                    $(".error_response").empty();
+                    $(".success_response").empty();
+                    $(".success_response").append("DONE " + msg);
+                },
+                error: function (error) {
+                    $(".error_response").empty();
+                    $(".success_response").empty();
+                    $(".error_response").append("ERROR");
+                    // $("#sim-edit-response").append("<div>"+"ERROR "+ error.responseJSON.number[0]+ " ," +error.responseJSON.provider_id[0] +"</div>");
+                    // console.log(error.responseJSON.number[0]);
+                }
+            });
+        }
 
     });
 
@@ -299,42 +280,38 @@ $( document ).ready(function() {
     $('#add-number').on('click', function (e) {
         e.preventDefault();
 
-       var ifValid = $(this).closest(".vd_form").valid();
-        if (ifValid){
 
         var fileVal = $('#number-file').val();
         if (fileVal == '') {
+            if ($(this).closest(".vd_form").valid()) {
+                var data = {
+                    _token: CSRF_TOKEN,
+                    phone: $('#number').val(),
+                    provider_id: $('#provider_id').val(),
+                    package_id: $('#package_id').val(),
+                    initial_sim_id: $('#sim_id').val(),
+                    is_special: $('#is_special').val()
+                };
+                // console.log(data);
 
-            var data = {
-                _token : CSRF_TOKEN,
-                phone: $('#number').val(),
-                provider_id: $('#provider_id').val(),
-                package_id: $('#package_id').val(),
-                initial_sim_id: $('#sim_id').val(),
-                is_special: $('#is_special').val()
-            };
-            // console.log(data);
-
-            $.ajax({
-                type: "POST",
-                url: '/number',
-                data: data,
-                success: function( msg )
-                {
-                    $(".error_response").empty();
-                    $(".success_response").empty();
-                    $(".success_response").append("DONE "+msg);
-                },
-                error: function (error)
-                {
-                    $(".error_response").empty();
-                    $(".success_response").empty();
-                    $(".error_response").append("ERROR");
-                    // $("#sim-edit-response").append("<div>"+"ERROR "+ error.responseJSON.number[0]+ " ," +error.responseJSON.provider_id[0] +"</div>");
-                    // console.log(error.responseJSON.number[0]);
-                }
-            });
-
+                $.ajax({
+                    type: "POST",
+                    url: '/number',
+                    data: data,
+                    success: function (msg) {
+                        $(".error_response").empty();
+                        $(".success_response").empty();
+                        $(".success_response").append("DONE " + msg);
+                    },
+                    error: function (error) {
+                        $(".error_response").empty();
+                        $(".success_response").empty();
+                        $(".error_response").append("ERROR");
+                        // $("#sim-edit-response").append("<div>"+"ERROR "+ error.responseJSON.number[0]+ " ," +error.responseJSON.provider_id[0] +"</div>");
+                        // console.log(error.responseJSON.number[0]);
+                    }
+                });
+            }
         }
         else {
             // alert($('#sim-file').val());
@@ -348,14 +325,12 @@ $( document ).ready(function() {
                 dataType: 'json',
                 processData: false, // Don't process the files
                 contentType: false, // Set content type to false as jQuery will tell the server its a query string request
-                success: function( msg )
-                {
+                success: function (msg) {
                     $(".error_response").empty();
                     $(".success_response").empty();
-                    $(".success_response").append("DONE "+msg);
+                    $(".success_response").append("DONE " + msg);
                 },
-                error: function (error)
-                {
+                error: function (error) {
                     $(".error_response").empty();
                     $(".success_response").empty();
                     $(".error_response").append("ERROR");
@@ -363,101 +338,99 @@ $( document ).ready(function() {
                     // console.log(error.responseJSON.number[0]);
                 }
             });
-
-
-        }
         }
     });
-
 
 
     /******  Edit number ********/
 
     $('#edit-number').on('click', function (e) {
         e.stopPropagation(); // Stop stuff happening
-        var this_id = $(this).attr('id');
-        // console.log(this_id);
-        var data = {
-            _token : CSRF_TOKEN,
-            phone: $('#number-edit').val(),
-            initial_sim_id: $('#sim_id-edit').val(),
-            package_id: $('#package_id-edit').val(),
-            provider_id: $('#provider_id-edit').val(),
-            is_special: $('#is_special-edit').val()
-        };
-        var id = $('#id').val();
-        // console.log( new FormData($("#edit-number-form")[0]));
-        $.ajax({
-            type: "PUT",
-            url: '/number/'+id,
-            // data: new FormData($("#edit-number-form")[0]),
-            data: data,
-            // cache: false,
-            // dataType: 'json',
-            // processData: false, // Don't process the files
-            // contentType: false, // Set content type to false as jQuery will tell the server its a query string request
-            success: function( msg )
-            {
-                $(".error_response").empty();
-                $(".success_response").empty();
-                $(".success_response").append("DONE "+msg);
-            },
-            error: function (error)
-            {
-                $(".error_response").empty();
-                $(".success_response").empty();
-                $(".error_response").append("ERROR");
-                // $("#sim-edit-response").append("<div>"+"ERROR "+ error.responseJSON.number[0]+ " ," +error.responseJSON.provider_id[0] +"</div>");
-                // console.log(error.responseJSON.number[0]);
-            }
-        });
-        // }
+        if ($(this).closest(".vd_form").valid()) {
+
+            var this_id = $(this).attr('id');
+            // console.log(this_id);
+            var data = {
+                _token: CSRF_TOKEN,
+                phone: $('#number-edit').val(),
+                initial_sim_id: $('#sim_id-edit').val(),
+                package_id: $('#package_id-edit').val(),
+                provider_id: $('#provider_id-edit').val(),
+                is_special: $('#is_special-edit').val()
+            };
+            var id = $('#id').val();
+            // console.log( new FormData($("#edit-number-form")[0]));
+            $.ajax({
+                type: "PUT",
+                url: '/number/' + id,
+                // data: new FormData($("#edit-number-form")[0]),
+                data: data,
+                // cache: false,
+                // dataType: 'json',
+                // processData: false, // Don't process the files
+                // contentType: false, // Set content type to false as jQuery will tell the server its a query string request
+                success: function (msg) {
+                    $(".error_response").empty();
+                    $(".success_response").empty();
+                    $(".success_response").append("DONE " + msg);
+                },
+                error: function (error) {
+                    $(".error_response").empty();
+                    $(".success_response").empty();
+                    $(".error_response").append("ERROR");
+                    // $("#sim-edit-response").append("<div>"+"ERROR "+ error.responseJSON.number[0]+ " ," +error.responseJSON.provider_id[0] +"</div>");
+                    // console.log(error.responseJSON.number[0]);
+                }
+            });
+        }
 
     });
 
     /***** ADD NEW USER  *****/
     $('#create-user').on('click', function (e) {
         e.stopPropagation(); // Stop stuff happening
-        console.log('user create');
-        $.ajax({
-            url: 'user',
-            type: 'POST',
-            data: new FormData($("#add-user")[0]),
-            cache: false,
-            dataType: 'json',
-            processData: false, // Don't process the files
-            contentType: false, // Set content type to false as jQuery will tell the server its a query string request
-            success: function (msg) {
-                $(".error_response").empty();
-                $(".success_response").empty();
-                $(".success_response").append("DONE " + msg);
-            },
-            error: function (error) {
-                $(".error_response").empty();
-                $(".success_response").empty();
-                $(".error_response").append("ERROR" + error);
-                // $("#sim-edit-response").append("<div>"+"ERROR "+ error.responseJSON.number[0]+ " ," +error.responseJSON.provider_id[0] +"</div>");
-                // console.log(error.responseJSON.number[0]);
-            }
-        });
-
+        if ($(this).closest(".vd_form").valid()) {
+            console.log('user create');
+            $.ajax({
+                url: 'user',
+                type: 'POST',
+                data: new FormData($("#add-user")[0]),
+                cache: false,
+                dataType: 'json',
+                processData: false, // Don't process the files
+                contentType: false, // Set content type to false as jQuery will tell the server its a query string request
+                success: function (msg) {
+                    $(".error_response").empty();
+                    $(".success_response").empty();
+                    $(".success_response").append("DONE " + msg);
+                },
+                error: function (error) {
+                    $(".error_response").empty();
+                    $(".success_response").empty();
+                    $(".error_response").append("ERROR" + error);
+                    // $("#sim-edit-response").append("<div>"+"ERROR "+ error.responseJSON.number[0]+ " ," +error.responseJSON.provider_id[0] +"</div>");
+                    // console.log(error.responseJSON.number[0]);
+                }
+            });
+        }
     });
 
     /* User Management Nested Table */
     $.ajax({
         url: '/user-tree',
         //dataType: 'jsonp',
-        success: function(json) {
+        success: function (json) {
 
             console.log(json);
 
             var string = '';
+
             function recursiveIteration(json) {
 
 
-                for(var prop in json){
+                for (var prop in json) {
                     var icon = '<a href="#" class="open_nested" data-toggle="collapse" data-target="#demo' + (json[prop]["id"] || "0") + '"><i class="icon-dropdown"></i></a>';
-                    icon = (json[prop]["child"])? icon : '';
+                    icon = (json[prop]["child"]) ? icon : '';
                     var status_text = (json[prop]["is_active"] == 1) ? ' Active ' : '';
 
                     string += '<tr>' +
@@ -488,7 +461,7 @@ $( document ).ready(function() {
                         '</td>' +
                         '</tr>';
 
-                    if(json[prop]["child"]) {
+                    if (json[prop]["child"]) {
                         string += '<tr class="nested_row">' +
                             '<td></td><td colspan="8" class="nested_cell">' +
                             '<div class="collapse nested_div" id="demo' + (json[prop]["id"] || "0") + '">' +
