@@ -299,8 +299,7 @@ $( document ).ready(function() {
         console.log('target_form_id ', target_form_id);
 
         $(this).closest('tr').find('.editable_cell').each(function () {
-
-
+            
             var attribute_title = $(this).attr('data-th');
             var cell_value = $(this)[0].innerHTML;
             console.log('attribute_title ', attribute_title);
@@ -361,7 +360,7 @@ $( document ).ready(function() {
             //$(this).find('form')[0].reset();
         });
 
-    }); 
+    });
 
     /* highlight selected package */
     $(document).on('click', '.package_item a', function () {
@@ -370,8 +369,6 @@ $( document ).ready(function() {
         $(this).parents('.owl-item').siblings('.owl-item').find('a').removeClass('selected_package');
         return false;
     });
-
-
 
 
 });
