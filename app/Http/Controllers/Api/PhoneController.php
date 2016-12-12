@@ -44,6 +44,7 @@ class PhoneController extends Controller
      */
     public function store(Request $request)
     {
+//        dd($request->all());
         //
         $this->validate(request(), [
             'phone' => 'required',
@@ -56,6 +57,8 @@ class PhoneController extends Controller
 //            'is_active' => 'required',
 //
         ]);
+
+
 
         $newPhone = Phone::forceCreate([
 

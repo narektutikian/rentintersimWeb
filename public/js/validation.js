@@ -32,17 +32,18 @@ $( document ).ready(function() {
     });
     $('.vd_form .vd_number').each(function() {
         $(this).rules('add', {
+            required: true,
             number: true,
             minlength: 2
         });
     });
 
-    $('.vd_form_submit').click(function(e) {
-
-        e.preventDefault();
-        $(this).closest(".vd_form").valid();
-        $(this).closest(".vd_form").submit();
-    });
+    // $('.vd_form_submit').click(function(e) {
+    //
+    //     e.preventDefault();
+    //     $(this).closest(".vd_form").valid();
+    //     // $(this).closest(".vd_form").submit();
+    // });
 
 
     /* Reset form fields after modal has been closed */
