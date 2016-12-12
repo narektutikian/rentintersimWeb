@@ -308,7 +308,7 @@ $(document).ready(function () {
                         $(".success_response").empty();
                         $(".error_response").append("ERROR");
                         // $("#sim-edit-response").append("<div>"+"ERROR "+ error.responseJSON.number[0]+ " ," +error.responseJSON.provider_id[0] +"</div>");
-                        // console.log(error.responseJSON.number[0]);
+
                     }
                 });
             }
