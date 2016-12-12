@@ -38,22 +38,22 @@
                         <h3>New User</h3>
                     </div>
                 </div>
-                <div class="modal-body vdf_modal_body">
-                    <form action="/user" id="add-user" class="form-horizontal">
+                <form action="/user" id="add-user" class="form-horizontal vd_form">
+                    <div class="modal-body vdf_modal_body">
                         <div class="form-group">
                             <div class="col-md-6 vdf_modal_left">
                                 <div class="form_row form-group">
                                     <div class="col-md-6">
                                         <label class="table_label">Name</label>
                                         <div class="form_row">
-                                            <input type="text" name="name" id="name" class="block_btn_30 modal_input" value=""/>
+                                            <input type="text" name="name" id="name" class="block_btn_30 modal_input vd_required" value=""/>
                                             {{csrf_field()}}
                                             <i class="input_icon icon-username"></i>
                                         </div>
                                         <label class="table_label">Type</label>
                                         <div class="form_row">
                                             <div class="select_wrapper">
-                                                <select class="block_btn_30 modal_input" name="type" id="type">
+                                                <select class="block_btn_30 modal_input vd_select" name="type" id="type">
                                                     <option value=""></option>
                                                     <option value="admin">Admin</option>
                                                     <option value="manager">Manager</option>
@@ -65,7 +65,7 @@
                                         </div>
                                         <label class="table_label">Primary Email</label>
                                         <div class="form_row">
-                                            <input type="text" class="block_btn_30 modal_input" name="email" id="email" value=""/>
+                                            <input type="text" class="block_btn_30 modal_input vd_email vd_required" name="email" id="email" value=""/>
                                             <i class="input_icon icon-email"></i>
                                         </div>
                                     </div>
@@ -73,7 +73,7 @@
                                         <label class="table_label">Level</label>
                                         <div class="form_row">
                                             <div class="select_wrapper">
-                                                <select class="block_btn_30 modal_input" name="level" id="level">
+                                                <select class="block_btn_30 modal_input vd_select" name="level"  id="level">
                                                     <option value=""></option>
                                                     <option value="Distributor">Distributor</option>
                                                     <option value="Dealer">Dealer</option>
@@ -99,7 +99,7 @@
                                         </div>
                                         <label class="table_label">Secondary Email</label>
                                         <div class="form_row">
-                                            <input type="text" class="block_btn_30 modal_input" id="mail2" name="email2" value=""/>
+                                            <input type="text" class="block_btn_30 modal_input vd_email vd_required" id="mail2" name="email2" value=""/>
                                             <i class="input_icon icon-email"></i>
                                         </div>
                                     </div>
@@ -110,22 +110,20 @@
                                     <div class="col-md-6">
                                         <label class="table_label">Username</label>
                                         <div class="form_row">
-                                            <input type="text" class="block_btn_30 modal_input" id="username" name="username" value=""/>
+                                            <input type="text" class="block_btn_30 modal_input vd_required" id="username" name="username" value=""/>
                                             <i class="input_icon icon-username"></i>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <label class="table_label">Password</label>
                                         <div class="form_row">
-                                            <input type="password" class="block_btn_30 modal_input" id="password" name="password" value=""/>
+                                            <input type="password" class="block_btn_30 modal_input vd_required" id="password" name="password" value=""/>
                                             <i class="input_icon icon-password"></i>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-                    </form>
                 </div>
                 <div class="modal-footer vdf_modal_footer">
                     <a href="#" class="inline_block_btn light_gray_btn close vd_form_reset" data-dismiss="modal" aria-label="Close">Cancel</a>
@@ -134,6 +132,7 @@
                     <span class="success_response"></span>
                     <span class="error_response"></span>
                 </div>
+                </form>
             </div>
         </div>
     </div><!-- end Add User Modal -->
