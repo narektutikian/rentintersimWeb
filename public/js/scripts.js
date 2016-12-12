@@ -13,8 +13,11 @@ $( document ).ready(function() {
         $(this).siblings('.header_dropdown').slideToggle();
     });
 
-    $('.layout_nav .show_settings').on('click', function(){
+
+    $('.show_settings_link').on('click', function(){
+
         $(this).siblings('.setting_types').slideToggle();
+        return false;
     });
 
 
