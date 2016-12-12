@@ -13,7 +13,6 @@ $( document ).ready(function() {
         $(this).siblings('.header_dropdown').slideToggle();
     });
 
-
     $('.show_settings_link').on('click', function(){
 
         $(this).siblings('.setting_types').slideToggle();
@@ -72,26 +71,7 @@ $( document ).ready(function() {
 
     /***************** end of Pie Charts *****************/
 
-    /***************** Responsive tabs *****************/
-    /*
-    $.fn.responsiveTabs = function() {
-        console.log('responsiveTabs');
-        this.addClass('responsive-tabs');
-        this.append($('<i class="arrow-icon icon-dropdown"></i>'));
-        this.append($('<i class="arrow-icon icon-up"></i>'));
-
-        this.on('click', 'li.active > a, i.arrow-icon', function() {
-            this.toggleClass('open');
-        }.bind(this));
-
-        this.on('click', 'li:not(.active) > a', function() {
-            this.removeClass('open');
-        }.bind(this));
-    };
-
-    $('.nav.nav-tabs').responsiveTabs();
-    */
-    /**************** Style select tag ******************/
+     /**************** Style select tag ******************/
 
     // Iterate over each select element
     $('.styled_select').each(function () {
@@ -162,12 +142,6 @@ $( document ).ready(function() {
     /************ end of styling select tag *************/
 
 
-    /* Modal Windows */
-    // $('#modal_details_window, #modal_edit_number, #modal_add_number ' + '#modal_new_order').modal('hide');
-
-
-
-
     /************ Styling Radio buttons *************/
 
     $(document).on('click', 'label.label_unchecked', function(e){
@@ -220,8 +194,6 @@ $( document ).ready(function() {
 
         if (this.files && this.files[0]) {
 
-            console.log(this.files[0].type);
-
             var file_ext = this.files[0].type.split('/')[1].toLowerCase();
 
             if($.inArray(file_ext, ['xls','xlsx', 'vnd.openxmlformats-officedocument.spreadsheetml.sheet']) == -1) {
@@ -235,9 +207,7 @@ $( document ).ready(function() {
 
                 $(this).parent().siblings('.keep_file_name').html(file_name);
             }
-
         }
-
 
     });
     /********** end of Uploaded Image Name ***********/
@@ -316,9 +286,6 @@ $( document ).ready(function() {
     /* Bootstrap Datepicker */
     $('.date').datetimepicker();
 
-    // $('#choose_hour').jStepper({minValue:0, maxValue:23, minLength:2});
-
-
 
     /* Put Editable values inside modal window */
     $('.table .table_action_cell .edit').on('click', function () {
@@ -387,7 +354,6 @@ $( document ).ready(function() {
             var reset_form_action = form_action.split('/')[0];
             $(this).find('form').attr('action', reset_form_action + '/');
 
-            //$(this).find('form')[0].reset();
         });
 
     });
