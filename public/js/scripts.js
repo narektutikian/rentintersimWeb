@@ -73,7 +73,7 @@ $( document ).ready(function() {
     /***************** end of Pie Charts *****************/
 
     /***************** Responsive tabs *****************/
-
+    /*
     $.fn.responsiveTabs = function() {
         console.log('responsiveTabs');
         this.addClass('responsive-tabs');
@@ -90,7 +90,7 @@ $( document ).ready(function() {
     };
 
     $('.nav.nav-tabs').responsiveTabs();
-
+    */
     /**************** Style select tag ******************/
 
     // Iterate over each select element
@@ -136,9 +136,6 @@ $( document ).ready(function() {
         // Show the unordered list when the styled div is clicked (also hides it if the div is clicked again)
         $styledSelect.click(function (e) {
             e.stopPropagation();
-            //$('div.styled_select.active').each(function () {
-            //    $(this).removeClass('active').next('.options').hide();
-            //});
             $(this).toggleClass('active').next('.options').toggle();
             $(".options").perfectScrollbar('update');
         });
@@ -166,8 +163,7 @@ $( document ).ready(function() {
 
 
     /* Modal Windows */
-    $('#modal_details_window, #modal_edit_number, #modal_add_number ' +
-        '#modal_new_order').modal('hide');
+    // $('#modal_details_window, #modal_edit_number, #modal_add_number ' + '#modal_new_order').modal('hide');
 
 
 
