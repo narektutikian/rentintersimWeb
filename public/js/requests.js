@@ -164,12 +164,7 @@ $(document).ready(function () {
                     "</a>" +
                     "</div>");
 
-                $(".wrap_package_list_edit").append("<div class='package_item'>" +
-                    "<a href='#' data-id='" + item.id + "' title='Basic Package'>" +
-                    "<h4>" + item.name + "</h4>" +
-                    "<span>" + item.description + "</span>" +
-                    "</a>" +
-                    "</div>");
+
 
             });
 
@@ -179,6 +174,25 @@ $(document).ready(function () {
                 console.log('package_id ', package_id);
                 return false;
             });
+        }
+    });
+
+    $.get("/type-provider/1", function (data, status) {
+        if (status == "success") {
+            $.each(data, function (i, item) {
+                //console.log(item.name + "\n");
+
+                $(".wrap_package_list_edit").append("<div class='package_item'>" +
+                    "<a href='#' data-id='" + item.id + "' title='Basic Package'>" +
+                    "<h4>" + item.name + "</h4>" +
+                    "<span>" + item.description + "</span>" +
+                    "</a>" +
+                    "</div>");
+
+
+
+            });
+
         }
     });
 
