@@ -9,6 +9,8 @@ use Rentintersimrepo\orders\CreateHelper as Helper;
 use Auth;
 use App\Http\Controllers\HomeController;
 use Rentintersimrepo\orders\ViewHelper;
+use Mail;
+use App\Mail\OrderMail;
 
 class OrderController extends Controller
 {
@@ -224,5 +226,12 @@ class OrderController extends Controller
     public function deactivate()
     {
         $this->helper->startDeactivation();
+    }
+
+    public function sendMail(Request $request)
+    {
+        Mail::to('narek@horizondvp.com')->send(new OrderMail);
+
+        return redirect('home');
     }
 }
