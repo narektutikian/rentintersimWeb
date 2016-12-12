@@ -20,8 +20,11 @@
             <!-- content navigation -->
             <nav class="layout_nav">
                 <ul>
+                    @if(Auth::user()->level == 'Super admin')
                     <li class="{{ ($viewName == 'dashboard') ? 'active' : '' }}"><a href="{{url('/dashboard')}}" title="DashboardUser Management">DashboardUser Management</a></li>
+                    @endif
                     <li class="{{ ($viewName == 'user') ? 'active' : '' }}"><a href="{{url('/user')}}" title="User Management">User Management</a></li>
+                        @if(Auth::user()->level == 'Super admin')
                     <li class="{{ ($viewName == 'number') ? 'active' : '' }}"><a href="{{url('/number')}}" title="Number Management">Number Management</a></li>
                     <li class="{{ ($viewName == 'sim') ? 'active' : '' }}"><a href="{{url('/sim')}}" title="SIM Management">SIM Management</a></li>
                     <li class="show_settings {{ ($viewName == 'type') ? 'active' : '' }}">
@@ -31,6 +34,7 @@
                             <li><a href="#" title="">Submenu 1-2</a></li>
                         </ul>
                     </li>
+                        @endif
                 </ul>
             </nav>
             <div class="content">
