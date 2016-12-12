@@ -98,8 +98,8 @@ class OrderController extends Controller
 //        if($newOrder){
             $number = $this->getNumber($newOrder->id);
             if ($number != null){
-                $numberId = $number->id;
-                $status = 'pending';
+//                $numberId = $number->id;
+//                $status = 'pending';
 
 //            }
         }

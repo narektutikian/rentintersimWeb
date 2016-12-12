@@ -142,7 +142,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <label class="table_label">SIM provider</label>
-                                        <input type="text" name="sim_prv1" class="block_btn_30 modal_input_without_icon" value=""/>
+                                        <input type="text" name="sim_prv1" class="block_btn_30 modal_input_without_icon" value="Vodafone"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -167,7 +167,7 @@
                                             <div class="input-group-addon">
                                                 <span class="glyphicon glyphicon-calendar"></span>
                                             </div>
-                                            <input type="text" name="landing_date" class="inline_block_btn landing_date vd_required" data-date-format="DD/MM/YYYY HH:mm">
+                                            <input type="text" name="landing_date" id="landing_date" class="inline_block_btn landing_date vd_required" data-date-format="DD/MM/YYYY HH:mm">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -176,7 +176,7 @@
                                             <div class="input-group-addon">
                                                 <span class="glyphicon glyphicon-calendar"></span>
                                             </div>
-                                            <input type="text" name="departure_date" class="inline_block_btn departure_date vd_required" data-date-format="DD/MM/YYYY HH:mm">
+                                            <input type="text" name="departure_date" id="departure_date" class="inline_block_btn departure_date vd_required" data-date-format="DD/MM/YYYY HH:mm">
                                         </div>
                                     </div>
                                 </div>
@@ -184,7 +184,7 @@
                                 <div class="form-group">
                                     <div class="col-md-6">
                                         <label class="table_label">Reference Number</label>
-                                        <input type="text" id="reference_number" class="block_btn_30 modal_input_without_icon vd_number" value="">
+                                        <input type="text" id="reference_number" class="block_btn_30 modal_input_without_icon" value="">
                                     </div>
                                     <div class="col-md-6">
                                         <label class="table_label">Order Status</label>
@@ -211,7 +211,8 @@
                     </div>
                     <div class="modal-footer vdf_modal_footer">
                         <a href="#" class="inline_block_btn light_gray_btn close vd_form_reset" data-dismiss="modal" aria-label="Close">Cancel</a>
-                        <button type="submit" href="#" class="inline_block_btn light_green_btn vd_form_submit" id="create-order">Create order</button>
+                        {{--<button type="submit" href="#" class="inline_block_btn light_green_btn vd_form_submit" id="create-order">Create order</button>--}}
+                        <a href="#" class="inline_block_btn light_green_btn vd_form_submit" id="create-order">Create Order</a>
 
                         <span class="success_response"></span>
                         <span class="error_response"></span>
@@ -318,7 +319,8 @@
                     </div>
                     <div class="modal-footer vdf_modal_footer">
                         <a href="#" class="inline_block_btn light_gray_btn close vd_form_reset" data-dismiss="modal" aria-label="Close">Cancel</a>
-                        <button type="submit" href="#" class="inline_block_btn light_green_btn vd_form_submit" id="create-order">Edit order</button>
+                        {{--<button type="submit" href="#" class="inline_block_btn light_green_btn vd_form_submit" id="create-order">Edit order</button>--}}
+                        <a href="#" class="inline_block_btn light_green_btn vd_form_submit" id="create-order">Edit order</a>
 
                         <span class="success_response"></span>
                         <span class="error_response"></span>
