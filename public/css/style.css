@@ -1463,8 +1463,7 @@ input[type="radio"].toggle.checked + label {
 .flight_dates {
   display: inline-block;
   vertical-align: middle;
-  width: 100%;
-  margin-right: 7px;
+  width: 115px;
   font-size: 0; }
   .flight_dates .input-group-addon {
     display: inline-block;
@@ -1506,11 +1505,62 @@ input[type="radio"].toggle.checked + label {
   padding: 6px 12px;
   font-size: 14px; }
 
+.wrap_time {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 0; }
+
+.time_picker {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  width: 48px;
+  margin-left: 3px; }
+  .time_picker input {
+    color: #69717e;
+    font-size: 14px;
+    font-weight: normal;
+    font-style: normal;
+    font-family: "proxima_nova_rgregular", Arial, Helvetica, sans-serif; }
+  .time_picker span {
+    display: inline-block;
+    text-align: center;
+    background: #ebfffe;
+    border: 1px solid #d4e1ea;
+    position: absolute;
+    width: 18px;
+    height: 14px;
+    line-height: 14px; }
+    .time_picker span i {
+      display: inline-block;
+      vertical-align: middle;
+      font-size: 12px;
+      font-weight: normal;
+      font-style: normal;
+      font-family: "proxima_nova_rgregular", Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      color: #1b6db2;
+      cursor: pointer; }
+  .time_picker .arrow-down {
+    top: 0;
+    right: 1px; }
+  .time_picker .arrow-up {
+    bottom: 0;
+    right: 1px; }
+    .time_picker .arrow-up i:before {
+      display: inline-block;
+      -webkit-transform: rotate(180deg);
+      -moz-transform: rotate(180deg);
+      -o-transform: rotate(180deg);
+      -ms-transform: rotate(180deg);
+      transform: rotate(180deg); }
+
 .landing_date,
 .departure_date {
   vertical-align: middle;
   padding: 0 4px;
   width: 85px;
+  margin: 0;
   font-size: 14px;
   font-weight: normal;
   font-style: normal;
@@ -1525,15 +1575,13 @@ input[type="radio"].toggle.checked + label {
 .departure_time {
   display: inline-block;
   vertical-align: middle;
-  margin: 0 5px 0 15px;
+  margin: 0 2px 0 5px;
   color: #1b6db2;
   font-size: 20px; }
 
 #landing_hour,
 #departure_hour {
-  display: inline-block;
-  vertical-align: middle;
-  width: 45px;
+  width: 100%;
   color: #69717e;
   font-size: 14px;
   font-weight: normal;

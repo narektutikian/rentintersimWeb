@@ -99,8 +99,7 @@
 .flight_dates
   display: inline-block
   vertical-align: middle
-  width: 100%
-  margin-right: 7px
+  width: 115px
   font-size: 0
   .input-group-addon
     display: inline-block
@@ -139,11 +138,52 @@
   padding: 6px 12px
   font-size: 14px
 
+.wrap_time
+  display: inline-block
+  vertical-align: middle
+  font-size: 0
+
+.time_picker
+  position: relative
+  display: inline-block
+  vertical-align: middle
+  width: 48px
+  margin-left: 3px
+  input
+    color: $total_numbers_title
+    @include fonts_stack(14px)
+  span
+    display: inline-block
+    text-align: center
+    background: $table_head
+    border: 1px solid $gray_border
+    position: absolute
+    width: 18px
+    height: 14px
+    line-height: 14px
+    i
+      display: inline-block
+      vertical-align: middle
+      @include fonts_stack(12px)
+      font-weight: bold
+      color: $dark_blue
+      cursor: pointer
+  .arrow-down
+    top: 0
+    right: 1px
+  .arrow-up
+    bottom: 0
+    right: 1px
+    i:before
+      display: inline-block
+      @include transform(180deg)
+
 .landing_date,
 .departure_date
   vertical-align: middle
   padding: 0 4px
   width: 85px
+  margin: 0
   @include fonts_stack(14px)
   color: $total_numbers_title
   border: 1px solid $gray_border
@@ -152,15 +192,14 @@
 .departure_time
   display: inline-block
   vertical-align: middle
-  margin: 0 5px 0 15px
+  margin: 0 2px 0 5px
   color: $dark_blue
   font-size: 20px
 
 #landing_hour,
 #departure_hour
-  display: inline-block
-  vertical-align: middle
-  width: 45px
+
+  width: 100%
   color: $total_numbers_title
   @include fonts_stack(14px)
   border: 1px solid $gray_border

@@ -375,30 +375,34 @@ $( document ).ready(function() {
     /* Numeric inputs for time picker */
     $('.numeric_input').keydown(function(event) {
         console.log('keydown ');
-        if (!(event.keyCode == 8 || (event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 96 && event.keyCode <= 105))) {
+        if (event.keyCode == 8 || (event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 96 && event.keyCode <= 105)) {
             // 0-9 only
             console.log('0-9 only ');
+            $('.arrow-up').on('click', function(){
+                console.log('arrow-up ', $(this).siblings('input').val().trim());
+                if(!$(this).siblings('input').val().trim() == ''){
+                    console.log('length > 0');
+                    $(this).siblings('input').val(parseInt($(this).siblings('input').val()) + 1);
+                }
+            });
+            $('.arrow-down').on('click', function(){
+                console.log('arrow-down ', $(this).siblings('input').val().trim());
+                if(!$(this).siblings('input').val().trim() == ''){
+                    console.log('length > 0');
+                    $(this).siblings('input').val(parseInt($(this).siblings('input').val()) - 1);
+                }
+            });
+        }else{
             $(this).val($(this).val().replace(/[^\d].+/, ""));
 
-        }else if ((event.which < 48 || event.which > 57)) {
-            console.log('letters are not allowed ');
-            event.preventDefault();
+            //console.log($(this).val().replace(/[^\d]/ig, ''));
+            if ((event.which < 48 || event.which > 57)) {
+                console.log('letters are not allowed ');
+                event.preventDefault();
+            }
         }
     });
-    $('.arrow-up').on('click', function(){
-        console.log('arrow-up ', $(this).siblings('input').val().trim());
-        if(!$(this).siblings('input').val().trim() == ''){
-            console.log('length > 0');
-            $(this).siblings('input').val(parseInt($(this).siblings('input').val()) + 1);
-        }
-    });
-    $('.arrow-down').on('click', function(){
-        console.log('arrow-down ', $(this).siblings('input').val().trim());
-        if(!$(this).siblings('input').val().trim() == ''){
-            console.log('length > 0');
-            $(this).siblings('input').val(parseInt($(this).siblings('input').val()) - 1);
-        }
-    });
+
 
 
 });

@@ -174,10 +174,21 @@
                                                 <span class="glyphicon glyphicon-calendar"></span>
                                             </div>
                                             <input type="text" name="landing_date" id="landing_date" class="inline_block_btn landing_date vd_required" data-date-format="DD/MM/YYYY">
-
-                                            <i class="departure_time icon-time"></i>
-                                            <input type="text" name="landing_hour" id="landing_hour" class="inline_block_btn numeric_input">
                                         </div>
+                                        <div class="wrap_time">
+                                            <i class="departure_time icon-time"></i>
+                                            <div class="time_picker">
+                                                <input type="text" name="landing_hour" class="inline_block_btn numeric_input landing_hour">
+                                                <span class="arrow-up"><i class="icon-dropdown"></i></span>
+                                                <span class="arrow-down"><i class="icon-dropdown"></i></span>
+                                            </div>
+                                            <div class="time_picker">
+                                                <input type="text" name="landing_hour" class="inline_block_btn numeric_input landing_hour">
+                                                <span class="arrow-up"><i class="icon-dropdown"></i></span>
+                                                <span class="arrow-down"><i class="icon-dropdown"></i></span>
+                                            </div>
+                                        </div>
+
                                     </div>
                                     <div class="col-md-6">
                                         <div class="departure"><i class="icon-departure"></i> Departure date and time</div>
@@ -186,10 +197,21 @@
                                                 <span class="glyphicon glyphicon-calendar"></span>
                                             </div>
                                             <input type="text" name="departure_date" id="departure_date" class="inline_block_btn departure_date vd_required" data-date-format="DD/MM/YYYY">
-
-                                            <i class="departure_time icon-time"></i>
-                                            <input type="text" name="departure_hour" id="departure_hour" class="inline_block_btn numeric_input">
                                         </div>
+                                        <div class="wrap_time">
+                                            <i class="departure_time icon-time"></i>
+                                            <div class="time_picker">
+                                                <input type="text" name="departure_hour" class="inline_block_btn numeric_input departure_hour">
+                                                <span class="arrow-up"><i class="icon-dropdown"></i></span>
+                                                <span class="arrow-down"><i class="icon-dropdown"></i></span>
+                                            </div>
+                                            <div class="time_picker">
+                                                <input type="text" name="departure_hour" class="inline_block_btn numeric_input departure_hour">
+                                                <span class="arrow-up"><i class="icon-dropdown"></i></span>
+                                                <span class="arrow-down"><i class="icon-dropdown"></i></span>
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </div>
 
