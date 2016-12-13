@@ -83,8 +83,8 @@
                             <td class="rwd-td6" data-field="Reference Number">
                                 {{$order['reference_number']}}
                             </td>
-                            <td class="rwd-td7 table_action_cell_large" data-field="Action">
-                                <span class="table_icon edit" data-toggle="modal" data-target="#modal_edit_order" data-form="modal_edit_order">
+                            <td class="rwd-td7 table_action_cell table_action_cell_large" data-field="Action">
+                                <span class="table_icon edit" data-toggle="modal" data-target="#modal_edit_order" data-form="#modal_edit_order">
                                     <i class="icon-edit"></i>
                                 </span>
                                 <span class="table_icon print" data-toggle="modal" data-target="#modal_print_order" data-form="modal_print_order">
@@ -279,7 +279,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <label class="table_label">SIM provider</label>
-                                        <input type="text" name="sim_prv2" class="block_btn_30 modal_input_without_icon vd_required" data-th="SIM Number" value="Vodafone"/>
+                                        <input type="text" name="sim_prv2" class="block_btn_30 modal_input_without_icon vd_required" data-th="Provider" value="Vodafone"/>
                                     </div>
                                 </div>
                                 <div class="form-group">

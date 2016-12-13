@@ -298,7 +298,7 @@ $( document ).ready(function() {
         $(this).closest('tr').find('.editable_cell').each(function () {
             
             var attribute_title = $(this).attr('data-th');
-            var cell_value = $(this)[0].innerHTML;
+            var cell_value = $(this)[0].innerHTML.trim();
             console.log('attribute_title ', attribute_title);
             console.log('cell_value ', cell_value);
 
