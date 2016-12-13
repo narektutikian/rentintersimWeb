@@ -453,7 +453,10 @@ $(document).ready(function () {
                             '<td class="w60c table_action_cell" data-th="Action">' +
                                 '<span class="table_icon edit" data-toggle="modal" data-target="#modal_edit_user" data-form="#modal_edit_user"><i class="icon-edit"></i></span>' +
                             '</td>' +
-                            '<td class="w_160_status table_status_cell" data-th="Status">' +
+                            '<td class="w_70_status table_status_cell" data-th="Status">' +
+                                '<span class="status_text_small not_used">' + status_text + '</span>' +
+                            '</td>' +
+                            '<td class="table_status_cell w_70_status">' +
                                 '<div class="vdf_radio">' +
                                     '<div class="toggle_container disabled">' +
                                         '<label class="label_unchecked">' +
@@ -464,14 +467,14 @@ $(document).ready(function () {
                                         '</label>' +
                                     '</div>' +
                                 '</div>' +
-                            '<span class="status_text_small not_used">' + status_text + '</span>' +
                             '</td>' +
                         '</tr>';
 
                     if (json[prop]["child"]) {
                         string += '<tr class="nested_row">' +
-                            '<td></td><td colspan="8" class="nested_cell">' +
-                            '<div class="collapse nested_div" id="demo' + (json[prop]["id"] || "0") + '">' +
+                                '<td></td>' +
+                                '<td colspan="9" class="nested_cell">' +
+                                '<div class="collapse nested_div" id="demo' + (json[prop]["id"] || "0") + '">' +
                             '<table class="responsive_table table user_management_table" data-toggle="table">' +
                             '<thead>' +
                             '</thead>' +
@@ -525,6 +528,8 @@ $(document).ready(function () {
                         '<th>' +
                             '<div class="th-inner">Status</div>' +
                             '<div class="fht-cell"></div>' +
+                        '</th>' +
+                        '<th>' +
                         '</th>' +
                         '</tr>' +
                     '</thead>' +
