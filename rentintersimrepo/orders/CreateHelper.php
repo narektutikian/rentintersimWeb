@@ -18,13 +18,13 @@ class CreateHelper
 {
     public function setStartTime($datetime){
         return Carbon::createFromTimestamp($datetime)
-            ->subMinutes(30)
+            ->subMinutes(60)
             ->timestamp;
     }
 
     public function setEndTime($datetime){
         return Carbon::createFromTimestamp($datetime)
-            ->addMinutes(30)
+            ->addHours(4)
             ->timestamp;
     }
 
@@ -161,7 +161,7 @@ class CreateHelper
     {
      $now = Carbon::now();
 //        dd($now->timestamp);
-        $orders = Order::where('status', 'active')->where('to', '<', $now->timestamp+150)->where('to', '>', $now->timestamp-150)->get();
+        $orders = Order::where('status', 'active')->where('to', '<', $now->timestamp+150)->get();
 //        $orders = Order::where('status', 'active')->get();
         if ($orders != null){
             foreach ($orders as $order){

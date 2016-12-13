@@ -16,7 +16,7 @@ class ViewHelper
 //        $date = Carbon::createFromFormat('Y-m-d H:i:s', $datetime);
         $date = Carbon::createFromTimestamp($datetime);
         $date->minute = ceil($date->minute/5)*5;
-        $view = $date->format('d M Y H:i');
+        $view = $date->format('d/m/Y H:i');
         return $view;
     }
 }

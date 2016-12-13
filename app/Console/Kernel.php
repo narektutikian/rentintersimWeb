@@ -4,6 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Rentintersimrepo\orders\CreateHelper as Order;
 
 class Kernel extends ConsoleKernel
 {
@@ -21,12 +22,18 @@ class Kernel extends ConsoleKernel
      * Define the application's command schedule.
      *
      * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
+     * @param  \Rentintersimrepo\orders\CreateHelper  $order
      * @return void
      */
-    protected function schedule(Schedule $schedule)
+    protected function schedule(Schedule $schedule, Order $order)
     {
         // $schedule->command('inspire')
         //          ->hourly();
+
+        $schedule->call(function (Order $order) {
+            $order->startActivation();
+            $order->startDeactivation();
+        })->hourly();
     }
 
     /**
