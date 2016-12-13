@@ -1579,8 +1579,7 @@ input[type="radio"].toggle.checked + label {
   color: #1b6db2;
   font-size: 20px; }
 
-#landing_hour,
-#departure_hour {
+.vdf_time {
   width: 100%;
   color: #69717e;
   font-size: 14px;

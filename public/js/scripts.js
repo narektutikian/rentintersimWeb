@@ -378,20 +378,8 @@ $( document ).ready(function() {
         if (event.keyCode == 8 || (event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 96 && event.keyCode <= 105)) {
             // 0-9 only
             console.log('0-9 only ');
-            $('.arrow-up').on('click', function(){
-                console.log('arrow-up ', $(this).siblings('input').val().trim());
-                if(!$(this).siblings('input').val().trim() == ''){
-                    console.log('length > 0');
-                    $(this).siblings('input').val(parseInt($(this).siblings('input').val()) + 1);
-                }
-            });
-            $('.arrow-down').on('click', function(){
-                console.log('arrow-down ', $(this).siblings('input').val().trim());
-                if(!$(this).siblings('input').val().trim() == ''){
-                    console.log('length > 0');
-                    $(this).siblings('input').val(parseInt($(this).siblings('input').val()) - 1);
-                }
-            });
+
+
         }else{
             $(this).val($(this).val().replace(/[^\d].+/, ""));
 
@@ -400,6 +388,48 @@ $( document ).ready(function() {
                 console.log('letters are not allowed ');
                 event.preventDefault();
             }
+        }
+
+    });
+
+
+    $('.arrow-up').on('click', function(){
+
+        console.log('click');
+
+        if(!$(this).siblings('input').val().trim() == ''){
+
+        console.log($(this).siblings('input').val().trim());
+            if($(this).siblings('input').hasClass('vdf_hour')){
+
+                console.log('vdf_hour ');
+                $(this).siblings('input.vdf_hour').val(parseInt($(this).siblings('input.vdf_hour').val()) + 1);
+            }
+            if($(this).siblings('input').hasClass('vdf_min')){
+                console.log('vdf_min ');
+                $(this).siblings('input.vdf_min').val(parseInt($(this).siblings('input.vdf_min').val()) + 15);
+            }
+
+        }
+    });
+    $('.arrow-down').on('click', function(){
+
+        console.log('click');
+
+        if(!$(this).siblings('input').val().trim() == ''){
+
+        console.log($(this).siblings('input').val().trim());
+
+            if($(this).siblings('input.vdf_hour').hasClass('vdf_hour')){
+
+                console.log('vdf_hour');
+                $(this).siblings('input.vdf_hour').val(parseInt($(this).siblings('input.vdf_hour').val()) - 1);
+            }
+            if($(this).siblings('input').hasClass('vdf_min')){
+                console.log('vdf_min ');
+                $(this).siblings('input.vdf_min').val(parseInt($(this).siblings('input.vdf_min').val()) - 15);
+            }
+
         }
     });
 
