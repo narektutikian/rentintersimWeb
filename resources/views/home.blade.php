@@ -87,13 +87,16 @@
                                 <span class="table_icon edit" data-toggle="modal" data-target="#modal_edit_order" data-form="modal_edit_order">
                                     <i class="icon-edit"></i>
                                 </span>
-                                <span class="table_icon print" data-toggle="modal" data-target="#modal_order_print">
+                                <span class="table_icon print" data-toggle="modal" data-target="#modal_print_order" data-form="modal_print_order">
                                     <i class="icon-print"></i>
                                 </span>
-                                <label class="vdf_checkbox">
+                                <span class="table_icon"  data-toggle="modal" data-target="#modal_order_email">
+                                    <i class="icon-email"></i>
+                                </span>
+                                <!--<label class="vdf_checkbox">
                                     <input type="checkbox" name="num_chkb_ol" value="" />
                                     <i class="icon-special"></i>
-                                </label>
+                                </label>-->
                             </td>
                             <td class="rwd-td8" data-field="Status">
                                 <span class="table_status_text not_used">{{$order['status']}}</span>
@@ -269,7 +272,7 @@
                                 <div class="form-group">
                                     <div class="col-md-12">
                                         <label class="table_label">Enter remarks</label>
-                                        <textarea name="rem_txt2" id="remark" class="modal_textarea"></textarea>
+                                        <textarea name="rem_txt2" id="remark2" class="modal_textarea"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -338,8 +341,8 @@
     </div><!-- end dit Order Modal -->
 
 
-    <!--Print Modal-->
-    <div class="modal fade" id="modal_order_print" tabindex="-1" role="dialog" aria-labelledby="modal_order_print">
+    <!--Email Modal-->
+    <div class="modal fade" id="modal_order_email" tabindex="-1" role="dialog" aria-labelledby="modal_order_email">
         <div class="modal-dialog vdf_modal" role="document">
             <div class="modal-content vdf_modal_content">
                 <div class="modal-header vdf_modal_header">
@@ -389,21 +392,17 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="departure">From</div>
-                                        <div class="input-group date flight_dates" data-provide="datepicker">
-                                            <div class="input-group-addon">
-                                                <span class="glyphicon glyphicon-calendar"></span>
-                                            </div>
-                                            <input type="text" class="inline_block_btn departure_date vd_required" name="some_departure_1" data-date-format="DD/MM/YYYY HH:mm">
-                                        </div>
+                                        <div class="email_date_time">13/12/2016 17:05</div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="departure"> To</div>
-                                        <div class="input-group date flight_dates" data-provide="datepicker">
-                                            <div class="input-group-addon">
-                                                <span class="glyphicon glyphicon-calendar"></span>
-                                            </div>
-                                            <input type="text" class="inline_block_btn landing_date vd_required" name="some_departure_2" data-date-format="DD/MM/YYYY HH:mm">
-                                        </div>
+                                        <div class="email_date_time">14/01/2017 10:20</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <label class="table_label">Description</label>
+                                        <textarea name="print_xtx_nnm"  class="modal_textarea"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -428,6 +427,80 @@
             </div>
         </div>
     </div>
-    <!--end of Print Modal-->
+    <!--end of Email Modal-->
+
+
+    <!--Print Modal-->
+    <div class="modal fade" id="modal_print_order" tabindex="-1" role="dialog" aria-labelledby="modal_print_order">
+        <div class="modal-dialog vdf_email_modal" role="document">
+            <div class="modal-content vdf_modal_content">
+                <div class="modal-header modal_print_header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <h3>Mail message: Order <span class="mail_order">#124875</span></h3>
+                        </div>
+                    </div>
+                </div>
+
+                    <div class="modal-body vdf_modal_body">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <img src="img/print_image.jpg" class="print_image" alt="print image">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-8">
+                                        <label class="table_label">Phone Number </label>
+                                        <div class="email_phone_num">044 758 34 22</div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="single_package">
+                                            <label class="table_label">Selected Package </label>
+                                            <a class="selected_package" title="Basic Package">
+                                                <h4>Basic Package</h4>
+                                                <span>8 Mb Data Unlimited local Call + SMS</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <b>Dear Username,</b>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <label class="table_label">Active Period</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="departure">From</div>
+                                        <div class="email_date_time">13/12/2016 17:05</div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="departure"> To</div>
+                                        <div class="email_date_time">14/01/2017 10:20</div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="modal-footer vdf_modal_footer">
+                        <span class="c_support">Customer support: +373 95 728 147</span>
+
+                        <span class="email_send_print">
+                            <i class="icon-print"></i>
+                        </span>
+                    </div>
+
+            </div>
+        </div>
+    </div>
+    <!--end Print Modal-->
 
 @endsection

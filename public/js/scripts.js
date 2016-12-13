@@ -366,5 +366,11 @@ $( document ).ready(function() {
         return false;
     });
 
+    $(document).on('click', '.email_send_print', function () {
+
+        console.log('myFunction ');
+        window.print();
+    });
+
 
 });

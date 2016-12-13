@@ -1524,6 +1524,27 @@ input[type="radio"].toggle.checked + label {
   font-style: normal;
   font-family: "proxima_nova_rgregular", Arial, Helvetica, sans-serif; }
 
+.vdf_email_modal {
+  width: 700px; }
+
+.email_date_time {
+  margin-top: 15px;
+  color: #079fff;
+  text-align: center;
+  font-size: 15px;
+  font-weight: normal;
+  font-style: normal;
+  font-family: "proxima_nova_rgregular", Arial, Helvetica, sans-serif; }
+
+.email_phone_num {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  color: #079fff;
+  font-size: 15px;
+  font-weight: normal;
+  font-style: normal;
+  font-family: "proxima_nova_rgregular", Arial, Helvetica, sans-serif; }
+
 @media (max-width: 1200px) {
   .vdf_modal {
     width: 90%; }
