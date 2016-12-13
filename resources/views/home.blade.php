@@ -179,7 +179,7 @@
                                             <i class="departure_time icon-time"></i>
                                             <div class="time_picker">
                                                 <input type="text" name="landing_hour1" class="inline_block_btn numeric_input vdf_time vdf_hour">
-                                                <span class="arrow-down"><i></i></span> 
+                                                <span class="arrow-down"><i></i></span>
                                                 <span class="arrow-up"><i></i></span>
                                             </div>
                                             <div class="time_picker">

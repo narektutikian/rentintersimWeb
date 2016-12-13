@@ -288,7 +288,7 @@ $( document ).ready(function() {
 
 
     /* Put Editable values inside modal window */
-    $('.table .table_action_cell .edit').on('click', function () {
+    $(document).on('click', '.table .table_action_cell .edit', function () {
 
         var target_form_id;
 
@@ -393,11 +393,8 @@ $( document ).ready(function() {
 
     $('.arrow-up').on('click', function(){
 
-        console.log('click');
-
         if(!$(this).siblings('input').val().trim() == ''){
 
-        console.log($(this).siblings('input').val().trim());
             if($(this).siblings('input').hasClass('vdf_hour')){
 
                 console.log('vdf_hour ');
@@ -412,11 +409,7 @@ $( document ).ready(function() {
     });
     $('.arrow-down').on('click', function(){
 
-        console.log('click');
-
         if(!$(this).siblings('input').val().trim() == ''){
-
-        console.log($(this).siblings('input').val().trim());
 
             if($(this).siblings('input.vdf_hour').hasClass('vdf_hour')){
 

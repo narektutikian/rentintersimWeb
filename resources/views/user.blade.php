@@ -144,7 +144,7 @@
                 <div class="modal-header vdf_modal_header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <div class="vdf_modal_sub_header">
-                        <h3>New User</h3>
+                        <h3>Edit User</h3>
                     </div>
                 </div>
                 <div class="modal-body vdf_modal_body">
@@ -168,6 +168,7 @@
                                                 <option value="Admin">Admin</option>
                                                 <option value="Dealer">Dealer</option>
                                                 <option value="Sub-Dealer">SubDealer</option>
+                                                <option value="Distributor">Distributor</option>
                                             </select>
                                             <i class="input_icon icon-level"></i>
                                         </div>
