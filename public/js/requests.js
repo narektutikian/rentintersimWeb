@@ -155,7 +155,6 @@ $(document).ready(function () {
     $.get("/type-provider/1", function (data, status) {
         if (status == "success") {
             $.each(data, function (i, item) {
-                //console.log(item.name + "\n");
 
                 $(".wrap_package_list").append("<div class='package_item'>" +
                     "<a href='#' data-id='" + item.id + "' title='Basic Package'>" +
@@ -163,8 +162,6 @@ $(document).ready(function () {
                             "<span>" + item.description + "</span>" +
                         "</a>" +
                     "</div>");
-
-
 
             });
 
@@ -180,7 +177,6 @@ $(document).ready(function () {
     $.get("/type-provider/1", function (data, status) {
         if (status == "success") {
             $.each(data, function (i, item) {
-                //console.log(item.name + "\n");
 
                 $(".wrap_package_list_edit").append("<div class='package_item'>" +
                         "<a href='#' data-id='" + item.id + "' title='Basic Package'>" +
@@ -198,7 +194,6 @@ $(document).ready(function () {
 
     $('#add-sim').on('click', function (e) {
         e.preventDefault();
-
 
         var fileVal = $('#sim-file').val();
         if (fileVal == '') {
@@ -434,14 +429,12 @@ $(document).ready(function () {
     /* User Management Nested Table */
     $.ajax({
         url: '/user-tree',
-        //dataType: 'jsonp',
         success: function (json) {
 
             var string = '';
 
             function recursiveIteration(json) {
-
-
+                
                 for (var prop in json) {
                     var icon = '<a href="#" class="open_nested" data-toggle="collapse" data-target="#demo' + (json[prop]["id"] || "0") + '"><i class="icon-dropdown"></i></a>';
                     icon = (json[prop]["child"])? icon : '';
@@ -488,8 +481,6 @@ $(document).ready(function () {
                     }
 
                 }
-
-                //string += '</tbody></table>';
 
             }
 

@@ -8,15 +8,15 @@
                     <div class="orders_list_wrapper">
                         <div class="filter_text">Filter by status:</div>
                         <div class="filter_buttons">
-                                    <a class="filter_option  {{ (Request::is('home')) ? 'blue' : 'light_blue' }}" href="{{url('/home')}}">
-                                        <i class="icon-company_status"></i>All ({{$counts['All']}})
-                                    </a>
+                            <a class="filter_option  {{ (Request::is('home')) ? 'blue' : 'light_blue' }}" href="{{url('/home')}}">
+                                <i class="icon-company_status"></i>All ({{$counts['All']}})
+                            </a>
                             <a class="filter_option  {{ (Request::is('filter-orderlist/active')) ? 'blue' : 'light_blue' }}" href="{{url('filter-orderlist/active')}}">
-                                        <span class="status active blue" ></span>active ({{$counts['active']}})
-                                    </a>
+                                <span class="status active blue" ></span>active ({{$counts['active']}})
+                            </a>
                             <a class="filter_option  {{ (Request::is('filter-orderlist/pending')) ? 'blue' : 'light_blue' }}" href="{{url('filter-orderlist/pending')}}">
-                                        <span class="status inactive"></span> pending ({{$counts['pending']}})
-                                    </a>
+                                <span class="status inactive"></span> pending ({{$counts['pending']}})
+                            </a>
                             <a class="filter_option  {{ (Request::is('filter-orderlist/waiting')) ? 'blue' : 'light_blue' }} last" href="{{url('filter-orderlist/waiting')}}">
                                         <span class="status waiting"></span> waiting ({{$counts['waiting']}}) </a>
                                     </a>
