@@ -157,15 +157,26 @@
 .vdf_email_modal
   width: 700px
 
+.email_print
+  width: 200px
+  display: block
+  margin: 0 auto
+  text-align: center
+  .single_package
+    a
+      padding: 0 10px
+
 .email_date_time
-  margin-top: 15px
-  color: #079fff
+  display: inline-block
+  vertical-align: middle
+  margin-left: 15px
+  color: $white
   text-align: center
   @include fonts_stack(15px)
 
 .email_phone_num
-  margin-top: 15px
-  margin-bottom: 15px
+  margin: 20px auto 15px
+  text-align: center
   color: #079fff
   @include fonts_stack(15px)
 
@@ -181,6 +192,23 @@
   color: $total_numbers_title
   border: 1px solid $total_numbers_title
   cursor: pointer
+
+.email_message
+  h3
+    margin-bottom: 10px
+    color: $black
+    @include fonts_stack(16px)
+    font-weight: bold
+  p
+    color: $black
+    @include fonts_stack(14px)
+
+
+@media print
+  .no-print, .no-print *
+    display: none !important
+
+
 
 @media (max-width: 1200px)
 

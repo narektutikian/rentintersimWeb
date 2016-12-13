@@ -3,7 +3,7 @@
 @section('content')
     <div class="layout">
         <div class="container">
-            <div id="orders_list">
+            <div id="orders_list" class="no-print">
                 <section class="filter_status">
                     <div class="orders_list_wrapper">
                         <div class="filter_text">Filter by status:</div>
@@ -360,8 +360,6 @@
                                 </div>
                             </div>
                         </div>
-
-
                     </div>
                 </div>
                 <form action="/" class="form-horizontal vd_form">
@@ -450,14 +448,17 @@
                                     <div class="col-md-12">
                                         <img src="img/print_image.jpg" class="print_image" alt="print image">
                                     </div>
+                                    <div class="clear"></div>
                                 </div>
                                 <div class="form-group">
-                                    <div class="col-md-8">
-                                        <label class="table_label">Phone Number </label>
-                                        <div class="email_phone_num">044 758 34 22</div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="single_package">
+
+                                    <div class="email_phone_num">Phone Number : 044 758 34 22</div>
+
+                                    <div class="clear"></div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="email_print">
+                                        <div class="single_package email_print">
                                             <label class="table_label">Selected Package </label>
                                             <a class="selected_package" title="Basic Package">
                                                 <h4>Basic Package</h4>
@@ -465,24 +466,29 @@
                                             </a>
                                         </div>
                                     </div>
+                                    <div class="clear"></div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-12">
-                                        <b>Dear Username,</b>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                        <div class="email_message">
+                                            <h3>Dear Username,</h3>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+                                        </div>
                                     </div>
+                                    <div class="clear"></div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-12">
                                         <label class="table_label">Active Period</label>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="departure">From</div>
-                                        <div class="email_date_time">13/12/2016 17:05</div>
+                                        <div class="departure">From : <div class="email_date_time">13/12/2016 17:05</div></div>
+                                        <div class="clear"></div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="departure"> To</div>
-                                        <div class="email_date_time">14/01/2017 10:20</div>
+                                        <div class="departure"> To : <div class="email_date_time">14/01/2017 10:20</div></div>
+                                        <div class="clear"></div>
                                     </div>
                                 </div>
 
@@ -493,7 +499,7 @@
                     <div class="modal-footer vdf_modal_footer">
                         <span class="c_support">Customer support: +373 95 728 147</span>
 
-                        <span class="email_send_print">
+                        <span class="email_send_print no-print">
                             <i class="icon-print"></i>
                         </span>
                     </div>
