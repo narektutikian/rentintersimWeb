@@ -18,13 +18,13 @@ class CreateHelper
 {
     public function setStartTime($datetime){
         return Carbon::createFromTimestamp($datetime)
-            ->subMinutes(30)
+            ->subMinutes(60)
             ->timestamp;
     }
 
     public function setEndTime($datetime){
         return Carbon::createFromTimestamp($datetime)
-            ->addMinutes(30)
+            ->addHours(4)
             ->timestamp;
     }
 
