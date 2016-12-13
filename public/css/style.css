@@ -1473,7 +1473,11 @@ input[type="radio"].toggle.checked + label {
     font-size: 14px;
     color: #1b6db2;
     border: 1px solid #d4e1ea;
-    width: 15%;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    -ms-border-radius: 0;
+    border-radius: 0;
+    width: 30px;
     height: 30px;
     line-height: 31px; }
   .flight_dates .inline_block_btn {
@@ -1506,14 +1510,40 @@ input[type="radio"].toggle.checked + label {
 .departure_date {
   vertical-align: middle;
   padding: 0 4px;
-  width: 85%;
+  width: 85px;
   font-size: 14px;
   font-weight: normal;
   font-style: normal;
   font-family: "proxima_nova_rgregular", Arial, Helvetica, sans-serif;
   color: #69717e;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px; }
+  border: 1px solid #d4e1ea;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  border-radius: 0; }
+
+.departure_time {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 5px 0 15px;
+  color: #1b6db2;
+  font-size: 20px; }
+
+#landing_hour,
+#departure_hour {
+  display: inline-block;
+  vertical-align: middle;
+  width: 45px;
+  color: #69717e;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-family: "proxima_nova_rgregular", Arial, Helvetica, sans-serif;
+  border: 1px solid #d4e1ea;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  border-radius: 0; }
 
 .c_support {
   float: left;

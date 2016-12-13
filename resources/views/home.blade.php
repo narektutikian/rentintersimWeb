@@ -173,7 +173,10 @@
                                             <div class="input-group-addon">
                                                 <span class="glyphicon glyphicon-calendar"></span>
                                             </div>
-                                            <input type="text" name="landing_date" id="landing_date" class="inline_block_btn landing_date vd_required" data-date-format="DD/MM/YYYY HH:mm">
+                                            <input type="text" name="landing_date" id="landing_date" class="inline_block_btn landing_date vd_required" data-date-format="DD/MM/YYYY">
+
+                                            <i class="departure_time icon-time"></i>
+                                            <input type="text" name="landing_hour" id="landing_hour" class="inline_block_btn numeric_input">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -182,7 +185,10 @@
                                             <div class="input-group-addon">
                                                 <span class="glyphicon glyphicon-calendar"></span>
                                             </div>
-                                            <input type="text" name="departure_date" id="departure_date" class="inline_block_btn departure_date vd_required" data-date-format="DD/MM/YYYY HH:mm">
+                                            <input type="text" name="departure_date" id="departure_date" class="inline_block_btn departure_date vd_required" data-date-format="DD/MM/YYYY">
+
+                                            <i class="departure_time icon-time"></i>
+                                            <input type="text" name="departure_hour" id="departure_hour" class="inline_block_btn numeric_input">
                                         </div>
                                     </div>
                                 </div>

@@ -109,7 +109,8 @@
     font-size: 14px
     color: $dark_blue
     border: 1px solid $gray_border
-    width: 15%
+    @include border_radius(0)
+    width: 30px
     height: 30px
     line-height: 31px
   .inline_block_btn
@@ -142,11 +143,28 @@
 .departure_date
   vertical-align: middle
   padding: 0 4px
-  width: 85%
+  width: 85px
   @include fonts_stack(14px)
   color: $total_numbers_title
-  border-top-right-radius: 5px
-  border-bottom-right-radius: 5px
+  border: 1px solid $gray_border
+  @include border_radius(0)
+
+.departure_time
+  display: inline-block
+  vertical-align: middle
+  margin: 0 5px 0 15px
+  color: $dark_blue
+  font-size: 20px
+
+#landing_hour,
+#departure_hour
+  display: inline-block
+  vertical-align: middle
+  width: 45px
+  color: $total_numbers_title
+  @include fonts_stack(14px)
+  border: 1px solid $gray_border
+  @include border_radius(0)
 
 .c_support
   float: left
