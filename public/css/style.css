@@ -1545,6 +1545,19 @@ input[type="radio"].toggle.checked + label {
   font-style: normal;
   font-family: "proxima_nova_rgregular", Arial, Helvetica, sans-serif; }
 
+.email_send_print {
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  width: 30px;
+  height: 30px;
+  line-height: 32px;
+  font-size: 16px;
+  border-radius: 4px;
+  color: #69717e;
+  border: 1px solid #69717e;
+  cursor: pointer; }
+
 @media (max-width: 1200px) {
   .vdf_modal {
     width: 90%; }

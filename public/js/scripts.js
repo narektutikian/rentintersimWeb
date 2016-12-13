@@ -368,7 +368,6 @@ $( document ).ready(function() {
 
     $(document).on('click', '.email_send_print', function () {
 
-        console.log('myFunction ');
         window.print();
     });
 
