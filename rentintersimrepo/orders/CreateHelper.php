@@ -161,7 +161,7 @@ class CreateHelper
     {
      $now = Carbon::now();
 //        dd($now->timestamp);
-        $orders = Order::where('status', 'active')->where('to', '<', $now->timestamp+150)->where('to', '>', $now->timestamp-150)->get();
+        $orders = Order::where('status', 'active')->where('to', '<', $now->timestamp+150)->get();
 //        $orders = Order::where('status', 'active')->get();
         if ($orders != null){
             foreach ($orders as $order){
