@@ -379,12 +379,10 @@ $( document ).ready(function() {
             // 0-9 only
             console.log('0-9 only ');
 
-
         }else{
             $(this).val($(this).val().replace(/[^\d].+/, ""));
 
-            //console.log($(this).val().replace(/[^\d]/ig, ''));
-            if ((event.which < 48 || event.which > 57)) {
+            if (event.keyCode != 8 || (event.which < 48 || event.which > 57)) {
                 console.log('letters are not allowed ');
                 event.preventDefault();
             }
