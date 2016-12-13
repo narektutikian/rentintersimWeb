@@ -44,10 +44,11 @@
                                 <th data-field="from" data-sortable="true" data-th="From">From</th>
                                 <th data-field="to" data-sortable="true" data-th="To">To</th>
                                 <th data-field="dealer" data-sortable="true" data-th="Dealer">Dealer </th>
-                                <th data-field="updated by" data-sortable="true" data-th="Updated by"><span class="updated_by">Updated</span><span class="updated_by">by</span> </th>
+                                <th data-field="updated by" data-sortable="true" data-th="Updated by"><span>Updated</span> <span>by</span> </th>
                                 <th data-th="Reference N">Reference #</th>
                                 <th data-th="action">Action</th>
                                 <th data-field="status" data-sortable="true" data-th="Status">Status</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -94,7 +95,10 @@
                                     <i class="icon-special"></i>
                                 </label>
                             </td>
-                            <td class="rwd-td8 table_id_cell table_status_cell" data-field="Status">
+                            <td class="rwd-td8" data-field="Status">
+                                <span class="table_status_text not_used">{{$order['status']}}</span>
+                            </td>
+                            <td class="rwd-td9 table_status_cell">
                                 <div class="vdf_radio">
                                     <div class="toggle_container {{ ((!$order['is_active']) ? 'disabled' : '') }}">
                                         <label class="label_unchecked">
@@ -105,7 +109,6 @@
                                         </label>
                                     </div>
                                 </div>
-                                <span class="table_status_text not_used">{{$order['status']}}</span>
                             </td>
                         </tr>
                         @endforeach
