@@ -46,6 +46,7 @@
                             <th data-field="provider" data-sortable="true" data-th="Provider">Provider</th>
                             <th>Action </th>
                             <th data-field="status" data-sortable="true" data-th="Status">Status </th>
+                            <th></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -59,7 +60,10 @@
                                     <i class="icon-edit"></i>
                                 </span>
                             </td>
-                            <td class="rwd-td4 table_status_cell" data-th="Status">
+                            <td class="rwd-td4" data-th="Status">
+                                <span class="table_status_text not_used ">{{$sim['state']}}</span>
+                            </td>
+                            <td class="rwd-td5 table_status_cell">
                                 <div class="vdf_radio">
                                     <div class="toggle_container {{ ((!$sim['is_active']) ? 'disabled' : '') }}">
                                         <label class="label_unchecked">
@@ -70,8 +74,6 @@
                                         </label>
                                     </div>
                                 </div>
-                                <span class="table_status_text not_used ">{{$sim['state']}}</span>
-
                             </td>
                         </tr>
                         @endforeach

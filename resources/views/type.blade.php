@@ -42,6 +42,7 @@
                                 <th>Description</th>
                                 <th>Action </th>
                                 <th data-field="status" data-sortable="true">Status </th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -58,7 +59,9 @@
                                 </span>
                             </td>
                             <td class="rwd-td7 table_status_cell" data-th="Status">
-
+                                <span class="table_status_text not_used">{{$package['status']}}</span>
+                            </td>
+                            <td>
                                 <div class="vdf_radio">
                                     <div class="toggle_container {{ ((!$package['is_active']) ? 'disabled' : '') }}">
                                         <label class="label_unchecked">
@@ -69,8 +72,6 @@
                                         </label>
                                     </div>
                                 </div>
-
-                                <span class="table_status_text not_used">{{$package['status']}}</span>
                             </td>
                         </tr>
                         @endforeach

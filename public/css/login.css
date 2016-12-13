@@ -260,41 +260,39 @@ table {
   vertical-align: middle;
   margin-left: 5px; }
 
-.vdf_radio {
-  float: right; }
-  .vdf_radio .toggle_container {
-    position: relative;
-    background: #2cc763;
-    border: 1px solid #2cc763;
-    height: 22px;
-    width: 47px;
-    border-radius: 12px;
-    font-size: 0; }
-    .vdf_radio .toggle_container.disabled {
-      background: #ffffff;
+.vdf_radio .toggle_container {
+  position: relative;
+  background: #2cc763;
+  border: 1px solid #2cc763;
+  height: 22px;
+  width: 47px;
+  border-radius: 12px;
+  font-size: 0; }
+  .vdf_radio .toggle_container.disabled {
+    background: #ffffff;
+    border: 1px solid #D4E1EA; }
+    .vdf_radio .toggle_container.disabled label .input-checked {
       border: 1px solid #D4E1EA; }
-      .vdf_radio .toggle_container.disabled label .input-checked {
-        border: 1px solid #D4E1EA; }
-    .vdf_radio .toggle_container label {
-      display: inline-block;
-      vertical-align: middle;
-      border-radius: 12px; }
-      .vdf_radio .toggle_container label:last-child {
-        margin-left: 4px; }
-      .vdf_radio .toggle_container label input[type="radio"] {
-        position: absolute;
-        top: -99em;
-        visibility: hidden; }
-      .vdf_radio .toggle_container label.label_checked span {
-        background-color: #ffffff;
-        border: 1px solid #d4e1ea; }
-      .vdf_radio .toggle_container label span {
-        width: 20px;
-        height: 20px;
-        border-radius: 12px;
-        display: block;
-        cursor: pointer;
-        border: 1px solid transparent; }
+  .vdf_radio .toggle_container label {
+    display: inline-block;
+    vertical-align: middle;
+    border-radius: 12px; }
+    .vdf_radio .toggle_container label:last-child {
+      margin-left: 4px; }
+    .vdf_radio .toggle_container label input[type="radio"] {
+      position: absolute;
+      top: -99em;
+      visibility: hidden; }
+    .vdf_radio .toggle_container label.label_checked span {
+      background-color: #ffffff;
+      border: 1px solid #d4e1ea; }
+    .vdf_radio .toggle_container label span {
+      width: 20px;
+      height: 20px;
+      border-radius: 12px;
+      display: block;
+      cursor: pointer;
+      border: 1px solid transparent; }
 
 input[type="radio"].toggle + label {
   display: inline-block;
