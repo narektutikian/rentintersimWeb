@@ -159,9 +159,9 @@ $(document).ready(function () {
 
                 $(".wrap_package_list").append("<div class='package_item'>" +
                     "<a href='#' data-id='" + item.id + "' title='Basic Package'>" +
-                    "<h4>" + item.name + "</h4>" +
-                    "<span>" + item.description + "</span>" +
-                    "</a>" +
+                        "<h4>" + item.name + "</h4>" +
+                            "<span>" + item.description + "</span>" +
+                        "</a>" +
                     "</div>");
 
 
@@ -183,13 +183,11 @@ $(document).ready(function () {
                 //console.log(item.name + "\n");
 
                 $(".wrap_package_list_edit").append("<div class='package_item'>" +
-                    "<a href='#' data-id='" + item.id + "' title='Basic Package'>" +
-                    "<h4>" + item.name + "</h4>" +
-                    "<span>" + item.description + "</span>" +
-                    "</a>" +
+                        "<a href='#' data-id='" + item.id + "' title='Basic Package'>" +
+                            "<h4>" + item.name + "</h4>" +
+                            "<span>" + item.description + "</span>" +
+                        "</a>" +
                     "</div>");
-
-
 
             });
 
