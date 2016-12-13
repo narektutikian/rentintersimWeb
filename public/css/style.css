@@ -574,15 +574,17 @@ input[type="radio"].toggle.checked + label {
 .fixed-table-container {
   border: none;
   border-radius: 0px; }
-  .fixed-table-container thead th .both {
-    background-image: url("../../img/both.png");
-    background-repeat: no-repeat; }
-  .fixed-table-container thead th .asc {
-    background-image: url("../../img/asc.png");
-    background-repeat: no-repeat; }
-  .fixed-table-container thead th .desc {
-    background-image: url("../../img/desc.png");
-    background-repeat: no-repeat; }
+  .fixed-table-container thead th {
+    text-align: center; }
+    .fixed-table-container thead th .both {
+      background-image: url("../../img/both.png");
+      background-repeat: no-repeat; }
+    .fixed-table-container thead th .asc {
+      background-image: url("../../img/asc.png");
+      background-repeat: no-repeat; }
+    .fixed-table-container thead th .desc {
+      background-image: url("../../img/desc.png");
+      background-repeat: no-repeat; }
   .fixed-table-container tbody tr:first-child td {
     border-top: 1px solid #ddd; }
   .fixed-table-container tbody td:first-child {
@@ -637,6 +639,8 @@ input[type="radio"].toggle.checked + label {
 
 .user_management_table.table {
   margin-bottom: 0; }
+.user_management_table thead th {
+  text-align: center; }
 .user_management_table tbody > tr > td {
   border-top: 1px solid #ddd;
   border-left: 1px solid #ddd; }

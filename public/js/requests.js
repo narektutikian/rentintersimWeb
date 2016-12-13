@@ -434,7 +434,7 @@ $(document).ready(function () {
             var string = '';
 
             function recursiveIteration(json) {
-                
+
                 for (var prop in json) {
                     var icon = '<a href="#" class="open_nested" data-toggle="collapse" data-target="#demo' + (json[prop]["id"] || "0") + '"><i class="icon-dropdown"></i></a>';
                     icon = (json[prop]["child"])? icon : '';
