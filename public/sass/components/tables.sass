@@ -1,3 +1,6 @@
+//*
+  outline: 1px solid red
+
 
 .fixed-table-container
   border: none
@@ -81,6 +84,7 @@
                 padding: 0 !important
                 border: none
                 text-align: center
+
 .ref_number
   cursor: pointer
 
@@ -89,7 +93,7 @@
   vertical-align: middle
   float: left
   line-height: 22px
-  
+
 .hint
   float: right
   width: 18px
@@ -153,6 +157,28 @@
 
 .updated_by
   display: block
+.rwd-table
+  margin: 1em 0
+  min-width: 300px
+
+.rwd-table tr
+  border-top: 1px solid #ddd
+  border-bottom: 1px solid #ddd
+
+.rwd-table th,
+.my-table th
+  display: none
+
+.rwd-table td,
+.my-table td
+  display: block
+
+.rwd-table td:before,
+.my-table td:before
+  content: attr(data-th) ": "
+  font-weight: bold
+  display: inline-block
+  margin-right: 5px
 
 @media (min-width: 768px) and (max-width: 992px)
 
@@ -179,9 +205,6 @@
     min-width: 70px
     max-width: 70px
 
-
-
-@media (min-width: 768px) and (max-width: 992px)
   .bootstrap-table
     .table:not(.table-condensed)
       > tbody
@@ -195,28 +218,7 @@
     height: 25px
     line-height: 27px
 
-.rwd-table
-  margin: 1em 0
-  min-width: 300px
 
-.rwd-table tr
-  border-top: 1px solid #ddd
-  border-bottom: 1px solid #ddd
-
-.rwd-table th,
-.my-table th
-  display: none
-
-.rwd-table td,
-.my-table td
-  display: block
-
-.rwd-table td:before,
-.my-table td:before
-  content: attr(data-th) ": "
-  font-weight: bold
-  display: inline-block
-  margin-right: 5px
 
 @media (max-width: 768px)
   .table

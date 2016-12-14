@@ -174,21 +174,71 @@ $(document).ready(function () {
         }
     });
 
-    $.get("/type-provider/1", function (data, status) {
-        if (status == "success") {
-            $.each(data, function (i, item) {
+    $('.call_edit').on('click', function () {
 
-                $(".wrap_package_list_edit").append("<div class='package_item'>" +
-                        "<a href='#' data-id='" + item.id + "' title='Basic Package'>" +
-                            "<h4>" + item.name + "</h4>" +
-                            "<span>" + item.description + "</span>" +
-                        "</a>" +
-                    "</div>");
+        console.log('call_edit ');
 
-            });
+        var row_id = $(this).attr('data-row-id');
+        console.log('row_id ', row_id);
 
-        }
+        $.get("/order/" + row_id +"/edit", function (order_data, order_status) {
+
+            if (order_status == "success") {
+
+                console.log(order_data);
+
+
+                $.get("/type-provider/1", function (data, type_status) {
+
+                    if (type_status == "success") {
+                        $.each(data, function (i, item) {
+
+                            console.log("success dfdfsfsd ");
+                            console.log(order_data.package_id);
+                            console.log(item.id);
+
+                            if (item.id == order_data.package_id) {
+                                $(".wrap_package_list_edit").append("<div class='package_item'>" +
+                                    "<a href='#' data-id='" + item.id + "' class='editable_package' title='Basic Package'>" +
+                                    "<h4>" + item.name + "</h4>" +
+                                    "<span>" + item.description + "</span>" +
+                                    "</a>" +
+                                    "</div>");
+                            } else {
+
+                                $(".wrap_package_list_edit").append("<div class='package_item'>" +
+                                    "<a href='#' data-id='" + item.id + "' title='Basic Package'>" +
+                                    "<h4>" + item.name + "</h4>" +
+                                    "<span>" + item.description + "</span>" +
+                                    "</a>" +
+                                    "</div>");
+                            }
+
+
+                        });
+                    }
+
+                });
+
+            }
+        });
     });
+
+    //$.get("/type-provider/1", function (data, status) {
+      //  if (status == "success") {
+            // $.each(data, function (i, item) {
+            //
+            //     $(".wrap_package_list_edit").append("<div class='package_item'>" +
+            //             "<a href='#' data-id='" + item.id + "' title='Basic Package'>" +
+            //                 "<h4>" + item.name + "</h4>" +
+            //                 "<span>" + item.description + "</span>" +
+            //             "</a>" +
+            //         "</div>");
+            //
+            // });
+
+      //  }
+   // });
 
     /***** ADD NEW SIM *****/
 

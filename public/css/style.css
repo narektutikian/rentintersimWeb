@@ -728,37 +728,6 @@ input[type="radio"].toggle.checked + label {
 .updated_by {
   display: block; }
 
-@media (min-width: 768px) and (max-width: 992px) {
-  .table_id_cell {
-    width: 40px;
-    min-width: 40px;
-    max-width: 40px; }
-
-  .table_action_cell {
-    width: 70px;
-    text-align: center;
-    min-width: 70px;
-    max-width: 70px; }
-
-  .table_time_cell_large {
-    width: 130px;
-    text-align: center;
-    min-width: 130px;
-    max-width: 130px; }
-
-  .table_action_cell_large {
-    width: 70px;
-    text-align: center;
-    min-width: 70px;
-    max-width: 70px; } }
-@media (min-width: 768px) and (max-width: 992px) {
-  .bootstrap-table .table:not(.table-condensed) > tbody tr > td {
-    padding: 8px 5px; }
-
-  .table_icon {
-    width: 25px;
-    height: 25px;
-    line-height: 27px; } }
 .rwd-table {
   margin: 1em 0;
   min-width: 300px; }
@@ -782,6 +751,37 @@ input[type="radio"].toggle.checked + label {
   display: inline-block;
   margin-right: 5px; }
 
+@media (min-width: 768px) and (max-width: 992px) {
+  .table_id_cell {
+    width: 40px;
+    min-width: 40px;
+    max-width: 40px; }
+
+  .table_action_cell {
+    width: 70px;
+    text-align: center;
+    min-width: 70px;
+    max-width: 70px; }
+
+  .table_time_cell_large {
+    width: 130px;
+    text-align: center;
+    min-width: 130px;
+    max-width: 130px; }
+
+  .table_action_cell_large {
+    width: 70px;
+    text-align: center;
+    min-width: 70px;
+    max-width: 70px; }
+
+  .bootstrap-table .table:not(.table-condensed) > tbody tr > td {
+    padding: 8px 5px; }
+
+  .table_icon {
+    width: 25px;
+    height: 25px;
+    line-height: 27px; } }
 @media (max-width: 768px) {
   .table tbody tr td {
     line-height: 1.42857;
@@ -1116,6 +1116,16 @@ input[type="radio"].toggle.checked + label {
       font-weight: normal;
       font-style: normal;
       font-family: "proxima_nova_rgregular", Arial, Helvetica, sans-serif; }
+    .wrap_package_list .package_item a.editable_package,
+    .wrap_package_list_edit .package_item a.editable_package {
+      background: #7c7c7c;
+      color: #ffffff; }
+      .wrap_package_list .package_item a.editable_package h4,
+      .wrap_package_list_edit .package_item a.editable_package h4 {
+        color: #ffffff; }
+      .wrap_package_list .package_item a.editable_package span,
+      .wrap_package_list_edit .package_item a.editable_package span {
+        color: #ffffff; }
     .wrap_package_list .package_item a.selected_package,
     .wrap_package_list_edit .package_item a.selected_package {
       background: #2cc763;
