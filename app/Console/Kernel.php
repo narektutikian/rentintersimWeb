@@ -25,15 +25,15 @@ class Kernel extends ConsoleKernel
      * @param  \Rentintersimrepo\orders\CreateHelper  $order
      * @return void
      */
-    protected function schedule(Schedule $schedule, Order $order)
+    protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')
         //          ->hourly();
 
-        $schedule->call(function (Order $order) {
-            $order->startActivation();
-            $order->startDeactivation();
-        })->hourly();
+//        $schedule->call(function (Order $order) {
+//            $order->startActivation();
+//            $order->startDeactivation();
+//        })->hourly();
     }
 
     /**
