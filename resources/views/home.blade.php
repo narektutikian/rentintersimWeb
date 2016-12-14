@@ -80,8 +80,8 @@
                             <td class="rwd-td6" data-field="Updated by">
                                 {{$order['updated_by']}}
                             </td>
-                            <td class="rwd-td6" data-field="Reference Number">
-                                {{$order['reference_number']}}
+                            <td class="rwd-td6" data-field="Reference Number" data-title="{{$order['reference_number']}}">
+                                {{substr($order['reference_number'], 0, 9)}}
                             </td>
                             <td class="rwd-td7 table_action_cell table_action_cell_large" data-field="Action">
                                 <span class="table_icon edit" data-toggle="modal" data-target="#modal_edit_order" data-form="#modal_edit_order">

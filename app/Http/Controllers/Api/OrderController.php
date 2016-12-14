@@ -130,6 +130,9 @@ class OrderController extends Controller
     public function edit($id)
     {
         //
+        $order = Order::find($id);
+
+        return response()->json($order, 200);
 
     }
 
@@ -198,10 +201,14 @@ class OrderController extends Controller
     }
 
     public function filter($filter){
-        $id = Auth::user()->id;
-        $orders = Order::employee($id)->filter($filter)->orderby('id', 'desc')->paginate(env('PAGINATE_DEFAULT'));
+        $user = Auth::user();
+        $orders = null;
+        if ($user->level != 'Super admin')
+        $orders = Order::employee($user->id)->filter($filter)->orderby('id', 'desc')->paginate(env('PAGINATE_DEFAULT'));
+        if ($user->level == 'Super admin')
+            $orders = Order::filter($filter)->orderby('id', 'desc')->paginate(env('PAGINATE_DEFAULT'));
         $ordersArray = HomeController::solveOrderList($orders, $this->viewHelper);
-        $counts = HomeController::getCounts($id);
+        $counts = HomeController::getCounts($user->id);
 
         return view('home', compact('ordersArray'), compact('counts'));
     }

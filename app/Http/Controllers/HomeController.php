@@ -30,10 +30,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $id = Auth::user()->id;
-        $orders = Order::employee($id)->orderby('id', 'desc')->paginate(env('PAGINATE_DEFAULT'));
+        $user = Auth::user();
+        $orders = null;
+        if ($user->level != 'Super admin')
+            $orders = Order::employee($user->id)->orderby('id', 'desc')->paginate(env('PAGINATE_DEFAULT'));
+        if ($user->level == 'Super admin')
+            $orders = Order::orderby('id', 'desc')->paginate(env('PAGINATE_DEFAULT'));
        $ordersArray = $this->solveOrderList($orders, $this->viewHelper);
-        $counts = $this->getCounts($id);
+        $counts = $this->getCounts($user->id);
 
 
 //        var_dump($ordersArray);

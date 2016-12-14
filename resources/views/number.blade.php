@@ -13,7 +13,7 @@
                         <span class="status active"></span> active ({{$counts['active']}})
                     </a>
                         <a class="filter_option {{ (Request::is('filter-numberlist/pending')) ? 'blue' : 'light_blue' }}" href="{{url('/filter-numberlist/pending')}}">
-                        <span class="status inactive"></span> inactive ({{$counts['pending']}})
+                        <span class="status inactive"></span> pending ({{$counts['pending']}})
                     </a>
                     <a class="filter_option {{ (Request::is('filter-numberlist/not in use')) ? 'blue' : 'light_blue' }} last" href="{{url('/filter-numberlist/not in use')}}">
                         <span class="status disabled"></span> not in use ({{$counts['not in use']}})
