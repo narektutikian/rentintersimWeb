@@ -44,7 +44,7 @@
                                 <th data-field="from" data-sortable="true" data-th="From">From</th>
                                 <th data-field="to" data-sortable="true" data-th="To">To</th>
                                 <th data-field="dealer" data-sortable="true" data-th="Dealer">Dealer </th>
-                                <th data-field="updated by" data-sortable="true" data-th="Updated by"><span>Updated</span> <span>by</span> </th>
+
                                 <th data-th="Reference N">Reference #</th>
                                 <th data-th="action">Action</th>
                                 <th data-field="status" data-sortable="true" data-th="Status">Status</th>
@@ -77,11 +77,12 @@
                             <td class="rwd-td5" data-field="Created by">
                                 {{$order['created_by']}}
                             </td>
-                            <td class="rwd-td6" data-field="Updated by">
-                                {{$order['updated_by']}}
-                            </td>
-                            <td class="rwd-td6" data-field="Reference Number" data-title="{{$order['reference_number']}}">
-                                {{substr($order['reference_number'], 0, 9)}}
+                            <td class="rwd-td6 ref_number" data-field="Reference Number">
+                                <span class="hint">i</span>
+                                <span class="hint_text">
+                                    {{substr($order['reference_number'], 0, 9)}}
+                                </span>
+
                             </td>
                             <td class="rwd-td7 table_action_cell table_action_cell_large" data-field="Action">
                                 <span class="table_icon edit" data-toggle="modal" data-target="#modal_edit_order" data-form="#modal_edit_order">
@@ -211,14 +212,11 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <label class="table_label">Reference Number</label>
                                         <input type="text" id="reference_number" class="block_btn_30 modal_input_without_icon" value="">
                                     </div>
-                                    <div class="col-md-6">
-                                        <label class="table_label">Order Status</label>
-                                        <input type="text" name="order_status1" class="block_btn_30 modal_input_without_icon" value="">
-                                    </div>
+
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-6">
@@ -232,6 +230,10 @@
                                             </select>
                                             <i class="input_icon icon-sim"></i>
                                         </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="table_label">Order Status</label>
+                                        <input type="text" name="order_status1" class="block_btn_30 modal_input_without_icon" value="">
                                     </div>
                                 </div>
                             </div>
@@ -323,14 +325,11 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <label class="table_label">Reference Number</label>
                                         <input type="text" id="reference_number" class="block_btn_30 modal_input_without_icon vd_number" value="">
                                     </div>
-                                    <div class="col-md-6">
-                                        <label class="table_label">Order Status</label>
-                                        <input type="text" name="order_status1" class="block_btn_30 modal_input_without_icon" value="">
-                                    </div>
+
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-6">
@@ -345,6 +344,10 @@
                                             <i class="input_icon icon-sim"></i>
                                         </div>
                                     </div>
+                                    <div class="col-md-6">
+                                        <label class="table_label">Order Status</label>
+                                        <input type="text" name="order_status1" class="block_btn_30 modal_input_without_icon" value="">
+                                    </div>
                                 </div>
                             </div>
 
@@ -354,7 +357,6 @@
                         <a href="#" class="inline_block_btn light_gray_btn close vd_form_reset" data-dismiss="modal" aria-label="Close">Cancel</a>
                         {{--<button type="submit" href="#" class="inline_block_btn light_green_btn vd_form_submit" id="create-order">Edit order</button>--}}
                         <a href="#" class="inline_block_btn light_green_btn vd_form_submit" id="create-order">Edit order</a>
-
                         <span class="success_response"></span>
                         <span class="error_response"></span>
                     </div>
