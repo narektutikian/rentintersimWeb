@@ -93,10 +93,6 @@
                                 <span class="table_icon"  data-toggle="modal" data-target="#modal_order_email">
                                     <i class="icon-email"></i>
                                 </span>
-                                <!--<label class="vdf_checkbox">
-                                    <input type="checkbox" name="num_chkb_ol" value="" />
-                                    <i class="icon-special"></i>
-                                </label>-->
                             </td>
                             <td class="rwd-td8" data-field="Status">
                                 <span class="table_status_text not_used">{{$order['status']}}</span>
@@ -122,8 +118,6 @@
             </div>
         </div>
     </div>
-
-
 
 
     <!-- Add Order Modal -->
