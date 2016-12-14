@@ -130,7 +130,7 @@ class CreateHelper
 
     public function startActivation()
     {
-     $now = Carbon::now('Asia/Yerevan');
+     $now = Carbon::now();
 //        dd($now->timestamp);
         $orders = Order::where('status', 'pending')->where('from', '<', $now->timestamp+150)->get();
 //        $orders = Order::where('status', 'pending')->where('from', '<', $now->timestamp+150)->where('from', '>', $now->timestamp-150)->get();
