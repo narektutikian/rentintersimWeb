@@ -30,10 +30,9 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')
         //          ->hourly();
 
-//        $schedule->call(function (Order $order) {
-//            $order->startActivation();
-//            $order->startDeactivation();
-//        })->hourly();
+        $schedule->call('Rentintersimrepo\orders\CreateHelper@startActivation')->hourly();
+        $schedule->call('Rentintersimrepo\orders\CreateHelper@startDeactivation')->hourly();
+
     }
 
     /**
