@@ -44,7 +44,7 @@
                                 <th data-field="from" data-sortable="true" data-th="From">From</th>
                                 <th data-field="to" data-sortable="true" data-th="To">To</th>
                                 <th data-field="dealer" data-sortable="true" data-th="Dealer">Dealer </th>
-                                <th data-field="updated by" data-sortable="true" data-th="Updated by"><span>Updated</span> <span>by</span> </th>
+
                                 <th data-th="Reference N">Reference #</th>
                                 <th data-th="action">Action</th>
                                 <th data-field="status" data-sortable="true" data-th="Status">Status</th>
@@ -76,9 +76,6 @@
                             </td>
                             <td class="rwd-td5" data-field="Created by">
                                 {{$order['created_by']}}
-                            </td>
-                            <td class="rwd-td6" data-field="Updated by">
-                                {{$order['updated_by']}}
                             </td>
                             <td class="rwd-td6" data-field="Reference Number">
                                 {{$order['reference_number']}}
@@ -211,14 +208,11 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <label class="table_label">Reference Number</label>
                                         <input type="text" id="reference_number" class="block_btn_30 modal_input_without_icon" value="">
                                     </div>
-                                    <div class="col-md-6">
-                                        <label class="table_label">Order Status</label>
-                                        <input type="text" name="order_status1" class="block_btn_30 modal_input_without_icon" value="">
-                                    </div>
+
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-6">
@@ -232,6 +226,10 @@
                                             </select>
                                             <i class="input_icon icon-sim"></i>
                                         </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="table_label">Order Status</label>
+                                        <input type="text" name="order_status1" class="block_btn_30 modal_input_without_icon" value="">
                                     </div>
                                 </div>
                             </div>
@@ -323,14 +321,11 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <label class="table_label">Reference Number</label>
                                         <input type="text" id="reference_number" class="block_btn_30 modal_input_without_icon vd_number" value="">
                                     </div>
-                                    <div class="col-md-6">
-                                        <label class="table_label">Order Status</label>
-                                        <input type="text" name="order_status1" class="block_btn_30 modal_input_without_icon" value="">
-                                    </div>
+
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-6">
@@ -344,6 +339,10 @@
                                             </select>
                                             <i class="input_icon icon-sim"></i>
                                         </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="table_label">Order Status</label>
+                                        <input type="text" name="order_status1" class="block_btn_30 modal_input_without_icon" value="">
                                     </div>
                                 </div>
                             </div>
