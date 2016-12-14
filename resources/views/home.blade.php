@@ -77,8 +77,12 @@
                             <td class="rwd-td5" data-field="Created by">
                                 {{$order['created_by']}}
                             </td>
-                            <td class="rwd-td6" data-field="Reference Number">
-                                {{$order['reference_number']}}
+                            <td class="rwd-td6 ref_number" data-field="Reference Number">
+                                <span class="hint">i</span>
+                                <span class="hint_text">
+                                    {{$order['reference_number']}}
+                                </span>
+
                             </td>
                             <td class="rwd-td7 table_action_cell table_action_cell_large" data-field="Action">
                                 <span class="table_icon edit" data-toggle="modal" data-target="#modal_edit_order" data-form="#modal_edit_order">
@@ -353,7 +357,6 @@
                         <a href="#" class="inline_block_btn light_gray_btn close vd_form_reset" data-dismiss="modal" aria-label="Close">Cancel</a>
                         {{--<button type="submit" href="#" class="inline_block_btn light_green_btn vd_form_submit" id="create-order">Edit order</button>--}}
                         <a href="#" class="inline_block_btn light_green_btn vd_form_submit" id="create-order">Edit order</a>
-
                         <span class="success_response"></span>
                         <span class="error_response"></span>
                     </div>
