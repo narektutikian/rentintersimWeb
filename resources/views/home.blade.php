@@ -77,7 +77,7 @@
                             <td class="rwd-td5" data-field="Created by">
                                 {{$order['created_by']}}
                             </td>
-                            <td class="rwd-td6 ref_number" data-field="{{$order['reference_number']}}">
+                            <td class="rwd-td6 ref_number" data-content="{{$order['reference_number']}}" data-field="Reference Number">
                                 <span class="hint">i</span>
                                 <span class="hint_text">
                                     {{substr($order['reference_number'], 0, 9)}}
