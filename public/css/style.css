@@ -740,6 +740,22 @@ input[type="radio"].toggle.checked + label {
     color: #9a5ddf;
     border: 1px solid #9a5ddf; }
 
+.remove_row {
+  display: inline-block;
+  vertical-align: middle;
+  background: red;
+  color: #ffffff;
+  width: 25px;
+  height: 25px;
+  line-height: 30px;
+  text-align: center;
+  cursor: pointer;
+  -webkit-border-radius: 18px;
+  -moz-border-radius: 18px;
+  -ms-border-radius: 18px;
+  border-radius: 18px;
+  font-size: 17px; }
+
 .table_id_cell {
   width: 60px; }
 

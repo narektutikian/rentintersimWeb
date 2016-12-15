@@ -174,6 +174,12 @@ $( document ).ready(function() {
 
     /********** end of Styling Radio buttons ***********/
 
+    /* Remove Row */
+    $(document).on('click', '.remove_row', function () {
+
+        $(this).closest('tr').remove();
+    });
+
 
     // rotate arrow for nested rows
     $(document).on('click', '.open_nested', function (e) {
