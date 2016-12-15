@@ -180,12 +180,12 @@
                                         <div class="wrap_time">
                                             <i class="departure_time icon-time"></i>
                                             <div class="time_picker">
-                                                <div  class="inline_block_btn numeric_input vdf_time vdf_hour">0</div>
+                                                <div  class="inline_block_btn numeric_input vdf_time vdf_hour" id="landing_hour">0</div>
                                                 <span class="arrow-down"><i></i></span>
                                                 <span class="arrow-up"><i></i></span>
                                             </div>
                                             <div class="time_picker">
-                                                <div class="inline_block_btn vdf_minute_picker vdf_time vdf_min">0</div>
+                                                <div class="inline_block_btn vdf_minute_picker vdf_time vdf_min" id="landing_minute">0</div>
                                                 <span class="arrow-down"><i></i></span>
                                                 <span class="arrow-up"><i></i></span>
                                             </div>
@@ -198,17 +198,17 @@
                                             <div class="input-group-addon">
                                                 <span class="glyphicon glyphicon-calendar"></span>
                                             </div>
-                                            <input type="text" name="departure_date" class="inline_block_btn departure_date vd_required" data-date-format="DD/MM/YYYY">
+                                            <input type="text" name="departure_date" id="departure_date" class="inline_block_btn departure_date vd_required" data-date-format="DD/MM/YYYY">
                                         </div>
                                         <div class="wrap_time">
                                             <i class="departure_time icon-time"></i>
                                             <div class="time_picker">
-                                                <div  class="inline_block_btn numeric_input vdf_time vdf_hour">0</div>
+                                                <div  class="inline_block_btn numeric_input vdf_time vdf_hour" id="departure_hour">0</div>
                                                 <span class="arrow-down"><i></i></span>
                                                 <span class="arrow-up"><i></i></span>
                                             </div>
                                             <div class="time_picker">
-                                                <div id="add_departure_minute" class="inline_block_btn vdf_time vdf_min">0</div>
+                                                <div class="inline_block_btn vdf_time vdf_min" id="departure_minute">0</div>
                                                 <span class="arrow-down"><i></i></span>
                                                 <span class="arrow-up"><i></i></span>
                                             </div>
@@ -353,7 +353,7 @@
                                                     @endforeach
                                                 </select>
                                             @else
-                                                <input type="test" id="phone_number" class="block_btn_30 modal_input" name="phone_number-edit" value="" disabled>
+                                                <input type="test" id="phone_number" class="block_btn_30 modal_input" name="phone_number-edit2" value="" disabled>
                                             @endif
                                             <i class="input_icon icon-sim"></i>
                                         </div>

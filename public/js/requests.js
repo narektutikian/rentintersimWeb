@@ -122,15 +122,15 @@ $(document).ready(function () {
         if ($(this).closest(".vd_form").valid()) {
 
             var departure = $('#departure_date').val() + " "
-                + $('#departure_hour').val() + ":" + $('#departure_minute').val();
+                + $('#departure_hour').text() + ":" + $('#departure_minute').text();
              var landing = $('#landing_date').val() + " "
-                + $('#landing_hour').val() + ":" + $('#landing_minute').val();
+                + $('#landing_hour').text() + ":" + $('#landing_minute').text();
 
-
+            console.log(departure + " " + landing);
             var data = {
                 _token: CSRF_TOKEN,
                 sim: $('#sim').val(),
-
+                phone_id: $('#phone_number').val(),
                 landing: moment(landing, "DD/MM/YYYY HH:mm").valueOf() / 1000,
                 departure: moment(departure, "DD/MM/YYYY HH:mm").valueOf() / 1000,
                 package_id: package_id, // put package id
@@ -232,7 +232,7 @@ $(document).ready(function () {
                                 value: order_data[0].phone.id,
                                 text: order_data[0].phone.phone
                             }));
-                            $("#phone_number-edit").val(order_data[0].phone.id);
+                            $("#phone_number-edit2").val(order_data[0].phone_id);
                         }
                         $('#order_status-edit').val(order_data[0].status);
                         // console.log(order_data[0].status)

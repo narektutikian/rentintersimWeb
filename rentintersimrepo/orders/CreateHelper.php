@@ -49,7 +49,7 @@ class CreateHelper
     {
         $number = null;
 
-            $phone = Phone::where([['is_active', 1], ['package_id', $order->package_id], ['state', 'not in use']])->first();
+            $phone = Phone::where([['is_active', 1], ['package_id', $order->package_id], ['state', 'not in use'], ['is_special', '0']])->first();
 //            dd($phone);
             if ($phone != null)
                 if($phone->exists){
@@ -126,6 +126,21 @@ class CreateHelper
 
         }
         return true;
+    }
+
+    public function setNumber($orderid, $numberid)
+    {
+        $order = Order::find($orderid);
+        $number = Phone::find($numberid);
+        if ($order != null && $number != null){
+            if ($order->package_id != $number->package_id)
+                return response()->json(['Insufficient type selected'], 403);
+            $order->phone_id = $number->id;
+            $order->save();
+            $this->setStatus($order, 'pending');
+            return $number;
+        } else {return response()->json(['Number or Order does not exist'], 403);}
+        return response()->json(['unknown error'], 403);
     }
 
     public function startActivation()
