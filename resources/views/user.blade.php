@@ -42,31 +42,13 @@
                     <div class="modal-body vdf_modal_body">
                         <div class="form-group">
                             <div class="col-md-6 vdf_modal_left">
-                                <div class="form_row form-group">
+                                <div class="form-group">
                                     <div class="col-md-6">
                                         <label class="table_label">Name</label>
                                         <div class="form_row">
                                             <input type="text" name="name" id="name" class="block_btn_30 modal_input vd_required" value=""/>
                                             {{csrf_field()}}
                                             <i class="input_icon icon-username"></i>
-                                        </div>
-                                        <label class="table_label">Type</label>
-                                        <div class="form_row">
-                                            <div class="select_wrapper">
-                                                <select class="block_btn_30 modal_input vd_select" name="type" id="type">
-                                                    <option value=""></option>
-                                                    <option value="admin">Admin</option>
-                                                    <option value="manager">Manager</option>
-                                                    <option value="employee">Employee</option>
-                                                </select>
-                                                <i class="input_icon icon-username"></i>
-                                            </div>
-
-                                        </div>
-                                        <label class="table_label">Primary Email</label>
-                                        <div class="form_row">
-                                            <input type="text" class="block_btn_30 modal_input vd_email vd_required" name="email" id="email" value=""/>
-                                            <i class="input_icon icon-email"></i>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -81,10 +63,26 @@
                                                 </select>
                                                 <i class="input_icon icon-level"></i>
                                             </div>
-
                                         </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-6">
+                                        <label class="table_label">Type</label>
+                                        <div class="form_row">
+                                            <div class="select_wrapper">
+                                                <select class="block_btn_30 modal_input vd_select" name="type" id="type">
+                                                    <option value=""></option>
+                                                    <option value="admin">Admin</option>
+                                                    <option value="manager">Manager</option>
+                                                    <option value="employee">Employee</option>
+                                                </select>
+                                                <i class="input_icon icon-username"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
                                         <label class="table_label {{ (Auth::user()->level != 'Super admin') ? 'hidden' : '' }}">Parent Username</label>
-
                                         <div class="form_row {{ (Auth::user()->level != 'Super admin') ? 'hidden' : '' }}">
                                             <div class="select_wrapper">
                                                 <select class="block_btn_30 modal_input" name="supervisor_id" id="supervisor_id">
@@ -95,8 +93,19 @@
                                                 </select>
                                                 <i class="input_icon icon-username"></i>
                                             </div>
-
                                         </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-6">
+                                        <label class="table_label">Primary Email</label>
+                                        <div class="form_row">
+                                            <input type="text" class="block_btn_30 modal_input vd_email vd_required" name="email" id="email" value=""/>
+                                            <i class="input_icon icon-email"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
                                         <label class="table_label">Secondary Email</label>
                                         <div class="form_row">
                                             <input type="text" class="block_btn_30 modal_input vd_email vd_required" id="mail2" name="email2" value=""/>
@@ -105,8 +114,9 @@
                                     </div>
                                 </div>
                             </div>
+                            
                             <div class="col-md-6 vdf_modal_right">
-                                <div class="form_row form-group">
+                                <div class="form-group">
                                     <div class="col-md-6">
                                         <label class="table_label">Username</label>
                                         <div class="form_row">
