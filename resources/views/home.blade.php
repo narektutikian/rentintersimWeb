@@ -229,12 +229,16 @@
                                     <div class="col-md-6">
                                         <label class="table_label">Customer phone number</label>
                                         <div class="select_wrapper">
-                                            <select name="customer_phone1" class="block_btn_30 modal_input">
+                                            @if(Auth::user()->level == 'Super admin')
+                                            <select name="customer_phone1" name="phone_number" id="phone_number" class="block_btn_30 modal_input">
                                                 <option value=""></option>
-                                                <option value="1">1111111111</option>
-                                                <option value="2">22222222222</option>
-                                                <option value="3">333333333333</option>
+                                                @foreach($specials as $special)
+                                                    <option value="{{$special['id']}}">{{$special['phone']}}</option>
+                                                @endforeach
                                             </select>
+                                            @else
+                                                <input type="test" id="phone_number" class="block_btn_30 modal_input" name="phone_number" value="">
+                                            @endif
                                             <i class="input_icon icon-sim"></i>
                                         </div>
                                     </div>
