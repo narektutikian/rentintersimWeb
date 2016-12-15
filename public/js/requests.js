@@ -183,58 +183,52 @@ $(document).ready(function () {
     $('.call_edit').on('click', function () {
 
         var row_id = $(this).attr('data-row-id');
-        //console.log('row_id ', row_id);
         var editable_form = $(this).attr('data-form');
-        var from_to = [];
+        var from = [];
+        var to = [];
 
-        $(this).closest('td').siblings('.table_time_cell_large').each(function (key, value) {
+        $(this).closest('td').siblings('.table_time_cell_large.from').each(function () {
 
-            var full_date = $(this).text().trim();
-            //console.log('full_date ', full_date);
-            var time_cell = full_date.split(' ')[1];
-            //console.log('time_cell ', time_cell);
-            var hour_cell = time_cell.split(':')[0];
-            var min_cell = time_cell.split(':')[1];
+            var self = $(this);
+            split_date(self);
 
-            console.log('hour_cell ', hour_cell);
-            console.log('min_cell ', min_cell);
+            var k = 0;
 
+            $(editable_form).find('.wrap_time.from').each(function () {
 
-
-            from_to.push(hour_cell);
-            from_to.push(min_cell);
-            console.log('from_to before ', from_to);
-            var length = $(editable_form).find('.wrap_time').length;
-
-            console.log(' --- length --- ', length);
-            console.log('from_to after ' + from_to.splice(key , 1));
-
-            $(editable_form).find('.wrap_time').each(function (key, value) {
-
-                console.log('key ', key);
-
-                $(this).find('.vdf_hour').text(hour_cell);
-                $(this).find('.vdf_min').text(min_cell);
-
-                //from_to.splice(key , 1);
-
+                $(this).find('.vdf_hour').text(from[k]);
+                $(this).find('.vdf_min').text(to[k]);
 
             });
 
+        });
 
+        $(this).closest('td').siblings('.table_time_cell_large.to').each(function () {
+
+            var self = $(this);
+            split_date(self);
+
+            var j = 1;
+
+            $(editable_form).find('.wrap_time.to').each(function () {
+
+                $(this).find('.vdf_hour').text(from[j]);
+                $(this).find('.vdf_min').text(to[j]);
+            });
 
         });
 
-        for(var k = 0; k < from_to.length; k++){
+        function split_date(self) {
 
-            //console.log('from_to ' + from_to[k]);
+            var full_date = self.text().trim();
+            var time_cell = full_date.split(' ')[1];
+            var hour_cell = time_cell.split(':')[0];
+            var min_cell = time_cell.split(':')[1];
 
 
+            from.push(hour_cell);
+            to.push(min_cell);
         }
-        //$(editable_form).find('.time_picker').each(function (key, value) {
-        //    $(editable_form).find('.vdf_hour').text(from_to[key]);
-        //    $(editable_form).find('.vdf_min').text(from_to[key+1]);
-        //});
 
         $.get("/order/" + row_id +"/edit", function (order_data, order_status) {
 
