@@ -355,6 +355,7 @@ $( document ).ready(function() {
             var reset_form_action = form_action.split('/')[0];
             $(this).find('form').attr('action', reset_form_action + '/');
 
+            $(this).find('form')[0].reset();
         });
 
     });
@@ -395,35 +396,67 @@ $( document ).ready(function() {
 
         $('.arrow-up').on('click', function(){
 
-            if(!$(this).siblings('input').val().trim() == ''){
+            if($(this).siblings().is('input')){
 
-                if($(this).siblings('input').hasClass('vdf_hour')){
+                if($(this).siblings('input.vdf_hour').val().trim() != '' && $(this).siblings('input').hasClass('vdf_hour')){
 
                     console.log('vdf_hour ');
-                    $(this).siblings('input.vdf_hour').val(parseInt($(this).siblings('input.vdf_hour').val()) + 1);
+                    if($(this).siblings('input.vdf_hour').val() == 24) {
+
+                        $(this).siblings('input.vdf_hour').val(0);
+                    }else{
+                        $(this).siblings('input.vdf_hour').val(parseInt($(this).siblings('input.vdf_hour').val()) + 1);
+                    }
+
                 }
-                if($(this).siblings('input').hasClass('vdf_min')){
-                    console.log('vdf_min ');
-                    $(this).siblings('input.vdf_min').val(parseInt($(this).siblings('input.vdf_min').val()) + 15);
+                
+            }
+            if($(this).siblings().hasClass('vdf_min')){
+
+                var el = $(this).siblings('.vdf_min').text();
+
+                if(parseInt($(this).siblings('.vdf_min').text()) == 60){
+
+                    $(this).siblings('.vdf_min').text(parseInt(0));
+                }else{
+
+                    $(this).siblings('.vdf_min').text(parseInt(el) + 15);
                 }
 
             }
+
         });
         $('.arrow-down').on('click', function(){
 
-            if(!$(this).siblings('input').val().trim() == ''){
+            if($(this).siblings().is('input')){
 
-                if($(this).siblings('input.vdf_hour').hasClass('vdf_hour')){
+                if($(this).siblings('input.vdf_hour').val().trim() != '' && $(this).siblings('input').hasClass('vdf_hour')){
 
                     console.log('vdf_hour');
-                    $(this).siblings('input.vdf_hour').val(parseInt($(this).siblings('input.vdf_hour').val()) - 1);
-                }
-                if($(this).siblings('input').hasClass('vdf_min')){
-                    console.log('vdf_min ');
-                    $(this).siblings('input.vdf_min').val(parseInt($(this).siblings('input.vdf_min').val()) - 15);
+                    if($(this).siblings('input.vdf_hour').val() == 0){
+
+                        $(this).siblings('input.vdf_hour').val(24);
+                    }else{
+                        $(this).siblings('input.vdf_hour').val(parseInt($(this).siblings('input.vdf_hour').val()) - 1);
+                    }
+
                 }
 
             }
+            if($(this).siblings().hasClass('vdf_min')){
+
+                var el = $(this).siblings('.vdf_min').text();
+
+                if(parseInt($(this).siblings('.vdf_min').text()) == 0){
+
+                    $(this).siblings('.vdf_min').text(parseInt(60));
+                }else{
+
+                    $(this).siblings('.vdf_min').text(parseInt(el) - 15);
+                }
+
+            }
+
         });
 
         /* end of Change hours/minutes by click */
