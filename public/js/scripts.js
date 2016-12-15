@@ -396,21 +396,20 @@ $( document ).ready(function() {
 
         $('.arrow-up').on('click', function(){
 
-            if($(this).siblings().is('input')){
 
-                if($(this).siblings('input.vdf_hour').val().trim() != '' && $(this).siblings('input').hasClass('vdf_hour')){
+                if($(this).siblings().hasClass('vdf_hour')){
 
-                    console.log('vdf_hour ');
-                    if($(this).siblings('input.vdf_hour').val() == 24) {
+                    var el = $(this).siblings('.vdf_hour').text();
 
-                        $(this).siblings('input.vdf_hour').val(0);
+                    if(parseInt($(this).siblings('.vdf_hour').text()) == 24) {
+
+                        $(this).siblings('.vdf_hour').text(parseInt(0));
                     }else{
-                        $(this).siblings('input.vdf_hour').val(parseInt($(this).siblings('input.vdf_hour').val()) + 1);
+                        $(this).siblings('.vdf_hour').text(parseInt(el) + 1);
                     }
 
                 }
-                
-            }
+
             if($(this).siblings().hasClass('vdf_min')){
 
                 var el = $(this).siblings('.vdf_min').text();
@@ -428,21 +427,22 @@ $( document ).ready(function() {
         });
         $('.arrow-down').on('click', function(){
 
-            if($(this).siblings().is('input')){
 
-                if($(this).siblings('input.vdf_hour').val().trim() != '' && $(this).siblings('input').hasClass('vdf_hour')){
+
+                if($(this).siblings().hasClass('vdf_hour')){
 
                     console.log('vdf_hour');
-                    if($(this).siblings('input.vdf_hour').val() == 0){
+                    var el = $(this).siblings('.vdf_hour').text();
 
-                        $(this).siblings('input.vdf_hour').val(24);
+                    if(parseInt($(this).siblings('.vdf_hour').text()) == 0){
+
+                        $(this).siblings('.vdf_hour').text(24);
                     }else{
-                        $(this).siblings('input.vdf_hour').val(parseInt($(this).siblings('input.vdf_hour').val()) - 1);
+                        $(this).siblings('.vdf_hour').text(parseInt(el) - 1);
                     }
 
                 }
 
-            }
             if($(this).siblings().hasClass('vdf_min')){
 
                 var el = $(this).siblings('.vdf_min').text();

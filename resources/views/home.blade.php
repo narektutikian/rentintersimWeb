@@ -180,7 +180,7 @@
                                         <div class="wrap_time">
                                             <i class="departure_time icon-time"></i>
                                             <div class="time_picker">
-                                                <input type="text" name="add_landing_hour" class="inline_block_btn numeric_input vdf_time vdf_hour vd_non_empty">
+                                                <div  class="inline_block_btn numeric_input vdf_time vdf_hour">0</div>
                                                 <span class="arrow-down"><i></i></span>
                                                 <span class="arrow-up"><i></i></span>
                                             </div>
@@ -203,7 +203,7 @@
                                         <div class="wrap_time">
                                             <i class="departure_time icon-time"></i>
                                             <div class="time_picker">
-                                                <input type="text" name="add_departure_hour"  class="inline_block_btn numeric_input vdf_time vdf_hour vd_non_empty">
+                                                <div  class="inline_block_btn numeric_input vdf_time vdf_hour">0</div>
                                                 <span class="arrow-down"><i></i></span>
                                                 <span class="arrow-up"><i></i></span>
                                             </div>
