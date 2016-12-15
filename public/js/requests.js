@@ -184,21 +184,18 @@ $(document).ready(function () {
 
         var row_id = $(this).attr('data-row-id');
         var editable_form = $(this).attr('data-form');
-        var from = [];
-        var to = [];
+        var from = [], to = [];
 
         $(this).closest('td').siblings('.table_time_cell_large.from').each(function () {
 
             var self = $(this);
-            split_date(self);
-
             var k = 0;
+            split_date(self);
 
             $(editable_form).find('.wrap_time.from').each(function () {
 
                 $(this).find('.vdf_hour').text(from[k]);
                 $(this).find('.vdf_min').text(to[k]);
-
             });
 
         });
@@ -206,9 +203,8 @@ $(document).ready(function () {
         $(this).closest('td').siblings('.table_time_cell_large.to').each(function () {
 
             var self = $(this);
-            split_date(self);
-
             var j = 1;
+            split_date(self);
 
             $(editable_form).find('.wrap_time.to').each(function () {
 
@@ -224,8 +220,7 @@ $(document).ready(function () {
             var time_cell = full_date.split(' ')[1];
             var hour_cell = time_cell.split(':')[0];
             var min_cell = time_cell.split(':')[1];
-
-
+            
             from.push(hour_cell);
             to.push(min_cell);
         }
