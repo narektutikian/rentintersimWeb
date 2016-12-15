@@ -227,19 +227,22 @@
                                 <div class="form-group">
                                     <div class="col-md-6">
                                         <label class="table_label">Customer phone number</label>
+                                        @if(Auth::user()->level == 'Super admin')
                                         <div class="select_wrapper">
-                                            @if(Auth::user()->level == 'Super admin')
                                             <select name="customer_phone1" name="phone_number" id="phone_number" class="block_btn_30 modal_input">
                                                 <option value=""></option>
                                                 @foreach($specials as $special)
                                                     <option value="{{$special['id']}}">{{$special['phone']}}</option>
                                                 @endforeach
                                             </select>
-                                            @else
-                                                <input type="test" id="phone_number" class="block_btn_30 modal_input" name="phone_number" value="" disabled>
-                                            @endif
                                             <i class="input_icon icon-sim"></i>
                                         </div>
+                                        @else
+                                        <div class="relative">
+                                                <input type="test" id="phone_number" class="block_btn_30 modal_input" name="phone_number" value="" disabled>
+                                                <i class="input_icon icon-sim"></i>
+                                            </div>
+                                        @endif
                                     </div>
                                     <div class="col-md-6">
                                         <label class="table_label">Order Status</label>
@@ -360,12 +363,13 @@
                                         <label class="table_label">Customer phone number</label>
                                             @if(Auth::user()->level == 'Super admin')
                                         <div class="select_wrapper">
-                                                <select name="customer_phone1" name="phone_number" id="phone_number-edit" class="block_btn_30 modal_input">
+                                                <select  name="phone_number" id="phone_number-edit" class="block_btn_30 modal_input">
                                                     <option value=""></option>
                                                     @foreach($specials as $special)
                                                         <option value="{{$special['id']}}">{{$special['phone']}}</option>
                                                     @endforeach
                                                 </select>
+                                                <i class="input_icon icon-sim"></i>
                                         </div>
                                             @else
                                         <div class="relative">

@@ -262,12 +262,12 @@ $(document).ready(function () {
                         $('#remark-edit').val(order_data[0].remark);
                         $('#reference_number-edit').val(order_data[0].reference_number);
                         if (order_data[0].status != "waiting"){
-                            $('#phone_number-edit').val(order_data[0].phone.phone);
+                            $('#phone_number-edit2').val(order_data[0].phone.phone);
                             $('#phone_number-edit').append($('<option>', {
                                 value: order_data[0].phone.id,
                                 text: order_data[0].phone.phone
                             }));
-                            $("#phone_number-edit2").val(order_data[0].phone_id);
+                            $("#phone_number-edit").val(order_data[0].phone.id);
                         }
                         $('#order_status-edit').val(order_data[0].status);
                         $('#creator').text(order_data[0].creator.name + " " + order_data[0].created_at);
