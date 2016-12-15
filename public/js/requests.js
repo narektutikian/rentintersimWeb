@@ -122,15 +122,15 @@ $(document).ready(function () {
         if ($(this).closest(".vd_form").valid()) {
 
             var departure = $('#departure_date').val() + " "
-                + $('#departure_hour').val() + ":" + $('#departure_minute').val();
+                + $('#departure_hour').text() + ":" + $('#departure_minute').text();
              var landing = $('#landing_date').val() + " "
-                + $('#landing_hour').val() + ":" + $('#landing_minute').val();
+                + $('#landing_hour').text() + ":" + $('#landing_minute').text();
 
-
+            console.log(departure + " " + landing);
             var data = {
                 _token: CSRF_TOKEN,
                 sim: $('#sim').val(),
-
+                phone_id: $('#phone_number').val(),
                 landing: moment(landing, "DD/MM/YYYY HH:mm").valueOf() / 1000,
                 departure: moment(departure, "DD/MM/YYYY HH:mm").valueOf() / 1000,
                 package_id: package_id, // put package id
@@ -235,7 +235,12 @@ $(document).ready(function () {
 
                         $.each(data, function (i, item) {
 
-                            if (item.id == order_data.package_id) {
+                            // console.log("success dfdfsfsd ");
+                            // console.log(order_data.package_id);
+                            // console.log(item.id);
+
+                            if (item.id == order_data[0].package_id) {
+
                                 $(".wrap_package_list_edit").append("<div class='package_item'>" +
                                         "<a href='#' data-id='" + item.id + "' class='editable_package' title='Basic Package'>" +
                                         "<h4>" + item.name + "</h4>" +
@@ -252,6 +257,25 @@ $(document).ready(function () {
                                     "</div>");
                             }
                         });
+
+                        $('#sim-edit').val(order_data[0].sim_id);
+                        $('#remark-edit').val(order_data[0].remark);
+                        $('#reference_number-edit').val(order_data[0].reference_number);
+                        if (order_data[0].status != "waiting"){
+                            $('#phone_number-edit2').val(order_data[0].phone.phone);
+                            $('#phone_number-edit').append($('<option>', {
+                                value: order_data[0].phone.id,
+                                text: order_data[0].phone.phone
+                            }));
+                            $("#phone_number-edit").val(order_data[0].phone.id);
+                        }
+                        $('#order_status-edit').val(order_data[0].status);
+                        $('#creator').text(order_data[0].creator.name + " " + order_data[0].created_at);
+                        $('#editor').text(order_data[0].editor.name + " " + order_data[0].updated_at);
+
+                        // console.log(order_data[0].status)
+
+
                     }
                 });
             }

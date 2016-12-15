@@ -73,6 +73,7 @@ class OrderController extends Controller
 //        'updated_by' =>  'required',
 
         ]);
+
             $sim = $this->helper->getSim($request->input('sim'));
         if($sim->state != 'available')
             return response()->json(['sim'=>'sim is already taken'], 403);
@@ -97,15 +98,17 @@ class OrderController extends Controller
 
         ]);
 
-//        if($newOrder){
+        if($request->has('phone_id')){
+            if (Auth::user()->level == 'Super admin'){
+                $number = $this->helper->setNumber($newOrder->id, $request->input('phone_id'));
+            } else {
             $number = $this->getNumber($newOrder->id);
+            }
             if ($number != null){
-//                $numberId = $number->id;
-//                $status = 'pending';
-
-//            }
+                return $this->edit($newOrder->id);
+              }
         }
-        return $newOrder;
+        return response($newOrder->toArray(), 200);
 
 
     }
@@ -131,8 +134,11 @@ class OrderController extends Controller
     {
         //
         $order = Order::find($id);
+//        dd($order);
+        $orderSolved = HomeController::solveOrderList(array($order), $this->viewHelper);
 
-        return response()->json($order, 200);
+
+        return response()->json($orderSolved, 200);
 
     }
 

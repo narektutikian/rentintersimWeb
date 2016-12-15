@@ -181,12 +181,12 @@
                                         <div class="wrap_time">
                                             <i class="departure_time icon-time"></i>
                                             <div class="time_picker">
-                                                <div  class="inline_block_btn numeric_input vdf_time vdf_hour">0</div>
+                                                <div  class="inline_block_btn numeric_input vdf_time vdf_hour" id="landing_hour">0</div>
                                                 <span class="arrow-down"><i></i></span>
                                                 <span class="arrow-up"><i></i></span>
                                             </div>
                                             <div class="time_picker">
-                                                <div class="inline_block_btn vdf_minute_picker vdf_time vdf_min">0</div>
+                                                <div class="inline_block_btn vdf_minute_picker vdf_time vdf_min" id="landing_minute">0</div>
                                                 <span class="arrow-down"><i></i></span>
                                                 <span class="arrow-up"><i></i></span>
                                             </div>
@@ -199,17 +199,17 @@
                                             <div class="input-group-addon">
                                                 <span class="glyphicon glyphicon-calendar"></span>
                                             </div>
-                                            <input type="text" name="departure_date" class="inline_block_btn departure_date vd_required" data-date-format="DD/MM/YYYY">
+                                            <input type="text" name="departure_date" id="departure_date" class="inline_block_btn departure_date vd_required" data-date-format="DD/MM/YYYY">
                                         </div>
                                         <div class="wrap_time">
                                             <i class="departure_time icon-time"></i>
                                             <div class="time_picker">
-                                                <div  class="inline_block_btn numeric_input vdf_time vdf_hour">0</div>
+                                                <div  class="inline_block_btn numeric_input vdf_time vdf_hour" id="departure_hour">0</div>
                                                 <span class="arrow-down"><i></i></span>
                                                 <span class="arrow-up"><i></i></span>
                                             </div>
                                             <div class="time_picker">
-                                                <div id="add_departure_minute" class="inline_block_btn vdf_time vdf_min">0</div>
+                                                <div class="inline_block_btn vdf_time vdf_min" id="departure_minute">0</div>
                                                 <span class="arrow-down"><i></i></span>
                                                 <span class="arrow-up"><i></i></span>
                                             </div>
@@ -228,19 +228,22 @@
                                 <div class="form-group">
                                     <div class="col-md-6">
                                         <label class="table_label">Customer phone number</label>
+                                        @if(Auth::user()->level == 'Super admin')
                                         <div class="select_wrapper">
-                                            @if(Auth::user()->level == 'Super admin')
                                             <select name="customer_phone1" name="phone_number" id="phone_number" class="block_btn_30 modal_input">
                                                 <option value=""></option>
                                                 @foreach($specials as $special)
                                                     <option value="{{$special['id']}}">{{$special['phone']}}</option>
                                                 @endforeach
                                             </select>
-                                            @else
-                                                <input type="test" id="phone_number" class="block_btn_30 modal_input" name="phone_number" value="" disabled>
-                                            @endif
                                             <i class="input_icon icon-sim"></i>
                                         </div>
+                                        @else
+                                        <div class="relative">
+                                                <input type="test" id="phone_number" class="block_btn_30 modal_input" name="phone_number" value="" disabled>
+                                                <i class="input_icon icon-sim"></i>
+                                            </div>
+                                        @endif
                                     </div>
                                     <div class="col-md-6">
                                         <label class="table_label">Order Status</label>
@@ -282,11 +285,11 @@
                                 <div class="form-group">
                                     <div class="col-md-6">
                                         <label class="table_label">Enter a SIM number</label>
-                                        <input type="text" name="sim2" id="sim2" class="block_btn_30 modal_input_without_icon vd_number" data-th="SIM Number" value=""/>
+                                        <input type="text" name="sim-edit" id="sim-edit" class="block_btn_30 modal_input_without_icon vd_number" data-th="SIM Number" value=""/>
                                     </div>
                                     <div class="col-md-6">
                                         <label class="table_label">SIM provider</label>
-                                        <input type="text" name="sim_prv2" class="block_btn_30 modal_input_without_icon vd_required" data-th="Provider" value="Vodafone"/>
+                                        <input type="text" name="sim_prv2" class="block_btn_30 modal_input_without_icon vd_required" data-th="Provider" value="Vodafone" disabled/>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -297,7 +300,7 @@
                                 <div class="form-group">
                                     <div class="col-md-12">
                                         <label class="table_label">Enter remarks</label>
-                                        <textarea name="rem_txt2" id="remark2" class="modal_textarea"></textarea>
+                                        <textarea name="rem_txt2" id="remark-edit" class="modal_textarea"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -353,33 +356,42 @@
                                 <div class="form-group">
                                     <div class="col-md-12">
                                         <label class="table_label">Reference Number</label>
-                                        <input type="text" id="reference_number" class="block_btn_30 modal_input_without_icon vd_number" value="">
+                                        <input type="text" id="reference_number-edit" class="block_btn_30 modal_input_without_icon vd_number" value="">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-6">
                                         <label class="table_label">Customer phone number</label>
+                                            @if(Auth::user()->level == 'Super admin')
                                         <div class="select_wrapper">
-                                            <select name="customer_phone1" class="block_btn_30 modal_input">
-                                                <option value=""></option>
-                                                <option value="1">1111111111</option>
-                                                <option value="2">22222222222</option>
-                                                <option value="3">333333333333</option>
-                                            </select>
-                                            <i class="input_icon icon-sim"></i>
+                                                <select  name="phone_number" id="phone_number-edit" class="block_btn_30 modal_input">
+                                                    <option value=""></option>
+                                                    @foreach($specials as $special)
+                                                        <option value="{{$special['id']}}">{{$special['phone']}}</option>
+                                                    @endforeach
+                                                </select>
+                                                <i class="input_icon icon-sim"></i>
                                         </div>
+                                            @else
+                                        <div class="relative">
+                                                <input type="test" id="phone_number-edit2" class="block_btn_30 modal_input" name="phone_number-edit2" value="" disabled>
+                                                <i class="input_icon icon-sim"></i>
+                                        </div>
+                                            @endif
+
+
                                     </div>
                                     <div class="col-md-6">
                                         <label class="table_label">Order Status</label>
-                                        <input type="text" name="order_status1" class="block_btn_30 modal_input_without_icon" value="">
+                                        <input type="text" name="order_status-edit" id="order_status-edit" class="block_btn_30 modal_input_without_icon" value="" disabled>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <span class="order_key">Created by: </span><span class="order_value">Vallie Champlin 15/12/2016 12:40</span>
+                                        <span class="order_key">Created by: </span><span class="order_value" id="creator">Vallie Champlin 15/12/2016 12:40</span>
                                     </div>
                                     <div class="col-md-12">
-                                        <span class="order_key">Updated by: </span><span class="order_value">Alexanne Robel 07/03/2017 15:22</span>
+                                        <span class="order_key">Updated by: </span><span class="order_value" id="editor">Alexanne Robel 07/03/2017 15:22</span>
                                     </div>
                                 </div>
                             </div>
@@ -465,7 +477,7 @@
                             <div class="col-md-5">
                                 <div class="form-group">
                                     <div class="col-md-12">
-                                        <img src="img/print_image.jpg" class="print_image" alt="print image">
+                                        <img src="/img/print_image.jpg" class="print_image" alt="print image">
                                     </div>
                                 </div>
                             </div>
@@ -504,7 +516,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <div class="col-md-12">
-                                        <img src="img/print_image.jpg" class="print_image" alt="print image">
+                                        <  "/img/print_image.jpg" class="print_image" alt="print image">
                                     </div>
                                     <div class="clear"></div>
                                 </div>
