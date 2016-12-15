@@ -182,21 +182,57 @@ $(document).ready(function () {
 
     $('.call_edit').on('click', function () {
 
-        console.log('call_edit ');
-
         var row_id = $(this).attr('data-row-id');
-        console.log('row_id ', row_id);
+        var editable_form = $(this).attr('data-form');
+        var from = [], to = [];
+
+        $(this).closest('td').siblings('.table_time_cell_large.from').each(function () {
+
+            var self = $(this);
+            var k = 0;
+            split_date(self);
+
+            $(editable_form).find('.wrap_time.from').each(function () {
+
+                $(this).find('.vdf_hour').text(from[k]);
+                $(this).find('.vdf_min').text(to[k]);
+            });
+
+        });
+
+        $(this).closest('td').siblings('.table_time_cell_large.to').each(function () {
+
+            var self = $(this);
+            var j = 1;
+            split_date(self);
+
+            $(editable_form).find('.wrap_time.to').each(function () {
+
+                $(this).find('.vdf_hour').text(from[j]);
+                $(this).find('.vdf_min').text(to[j]);
+            });
+
+        });
+
+        function split_date(self) {
+
+            var full_date = self.text().trim();
+            var time_cell = full_date.split(' ')[1];
+            var hour_cell = time_cell.split(':')[0];
+            var min_cell = time_cell.split(':')[1];
+
+            from.push(hour_cell);
+            to.push(min_cell);
+        }
 
         $.get("/order/" + row_id +"/edit", function (order_data, order_status) {
 
             if (order_status == "success") {
 
-                console.log(order_data);
-
-
                 $.get("/type-provider/1", function (data, type_status) {
 
                     if (type_status == "success") {
+
                         $.each(data, function (i, item) {
 
                             // console.log("success dfdfsfsd ");
@@ -204,23 +240,22 @@ $(document).ready(function () {
                             // console.log(item.id);
 
                             if (item.id == order_data[0].package_id) {
+
                                 $(".wrap_package_list_edit").append("<div class='package_item'>" +
-                                    "<a href='#' data-id='" + item.id + "' class='editable_package' title='Basic Package'>" +
-                                    "<h4>" + item.name + "</h4>" +
-                                    "<span>" + item.description + "</span>" +
-                                    "</a>" +
+                                        "<a href='#' data-id='" + item.id + "' class='editable_package' title='Basic Package'>" +
+                                        "<h4>" + item.name + "</h4>" +
+                                        "<span>" + item.description + "</span>" +
+                                        "</a>" +
                                     "</div>");
                             } else {
 
                                 $(".wrap_package_list_edit").append("<div class='package_item'>" +
-                                    "<a href='#' data-id='" + item.id + "' title='Basic Package'>" +
-                                    "<h4>" + item.name + "</h4>" +
-                                    "<span>" + item.description + "</span>" +
-                                    "</a>" +
+                                        "<a href='#' data-id='" + item.id + "' title='Basic Package'>" +
+                                        "<h4>" + item.name + "</h4>" +
+                                        "<span>" + item.description + "</span>" +
+                                        "</a>" +
                                     "</div>");
                             }
-
-
                         });
 
                         $('#sim-edit').val(order_data[0].sim_id);
@@ -239,28 +274,13 @@ $(document).ready(function () {
 
 
                     }
-
                 });
-
             }
         });
+
+
     });
 
-    //$.get("/type-provider/1", function (data, status) {
-      //  if (status == "success") {
-            // $.each(data, function (i, item) {
-            //
-            //     $(".wrap_package_list_edit").append("<div class='package_item'>" +
-            //             "<a href='#' data-id='" + item.id + "' title='Basic Package'>" +
-            //                 "<h4>" + item.name + "</h4>" +
-            //                 "<span>" + item.description + "</span>" +
-            //             "</a>" +
-            //         "</div>");
-            //
-            // });
-
-      //  }
-   // });
 
     /***** ADD NEW SIM *****/
 

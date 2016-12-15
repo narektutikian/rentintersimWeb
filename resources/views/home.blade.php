@@ -72,10 +72,10 @@
                             <td class="rwd-td2 editable_cell" data-th="Provider">
                                 {{$order['provider']}}
                             </td>
-                            <td class="rwd-td3 table_time_cell_large" data-field="From">
+                            <td class="rwd-td3 table_time_cell_large from" data-field="From">
                                 {{$order['from']}}
                             </td>
-                            <td class="rwd-td4 table_time_cell_large" data-field="To">
+                            <td class="rwd-td4 table_time_cell_large to" data-field="To">
                                 {{$order['to']}}
                             </td>
                             <td class="rwd-td5" data-field="Created by">
@@ -293,17 +293,6 @@
                                         <div class="wrap_package_list_edit"></div>
                                     </div>
                                 </div>
-                              <!--  <div class="form-group">
-                                    <div class="col-md-12">
-                                        <div class="single_package">
-                                            <label class="table_label">Selected Package </label>
-                                            <a class="selected_package" title="Basic Package">
-                                                <h4>Basic Package</h4>
-                                                <span>8 Mb Data Unlimited local Call + SMS</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>-->
                                 <div class="form-group">
                                     <div class="col-md-12">
                                         <label class="table_label">Enter remarks</label>
@@ -322,6 +311,19 @@
                                             </div>
                                             <input type="text" name="departure_date2" class="inline_block_btn departure_date vd_required" data-date-format="DD/MM/YYYY HH:mm">
                                         </div>
+                                        <div class="wrap_time from">
+                                            <i class="departure_time icon-time"></i>
+                                            <div class="time_picker">
+                                                <div  class="inline_block_btn numeric_input vdf_time vdf_hour">0</div>
+                                                <span class="arrow-down"><i></i></span>
+                                                <span class="arrow-up"><i></i></span>
+                                            </div>
+                                            <div class="time_picker">
+                                                <div class="inline_block_btn vdf_minute_picker vdf_time vdf_min">0</div>
+                                                <span class="arrow-down"><i></i></span>
+                                                <span class="arrow-up"><i></i></span>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="departure"><i class="icon-departure"></i> Departure date and time</div>
@@ -331,6 +333,19 @@
                                             </div>
                                             <input type="text" name="landing_date2" class="inline_block_btn vd_required landing_date" data-date-format="DD/MM/YYYY HH:mm">
                                         </div>
+                                        <div class="wrap_time to">
+                                            <i class="departure_time icon-time"></i>
+                                            <div class="time_picker">
+                                                <div  class="inline_block_btn numeric_input vdf_time vdf_hour">0</div>
+                                                <span class="arrow-down"><i></i></span>
+                                                <span class="arrow-up"><i></i></span>
+                                            </div>
+                                            <div class="time_picker">
+                                                <div class="inline_block_btn vdf_minute_picker vdf_time vdf_min">0</div>
+                                                <span class="arrow-down"><i></i></span>
+                                                <span class="arrow-up"><i></i></span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -339,7 +354,6 @@
                                         <label class="table_label">Reference Number</label>
                                         <input type="text" id="reference_number-edit" class="block_btn_30 modal_input_without_icon vd_number" value="">
                                     </div>
-
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-6">
@@ -361,6 +375,14 @@
                                     <div class="col-md-6">
                                         <label class="table_label">Order Status</label>
                                         <input type="text" name="order_status-edit" id="order_status-edit" class="block_btn_30 modal_input_without_icon" value="" disabled>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <span class="order_key">Created by: </span><span class="order_value">Vallie Champlin 15/12/2016 12:40</span>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <span class="order_key">Updated by: </span><span class="order_value">Alexanne Robel 07/03/2017 15:22</span>
                                     </div>
                                 </div>
                             </div>

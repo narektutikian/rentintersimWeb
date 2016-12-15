@@ -393,7 +393,6 @@ $( document ).ready(function() {
     });
 
         /* Change hours/minutes by click */
-
         $('.arrow-up').on('click', function(){
 
             if($(this).siblings().hasClass('vdf_hour')){
@@ -424,8 +423,7 @@ $( document ).ready(function() {
 
         });
         $('.arrow-down').on('click', function(){
-
-
+            
             if($(this).siblings().hasClass('vdf_hour')){
 
                 console.log('vdf_hour');
