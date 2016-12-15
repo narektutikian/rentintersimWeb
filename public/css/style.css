@@ -1691,6 +1691,14 @@ input[type="radio"].toggle.checked + label {
   -ms-border-radius: 0;
   border-radius: 0; }
 
+.vdf_hour {
+  padding-right: 18px;
+  padding-left: 2px; }
+
+.vdf_min {
+  padding-right: 18px;
+  padding-left: 2px; }
+
 .c_support {
   float: left;
   margin-top: 8px;

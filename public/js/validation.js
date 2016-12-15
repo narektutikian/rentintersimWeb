@@ -1,7 +1,7 @@
 $( document ).ready(function() {
     console.log("validation!");
 
-    var validator
+    var validator;
     $('.vd_form').each(function() {   // <- selects every <form> on page
         $(this).validate({
             rules: {
@@ -35,6 +35,11 @@ $( document ).ready(function() {
             required: true,
             number: true,
             minlength: 2
+        });
+    });
+    $('.vd_form .vd_non_empty').each(function() {
+        $(this).rules('add', {
+            required: true
         });
     });
 
