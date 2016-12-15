@@ -86,7 +86,41 @@
                 text-align: center
 
 .ref_number
+  position: relative
   cursor: pointer
+
+.show_data_content
+  background: $dark_blue
+  color: $white
+  padding: 3px 7px
+  position: absolute
+  top: -13px
+  right: 5px
+  text-align: center
+  border: 1px solid $light_gray
+  @include border_radius(5px)
+  @include fonts_stack(13px)
+  &:before
+    content: ''
+    width: 0
+    height: 0
+    border-top: 7px solid $light_gray
+    border-left: 7px solid transparent
+    border-right: 7px solid transparent
+    position: absolute
+    bottom: -7px 
+    right: 5px
+  &:after
+    content: ''
+    width: 0
+    height: 0
+    border-top: 5px solid $dark_blue
+    border-left: 5px solid transparent
+    border-right: 5px solid transparent
+    position: absolute
+    bottom: -4px
+    right: 7px
+
 
 .hint_text
   display: inline-block
