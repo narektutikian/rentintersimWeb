@@ -180,12 +180,12 @@
                                         <div class="wrap_time">
                                             <i class="departure_time icon-time"></i>
                                             <div class="time_picker">
-                                                <input type="text" name="landing_hour" id="landing_hour" class="inline_block_btn numeric_input vdf_time vdf_hour vd_required">
+                                                <input type="text" name="landing_hour" id="landing_hour" class="inline_block_btn numeric_input vdf_time vdf_hour">
                                                 <span class="arrow-down"><i></i></span>
                                                 <span class="arrow-up"><i></i></span>
                                             </div>
                                             <div class="time_picker">
-                                                <input type="text" name="landing_minute" id="landing_minute" class="inline_block_btn numeric_input vdf_time vdf_min vd_required">
+                                                <input type="text" name="landing_minute" id="landing_minute" class="inline_block_btn numeric_input vdf_time vdf_min">
                                                 <span class="arrow-down"><i></i></span>
                                                 <span class="arrow-up"><i></i></span>
                                             </div>
@@ -282,11 +282,11 @@
                                 <div class="form-group">
                                     <div class="col-md-6">
                                         <label class="table_label">Enter a SIM number</label>
-                                        <input type="text" name="sim2" id="sim2" class="block_btn_30 modal_input_without_icon vd_number" data-th="SIM Number" value=""/>
+                                        <input type="text" name="sim-edit" id="sim-edit" class="block_btn_30 modal_input_without_icon vd_number" data-th="SIM Number" value=""/>
                                     </div>
                                     <div class="col-md-6">
                                         <label class="table_label">SIM provider</label>
-                                        <input type="text" name="sim_prv2" class="block_btn_30 modal_input_without_icon vd_required" data-th="Provider" value="Vodafone"/>
+                                        <input type="text" name="sim_prv2" class="block_btn_30 modal_input_without_icon vd_required" data-th="Provider" value="Vodafone" disabled/>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -308,7 +308,7 @@
                                 <div class="form-group">
                                     <div class="col-md-12">
                                         <label class="table_label">Enter remarks</label>
-                                        <textarea name="rem_txt2" id="remark2" class="modal_textarea"></textarea>
+                                        <textarea name="rem_txt2" id="remark-edit" class="modal_textarea"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -338,7 +338,7 @@
                                 <div class="form-group">
                                     <div class="col-md-12">
                                         <label class="table_label">Reference Number</label>
-                                        <input type="text" id="reference_number" class="block_btn_30 modal_input_without_icon vd_number" value="">
+                                        <input type="text" id="reference_number-edit" class="block_btn_30 modal_input_without_icon vd_number" value="">
                                     </div>
 
                                 </div>
@@ -346,18 +346,22 @@
                                     <div class="col-md-6">
                                         <label class="table_label">Customer phone number</label>
                                         <div class="select_wrapper">
-                                            <select name="customer_phone1" class="block_btn_30 modal_input">
-                                                <option value=""></option>
-                                                <option value="1">1111111111</option>
-                                                <option value="2">22222222222</option>
-                                                <option value="3">333333333333</option>
-                                            </select>
+                                            @if(Auth::user()->level == 'Super admin')
+                                                <select name="customer_phone1" name="phone_number" id="phone_number-edit" class="block_btn_30 modal_input">
+                                                    <option value=""></option>
+                                                    @foreach($specials as $special)
+                                                        <option value="{{$special['id']}}">{{$special['phone']}}</option>
+                                                    @endforeach
+                                                </select>
+                                            @else
+                                                <input type="test" id="phone_number" class="block_btn_30 modal_input" name="phone_number-edit" value="" disabled>
+                                            @endif
                                             <i class="input_icon icon-sim"></i>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <label class="table_label">Order Status</label>
-                                        <input type="text" name="order_status1" class="block_btn_30 modal_input_without_icon" value="">
+                                        <input type="text" name="order_status-edit" id="order_status-edit" class="block_btn_30 modal_input_without_icon" value="" disabled>
                                     </div>
                                 </div>
                             </div>
@@ -443,7 +447,7 @@
                             <div class="col-md-5">
                                 <div class="form-group">
                                     <div class="col-md-12">
-                                        <img src="img/print_image.jpg" class="print_image" alt="print image">
+                                        <img src="/img/print_image.jpg" class="print_image" alt="print image">
                                     </div>
                                 </div>
                             </div>
@@ -482,7 +486,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <div class="col-md-12">
-                                        <img src="img/print_image.jpg" class="print_image" alt="print image">
+                                        <  "/img/print_image.jpg" class="print_image" alt="print image">
                                     </div>
                                     <div class="clear"></div>
                                 </div>

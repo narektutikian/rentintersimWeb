@@ -131,8 +131,11 @@ class OrderController extends Controller
     {
         //
         $order = Order::find($id);
+//        dd($order);
+        $orderSolved = HomeController::solveOrderList(array($order), $this->viewHelper);
 
-        return response()->json($order, 200);
+
+        return response()->json($orderSolved, 200);
 
     }
 

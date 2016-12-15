@@ -199,11 +199,11 @@ $(document).ready(function () {
                     if (type_status == "success") {
                         $.each(data, function (i, item) {
 
-                            console.log("success dfdfsfsd ");
-                            console.log(order_data.package_id);
-                            console.log(item.id);
+                            // console.log("success dfdfsfsd ");
+                            // console.log(order_data.package_id);
+                            // console.log(item.id);
 
-                            if (item.id == order_data.package_id) {
+                            if (item.id == order_data[0].package_id) {
                                 $(".wrap_package_list_edit").append("<div class='package_item'>" +
                                     "<a href='#' data-id='" + item.id + "' class='editable_package' title='Basic Package'>" +
                                     "<h4>" + item.name + "</h4>" +
@@ -222,6 +222,20 @@ $(document).ready(function () {
 
 
                         });
+
+                        $('#sim-edit').val(order_data[0].sim_id);
+                        $('#remark-edit').val(order_data[0].remark);
+                        $('#reference_number-edit').val(order_data[0].reference_number);
+                        if (order_data[0].status != "waiting"){
+                            $('#phone_number-edit').val(order_data[0].phone.phone);
+                            $('#phone_number-edit').append($('<option>', {
+                                value: order_data[0].phone.id,
+                                text: order_data[0].phone.phone
+                            }));
+                            $("#phone_number-edit").val(order_data[0].phone.id);
+                        }
+                        $('#order_status-edit').val(order_data[0].status);
+                        // console.log(order_data[0].status)
 
 
                     }
