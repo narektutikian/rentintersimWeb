@@ -74,13 +74,22 @@ class HomeController extends Controller
     }
 
     public static function getCounts($id){
-        $orders = Order::employee($id);
+        $orders = null;
+        $user = Auth::user();
+        if ($user->level != 'Super admin')
+            $orders = Order::employee($id);
+        if ($user->level == 'Super admin')
+        $orders = Order::where('deleted_at', null);
+        $ordersp = clone($orders);
+        $ordersw = clone($orders);
+//        dd($orders);
         $counts = ([
             'All' => $orders->count(),
             'active' => $orders->filter('active')->count(),
-            'pending' => Order::employee($id)->filter('pending')->count(),
-            'waiting' => Order::employee($id)->filter('waiting')->count(),
+            'pending' => $ordersp->filter('pending')->count(),
+            'waiting' => $ordersw->filter('waiting')->count(),
         ]);
+//        dd($counts);
         return $counts;
     }
 
