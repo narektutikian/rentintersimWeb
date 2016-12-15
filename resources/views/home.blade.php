@@ -354,7 +354,6 @@
                                         <label class="table_label">Reference Number</label>
                                         <input type="text" id="reference_number" class="block_btn_30 modal_input_without_icon vd_number" value="">
                                     </div>
-
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-6">
@@ -372,6 +371,14 @@
                                     <div class="col-md-6">
                                         <label class="table_label">Order Status</label>
                                         <input type="text" name="order_status1" class="block_btn_30 modal_input_without_icon" value="">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <span class="order_key">Created by: </span><span class="order_value">Vallie Champlin 15/12/2016 12:40</span>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <span class="order_key">Updated by: </span><span class="order_value">Alexanne Robel 07/03/2017 15:22</span>
                                     </div>
                                 </div>
                             </div>

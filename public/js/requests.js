@@ -220,7 +220,7 @@ $(document).ready(function () {
             var time_cell = full_date.split(' ')[1];
             var hour_cell = time_cell.split(':')[0];
             var min_cell = time_cell.split(':')[1];
-            
+
             from.push(hour_cell);
             to.push(min_cell);
         }

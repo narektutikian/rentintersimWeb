@@ -1693,6 +1693,22 @@ input[type="radio"].toggle.checked + label {
   padding-right: 18px;
   padding-left: 2px; }
 
+.order_key {
+  color: #1b6db2;
+  font-size: 15px;
+  font-weight: normal;
+  font-style: normal;
+  font-family: "proxima_nova_rgregular", Arial, Helvetica, sans-serif;
+  line-height: 20px; }
+
+.order_value {
+  color: #8d97a6;
+  font-size: 15px;
+  font-weight: normal;
+  font-style: normal;
+  font-family: "proxima_nova_rgregular", Arial, Helvetica, sans-serif;
+  line-height: 20px; }
+
 .c_support {
   float: left;
   margin-top: 8px;
