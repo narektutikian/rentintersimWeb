@@ -64,7 +64,8 @@
                                 <span class="table_status_text not_used ">{{$sim['state']}}</span>
                             </td>
                             <td class="rwd-td5 table_status_cell">
-                                <div class="vdf_radio">
+                                <span class="remove_row"><i class="icon-delete"></i></span>
+                                <!--<div class="vdf_radio">
                                     <div class="toggle_container {{ ((!$sim['is_active']) ? 'disabled' : '') }}">
                                         <label class="label_unchecked">
                                             <input type="radio" name="toggle" value="1"><span></span>
@@ -73,7 +74,7 @@
                                             <input type="radio" name="toggle" value="0"><span></span>
                                         </label>
                                     </div>
-                                </div>
+                                </div>-->
                             </td>
                         </tr>
                         @endforeach
