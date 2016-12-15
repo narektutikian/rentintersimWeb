@@ -390,38 +390,53 @@ $( document ).ready(function() {
 
     });
 
+        /* Change hours/minutes by click */
 
-    $('.arrow-up').on('click', function(){
+        $('.arrow-up').on('click', function(){
 
-        if(!$(this).siblings('input').val().trim() == ''){
+            if(!$(this).siblings('input').val().trim() == ''){
 
-            if($(this).siblings('input').hasClass('vdf_hour')){
+                if($(this).siblings('input').hasClass('vdf_hour')){
 
-                console.log('vdf_hour ');
-                $(this).siblings('input.vdf_hour').val(parseInt($(this).siblings('input.vdf_hour').val()) + 1);
+                    console.log('vdf_hour ');
+                    $(this).siblings('input.vdf_hour').val(parseInt($(this).siblings('input.vdf_hour').val()) + 1);
+                }
+                if($(this).siblings('input').hasClass('vdf_min')){
+                    console.log('vdf_min ');
+                    $(this).siblings('input.vdf_min').val(parseInt($(this).siblings('input.vdf_min').val()) + 15);
+                }
+
             }
-            if($(this).siblings('input').hasClass('vdf_min')){
-                console.log('vdf_min ');
-                $(this).siblings('input.vdf_min').val(parseInt($(this).siblings('input.vdf_min').val()) + 15);
-            }
+        });
+        $('.arrow-down').on('click', function(){
 
+            if(!$(this).siblings('input').val().trim() == ''){
+
+                if($(this).siblings('input.vdf_hour').hasClass('vdf_hour')){
+
+                    console.log('vdf_hour');
+                    $(this).siblings('input.vdf_hour').val(parseInt($(this).siblings('input.vdf_hour').val()) - 1);
+                }
+                if($(this).siblings('input').hasClass('vdf_min')){
+                    console.log('vdf_min ');
+                    $(this).siblings('input.vdf_min').val(parseInt($(this).siblings('input.vdf_min').val()) - 15);
+                }
+
+            }
+        });
+
+        /* end of Change hours/minutes by click */
+    /* end of Numeric inputs for time picker */
+
+    $('.ref_number').on('click', function () {
+        var data_content = $(this).attr('data-content');
+        if($(this).find('.show_data_content').length > 0){
+
+            $(this).find('.show_data_content').remove();
+        }else{
+            $(this).append('<span class="show_data_content">' + data_content + '</span>');
         }
-    });
-    $('.arrow-down').on('click', function(){
 
-        if(!$(this).siblings('input').val().trim() == ''){
-
-            if($(this).siblings('input.vdf_hour').hasClass('vdf_hour')){
-
-                console.log('vdf_hour');
-                $(this).siblings('input.vdf_hour').val(parseInt($(this).siblings('input.vdf_hour').val()) - 1);
-            }
-            if($(this).siblings('input').hasClass('vdf_min')){
-                console.log('vdf_min ');
-                $(this).siblings('input.vdf_min').val(parseInt($(this).siblings('input.vdf_min').val()) - 15);
-            }
-
-        }
     });
 
 
