@@ -35,6 +35,10 @@
                 </section>
                 <section class="section_table">
                     <!--rwd-table responsive_table table-->
+                    <div class="row">
+                        <div class="col-md-12">
+
+
                     <table class="rwd-table responsive_table table" data-toggle="table">
                         <thead>
                             <tr>
@@ -85,7 +89,7 @@
 
                             </td>
                             <td class="rwd-td7 table_action_cell table_action_cell_large" data-field="Action">
-                                <span class="table_icon edit" data-toggle="modal" data-target="#modal_edit_order" data-form="#modal_edit_order">
+                                <span class="table_icon call_edit" data-toggle="modal" data-row-id="{{$order['id']}}" data-target="#modal_edit_order" data-form="#modal_edit_order">
                                     <i class="icon-edit"></i>
                                 </span>
                                 <span class="table_icon print" data-toggle="modal" data-target="#modal_print_order" data-form="modal_print_order">
@@ -115,6 +119,9 @@
                         </tbody>
                     </table>
                     {{$ordersArray->links()}}
+
+                        </div>
+                    </div>
                 </section>
             </div>
         </div>
@@ -283,7 +290,7 @@
                                         <div class="wrap_package_list_edit"></div>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                              <!--  <div class="form-group">
                                     <div class="col-md-12">
                                         <div class="single_package">
                                             <label class="table_label">Selected Package </label>
@@ -293,7 +300,7 @@
                                             </a>
                                         </div>
                                     </div>
-                                </div>
+                                </div>-->
                                 <div class="form-group">
                                     <div class="col-md-12">
                                         <label class="table_label">Enter remarks</label>
