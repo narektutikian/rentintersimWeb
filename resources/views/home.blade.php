@@ -180,12 +180,12 @@
                                         <div class="wrap_time">
                                             <i class="departure_time icon-time"></i>
                                             <div class="time_picker">
-                                                <input type="text" name="landing_hour1" class="inline_block_btn numeric_input vdf_time vdf_hour">
+                                                <input type="text" name="landing_hour" id="landing_hour" class="inline_block_btn numeric_input vdf_time vdf_hour vd_required">
                                                 <span class="arrow-down"><i></i></span>
                                                 <span class="arrow-up"><i></i></span>
                                             </div>
                                             <div class="time_picker">
-                                                <input type="text" name="landing_hour2" class="inline_block_btn numeric_input vdf_time vdf_min">
+                                                <input type="text" name="landing_minute" id="landing_minute" class="inline_block_btn numeric_input vdf_time vdf_min vd_required">
                                                 <span class="arrow-down"><i></i></span>
                                                 <span class="arrow-up"><i></i></span>
                                             </div>
@@ -203,12 +203,12 @@
                                         <div class="wrap_time">
                                             <i class="departure_time icon-time"></i>
                                             <div class="time_picker">
-                                                <input type="text" name="departure_hour1" class="inline_block_btn numeric_input vdf_time vdf_hour">
+                                                <input type="text" name="departure_hour"  id="departure_hour" class="inline_block_btn numeric_input vdf_time vdf_hour vd_required">
                                                 <span class="arrow-down"><i></i></span>
                                                 <span class="arrow-up"><i></i></span>
                                             </div>
                                             <div class="time_picker">
-                                                <input type="text" name="departure_hour2" class="inline_block_btn numeric_input vdf_time vdf_min">
+                                                <input type="text" name="departure_minute" id="departure_minute" class="inline_block_btn numeric_input vdf_time vdf_min vd_required">
                                                 <span class="arrow-down"><i></i></span>
                                                 <span class="arrow-up"><i></i></span>
 
@@ -229,12 +229,16 @@
                                     <div class="col-md-6">
                                         <label class="table_label">Customer phone number</label>
                                         <div class="select_wrapper">
-                                            <select name="customer_phone1" class="block_btn_30 modal_input">
+                                            @if(Auth::user()->level == 'Super admin')
+                                            <select name="customer_phone1" name="phone_number" id="phone_number" class="block_btn_30 modal_input">
                                                 <option value=""></option>
-                                                <option value="1">1111111111</option>
-                                                <option value="2">22222222222</option>
-                                                <option value="3">333333333333</option>
+                                                @foreach($specials as $special)
+                                                    <option value="{{$special['id']}}">{{$special['phone']}}</option>
+                                                @endforeach
                                             </select>
+                                            @else
+                                                <input type="test" id="phone_number" class="block_btn_30 modal_input" name="phone_number" value="">
+                                            @endif
                                             <i class="input_icon icon-sim"></i>
                                         </div>
                                     </div>
