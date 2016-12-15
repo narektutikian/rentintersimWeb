@@ -86,8 +86,8 @@ class HomeController extends Controller
         $counts = ([
             'All' => $orders->count(),
             'active' => $orders->filter('active')->count(),
-            'pending' => $ordersp->employee($id)->filter('pending')->count(),
-            'waiting' => $ordersw->employee($id)->filter('waiting')->count(),
+            'pending' => $ordersp->filter('pending')->count(),
+            'waiting' => $ordersw->filter('waiting')->count(),
         ]);
 //        dd($counts);
         return $counts;
