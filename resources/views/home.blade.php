@@ -150,7 +150,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <label class="table_label">SIM provider</label>
-                                        <input type="text" name="sim_prv1" class="block_btn_30 modal_input_without_icon" value="Vodafone"/>
+                                        <input type="text" name="sim_prv1" class="block_btn_30 modal_input_without_icon" value="Vodafone" disabled/>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -237,14 +237,14 @@
                                                 @endforeach
                                             </select>
                                             @else
-                                                <input type="test" id="phone_number" class="block_btn_30 modal_input" name="phone_number" value="">
+                                                <input type="test" id="phone_number" class="block_btn_30 modal_input" name="phone_number" value="" disabled>
                                             @endif
                                             <i class="input_icon icon-sim"></i>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <label class="table_label">Order Status</label>
-                                        <input type="text" name="order_status1" class="block_btn_30 modal_input_without_icon" value="">
+                                        <input type="text" name="order_status1" class="block_btn_30 modal_input_without_icon" value="" disabled>
                                     </div>
                                 </div>
                             </div>
