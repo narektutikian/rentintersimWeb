@@ -13,11 +13,12 @@ $( document ).ready(function() {
         $(this).siblings('.header_dropdown').slideToggle();
     });
 
+    /*
     $('.show_settings_link').on('click', function(){
 
         $(this).siblings('.setting_types').slideToggle();
         return false;
-    });
+    }); */
 
 
     /************* Pie Charts ***********/

@@ -101,20 +101,13 @@
                                     <div class="col-md-6">
                                         <label class="table_label">Primary Email</label>
                                         <div class="form_row">
-                                            <input type="text" class="block_btn_30 modal_input vd_email vd_required" name="email" id="email" value=""/>
-                                            <i class="input_icon icon-email"></i>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="table_label">Secondary Email</label>
-                                        <div class="form_row">
-                                            <input type="text" class="block_btn_30 modal_input vd_email vd_required" id="mail2" name="email2" value=""/>
+                                            <input type="text" class="block_btn_30 modal_input vd_email vd_required" name="email" id="email" value="" data-th="Primary Email"/>
                                             <i class="input_icon icon-email"></i>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="col-md-6 vdf_modal_right">
                                 <div class="form-group">
                                     <div class="col-md-6">
@@ -210,18 +203,9 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-6">
-
                                         <label class="table_label">Primary Email</label>
                                         <div class="relative">
                                             <input type="text" class="block_btn_30 modal_input" value="" data-th="Primary Email"/>
-                                            <i class="input_icon icon-email"></i>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-
-                                        <label class="table_label">Secondary Email</label>
-                                        <div class="relative">
-                                            <input type="text" class="block_btn_30 modal_input" value=""/>
                                             <i class="input_icon icon-email"></i>
                                         </div>
                                     </div>
