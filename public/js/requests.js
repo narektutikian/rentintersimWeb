@@ -182,71 +182,95 @@ $(document).ready(function () {
 
     $('.call_edit').on('click', function () {
 
-        console.log('call_edit ');
-
         var row_id = $(this).attr('data-row-id');
-        console.log('row_id ', row_id);
+        //console.log('row_id ', row_id);
+        var editable_form = $(this).attr('data-form');
+        var from_to = [];
+
+        $(this).closest('td').siblings('.table_time_cell_large').each(function (key, value) {
+
+            var full_date = $(this).text().trim();
+            //console.log('full_date ', full_date);
+            var time_cell = full_date.split(' ')[1];
+            //console.log('time_cell ', time_cell);
+            var hour_cell = time_cell.split(':')[0];
+            var min_cell = time_cell.split(':')[1];
+
+            console.log('hour_cell ', hour_cell);
+            console.log('min_cell ', min_cell);
+
+
+
+            from_to.push(hour_cell);
+            from_to.push(min_cell);
+            console.log('from_to before ', from_to);
+            var length = $(editable_form).find('.wrap_time').length;
+
+            console.log(' --- length --- ', length);
+            console.log('from_to after ' + from_to.splice(key , 1));
+
+            $(editable_form).find('.wrap_time').each(function (key, value) {
+
+                console.log('key ', key);
+
+                $(this).find('.vdf_hour').text(hour_cell);
+                $(this).find('.vdf_min').text(min_cell);
+
+                //from_to.splice(key , 1);
+
+
+            });
+
+
+
+        });
+
+        for(var k = 0; k < from_to.length; k++){
+
+            //console.log('from_to ' + from_to[k]);
+
+
+        }
+        //$(editable_form).find('.time_picker').each(function (key, value) {
+        //    $(editable_form).find('.vdf_hour').text(from_to[key]);
+        //    $(editable_form).find('.vdf_min').text(from_to[key+1]);
+        //});
 
         $.get("/order/" + row_id +"/edit", function (order_data, order_status) {
 
             if (order_status == "success") {
 
-                console.log(order_data);
-
-
                 $.get("/type-provider/1", function (data, type_status) {
 
                     if (type_status == "success") {
-                        $.each(data, function (i, item) {
 
-                            console.log("success dfdfsfsd ");
-                            console.log(order_data.package_id);
-                            console.log(item.id);
+                        $.each(data, function (i, item) {
 
                             if (item.id == order_data.package_id) {
                                 $(".wrap_package_list_edit").append("<div class='package_item'>" +
-                                    "<a href='#' data-id='" + item.id + "' class='editable_package' title='Basic Package'>" +
-                                    "<h4>" + item.name + "</h4>" +
-                                    "<span>" + item.description + "</span>" +
-                                    "</a>" +
+                                        "<a href='#' data-id='" + item.id + "' class='editable_package' title='Basic Package'>" +
+                                        "<h4>" + item.name + "</h4>" +
+                                        "<span>" + item.description + "</span>" +
+                                        "</a>" +
                                     "</div>");
                             } else {
 
                                 $(".wrap_package_list_edit").append("<div class='package_item'>" +
-                                    "<a href='#' data-id='" + item.id + "' title='Basic Package'>" +
-                                    "<h4>" + item.name + "</h4>" +
-                                    "<span>" + item.description + "</span>" +
-                                    "</a>" +
+                                        "<a href='#' data-id='" + item.id + "' title='Basic Package'>" +
+                                        "<h4>" + item.name + "</h4>" +
+                                        "<span>" + item.description + "</span>" +
+                                        "</a>" +
                                     "</div>");
                             }
-
-
                         });
-
-
                     }
-
                 });
-
             }
         });
+
+
     });
 
-    //$.get("/type-provider/1", function (data, status) {
-      //  if (status == "success") {
-            // $.each(data, function (i, item) {
-            //
-            //     $(".wrap_package_list_edit").append("<div class='package_item'>" +
-            //             "<a href='#' data-id='" + item.id + "' title='Basic Package'>" +
-            //                 "<h4>" + item.name + "</h4>" +
-            //                 "<span>" + item.description + "</span>" +
-            //             "</a>" +
-            //         "</div>");
-            //
-            // });
-
-      //  }
-   // });
 
     /***** ADD NEW SIM *****/
 

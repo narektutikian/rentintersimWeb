@@ -839,12 +839,6 @@ input[type="radio"].toggle.checked + label {
     width: auto;
     text-align: left;
     min-width: initial;
-    max-width: initial; }
-
-  .table_action_cell_large {
-    width: auto;
-    text-align: left;
-    min-width: initial;
     max-width: initial; } }
 @media (min-width: 768px) {
   .rwd-table td:before {
