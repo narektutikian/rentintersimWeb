@@ -270,6 +270,9 @@ $(document).ready(function () {
                             $("#phone_number-edit2").val(order_data[0].phone_id);
                         }
                         $('#order_status-edit').val(order_data[0].status);
+                        $('#creator').text(order_data[0].creator.name + " " + order_data[0].created_at);
+                        $('#editor').text(order_data[0].editor.name + " " + order_data[0].updated_at);
+
                         // console.log(order_data[0].status)
 
 

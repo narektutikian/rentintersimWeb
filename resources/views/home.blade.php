@@ -358,19 +358,23 @@
                                 <div class="form-group">
                                     <div class="col-md-6">
                                         <label class="table_label">Customer phone number</label>
-                                        <div class="select_wrapper">
                                             @if(Auth::user()->level == 'Super admin')
+                                        <div class="select_wrapper">
                                                 <select name="customer_phone1" name="phone_number" id="phone_number-edit" class="block_btn_30 modal_input">
                                                     <option value=""></option>
                                                     @foreach($specials as $special)
                                                         <option value="{{$special['id']}}">{{$special['phone']}}</option>
                                                     @endforeach
                                                 </select>
-                                            @else
-                                                <input type="test" id="phone_number" class="block_btn_30 modal_input" name="phone_number-edit2" value="" disabled>
-                                            @endif
-                                            <i class="input_icon icon-sim"></i>
                                         </div>
+                                            @else
+                                        <div class="relative">
+                                                <input type="test" id="phone_number-edit2" class="block_btn_30 modal_input" name="phone_number-edit2" value="" disabled>
+                                                <i class="input_icon icon-sim"></i>
+                                        </div>
+                                            @endif
+
+
                                     </div>
                                     <div class="col-md-6">
                                         <label class="table_label">Order Status</label>
@@ -379,10 +383,10 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <span class="order_key">Created by: </span><span class="order_value">Vallie Champlin 15/12/2016 12:40</span>
+                                        <span class="order_key">Created by: </span><span class="order_value" id="creator">Vallie Champlin 15/12/2016 12:40</span>
                                     </div>
                                     <div class="col-md-12">
-                                        <span class="order_key">Updated by: </span><span class="order_value">Alexanne Robel 07/03/2017 15:22</span>
+                                        <span class="order_key">Updated by: </span><span class="order_value" id="editor">Alexanne Robel 07/03/2017 15:22</span>
                                     </div>
                                 </div>
                             </div>
