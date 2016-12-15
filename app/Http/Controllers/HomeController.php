@@ -39,12 +39,12 @@ class HomeController extends Controller
             $orders = Order::orderby('id', 'desc')->paginate(env('PAGINATE_DEFAULT'));
        $ordersArray = $this->solveOrderList($orders, $this->viewHelper);
         $counts = $this->getCounts($user->id);
-        $specials = Phone::where([['is_active', 1], ['is_special', 1], ['state', 'not in use']])->get()->toArray();
+
 //        dd($specials);
 
 
 //        var_dump($ordersArray);
-        return view('home', compact('ordersArray'), compact('counts'))->with('specials', $specials);
+        return view('home', compact('ordersArray'), compact('counts'));
 
     }
 

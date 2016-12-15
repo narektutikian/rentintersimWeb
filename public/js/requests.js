@@ -121,12 +121,18 @@ $(document).ready(function () {
         e.stopPropagation(); // Stop stuff happening
         if ($(this).closest(".vd_form").valid()) {
 
+            var departure = $('#departure_date').val() + " "
+                + $('#departure_hour').val() + ":" + $('#departure_minute').val();
+             var landing = $('#landing_date').val() + " "
+                + $('#landing_hour').val() + ":" + $('#landing_minute').val();
+
+
             var data = {
                 _token: CSRF_TOKEN,
                 sim: $('#sim').val(),
 
-                landing: moment($('#landing_date').val(), "DD/MM/YYYY HH:mm").valueOf() / 1000,
-                departure: moment($('#departure_date').val(), "DD/MM/YYYY HH:mm").valueOf() / 1000,
+                landing: moment(landing, "DD/MM/YYYY HH:mm").valueOf() / 1000,
+                departure: moment(departure, "DD/MM/YYYY HH:mm").valueOf() / 1000,
                 package_id: package_id, // put package id
                 reference_number: $('#reference_number').val(),
                 remark: $('#remark').val(),
@@ -216,6 +222,8 @@ $(document).ready(function () {
 
 
                         });
+
+
                     }
 
                 });

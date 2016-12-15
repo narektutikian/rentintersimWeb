@@ -180,12 +180,12 @@
                                         <div class="wrap_time">
                                             <i class="departure_time icon-time"></i>
                                             <div class="time_picker">
-                                                <input type="text" name="landing_hour1" class="inline_block_btn numeric_input vdf_time vdf_hour">
+                                                <input type="text" name="landing_hour" id="landing_hour" class="inline_block_btn numeric_input vdf_time vdf_hour vd_required">
                                                 <span class="arrow-down"><i></i></span>
                                                 <span class="arrow-up"><i></i></span>
                                             </div>
                                             <div class="time_picker">
-                                                <input type="text" name="landing_hour2" class="inline_block_btn numeric_input vdf_time vdf_min">
+                                                <input type="text" name="landing_minute" id="landing_minute" class="inline_block_btn numeric_input vdf_time vdf_min vd_required">
                                                 <span class="arrow-down"><i></i></span>
                                                 <span class="arrow-up"><i></i></span>
                                             </div>
@@ -203,12 +203,12 @@
                                         <div class="wrap_time">
                                             <i class="departure_time icon-time"></i>
                                             <div class="time_picker">
-                                                <input type="text" name="departure_hour1" class="inline_block_btn numeric_input vdf_time vdf_hour">
+                                                <input type="text" name="departure_hour"  id="departure_hour" class="inline_block_btn numeric_input vdf_time vdf_hour vd_required">
                                                 <span class="arrow-down"><i></i></span>
                                                 <span class="arrow-up"><i></i></span>
                                             </div>
                                             <div class="time_picker">
-                                                <input type="text" name="departure_hour2" class="inline_block_btn numeric_input vdf_time vdf_min">
+                                                <input type="text" name="departure_minute" id="departure_minute" class="inline_block_btn numeric_input vdf_time vdf_min vd_required">
                                                 <span class="arrow-down"><i></i></span>
                                                 <span class="arrow-up"><i></i></span>
 
