@@ -145,32 +145,32 @@ $( document ).ready(function() {
 
     /************ Styling Radio buttons *************/
 
-    $(document).on('click', 'label.label_unchecked', function(e){
-        // prevent label from being called twice
-        e.stopPropagation();
-        e.preventDefault();
-        e.stopImmediatePropagation();
+    //$(document).on('click', 'label.label_unchecked', function(e){
+    //    // prevent label from being called twice
+    //    e.stopPropagation();
+    //    e.preventDefault();
+    //    e.stopImmediatePropagation();
 
-        if($(this).closest('.toggle_container').hasClass('disabled')){
+    //    if($(this).closest('.toggle_container').hasClass('disabled')){
 
-            $(this).closest('.toggle_container').removeClass('disabled');
-            /* Enable rows in table */
-            $(this).closest('.table_status_cell').prevAll('td').removeClass('disable');
-            $(this).closest('.vdf_radio').siblings('.table_status_text').removeClass('disable');
+    //        $(this).closest('.toggle_container').removeClass('disabled');
+    //        /* Enable rows in table */
+    //        $(this).closest('.table_status_cell').prevAll('td').removeClass('disable');
+    //        $(this).closest('.vdf_radio').siblings('.table_status_text').removeClass('disable');
 
-        }else if(!$(this).closest('.toggle_container').hasClass('disabled')){
+    //    }else if(!$(this).closest('.toggle_container').hasClass('disabled')){
 
-            $(this).closest('.toggle_container').addClass('disabled');
-            /* Disable rows in table */
-            $(this).closest('.table_status_cell').prevAll('td').addClass('disable');
-            $(this).closest('.vdf_radio').siblings('.table_status_text').addClass('disable');
-        }
-        if($(this).hasClass('label_unchecked')){
+    //        $(this).closest('.toggle_container').addClass('disabled');
+    //        /* Disable rows in table */
+    //        $(this).closest('.table_status_cell').prevAll('td').addClass('disable');
+    //        $(this).closest('.vdf_radio').siblings('.table_status_text').addClass('disable');
+    //    }
+    //    if($(this).hasClass('label_unchecked')){
 
-            $(this).removeClass('label_unchecked').addClass('label_checked');
-            $(this).siblings('label').addClass('label_unchecked').removeClass('label_checked');
-        }
-    });
+    //        $(this).removeClass('label_unchecked').addClass('label_checked');
+    //        $(this).siblings('label').addClass('label_unchecked').removeClass('label_checked');
+    //    }
+    //});
 
     /********** end of Styling Radio buttons ***********/
 
