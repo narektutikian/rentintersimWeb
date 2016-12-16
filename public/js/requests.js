@@ -6,6 +6,8 @@ $(document).ready(function () {
     var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
     $('.close').click(function () {
+
+        $('.vd_form')[0].reset();
         location.reload();
     });
     /****** type Creation ******/

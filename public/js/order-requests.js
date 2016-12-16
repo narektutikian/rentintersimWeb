@@ -3,6 +3,8 @@ $(document).ready(function () {
 
     /****** Order Creation ******/
     var package_id;
+    var edit_id;
+    console.log("edit id " + edit_id);
     $('#create-order').on('click', function (e) {
         e.stopPropagation(); // Stop stuff happening
         if ($(this).closest(".vd_form").valid()) {
@@ -32,6 +34,17 @@ $(document).ready(function () {
                     $(".error_response").empty();
                     $(".success_response").empty();
                     $(".success_response").append("DONE");
+                    $("#create-order").text("Edit order");
+                    $("#create-order").attr("id", "edit-order");
+                    if (Array.isArray(msg))
+                    {
+                        edit_id = msg[0].id;
+                        console.log("edit id " + edit_id);
+                    } else {
+                        edit_id = msg.id;
+                        console.log("edit id " + edit_id);
+                    }
+
                 },
                 error: function (error) {
                     $(".error_response").empty();
@@ -69,6 +82,7 @@ $(document).ready(function () {
     $('.call_edit').on('click', function () {
 
         var row_id = $(this).attr('data-row-id');
+        edit_id = row_id;
         var editable_form = $(this).attr('data-form');
         var from = [], to = [];
 
@@ -162,7 +176,6 @@ $(document).ready(function () {
                         $('.departure_date').val(order_data[0].departure.split(' ')[0]);
 
 
-
                         // console.log(order_data[0].status)
 
 
@@ -172,6 +185,60 @@ $(document).ready(function () {
         });
 
 
+    });
+
+    /***** EDIT ORDER *****/
+
+    $('#edit-order').on('click', function (e) {
+        e.stopPropagation(); // Stop stuff happening
+        if ($(this).closest(".vd_form").valid()) {
+
+            var departure = $('#departure_date-edit').val() + " "
+                + $('#departure_hour-edit').text() + ":" + $('#departure_minute-edit').text();
+            var landing = $('#landing_date-edit').val() + " "
+                + $('#landing_hour-edit').text() + ":" + $('#landing_minute-edit').text();
+
+            console.log(departure + " " + landing);
+            var data = {
+                _token: CSRF_TOKEN,
+                sim: $('#sim-edit').val(),
+                phone_id: $('#phone_number-edit').val(),
+                landing: moment(landing, "DD/MM/YYYY HH:mm").valueOf() / 1000,
+                departure: moment(departure, "DD/MM/YYYY HH:mm").valueOf() / 1000,
+                package_id: package_id, // put package id
+                reference_number: $('#reference_number-edit').val(),
+                remark: $('#remark-edit').val(),
+            };
+
+            $.ajax({
+                type: "PUT",
+                url: 'order/' + edit_id,
+                data: data,
+                success: function (msg) {
+                    $(".error_response").empty();
+                    $(".success_response").empty();
+                    $(".success_response").append("DONE");
+                    $("#create-order").text("Edit order");
+                    $("#create-order").attr("id", "edit-order");
+                    if (Array.isArray(msg))
+                    {
+                        // edit_id = msg[0].id;
+
+                    } else {
+
+
+                    }
+
+                },
+                error: function (error) {
+                    $(".error_response").empty();
+                    $(".success_response").empty();
+                    $(".error_response").append("ERROR");
+                    // $("#sim-edit-response").append("<div>"+"ERROR "+ error.responseJSON.number[0]+ " ," +error.responseJSON.provider_id[0] +"</div>");
+                    // console.log(error.responseJSON.number[0]);
+                }
+            });
+        }
     });
 
 });
