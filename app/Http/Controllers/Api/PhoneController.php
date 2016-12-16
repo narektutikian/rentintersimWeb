@@ -49,7 +49,7 @@ class PhoneController extends Controller
         $this->validate(request(), [
             'phone' => 'required',
 //            'state' => 'required',
-            'initial_sim_id' => 'required',
+            'initial_sim_id' => 'required| unique:phones',
 //            'current_sim_id' => 'required',
             'package_id' => 'required',
             'provider_id' => 'required',
