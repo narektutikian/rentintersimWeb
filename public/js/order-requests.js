@@ -63,10 +63,14 @@ $(document).ready(function () {
 
                 },
                 error: function (error) {
+                    console.log(error);
                     $(".error_response").empty();
                     $(".success_response").empty();
-                    $(".error_response").append("ERROR");
-                    // $("#sim-edit-response").append("<div>"+"ERROR "+ error.responseJSON.number[0]+ " ," +error.responseJSON.provider_id[0] +"</div>");
+                    $(".error_response").append("ERROR  ");
+                    if('sim' in error.responseJSON){
+
+                        $(".error_response").append(error.responseJSON.sim);
+                    }
                     // console.log(error.responseJSON.number[0]);
                 }
             });

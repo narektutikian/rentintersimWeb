@@ -75,10 +75,12 @@ class OrderController extends Controller
         ]);
 
             $sim = $this->helper->getSim($request->input('sim'));
-        if($sim->state != 'available')
+        if($sim != null){
+            if ($sim->state != 'available')
             return response()->json(['sim'=>'sim is already taken'], 403);
         $sim->state = 'pending';
         $sim->save();
+        } else {return response()->json(['sim' => 'sim not found'], 403);}
 //                dd($simId);
 
         $newOrder = Order::forceCreate([
