@@ -4,7 +4,7 @@ $(document).ready(function () {
     /****** Order Creation ******/
     var package_id;
     var edit_id;
-    console.log("edit id " + edit_id);
+    // console.log("edit id " + edit_id);
     $('#create-order').on('click', function (e) {
         e.stopPropagation(); // Stop stuff happening
         if ($(this).closest(".vd_form").valid()) {
@@ -267,7 +267,6 @@ $(document).ready(function () {
                         $(".success_response").empty();
                         $(".success_response").append("Order edited but there is no available number. Try getting number in Order table.");
                     }
-
                 },
                 error: function (error) {
                     $(".error_response").empty();
