@@ -643,12 +643,14 @@ $(document).ready(function () {
         var self =  $(this);
         var id = self.attr('data-row-id');
         var page = self.parents('table').attr('data-page');
+        var url = '/' + page + '/' + id;
         $('#confirm_delete').modal({ backdrop: 'static', keyboard: false })
-            .one('click', '#delete', function (e) {
+            .one('click', '#delete', function () {
 
                 $.ajax({
-                    url: '/' + page + '/' + id,
+                    url: url,
                     type: 'DELETE',
+                    data : {_token : CSRF_TOKEN},
                     success: function(result) {
                         // Do something with the result
                         console.log('success ');
