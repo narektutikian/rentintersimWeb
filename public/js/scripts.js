@@ -372,13 +372,9 @@ $( document ).ready(function() {
     // Capture Modal Close Event
     $('.modal').one("hidden.bs.modal", function () {
 
-        console.log('close!!! BEfore ');
-        location.reload();
-        console.log('close!!! ');
-
+        //location.reload();
         $(this).find('form')[0].reset();
-        
-        // put your default event here
+
     });
 
 

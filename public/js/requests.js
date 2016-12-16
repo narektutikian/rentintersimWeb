@@ -5,9 +5,10 @@
 $(document).ready(function () {
     var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
-    $('.close').click(function () {
+    //$('.close').click(function () {
         //location.reload();
-    });
+    //});
+
     /****** type Creation ******/
 
     $('#add-type').on('click', function (e) {
@@ -472,12 +473,24 @@ $(document).ready(function () {
     $(document).on('click', '.remove_row', function () {
 
         var self =  $(this);
+        var id = self.attr('data-row-id');
+        var page = self.parents('table').attr('data-page');
+        var url = '/' + page + '/' + id;
         $('#confirm_delete').modal({ backdrop: 'static', keyboard: false })
-            .one('click', '#delete', function (e) {
+            .one('click', '#delete', function () {
 
-                self.closest('tr').remove();
+                $.ajax({
+                    url: url,
+                    type: 'DELETE',
+                    data : {_token : CSRF_TOKEN},
+                    success: function(result) {
+                        // Do something with the result
+                        console.log('success ');
+                        self.closest('tr').remove();
+                    }
+                });
             });
-        //$(this).closest('tr').remove();
+
     });
 
 
