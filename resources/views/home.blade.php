@@ -219,7 +219,7 @@
                                         <label class="table_label">Customer phone number</label>
                                         @if(Auth::user()->level == 'Super admin')
                                         <div class="select_wrapper">
-                                            <select name="customer_phone1" name="phone_number" id="phone_number" class="block_btn_30 modal_input">
+                                            <select  name="phone_number" id="phone_number" class="block_btn_30 modal_input">
                                                 <option value=""></option>
                                                 @foreach($specials as $special)
                                                     <option value="{{$special['id']}}">{{$special['phone']}}</option>
@@ -229,14 +229,14 @@
                                         </div>
                                         @else
                                         <div class="relative">
-                                                <input type="test" id="phone_number" class="block_btn_30 modal_input" name="phone_number" value="" disabled>
+                                                <input type="test" id="phone_number2" class="block_btn_30 modal_input" name="phone_number" value="" disabled>
                                                 <i class="input_icon icon-sim"></i>
                                             </div>
                                         @endif
                                     </div>
                                     <div class="col-md-6">
                                         <label class="table_label">Order Status</label>
-                                        <input type="text" name="order_status1" class="block_btn_30 modal_input_without_icon" value="" disabled>
+                                        <input type="text" name="order_status1" id="order_status" class="block_btn_30 modal_input_without_icon" value="" disabled>
                                     </div>
                                 </div>
                             </div>

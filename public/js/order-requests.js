@@ -34,15 +34,31 @@ $(document).ready(function () {
                     $(".error_response").empty();
                     $(".success_response").empty();
                     $(".success_response").append("DONE");
-                    $("#create-order").text("Edit order");
-                    $("#create-order").attr("id", "edit-order");
-                    if (Array.isArray(msg))
-                    {
-                        edit_id = msg[0].id;
-                        console.log("edit id " + edit_id);
+                    $("#create-order").remove();
+                    $(".close").text("close");
+                    // $("#create-order").attr("id", "edit-order");
+                    var order_new;
+                    if (Array.isArray(msg)){
+                        order_new = msg[0];
                     } else {
-                        edit_id = msg.id;
-                        console.log("edit id " + edit_id);
+                        order_new = msg;
+                        }
+                    $('#order_status').val(order_new.status);
+                    if (order_new.status != "waiting") {
+                        $('#phone_number2').val(order_new.phone.phone);
+                        $('#phone_number').append($('<option>', {
+                            value: order_new.phone.id,
+                            text: order_new.phone.phone
+                        }));
+                        $("#phone_number").val(order_new.phone.id);
+                        // edit_id = msg[0].id;
+                        // console.log("edit id " + edit_id);
+                        // edit_id = msg.id;
+                        // console.log("edit id " + edit_id);
+                    } else {
+                        $(".error_response").empty();
+                        $(".success_response").empty();
+                        $(".success_response").append("Order created but there is no available number. Try getting number in Order table or edit order in edit form.");
                     }
 
                 },
@@ -218,8 +234,8 @@ $(document).ready(function () {
                     $(".error_response").empty();
                     $(".success_response").empty();
                     $(".success_response").append("DONE");
-                    $("#create-order").text("Edit order");
-                    $("#create-order").attr("id", "edit-order");
+                    $("#create-order").remove();
+                    // $("#create-order").attr("id", "edit-order");
                     if (Array.isArray(msg))
                     {
                         // edit_id = msg[0].id;
