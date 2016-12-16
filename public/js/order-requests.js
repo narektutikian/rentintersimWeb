@@ -81,6 +81,7 @@ $(document).ready(function () {
     });
 
     $.get("/type-provider/1", function (data, status) {
+        console.log("type loading");
         if (status == "success") {
             $.each(data, function (i, item) {
 
