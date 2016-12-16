@@ -62,7 +62,9 @@
                                 <span class="table_status_text not_used">{{$package['status']}}</span>
                             </td>
                             <td>
-                                <span class="remove_row"><i class="icon-delete"></i></span>
+                                <span class="remove_row" data-toggle="modal" data-target="#confirm_delete">
+                                    <i class="icon-delete"></i>
+                                </span>
                             </td>
                         </tr>
                         @endforeach

@@ -6,7 +6,7 @@ $(document).ready(function () {
     var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
     $('.close').click(function () {
-        location.reload();
+        //location.reload();
     });
     /****** type Creation ******/
 
@@ -552,7 +552,9 @@ $(document).ready(function () {
                                 '<span class="status_text_small not_used">' + status_text + '</span>' +
                             '</td>' +
                             '<td class="table_status_cell w_70_status">' +
-                                '<span class="remove_row"><i class="icon-delete"></i></span>' +
+                                '<span class="remove_row" data-toggle="modal" data-target="#confirm_delete">' +
+                                    '<i class="icon-delete"></i>' +
+                                '</span>' +
                             '</td>' +
                         '</tr>';
 
@@ -631,6 +633,21 @@ $(document).ready(function () {
 
         console.log(errorThrown);
     });
+
+
+
+    /* Remove Row */
+    $(document).on('click', '.remove_row', function () {
+
+        var self =  $(this);
+        $('#confirm_delete').modal({ backdrop: 'static', keyboard: false })
+            .one('click', '#delete', function (e) {
+
+                self.closest('tr').remove();
+            });
+        //$(this).closest('tr').remove();
+    });
+
 
 }); // closes document ready
 

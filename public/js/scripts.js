@@ -174,12 +174,6 @@ $( document ).ready(function() {
 
     /********** end of Styling Radio buttons ***********/
 
-    /* Remove Row */
-    $(document).on('click', '.remove_row', function () {
-
-        $(this).closest('tr').remove();
-    });
-
 
     // rotate arrow for nested rows
     $(document).on('click', '.open_nested', function (e) {
@@ -353,8 +347,12 @@ $( document ).ready(function() {
 
         });
 
-        // Capture Modal Open Event
+        console.log('target_form_id  ', target_form_id);
+
+        // Capture Modal Close Event
         $(target_form_id).one("hidden.bs.modal", function () {
+
+            console.log('close ', target_form_id);
 
             // put your default event here
             var form_action = $(this).find('form').attr('action');
@@ -365,6 +363,21 @@ $( document ).ready(function() {
         });
 
     });
+
+    /* Bootstrap Modal C;lose Event */
+
+    // Capture Modal Close Event
+    $('.modal').one("hidden.bs.modal", function () {
+
+        console.log('close!!! BEfore ');
+        location.reload();
+        console.log('close!!! ');
+
+        $(this).find('form')[0].reset();
+        
+        // put your default event here
+    });
+
 
     /* highlight selected package */
     $(document).on('click', '.package_item a', function () {

@@ -31,6 +31,22 @@
         @yield('content_admin')
 
 </div>
+
+<div id="confirm_delete" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="confirm_delete">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                Are you sure?
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-primary" id="delete">Delete</button>
+                <button type="button" data-dismiss="modal" class="btn">Cancel</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
 <script src="/js/jquery-2.2.4.min.js"></script>
 <script src="/js/jquery-validation/jquery.validate.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
