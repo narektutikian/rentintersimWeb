@@ -58,7 +58,9 @@ class PhoneController extends Controller
 //
         ]);
 
-
+        $isSpecial = 0;
+        if ($request->input('is_special') == 'true')
+            $isSpecial = 1;
 
         $newPhone = Phone::forceCreate([
 
@@ -68,7 +70,7 @@ class PhoneController extends Controller
             'current_sim_id' => $request->input('initial_sim_id'),
             'package_id' => $request->input('package_id'),
             'provider_id' => $request->input('provider_id'),
-            'is_special' => '0',
+            'is_special' => $isSpecial,
             'is_active' => '1',
 
 

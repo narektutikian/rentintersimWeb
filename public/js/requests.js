@@ -298,8 +298,9 @@ $(document).ready(function () {
                     _token: CSRF_TOKEN,
                     number: $('#sim-number').val(),
                     provider_id: $('#provider-id').val(),
-                    is_parking: $('#is-parking').val()
+                    is_parking: $('#is-parking').is(":checked")
                 };
+                console.log(data.is_parking);
 
                 $.ajax({
                     type: "POST",
@@ -397,7 +398,7 @@ $(document).ready(function () {
                     provider_id: $('#provider_id').val(),
                     package_id: $('#package_id').val(),
                     initial_sim_id: $('#sim_id').val(),
-                    is_special: $('#is_special').val()
+                    is_special: $('#is_special').is(":checked")
                 };
                 // console.log(data);
 

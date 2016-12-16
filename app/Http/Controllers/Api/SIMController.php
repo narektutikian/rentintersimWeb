@@ -58,7 +58,7 @@ class SIMController extends Controller
 
         ]);
         $simState = 'available';
-        if ($request->input('is_parking') == 0)
+        if ($request->input('is_parking') == 'true')
             $simState = 'parking';
 
         $newsim = Sim::forceCreate([

@@ -154,7 +154,7 @@
                                     <div class="col-md-12">
                                         <div class="special_number">
                                             <label class="vdf_checkbox">
-                                                <input type="checkbox" value="b" />
+                                                <input type="checkbox" id="is_special" value="b" />
                                                 <i class="icon-special"></i>
                                             </label>
                                             <span class="vdf_checkbox_text">Special number</span>
