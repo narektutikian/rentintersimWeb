@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
     /****** Order Creation ******/
     var package_id;
@@ -157,6 +158,10 @@ $(document).ready(function () {
                         $('#order_status-edit').val(order_data[0].status);
                         $('#creator').text(order_data[0].creator.name + " " + order_data[0].created_at);
                         $('#editor').text(order_data[0].editor.name + " " + order_data[0].updated_at);
+                        $('.landing_date').val(order_data[0].landing.split(' ')[0]);
+                        $('.departure_date').val(order_data[0].departure.split(' ')[0]);
+
+
 
                         // console.log(order_data[0].status)
 

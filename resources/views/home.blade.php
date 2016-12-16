@@ -73,10 +73,10 @@
                                 {{$order['provider']}}
                             </td>
                             <td class="rwd-td3 table_time_cell_large from" data-field="From">
-                                {{$order['from']}}
+                                {{$order['landing']}}
                             </td>
                             <td class="rwd-td4 table_time_cell_large to" data-field="To">
-                                {{$order['to']}}
+                                {{$order['departure']}}
                             </td>
                             <td class="rwd-td5" data-field="Created by">
                                 {{$order['created_by']}}
@@ -313,7 +313,7 @@
                                             <div class="input-group-addon">
                                                 <span class="glyphicon glyphicon-calendar"></span>
                                             </div>
-                                            <input type="text" name="departure_date2" class="inline_block_btn departure_date vd_required" data-date-format="DD/MM/YYYY">
+                                            <input type="text" name="departure_date2" class="inline_block_btn landing_date vd_required" data-date-format="DD/MM/YYYY">
                                         </div>
                                         <div class="wrap_time from">
                                             <i class="departure_time icon-time"></i>
@@ -335,7 +335,7 @@
                                             <div class="input-group-addon">
                                                 <span class="glyphicon glyphicon-calendar"></span>
                                             </div>
-                                            <input type="text" name="landing_date2" class="inline_block_btn vd_required landing_date" data-date-format="DD/MM/YYYY">
+                                            <input type="text" name="landing_date2" class="inline_block_btn vd_required departure_date" data-date-format="DD/MM/YYYY">
                                         </div>
                                         <div class="wrap_time to">
                                             <i class="departure_time icon-time"></i>
