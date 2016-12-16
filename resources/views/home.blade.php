@@ -57,26 +57,26 @@
                                 <tbody>
                                 @foreach($ordersArray as $order)
                                 <tr>
-                                    <td class="rwd-td0 table_id_cell editable_cell" data-th="Phone">
+                                    <td class="rwd-td0 table_id_cell editable_cell" data-th="Phone" data-toggle="modal" data-row-id="{{$order['id']}}" data-target="#modal_edit_order" data-form="#modal_edit_order">
                                         @if($order['phone_id']==0)
                                             <a href="{{url('get-number/'.$order['id'])}}">Get Number</a>
                                         @else
                                         {{$order['phone_id']}}
                                         @endif
                                     </td>
-                                    <td class="rwd-td1 editable_cell" data-th="SIM Number">
+                                    <td class="rwd-td1 editable_cell" data-th="SIM Number" data-toggle="modal" data-row-id="{{$order['id']}}" data-target="#modal_edit_order" data-form="#modal_edit_order">
                                         {{$order['sim_id']}}
                                     </td>
-                                    <td class="rwd-td2 editable_cell" data-th="Provider">
+                                    <td class="rwd-td2 editable_cell" data-th="Provider" data-toggle="modal" data-row-id="{{$order['id']}}" data-target="#modal_edit_order" data-form="#modal_edit_order">
                                         {{$order['provider']}}
                                     </td>
-                                    <td class="rwd-td3 table_time_cell_large from" data-field="From">
+                                    <td class="rwd-td3 table_time_cell_large from" data-field="From" data-toggle="modal" data-row-id="{{$order['id']}}" data-target="#modal_edit_order" data-form="#modal_edit_order">
                                         {{$order['landing']}}
                                     </td>
-                                    <td class="rwd-td4 table_time_cell_large to" data-field="To">
+                                    <td class="rwd-td4 table_time_cell_large to" data-field="To" data-toggle="modal" data-row-id="{{$order['id']}}" data-target="#modal_edit_order" data-form="#modal_edit_order">
                                         {{$order['departure']}}
                                     </td>
-                                    <td class="rwd-td5" data-field="Created by">
+                                    <td class="rwd-td5" data-field="Created by" data-toggle="modal" data-row-id="{{$order['id']}}" data-target="#modal_edit_order" data-form="#modal_edit_order">
                                         {{$order['created_by']}}
                                     </td>
                                     <td class="rwd-td6 ref_number" data-content="{{$order['reference_number']}}" data-field="Reference Number">

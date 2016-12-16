@@ -473,6 +473,12 @@ $( document ).ready(function() {
 
     $('.ref_number').on('click', function () {
         var data_content = $(this).attr('data-content');
+
+        if($(this).closest('tr').siblings('tr').find('.show_data_content').length > 0){
+            console.log('remove');
+            $(this).closest('tr').siblings('tr').find('.show_data_content').remove();
+        }
+
         if($(this).find('.show_data_content').length > 0){
 
             $(this).find('.show_data_content').remove();
