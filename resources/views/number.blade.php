@@ -33,18 +33,18 @@
         <section class="section_table">
             <div class="row">
                 <div class="col-md-12">
-                    <table class="rwd-table responsive_table table" data-toggle="table">
+                    <table class="rwd-table responsive_table table" data-toggle="table" data-page="number">
                         <thead>
-                        <tr>
-                            <th class="table_id_cell" data-field="id" data-sortable="true">Id</th>
-                            <th data-field="phone number" data-sortable="true">Phone Number</th>
-                            <th>SIM Number</th>
-                            <th data-field="provider" data-sortable="true">Provider </th>
-                            <th data-field="type" data-sortable="true">Type</th>
-                            <th>Action </th>
-                            <th data-field="status" data-sortable="true">Status </th>
-                            <th></th>
-                        </tr>
+                            <tr>
+                                <th class="table_id_cell" data-field="id" data-sortable="true">Id</th>
+                                <th data-field="phone number" data-sortable="true">Phone Number</th>
+                                <th>SIM Number</th>
+                                <th data-field="provider" data-sortable="true">Provider </th>
+                                <th data-field="type" data-sortable="true">Type</th>
+                                <th>Action </th>
+                                <th data-field="status" data-sortable="true">Status </th>
+                                <th></th>
+                            </tr>
                         </thead>
                         <tbody>
 
@@ -69,16 +69,9 @@
                                     <span class="table_status_text not_used">{{$number['state']}}</span>
                                 </td>
                                 <td class="rwd-td7 table_status_cell">
-                                    <div class="vdf_radio">
-                                        <div class="toggle_container {{ ((!$number['is_active']) ? 'disabled' : '') }}">
-                                            <label class="label_unchecked">
-                                                <input type="radio" name="toggle" value="1"><span></span>
-                                            </label>
-                                            <label class="label_checked">
-                                                <input type="radio" name="toggle" value="0"><span></span>
-                                            </label>
-                                        </div>
-                                    </div>
+                                    <span class="remove_row" data-toggle="modal" data-target="#confirm_delete">
+                                        <i class="icon-delete"></i>
+                                    </span>
                                 </td>
                             </tr>
 
