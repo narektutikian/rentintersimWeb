@@ -32,7 +32,7 @@
         <section class="section_table">
             <div class="row">
                 <div class="col-md-12">
-                    <table class="rwd-table responsive_table table" data-toggle="table">
+                    <table class="rwd-table responsive_table table" data-toggle="table" data-page="type">
                         <thead>
                             <tr>
                                 <th class="table_id_cell" data-field="id" data-sortable="true">Id</th>
@@ -63,16 +63,6 @@
                             </td>
                             <td>
                                 <span class="remove_row"><i class="icon-delete"></i></span>
-                                <!--<div class="vdf_radio">
-                                    <div class="toggle_container {{ ((!$package['is_active']) ? 'disabled' : '') }}">
-                                        <label class="label_unchecked">
-                                            <input type="radio" name="toggle" value="1"><span></span>
-                                        </label>
-                                        <label class="label_checked">
-                                            <input type="radio" name="toggle" value="0"><span></span>
-                                        </label>
-                                    </div>
-                                </div>-->
                             </td>
                         </tr>
                         @endforeach

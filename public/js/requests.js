@@ -576,7 +576,7 @@ $(document).ready(function () {
             recursiveIteration(json);
 
             $('#wrap_tree_table').prepend(
-                '<table class="responsive_table table user_management_table" data-toggle="table">' +
+                '<table class="responsive_table table user_management_table" data-toggle="table" data-page="sim">' +
                     '<thead>' +
                         '<tr>' +
                         '<th>' +

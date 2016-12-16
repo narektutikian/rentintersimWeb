@@ -38,16 +38,16 @@
         <section class="section_table">
             <div class="row">
                 <div class="col-md-12">
-                    <table class="rwd-table responsive_table table" data-toggle="table">
+                    <table class="rwd-table responsive_table table" data-toggle="table" data-page="sim">
                         <thead>
-                        <tr>
-                            <th class="table_id_cell" data-field="id" data-sortable="true">Id</th>
-                            <th data-th="Sim Number">Sim Number</th>
-                            <th data-field="provider" data-sortable="true" data-th="Provider">Provider</th>
-                            <th>Action </th>
-                            <th data-field="status" data-sortable="true" data-th="Status">Status </th>
-                            <th></th>
-                        </tr>
+                            <tr>
+                                <th class="table_id_cell" data-field="id" data-sortable="true">Id</th>
+                                <th data-th="Sim Number">Sim Number</th>
+                                <th data-field="provider" data-sortable="true" data-th="Provider">Provider</th>
+                                <th>Action </th>
+                                <th data-field="status" data-sortable="true" data-th="Status">Status </th>
+                                <th></th>
+                            </tr>
                         </thead>
                         <tbody>
                         @foreach($simsArray as $sim)
@@ -65,16 +65,6 @@
                             </td>
                             <td class="rwd-td5 table_status_cell">
                                 <span class="remove_row"><i class="icon-delete"></i></span>
-                                <!--<div class="vdf_radio">
-                                    <div class="toggle_container {{ ((!$sim['is_active']) ? 'disabled' : '') }}">
-                                        <label class="label_unchecked">
-                                            <input type="radio" name="toggle" value="1"><span></span>
-                                        </label>
-                                        <label class="label_checked">
-                                            <input type="radio" name="toggle" value="0"><span></span>
-                                        </label>
-                                    </div>
-                                </div>-->
                             </td>
                         </tr>
                         @endforeach
