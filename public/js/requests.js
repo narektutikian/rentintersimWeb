@@ -235,6 +235,10 @@ $(document).ready(function () {
 
                         $.each(data, function (i, item) {
 
+                            // console.log("success dfdfsfsd ");
+                            // console.log(order_data.package_id);
+                            // console.log(item.id);
+
                             if (item.id == order_data[0].package_id) {
 
                                 $(".wrap_package_list_edit").append("<div class='package_item'>" +
@@ -548,17 +552,16 @@ $(document).ready(function () {
                                 '<span class="status_text_small not_used">' + status_text + '</span>' +
                             '</td>' +
                             '<td class="table_status_cell w_70_status">' +
-                            '<span class="remove_row"><i class="icon-delete"></i></span>' +
-                                //'<div class="vdf_radio">' +
-                                //    '<div class="toggle_container disabled">' +
-                                //        '<label class="label_unchecked">' +
-                                //            '<input type="radio" name="toggle" value="1"><span></span>' +
-                                //        '</label>' +
-                                //        '<label class="label_checked">' +
-                                //            '<input type="radio" name="toggle" value="0"><span></span>' +
-                                //        '</label>' +
-                                //    '</div>' +
-                                //'</div>' +
+                                '<div class="vdf_radio">' +
+                                    '<div class="toggle_container disabled">' +
+                                        '<label class="label_unchecked">' +
+                                            '<input type="radio" name="toggle" value="1"><span></span>' +
+                                        '</label>' +
+                                        '<label class="label_checked">' +
+                                            '<input type="radio" name="toggle" value="0"><span></span>' +
+                                        '</label>' +
+                                    '</div>' +
+                                '</div>' +
                             '</td>' +
                         '</tr>';
 
