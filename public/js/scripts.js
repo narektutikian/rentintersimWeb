@@ -1,5 +1,4 @@
 $( document ).ready(function() {
-    console.log("ready!");
 
     $('header .mobile_nav_button').on('click', function(){
         $('header .mobile_nav').slideToggle();
@@ -12,14 +11,6 @@ $( document ).ready(function() {
     $('header .current_language').on('click', function(){
         $(this).siblings('.header_dropdown').slideToggle();
     });
-
-    /*
-    $('.show_settings_link').on('click', function(){
-
-        $(this).siblings('.setting_types').slideToggle();
-        return false;
-    }); */
-
 
     /************* Pie Charts ***********/
     $('#chart_active').pieChart({
@@ -177,8 +168,8 @@ $( document ).ready(function() {
 
     // rotate arrow for nested rows
     $(document).on('click', '.open_nested', function (e) {
+
         e.preventDefault();
-        console.log('open_nested');
         $(this).find('.icon-dropdown').toggleClass('expanded');
     });
 
@@ -292,17 +283,12 @@ $( document ).ready(function() {
     $(document).on('click', '.table .table_action_cell .edit', function () {
 
         var target_form_id;
-
         target_form_id = $(this).attr('data-form');
-        console.log('target_form_id ', target_form_id);
 
         $(this).closest('tr').find('.editable_cell').each(function () {
             
             var attribute_title = $(this).attr('data-th');
             var cell_value = $(this)[0].innerHTML.trim();
-            console.log('attribute_title ', attribute_title);
-            console.log('cell_value ', cell_value);
-
 
             // Capture Modal Open Event
             $(target_form_id).one('shown.bs.modal', function () {
@@ -311,13 +297,11 @@ $( document ).ready(function() {
 
                     var form_action = $(this).find('form').attr('action');
                     $(this).find('form').attr('action', form_action + '/' + cell_value);
-
                 }
                 var prop_name = $(this).find('[data-th="' + attribute_title + '"]').prop("tagName");
 
-                console.log('prop_name ', prop_name);
-
                 if(prop_name){
+
                     if(prop_name.toUpperCase()  == "INPUT"){
 
                         $(this).find('input[data-th="' + attribute_title + '"]').each(function(){
@@ -325,7 +309,7 @@ $( document ).ready(function() {
                             $(this).val(cell_value);
                         });
                     }else if(prop_name.toUpperCase()  == "SELECT"){
-                        console.log("SELECT ", cell_value);
+
                         $(this).find('select[data-th="' + attribute_title + '"] option').each(function () {
                             if ($(this).text().toLowerCase() == cell_value.toLowerCase()) {
                                 $(this).prop('selected','selected');
@@ -347,32 +331,23 @@ $( document ).ready(function() {
 
         });
 
-        console.log('target_form_id  ', target_form_id);
 
         // Capture Modal Close Event
         $(target_form_id).one("hidden.bs.modal", function () {
 
-            console.log('close ', target_form_id);
-
             // put your default event here
             var form_action = $(this).find('form').attr('action');
             var reset_form_action = form_action.split('/')[0];
+
             $(this).find('form').attr('action', reset_form_action + '/');
-
             $(this).find('form')[0].reset();
-
-            // $(this).removeData("bs.modal").find('form').empty();
-            // console.log("modal close event");
         });
 
     });
 
-    /* Bootstrap Modal C;lose Event */
-
-    // Capture Modal Close Event
+    /* Bootstrap Modal Close Event */
     $('.modal').one("hidden.bs.modal", function () {
 
-       console.log('close modal');
         $(this).find('form')[0].reset();
         location.reload();
 
