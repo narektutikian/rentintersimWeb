@@ -219,7 +219,7 @@
                                         <label class="table_label">Customer phone number</label>
                                         @if(Auth::user()->level == 'Super admin')
                                         <div class="select_wrapper">
-                                            <select name="customer_phone1" name="phone_number" id="phone_number" class="block_btn_30 modal_input">
+                                            <select  name="phone_number" id="phone_number" class="block_btn_30 modal_input">
                                                 <option value=""></option>
                                                 @foreach($specials as $special)
                                                     <option value="{{$special['id']}}">{{$special['phone']}}</option>
@@ -229,14 +229,14 @@
                                         </div>
                                         @else
                                         <div class="relative">
-                                                <input type="test" id="phone_number" class="block_btn_30 modal_input" name="phone_number" value="" disabled>
+                                                <input type="test" id="phone_number2" class="block_btn_30 modal_input" name="phone_number" value="" disabled>
                                                 <i class="input_icon icon-sim"></i>
                                             </div>
                                         @endif
                                     </div>
                                     <div class="col-md-6">
                                         <label class="table_label">Order Status</label>
-                                        <input type="text" name="order_status1" class="block_btn_30 modal_input_without_icon" value="" disabled>
+                                        <input type="text" name="order_status1" id="order_status" class="block_btn_30 modal_input_without_icon" value="" disabled>
                                     </div>
                                 </div>
                             </div>
@@ -302,17 +302,17 @@
                                             <div class="input-group-addon">
                                                 <span class="glyphicon glyphicon-calendar"></span>
                                             </div>
-                                            <input type="text" name="departure_date2" class="inline_block_btn landing_date vd_required" data-date-format="DD/MM/YYYY">
+                                            <input type="text" name="landing_date-edit" id="landing_date-edit"class="inline_block_btn landing_date vd_required" data-date-format="DD/MM/YYYY">
                                         </div>
                                         <div class="wrap_time from">
                                             <i class="departure_time icon-time"></i>
                                             <div class="time_picker">
-                                                <div  class="inline_block_btn numeric_input vdf_time vdf_hour">0</div>
+                                                <div  class="inline_block_btn numeric_input vdf_time vdf_hour" id="landing_hour-edit">0</div>
                                                 <span class="arrow-down"><i></i></span>
                                                 <span class="arrow-up"><i></i></span>
                                             </div>
                                             <div class="time_picker">
-                                                <div class="inline_block_btn vdf_minute_picker vdf_time vdf_min">0</div>
+                                                <div class="inline_block_btn vdf_minute_picker vdf_time vdf_min" id="landing_minute-edit">0</div>
                                                 <span class="arrow-down"><i></i></span>
                                                 <span class="arrow-up"><i></i></span>
                                             </div>
@@ -324,17 +324,17 @@
                                             <div class="input-group-addon">
                                                 <span class="glyphicon glyphicon-calendar"></span>
                                             </div>
-                                            <input type="text" name="landing_date2" class="inline_block_btn vd_required departure_date" data-date-format="DD/MM/YYYY">
+                                            <input type="text" name="departure_date-edit" id="departure_date-edit"  class="inline_block_btn vd_required departure_date" data-date-format="DD/MM/YYYY">
                                         </div>
                                         <div class="wrap_time to">
                                             <i class="departure_time icon-time"></i>
                                             <div class="time_picker">
-                                                <div  class="inline_block_btn numeric_input vdf_time vdf_hour">0</div>
+                                                <div  class="inline_block_btn numeric_input vdf_time vdf_hour" id="departure_hour-edit">0</div>
                                                 <span class="arrow-down"><i></i></span>
                                                 <span class="arrow-up"><i></i></span>
                                             </div>
                                             <div class="time_picker">
-                                                <div class="inline_block_btn vdf_minute_picker vdf_time vdf_min">0</div>
+                                                <div class="inline_block_btn vdf_minute_picker vdf_time vdf_min" id="departure_minute-edit">0</div>
                                                 <span class="arrow-down"><i></i></span>
                                                 <span class="arrow-up"><i></i></span>
                                             </div>
@@ -390,7 +390,7 @@
                     <div class="modal-footer vdf_modal_footer">
                         <a href="#" class="inline_block_btn light_gray_btn close vd_form_reset" data-dismiss="modal" aria-label="Close">Cancel</a>
                         {{--<button type="submit" href="#" class="inline_block_btn light_green_btn vd_form_submit" id="create-order">Edit order</button>--}}
-                        <a href="#" class="inline_block_btn light_green_btn vd_form_submit" id="create-order">Edit order</a>
+                        <a href="#" class="inline_block_btn light_green_btn vd_form_submit" id="edit-order">Edit order</a>
                         <span class="success_response"></span>
                         <span class="error_response"></span>
                     </div>

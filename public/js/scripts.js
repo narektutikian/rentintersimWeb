@@ -360,6 +360,9 @@ $( document ).ready(function() {
             $(this).find('form').attr('action', reset_form_action + '/');
 
             $(this).find('form')[0].reset();
+
+            // $(this).removeData("bs.modal").find('form').empty();
+            // console.log("modal close event");
         });
 
     });

@@ -236,6 +236,10 @@ $(document).ready(function () {
 
                         $.each(data, function (i, item) {
 
+                            // console.log("success dfdfsfsd ");
+                            // console.log(order_data.package_id);
+                            // console.log(item.id);
+
                             if (item.id == order_data[0].package_id) {
 
                                 $(".wrap_package_list_edit").append("<div class='package_item'>" +
@@ -269,6 +273,9 @@ $(document).ready(function () {
                         $('#order_status-edit').val(order_data[0].status);
                         $('#creator').text(order_data[0].creator.name + " " + order_data[0].created_at);
                         $('#editor').text(order_data[0].editor.name + " " + order_data[0].updated_at);
+
+                        // console.log(order_data[0].status)
+
 
                     }
                 });
