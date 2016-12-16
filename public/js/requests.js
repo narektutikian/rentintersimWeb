@@ -115,8 +115,8 @@ $(document).ready(function () {
             });
         }
     });
-
-    /****** Order Creation ******/
+/*
+    /!****** Order Creation ******!/
     var package_id;
     $('#create-order').on('click', function (e) {
         e.stopPropagation(); // Stop stuff happening
@@ -283,7 +283,7 @@ $(document).ready(function () {
         });
 
 
-    });
+    });*/
 
 
     /***** ADD NEW SIM *****/
