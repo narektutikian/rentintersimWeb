@@ -100,7 +100,7 @@
                                         <span class="table_status_text not_used">{{$order['status']}}</span>
                                     </td>
                                     <td class="rwd-td9 table_status_cell">
-                                        <span class="remove_row" data-toggle="modal" data-target="#confirm_delete">
+                                        <span class="remove_row" data-toggle="modal" data-target="#confirm_delete" data-row-id="{{$order['id']}}">
                                             <i class="icon-delete"></i>
                                         </span>
                                     </td>
