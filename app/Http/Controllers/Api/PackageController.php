@@ -33,7 +33,7 @@ class PackageController extends Controller
      */
     public function typeofProvider($providerId)
     {
-        $sims = Package::where([['provider_id', $providerId], ['is_active', 1]])->get();
+        $sims = Package::where('provider_id', $providerId)->get();
 
 
 //      dd($packageArray);
