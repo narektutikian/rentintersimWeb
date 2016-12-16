@@ -230,8 +230,13 @@ class OrderController extends Controller
     {
         //
         $Order = Order::find($id);
-
-
+        if ($Order != null){
+            if ($Order->status != 'active'){
+                $Order->delete();
+                return response()->json(['deleted'], 200);
+            }
+            return response()->json(['not allowed'], 403);
+        }
     }
 
     public function filter($filter){
