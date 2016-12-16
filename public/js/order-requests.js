@@ -67,10 +67,13 @@ $(document).ready(function () {
                     $(".error_response").empty();
                     $(".success_response").empty();
                     $(".error_response").append("ERROR  ");
-                    if('sim' in error.responseJSON){
-
+                    if('sim' in error.responseJSON)
                         $(".error_response").append(error.responseJSON.sim);
-                    }
+                    else if('package_id' in error.responseJSON)
+                        $(".error_response").append(" Please select SIM Package");
+                    else
+                    $(".error_response").append(error.responseText);
+
                     // console.log(error.responseJSON.number[0]);
                 }
             });
@@ -160,7 +163,7 @@ $(document).ready(function () {
                             // console.log(item.id);
 
                             if (item.id == order_data[0].package_id) {
-
+                                package_id = item.id;
                                 $(".wrap_package_list_edit").append("<div class='package_item'>" +
                                     "<a href='#' data-id='" + item.id + "' class='editable_package' title='Basic Package'>" +
                                     "<h4>" + item.name + "</h4>" +

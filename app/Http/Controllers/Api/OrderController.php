@@ -175,24 +175,48 @@ class OrderController extends Controller
         $Order = Order::find($id);
 
 
-            $Order->from = $this->helper->setStartTime($request->input('lending'));
+            $Order->from = $this->helper->setStartTime($request->input('landing'));
             $Order->to =  $this->helper->setEndTime($request->input('departure'));
-            $Order->landing =  $request->input('lending');
+            $Order->landing =  $request->input('landing');
             $Order->departure =  $request->input('departure');
             $Order->reference_number =  $request->input('package_id');
             $Order->costumer_number =  $request->input('costumer_number');
             $Order->package_id = $request->input('package_id');
             $Order->remark =  $request->input('remark');
             $Order->updated_by =  Auth::user()->id;
-            if ($request->has('sim_id')){
-                $Order->sim_id = $request->input('sim_id');
-                $Order->status =  'waiting';
+
+
+            if ($request->has('sim')) {
+                $sim = $this->helper->getSim($request->input('sim'));
+                if ($sim != null) {
+                    if ($sim->number != $request->input('sim')) {
+                        if ($sim->state != 'available')
+                            return response()->json(['sim' => 'sim is already taken'], 403);
+                        $sim->state = 'pending';
+                        $sim->save();
+                        $Order->sim_id = $sim->id;
+                    }
+                } else {
+                    return response()->json(['sim' => 'sim not found'], 403);
+                }
             }
             $Order->save();
 
+            $number = null;
+            if ($request->has('phone_id') && $request->input('phone_id') != '' && $request->input('phone_id') != $Order->phone_id) {
+                if (Auth::user()->level == 'Super admin') {
+                    $number = $this->helper->setNumber($Order->id, $request->input('phone_id'));
+                }
+            } else {
+                $number = $this->getNumber($Order->id);
+            }
+            if ($number != null) {
+                return $this->edit($Order->id);
+            }
+
+            return response($Order->toArray(), 200);
 
 
-            return $Order;
     }
 
     /**

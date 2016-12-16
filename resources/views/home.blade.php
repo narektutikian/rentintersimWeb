@@ -86,7 +86,7 @@
                                         </span>
                                     </td>
                                     <td class="rwd-td7 table_action_cell table_action_cell_large" data-field="Action">
-                                        <span class="table_icon call_edit" data-toggle="modal" data-row-id="{{$order['id']}}" data-target="#modal_edit_order" data-form="#modal_edit_order">
+                                        <span class="table_icon call_edit {{ ($order['status'] == 'active') ? 'disable' : '' }}" data-toggle="modal" data-row-id="{{$order['id']}}" data-target="#modal_edit_order" data-form="#modal_edit_order">
                                             <i class="icon-edit"></i>
                                         </span>
                                         <span class="table_icon print" data-toggle="modal" data-target="#modal_print_order" data-form="modal_print_order">
@@ -100,7 +100,7 @@
                                         <span class="table_status_text not_used">{{$order['status']}}</span>
                                     </td>
                                     <td class="rwd-td9 table_status_cell">
-                                        <span class="remove_row" data-toggle="modal" data-target="#confirm_delete" data-row-id="{{$order['id']}}">
+                                        <span class="remove_row {{ ($order['status'] == 'active') ? 'disable' : '' }}" data-toggle="modal" data-target="#confirm_delete" data-row-id="{{$order['id']}}">
                                             <i class="icon-delete"></i>
                                         </span>
                                     </td>
@@ -345,7 +345,7 @@
                                 <div class="form-group">
                                     <div class="col-md-12">
                                         <label class="table_label">Reference Number</label>
-                                        <input type="text" id="reference_number-edit" class="block_btn_30 modal_input_without_icon vd_number" value="">
+                                        <input type="text" id="reference_number-edit" class="block_btn_30 modal_input_without_icon" value="">
                                     </div>
                                 </div>
                                 <div class="form-group">
