@@ -372,8 +372,9 @@ $( document ).ready(function() {
     // Capture Modal Close Event
     $('.modal').one("hidden.bs.modal", function () {
 
-        //location.reload();
+       console.log('close modal');
         $(this).find('form')[0].reset();
+        location.reload();
 
     });
 

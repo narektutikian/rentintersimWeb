@@ -175,17 +175,17 @@ class OrderController extends Controller
         $Order = Order::find($id);
 
 
-            $Order->from = $this->helper->setStartTime($request->input('landing'));
-            $Order->to =  $this->helper->setEndTime($request->input('departure'));
-            $Order->landing =  $request->input('landing');
-            $Order->departure =  $request->input('departure');
-            $Order->reference_number =  $request->input('package_id');
-            $Order->costumer_number =  $request->input('costumer_number');
-            $Order->package_id = $request->input('package_id');
+//            $Order->from = $this->helper->setStartTime($request->input('landing'));
+//            $Order->to =  $this->helper->setEndTime($request->input('departure'));
+//            $Order->landing =  $request->input('landing');
+//            $Order->departure =  $request->input('departure');
+            $Order->reference_number =  $request->input('reference_number');
+//            $Order->costumer_number =  $request->input('costumer_number');
+//            $Order->package_id = $request->input('package_id');
             $Order->remark =  $request->input('remark');
             $Order->updated_by =  Auth::user()->id;
 
-
+/*
             if ($request->has('sim')) {
                 $sim = $this->helper->getSim($request->input('sim'));
                 if ($sim != null) {
@@ -200,8 +200,9 @@ class OrderController extends Controller
                     return response()->json(['sim' => 'sim not found'], 403);
                 }
             }
+            */
             $Order->save();
-
+/*
             $number = null;
             if ($request->has('phone_id') && $request->input('phone_id') != '' && $request->input('phone_id') != $Order->phone_id) {
                 if (Auth::user()->level == 'Super admin') {
@@ -212,7 +213,7 @@ class OrderController extends Controller
             }
             if ($number != null) {
                 return $this->edit($Order->id);
-            }
+            }*/
 
             return response($Order->toArray(), 200);
 

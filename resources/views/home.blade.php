@@ -274,7 +274,7 @@
                                 <div class="form-group">
                                     <div class="col-md-6">
                                         <label class="table_label">Enter a SIM number</label>
-                                        <input type="text" name="sim-edit" id="sim-edit" class="block_btn_30 modal_input_without_icon vd_number" data-th="SIM Number" value=""/>
+                                        <input type="text" name="sim-edit" id="sim-edit" class="block_btn_30 modal_input_without_icon vd_number" data-th="SIM Number" value="" disabled/>
                                     </div>
                                     <div class="col-md-6">
                                         <label class="table_label">SIM provider</label>
@@ -302,19 +302,19 @@
                                             <div class="input-group-addon">
                                                 <span class="glyphicon glyphicon-calendar"></span>
                                             </div>
-                                            <input type="text" name="landing_date-edit" id="landing_date-edit"class="inline_block_btn landing_date vd_required" data-date-format="DD/MM/YYYY">
+                                            <input type="text" name="landing_date-edit" id="landing_date-edit"class="inline_block_btn landing_date vd_required" data-date-format="DD/MM/YYYY" disabled>
                                         </div>
                                         <div class="wrap_time from">
                                             <i class="departure_time icon-time"></i>
                                             <div class="time_picker">
                                                 <div  class="inline_block_btn numeric_input vdf_time vdf_hour" id="landing_hour-edit">0</div>
-                                                <span class="arrow-down"><i></i></span>
-                                                <span class="arrow-up"><i></i></span>
+                                                <span class="arrow-down disable"><i></i></span>
+                                                <span class="arrow-up disable"><i></i></span>
                                             </div>
                                             <div class="time_picker">
                                                 <div class="inline_block_btn vdf_minute_picker vdf_time vdf_min" id="landing_minute-edit">0</div>
-                                                <span class="arrow-down"><i></i></span>
-                                                <span class="arrow-up"><i></i></span>
+                                                <span class="arrow-down disable"><i></i></span>
+                                                <span class="arrow-up disable"><i></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -324,19 +324,19 @@
                                             <div class="input-group-addon">
                                                 <span class="glyphicon glyphicon-calendar"></span>
                                             </div>
-                                            <input type="text" name="departure_date-edit" id="departure_date-edit"  class="inline_block_btn vd_required departure_date" data-date-format="DD/MM/YYYY">
+                                            <input type="text" name="departure_date-edit" id="departure_date-edit"  class="inline_block_btn vd_required departure_date" data-date-format="DD/MM/YYYY" disabled>
                                         </div>
                                         <div class="wrap_time to">
                                             <i class="departure_time icon-time"></i>
                                             <div class="time_picker">
                                                 <div  class="inline_block_btn numeric_input vdf_time vdf_hour" id="departure_hour-edit">0</div>
-                                                <span class="arrow-down"><i></i></span>
-                                                <span class="arrow-up"><i></i></span>
+                                                <span class="arrow-down disable"><i></i></span>
+                                                <span class="arrow-up disable"><i></i></span>
                                             </div>
                                             <div class="time_picker">
                                                 <div class="inline_block_btn vdf_minute_picker vdf_time vdf_min" id="departure_minute-edit">0</div>
-                                                <span class="arrow-down"><i></i></span>
-                                                <span class="arrow-up"><i></i></span>
+                                                <span class="arrow-down disable"><i></i></span>
+                                                <span class="arrow-up disable"><i></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -353,7 +353,7 @@
                                         <label class="table_label">Customer phone number</label>
                                             @if(Auth::user()->level == 'Super admin')
                                         <div class="select_wrapper">
-                                                <select  name="phone_number" id="phone_number-edit" class="block_btn_30 modal_input">
+                                                <select  name="phone_number" id="phone_number-edit" class="block_btn_30 modal_input" disabled>
                                                     <option value=""></option>
                                                     @foreach($specials as $special)
                                                         <option value="{{$special['id']}}">{{$special['phone']}}</option>
