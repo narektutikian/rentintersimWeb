@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Rentintersimrepo\users\UserManager as Manager;
+use Illuminate\Support\Facades\Hash;
 
 
 class UserController extends Controller
@@ -88,7 +89,7 @@ class UserController extends Controller
             'type' => 'required',
             'level' => 'required',
 //            'time_zone' => 'required',
-            'email2' => 'required|unique:users',
+            'email2' => 'unique:users',
 //            'phone' => 'required',
 //            'language_id' => 'required',
 //            'sim_balance' => 'required',
@@ -108,7 +109,7 @@ class UserController extends Controller
             'email' => $request->input('email'),
 //            'logo' => $request->input('name
             'login' => $request->input('username'),
-            'password' => $request->input('password'),
+            'password' => Hash::make($request->input('password')),
             'type' => $request->input('type'),
             'level' => $request->input('level'),
 //            'time_zone' => $request->input('name
