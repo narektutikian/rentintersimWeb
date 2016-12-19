@@ -209,7 +209,7 @@ class CreateHelper
 
         Activation::forceCreate([
             'phone_number' =>  $order->phone->phone,
-            'sim_number' => $order->sim->number,
+            'sim_number' => $phone->parking_sim->number,
             'call' => 'deactivate',
             'answer' => $res,
             'order_id' => $order->id
