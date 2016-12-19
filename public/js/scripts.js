@@ -393,7 +393,7 @@ $( document ).ready(function() {
 
                 var el = $(this).siblings('.vdf_hour').text();
 
-                if(parseInt($(this).siblings('.vdf_hour').text()) == 24) {
+                if(parseInt($(this).siblings('.vdf_hour').text()) == 23) {
 
                     $(this).siblings('.vdf_hour').text(parseInt(0));
                 }else{
@@ -405,7 +405,7 @@ $( document ).ready(function() {
 
                 var el = $(this).siblings('.vdf_min').text();
 
-                if(parseInt($(this).siblings('.vdf_min').text()) == 60){
+                if(parseInt($(this).siblings('.vdf_min').text()) == 45){
 
                     $(this).siblings('.vdf_min').text(parseInt(0));
                 }else{
@@ -425,7 +425,7 @@ $( document ).ready(function() {
 
                 if(parseInt($(this).siblings('.vdf_hour').text()) == 0){
 
-                    $(this).siblings('.vdf_hour').text(24);
+                    $(this).siblings('.vdf_hour').text(23);
                 }else{
                     $(this).siblings('.vdf_hour').text(parseInt(el) - 1);
                 }
@@ -437,7 +437,7 @@ $( document ).ready(function() {
 
                 if(parseInt($(this).siblings('.vdf_min').text()) == 0){
 
-                    $(this).siblings('.vdf_min').text(parseInt(60));
+                    $(this).siblings('.vdf_min').text(parseInt(45));
                 }else{
 
                     $(this).siblings('.vdf_min').text(parseInt(el) - 15);

@@ -12,6 +12,7 @@ use Carbon\Carbon;
 use App\Models\Sim;
 use App\Models\Phone;
 use App\Models\Order;
+use App\Models\Activation;
 
 
 class CreateHelper
@@ -155,6 +156,7 @@ class CreateHelper
         if ($orders != null){
             foreach ($orders as $order){
                 $this->activate($order->id);
+                sleep(15);
             }
         }
 //        dd($orders, $now->timestamp);
@@ -166,6 +168,15 @@ class CreateHelper
         if ($order == null)
             exit();
         $res = file_get_contents("http://176.35.171.143:8086/api/vfapi.php?key=7963ad6960b1088b94db2c32f2975e86&call=simswap&cli=0".$order->phone->phone."&sim=".$order->sim->number);
+
+        Activation::forceCreate([
+           'phone_number' =>  $order->phone->phone,
+            'sim_number' => $order->sim->number,
+            'call' => 'activate',
+            'answer' => $res,
+            'order_id' => $order->id
+        ]);
+
         $phone = $order->phone;
         $phone->current_sim_id = $order->sim_id;
         $phone->save();
@@ -182,6 +193,7 @@ class CreateHelper
         if ($orders != null){
             foreach ($orders as $order){
                 $this->deactivate($order->id);
+                sleep(15);
             }
         }
 //        dd($orders, $now->timestamp);
@@ -197,6 +209,15 @@ class CreateHelper
         $order->status = 'finished';
         $order->save();
         $res = file_get_contents("http://176.35.171.143:8086/api/vfapi.php?key=7963ad6960b1088b94db2c32f2975e86&call=simswap&cli=0".$order->phone->phone."&sim=".$phone->parking_sim->number);
+
+        Activation::forceCreate([
+            'phone_number' =>  $order->phone->phone,
+            'sim_number' => $order->sim->number,
+            'call' => 'deactivate',
+            'answer' => $res,
+            'order_id' => $order->id
+        ]);
+
         if(Order::where('phone_id', $order->phone_id)->count() > 0) //not tested
             $phone->state = 'not in use';
         else $phone->state = 'pending';
