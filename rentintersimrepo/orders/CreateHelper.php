@@ -59,7 +59,6 @@ class CreateHelper
                 $order->phone_id = $number;
                 $order->save();
                 $this->setStatus($order, 'pending');
-
             }
 
         return $number;
@@ -74,10 +73,8 @@ class CreateHelper
                 if ($this->isTimeCompatible($order, $oldOrder)) {
                     if ($this->isNumberCompatible($order, $oldOrder)){
                         $number = $oldOrder->phone_id;
-
                         $order->phone_id = $number;
                         $order->save();
-
                         $this->setStatus($order, 'pending');
 //                        dd($number);
                          break;
@@ -131,7 +128,7 @@ class CreateHelper
 
     public function setNumber($orderid, $numberid)
     {
-        dd($orderid);
+//        dd($orderid);
 
         $order = Order::find($orderid);
         $number = Phone::find($numberid);
@@ -168,7 +165,6 @@ class CreateHelper
         if ($order == null)
             exit();
         $res = file_get_contents("http://176.35.171.143:8086/api/vfapi.php?key=7963ad6960b1088b94db2c32f2975e86&call=simswap&cli=0".$order->phone->phone."&sim=".$order->sim->number);
-
         Activation::forceCreate([
            'phone_number' =>  $order->phone->phone,
             'sim_number' => $order->sim->number,
@@ -209,7 +205,6 @@ class CreateHelper
         $order->status = 'finished';
         $order->save();
         $res = file_get_contents("http://176.35.171.143:8086/api/vfapi.php?key=7963ad6960b1088b94db2c32f2975e86&call=simswap&cli=0".$order->phone->phone."&sim=".$phone->parking_sim->number);
-
         Activation::forceCreate([
             'phone_number' =>  $order->phone->phone,
             'sim_number' => $order->sim->number,
