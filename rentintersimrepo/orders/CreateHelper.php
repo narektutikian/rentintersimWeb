@@ -165,6 +165,7 @@ class CreateHelper
         if ($order == null)
             exit();
         $res = file_get_contents("http://176.35.171.143:8086/api/vfapi.php?key=7963ad6960b1088b94db2c32f2975e86&call=simswap&cli=0".$order->phone->phone."&sim=".$order->sim->number);
+
         Activation::forceCreate([
            'phone_number' =>  $order->phone->phone,
             'sim_number' => $order->sim->number,
@@ -205,6 +206,7 @@ class CreateHelper
         $order->status = 'finished';
         $order->save();
         $res = file_get_contents("http://176.35.171.143:8086/api/vfapi.php?key=7963ad6960b1088b94db2c32f2975e86&call=simswap&cli=0".$order->phone->phone."&sim=".$phone->parking_sim->number);
+
         Activation::forceCreate([
             'phone_number' =>  $order->phone->phone,
             'sim_number' => $order->sim->number,
