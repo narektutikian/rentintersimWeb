@@ -165,9 +165,7 @@ class CreateHelper
         $order = Order::find($orderId);
         if ($order == null)
             exit();
-//        $res = file_get_contents(
-//            "http://176.35.171.143:8086/api/vfapi.php?key=7963ad6960b1088b94db2c32f2975e86&call=simswap&cli=0"
-//            .$order->phone->number."&sim=".$order->sim->number);
+        $res = file_get_contents("http://176.35.171.143:8086/api/vfapi.php?key=7963ad6960b1088b94db2c32f2975e86&call=simswap&cli=0".$order->phone->phone."&sim=".$order->sim->number);
         $phone = $order->phone;
         $phone->current_sim_id = $order->sim_id;
         $phone->save();
@@ -198,9 +196,7 @@ class CreateHelper
         $phone->current_sim_id = $phone->initial_sim_id;
         $order->status = 'finished';
         $order->save();
-//        $res = file_get_contents(
-//            "http://176.35.171.143:8086/api/vfapi.php?key=7963ad6960b1088b94db2c32f2975e86&call=simswap&cli=0"
-//            .$order->phone->number."&sim=".$phone->parking_sim->number);
+        $res = file_get_contents("http://176.35.171.143:8086/api/vfapi.php?key=7963ad6960b1088b94db2c32f2975e86&call=simswap&cli=0".$order->phone->phone."&sim=".$phone->parking_sim->number);
         if(Order::where('phone_id', $order->phone_id)->count() > 0) //not tested
             $phone->state = 'not in use';
         else $phone->state = 'pending';
