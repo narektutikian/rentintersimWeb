@@ -41,6 +41,7 @@
                             <table class="rwd-table responsive_table table" data-toggle="table" data-page="order">
                                 <thead>
                                     <tr>
+                                        {{--<th data-field="id">ID</th>--}}
                                         <th data-field="Phone">Phone</th>
                                         <th data-field="SIM Number">SIM Number</th>
                                         <th data-field="provider" data-sortable="true" data-th="Provider">Provider</th>
@@ -57,6 +58,7 @@
                                 <tbody>
                                 @foreach($ordersArray as $order)
                                 <tr>
+                                    {{--<td>{{$order['id']}}</td>--}}
                                     <td class="rwd-td0 table_id_cell editable_cell" data-th="Phone" data-toggle="modal" data-row-id="{{$order['id']}}" data-target="#modal_view_order" data-form="#modal_view_order">
                                         @if($order['phone_id']==0)
                                             <a href="{{url('get-number/'.$order['id'])}}">Get Number</a>

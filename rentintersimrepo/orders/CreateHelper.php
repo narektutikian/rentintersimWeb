@@ -8,11 +8,13 @@
 
 namespace Rentintersimrepo\orders;
 
+
 use Carbon\Carbon;
 use App\Models\Sim;
 use App\Models\Phone;
 use App\Models\Order;
 use App\Models\Activation;
+use Illuminate\Support\Facades\Log;
 
 
 class CreateHelper
@@ -48,6 +50,7 @@ class CreateHelper
 
     protected function getNewNumber($order)
     {
+        Log::info('Create Helper -> getNewNumber'. date('H:i:s'));
         $number = null;
 
             $phone = Phone::where([['is_active', 1], ['package_id', $order->package_id], ['state', 'not in use'], ['is_special', '0']])->first();
@@ -66,9 +69,10 @@ class CreateHelper
 
     public function retryGetNumber($order)
     {
+//        Log::info('Create Helper -> retryGetNewNumber'. date('H:i:s'));
         $number = null;
 
-            $oldOrders = Order::where([['package_id', $order->package_id], ['phone_id', '!=', 0]])->orderby('to', 'asc')->get();
+            $oldOrders = Order::where([['package_id', $order->package_id], ['phone_id', '!=', 0]])->orderby('id', 'asc')->get();
             foreach ($oldOrders as $oldOrder){
                 if ($this->isTimeCompatible($order, $oldOrder)) {
                     if ($this->isNumberCompatible($order, $oldOrder)){
@@ -101,28 +105,46 @@ class CreateHelper
 
     protected function isTimeCompatible($newOrder, $oldOrder)
     {
-        if ($newOrder->to < $oldOrder->to){
+//        Log::info('Create Helper -> isTimeCompatible');
+        if ($newOrder->from <= $oldOrder->to + 86400  && $newOrder->to >= $oldOrder->from){
+//            Log::info('Create Helper -> isTimeCompatible : passed for new order: '. $newOrder->id. ', old order:  '. $oldOrder->id);
+            return false;
+        }
+
+        else{
+//            Log::info('Create Helper -> isTimeCompatible : failed'  );
+            return true;
+        }
+
+
+        /*if ($newOrder->to < $oldOrder->to){
             if ($newOrder->from < $oldOrder->to)
                 return true;
         }
         if ($newOrder->from > $oldOrder->to){
              return true;
         }
-        return false;
+        return false;*/
     }
 
     protected function isNumberCompatible($newOrder, $oldOrder)
     {
+//        Log::info('Create Helper -> isNumberCompatible'. date('H:i:s'));
         $allOrders = Order::where('phone_id', $oldOrder->phone_id);
-        if($allOrders->count() > 0){
+        $count = clone ($allOrders);
+        $c = $count->count();
+        if($c > 0){
 //            dd($allOrders);
             foreach ($allOrders->get() as $order){
                   if($this->isTimeCompatible($newOrder, $order))
                     continue;
-                    else return false;
+                    else
+                        return false;
                 }
 
         }
+        else
+        return true;
         return true;
     }
 
@@ -164,6 +186,7 @@ class CreateHelper
         $order = Order::find($orderId);
         if ($order == null)
             exit();
+        sleep(5);
         $res = file_get_contents("http://176.35.171.143:8086/api/vfapi.php?key=7963ad6960b1088b94db2c32f2975e86&call=simswap&cli=0".$order->phone->phone."&sim=".$order->sim->number);
 
         Activation::forceCreate([
@@ -205,6 +228,7 @@ class CreateHelper
         $phone->current_sim_id = $phone->initial_sim_id;
         $order->status = 'finished';
         $order->save();
+        sleep(5);
         $res = file_get_contents("http://176.35.171.143:8086/api/vfapi.php?key=7963ad6960b1088b94db2c32f2975e86&call=simswap&cli=0".$order->phone->phone."&sim=".$phone->parking_sim->number);
 
         Activation::forceCreate([
