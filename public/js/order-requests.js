@@ -14,7 +14,7 @@ $(document).ready(function () {
             var landing = $('#landing_date').val() + " "
                 + $('#landing_hour').text() + ":" + $('#landing_minute').text();
 
-            console.log(departure + " " + landing);
+            // console.log(departure + " " + landing);
             var data = {
                 _token: CSRF_TOKEN,
                 sim: $('#sim').val(),
@@ -28,7 +28,7 @@ $(document).ready(function () {
                 remark: $('#remark').val(),
             };
 
-            console.log("date to display" + data.landing_string);
+            // console.log("date to display" + data.landing_string);
 
             $.ajax({
                 type: "POST",
@@ -226,7 +226,7 @@ $(document).ready(function () {
             var landing = $('#landing_date-edit').val() + " "
                 + $('#landing_hour-edit').text() + ":" + $('#landing_minute-edit').text();
 
-            console.log(departure + " " + landing);
+            // console.log(departure + " " + landing);
             var data = {
                 _token: CSRF_TOKEN,
                 sim: $('#sim-edit').val(),
