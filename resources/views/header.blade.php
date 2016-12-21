@@ -21,7 +21,7 @@
             <div class="col-md-6 col-sm-10 col-sm-offset-0 col-xs-10 col-xs-offset-0">
                 <nav class="profile_nav">
                     <ul class="personal_info">
-                        <li class="date_time"><data value="October 26, 2016 17:12">October 26, 2016 <i class="icon-time"></i> 17:13</data></li>
+                        <li class="date_time"><data value=""></data></li>
                         <li class="profile">
                             <span class="profile_name">{{ Auth::user()->name }} <i class="icon-dropdown"></i></span>
                             <ul class="header_dropdown choose_user">
