@@ -159,7 +159,7 @@
                                 </div>
                             </div>
                             <div class="col-md-6 vdf_modal_right">
-                                <label class="table_label">Destination flight details AAAA</label>
+                                <label class="table_label">Destination flight details</label>
                                 <div class="form-group">
                                     <div class="col-md-6">
                                         <div class="departure"><i class="icon-landing"></i> Landing date and time</div>
