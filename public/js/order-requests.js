@@ -21,12 +21,14 @@ $(document).ready(function () {
                 phone_id: $('#phone_number').val(),
                 landing: moment(landing, "DD/MM/YYYY HH:mm").valueOf() / 1000,
                 departure: moment(departure, "DD/MM/YYYY HH:mm").valueOf() / 1000,
-                landing_string: landing,
-                departure_string: departure,
+                landing_string: moment(landing, "DD/MM/YYYY HH:mm").format("DD/MM/YYYY HH:mm"),
+                departure_string: moment(departure, "DD/MM/YYYY HH:mm").format("DD/MM/YYYY HH:mm"),
                 package_id: package_id, // put package id
                 reference_number: $('#reference_number').val(),
                 remark: $('#remark').val(),
             };
+
+            console.log("date to display" + data.landing_string);
 
             $.ajax({
                 type: "POST",
@@ -231,8 +233,8 @@ $(document).ready(function () {
                 phone_id: $('#phone_number-edit').val(),
                 landing: moment(landing, "DD/MM/YYYY HH:mm").valueOf() / 1000,
                 departure: moment(departure, "DD/MM/YYYY HH:mm").valueOf() / 1000,
-                landing_string: landing,
-                departure_string: departure,
+                landing_string: moment(landing, "DD/MM/YYYY HH:mm").format("DD/MM/YYYY HH:mm"),
+                departure_string: moment(departure, "DD/MM/YYYY HH:mm").format("DD/MM/YYYY HH:mm"),
                 package_id: package_id, // put package id
                 reference_number: $('#reference_number-edit').val(),
                 remark: $('#remark-edit').val(),
