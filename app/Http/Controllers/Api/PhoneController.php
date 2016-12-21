@@ -152,7 +152,13 @@ class PhoneController extends Controller
     public function destroy($id)
     {
         //
-        Phone::find($id)->delete();
+        $phone = Phone::find($id);
+        if ($phone != null & $phone->state == 'not in use')
+            $phone->delete();
+        else
+            return response()->json(['number' => 'deletion not allowed'], 403);
+
+        return response()->json(['number' => 'deleted'], 200);
 
 
     }

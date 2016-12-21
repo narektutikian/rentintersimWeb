@@ -149,8 +149,13 @@ class SIMController extends Controller
     public function destroy($id)
     {
         //
-        $sim=Sim::find($id);
-        $sim->delete();
+        $sim = Sim::find($id);
+        if ($sim != null & $sim->state == 'available')
+            $sim->delete();
+        else
+            return response()->json(['sim' => 'deletion not allowed'], 403);
+
+        return response()->json(['sim' => 'deleted'], 200);
     }
 
     public static function solveSimList($sims){

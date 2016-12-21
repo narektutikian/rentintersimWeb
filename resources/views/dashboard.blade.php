@@ -50,13 +50,13 @@
                     <div class="total_numbers">
                         <h2 class="total_numbers_title">Total phone numbers</h2>
                         <div class="phone_charts">
-                            <div id="chart_active"  class="pie-title-center" data-percent="{{($counts['active']/$counts['All'])*100}}">
+                            <div id="chart_active"  class="pie-title-center" data-percent="{{($counts['active'] != 0) ? ($counts['active']/$counts['All'])*100 : '0' }}">
                                 <span class="pie-value"></span>
                             </div>
                             <span class="phone_chart_status">active</span>
                         </div>
                         <div class="phone_charts middle">
-                            <div id="chart_pending"  class="pie-title-center" data-percent="{{($counts['pending']/$counts['All'])*100}}">
+                            <div id="chart_pending"  class="pie-title-center" data-percent="{{($counts['pending'] != 0) ? ($counts['pending']/$counts['All'])*100 : '0' }}">
                                 <span class="pie-value"></span>
                             </div>
                             <span class="phone_chart_status">pending</span>

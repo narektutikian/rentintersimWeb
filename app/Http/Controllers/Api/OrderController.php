@@ -232,8 +232,8 @@ class OrderController extends Controller
         $Order = Order::find($id);
         if ($Order != null){
             if ($Order->status != 'active'){
-                $this->helper->deactivate($id);
-                $Order->delete();
+//                $this->helper->deactivate($id);
+                $this->helper->freeResources($Order, 'deleted');
                 return response()->json(['deleted'], 200);
             }
             return response()->json(['not allowed'], 403);

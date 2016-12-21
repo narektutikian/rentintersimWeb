@@ -106,7 +106,7 @@ class CreateHelper
     protected function isTimeCompatible($newOrder, $oldOrder)
     {
 //        Log::info('Create Helper -> isTimeCompatible');
-        if ($newOrder->from <= $oldOrder->to + 86400  && $newOrder->to >= $oldOrder->from){
+        if ($newOrder->from <= $oldOrder->to + 86400  && $newOrder->to >= $oldOrder->from + 86400){
 //            Log::info('Create Helper -> isTimeCompatible : passed for new order: '. $newOrder->id. ', old order:  '. $oldOrder->id);
             return false;
         }
@@ -212,22 +212,21 @@ class CreateHelper
 //        $orders = Order::where('status', 'active')->get();
         if ($orders != null){
             foreach ($orders as $order){
-                $this->deactivate($order->id);
+                $this->deactivate($order);
                 sleep(15);
             }
         }
 //        dd($orders, $now->timestamp);
     }
 
-    public function deactivate ($orderId)
+    public function deactivate ($order)
     {
-        $order = Order::find($orderId);
+
         if ($order == null)
             exit();
         $phone = $order->phone;
         $phone->current_sim_id = $phone->initial_sim_id;
-        $order->status = 'finished';
-        $order->save();
+
         sleep(5);
 //        $res = file_get_contents("http://176.35.171.143:8086/api/vfapi.php?key=7963ad6960b1088b94db2c32f2975e86&call=simswap&cli=0".$order->phone->phone."&sim=".$phone->parking_sim->number);
         $res = 0;
@@ -239,17 +238,28 @@ class CreateHelper
             'order_id' => $order->id
         ]);
 
+        $this->freeResources($order, 'suspended');
+
+    }
+
+    public function freeResources ($order, $status)
+    {
+        $order->status = $status;
+        $order->save();
+
+        if ($order->status != 'waiting'){
+        $phone = $order->phone;
         if(Order::where('phone_id', $order->phone_id)->count() > 0) //not tested
             $phone->state = 'not in use';
         else $phone->state = 'pending';
+        $phone->save();
+        }
 
         $sim = $order->sim;
         $sim->state = 'available';
 
         $sim->save();
-        $phone->save();
         $order->delete();
-
     }
 
 }

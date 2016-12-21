@@ -52,10 +52,10 @@
                         <tbody>
                         @foreach($simsArray as $sim)
                         <tr>
-                            <td class="rwd-td0 table_id_cell editable_cell {{ ((!$sim['is_active']) ? 'disable' : '') }}" data-th="Id">{{$sim['id']}}</td>
-                            <td class="rwd-td1 editable_cell {{ ((!$sim['is_active']) ? 'disable' : '') }}" data-th="SIM Number">{{$sim['number']}}</td>
-                            <td class="rwd-td2 editable_cell {{ ((!$sim['is_active']) ? 'disable' : '') }}" data-th="Provider">{{$sim['provider_id']}}</td>
-                            <td class="rwd-td3 table_action_cell {{ ((!$sim['is_active']) ? 'disable' : '') }}" data-th="Action">
+                            <td class="rwd-td0 table_id_cell editable_cell" data-th="Id">{{$sim['id']}}</td>
+                            <td class="rwd-td1 editable_cell" data-th="SIM Number">{{$sim['number']}}</td>
+                            <td class="rwd-td2 editable_cell" data-th="Provider">{{$sim['provider_id']}}</td>
+                            <td class="rwd-td3 table_action_cell" data-th="Action">
                                 <span class="table_icon edit" data-toggle="modal" data-target="#modal_edit_sim" data-form="#modal_edit_sim">
                                     <i class="icon-edit"></i>
                                 </span>
@@ -64,7 +64,7 @@
                                 <span class="table_status_text not_used ">{{$sim['state']}}</span>
                             </td>
                             <td class="rwd-td5 table_status_cell">
-                                <span class="remove_row" data-toggle="modal" data-target="#confirm_delete">
+                                <span class="remove_row {{ ($sim['state'] != 'available') ? 'disable' : '' }}" data-toggle="modal" data-target="#confirm_delete" data-row-id="{{$sim['id']}}">
                                     <i class="icon-delete"></i>
                                 </span>
                             </td>
