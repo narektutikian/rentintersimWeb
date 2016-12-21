@@ -21,7 +21,7 @@ class CreateHelper
 {
     public function setStartTime($datetime){
         return Carbon::createFromTimestamp($datetime)
-            ->subMinutes(60)
+            ->subHours(2)
             ->timestamp;
     }
 

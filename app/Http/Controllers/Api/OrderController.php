@@ -86,8 +86,8 @@ class OrderController extends Controller
         $newOrder = Order::forceCreate([
             'from' => $this->helper->setStartTime($request->input('landing')),
             'to' =>  $this->helper->setEndTime($request->input('departure')),
-            'landing' =>  $request->input('landing'),
-            'departure' =>  $request->input('departure'),
+            'landing' =>  $request->input('landing_string'),
+            'departure' =>  $request->input('departure_string'),
             'reference_number' =>  $request->input('reference_number'),
             'status' =>  $status,
             'costumer_number' =>  $request->input('costumer_number'),
@@ -177,8 +177,8 @@ class OrderController extends Controller
 
 //            $Order->from = $this->helper->setStartTime($request->input('landing'));
 //            $Order->to =  $this->helper->setEndTime($request->input('departure'));
-//            $Order->landing =  $request->input('landing');
-//            $Order->departure =  $request->input('departure');
+//            $Order->landing =  $request->input('landing_string');
+//            $Order->departure =  $request->input('departure_string');
             $Order->reference_number =  $request->input('reference_number');
 //            $Order->costumer_number =  $request->input('costumer_number');
 //            $Order->package_id = $request->input('package_id');
