@@ -2062,6 +2062,7 @@ header {
           font-family: "proxima_nova_rgregular", Arial, Helvetica, sans-serif; }
           header .profile_nav .personal_info > li.date_time data i {
             vertical-align: middle;
+            margin: 0 4px;
             font-size: 24px;
             color: #ffca14; }
         header .profile_nav .personal_info > li.profile {

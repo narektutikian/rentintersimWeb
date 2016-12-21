@@ -374,22 +374,20 @@ $( document ).ready(function() {
     ];
 
     function display_c(){
-        console.log('display_c()');
         var refresh=1000; // Refresh rate in milli seconds
         setTimeout(display_ct, refresh);
     }
     display_c();
 
     function display_ct() {
-        console.log('display_ct()');
-        var strcount;
         var $date = new Date();
         var mm = month_names[$date.getMonth()];
         var dd = $date.getDate();
         var year = $date.getFullYear();
         var hours = $date.getHours();
         var mins = $date.getMinutes();
-        $('.date_time data').html(mm + ' ' + dd + '  ' + year + '<i class="icon-time"></i>' + hours + ' : ' + mins + '</data>');
+        $('.date_time data').html(mm + ' ' + dd + ', ' + year + '<i class="icon-time"></i>' + hours + ' : ' + mins + '</data>');
+        $('.date_time data').attr('value', mm + ' ' + dd + ' ' + year + ' ' + hours + ' : ' + mins + '</data>');
     }
 
 
