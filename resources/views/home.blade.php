@@ -170,7 +170,7 @@
                                             <input type="text" name="landing_date" id="landing_date" class="inline_block_btn landing_date vd_required" data-date-format="DD/MM/YYYY">
                                         </div>
                                         <div class="wrap_time">
-                                            <i class="departure_time icon-time"></i>dfdf
+                                            <i class="departure_time icon-time"></i>
                                             <div class="time_picker">
                                                 <div  class="inline_block_btn numeric_input vdf_time vdf_hour" id="landing_hour">0</div>
 
