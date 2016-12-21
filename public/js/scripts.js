@@ -380,6 +380,7 @@ $( document ).ready(function() {
     display_c();
 
     function display_ct() {
+
         var $date = new Date();
         var mm = month_names[$date.getMonth()];
         var dd = $date.getDate();
