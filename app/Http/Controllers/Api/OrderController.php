@@ -261,13 +261,32 @@ class OrderController extends Controller
         $number = $this->helper->getNumber($order);
         else return $order->phone_id;
         }
+//        if ($number != null) {
+//            echo 'Success. the number is ' . $order->phone->phone . '<a href=' . url('home') . '> GO BACK! </a>';
+//            return response()->json(['number' => $order->phone->phone], 200);
+//        }
+//        else
+//            echo 'Number not found. try other dates or package <a href=' . url('home') . '> GO BACK! </a>';
+//        return response()->json(['number' => 'not found'], 403);
+        return $number;
+    }
+
+    public function getNumberExternal($orderid)
+    {   $number = null;
+        $order = Order::find($orderid);
+        if($order->exists){
+            if ($order->phone_id == 0)
+                $number = $this->helper->getNumber($order);
+            else return $order->phone_id;
+        }
         if ($number != null) {
             echo 'Success. the number is ' . $order->phone->phone . '<a href=' . url('home') . '> GO BACK! </a>';
-//            return response()->json(['number' => $order->phone->phone], 200);
+            return response()->json(['number' => $order->phone->phone], 200);
         }
         else
             echo 'Number not found. try other dates or package <a href=' . url('home') . '> GO BACK! </a>';
 //        return response()->json(['number' => 'not found'], 403);
+//        return $number;
     }
 
     public function activate()

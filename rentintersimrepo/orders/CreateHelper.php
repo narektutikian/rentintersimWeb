@@ -244,16 +244,15 @@ class CreateHelper
 
     public function freeResources ($order, $status)
     {
-        $order->status = $status;
-        $order->save();
-
         if ($order->status != 'waiting'){
             $phone = $order->phone;
-            if(Order::where('phone_id', $order->phone_id)->count() > 0) //not tested
-                $phone->state = 'not in use';
-            else $phone->state = 'pending';
+            if(Order::where('phone_id', $order->phone_id)->count() > 1) //not tested
+                $phone->state = 'pending';
+            else $phone->state = 'not in use';
             $phone->save();
         }
+        $order->status = $status;
+        $order->save();
 
         $sim = $order->sim;
         $sim->state = 'available';
