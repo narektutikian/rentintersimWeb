@@ -286,7 +286,90 @@ $(document).ready(function () {
         }
     });
 
+    $('.call_mail').on('click', function () {
 
+        var row_id = $(this).attr('data-row-id');
+        edit_id = row_id;
+
+        $.get("/order/" + row_id + "/edit", function (order_data, order_status) {
+
+            if (order_status == "success") {
+
+                $.get("/type-provider/1", function (data, type_status) {
+
+                    if (type_status == "success") {
+
+                        $.each(data, function (i, item) {
+
+
+
+                            if (item.id == order_data[0].package_id) {
+                                package_id = item.id;
+                                $(".single_package").append(
+                                    "<a title='Basic Package'  class='selected_package' title='" + item.name + "' > " +
+                                    "<h4>" + item.name + "</h4>" +
+                                    "<span>" + item.description + "</span>" +
+                                    "</a>" );
+                            }
+
+                        });
+
+                        $('.phone').val(order_data[0].phone.phone);
+                        $('.mail_order').text("#" + order_data[0].id);
+
+
+
+                        $('.from').text(order_data[0].landing);
+                        $('.to').text(order_data[0].departure);
+
+
+                        // console.log(order_data[0].status)
+
+
+                    }
+                });
+            }
+        });
+
+
+    });
+
+    /***** SEND ORDER *****/
+
+    $('#send-order').on('click', function (e) {
+        e.stopPropagation(); // Stop stuff happening
+        if ($(this).closest(".vd_form").valid()) {
+
+            // console.log(departure + " " + landing);
+            var data = {
+                _token: CSRF_TOKEN,
+                email: $('#email').val(),
+                remark: $('#send_text').val(),
+            };
+
+            $.ajax({
+                type: "GET",
+                url: 'send-mail/' + edit_id,
+                data: data,
+                success: function (msg) {
+                    $(".error_response").empty();
+                    $(".success_response").empty();
+                    $(".success_response").append("MASSAGE SENT SUCCESSFULLY");
+                    $("#edit-order").remove();
+                    $(".close").text("close");
+                    // $("#create-order").attr("id", "edit-order");
+
+                },
+                error: function (error) {
+                    $(".error_response").empty();
+                    $(".success_response").empty();
+                    $(".error_response").append("ERROR SENDING MASSAGE");
+                    // $("#sim-edit-response").append("<div>"+"ERROR "+ error.responseJSON.number[0]+ " ," +error.responseJSON.provider_id[0] +"</div>");
+                    // console.log(error.responseJSON.number[0]);
+                }
+            });
+        }
+    });
 
 });
 /**

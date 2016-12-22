@@ -6,19 +6,21 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use App\Models\Order;
 
 class OrderMail extends Mailable
 {
     use Queueable, SerializesModels;
-
+    protected $data;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($data)
     {
         //
+        $this->data = $data;
     }
 
     /**
@@ -32,7 +34,11 @@ class OrderMail extends Mailable
         $name = 'Ignore Me';
         $subject = 'Your order';
 
+        $order = Order::find($this->data['order']);
+
         return $this->view('mail')
+            ->with('order', $order)
+            ->with('')
             ->from($address, $name)
             ->cc($address, $name)
             ->bcc($address, $name)
