@@ -299,9 +299,18 @@ class OrderController extends Controller
         $this->helper->startDeactivation();
     }
 
-    public function sendMail(Request $request)
+    public function sendMail($orderID, Request $request)
     {
-        Mail::to('narek@horizondvp.com')->send(new OrderMail);
+        $this->validate(request(), [
+        'email' => 'required|email'
+        ]);
+
+        $data = array([
+           'order' => $orderID,
+            'text' => $request->input('remark')
+        ]);
+
+        Mail::to($request->input('email'))->send(new OrderMail($data));
 
         return redirect('home');
     }

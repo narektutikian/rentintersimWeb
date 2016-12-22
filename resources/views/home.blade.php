@@ -570,7 +570,9 @@
                             <div class="point_to">
                                 <span class="point_to_text">To</span>
                                 <div class="relative point_to_input">
-                                    <input type="text" name="type_name4" class="block_btn_30 modal_input vd_number " value="" />
+                                    <form action="/" class="vd_form">
+                                    <input type="text" name="email" id="email" class="block_btn_30 modal_input vd_number vd_email vd_required" value="" />
+                                        </form>
                                     <i class="input_icon icon-special"></i>
                                 </div>
                             </div>
@@ -585,7 +587,7 @@
                                     <div class="col-md-8">
                                         <label class="table_label">Phone Number </label>
                                         <div class="relative">
-                                            <input type="text" name="type_name4" class="block_btn_30 modal_input vd_number sim-edit" value=""/>
+                                            <input type="text" name="number" class="block_btn_30 modal_input vd_number phone" value="" disabled/>
                                             <i class="input_icon icon-phone_number"></i>
                                         </div>
                                     </div>
@@ -602,17 +604,17 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="departure">From</div>
-                                        <div class="email_date_time from">13/12/2016 17:05</div>
+                                        <div class="email_date_time from"></div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="departure"> To</div>
-                                        <div class="email_date_time to">14/01/2017 10:20</div>
+                                        <div class="email_date_time to"></div>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-12">
                                         <label class="table_label">Description</label>
-                                        <textarea name="print_xtx_nnm"  class="modal_textarea"></textarea>
+                                        <textarea name="print_xtx_nnm" id="send_text" class="modal_textarea"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -626,9 +628,9 @@
                         </div>
                     </div>
                     <div class="modal-footer vdf_modal_footer">
-                        <span class="c_support">Customer support: +373 95 728 147</span>
+                        <span class="c_support">Customer support: +(972)-52-890-7711</span>
                         <a href="#" class="inline_block_btn light_gray_btn close vd_form_reset" data-dismiss="modal" aria-label="Close">Cancel</a>
-                        <a href="#" class="inline_block_btn light_green_btn vd_form_submit">Send</a>
+                        <a href="#" class="inline_block_btn light_green_btn vd_form_submit" id="send-order">Send</a>
 
                         <span class="success_response"></span>
                         <span class="error_response"></span>
