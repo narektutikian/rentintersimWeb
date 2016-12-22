@@ -95,7 +95,7 @@ class UserController extends Controller
 //            'sim_balance' => 'required',
 //            'phone_balance' => 'required',
 //            'supervisor_id' => 'required',
-//            'is_active' => 'required',
+//
 
 
         ]);

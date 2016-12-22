@@ -43,7 +43,7 @@ class CreateHelper
         $number = null;
         $number = $this->retryGetNumber($order);
         if ($number == null){
-             $number = $this->getNewNumber($order);
+            $number = $this->getNewNumber($order);
         }
         return $number;
     }
@@ -53,10 +53,10 @@ class CreateHelper
         Log::info('Create Helper -> getNewNumber'. date('H:i:s'));
         $number = null;
 
-            $phone = Phone::where([['is_active', 1], ['package_id', $order->package_id], ['state', 'not in use'], ['is_special', '0']])->first();
+        $phone = Phone::where([['is_active', 1], ['package_id', $order->package_id], ['state', 'not in use'], ['is_special', '0']])->first();
 //            dd($phone);
-            if ($phone != null)
-                if($phone->exists){
+        if ($phone != null)
+            if($phone->exists){
                 $number = $phone->id;
 //                dd($number);
                 $order->phone_id = $number;
@@ -72,20 +72,20 @@ class CreateHelper
 //        Log::info('Create Helper -> retryGetNewNumber'. date('H:i:s'));
         $number = null;
 
-            $oldOrders = Order::where([['package_id', $order->package_id], ['phone_id', '!=', 0]])->orderby('id', 'asc')->get();
-            foreach ($oldOrders as $oldOrder){
-                if ($this->isTimeCompatible($order, $oldOrder)) {
-                    if ($this->isNumberCompatible($order, $oldOrder)){
-                        $number = $oldOrder->phone_id;
-                        $order->phone_id = $number;
-                        $order->save();
-                        $this->setStatus($order, 'pending');
+        $oldOrders = Order::where([['package_id', $order->package_id], ['phone_id', '!=', 0]])->orderby('id', 'asc')->get();
+        foreach ($oldOrders as $oldOrder){
+            if ($this->isTimeCompatible($order, $oldOrder)) {
+                if ($this->isNumberCompatible($order, $oldOrder)){
+                    $number = $oldOrder->phone_id;
+                    $order->phone_id = $number;
+                    $order->save();
+                    $this->setStatus($order, 'pending');
 //                        dd($number);
-                         break;
-                     }
+                    break;
                 }
-                continue;
             }
+            continue;
+        }
 
         return $number;
     }
@@ -106,7 +106,7 @@ class CreateHelper
     protected function isTimeCompatible($newOrder, $oldOrder)
     {
 //        Log::info('Create Helper -> isTimeCompatible');
-        if ($newOrder->from <= $oldOrder->to + 86400  && $newOrder->to >= $oldOrder->from + 86400){
+        if ($newOrder->from <= $oldOrder->to + 86400  && $newOrder->to >= $oldOrder->from - 86400){
 //            Log::info('Create Helper -> isTimeCompatible : passed for new order: '. $newOrder->id. ', old order:  '. $oldOrder->id);
             return false;
         }
@@ -136,15 +136,15 @@ class CreateHelper
         if($c > 0){
 //            dd($allOrders);
             foreach ($allOrders->get() as $order){
-                  if($this->isTimeCompatible($newOrder, $order))
+                if($this->isTimeCompatible($newOrder, $order))
                     continue;
-                    else
-                        return false;
-                }
+                else
+                    return false;
+            }
 
         }
         else
-        return true;
+            return true;
         return true;
     }
 
@@ -167,7 +167,7 @@ class CreateHelper
 
     public function startActivation()
     {
-     $now = Carbon::now();
+        $now = Carbon::now();
 //        dd($now->timestamp);
         $orders = Order::where('status', 'pending')->where('from', '<', $now->timestamp+150)->get();
 //        $orders = Order::where('status', 'pending')->where('from', '<', $now->timestamp+150)->where('from', '>', $now->timestamp-150)->get();
@@ -190,7 +190,7 @@ class CreateHelper
 //        $res = file_get_contents("http://176.35.171.143:8086/api/vfapi.php?key=7963ad6960b1088b94db2c32f2975e86&call=simswap&cli=0".$order->phone->phone."&sim=".$order->sim->number);
         $res = 0;
         Activation::forceCreate([
-           'phone_number' =>  $order->phone->phone,
+            'phone_number' =>  $order->phone->phone,
             'sim_number' => $order->sim->number,
             'call' => 'activate',
             'answer' => $res,
@@ -205,7 +205,7 @@ class CreateHelper
 
     public function startDeactivation()
     {
-     $now = Carbon::now();
+        $now = Carbon::now();
 //        dd($now->timestamp);
         $orders = Order::where('status', 'active')->where('to', '<', $now->timestamp)->get();
 //        dd($orders);
@@ -248,11 +248,11 @@ class CreateHelper
         $order->save();
 
         if ($order->status != 'waiting'){
-        $phone = $order->phone;
-        if(Order::where('phone_id', $order->phone_id)->count() > 0) //not tested
-            $phone->state = 'not in use';
-        else $phone->state = 'pending';
-        $phone->save();
+            $phone = $order->phone;
+            if(Order::where('phone_id', $order->phone_id)->count() > 0) //not tested
+                $phone->state = 'not in use';
+            else $phone->state = 'pending';
+            $phone->save();
         }
 
         $sim = $order->sim;

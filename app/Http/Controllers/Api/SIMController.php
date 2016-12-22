@@ -69,7 +69,7 @@ class SIMController extends Controller
             'state' => $simState,
 //            'phone_id' => $request->input('number'),
 //            'user_id' => $request->input('number'),
-            'is_active' => 1,
+//            'is_active' => 1,
 
 
 

@@ -535,7 +535,7 @@ $(document).ready(function () {
                 for (var prop in json) {
                     var icon = '<a href="#" class="open_nested" data-toggle="collapse" data-target="#demo' + (json[prop]["id"] || "0") + '"><i class="icon-dropdown"></i></a>';
                     icon = (json[prop]["child"])? icon : '';
-                    var status_text = (json[prop]["is_active"] == 1) ? ' Active ' : '';
+                    var status_text =  ' Active ';
 
                     string += '<tr>' +
                         '<td class="w25">' +

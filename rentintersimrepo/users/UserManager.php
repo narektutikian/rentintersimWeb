@@ -16,14 +16,14 @@ use App\Models\Order;
 class UserManager
 {
     public function getMyNetwork($id){
-        $users = User::select('id', 'login', 'level', 'type', 'supervisor_id', 'name', 'is_active')->get()->toArray();
+        $users = User::select('id', 'login', 'level', 'type', 'supervisor_id', 'name')->get()->toArray();
        $network = $this->buildTree($this->solveUsers($users), $id);
 //        $flat = $this->flatten($network);
 //        return $flat;
         return $network;
     }
     public function getMyFlatNetwork($id){
-        $users = User::select('id', 'login', 'level', 'type', 'supervisor_id', 'name', 'is_active')->get()->toArray();
+        $users = User::select('id', 'login', 'level', 'type', 'supervisor_id', 'name')->get()->toArray();
         $network = $this->buildTree($this->solveUsers($users), $id);
             $flat = $this->flatten($network);
             return $flat;

@@ -368,31 +368,6 @@ $( document ).ready(function() {
         window.print();
     });
 
-    /* Show current date and time */
-    var month_names = ["January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December"
-    ];
-
-    function display_c(){
-        var refresh=1000; // Refresh rate in milli seconds
-        setTimeout(display_ct, refresh);
-    }
-    display_c();
-
-    function display_ct() {
-
-        var $date = new Date();
-        var mm = month_names[$date.getMonth()];
-        var dd = $date.getDate();
-        var year = $date.getFullYear();
-        var hours = $date.getHours();
-        var mins = $date.getMinutes();
-        $('.date_time data').html(mm + ' ' + dd + ', ' + year + '<i class="icon-time"></i>' + hours + ' : ' + mins + '</data>');
-        $('.date_time data').attr('value', mm + ' ' + dd + ' ' + year + ' ' + hours + ' : ' + mins + '</data>');
-    }
-
-
-
     /* Numeric inputs for time picker */
     $('.numeric_input').keydown(function(event) {
         console.log('keydown ');
@@ -412,7 +387,7 @@ $( document ).ready(function() {
     });
 
         /* Change hours/minutes by click */
-        $('.arrow-up').on('click', function(){
+        $('.arrow-down').on('click', function(){
 
             if($(this).siblings().hasClass('vdf_hour')){
 
@@ -441,7 +416,7 @@ $( document ).ready(function() {
             }
 
         });
-        $('.arrow-down').on('click', function(){
+        $('.arrow-up').on('click', function(){
             
             if($(this).siblings().hasClass('vdf_hour')){
 
