@@ -261,8 +261,13 @@ class OrderController extends Controller
         $number = $this->helper->getNumber($order);
         else return $order->phone_id;
         }
-
-        return $number;
+        if ($number != null) {
+            echo 'Success. the number is ' . $order->phone->phone . '<a href=' . url('home') . '> GO BACK! </a>';
+//            return response()->json(['number' => $order->phone->phone], 200);
+        }
+        else
+            echo 'Number not found. try other dates or package <a href=' . url('home') . '> GO BACK! </a>';
+//        return response()->json(['number' => 'not found'], 403);
     }
 
     public function activate()
