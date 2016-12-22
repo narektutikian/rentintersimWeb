@@ -108,7 +108,7 @@ class CreateHelper
     protected function isTimeCompatible($newOrder, $oldOrder)
     {
 //        Log::info('Create Helper -> isTimeCompatible');
-        if ($newOrder->from <= $oldOrder->to + 86400  && $newOrder->to >= $oldOrder->from - 86400){
+        if ($newOrder->from <= $oldOrder->to + 72000  && $newOrder->to >= $oldOrder->from - 72000){
 //            Log::info('Create Helper -> isTimeCompatible : passed for new order: '. $newOrder->id. ', old order:  '. $oldOrder->id);
             return false;
         }

@@ -22,7 +22,7 @@
             </tr>
             <tr>
                 <td style="padding: 10px 10px;">
-                    <div style="height: 40px; line-height: 40px; padding: 0 15px; background: #079fff; color: #ffffff; font-size: 15px; font-weight: bold; font-style: normal; font-family: proxima_nova_rgregular, Arial, Helvetica, sans-serif;">858585858585</div>
+                    <div style="height: 40px; line-height: 40px; padding: 0 15px; background: #079fff; color: #ffffff; font-size: 15px; font-weight: bold; font-style: normal; font-family: proxima_nova_rgregular, Arial, Helvetica, sans-serif;">{{$order->phone->phone}}</div>
                 </td>
             </tr>
             <tr>
