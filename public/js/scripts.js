@@ -468,5 +468,17 @@ $( document ).ready(function() {
     });
 
 
+    /* Open order modal after double click */
+
+    $('#link').on('click', function (event) {
+
+        event.preventDefault();
+    });
+    $('#link').on('dblclick', function (event) {
+
+        event.preventDefault();
+        $('#modal_view_order').modal('toggle');
+
+    });
 
 });
