@@ -1755,12 +1755,15 @@ input[type="radio"].toggle.checked + label {
   display: inline-block;
   vertical-align: middle;
   margin-left: 15px;
-  color: #ffffff;
+  color: #079fff;
   text-align: center;
   font-size: 15px;
   font-weight: normal;
   font-style: normal;
   font-family: "proxima_nova_rgregular", Arial, Helvetica, sans-serif; }
+
+.departure .email_date_time {
+  color: #ffffff; }
 
 .email_phone_num {
   margin: 20px auto 15px;
