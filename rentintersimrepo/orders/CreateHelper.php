@@ -250,7 +250,7 @@ class CreateHelper
             $phone = $order->phone;
             if(Order::where('phone_id', $order->phone_id)->where('status', 'pending')->count() > 1) //not tested
                 $phone->state = 'pending';
-                if (Order::where('phone_id', $order->phone_id)->where('status', 'active')->count() > 0)
+                if (Order::where('phone_id', $order->phone_id)->where('status', 'active')->count() > 0 && $status != 'suspended')
                     $phone->state = 'active';
             else $phone->state = 'not in use';
             $phone->save();
