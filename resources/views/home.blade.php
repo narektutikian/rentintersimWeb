@@ -66,20 +66,28 @@
                                         {{$order['phone_id']}}
                                         @endif
                                     </td>
-                                    <td class="rwd-td1 editable_cell" data-th="SIM Number" data-toggle="modal" data-row-id="{{$order['id']}}" data-target="#modal_view_order" data-form="#modal_view_order">
-                                        {{$order['sim_id']}}
+                                    <td class="rwd-td1 editable_cell" data-th="SIM Number" data-row-id="{{$order['id']}}" data-form="#modal_view_order">
+                                        <a href="#modal_view_order" role="button" class="link">
+                                            {{$order['sim_id']}}
+                                        </a>
                                     </td>
-                                    <td class="rwd-td2 editable_cell" data-th="Provider" data-toggle="modal" data-row-id="{{$order['id']}}" data-target="#modal_view_order" data-form="#modal_view_order">
-                                        {{$order['provider']}}
+                                    <td class="rwd-td2 editable_cell" data-th="Provider" data-row-id="{{$order['id']}}" data-target="#modal_view_order" data-form="#modal_view_order">
+                                        <a href="#modal_view_order" role="button" class="link">
+                                            {{$order['provider']}}
+                                        </a>
                                     </td>
-                                    <td class="rwd-td3 table_time_cell_large from" data-field="From" data-toggle="modal" data-row-id="{{$order['id']}}" data-target="#modal_view_order" data-form="#modal_view_order">
-                                        {{$order['landing']}}
+                                    <td class="rwd-td3 table_time_cell_large from" data-field="From" data-row-id="{{$order['id']}}" data-target="#modal_view_order" data-form="#modal_view_order">
+                                        <a href="#modal_view_order" role="button" class="link">
+                                            {{$order['landing']}}
+                                        </a>
                                     </td>
                                     <td class="rwd-td4 table_time_cell_large to" data-field="To" data-toggle="modal" data-row-id="{{$order['id']}}" data-target="#modal_edit_order" data-form="#modal_edit_order">
                                         {{$order['departure']}}
                                     </td>
-                                    <td class="rwd-td5" data-field="Created by" data-toggle="modal" data-row-id="{{$order['id']}}" data-target="#modal_view_order" data-form="#modal_view_order">
-                                        {{$order['created_by']}}
+                                    <td class="rwd-td5 editable_cell" data-field="Created by" data-row-id="{{$order['id']}}" data-target="#modal_view_order" data-form="#modal_view_order">
+                                        <a href="#modal_view_order" role="button" class="link">
+                                            {{$order['created_by']}}
+                                        </a>
                                     </td>
                                     <td class="rwd-td6 ref_number" data-content="{{$order['reference_number']}}" data-field="Reference Number">
                                         <span class="hint">i</span>
