@@ -94,7 +94,7 @@
                                         <span class="table_icon print" data-toggle="modal" data-target="#modal_print_order" data-form="modal_print_order">
                                             <i class="icon-print"></i>
                                         </span>
-                                        <span class="table_icon"  data-toggle="modal" data-target="#modal_order_email">
+                                        <span class="table_icon call_mail"  data-toggle="modal" data-target="#modal_order_email" data-row-id="{{$order['id']}}">
                                             <i class="icon-email"></i>
                                         </span>
                                     </td>
@@ -280,7 +280,7 @@
                                 <div class="form-group">
                                     <div class="col-md-6">
                                         <label class="table_label">Enter a SIM number</label>
-                                        <input type="text" name="sim-edit" id="sim-edit" class="block_btn_30 modal_input_without_icon vd_number" data-th="SIM Number" value="" disabled/>
+                                        <input type="text" name="sim-edit" id="sim-edit" class="block_btn_30 modal_input_without_icon vd_number sim-edit" data-th="SIM Number" value="" disabled/>
                                     </div>
                                     <div class="col-md-6">
                                         <label class="table_label">SIM provider</label>
@@ -562,7 +562,7 @@
                             <div class="point_to">
                                 <span class="point_to_text">To</span>
                                 <div class="relative point_to_input">
-                                    <input type="text" name="type_name4" class="block_btn_30 modal_input vd_number" value=""/>
+                                    <input type="text" name="type_name4" class="block_btn_30 modal_input vd_number " value="" />
                                     <i class="input_icon icon-special"></i>
                                 </div>
                             </div>
@@ -577,17 +577,14 @@
                                     <div class="col-md-8">
                                         <label class="table_label">Phone Number </label>
                                         <div class="relative">
-                                            <input type="text" name="type_name4" class="block_btn_30 modal_input vd_number" value=""/>
+                                            <input type="text" name="type_name4" class="block_btn_30 modal_input vd_number sim-edit" value=""/>
                                             <i class="input_icon icon-phone_number"></i>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="single_package">
                                             <label class="table_label">Selected Package </label>
-                                            <a class="selected_package" title="Basic Package">
-                                                <h4>Basic Package</h4>
-                                                <span>8 Mb Data Unlimited local Call + SMS</span>
-                                            </a>
+
                                         </div>
                                     </div>
                                 </div>
@@ -597,11 +594,11 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="departure">From</div>
-                                        <div class="email_date_time">13/12/2016 17:05</div>
+                                        <div class="email_date_time from">13/12/2016 17:05</div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="departure"> To</div>
-                                        <div class="email_date_time">14/01/2017 10:20</div>
+                                        <div class="email_date_time to">14/01/2017 10:20</div>
                                     </div>
                                 </div>
                                 <div class="form-group">
