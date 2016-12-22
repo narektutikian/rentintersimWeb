@@ -1762,6 +1762,9 @@ input[type="radio"].toggle.checked + label {
   font-style: normal;
   font-family: "proxima_nova_rgregular", Arial, Helvetica, sans-serif; }
 
+.departure .email_date_time {
+  color: #ffffff; }
+
 .email_phone_num {
   margin: 20px auto 15px;
   text-align: center;
