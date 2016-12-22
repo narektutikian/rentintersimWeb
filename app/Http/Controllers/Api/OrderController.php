@@ -280,12 +280,12 @@ class OrderController extends Controller
             else return $order->phone_id;
         }
         if ($number != null) {
-            echo 'Success. the number is ' . $order->phone->phone . '<a href=' . url('home') . '> GO BACK! </a>';
+//            echo 'Success. the number is ' . $order->phone->phone . '<a href=' . url('home') . '> GO BACK! </a>';
             return response()->json(['number' => $order->phone->phone], 200);
         }
         else
-            echo 'Number not found. try other dates or package <a href=' . url('home') . '> GO BACK! </a>';
-//        return response()->json(['number' => 'not found'], 403);
+//            echo 'Number not found. try other dates or package <a href=' . url('home') . '> GO BACK! </a>';
+        return response()->json(['number' => 'not found'], 403);
 //        return $number;
     }
 

@@ -59,9 +59,9 @@
                                 @foreach($ordersArray as $order)
                                 <tr>
                                     {{--<td>{{$order['id']}}</td>--}}
-                                    <td class="rwd-td0 table_id_cell editable_cell" data-th="Phone" data-row-id="{{$order['id']}}" >
+                                    <td class="rwd-td0 table_id_cell editable_cell" data-th="Phone" data-row-id="{{$order['id']}}"  data-cell-id="{{$order['id']}}">
                                         @if($order['phone_id']==0)
-                                            <a href="{{url('get-number/'.$order['id'])}}">Get Number</a>
+                                            <a id= "{{$order['id']}}" href="#" onClick = "getNumber({{$order['id']}});">Get Number</a>
                                         @else
                                         {{$order['phone_id']}}
                                         @endif

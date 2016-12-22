@@ -286,7 +286,26 @@ $(document).ready(function () {
         }
     });
 
+
+
 });
 /**
  * Created by narek on 12/16/16.
  */
+function getNumber(id) {
+    // console.log("get number for " + id)
+    $.ajax({
+        type: "GET",
+        url: 'get-number/' + id,
+        success: function (msg) {
+            // console.log(msg);
+            $('a#'+ id).remove();
+            $("td[data-cell-id='"+ id +"']" ).text(msg.number);
+        },
+        error: function (error) {
+            // console.log("error " + error);
+            $('a#'+ id).html("number not found").css("color", "red");;
+            $('a#'+ id).parent('td');
+        }
+    });
+}
