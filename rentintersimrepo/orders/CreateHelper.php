@@ -96,8 +96,10 @@ class CreateHelper
         $order->save();
         $number = $order->phone;
 //        dd($order);
+        if ($number->state != 'active'){
         $number->state = $status;
         $number->save();
+        }
         $sim = $order->sim;
         $sim->state = $status;
         $sim->save();
@@ -246,8 +248,10 @@ class CreateHelper
     {
         if ($order->status != 'waiting'){
             $phone = $order->phone;
-            if(Order::where('phone_id', $order->phone_id)->count() > 1) //not tested
+            if(Order::where('phone_id', $order->phone_id)->where('status', 'pending')->count() > 1) //not tested
                 $phone->state = 'pending';
+                if (Order::where('phone_id', $order->phone_id)->where('status', 'active')->count() > 0)
+                    $phone->state = 'active';
             else $phone->state = 'not in use';
             $phone->save();
         }
