@@ -199,14 +199,14 @@
                                             <div class="time_picker">
                                                 <div  class="inline_block_btn numeric_input vdf_time vdf_hour" id="departure_hour">0</div>
 
-                                                <span class="arrow-up"><i></i></span>
                                                 <span class="arrow-down"><i></i></span>
+                                                <span class="arrow-up"><i></i></span>
                                             </div>
                                             <div class="time_picker">
                                                 <div class="inline_block_btn vdf_time vdf_min" id="departure_minute">0</div>
 
-                                                <span class="arrow-up"><i></i></span>
                                                 <span class="arrow-down"><i></i></span>
+                                                <span class="arrow-up"><i></i></span>
                                             </div>
                                         </div>
 

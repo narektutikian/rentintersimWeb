@@ -387,7 +387,7 @@ $( document ).ready(function() {
     });
 
         /* Change hours/minutes by click */
-        $('.arrow-down').on('click', function(){
+        $('.arrow-up').on('click', function(){
 
             if($(this).siblings().hasClass('vdf_hour')){
 
@@ -416,7 +416,7 @@ $( document ).ready(function() {
             }
 
         });
-        $('.arrow-up').on('click', function(){
+        $('.arrow-down').on('click', function(){
             
             if($(this).siblings().hasClass('vdf_hour')){
 
