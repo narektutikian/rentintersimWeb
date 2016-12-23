@@ -384,10 +384,11 @@ function getNumber(id) {
             // console.log(msg);
             $('a#'+ id).remove();
             $("td[data-cell-id='"+ id +"']" ).text(msg.number);
+            location.reload();
         },
         error: function (error) {
             // console.log("error " + error);
-            $('a#'+ id).html("number not found").css("color", "red");;
+            $('a#'+ id).html("number not found").css("color", "red");
             $('a#'+ id).parent('td');
         }
     });
