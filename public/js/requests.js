@@ -358,7 +358,7 @@ $(document).ready(function () {
                 _token: CSRF_TOKEN,
                 number: $('#number').val(),
                 provider_id: $('#provider_id').val(),
-                is_parking: $('#is_parking').val()
+                is_parking: $('#is_parking-edit').is(":checked")
             };
             var id = $('#id').val();
 
@@ -464,7 +464,7 @@ $(document).ready(function () {
                 initial_sim_id: $('#sim_id-edit').val(),
                 package_id: $('#package_id-edit').val(),
                 provider_id: $('#provider_id-edit').val(),
-                is_special: $('#is_special-edit').val()
+                is_special: $('#is_special-edit').is(":checked")
             };
             var id = $('#id').val();
             // console.log( new FormData($("#edit-number-form")[0]));

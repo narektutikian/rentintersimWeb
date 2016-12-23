@@ -114,16 +114,18 @@ class SIMController extends Controller
         //
         $this->validate(request(), [
 
-            'number' => 'required|unique:sims',
+            'number' => 'required',
             'provider_id' => 'required',
 //            'is_parking' => 'required',
 //            'phone_id' => 'required',
 //            'user_id' => 'required',
 //            'is_active' => 1,
         ]);
+
+
         $sim=Sim::find($id);
         $simState = '';
-        if ($request->input('is_parking') == 0)
+        if ($request->input('is_parking') == 'true')
             $simState = 'parking';
         else $simState = $sim->state;
 

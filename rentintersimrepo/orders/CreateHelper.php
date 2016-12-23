@@ -158,13 +158,33 @@ class CreateHelper
         $number = Phone::find($numberid);
         if ($order != null && $number != null){
             if ($order->package_id != $number->package_id)
-                return response()->json(['Insufficient type selected'], 403);
-            $order->phone_id = $number->id;
-            $order->save();
-            $this->setStatus($order, 'pending');
-            return $number;
-        } else {return response()->json(['Number or Order does not exist'], 403);}
-        return response()->json(['unknown error'], 403);
+                return 'Insufficient package selected. The package of this number is #'. $number->package_id;
+            if ($number->state == 'not in use') {
+                $order->phone_id = $number->id;
+                $order->save();
+                $this->setStatus($order, 'pending');
+            } else {
+
+                $oldOrders = Order::where([['phone_id', $numberid]])->orderby('id', 'asc')->get();
+                foreach ($oldOrders as $oldOrder){
+                    if ($this->isTimeCompatible($order, $oldOrder)) {
+                        if ($this->isNumberCompatible($order, $oldOrder)){
+                            $numberid = $oldOrder->phone_id;
+                            $order->phone_id = $numberid;
+                            $order->save();
+                            $this->setStatus($order, 'pending');
+//                        dd($number);
+                            break;
+                        }
+                    }
+                    continue;
+                }
+
+                return 'This number is in use for selected period of time';
+            }
+            return $number->id;
+        } else {return 'Number or Order does not exist';}
+        return 'unknown error';
     }
 
     public function startActivation()

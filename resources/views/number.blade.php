@@ -61,7 +61,7 @@
                                     </span>
 
                                     <label class="vdf_checkbox">
-                                        <input type="checkbox" name="num_chkb{{$number['id']}}" value="" />
+                                        <input type="checkbox" name="num_chkb{{$number['id']}}" value="" {{ ($number['is_special'] == 1) ? 'checked' : '' }}/>
                                         <i class="icon-special"></i>
                                     </label>
                                 </td>
@@ -262,7 +262,7 @@
                                     <div class="col-md-12">
                                         <div class="special_number">
                                             <label class="vdf_checkbox">
-                                                <input type="checkbox" value="b" />
+                                                <input type="checkbox" id="is_special-edit" value="b" />
                                                 <i class="icon-special"></i>
                                             </label>
                                             <span class="vdf_checkbox_text">Special number</span>
@@ -295,7 +295,7 @@
                     </div>
                     <div class="modal-footer vdf_modal_footer">
                         <a href="#" class="inline_block_btn light_gray_btn close vd_form_reset" data-dismiss="modal" aria-label="Close">Cancel</a>
-                        <a href="#" class="inline_block_btn light_green_btn vd_form_submit" id="edit-number">Edit Number</a>
+                        <a href="#" class="inline_block_btn light_green_btn vd_form_submit" id="edit-number">Update Number</a>
 
                         <span class="success_response"></span>
                         <span class="error_response"></span>

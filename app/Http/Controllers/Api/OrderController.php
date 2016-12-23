@@ -107,6 +107,8 @@ class OrderController extends Controller
         if($request->has('phone_id') && $request->input('phone_id') != ''){
             if (Auth::user()->level == 'Super admin'){
                 $number = $this->helper->setNumber($newOrder->id, $request->input('phone_id'));
+                if ($number != $request->input('phone_id'))
+                    return response()->json(['sim' => $number], 403);
             }
             } else {
             $number = $this->getNumber($newOrder->id);
@@ -309,10 +311,10 @@ class OrderController extends Controller
         'email' => 'required|email'
         ]);
 
-        $data = array([
+        $data = array(
            'order' => $orderID,
             'text' => $request->input('remark')
-        ]);
+        );
 
         Mail::to($request->input('email'))->send(new OrderMail($data));
 

@@ -89,11 +89,14 @@
                                             {{$order['created_by']}}
                                         </a>
                                     </td>
-                                    <td class="rwd-td6 ref_number" data-content="{{$order['reference_number']}}" data-field="Reference Number">
+                                    <td class="rwd-td6 {{ ($order['reference_number'] != '') ? 'ref_number' : '' }}" data-content="{{$order['reference_number']}}" data-field="Reference Number">
+                                        @if ($order['reference_number'] != '')
                                         <span class="hint">i</span>
+
                                         <span class="hint_text">
                                             {{substr($order['reference_number'], 0, 9)}}
                                         </span>
+                                        @endif
                                     </td>
                                     <td class="rwd-td7 table_action_cell table_action_cell_large" data-field="Action">
                                         <span class="table_icon call_edit {{ ($order['status'] == 'active') ? 'disable' : '' }}" data-toggle="modal" data-row-id="{{$order['id']}}" data-target="#modal_edit_order" data-form="#modal_edit_order">
@@ -404,7 +407,7 @@
                     <div class="modal-footer vdf_modal_footer">
                         <a href="#" class="inline_block_btn light_gray_btn close vd_form_reset" data-dismiss="modal" aria-label="Close">Cancel</a>
                         {{--<button type="submit" href="#" class="inline_block_btn light_green_btn vd_form_submit" id="create-order">Edit order</button>--}}
-                        <a href="#" class="inline_block_btn light_green_btn vd_form_submit" id="edit-order">Edit order</a>
+                        <a href="#" class="inline_block_btn light_green_btn vd_form_submit" id="edit-order">Update order</a>
                         <span class="success_response"></span>
                         <span class="error_response"></span>
                     </div>
@@ -571,7 +574,7 @@
                                 <span class="point_to_text">To</span>
                                 <div class="relative point_to_input">
                                     <form action="/" class="vd_form">
-                                    <input type="text" name="email" id="email" class="block_btn_30 modal_input vd_number vd_email vd_required" value="" />
+                                    <input type="text" name="email" id="email" class="block_btn_30 modal_input vd_email vd_required" value="" />
                                         </form>
                                     <i class="input_icon icon-special"></i>
                                 </div>
@@ -685,8 +688,8 @@
                                 <div class="form-group">
                                     <div class="col-md-12">
                                         <div class="email_message">
-                                            <h3>Dear Username,</h3>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                            {{--<h3>Dear Username,</h3>--}}
+                                            {{--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>--}}
 
                                         </div>
                                     </div>
