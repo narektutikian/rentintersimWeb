@@ -118,7 +118,7 @@
                                             <select name="prk_sim_num" id="sim_id" class="block_btn_30 modal_input vd_select">
                                                 <option value=""></option>
                                                 @foreach($sims as $sim)
-                                                <option value="{{$sim['id']}}">{{$sim['number']}}</option>
+                                                <option value="{{$sim->id}}">{{$sim->number}}</option>
                                                 @endforeach
                                             </select>
                                             <i class="input_icon icon-sim"></i>
@@ -226,7 +226,7 @@
                                             <select name="initial_sim_id"  id="sim_id-edit" class="block_btn_30 modal_input vd_select" data-th="SIM Number">
                                                 <option value=""></option>
                                                 @foreach($sims as $sim)
-                                                <option value="{{$sim['id']}}">{{$sim['number']}}</option>
+                                                <option value="{{$sim->id}}">{{$sim->number}}</option>
                                                 @endforeach
                                             </select>
                                             <i class="input_icon icon-sim"></i>
