@@ -74,6 +74,10 @@ class OrderController extends Controller
 
         ]);
 
+        if ($request->input('landing') >= $request->input('departure') ||
+            ($request->input('departure') - $request->input('landing')) < 2700 )
+            return response()->json(['sim' => 'The landing or departure selection is not correct'], 403);
+
             $sim = $this->helper->getSim($request->input('sim'));
         if($sim != null){
             if ($sim->state != 'available')
