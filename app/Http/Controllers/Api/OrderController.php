@@ -11,6 +11,7 @@ use App\Http\Controllers\HomeController;
 use Rentintersimrepo\orders\ViewHelper;
 use Mail;
 use App\Mail\OrderMail;
+use DB;
 
 class OrderController extends Controller
 {
@@ -324,11 +325,22 @@ class OrderController extends Controller
     public function search(Request $request)
     {
         $query = stripcslashes($request->input('query'));
-        $result = Order::where('phone', 'LIKE', '%'.$query.'%')
-            ->paginate(env('PAGINATE_DEFAULT'));
-        $phonesArray = $this->solvePhoneList($result);
+
+//        $result1 =  DB::table('orders')->where('status', '!=', 'finished');
+
+        $result =  Order::orWhereIn('phone_id', function($q) use($query)  {
+        $q->select('id')->from('phones')->where('phone', 'LIKE', '%'.$query.'%');
+        })->orWhereIn('sim_id', function($q) use($query)  {
+            $q->select('id')->from('sims')->where('number', 'LIKE', '%'.$query.'%');
+        })->orWhere('reference_number', 'LIKE', '%'.$query.'%')->paginate(15);
+
+//        dd($result);
+        $ordersArray = HomeController::solveOrderList($result, $this->viewHelper);
+        $counts = HomeController::getCounts(Auth::user()->id);
+
+//        dd($ordersArray);
 
 //        dd($simsArray);
-        return view('number', compact('phonesArray'));
+        return view('home', compact('ordersArray'), compact('counts'));
     }
 }
