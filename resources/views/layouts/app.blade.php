@@ -25,6 +25,9 @@
     </script>
 </head>
 <body>
+<div class="loader">
+    <div class="loader_inner"></div>
+</div>
 <div class="wrapper">
     @include('header')
          @yield('content')

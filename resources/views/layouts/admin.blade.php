@@ -12,7 +12,9 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-
+<div class="loader">
+    <div class="loader_inner"></div>
+</div>
 <div class="wrapper">
 @include('header')
     <div class="layout">

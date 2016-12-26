@@ -1,5 +1,6 @@
 $( document ).ready(function() {
 
+
     $('header .mobile_nav_button').on('click', function(){
         $('header .mobile_nav').slideToggle();
     });
@@ -481,4 +482,11 @@ $( document ).ready(function() {
 
     });
 
+});
+
+
+$(window).load(function() {
+    console.log('window');
+    $(".loader_inner").fadeOut();
+    $(".loader").delay(400).fadeOut("slow");
 });
