@@ -115,7 +115,7 @@ class PhoneController extends Controller
         $this->validate(request(), [
             'phone' => 'required',
 //            'state' => 'required',
-            'initial_sim_id' => 'required',
+//            'initial_sim_id' => 'required',
 //            'current_sim_id' => 'required',
             'package_id' => 'required',
             'provider_id' => 'required',
@@ -130,8 +130,12 @@ class PhoneController extends Controller
         //
         $phone = Phone::find($id);
 
+        if ($phone->phone != $request->input('phone'))
+            $this->validate(request(), ['phone' => 'unique:phones']);
+
         $phone->phone = $request->input('phone');
 //        $phone->state = 'not in use';
+        if ($request->has('initial_sim_id'))
         $phone->initial_sim_id = $request->input('initial_sim_id');
 //         $phone-> current_sim_id = $request->input('lending');
         $phone->package_id = $request->input('package_id');
