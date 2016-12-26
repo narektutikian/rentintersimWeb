@@ -223,7 +223,7 @@
                                     <div class="col-md-6">
                                         <label class="table_label">Parking SIM number</label>
                                         <div class="select_wrapper">
-                                            <select name="initial_sim_id"  id="sim_id-edit" class="block_btn_30 modal_input vd_select" data-th="SIM Number">
+                                            <select name="initial_sim_id"  id="sim_id-edit" class="block_btn_30 modal_input" data-th="SIM Number">
                                                 <option value=""></option>
                                                 @foreach($sims as $sim)
                                                 <option value="{{$sim->id}}">{{$sim->number}}</option>

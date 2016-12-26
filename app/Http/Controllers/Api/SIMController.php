@@ -130,7 +130,8 @@ class SIMController extends Controller
         else $simState = $sim->state;
 
 
-
+        if ($request->input('number') != $sim->number)
+            $this->validate(request(), ['number' => 'unique:sims']);
         $sim->number= $request->input('number');
         $sim->provider_id = $request->input('provider_id');
         $sim->state = $simState;

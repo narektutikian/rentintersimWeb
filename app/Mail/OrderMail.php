@@ -30,8 +30,8 @@ class OrderMail extends Mailable
      */
     public function build()
     {
-        $address = 'narek@horizondvp.com';
-        $name = 'Ignore Me';
+        $address = 'vodafone@horizondvp.org';
+        $name = 'RentInterSim';
         $subject = 'Your order';
 //        dd($this->data);
 
