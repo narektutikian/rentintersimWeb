@@ -26,7 +26,7 @@
                                     {{csrf_field()}}
                                     <button type="submit" class="search_button"><i class="icon-search"></i></button>
                                 </form>
-                                {{--<a href="#" class="export_user"><i class="icon-export"></i>Export</a>--}}
+                                <a href="{{url('/exportorders')}}" class="export_user"><i class="icon-export"></i>Export</a>
                                 <a href="#" class="add_new_btn" data-toggle="modal" data-target="#modal_new_order"><i class="icon-new_order"></i>New Order</a>
                             </div>
                         </div>

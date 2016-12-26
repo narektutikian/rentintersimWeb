@@ -12,6 +12,7 @@ use Rentintersimrepo\orders\ViewHelper;
 use Mail;
 use App\Mail\OrderMail;
 use DB;
+use Excel;
 
 class OrderController extends Controller
 {
@@ -332,7 +333,7 @@ class OrderController extends Controller
         $q->select('id')->from('phones')->where('phone', 'LIKE', '%'.$query.'%');
         })->orWhereIn('sim_id', function($q) use($query)  {
             $q->select('id')->from('sims')->where('number', 'LIKE', '%'.$query.'%');
-        })->orWhere('reference_number', 'LIKE', '%'.$query.'%')->paginate(15);
+        })->orWhere('reference_number', 'LIKE', '%'.$query.'%')->paginate(env('PAGINATE_DEFAULT'));
 
 //        dd($result);
         $ordersArray = HomeController::solveOrderList($result, $this->viewHelper);
@@ -343,4 +344,27 @@ class OrderController extends Controller
 //        dd($simsArray);
         return view('home', compact('ordersArray'), compact('counts'));
     }
+
+    public function export()
+    {
+        $user = Auth::user();
+        $orders = null;
+        if ($user->level != 'Super admin')
+            $orders = Order::employee($user->id)->orderby('id', 'desc')->toArray();
+        if ($user->level == 'Super admin')
+            $orders = Order::get();
+        $ordersArray = HomeController::solveOrderList($orders, $this->viewHelper);
+
+        Excel::create('Orders', function($excel) use ($ordersArray) {
+
+            $excel->sheet('orders', function($sheet) use($ordersArray) {
+
+                $sheet->fromArray($ordersArray);
+
+            });
+
+        })->download('xlsx');
+    }
+
+
 }
