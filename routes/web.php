@@ -68,6 +68,7 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
     Route::get('search/sim', 'SIMController@search');
     Route::get('search/type', 'PackageController@search');
     Route::get('search/number', 'PhoneController@search');
+    Route::get('search/order', 'OrderController@search');
 
     Route::get('send-mail/{orderID}', 'OrderController@sendMail');
 });

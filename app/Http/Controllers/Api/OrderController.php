@@ -320,4 +320,15 @@ class OrderController extends Controller
 
         return redirect('home');
     }
+
+    public function search(Request $request)
+    {
+        $query = stripcslashes($request->input('query'));
+        $result = Order::where('phone', 'LIKE', '%'.$query.'%')
+            ->paginate(env('PAGINATE_DEFAULT'));
+        $phonesArray = $this->solvePhoneList($result);
+
+//        dd($simsArray);
+        return view('number', compact('phonesArray'));
+    }
 }
