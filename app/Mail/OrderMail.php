@@ -33,12 +33,13 @@ class OrderMail extends Mailable
         $address = 'narek@horizondvp.com';
         $name = 'Ignore Me';
         $subject = 'Your order';
+//        dd($this->data);
 
         $order = Order::find($this->data['order']);
 
         return $this->view('mail')
             ->with('order', $order)
-            ->with('')
+            ->with('text', $this->data['text'])
             ->from($address, $name)
             ->cc($address, $name)
             ->bcc($address, $name)

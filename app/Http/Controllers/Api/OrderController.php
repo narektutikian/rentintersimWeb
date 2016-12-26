@@ -74,6 +74,10 @@ class OrderController extends Controller
 
         ]);
 
+        if ($request->input('landing') >= $request->input('departure') ||
+            ($request->input('departure') - $request->input('landing')) < 2700 )
+            return response()->json(['sim' => 'The landing or departure selection is not correct'], 403);
+
             $sim = $this->helper->getSim($request->input('sim'));
         if($sim != null){
             if ($sim->state != 'available')
@@ -103,6 +107,8 @@ class OrderController extends Controller
         if($request->has('phone_id') && $request->input('phone_id') != ''){
             if (Auth::user()->level == 'Super admin'){
                 $number = $this->helper->setNumber($newOrder->id, $request->input('phone_id'));
+                if ($number != $request->input('phone_id'))
+                    return response()->json(['sim' => $number], 403);
             }
             } else {
             $number = $this->getNumber($newOrder->id);
@@ -305,10 +311,10 @@ class OrderController extends Controller
         'email' => 'required|email'
         ]);
 
-        $data = array([
+        $data = array(
            'order' => $orderID,
             'text' => $request->input('remark')
-        ]);
+        );
 
         Mail::to($request->input('email'))->send(new OrderMail($data));
 

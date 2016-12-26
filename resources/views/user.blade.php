@@ -106,6 +106,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
 
                             <div class="col-md-6 vdf_modal_right">
@@ -186,9 +187,9 @@
                                         <div class="select_wrapper">
                                             <select class="block_btn_30 modal_input" data-th="Type">
                                                 <option value=""></option>
-                                                <option value="Admin">type 1</option>
-                                                <option value="Dealer">type 2</option>
-                                                <option value="Sub-Dealer">type 3</option>
+                                                <option value="admin">admin</option>
+                                                <option value="manager">manager</option>
+                                                <option value="employee">employee</option>
                                             </select>
                                             <i class="input_icon icon-username"></i>
                                         </div>
@@ -236,7 +237,7 @@
                 </div>
                 <div class="modal-footer vdf_modal_footer">
                     <a href="#" class="inline_block_btn light_gray_btn close vd_form_reset" data-dismiss="modal" aria-label="Close">Cancel</a>
-                    <a href="#" class="inline_block_btn light_green_btn vd_form_submit">Edit User</a>
+                    <a href="#" class="inline_block_btn light_green_btn vd_form_submit">Update User</a>
 
                     <span class="success_response"></span>
                     <span class="error_response"></span>

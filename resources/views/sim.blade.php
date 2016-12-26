@@ -202,7 +202,7 @@
                                 <div class="form-group">
                                     <div class="col-md-12 special_number">
                                         <label class="vdf_checkbox">
-                                            <input type="checkbox" name="num_chkb" value="" />
+                                            <input type="checkbox" id="is_parking-edit" name="num_chkb" value="" />
                                             <i class="icon-parking_sim"></i>
                                         </label>
                                         <span class="vdf_checkbox_text">Parking SIM</span>
@@ -235,7 +235,7 @@
                 <div class="modal-footer vdf_modal_footer">
                     <a href="#" class="inline_block_btn light_gray_btn close vd_form_reset" data-dismiss="modal" aria-label="Close">Cancel</a>
                     {{--<input type="submit" class="inline_block_btn light_green_btn vd_form_submit" id="edit-sim" value="Edit SIM">--}}
-                    <a href="#" class="inline_block_btn light_green_btn vd_form_submit" id="edit-sim">Edit SIM</a>
+                    <a href="#" class="inline_block_btn light_green_btn vd_form_submit" id="edit-sim">Update SIM</a>
 
                     <span class="success_response"></span>
                     <span class="error_response"></span>

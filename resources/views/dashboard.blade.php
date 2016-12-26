@@ -62,7 +62,7 @@
                             <span class="phone_chart_status">pending</span>
                         </div>
                         <div class="phone_charts">
-                            <div id="chart_not_used"  class="pie-title-center" data-percent="{{($counts['not in use']/$counts['All'])*100}}">
+                            <div id="chart_not_used"  class="pie-title-center" data-percent="{{($counts['not in use'] != 0) ? ($counts['not in use']/$counts['All'])*100 : '0' }}">
                                 <span class="pie-value"></span>
                             </div>
                             <span class="phone_chart_status">not in use</span>
