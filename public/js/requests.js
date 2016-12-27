@@ -549,7 +549,7 @@ $(document).ready(function () {
                             '<td class="w80" data-th="Pending">' + json[prop]["pending"] + '</td>' +
                             '<td class="w65" data-th="Waiting">' + json[prop]["waiting"] + '</td>' +
                             '<td class="w60c table_action_cell" data-th="Action">' +
-                                '<span class="table_icon edit" data-toggle="modal" data-target="#modal_edit_user" data-form="#modal_edit_user"><i class="icon-edit"></i></span>' +
+                                '<span class="table_icon edit" id="call_edit_user" data-toggle="modal" data-target="#modal_edit_user" data-form="#modal_edit_user"  onclick="editUser('+ json[prop]["id"] +')"><i class="icon-edit"></i></span>' +
                             '</td>' +
                             '<td class="w_70_status table_status_cell" data-th="Status">' +
                                 '<span class="status_text_small not_used">' + status_text + '</span>' +
@@ -663,7 +663,22 @@ $(document).ready(function () {
 
     });
 
+    /***** User edit view form  *****/
+
+     $('#call_edit_user').on('click', function (e) {
+         var row_id = $(this).attr('data-row-id');
+         console.log(row_id);
+
+     });
 
 }); // closes document ready
 
+function editUser(id) {
+    console.log(id);
 
+    $.get("/user/"+ id + ", function (data, status) {
+
+    });
+
+
+}
