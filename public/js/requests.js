@@ -513,9 +513,10 @@ $(document).ready(function () {
                     $(".success_response").append("DONE " + msg);
                 },
                 error: function (error) {
+                    // console.log(error);
                     $(".error_response").empty();
                     $(".success_response").empty();
-                    $(".error_response").append("ERROR" + error);
+                    $(".error_response").append("ERROR " + error.responseText);
                     // $("#sim-edit-response").append("<div>"+"ERROR "+ error.responseJSON.number[0]+ " ," +error.responseJSON.provider_id[0] +"</div>");
                     // console.log(error.responseJSON.number[0]);
                 }
