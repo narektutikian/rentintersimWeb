@@ -9,10 +9,8 @@ $(document).ready(function () {
         e.stopPropagation(); // Stop stuff happening
         if ($(this).closest(".vd_form").valid()) {
 
-            var departure = $('#departure_date').val() + " "
-                + $('#departure_hour').text() + ":" + $('#departure_minute').text();
-            var landing = $('#landing_date').val() + " "
-                + $('#landing_hour').text() + ":" + $('#landing_minute').text();
+            var departure = $('#departure_date').val() + " " + $("#time_element2").val();
+            var landing = $('#landing_date').val() + " " + $("#time_element").val();
 
             // console.log(departure + " " + landing);
             var data = {
@@ -28,7 +26,7 @@ $(document).ready(function () {
                 remark: $('#remark').val(),
             };
 
-            // console.log("date to display" + data.landing_string);
+            console.log("landing: " + data.landing  + " departure " + data.departure);
 
             $.ajax({
                 type: "POST",
@@ -67,7 +65,7 @@ $(document).ready(function () {
 
                 },
                 error: function (error) {
-                    console.log(error);
+                    // console.log(error);
                     $(".error_response").empty();
                     $(".success_response").empty();
                     $(".error_response").append("ERROR  ");
@@ -226,7 +224,7 @@ $(document).ready(function () {
             var landing = $('#landing_date-edit').val() + " "
                 + $('#landing_hour-edit').text() + ":" + $('#landing_minute-edit').text();
 
-            // console.log(departure + " " + landing);
+            console.log($('#time_element').val());
             var data = {
                 _token: CSRF_TOKEN,
                 sim: $('#sim-edit').val(),

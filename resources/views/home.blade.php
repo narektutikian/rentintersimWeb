@@ -44,7 +44,7 @@
                                     <thead>
                                         <tr>
                                             {{--<th data-field="id">ID</th>--}}
-                                            <th data-field="Phone">Phone</th>
+                                            <th data-field="Phone" data-sortable="true">Phone</th>
                                             <th data-field="SIM Number">SIM Number</th>
                                             <th data-field="provider" data-sortable="true" data-th="Provider">Provider</th>
                                             <th data-field="from" data-sortable="true" data-th="From">From</th>

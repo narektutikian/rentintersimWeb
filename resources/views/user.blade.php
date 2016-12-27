@@ -108,7 +108,7 @@
                                     <div class="col-md-6">
                                         <label class="table_label">Secondary Email</label>
                                         <div class="form_row">
-                                            <input type="text" class="block_btn_30 modal_input vd_email" name="email" id="email" value="" data-th="Secondary Email"/>
+                                            <input type="text" class="block_btn_30 modal_input vd_email" name="email2" id="email2" value="" data-th="Secondary Email"/>
                                             <i class="input_icon icon-email"></i>
                                         </div>
                                     </div>
@@ -158,27 +158,29 @@
                         <h3>Edit User</h3>
                     </div>
                 </div>
+                <form action="/" id="edit-user" class="form-horizontal vd_form">
                 <div class="modal-body vdf_modal_body">
-                    <form action="/" class="form-horizontal">
                         <div class="form-group">
                             <div class="col-md-6 vdf_modal_left">
                                 <div class="form-group">
                                     <div class="col-md-6">
                                         <label class="table_label">Name</label>
                                         <div class="relative">
-                                            <input type="text" class="block_btn_30 modal_input" data-th="Name" value=""/>
+                                            <input type="text" class="block_btn_30 modal_input name" name="name" id="name_edit" data-th="Name" value=""/>
+                                            <input type="hidden" value="" class="user_edit_id" />
                                             <i class="input_icon icon-username"></i>
+                                            {{csrf_field()}}
                                         </div>
 
                                     </div>
                                     <div class="col-md-6">
                                         <label class="table_label">Level</label>
                                         <div class="select_wrapper">
-                                            <select class="block_btn_30 modal_input" data-th="Level">
+                                            <select class="block_btn_30 modal_input level" name="level" data-th="Level">
                                                 <option value=""></option>
                                                 <option value="Admin">Admin</option>
                                                 <option value="Dealer">Dealer</option>
-                                                <option value="Sub-Dealer">SubDealer</option>
+                                                <option value="Subdealer">SubDealer</option>
                                                 <option value="Distributor">Distributor</option>
                                             </select>
                                             <i class="input_icon icon-level"></i>
@@ -192,28 +194,42 @@
 
                                         <label class="table_label">Type</label>
                                         <div class="select_wrapper">
-                                            <select class="block_btn_30 modal_input" data-th="Type">
+                                            <select class="block_btn_30 modal_input type" name="type" data-th="Type">
                                                 <option value=""></option>
-                                                <option value="admin">admin</option>
-                                                <option value="manager">manager</option>
-                                                <option value="employee">employee</option>
+                                                <option value="admin">Admin</option>
+                                                <option value="manager">Manager</option>
+                                                <option value="employee">Employee</option>
                                             </select>
                                             <i class="input_icon icon-username"></i>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="table_label">Parent Username</label>
-                                        <div class="relative">
-                                            <input type="text" class="block_btn_30 modal_input" value=""/>
-                                            <i class="input_icon icon-username"></i>
+                                        <label class="table_label {{ (Auth::user()->level != 'Super admin') ? 'hidden' : '' }}">Parent Username</label>
+                                        <div class="form_row {{ (Auth::user()->level != 'Super admin') ? 'hidden' : '' }}">
+                                            <div class="select_wrapper">
+                                                <select class="block_btn_30 modal_input supervisor_id" name="supervisor_id" id="supervisor_id">
+                                                    <option value="{{Auth::user()->id}}">{{Auth::user()->login}}</option>
+                                                    @foreach($users as $supervisor)
+                                                        <option value="{{$supervisor['id']}}">{{$supervisor['login']}}</option>
+                                                    @endforeach
+                                                </select>
+                                                <i class="input_icon icon-username"></i>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-6">
                                         <label class="table_label">Primary Email</label>
-                                        <div class="relative">
-                                            <input type="text" class="block_btn_30 modal_input" value="" data-th="Primary Email"/>
+                                        <div class="form_row">
+                                            <input type="text" class="block_btn_30 modal_input vd_email vd_required email" name="email" id="email" value="" data-th="Primary Email"/>
+                                            <i class="input_icon icon-email"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="table_label">Secondary Email</label>
+                                        <div class="form_row">
+                                            <input type="text" class="block_btn_30 modal_input vd_email email2" name="email2" id="email2" value="" data-th="Secondary Email"/>
                                             <i class="input_icon icon-email"></i>
                                         </div>
                                     </div>
@@ -225,14 +241,14 @@
                                     <div class="col-md-6">
                                         <label class="table_label">Username</label>
                                         <div class="relative">
-                                            <input type="text" class="block_btn_30 modal_input" data-th="Username" value=""/>
+                                            <input type="text" class="block_btn_30 modal_input login" data-th="Username" name="login" value=""/>
                                             <i class="input_icon icon-username"></i>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <label class="table_label">Password</label>
                                         <div class="relative">
-                                            <input type="password" class="block_btn_30 modal_input" value=""/>
+                                            <input type="password" class="block_btn_30 modal_input" name="password" value=""/>
                                             <i class="input_icon icon-password"></i>
                                         </div>
                                     </div>
@@ -240,15 +256,16 @@
                             </div>
                         </div>
 
-                    </form>
+
                 </div>
                 <div class="modal-footer vdf_modal_footer">
                     <a href="#" class="inline_block_btn light_gray_btn close vd_form_reset" data-dismiss="modal" aria-label="Close">Cancel</a>
-                    <a href="#" class="inline_block_btn light_green_btn vd_form_submit">Update User</a>
+                    <a href="#" class="inline_block_btn light_green_btn vd_form_submit" id="edit_user_submit">Update User</a>
 
                     <span class="success_response"></span>
                     <span class="error_response"></span>
                 </div>
+                </form>
             </div>
         </div>
     </div><!-- end Add User Modal -->

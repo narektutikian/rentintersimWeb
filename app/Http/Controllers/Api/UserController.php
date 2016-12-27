@@ -167,6 +167,8 @@ class UserController extends Controller
     public function edit($id)
     {
         //
+        $user = User::find($id);
+        return response($user);
     }
 
     /**
@@ -179,6 +181,74 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         //
+        //
+
+        $user = Auth::user();
+        $submiter = $user;
+        $this->validate(request(), [
+
+            'name' => 'required',
+            'email' => 'required',
+//            'logo' => 'required',
+            'username' => 'required',
+//            'password' => 'required',
+            'type' => 'required',
+            'level' => 'required',
+//            'time_zone' => 'required',
+//            'email2' => 'unique:users',
+//            'phone' => 'required',
+//            'language_id' => 'required',
+//            'sim_balance' => 'required',
+//            'phone_balance' => 'required',
+//            'supervisor_id' => 'required',
+//
+
+
+        ]);
+
+
+        $user = User::find($id);
+            $user->name = $request->input('name');
+            $user->email = $request->input('email');
+//            'logo' => $request->input('name
+            $user->login = $request->input('username');
+        if ($request->has('password'))
+            $user->password = Hash::make($request->input('password'));
+            $user->type = $request->input('type');
+            $user->level = $request->input('level');
+//            'time_zone' => $request->input('name
+            $user->email2 = $request->input('email2');
+//            'phone' => $request->input('name
+            $user->language_id = 1;
+//            'sim_balance' => $request->input('name'),
+//            'phone_balance' => $request->input('name'),
+            $user->supervisor_id = $user->id;
+            $user->is_active = 1;
+
+
+
+
+        if ($user->level == 'Super admin'){
+            if($request->has('supervisor_id') && $request->input('supervisor_id') != $user->id){
+
+                $submiter = User::find($request->input('supervisor_id'));
+//                $newUser['supervisor_id'] =  $request->input('supervisor_id');
+            }
+        }
+
+        if ($this->manager->UserCreation($user, $submiter)){
+            $user->save();
+        }
+        else {
+
+            return response('You cannot create this type of user', 401);
+        }
+
+
+
+
+
+            return $user;
     }
 
     /**
