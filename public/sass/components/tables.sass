@@ -87,6 +87,7 @@
 .ref_number
   position: relative
   cursor: pointer
+  min-width: 130px
 
 .show_data_content
   background: $dark_blue
@@ -245,26 +246,15 @@
 .my-table td:before
   display: none
 
-
-
-// #wrap_tree_table.ps-container > .ps-scrollbar-x-rail,
-// #wrap_tree_table.ps-container > .ps-scrollbar-y-rail
-//   opacity: 0.8
-//
-// #wrap_tree_table.ps-container > .ps-scrollbar-y-rail > .ps-scrollbar-y
-//   background-color: $active_green
-//
-// #wrap_tree_table.options.ps-container > .ps-scrollbar-y-rail > .ps-scrollbar-y
-//   background-color: $active_green
-//
-// #wrap_tree_table.ps-container:hover.ps-in-scrolling.ps-y > .ps-scrollbar-y-rail > .ps-scrollbar-y,
-// #wrap_tree_table.ps-container.ps-in-scrolling.ps-y > .ps-scrollbar-y-rail > .ps-scrollbar-y
-//   background-color: $active_green
-//
-// #wrap_tree_table.ps-container:hover > .ps-scrollbar-y-rail:hover > .ps-scrollbar-y
-//   background-color: $active_green
-
-
+#wrap_orders_table
+  position: relative
+  width: 100%
+  overflow: auto
+  .bootstrap-table
+    width: 1140px
+  .fixed-table-body
+    overflow-x: hidden
+    overflow-y: hidden
 
 #wrap_tree_table.ps-container > .ps-scrollbar-x-rail > .ps-scrollbar-x
   background-color: $active_green
@@ -277,6 +267,30 @@
 
 #wrap_tree_table.ps-container:hover.ps-in-scrolling.ps-x > .ps-scrollbar-x-rail > .ps-scrollbar-x
   background-color: $active_green
+
+#wrap_tree_table.ps-container > .ps-scrollbar-x-rail
+  background-color: $dark_gray
+  display: block
+  opacity: 0.5
+  height: 12px
+
+#wrap_orders_table.ps-container > .ps-scrollbar-x-rail > .ps-scrollbar-x
+  background-color: $active_green
+
+#wrap_orders_table.ps-container:hover > .ps-scrollbar-x-rail:hover > .ps-scrollbar-x
+  background-color: $active_green
+
+#wrap_orders_table.ps-container:hover > .ps-scrollbar-x-rail:hover > .ps-scrollbar-x
+  background-color: $active_green
+
+#wrap_orders_table.ps-container:hover.ps-in-scrolling.ps-x > .ps-scrollbar-x-rail > .ps-scrollbar-x
+  background-color: $active_green
+
+#wrap_orders_table.ps-container > .ps-scrollbar-x-rail
+  background-color: $dark_gray
+  display: block
+  opacity: 0.5
+  height: 12px
 
 @media (min-width: 768px) and (max-width: 992px)
 
@@ -297,12 +311,6 @@
     min-width: 130px
     max-width: 130px
 
-  .table_action_cell_large
-    width: 70px
-    text-align: center
-    min-width: 70px
-    max-width: 70px
-
   .bootstrap-table
     .table:not(.table-condensed)
       > tbody
@@ -316,7 +324,8 @@
     height: 25px
     line-height: 27px
 
-
+  #wrap_orders_table
+    padding-bottom: 12px
 
 @media (max-width: 768px)
   .table
@@ -330,6 +339,10 @@
     position: relative
     width: 100%
     overflow: auto
+  #wrap_orders_table
+    .bootstrap-table
+      width: auto
+      padding-bottom: 45px
   .user_management_table
     tbody
       tr
@@ -337,8 +350,12 @@
           line-height: 1
           width: auto
 
+
   .status_text
     margin-top: 0
+
+  .align_order
+    text-align: left
 
   .table_action_cell
     width: auto
@@ -369,6 +386,27 @@
     font-weight: bold
     display: inline-block
     margin-right: 5px
+
+  .table_action_cell_large
+    text-align: left
+    width: auto
+    min-width: none
+    max-width: none
+
+  .hint
+    float: none
+    display: inline-block
+    vertical-align: middle
+    margin-left: 10px
+  .show_data_content
+    position: static
+    float: right
+    &:before
+      display: none
+    &:after
+      display: none
+
+
 
 
 

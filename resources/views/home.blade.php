@@ -38,92 +38,91 @@
                     <!--rwd-table responsive_table table-->
                     <div class="row">
                         <div class="col-md-12">
+                            <div id="wrap_orders_table">
+                                <table class="rwd-table responsive_table table" data-toggle="table" data-page="order">
+                                    <thead>
+                                        <tr>
+                                            {{--<th data-field="id">ID</th>--}}
+                                            <th data-field="Phone">Phone</th>
+                                            <th data-field="SIM Number">SIM Number</th>
+                                            <th data-field="provider" data-sortable="true" data-th="Provider">Provider</th>
+                                            <th data-field="from" data-sortable="true" data-th="From">From</th>
+                                            <th data-field="to" data-sortable="true" data-th="To">To</th>
+                                            <th data-field="dealer" data-sortable="true" data-th="Dealer">Dealer </th>
 
-                            <table class="rwd-table responsive_table table" data-toggle="table" data-page="order">
-                                <thead>
+                                            <th data-th="Reference N">Reference #</th>
+                                            <th data-th="action">Action</th>
+                                            <th data-field="status" data-sortable="true" data-th="Status">Status</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($ordersArray as $order)
                                     <tr>
-                                        {{--<th data-field="id">ID</th>--}}
-                                        <th data-field="Phone">Phone</th>
-                                        <th data-field="SIM Number">SIM Number</th>
-                                        <th data-field="provider" data-sortable="true" data-th="Provider">Provider</th>
-                                        <th data-field="from" data-sortable="true" data-th="From">From</th>
-                                        <th data-field="to" data-sortable="true" data-th="To">To</th>
-                                        <th data-field="dealer" data-sortable="true" data-th="Dealer">Dealer </th>
-
-                                        <th data-th="Reference N">Reference #</th>
-                                        <th data-th="action">Action</th>
-                                        <th data-field="status" data-sortable="true" data-th="Status">Status</th>
-                                        <th></th>
+                                        {{--<td>{{$order['id']}}</td>--}}
+                                        <td class="rwd-td0 table_id_cell editable_cell" data-th="Phone" data-row-id="{{$order['id']}}"  data-cell-id="{{$order['id']}}">
+                                            @if($order['phone_id']==0)
+                                                <a id= "{{$order['id']}}" href="#" onClick = "getNumber({{$order['id']}});">Get Number</a>
+                                            @else
+                                            {{$order['phone_id']}}
+                                            @endif
+                                        </td>
+                                        <td class="rwd-td1 editable_cell" data-th="SIM Number" data-row-id="{{$order['id']}}" data-form="#modal_view_order">
+                                            <a href="#modal_view_order" role="button" class="link">
+                                                {{$order['sim_id']}}
+                                            </a>
+                                        </td>
+                                        <td class="rwd-td2 editable_cell align_order" data-th="Provider" data-row-id="{{$order['id']}}" data-target="#modal_view_order" data-form="#modal_view_order">
+                                            <a href="#modal_view_order" role="button" class="link">
+                                                {{$order['provider']}}
+                                            </a>
+                                        </td>
+                                        <td class="rwd-td3 table_time_cell_large from align_order" data-field="From" data-th="From" data-row-id="{{$order['id']}}" data-target="#modal_view_order" data-form="#modal_view_order">
+                                            <a href="#modal_view_order" role="button" class="link">
+                                                {{$order['landing']}}
+                                            </a>
+                                        </td>
+                                        <td class="rwd-td4 table_time_cell_large to align_order" data-field="To" data-th="To" data-toggle="modal" data-row-id="{{$order['id']}}" data-target="#modal_edit_order" data-form="#modal_edit_order">
+                                            {{$order['departure']}}
+                                        </td>
+                                        <td class="rwd-td5 editable_cell align_order" data-field="Created by" data-th="Created by" data-row-id="{{$order['id']}}" data-target="#modal_view_order" data-form="#modal_view_order">
+                                            <a href="#modal_view_order" role="button" class="link">
+                                                {{$order['created_by']}}
+                                            </a>
+                                        </td>
+                                        <td class="rwd-td6 {{ ($order['reference_number'] != '') ? 'ref_number' : '' }} align_order" data-content="{{$order['reference_number']}}" data-field="Reference Number" data-th="Reference Number">
+                                            @if ($order['reference_number'] != '')
+                                            <span class="hint_text">
+                                                {{substr($order['reference_number'], 0, 9)}}
+                                            </span>
+                                            <span class="hint">i</span>
+                                            @endif
+                                        </td>
+                                        <td class="rwd-td7 table_action_cell_large" data-field="Action" data-th="Action">
+                                            <span class="table_icon call_edit {{ ($order['status'] == 'active') ? 'disable' : '' }}" data-toggle="modal" data-row-id="{{$order['id']}}" data-target="#modal_edit_order" data-form="#modal_edit_order">
+                                                <i class="icon-edit"></i>
+                                            </span>
+                                            <span class="table_icon print" data-toggle="modal" data-target="#modal_print_order" data-form="modal_print_order">
+                                                <i class="icon-print"></i>
+                                            </span>
+                                            <span class="table_icon call_mail"  data-toggle="modal" data-target="#modal_order_email" data-row-id="{{$order['id']}}">
+                                                <i class="icon-email"></i>
+                                            </span>
+                                        </td>
+                                        <td class="rwd-td8" data-field="Status" data-th="Status">
+                                            <span class="table_status_text not_used">{{$order['status']}}</span>
+                                        </td>
+                                        <td class="rwd-td9 table_status_cell" data-th="Remove">
+                                            <span class="remove_row {{ ($order['status'] == 'active') ? 'disable' : '' }}" data-toggle="modal" data-target="#confirm_delete" data-row-id="{{$order['id']}}">
+                                                <i class="icon-delete"></i>
+                                            </span>
+                                        </td>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($ordersArray as $order)
-                                <tr>
-                                    {{--<td>{{$order['id']}}</td>--}}
-                                    <td class="rwd-td0 table_id_cell editable_cell" data-th="Phone" data-row-id="{{$order['id']}}"  data-cell-id="{{$order['id']}}">
-                                        @if($order['phone_id']==0)
-                                            <a id= "{{$order['id']}}" href="#" onClick = "getNumber({{$order['id']}});">Get Number</a>
-                                        @else
-                                        {{$order['phone_id']}}
-                                        @endif
-                                    </td>
-                                    <td class="rwd-td1 editable_cell" data-th="SIM Number" data-row-id="{{$order['id']}}" data-form="#modal_view_order">
-                                        <a href="#modal_view_order" role="button" class="link">
-                                            {{$order['sim_id']}}
-                                        </a>
-                                    </td>
-                                    <td class="rwd-td2 editable_cell align_order" data-th="Provider" data-row-id="{{$order['id']}}" data-target="#modal_view_order" data-form="#modal_view_order">
-                                        <a href="#modal_view_order" role="button" class="link">
-                                            {{$order['provider']}}
-                                        </a>
-                                    </td>
-                                    <td class="rwd-td3 table_time_cell_large from align_order" data-field="From" data-th="From" data-row-id="{{$order['id']}}" data-target="#modal_view_order" data-form="#modal_view_order">
-                                        <a href="#modal_view_order" role="button" class="link">
-                                            {{$order['landing']}}
-                                        </a>
-                                    </td>
-                                    <td class="rwd-td4 table_time_cell_large to align_order" data-field="To" data-th="To" data-toggle="modal" data-row-id="{{$order['id']}}" data-target="#modal_edit_order" data-form="#modal_edit_order">
-                                        {{$order['departure']}}
-                                    </td>
-                                    <td class="rwd-td5 editable_cell align_order" data-field="Created by" data-th="Created by" data-row-id="{{$order['id']}}" data-target="#modal_view_order" data-form="#modal_view_order">
-                                        <a href="#modal_view_order" role="button" class="link">
-                                            {{$order['created_by']}}
-                                        </a>
-                                    </td>
-                                    <td class="rwd-td6 {{ ($order['reference_number'] != '') ? 'ref_number' : '' }} align_order" data-content="{{$order['reference_number']}}" data-field="Reference Number">
-                                        @if ($order['reference_number'] != '')
-                                        <span class="hint">i</span>
-
-                                        <span class="hint_text">
-                                            {{substr($order['reference_number'], 0, 9)}}
-                                        </span>
-                                        @endif
-                                    </td>
-                                    <td class="rwd-td7 table_action_cell table_action_cell_large" data-field="Action">
-                                        <span class="table_icon call_edit {{ ($order['status'] == 'active') ? 'disable' : '' }}" data-toggle="modal" data-row-id="{{$order['id']}}" data-target="#modal_edit_order" data-form="#modal_edit_order">
-                                            <i class="icon-edit"></i>
-                                        </span>
-                                        <span class="table_icon print" data-toggle="modal" data-target="#modal_print_order" data-form="modal_print_order">
-                                            <i class="icon-print"></i>
-                                        </span>
-                                        <span class="table_icon call_mail"  data-toggle="modal" data-target="#modal_order_email" data-row-id="{{$order['id']}}">
-                                            <i class="icon-email"></i>
-                                        </span>
-                                    </td>
-                                    <td class="rwd-td8" data-field="Status">
-                                        <span class="table_status_text not_used">{{$order['status']}}</span>
-                                    </td>
-                                    <td class="rwd-td9 table_status_cell">
-                                        <span class="remove_row {{ ($order['status'] == 'active') ? 'disable' : '' }}" data-toggle="modal" data-target="#confirm_delete" data-row-id="{{$order['id']}}">
-                                            <i class="icon-delete"></i>
-                                        </span>
-                                    </td>
-                                </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
+                                    @endforeach
+                                    </tbody>
+                                </table>
                     {{$ordersArray->links()}}
-
+                            </div><!--#wrap_orders_table-->
                         </div>
                     </div>
                 </section>
