@@ -61,7 +61,7 @@
         <li><a href="{{url('home')}}">Orders List</a></li>
         <li><a href="#">Reports</a></li>
         @if (Auth::user()->type != 'employee')
-            <li><a href="#">Admin Panel</a></li>
+            <li><a href="{{url('/dashboard')}}">Admin Panel</a></li>
         @endif
     </ul>
 </header>

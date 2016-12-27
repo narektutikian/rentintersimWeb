@@ -38,6 +38,7 @@
                     <!--rwd-table responsive_table table-->
                     <div class="row">
                         <div class="col-md-12">
+
                             <div id="wrap_orders_table">
                                 <table class="rwd-table responsive_table table" data-toggle="table" data-page="order">
                                     <thead>
@@ -180,7 +181,8 @@
                                             </div>
                                             <input type="text" name="landing_date" id="landing_date" class="inline_block_btn landing_date vd_required" data-date-format="DD/MM/YYYY">
                                         </div>
-                                        <div class="wrap_time">
+                                        <input type="text" name="timepicker" id="time_element" class="inline_block_btn time_element"/>
+                                    <!--    <div class="wrap_time">
                                             <i class="departure_time icon-time"></i>
                                             <div class="time_picker">
                                                 <div  class="inline_block_btn numeric_input vdf_time vdf_hour" id="landing_hour">0</div>
@@ -194,7 +196,7 @@
                                                 <span class="arrow-down"><i class="icon-arrow_down"></i></span>
                                                 <span class="arrow-up"><i class="icon-arrow_up"></i></span>
                                             </div>
-                                        </div>
+                                        </div>-->
 
                                     </div>
                                     <div class="col-md-6">
@@ -205,7 +207,8 @@
                                             </div>
                                             <input type="text" name="departure_date" id="departure_date" class="inline_block_btn departure_date vd_required" data-date-format="DD/MM/YYYY">
                                         </div>
-                                        <div class="wrap_time">
+                                        <input type="text" name="timepicker2" id="time_element2" class="inline_block_btn time_element"/>
+                                    <!--    <div class="wrap_time">
                                             <i class="departure_time icon-time"></i>
                                             <div class="time_picker">
                                                 <div  class="inline_block_btn numeric_input vdf_time vdf_hour" id="departure_hour">0</div>
@@ -219,7 +222,7 @@
                                                 <span class="arrow-down"><i class="icon-arrow_down"></i></span>
                                                 <span class="arrow-up"><i class="icon-arrow_up"></i></span>
                                             </div>
-                                        </div>
+                                        </div>-->
 
                                     </div>
                                 </div>
