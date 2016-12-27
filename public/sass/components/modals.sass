@@ -168,42 +168,46 @@
     position: absolute
     width: 18px
     height: 14px
-    line-height: 14px
+    cursor: pointer
   .arrow-down
     bottom: 0
     right: 1px
-    i:before
-      content: '>'
-      display: inline-block
-      margin: auto
-      @include fonts_stack(12px)
-      font-weight: bold
+    line-height: 23px
+    i
+      font-size: 10px
       color: $dark_blue
-      cursor: pointer
-      @include transform(90deg)
-      position: absolute
-      top: 0
-      bottom: 0
-      left: 0
-      right: 0
   .arrow-up
     top: 0
     right: 1px
-    i:before
-      content: '>'
-      display: inline-block
-      margin: auto
-      @include fonts_stack(12px)
-      font-weight: bold
+    line-height: 23px
+    i
+      font-size: 10px
       color: $dark_blue
-      cursor: pointer
-      @include transform(-90deg)
-      position: absolute
-      top: 0
-      bottom: 0
-      left: 0
-      right: 0
 
+.time_pick
+  display: inline-block
+  vertical-align: middle
+  width: 98px  
+  text-align: center
+
+.timepicker_wrap
+  padding: 10px 2px
+  right: 0
+
+.arrow_top
+  left: 50%
+  margin-left: -9px
+
+.time,
+.mins,
+.meridian
+  margin: 0
+  width: 45px
+
+.input.timepicki-input
+  color: $dark_blue
+
+.time_element,
 .landing_date,
 .departure_date
   vertical-align: middle
@@ -322,6 +326,13 @@
     .vdf_modal_content
       width: 90%
       margin: 20px auto 0
+
+  .flight_dates
+    display: block
+    width: auto
+  .wrap_time
+    display: block
+    width: auto
 
 @media (max-width: 992px)
 

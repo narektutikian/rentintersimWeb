@@ -206,14 +206,25 @@ $( document ).ready(function() {
 
     /* Owl Slider in Orders List Modal*/
 
+
     $('#modal_new_order').on('show.bs.modal', function () {
         // do something…
         setTimeout(function(){
 
+            $('.time_element').timepicki({
+                show_meridian:false,
+                min_hour_value:0,
+                max_hour_value:23,
+                step_size_minutes:15,
+                overflow_minutes:true,
+                increase_direction:'up',
+                disable_keyboard_mobile: true
+            });
+
             $('.wrap_package_list').show(); // show package list after modal was open
             $('.wrap_package_list').owlCarousel({
                 nav : true,
-                navText : ['<i class="prev icon-dropdown"></i>', '<i class="next icon-dropdown"></i>'],
+                navText : ['<i class="vd_prev icon-dropdown"></i>', '<i class="vd_next icon-dropdown"></i>'],
                 margin : 22,
                 responsive:{
                     0:{
@@ -235,6 +246,9 @@ $( document ).ready(function() {
                     }
                 }
             });
+
+
+
         }, 600);
 
     });

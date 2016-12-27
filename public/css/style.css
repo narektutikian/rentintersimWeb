@@ -1301,13 +1301,13 @@ input[type="radio"].toggle.checked + label {
       .wrap_package_list_edit .owl-controls .owl-prev:hover,
       .wrap_package_list_edit .owl-controls .owl-next:hover {
         background: #2cc763; }
-      .wrap_package_list .owl-controls .owl-prev:hover .prev.icon-dropdown, .wrap_package_list .owl-controls .owl-prev:hover .next.icon-dropdown,
-      .wrap_package_list .owl-controls .owl-next:hover .prev.icon-dropdown,
-      .wrap_package_list .owl-controls .owl-next:hover .next.icon-dropdown,
-      .wrap_package_list_edit .owl-controls .owl-prev:hover .prev.icon-dropdown,
-      .wrap_package_list_edit .owl-controls .owl-prev:hover .next.icon-dropdown,
-      .wrap_package_list_edit .owl-controls .owl-next:hover .prev.icon-dropdown,
-      .wrap_package_list_edit .owl-controls .owl-next:hover .next.icon-dropdown {
+      .wrap_package_list .owl-controls .owl-prev:hover .vd_prev.icon-dropdown, .wrap_package_list .owl-controls .owl-prev:hover .vd_next.icon-dropdown,
+      .wrap_package_list .owl-controls .owl-next:hover .vd_prev.icon-dropdown,
+      .wrap_package_list .owl-controls .owl-next:hover .vd_next.icon-dropdown,
+      .wrap_package_list_edit .owl-controls .owl-prev:hover .vd_prev.icon-dropdown,
+      .wrap_package_list_edit .owl-controls .owl-prev:hover .vd_next.icon-dropdown,
+      .wrap_package_list_edit .owl-controls .owl-next:hover .vd_prev.icon-dropdown,
+      .wrap_package_list_edit .owl-controls .owl-next:hover .vd_next.icon-dropdown {
         color: #ffffff; }
     .wrap_package_list .owl-controls .owl-prev,
     .wrap_package_list_edit .owl-controls .owl-prev {
@@ -1315,22 +1315,22 @@ input[type="radio"].toggle.checked + label {
     .wrap_package_list .owl-controls .owl-next,
     .wrap_package_list_edit .owl-controls .owl-next {
       right: 0; }
-    .wrap_package_list .owl-controls .prev.icon-dropdown,
-    .wrap_package_list .owl-controls .next.icon-dropdown,
-    .wrap_package_list_edit .owl-controls .prev.icon-dropdown,
-    .wrap_package_list_edit .owl-controls .next.icon-dropdown {
+    .wrap_package_list .owl-controls .vd_prev.icon-dropdown,
+    .wrap_package_list .owl-controls .vd_next.icon-dropdown,
+    .wrap_package_list_edit .owl-controls .vd_prev.icon-dropdown,
+    .wrap_package_list_edit .owl-controls .vd_next.icon-dropdown {
       color: #2cc763;
       font-size: 26px;
       display: inline-block; }
-    .wrap_package_list .owl-controls .prev.icon-dropdown,
-    .wrap_package_list_edit .owl-controls .prev.icon-dropdown {
+    .wrap_package_list .owl-controls .vd_prev.icon-dropdown,
+    .wrap_package_list_edit .owl-controls .vd_prev.icon-dropdown {
       -webkit-transform: rotate(90deg);
       -moz-transform: rotate(90deg);
       -o-transform: rotate(90deg);
       -ms-transform: rotate(90deg);
       transform: rotate(90deg); }
-    .wrap_package_list .owl-controls .next.icon-dropdown,
-    .wrap_package_list_edit .owl-controls .next.icon-dropdown {
+    .wrap_package_list .owl-controls .vd_next.icon-dropdown,
+    .wrap_package_list_edit .owl-controls .vd_next.icon-dropdown {
       -webkit-transform: rotate(-90deg);
       -moz-transform: rotate(-90deg);
       -o-transform: rotate(-90deg);
@@ -1723,56 +1723,46 @@ input[type="radio"].toggle.checked + label {
     position: absolute;
     width: 18px;
     height: 14px;
-    line-height: 14px; }
+    cursor: pointer; }
   .time_picker .arrow-down {
     bottom: 0;
-    right: 1px; }
-    .time_picker .arrow-down i:before {
-      content: ">";
-      display: inline-block;
-      margin: auto;
-      font-size: 12px;
-      font-weight: normal;
-      font-style: normal;
-      font-family: "proxima_nova_rgregular", Arial, Helvetica, sans-serif;
-      font-weight: bold;
-      color: #1b6db2;
-      cursor: pointer;
-      -webkit-transform: rotate(90deg);
-      -moz-transform: rotate(90deg);
-      -o-transform: rotate(90deg);
-      -ms-transform: rotate(90deg);
-      transform: rotate(90deg);
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0; }
+    right: 1px;
+    line-height: 23px; }
+    .time_picker .arrow-down i {
+      font-size: 10px;
+      color: #1b6db2; }
   .time_picker .arrow-up {
     top: 0;
-    right: 1px; }
-    .time_picker .arrow-up i:before {
-      content: ">";
-      display: inline-block;
-      margin: auto;
-      font-size: 12px;
-      font-weight: normal;
-      font-style: normal;
-      font-family: "proxima_nova_rgregular", Arial, Helvetica, sans-serif;
-      font-weight: bold;
-      color: #1b6db2;
-      cursor: pointer;
-      -webkit-transform: rotate(-90deg);
-      -moz-transform: rotate(-90deg);
-      -o-transform: rotate(-90deg);
-      -ms-transform: rotate(-90deg);
-      transform: rotate(-90deg);
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0; }
+    right: 1px;
+    line-height: 23px; }
+    .time_picker .arrow-up i {
+      font-size: 10px;
+      color: #1b6db2; }
 
+.time_pick {
+  display: inline-block;
+  vertical-align: middle;
+  width: 98px;
+  text-align: center; }
+
+.timepicker_wrap {
+  padding: 10px 2px;
+  right: 0; }
+
+.arrow_top {
+  left: 50%;
+  margin-left: -9px; }
+
+.time,
+.mins,
+.meridian {
+  margin: 0;
+  width: 45px; }
+
+.input.timepicki-input {
+  color: #1b6db2; }
+
+.time_element,
 .landing_date,
 .departure_date {
   vertical-align: middle;
@@ -1916,7 +1906,15 @@ input[type="radio"].toggle.checked + label {
     width: 90%; }
     .vdf_modal .vdf_modal_content {
       width: 90%;
-      margin: 20px auto 0; } }
+      margin: 20px auto 0; }
+
+  .flight_dates {
+    display: block;
+    width: auto; }
+
+  .wrap_time {
+    display: block;
+    width: auto; } }
 @media (max-width: 992px) {
   .vdf_modal {
     width: 85%; }
