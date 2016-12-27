@@ -50,7 +50,7 @@ class CreateHelper
 
     protected function getNewNumber($order)
     {
-        Log::info('Create Helper -> getNewNumber'. date('H:i:s'));
+//        Log::info('Create Helper -> getNewNumber');
         $number = null;
 
         $phone = Phone::where([['is_active', 1], ['package_id', $order->package_id], ['state', 'not in use'], ['is_special', '0']])->first();
@@ -268,11 +268,14 @@ class CreateHelper
     {
         if ($order->status != 'waiting'){
             $phone = $order->phone;
-            if(Order::where('phone_id', $order->phone_id)->where('status', 'pending')->count() > 1) //not tested
+            $count = Order::where('phone_id', $order->phone_id)->where('status', 'pending')->count();
+            $phone->state = 'not in use';
+            if($count > 1) //not tested
                 $phone->state = 'pending';
+
                 if (Order::where('phone_id', $order->phone_id)->where('status', 'active')->count() > 0 && $status != 'suspended')
                     $phone->state = 'active';
-            else $phone->state = 'not in use';
+
             $phone->save();
         }
         $order->status = $status;
