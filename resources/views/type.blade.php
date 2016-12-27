@@ -61,7 +61,7 @@
                             <td class="rwd-td7 table_status_cell" data-th="Status">
                                 <span class="table_status_text not_used">{{$package['status']}}</span>
                             </td>
-                            <td>
+                            <td class="table_status_cell">
                                 <span class="remove_row" data-toggle="modal" data-target="#confirm_delete">
                                     <i class="icon-delete"></i>
                                 </span>
@@ -84,13 +84,13 @@
             <div class="modal-content vdf_modal_content">
                 <div class="modal-header vdf_modal_header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <div class="vdf_modal_sub_header">
+                    <div class="vdf_modal_sub_header vdf_two_titles">
                         <h3>Add new type number</h3>
+                        <h3>Add from file</h3>
                     </div>
                 </div>
                 <form action="{{url('type')}}" method="post" id="insert-type" class="form-horizontal vd_form">
                     <div class="modal-body vdf_modal_body">
-
                         {{csrf_field()}}
                         <div class="form-group">
                             <div class="col-md-6 vdf_modal_left">

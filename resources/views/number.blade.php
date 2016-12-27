@@ -94,8 +94,9 @@
             <div class="modal-content vdf_modal_content">
                 <div class="modal-header vdf_modal_header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <div class="vdf_modal_sub_header">
+                    <div class="vdf_modal_sub_header vdf_two_titles">
                         <h3>Add number</h3>
+                        <h3>Add from file</h3>
                     </div>
                 </div>
                 <form method="post" action="{{url('/number')}}" id="add-number-form" class="form-horizontal vd_form">

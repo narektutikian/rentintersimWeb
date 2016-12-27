@@ -574,6 +574,8 @@ input[type="radio"].toggle.checked + label {
   border-radius: 0px; }
   .fixed-table-container thead th {
     text-align: center; }
+    .fixed-table-container thead th .sortable {
+      padding-right: 20px; }
     .fixed-table-container thead th .both {
       background-image: url("../../img/both.png");
       background-repeat: no-repeat; }
@@ -699,7 +701,6 @@ input[type="radio"].toggle.checked + label {
 .hint_text {
   display: inline-block;
   vertical-align: middle;
-  float: left;
   line-height: 22px; }
 
 .hint {
@@ -781,7 +782,10 @@ input[type="radio"].toggle.checked + label {
   max-width: 136px; }
 
 .table_status_cell {
-  text-align: right; }
+  text-align: center; }
+
+.align_order {
+  text-align: center; }
 
 .updated_by {
   display: block; }
@@ -1453,6 +1457,14 @@ input[type="radio"].toggle.checked + label {
     background: #ebfffe;
     border-top: 1px solid #d4e1ea;
     border-bottom: 1px solid #d4e1ea; }
+    .vdf_modal .vdf_modal_sub_header.vdf_two_titles {
+      overflow: hidden; }
+      .vdf_modal .vdf_modal_sub_header.vdf_two_titles h3 {
+        float: left;
+        width: 50%;
+        padding-left: 10px; }
+        .vdf_modal .vdf_modal_sub_header.vdf_two_titles h3:last-child {
+          padding-left: 15px; }
     .vdf_modal .vdf_modal_sub_header data {
       float: right;
       color: #079fff;
@@ -1489,7 +1501,7 @@ input[type="radio"].toggle.checked + label {
     padding: 32px 25px 0 25px; }
   .vdf_modal .vdf_modal_footer {
     margin-top: 0;
-    padding: 15px 25px 30px 25px; }
+    padding: 18px 25px 18px 25px; }
     .vdf_modal .vdf_modal_footer .inline_block_btn {
       display: inline-block;
       vertical-align: middle;
@@ -1827,7 +1839,7 @@ input[type="radio"].toggle.checked + label {
       .vdf_modal .vdf_modal_left .or {
         display: none; }
     .vdf_modal .vdf_modal_footer {
-      padding: 10px 12px 15px 12px; }
+      padding: 12px 12px 12px 12px; }
       .vdf_modal .vdf_modal_footer .inline_block_btn {
         margin-left: 5px;
         margin-right: 5px;

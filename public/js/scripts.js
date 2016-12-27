@@ -242,7 +242,6 @@ $( document ).ready(function() {
 
     $('#modal_edit_order').on('show.bs.modal', function () {
 
-        console.log('modal_edit_order');
         // do something…
         setTimeout(function(){
 
@@ -371,7 +370,7 @@ $( document ).ready(function() {
 
     /* Numeric inputs for time picker */
     $('.numeric_input').keydown(function(event) {
-        console.log('keydown ');
+
         if (event.keyCode == 8 || (event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 96 && event.keyCode <= 105)) {
             // 0-9 only
             console.log('0-9 only ');
@@ -421,7 +420,6 @@ $( document ).ready(function() {
             
             if($(this).siblings().hasClass('vdf_hour')){
 
-                console.log('vdf_hour');
                 var el = $(this).siblings('.vdf_hour').text();
 
                 if(parseInt($(this).siblings('.vdf_hour').text()) == 0){
@@ -455,7 +453,7 @@ $( document ).ready(function() {
         var data_content = $(this).attr('data-content');
 
         if($(this).closest('tr').siblings('tr').find('.show_data_content').length > 0){
-            console.log('remove');
+
             $(this).closest('tr').siblings('tr').find('.show_data_content').remove();
         }
 
@@ -486,7 +484,6 @@ $( document ).ready(function() {
 
 
 $(window).load(function() {
-    console.log('window');
     $(".loader_inner").fadeOut();
     $(".loader").delay(400).fadeOut("slow");
 });

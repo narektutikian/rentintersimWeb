@@ -8,6 +8,8 @@
   thead
     th
       text-align: center
+      .sortable
+        padding-right: 20px
       .both
         background-image: url('../../img/both.png')
         background-repeat: no-repeat
@@ -124,7 +126,6 @@
 .hint_text
   display: inline-block
   vertical-align: middle
-  float: left
   line-height: 22px
 
 .hint
@@ -200,9 +201,12 @@
   max-width: 136px
 
 .table_status_cell
-  text-align: right
+  text-align: center
   //width: 142px
   //min-width: 142px
+
+.align_order
+  text-align: center
 
 .updated_by
   display: block

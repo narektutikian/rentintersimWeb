@@ -105,6 +105,13 @@
                                             <i class="input_icon icon-email"></i>
                                         </div>
                                     </div>
+                                    <div class="col-md-6">
+                                        <label class="table_label">Secondary Email</label>
+                                        <div class="form_row">
+                                            <input type="text" class="block_btn_30 modal_input vd_email" name="email" id="email" value="" data-th="Secondary Email"/>
+                                            <i class="input_icon icon-email"></i>
+                                        </div>
+                                    </div>
                                 </div>
 
                             </div>
