@@ -5,7 +5,7 @@ $( document ).ready(function() {
     $('.vd_form').each(function() {   // <- selects every <form> on page
         $(this).validate({
             rules: {
-                password: "required",
+
                 password_confirmation: {
                     equalTo: "#set_password"
                 }
