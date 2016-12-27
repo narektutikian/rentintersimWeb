@@ -168,41 +168,21 @@
     position: absolute
     width: 18px
     height: 14px
-    line-height: 14px
+    cursor: pointer
   .arrow-down
     bottom: 0
     right: 1px
-    i:before
-      content: '>'
-      display: inline-block
-      margin: auto
-      @include fonts_stack(12px)
-      font-weight: bold
+    line-height: 23px
+    i
+      font-size: 10px
       color: $dark_blue
-      cursor: pointer
-      @include transform(90deg)
-      position: absolute
-      top: 0
-      bottom: 0
-      left: 0
-      right: 0
   .arrow-up
     top: 0
     right: 1px
-    i:before
-      content: '>'
-      display: inline-block
-      margin: auto
-      @include fonts_stack(12px)
-      font-weight: bold
+    line-height: 23px
+    i
+      font-size: 10px
       color: $dark_blue
-      cursor: pointer
-      @include transform(-90deg)
-      position: absolute
-      top: 0
-      bottom: 0
-      left: 0
-      right: 0
 
 .landing_date,
 .departure_date
