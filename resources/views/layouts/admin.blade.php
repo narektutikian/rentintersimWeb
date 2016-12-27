@@ -81,7 +81,5 @@
 <script src="/js/validation.js"></script>
 <script src="/js/requests.js"></script>
 <script src="{{ asset('js/order-requests.js') }}"></script>
-
-
 </body>
 </html>
