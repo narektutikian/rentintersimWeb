@@ -43,14 +43,6 @@ $( document ).ready(function() {
         });
     });
 
-    // $('.vd_form_submit').click(function(e) {
-    //
-    //     e.preventDefault();
-    //     $(this).closest(".vd_form").valid();
-    //     // $(this).closest(".vd_form").submit();
-    // });
-
-
     /* Reset form fields after modal has been closed */
     $(document).on('click', '.vd_form_reset', function () {
 

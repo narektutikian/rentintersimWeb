@@ -1,6 +1,5 @@
 $( document ).ready(function() {
-
-
+    
     $('header .mobile_nav_button').on('click', function(){
         $('header .mobile_nav').slideToggle();
     });
@@ -350,7 +349,6 @@ $( document ).ready(function() {
 
         $(this).find('form')[0].reset();
         location.reload();
-
     });
 
 
