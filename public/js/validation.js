@@ -42,6 +42,24 @@ $( document ).ready(function() {
             required: true
         });
     });
+    $('.vd_form .vd_time_required').each(function() {
+        $(this).rules('add', {
+            required: true,
+            minlength: 2,
+            messages: {
+                required: "Time required",
+            }
+        });
+    });
+    $('.vd_form .vd_date_required').each(function() {
+        $(this).rules('add', {
+            required: true,
+            minlength: 2,
+            messages: {
+                required: "Date required",
+            }
+        });
+    });
 
     /* Reset form fields after modal has been closed */
     $(document).on('click', '.vd_form_reset', function () {
