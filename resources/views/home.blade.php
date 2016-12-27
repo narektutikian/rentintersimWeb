@@ -179,10 +179,13 @@
                                             <div class="input-group-addon">
                                                 <span class="glyphicon glyphicon-calendar"></span>
                                             </div>
-                                            <input type="text" name="landing_date" id="landing_date" class="inline_block_btn landing_date vd_required" data-date-format="DD/MM/YYYY">
+                                            <input type="text" name="landing_date" id="landing_date" class="inline_block_btn landing_date vd_date_required" data-date-format="DD/MM/YYYY">
                                         </div>
-                                        <i class="departure_time icon-time"></i>
-                                        <input type="text" name="timepicker" id="time_element" class="inline_block_btn time_element vd_required"/>
+                                        <div class="wrap_time">
+                                            <i class="departure_time icon-time"></i>
+                                            <input type="text" name="timepicker" id="time_element" class="inline_block_btn time_element vd_time_required"/>
+                                        </div>
+
                                     <!--    <div class="wrap_time">
                                             <i class="departure_time icon-time"></i>
                                             <div class="time_picker">
@@ -206,10 +209,13 @@
                                             <div class="input-group-addon">
                                                 <span class="glyphicon glyphicon-calendar"></span>
                                             </div>
-                                            <input type="text" name="departure_date" id="departure_date" class="inline_block_btn departure_date vd_required" data-date-format="DD/MM/YYYY">
+                                            <input type="text" name="departure_date" id="departure_date" class="inline_block_btn departure_date vd_date_required" data-date-format="DD/MM/YYYY">
                                         </div>
-                                        <i class="departure_time icon-time"></i>
-                                        <input type="text" name="timepicker2" id="time_element2" class="inline_block_btn time_element vd_required"/>
+                                        <div class="wrap_time">
+                                            <i class="departure_time icon-time"></i>
+                                            <input type="text" name="timepicker2" id="time_element2" class="inline_block_btn time_element vd_time_required"/>
+                                        </div>
+
                                     <!--    <div class="wrap_time">
                                             <i class="departure_time icon-time"></i>
                                             <div class="time_picker">

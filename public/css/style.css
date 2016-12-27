@@ -1700,8 +1700,7 @@ input[type="radio"].toggle.checked + label {
 
 .wrap_time {
   display: inline-block;
-  vertical-align: middle;
-  font-size: 0; }
+  vertical-align: top; }
 
 .time_picker {
   position: relative;
@@ -1782,8 +1781,8 @@ input[type="radio"].toggle.checked + label {
 
 .departure_time {
   display: inline-block;
-  vertical-align: middle;
-  margin: 0 2px 0 5px;
+  vertical-align: top;
+  margin: 5px 2px 0 5px;
   color: #1b6db2;
   font-size: 20px; }
 
