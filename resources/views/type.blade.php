@@ -61,7 +61,7 @@
                             <td class="rwd-td7 table_status_cell" data-th="Status">
                                 <span class="table_status_text not_used">{{$package['status']}}</span>
                             </td>
-                            <td class="table_status_cell">
+                            <td class="table_status_cell" data-th="Remove">
                                 <span class="remove_row" data-toggle="modal" data-target="#confirm_delete">
                                     <i class="icon-delete"></i>
                                 </span>

@@ -1,6 +1,3 @@
-//*
-  outline: 1px solid red
-
 
 .fixed-table-container
   border: none
@@ -202,8 +199,6 @@
 
 .table_status_cell
   text-align: center
-  //width: 142px
-  //min-width: 142px
 
 .align_order
   text-align: center
@@ -219,19 +214,69 @@
   border-bottom: 1px solid #ddd
 
 .rwd-table th,
-.my-table th
-  display: none
-
+.my-table th,
 .rwd-table td,
 .my-table td
-  display: block
+  display: table-cell
 
-.rwd-table td:before,
+.rwd-table th:last-child,
+.rwd-table td:last-child
+  padding-right: 0
+
+.user_management_table > thead > tr > th:first-child,
+.user_management_table > tbody > tr > td:first-child
+  //padding: 0 !important
+  //border: none
+  text-align: center
+
+.user_management_table > thead > tr.nested_row > th:first-child,
+.user_management_table > tbody > tr.nested_row > td:first-child
+  padding: 0 !important
+  //border: none
+  text-align: center
+
+.user_management_table > thead > tr > th:nth-child(2),
+.user_management_table > tbody > tr > td:nth-child(2)
+  border-left: none
+
+.rwd-table td:before
+  display: none
+
 .my-table td:before
-  content: attr(data-th) ": "
-  font-weight: bold
-  display: inline-block
-  margin-right: 5px
+  display: none
+
+
+
+// #wrap_tree_table.ps-container > .ps-scrollbar-x-rail,
+// #wrap_tree_table.ps-container > .ps-scrollbar-y-rail
+//   opacity: 0.8
+//
+// #wrap_tree_table.ps-container > .ps-scrollbar-y-rail > .ps-scrollbar-y
+//   background-color: $active_green
+//
+// #wrap_tree_table.options.ps-container > .ps-scrollbar-y-rail > .ps-scrollbar-y
+//   background-color: $active_green
+//
+// #wrap_tree_table.ps-container:hover.ps-in-scrolling.ps-y > .ps-scrollbar-y-rail > .ps-scrollbar-y,
+// #wrap_tree_table.ps-container.ps-in-scrolling.ps-y > .ps-scrollbar-y-rail > .ps-scrollbar-y
+//   background-color: $active_green
+//
+// #wrap_tree_table.ps-container:hover > .ps-scrollbar-y-rail:hover > .ps-scrollbar-y
+//   background-color: $active_green
+
+
+
+#wrap_tree_table.ps-container > .ps-scrollbar-x-rail > .ps-scrollbar-x
+  background-color: $active_green
+
+#wrap_tree_table.ps-container:hover > .ps-scrollbar-x-rail:hover > .ps-scrollbar-x
+  background-color: $active_green
+
+#wrap_tree_table.ps-container:hover > .ps-scrollbar-x-rail:hover > .ps-scrollbar-x
+  background-color: $active_green
+
+#wrap_tree_table.ps-container:hover.ps-in-scrolling.ps-x > .ps-scrollbar-x-rail > .ps-scrollbar-x
+  background-color: $active_green
 
 @media (min-width: 768px) and (max-width: 992px)
 
@@ -281,6 +326,17 @@
           line-height: 1.428571429
           width: 100%
 
+  #wrap_tree_table
+    position: relative
+    width: 100%
+    overflow: auto
+  .user_management_table
+    tbody
+      tr
+        td
+          line-height: 1
+          width: auto
+
   .status_text
     margin-top: 0
 
@@ -296,33 +352,28 @@
     min-width: initial
     max-width: initial
 
-@media (min-width: 768px)
-  .rwd-table td:before
-    display: none
+  .table_status_cell
+    text-align: left
 
-  .my-table td:before
-    display: none
-
-
-@media (min-width: 768px)
   .rwd-table th,
-  .my-table th,
+  .my-table th
+    display: none
+
   .rwd-table td,
   .my-table td
-    display: table-cell
+    display: block
 
-  .rwd-table th:last-child,
-  .rwd-table td:last-child
-    padding-right: 0
+  .rwd-table td:before,
+  .my-table td:before
+    content: attr(data-th) ": "
+    font-weight: bold
+    display: inline-block
+    margin-right: 5px
 
-  .user_management_table > thead > tr > th:first-child,
-  .user_management_table > tbody > tr > td:first-child
-    padding: 0 !important
-    border: none
-    text-align: center
-  .user_management_table > thead > tr > th:nth-child(2),
-  .user_management_table > tbody > tr > td:nth-child(2)
-    border-left: none
+
+
+
+
 
 
 

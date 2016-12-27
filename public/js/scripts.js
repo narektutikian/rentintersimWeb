@@ -1,5 +1,5 @@
 $( document ).ready(function() {
-    
+
     $('header .mobile_nav_button').on('click', function(){
         $('header .mobile_nav').slideToggle();
     });
@@ -477,6 +477,10 @@ $( document ).ready(function() {
         $('#modal_view_order').modal('toggle');
 
     });
+
+
+    /* Responsive scroll bars */
+    $('#wrap_tree_table').perfectScrollbar(); 
 
 });
 
