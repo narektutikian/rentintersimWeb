@@ -63,7 +63,7 @@
                             <td class="rwd-td4" data-th="Status">
                                 <span class="table_status_text not_used ">{{$sim['state']}}</span>
                             </td>
-                            <td class="rwd-td5 table_status_cell">
+                            <td class="rwd-td5 table_status_cell" data-th="Remove">
                                 <span class="remove_row {{ ($sim['state'] != 'available') ? 'disable' : '' }}" data-toggle="modal" data-target="#confirm_delete" data-row-id="{{$sim['id']}}">
                                     <i class="icon-delete"></i>
                                 </span>

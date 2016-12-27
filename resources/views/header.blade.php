@@ -58,7 +58,7 @@
     </div>
 
     <ul class="mobile_nav">
-        <li><a href="#">Orders List</a></li>
+        <li><a href="{{url('home')}}">Orders List</a></li>
         <li><a href="#">Reports</a></li>
         @if (Auth::user()->type != 'employee')
             <li><a href="#">Admin Panel</a></li>
