@@ -268,9 +268,9 @@ class CreateHelper
     {
         if ($order->status != 'waiting'){
             $phone = $order->phone;
-            $count = Order::where('phone_id', $order->phone_id)->where('status', 'pending')->count();
+
             $phone->state = 'not in use';
-            if($count > 1) //not tested
+            if(Order::where('phone_id', $order->phone_id)->where('status', 'pending')->count() > 1) //not tested
                 $phone->state = 'pending';
 
                 if (Order::where('phone_id', $order->phone_id)->where('status', 'active')->count() > 0 && $status != 'suspended')
