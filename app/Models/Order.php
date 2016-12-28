@@ -58,4 +58,9 @@ class Order extends Model
     {
         return $this->belongsToMany('App\Models\Phone');
     }
+
+//    protected function getDateFormat()
+//    {
+//        return 'd.m.Y H:i:s';
+//    }
 }

@@ -38,10 +38,11 @@ class notifications extends Mailable
 //        dd($this->data);
 
 //        $order = Order::find($this->data['order']);
+        $cc = [$this->order->editor->email,  $this->order->editor->email2];
 
         return $this->view('mail.notify')
             ->with('order', $this->order)
-            ->cc($this->order->editor->email, $this->order->editor->name)
+            ->cc($cc)
             ->bcc($address, $name)
             ->from($address, $name)
             ->subject($subject);

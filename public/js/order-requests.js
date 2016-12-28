@@ -35,7 +35,7 @@ $(document).ready(function () {
                 beforeSend: function() {
                     $(".error_response").empty();
                     $(".success_response").empty();
-                    $(".success_response").append("Please wait");
+                    $(".success_response").append("Please wait <img src='/img/loader.gif' width='20'/>");
                 },
                 success: function (msg) {
                     $(".error_response").empty();
@@ -354,6 +354,11 @@ $(document).ready(function () {
                 type: "GET",
                 url: 'send-mail/' + edit_id,
                 data: data,
+                beforeSend: function() {
+                    $(".error_response").empty();
+                    $(".success_response").empty();
+                    $(".success_response").append("Please wait <img src='/img/loader.gif' width='20'/>");
+                },
                 success: function (msg) {
                     $(".error_response").empty();
                     $(".success_response").empty();

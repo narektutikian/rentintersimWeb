@@ -11,8 +11,8 @@
         <tr>
             <td style="background: #079fff; padding: 10px 10px;">
                 <div class="logo" height="60" width="60" style="display: inline-block; vertical-align: middle; margin-right: 25px;">
-                    {{--<a href="index.html" style="display: block;"><img src="{{$message->embed(public_path() .'/img/logo.jpg')}}" alt="Logo" style="display: block;"></a>--}}
-                    <a href="index.html" style="display: block;"><img src="/img/logo.jpg" alt="Logo" style="display: block;"></a>
+                    <a href="index.html" style="display: block;"><img src="{{$message->embed(public_path() .'/img/logo.jpg')}}" alt="Logo" style="display: block;"></a>
+                    {{--<a href="index.html" style="display: block;"><img src="/img/logo.jpg" alt="Logo" style="display: block;"></a>--}}
                 </div>
             </td>
         </tr>
@@ -28,7 +28,7 @@
         </tr>
         <tr>
             <td style="padding: 10px 10px;">
-                <div style="height: 40px; line-height: 40px; padding: 0 15px; background: #079fff; color: #ffffff; font-size: 15px; font-weight: bold; font-style: normal; font-family: proxima_nova_rgregular, Arial, Helvetica, sans-serif;">Number:  "{{$order->phone->phone}}" is assigned to SIM #: "{{$order->sim->number}}"</div>
+                <div style="line-height: 40px; padding: 0 15px; background: #079fff; color: #ffffff; font-size: 15px; font-weight: bold; font-style: normal; font-family: proxima_nova_rgregular, Arial, Helvetica, sans-serif;">Number:  "{{$order->phone->phone}}" is assigned to SIM #: "{{$order->sim->number}}"</div>
             </td>
         </tr>
         <tr>
