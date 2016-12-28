@@ -246,8 +246,6 @@
     .vd_next.icon-dropdown
       @include transform(-90deg)
 
-
-
 .single_package
   display: inline-block
   vertical-align: middle
@@ -292,13 +290,6 @@
   vertical-align: top
   margin-left: 30px
   @include fonts_stack(15px)
-  @media (min-width: 992px) and (max-width: 1200px)
-    margin-left: 10px
-    font-size: 14px
-  @media (max-width: 992px)
-    margin: 20px auto
-    display: block
-    text-align: center
 
 .keep_file_name
   display: inline-block
@@ -314,14 +305,9 @@
   border-top-right-radius: 0px
   border-bottom-right-radius: 0px
   @include fonts_stack(15px)
-  @media (max-width: 1200px)
-    width: 160px
-  @media (max-width: 992px)
-    width: 70%
-  @media (max-width: 640px)
-    width: 60%
 
 @media (max-width: 1200px)
+
   .filter_text
     float: none
     display: block
@@ -359,6 +345,13 @@
   .wrap_package_list,
   .wrap_package_list_edit
     width: 100%
+
+  .uploaded_file_links
+    margin-left: 10px
+    font-size: 14px
+
+  .keep_file_name
+    width: 160px
 
 @media (max-width: 992px)
 
@@ -402,6 +395,14 @@
       margin-left: auto
       margin-right: auto
 
+  .uploaded_file_links
+    margin: 20px auto
+    display: block
+    text-align: center
+
+  .keep_file_name
+    width: 70%
+
 @media (max-width: 768px)
   .distributors
     margin-bottom: 40px
@@ -423,6 +424,9 @@
   .wrap_package_list_edit
     .package_item
       margin: 0 auto
+
+  .keep_file_name
+    width: 60%
 
 @media (max-width: 480px)
 
