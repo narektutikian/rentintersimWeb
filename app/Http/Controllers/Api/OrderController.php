@@ -210,18 +210,16 @@ class OrderController extends Controller
             }
             */
             $Order->save();
-/*
+
             $number = null;
             if ($request->has('phone_id') && $request->input('phone_id') != '' && $request->input('phone_id') != $Order->phone_id) {
                 if (Auth::user()->level == 'Super admin') {
                     $number = $this->helper->setNumber($Order->id, $request->input('phone_id'));
                 }
-            } else {
-                $number = $this->getNumber($Order->id);
             }
             if ($number != null) {
                 return $this->edit($Order->id);
-            }*/
+            }
 
             return response($Order->toArray(), 200);
 

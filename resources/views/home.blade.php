@@ -341,7 +341,7 @@
                                             </div>
                                             <div class="wrap_time">
                                                 <i class="departure_time icon-time"></i>
-                                                <input type="text" name="timepicker3" id="time_element2" class="inline_block_btn time_element vd_time_required"/>
+                                                <input type="text" name="timepicker3" id="time_element2" class="inline_block_btn time_element vd_time_requiredc" disabled/>
                                             </div>
                                         </div>
                                         {{--<div class="wrap_time from">--}}
@@ -369,7 +369,7 @@
                                             </div>
                                             <div class="wrap_time">
                                                 <i class="departure_time icon-time"></i>
-                                                <input type="text" name="timepicker4" id="time_element2" class="inline_block_btn time_element vd_time_required"/>
+                                                <input type="text" name="timepicker4" id="time_element2" class="inline_block_btn time_element vd_time_requiredc" disabled/>
                                             </div>
                                         </div>
                                         {{--<div class="wrap_time to">--}}
@@ -399,7 +399,7 @@
                                         <label class="table_label">Customer phone number</label>
                                             @if(Auth::user()->level == 'Super admin')
                                         <div class="select_wrapper">
-                                                <select  name="phone_number" id="phone_number-edit" class="block_btn_30 modal_input" disabled>
+                                                <select  name="phone_number" id="phone_number-edit" class="block_btn_30 modal_input">
                                                     <option value=""></option>
                                                     @foreach($specials as $special)
                                                         <option value="{{$special['id']}}">{{$special['phone']}}</option>
