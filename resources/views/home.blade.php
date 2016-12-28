@@ -175,16 +175,19 @@
                                 <div class="form-group">
                                     <div class="col-md-6">
                                         <div class="departure"><i class="icon-landing"></i> Landing date and time</div>
-                                        <div class="input-group date flight_dates" data-provide="datepicker">
-                                            <div class="input-group-addon">
-                                                <span class="glyphicon glyphicon-calendar"></span>
+                                        <div class="wrap_date">
+                                            <div class="input-group date flight_dates" data-provide="datepicker">
+                                                <div class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </div>
+                                                <input type="text" name="landing_date" id="landing_date" class="inline_block_btn landing_date vd_date_required" data-date-format="DD/MM/YYYY">
                                             </div>
-                                            <input type="text" name="landing_date" id="landing_date" class="inline_block_btn landing_date vd_date_required" data-date-format="DD/MM/YYYY">
+                                            <div class="wrap_time">
+                                                <i class="departure_time icon-time"></i>
+                                                <input type="text" name="timepicker" id="time_element" class="inline_block_btn time_element vd_time_required"/>
+                                            </div>
                                         </div>
-                                        <div class="wrap_time">
-                                            <i class="departure_time icon-time"></i>
-                                            <input type="text" name="timepicker" id="time_element" class="inline_block_btn time_element vd_time_required"/>
-                                        </div>
+
 
                                     <!--    <div class="wrap_time">
                                             <i class="departure_time icon-time"></i>
@@ -205,16 +208,19 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="departure"><i class="icon-departure"></i> Departure date and time</div>
-                                        <div class="input-group date flight_dates" data-provide="datepicker">
-                                            <div class="input-group-addon">
-                                                <span class="glyphicon glyphicon-calendar"></span>
+                                        <div class="wrap_date">
+                                            <div class="input-group date flight_dates" data-provide="datepicker">
+                                                <div class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </div>
+                                                <input type="text" name="departure_date" id="departure_date" class="inline_block_btn departure_date vd_date_required" data-date-format="DD/MM/YYYY">
                                             </div>
-                                            <input type="text" name="departure_date" id="departure_date" class="inline_block_btn departure_date vd_date_required" data-date-format="DD/MM/YYYY">
+                                            <div class="wrap_time">
+                                                <i class="departure_time icon-time"></i>
+                                                <input type="text" name="timepicker2" id="time_element2" class="inline_block_btn time_element vd_time_required"/>
+                                            </div>
                                         </div>
-                                        <div class="wrap_time">
-                                            <i class="departure_time icon-time"></i>
-                                            <input type="text" name="timepicker2" id="time_element2" class="inline_block_btn time_element vd_time_required"/>
-                                        </div>
+
 
                                     <!--    <div class="wrap_time">
                                             <i class="departure_time icon-time"></i>

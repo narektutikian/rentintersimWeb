@@ -330,6 +330,19 @@
   .wrap_time
     display: block
     width: auto
+    margin-top: 10px
+
+  .time_element,
+  .landing_date,
+  .departure_date
+    width: 99px
+
+  .wrap_date
+    text-align: center
+
+  .time_pick
+    input
+      width: 100%
 
 @media (max-width: 992px)
 
@@ -361,11 +374,41 @@
   .table_label
     margin-top: 15px
 
+  .flight_dates
+    display: inline-block
+    //width: auto
+
+  .time_element,
+  .landing_date,
+  .departure_date
+    width: 120px
+
+  .wrap_time
+    display: inline-block
+    margin-top: 0
+    //width: auto
+
+  .time_pick
+    width: 160px
+
+  .timepicker_wrap
+    padding: 10px
+    top: 27px
+    left: 0
+    //right: none
+
+  .time,
+  .mins,
+  .meridian
+    margin: 0 10px
+    width: 48px
+
 @media (max-width: 768px)
   .vdf_modal
     width: 90%
     .vdf_modal_content
       width: 95%
+
 
 @media (max-width: 640px)
   .vdf_modal
@@ -374,3 +417,20 @@
       width: 100%
     .file_container
       width: 40%
+
+
+@media (max-width: 480px)
+
+  .time_pick
+    width: 100px
+
+  .time_element,
+  .landing_date,
+  .departure_date
+    width: 100px
+ 
+  .time,
+  .mins,
+  .meridian
+    margin: 0
+    width: 45px
