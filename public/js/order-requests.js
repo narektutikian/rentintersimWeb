@@ -26,7 +26,7 @@ $(document).ready(function () {
                 remark: $('#remark').val(),
             };
 
-            console.log("landing: " + data.landing  + " departure " + data.departure);
+            // console.log("landing: " + data.landing  + " departure " + data.departure);
 
             $.ajax({
                 type: "POST",
