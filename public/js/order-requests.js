@@ -32,6 +32,11 @@ $(document).ready(function () {
                 type: "POST",
                 url: 'order',
                 data: data,
+                beforeSend: function() {
+                    $(".error_response").empty();
+                    $(".success_response").empty();
+                    $(".success_response").append("Please wait");
+                },
                 success: function (msg) {
                     $(".error_response").empty();
                     $(".success_response").empty();

@@ -22,7 +22,7 @@
             </tr>
             <tr>
                 <td style="padding: 10px 10px;">
-                    <div style="height: 40px; line-height: 40px; padding: 0 15px; background: #079fff; color: #ffffff; font-size: 15px; font-weight: bold; font-style: normal; font-family: proxima_nova_rgregular, Arial, Helvetica, sans-serif;">{{$order->phone->phone}}</div>
+                    <div style="height: 40px; line-height: 40px; padding: 0 15px; background: #079fff; color: #ffffff; font-size: 15px; font-weight: bold; font-style: normal; font-family: proxima_nova_rgregular, Arial, Helvetica, sans-serif;">Phone #:  {{$order->phone->phone}}, SIM #: {{$order->sim->number}}</div>
                 </td>
             </tr>
             <tr>
@@ -53,7 +53,9 @@
             </tr>
             <tr>
                 <td>--
-                    <br />Syc group</td>
+                    <br />SYC GROUP
+                    <br /> Phone: +(972)-52-890-7711
+                    <br /> Email: service@syc.co.il </td>
             </tr>
             </tbody>
         </table>

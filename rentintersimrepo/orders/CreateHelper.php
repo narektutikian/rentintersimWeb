@@ -9,12 +9,14 @@
 namespace Rentintersimrepo\orders;
 
 
+use App\Mail\notifications;
 use Carbon\Carbon;
 use App\Models\Sim;
 use App\Models\Phone;
 use App\Models\Order;
 use App\Models\Activation;
 use Illuminate\Support\Facades\Log;
+use Mail;
 
 
 class CreateHelper
@@ -59,9 +61,7 @@ class CreateHelper
             if($phone->exists){
                 $number = $phone->id;
 //                dd($number);
-                $order->phone_id = $number;
-                $order->save();
-                $this->setStatus($order, 'pending');
+                $this->assignNumber($order, $number);
             }
 
         return $number;
@@ -77,9 +77,7 @@ class CreateHelper
             if ($this->isTimeCompatible($order, $oldOrder)) {
                 if ($this->isNumberCompatible($order, $oldOrder)){
                     $number = $oldOrder->phone_id;
-                    $order->phone_id = $number;
-                    $order->save();
-                    $this->setStatus($order, 'pending');
+                    $this->assignNumber($order, $number);
 //                        dd($number);
                     break;
                 }
@@ -103,30 +101,23 @@ class CreateHelper
         $sim = $order->sim;
         $sim->state = $status;
         $sim->save();
+        $this->sendMail($order);
     }
 
     protected function isTimeCompatible($newOrder, $oldOrder)
     {
-//        Log::info('Create Helper -> isTimeCompatible');
+//
         if ($newOrder->from <= $oldOrder->to + 72000  && $newOrder->to >= $oldOrder->from - 72000){
 //            Log::info('Create Helper -> isTimeCompatible : passed for new order: '. $newOrder->id. ', old order:  '. $oldOrder->id);
             return false;
         }
 
         else{
-//            Log::info('Create Helper -> isTimeCompatible : failed'  );
+//
             return true;
         }
 
 
-        /*if ($newOrder->to < $oldOrder->to){
-            if ($newOrder->from < $oldOrder->to)
-                return true;
-        }
-        if ($newOrder->from > $oldOrder->to){
-             return true;
-        }
-        return false;*/
     }
 
     protected function isNumberCompatible($newOrder, $oldOrder)
@@ -160,9 +151,7 @@ class CreateHelper
             if ($order->package_id != $number->package_id)
                 return 'Insufficient package selected. The package of this number is #'. $number->package_id;
             if ($number->state == 'not in use') {
-                $order->phone_id = $number->id;
-                $order->save();
-                $this->setStatus($order, 'pending');
+                $this->assignNumber($order, $number->id);
             } else {
 
                 $oldOrders = Order::where([['phone_id', $numberid]])->orderby('id', 'asc')->get();
@@ -170,9 +159,7 @@ class CreateHelper
                     if ($this->isTimeCompatible($order, $oldOrder)) {
                         if ($this->isNumberCompatible($order, $oldOrder)){
                             $numberid = $oldOrder->phone_id;
-                            $order->phone_id = $numberid;
-                            $order->save();
-                            $this->setStatus($order, 'pending');
+                            $this->assignNumber($order, $oldOrder->phone_id);
 //                        dd($number);
                             break;
                         }
@@ -185,6 +172,13 @@ class CreateHelper
             return $number->id;
         } else {return 'Number or Order does not exist';}
         return 'unknown error';
+    }
+
+    protected function assignNumber($order, $phoneID)
+    {
+        $order->phone_id = $phoneID;
+        $order->save();
+        $this->setStatus($order, 'pending');
     }
 
     public function startActivation()
@@ -285,7 +279,14 @@ class CreateHelper
         $sim->state = 'available';
 
         $sim->save();
+        $this->sendMail($order);
         $order->delete();
+    }
+
+    protected function sendMail($order)
+    {
+        Mail::to($order->creator->email, $order->creator->name)
+            ->queue(new notifications($order));
     }
 
 }

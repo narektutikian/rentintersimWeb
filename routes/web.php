@@ -76,8 +76,8 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
 
 
 Route::get('/test', function (){
-    $oldOrders = Order::where([['status', 'pending'], ['package_id', 28]])->orderby('to', 'asc')->get();
-    dd($oldOrders);
+
+    return view('mail.notify')->with('order', Order::find(245))->with('text', 'text');
 });
 
 
