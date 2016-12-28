@@ -1907,7 +1907,19 @@ input[type="radio"].toggle.checked + label {
 
   .wrap_time {
     display: block;
-    width: auto; } }
+    width: auto;
+    margin-top: 10px; }
+
+  .time_element,
+  .landing_date,
+  .departure_date {
+    width: 99px; }
+
+  .wrap_date {
+    text-align: center; }
+
+  .time_pick input {
+    width: 100%; } }
 @media (max-width: 992px) {
   .vdf_modal {
     width: 85%; }
@@ -1936,7 +1948,33 @@ input[type="radio"].toggle.checked + label {
     margin-top: 15px; }
 
   .table_label {
-    margin-top: 15px; } }
+    margin-top: 15px; }
+
+  .flight_dates {
+    display: inline-block; }
+
+  .time_element,
+  .landing_date,
+  .departure_date {
+    width: 120px; }
+
+  .wrap_time {
+    display: inline-block;
+    margin-top: 0; }
+
+  .time_pick {
+    width: 160px; }
+
+  .timepicker_wrap {
+    padding: 10px;
+    top: 27px;
+    left: 0; }
+
+  .time,
+  .mins,
+  .meridian {
+    margin: 0 10px;
+    width: 48px; } }
 @media (max-width: 768px) {
   .vdf_modal {
     width: 90%; }
@@ -1949,6 +1987,20 @@ input[type="radio"].toggle.checked + label {
       width: 100%; }
     .vdf_modal .file_container {
       width: 40%; } }
+@media (max-width: 480px) {
+  .time_pick {
+    width: 100px; }
+
+  .time_element,
+  .landing_date,
+  .departure_date {
+    width: 100px; }
+
+  .time,
+  .mins,
+  .meridian {
+    margin: 0;
+    width: 45px; } }
 * {
   margin: 0;
   padding: 0;

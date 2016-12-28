@@ -299,7 +299,9 @@ $( document ).ready(function() {
 
 
     /* Bootstrap Datepicker */
-    $('.date').datetimepicker();
+    $('.date').datetimepicker({
+        keepOpen : true
+    });
 
 
     /* Put Editable values inside modal window */
