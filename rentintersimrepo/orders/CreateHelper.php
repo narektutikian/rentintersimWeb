@@ -285,8 +285,8 @@ class CreateHelper
 
     protected function sendMail($order)
     {
-        Mail::to($order->creator->email, $order->creator->name)
-            ->queue(new notifications($order));
+//        Mail::to($order->creator->email, $order->creator->name)
+//            ->queue(new notifications($order));
     }
 
 }
