@@ -39,6 +39,11 @@ class Order extends Model
          return $this->belongsTo('App\Models\Phone', 'phone_id');
      }
 
+    public function package()
+    {
+        return $this->belongsTo('App\Models\Package', 'package_id');
+    }
+
     public function scopeEmployee($query, $id)
     {
         return $query->where('created_by', $id)->orWhere('updated_by', $id);
@@ -53,4 +58,9 @@ class Order extends Model
     {
         return $this->belongsToMany('App\Models\Phone');
     }
+
+//    protected function getDateFormat()
+//    {
+//        return 'd.m.Y H:i:s';
+//    }
 }

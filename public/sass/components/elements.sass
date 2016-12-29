@@ -165,6 +165,9 @@
   &.waiting
     @include waiting
 
+.export_user
+  text-align: left
+
 .uploaded_files
   font-size: 0
 
@@ -226,24 +229,22 @@
       padding: 2px 0px
       &:hover
         background: $active_green
-      &:hover .prev.icon-dropdown,
-      &:hover .next.icon-dropdown
+      &:hover .vd_prev.icon-dropdown,
+      &:hover .vd_next.icon-dropdown
         color: $white
     .owl-prev
       left: 0
     .owl-next
       right: 0
-    .prev.icon-dropdown,
-    .next.icon-dropdown
+    .vd_prev.icon-dropdown,
+    .vd_next.icon-dropdown
       color: $active_green
       font-size: 26px
       display: inline-block
-    .prev.icon-dropdown
+    .vd_prev.icon-dropdown
       @include transform(90deg)
-    .next.icon-dropdown
+    .vd_next.icon-dropdown
       @include transform(-90deg)
-
-
 
 .single_package
   display: inline-block
@@ -289,13 +290,6 @@
   vertical-align: top
   margin-left: 30px
   @include fonts_stack(15px)
-  @media (min-width: 992px) and (max-width: 1200px)
-    margin-left: 10px
-    font-size: 14px
-  @media (max-width: 992px)
-    margin: 20px auto
-    display: block
-    text-align: center
 
 .keep_file_name
   display: inline-block
@@ -311,14 +305,9 @@
   border-top-right-radius: 0px
   border-bottom-right-radius: 0px
   @include fonts_stack(15px)
-  @media (max-width: 1200px)
-    width: 160px
-  @media (max-width: 992px)
-    width: 70%
-  @media (max-width: 640px)
-    width: 60%
 
 @media (max-width: 1200px)
+
   .filter_text
     float: none
     display: block
@@ -357,6 +346,13 @@
   .wrap_package_list_edit
     width: 100%
 
+  .uploaded_file_links
+    margin-left: 10px
+    font-size: 14px
+
+  .keep_file_name
+    width: 160px
+
 @media (max-width: 992px)
 
   .search_management_option
@@ -376,12 +372,17 @@
       margin-right: auto
       margin-left: auto
       margin-bottom: 15px
+      text-align: center
     .add_new_btn
       display: block
       width: 80%
       margin-right: auto
       margin-left: auto
       margin-bottom: 15px
+    .search_button
+      height: 27px
+      top: 1px
+      line-height: 35px
   .filter_option
     display: block
     width: 80%
@@ -393,6 +394,14 @@
     &.last
       margin-left: auto
       margin-right: auto
+
+  .uploaded_file_links
+    margin: 20px auto
+    display: block
+    text-align: center
+
+  .keep_file_name
+    width: 70%
 
 @media (max-width: 768px)
   .distributors
@@ -415,6 +424,9 @@
   .wrap_package_list_edit
     .package_item
       margin: 0 auto
+
+  .keep_file_name
+    width: 60%
 
 @media (max-width: 480px)
 

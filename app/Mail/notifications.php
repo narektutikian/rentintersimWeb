@@ -8,19 +8,21 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Models\Order;
 
-class OrderMail extends Mailable
+class notifications extends Mailable
 {
     use Queueable, SerializesModels;
-    protected $data;
+
+    protected $order;
+
     /**
      * Create a new message instance.
-     *
+     * @param App\Models\Order
      * @return void
      */
-    public function __construct($data)
+    public function __construct(Order $order)
     {
         //
-        $this->data = $data;
+        $this->order = $order;
     }
 
     /**
@@ -32,18 +34,17 @@ class OrderMail extends Mailable
     {
         $address = 'service@syc.co.il';
         $name = 'RentInterSim';
-        $subject = 'Your Order';
+        $subject = 'Order Status Change';
 //        dd($this->data);
 
-        $order = Order::find($this->data['order']);
+//        $order = Order::find($this->data['order']);
+        $cc = [$this->order->editor->email,  $this->order->editor->email2];
 
-        return $this->view('mail.mail')
-            ->with('order', $order)
-            ->with('text', $this->data['text'])
-            ->from($address, $name)
-            ->cc($address, $name)
+        return $this->view('mail.notify')
+            ->with('order', $this->order)
+            ->cc($cc)
             ->bcc($address, $name)
-            ->replyTo($address, $name)
+            ->from($address, $name)
             ->subject($subject);
     }
 }

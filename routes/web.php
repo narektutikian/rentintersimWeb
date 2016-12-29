@@ -35,7 +35,7 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
     Route::resource('type', 'PackageController');
 
     /*****Get new Number******/
-    Route::get('get-number/{orderId}', 'OrderController@getNumber');
+    Route::get('get-number/{orderId}', 'OrderController@getNumberExternal');
 
     /*****Activate - Deactivate******/
     Route::get('activate', 'OrderController@activate');
@@ -63,19 +63,21 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
     Route::post('import-type', 'PackageController@import');
     Route::get('exportnumber', 'PhoneController@export');
     Route::post('import-number', 'PhoneController@import');
+    Route::get('exportorders', 'OrderController@export');
 
     /******Search  routes******/
     Route::get('search/sim', 'SIMController@search');
     Route::get('search/type', 'PackageController@search');
     Route::get('search/number', 'PhoneController@search');
+    Route::get('search/order', 'OrderController@search');
 
-    Route::get('sent-mail', 'OrderController@sendMail');
+    Route::get('send-mail/{orderID}', 'OrderController@sendMail');
 });
 
 
 Route::get('/test', function (){
-    $res = file_get_contents("http://176.35.171.143:8086/api/vfapi.php?key=7963ad6960b1088b94db2c32f2975e86&call=simcheck&cli=07393234235");
-    echo $res;
+
+    return view('mail.notify')->with('order', Order::find(245))->with('text', 'text');
 });
 
 

@@ -31,6 +31,7 @@ select:focus
 
 a
   cursor: pointer
+  text-decoration: none
 
 a,
 a:hover,
@@ -91,8 +92,9 @@ h5
 h6
   font-size: 10px
 
-a
-  text-decoration: none
+
+.link
+  color: $total_numbers_title
 
 .width100
   width: 100%
@@ -135,8 +137,30 @@ a
   width: 60px
 
 
+.loader
+  background: none repeat scroll 0 0 #fff
+  bottom: 0
+  height: 100%
+  left: 0
+  position: fixed
+  right: 0
+  top: 0
+  width: 100%
+  z-index: 9999
 
-
+.loader_inner
+  background-image: url('../../img/loader.gif')
+  background-size: cover
+  background-repeat: no-repeat
+  background-position: center center
+  background-color: #fff
+  height: 60px
+  width: 60px
+  margin-top: -30px
+  margin-left: -30px
+  left: 50%
+  top: 50%
+  position: absolute
 
 .clear
   clear: both

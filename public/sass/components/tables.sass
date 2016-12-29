@@ -1,6 +1,3 @@
-//*
-  outline: 1px solid red
-
 
 .fixed-table-container
   border: none
@@ -8,6 +5,8 @@
   thead
     th
       text-align: center
+      .sortable
+        padding-right: 20px
       .both
         background-image: url('../../img/both.png')
         background-repeat: no-repeat
@@ -88,6 +87,7 @@
 .ref_number
   position: relative
   cursor: pointer
+  min-width: 130px
 
 .show_data_content
   background: $dark_blue
@@ -124,7 +124,6 @@
 .hint_text
   display: inline-block
   vertical-align: middle
-  float: left
   line-height: 22px
 
 .hint
@@ -174,6 +173,9 @@
   cursor: pointer
   @include border_radius(18px)
   font-size: 17px
+  &.disable
+    background: #939393
+    opacity: 1
 
 .table_id_cell
   width: 60px
@@ -197,9 +199,10 @@
   max-width: 136px
 
 .table_status_cell
-  text-align: right
-  //width: 142px
-  //min-width: 142px
+  text-align: center
+
+.align_order
+  text-align: center
 
 .updated_by
   display: block
@@ -212,19 +215,82 @@
   border-bottom: 1px solid #ddd
 
 .rwd-table th,
-.my-table th
-  display: none
-
+.my-table th,
 .rwd-table td,
 .my-table td
-  display: block
+  display: table-cell
 
-.rwd-table td:before,
+.rwd-table th:last-child,
+.rwd-table td:last-child
+  padding-right: 0
+
+.user_management_table > thead > tr > th:first-child,
+.user_management_table > tbody > tr > td:first-child
+  //padding: 0 !important
+  //border: none
+  text-align: center
+
+.user_management_table > thead > tr.nested_row > th:first-child,
+.user_management_table > tbody > tr.nested_row > td:first-child
+  padding: 0 !important
+  //border: none
+  text-align: center
+
+.user_management_table > thead > tr > th:nth-child(2),
+.user_management_table > tbody > tr > td:nth-child(2)
+  border-left: none
+
+.rwd-table td:before
+  display: none
+
 .my-table td:before
-  content: attr(data-th) ": "
-  font-weight: bold
-  display: inline-block
-  margin-right: 5px
+  display: none
+
+#wrap_orders_table
+  position: relative
+  width: 100%
+  overflow: auto
+  .bootstrap-table
+    width: 1140px
+  .fixed-table-body
+    overflow-x: hidden
+    overflow-y: hidden
+
+#wrap_tree_table.ps-container > .ps-scrollbar-x-rail > .ps-scrollbar-x
+  background-color: $active_green
+
+#wrap_tree_table.ps-container:hover > .ps-scrollbar-x-rail:hover > .ps-scrollbar-x
+  background-color: $active_green
+
+#wrap_tree_table.ps-container:hover > .ps-scrollbar-x-rail:hover > .ps-scrollbar-x
+  background-color: $active_green
+
+#wrap_tree_table.ps-container:hover.ps-in-scrolling.ps-x > .ps-scrollbar-x-rail > .ps-scrollbar-x
+  background-color: $active_green
+
+#wrap_tree_table.ps-container > .ps-scrollbar-x-rail
+  background-color: $dark_gray
+  display: block
+  opacity: 0.5
+  height: 12px
+
+#wrap_orders_table.ps-container > .ps-scrollbar-x-rail > .ps-scrollbar-x
+  background-color: $active_green
+
+#wrap_orders_table.ps-container:hover > .ps-scrollbar-x-rail:hover > .ps-scrollbar-x
+  background-color: $active_green
+
+#wrap_orders_table.ps-container:hover > .ps-scrollbar-x-rail:hover > .ps-scrollbar-x
+  background-color: $active_green
+
+#wrap_orders_table.ps-container:hover.ps-in-scrolling.ps-x > .ps-scrollbar-x-rail > .ps-scrollbar-x
+  background-color: $active_green
+
+#wrap_orders_table.ps-container > .ps-scrollbar-x-rail
+  background-color: $dark_gray
+  display: block
+  opacity: 0.5
+  height: 12px
 
 @media (min-width: 768px) and (max-width: 992px)
 
@@ -245,12 +311,6 @@
     min-width: 130px
     max-width: 130px
 
-  .table_action_cell_large
-    width: 70px
-    text-align: center
-    min-width: 70px
-    max-width: 70px
-
   .bootstrap-table
     .table:not(.table-condensed)
       > tbody
@@ -264,7 +324,8 @@
     height: 25px
     line-height: 27px
 
-
+  #wrap_orders_table
+    padding-bottom: 12px
 
 @media (max-width: 768px)
   .table
@@ -274,8 +335,26 @@
           line-height: 1.428571429
           width: 100%
 
+  #wrap_tree_table
+    position: relative
+    width: 100%
+    overflow: auto
+  #wrap_orders_table
+    .bootstrap-table
+      width: auto
+      padding-bottom: 45px
+  .user_management_table
+    tbody
+      tr
+        td
+          line-height: 1
+          width: auto
+
   .status_text
     margin-top: 0
+
+  .align_order
+    text-align: left
 
   .table_action_cell
     width: auto
@@ -289,33 +368,49 @@
     min-width: initial
     max-width: initial
 
-@media (min-width: 768px)
-  .rwd-table td:before
-    display: none
+  .table_status_cell
+    text-align: left
 
-  .my-table td:before
-    display: none
-
-
-@media (min-width: 768px)
   .rwd-table th,
-  .my-table th,
+  .my-table th
+    display: none
+
   .rwd-table td,
   .my-table td
-    display: table-cell
+    display: block
 
-  .rwd-table th:last-child,
-  .rwd-table td:last-child
-    padding-right: 0
+  .rwd-table td:before,
+  .my-table td:before
+    content: attr(data-th) ": "
+    font-weight: bold
+    display: inline-block
+    margin-right: 5px
 
-  .user_management_table > thead > tr > th:first-child,
-  .user_management_table > tbody > tr > td:first-child
-    padding: 0 !important
-    border: none
-    text-align: center
-  .user_management_table > thead > tr > th:nth-child(2),
-  .user_management_table > tbody > tr > td:nth-child(2)
-    border-left: none
+  .table_action_cell_large
+    text-align: left
+    width: auto
+    min-width: none
+    max-width: none
+
+  .hint
+    float: none
+    display: inline-block
+    vertical-align: middle
+    margin-left: 10px
+  .show_data_content
+    position: static
+    float: right
+    &:before
+      display: none
+    &:after
+      display: none
+
+
+
+
+
+
+
 
 
 

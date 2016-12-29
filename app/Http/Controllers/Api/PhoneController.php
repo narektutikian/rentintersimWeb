@@ -113,9 +113,9 @@ class PhoneController extends Controller
     {
         //
         $this->validate(request(), [
-            'phone' => 'required|unique:phones',
+            'phone' => 'required',
 //            'state' => 'required',
-            'initial_sim_id' => 'required',
+//            'initial_sim_id' => 'required',
 //            'current_sim_id' => 'required',
             'package_id' => 'required',
             'provider_id' => 'required',
@@ -123,17 +123,25 @@ class PhoneController extends Controller
 //            'is_active' => 'required',
 
         ]);
+
+        $isSpecial = 0;
+        if ($request->input('is_special') == 'true')
+            $isSpecial = 1;
         //
         $phone = Phone::find($id);
 
+        if ($phone->phone != $request->input('phone'))
+            $this->validate(request(), ['phone' => 'unique:phones']);
+
         $phone->phone = $request->input('phone');
 //        $phone->state = 'not in use';
+        if ($request->has('initial_sim_id'))
         $phone->initial_sim_id = $request->input('initial_sim_id');
 //         $phone-> current_sim_id = $request->input('lending');
         $phone->package_id = $request->input('package_id');
 //        $phone->provider_id = $request->input('provider_id');
         if ($request->has('is_special'))
-        $phone->is_special = $request->input('is_special');
+        $phone->is_special = $isSpecial;
 
 //        $phone->is_active = $request->input('is_active');
 
@@ -152,7 +160,13 @@ class PhoneController extends Controller
     public function destroy($id)
     {
         //
-        Phone::find($id)->delete();
+        $phone = Phone::find($id);
+        if ($phone != null & $phone->state == 'not in use')
+            $phone->delete();
+        else
+            return response()->json(['number' => 'deletion not allowed'], 403);
+
+        return response()->json(['number' => 'deleted'], 200);
 
 
     }

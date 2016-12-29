@@ -69,7 +69,7 @@ class SIMController extends Controller
             'state' => $simState,
 //            'phone_id' => $request->input('number'),
 //            'user_id' => $request->input('number'),
-            'is_active' => 1,
+//            'is_active' => 1,
 
 
 
@@ -114,21 +114,24 @@ class SIMController extends Controller
         //
         $this->validate(request(), [
 
-            'number' => 'required|unique:sims',
+            'number' => 'required',
             'provider_id' => 'required',
 //            'is_parking' => 'required',
 //            'phone_id' => 'required',
 //            'user_id' => 'required',
 //            'is_active' => 1,
         ]);
+
+
         $sim=Sim::find($id);
         $simState = '';
-        if ($request->input('is_parking') == 0)
+        if ($request->input('is_parking') == 'true')
             $simState = 'parking';
         else $simState = $sim->state;
 
 
-
+        if ($request->input('number') != $sim->number)
+            $this->validate(request(), ['number' => 'unique:sims']);
         $sim->number= $request->input('number');
         $sim->provider_id = $request->input('provider_id');
         $sim->state = $simState;
@@ -149,8 +152,13 @@ class SIMController extends Controller
     public function destroy($id)
     {
         //
-        $sim=Sim::find($id);
-        $sim->delete();
+        $sim = Sim::find($id);
+        if ($sim != null & $sim->state == 'available')
+            $sim->delete();
+        else
+            return response()->json(['sim' => 'deletion not allowed'], 403);
+
+        return response()->json(['sim' => 'deleted'], 200);
     }
 
     public static function solveSimList($sims){

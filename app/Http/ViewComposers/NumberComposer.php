@@ -11,6 +11,7 @@ use Illuminate\View\View;
 use App\Models\Phone;
 use App\Models\Sim;
 use App\Models\Package;
+use DB;
 
 
 class NumberComposer
@@ -49,7 +50,13 @@ class NumberComposer
             'not in use' => Phone::filter('not in use')->count(),
         ]);
 
-        $view->with('sims', Sim::select('id', 'state', 'number')->where('state', 'parking')->get()->toArray())
+        $parking = DB::table('sims')->select('id', 'state', 'number')->where('state','=', 'parking')->whereNotIn('id', function($q){
+            $q->select('initial_sim_id')->from('phones')->where('id', '>', 0);
+        })->get();
+//$parking = json_decode($parking, true);
+//        dd($parking);
+
+        $view->with('sims', $parking)
             ->with('packages', Package::select('id', 'name')->get()->toArray())
             ->with('counts', $counts)
             ->with('viewName', $view->getName());

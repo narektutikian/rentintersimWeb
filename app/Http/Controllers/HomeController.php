@@ -71,8 +71,13 @@ class HomeController extends Controller
         $ordersArray[$key]['provider'] = $order->sim->provider->name;
         $ordersArray[$key]['from'] = $viewHelper->present($ordersArray[$key]['from']);
         $ordersArray[$key]['to'] = $viewHelper->present($ordersArray[$key]['to']);
-        $ordersArray[$key]['landing'] = $viewHelper->present($ordersArray[$key]['landing']);
-        $ordersArray[$key]['departure'] = $viewHelper->present($ordersArray[$key]['departure']);
+//        $ordersArray[$key]['package_id'] = $order->package->name;
+        $ordersArray[$key]['package_name'] = $order->package->name;
+//        $ordersArray[$key]['landing'] = $viewHelper->present($ordersArray[$key]['landing']);
+//        $ordersArray[$key]['departure'] = $viewHelper->present($ordersArray[$key]['departure']);
+
+        unset($ordersArray[$key]['costumer_number']);
+        unset($ordersArray[$key]['deleted_at']);
 
     }
     return $ordersArray;

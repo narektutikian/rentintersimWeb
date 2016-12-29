@@ -11,6 +11,7 @@ use Illuminate\View\View;
 use App\User;
 use App\Models\Phone;
 use Auth;
+use App\Models\Order;
 
 
 
@@ -45,14 +46,14 @@ class DashboardComposer
     {
         $id = Auth::user()->id;
         $net = ([
-           'distributors' => User::distributor($id)->count(),
-           'dealers' => User::dealer($id)->count(),
-           'subdealers' => User::subdealer($id)->count(),
+           'distributors' => User::where('level', 'distributor')->count(),
+           'dealers' => User::where('level', 'dealer')->count(),
+           'subdealers' => User::where('level', 'subdealer')->count(),
         ]);
         $counts = ([
             'All' => Phone::all()->count(),
-            'active' => Phone::filter('active')->count(),
-            'pending' => Phone::filter('pending')->count(),
+            'active' => Order::filter('active')->count(),
+            'pending' => Order::filter('pending')->count(),
             'not in use' => Phone::filter('not in use')->count(),
         ]);
 

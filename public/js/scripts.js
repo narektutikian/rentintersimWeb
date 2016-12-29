@@ -206,14 +206,25 @@ $( document ).ready(function() {
 
     /* Owl Slider in Orders List Modal*/
 
+
     $('#modal_new_order').on('show.bs.modal', function () {
         // do something…
         setTimeout(function(){
 
+            $('.time_element').timepicki({
+                show_meridian:false,
+                min_hour_value:0,
+                max_hour_value:23,
+                step_size_minutes:15,
+                overflow_minutes:true,
+                increase_direction:'up',
+                disable_keyboard_mobile: true
+            });
+
             $('.wrap_package_list').show(); // show package list after modal was open
             $('.wrap_package_list').owlCarousel({
                 nav : true,
-                navText : ['<i class="prev icon-dropdown"></i>', '<i class="next icon-dropdown"></i>'],
+                navText : ['<i class="vd_prev icon-dropdown"></i>', '<i class="vd_next icon-dropdown"></i>'],
                 margin : 22,
                 responsive:{
                     0:{
@@ -235,20 +246,32 @@ $( document ).ready(function() {
                     }
                 }
             });
+
+
+
         }, 600);
 
     });
 
     $('#modal_edit_order').on('show.bs.modal', function () {
 
-        console.log('modal_edit_order');
         // do something…
         setTimeout(function(){
+
+            $('.time_element').timepicki({
+                show_meridian:false,
+                min_hour_value:0,
+                max_hour_value:23,
+                step_size_minutes:15,
+                overflow_minutes:true,
+                increase_direction:'up',
+                disable_keyboard_mobile: true
+            });
 
             $('.wrap_package_list_edit').show(); // show package list after modal was open
             $('.wrap_package_list_edit').owlCarousel({
                 nav : true,
-                navText : ['<i class="prev icon-dropdown"></i>', '<i class="next icon-dropdown"></i>'],
+                navText : ['<i class="vd_prev icon-dropdown"></i>', '<i class="vd_next icon-dropdown"></i>'],
                 margin : 22,
                 responsive:{
                     0:{
@@ -276,7 +299,9 @@ $( document ).ready(function() {
 
 
     /* Bootstrap Datepicker */
-    $('.date').datetimepicker();
+    $('.date').datetimepicker({
+        keepOpen : true
+    });
 
 
     /* Put Editable values inside modal window */
@@ -350,7 +375,6 @@ $( document ).ready(function() {
 
         $(this).find('form')[0].reset();
         location.reload();
-
     });
 
 
@@ -370,7 +394,7 @@ $( document ).ready(function() {
 
     /* Numeric inputs for time picker */
     $('.numeric_input').keydown(function(event) {
-        console.log('keydown ');
+
         if (event.keyCode == 8 || (event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 96 && event.keyCode <= 105)) {
             // 0-9 only
             console.log('0-9 only ');
@@ -393,7 +417,7 @@ $( document ).ready(function() {
 
                 var el = $(this).siblings('.vdf_hour').text();
 
-                if(parseInt($(this).siblings('.vdf_hour').text()) == 24) {
+                if(parseInt($(this).siblings('.vdf_hour').text()) == 23) {
 
                     $(this).siblings('.vdf_hour').text(parseInt(0));
                 }else{
@@ -405,7 +429,7 @@ $( document ).ready(function() {
 
                 var el = $(this).siblings('.vdf_min').text();
 
-                if(parseInt($(this).siblings('.vdf_min').text()) == 60){
+                if(parseInt($(this).siblings('.vdf_min').text()) == 45){
 
                     $(this).siblings('.vdf_min').text(parseInt(0));
                 }else{
@@ -420,12 +444,11 @@ $( document ).ready(function() {
             
             if($(this).siblings().hasClass('vdf_hour')){
 
-                console.log('vdf_hour');
                 var el = $(this).siblings('.vdf_hour').text();
 
                 if(parseInt($(this).siblings('.vdf_hour').text()) == 0){
 
-                    $(this).siblings('.vdf_hour').text(24);
+                    $(this).siblings('.vdf_hour').text(23);
                 }else{
                     $(this).siblings('.vdf_hour').text(parseInt(el) - 1);
                 }
@@ -437,7 +460,7 @@ $( document ).ready(function() {
 
                 if(parseInt($(this).siblings('.vdf_min').text()) == 0){
 
-                    $(this).siblings('.vdf_min').text(parseInt(60));
+                    $(this).siblings('.vdf_min').text(parseInt(45));
                 }else{
 
                     $(this).siblings('.vdf_min').text(parseInt(el) - 15);
@@ -454,7 +477,7 @@ $( document ).ready(function() {
         var data_content = $(this).attr('data-content');
 
         if($(this).closest('tr').siblings('tr').find('.show_data_content').length > 0){
-            console.log('remove');
+
             $(this).closest('tr').siblings('tr').find('.show_data_content').remove();
         }
 
@@ -468,5 +491,29 @@ $( document ).ready(function() {
     });
 
 
+    /* Open order modal after double click */
 
+    $('.link').on('click', function (event) {
+
+        event.preventDefault();
+    });
+    $('.link').on('dblclick', function (event) {
+
+        event.preventDefault();
+        $('#modal_view_order').modal('toggle');
+
+    });
+
+
+    /* Responsive scroll bars */
+    $('#wrap_tree_table').perfectScrollbar();
+
+    $('#wrap_orders_table').perfectScrollbar();
+
+});
+
+
+$(window).load(function() {
+    $(".loader_inner").fadeOut();
+    $(".loader").delay(400).fadeOut("slow");
 });

@@ -16,25 +16,22 @@ use App\Models\Order;
 class UserManager
 {
     public function getMyNetwork($id){
-        $users = User::select('id', 'login', 'level', 'type', 'supervisor_id', 'name', 'is_active')->get()->toArray();
-       $network = $this->buildTree($this->solveUsers($users), $id);
+        $users = User::select('id', 'login', 'level', 'type', 'supervisor_id', 'name')->get()->toArray();
+        $network = $this->buildTree($this->solveUsers($users), $id);
 //        $flat = $this->flatten($network);
 //        return $flat;
         return $network;
     }
     public function getMyFlatNetwork($id){
-        $users = User::select('id', 'login', 'level', 'type', 'supervisor_id', 'name', 'is_active')->get()->toArray();
+        $users = User::select('id', 'login', 'level', 'type', 'supervisor_id', 'name')->get()->toArray();
         $network = $this->buildTree($this->solveUsers($users), $id);
-            $flat = $this->flatten($network);
-            return $flat;
+        $flat = $this->flatten($network);
+        return $flat;
 //            return $network;
-        }
-
-
+    }
     function buildTree($elements, $parentId = 0)
     {
         $branch = array();
-
         foreach ($elements as $element) {
             if ($element['supervisor_id'] == $parentId) {
                 $children = $this->buildTree($elements, $element['id']);
@@ -44,7 +41,6 @@ class UserManager
                 $branch[] = $element;
             }
         }
-
         return $branch;
     }
 
@@ -54,16 +50,15 @@ class UserManager
         return array_keys($arr) !== range(0, count($arr) - 1);
     }
 
-    function flatten($element)
+    function flatten($element, $flatArray=[])
     {
-        $flatArray = array();
         if (!array_key_exists('child', $element) && $this->isAssoc($element)) {
             $flatArray += $element;
         }
             foreach ($element as $key => $node) {
 //            if (is_array($node))
                 if (array_key_exists('child', $node)) {
-                    $flatArray +=  $this->flatten($node['child']);
+                    $flatArray +=  $this->flatten($node['child'],$flatArray);
                     unset($node['child']);
                     $flatArray[] = $node;
 //                    if (count($flat)>1)

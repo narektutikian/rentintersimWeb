@@ -19,6 +19,14 @@
     background: $table_head
     border-top: 1px solid $gray_border
     border-bottom: 1px solid $gray_border
+    &.vdf_two_titles
+      overflow: hidden
+      h3
+        float: left
+        width: 50%
+        padding-left: 10px
+        &:last-child
+          padding-left: 15px
     data
       float: right
       color: $light-blue
@@ -43,7 +51,7 @@
     padding: 32px 25px 0 25px
   .vdf_modal_footer
     margin-top: 0
-    padding: 15px 25px 30px 25px
+    padding: 18px 25px 18px 25px
     .inline_block_btn
       display: inline-block
       vertical-align: middle
@@ -82,10 +90,7 @@
   .file_container
     border-top-left-radius: 0
     border-bottom-left-radius: 0
-    @media (max-width: 992px)
-      width: 30%
-    @media (max-width: 640px)
-      width: 40%
+
 
 .departure
   height: 30px
@@ -140,8 +145,8 @@
 
 .wrap_time
   display: inline-block
-  vertical-align: middle
-  font-size: 0
+  vertical-align: top
+  //font-size: 0
 
 .time_picker
   position: relative
@@ -160,42 +165,46 @@
     position: absolute
     width: 18px
     height: 14px
-    line-height: 14px
+    cursor: pointer
   .arrow-down
-    top: 0
-    right: 1px
-    i:before
-      content: '>'
-      display: inline-block
-      margin: auto
-      @include fonts_stack(12px)
-      font-weight: bold
-      color: $dark_blue
-      cursor: pointer
-      @include transform(90deg)
-      position: absolute
-      top: 0
-      bottom: 0
-      left: 0
-      right: 0
-  .arrow-up
     bottom: 0
     right: 1px
-    i:before
-      content: '>'
-      display: inline-block
-      margin: auto
-      @include fonts_stack(12px)
-      font-weight: bold
+    line-height: 23px
+    i
+      font-size: 10px
       color: $dark_blue
-      cursor: pointer
-      @include transform(-90deg)
-      position: absolute
-      top: 0
-      bottom: 0
-      left: 0
-      right: 0
+  .arrow-up
+    top: 0
+    right: 1px
+    line-height: 23px
+    i
+      font-size: 10px
+      color: $dark_blue
 
+.time_pick
+  display: inline-block
+  vertical-align: middle
+  width: 98px
+  text-align: center
+
+.timepicker_wrap
+  padding: 10px 2px
+  right: 0
+
+.arrow_top
+  left: 50%
+  margin-left: -9px
+
+.time,
+.mins,
+.meridian
+  margin: 0
+  width: 45px
+
+.input.timepicki-input
+  color: $dark_blue
+
+.time_element,
 .landing_date,
 .departure_date
   vertical-align: middle
@@ -209,8 +218,8 @@
 
 .departure_time
   display: inline-block
-  vertical-align: middle
-  margin: 0 2px 0 5px
+  vertical-align: top
+  margin: 5px 2px 0 5px
   color: $dark_blue
   font-size: 20px
 
@@ -263,14 +272,18 @@
   display: inline-block
   vertical-align: middle
   margin-left: 15px
-  color: $white
+  color: $light_blue
   text-align: center
   @include fonts_stack(15px)
+
+.departure
+  .email_date_time
+    color: $white
 
 .email_phone_num
   margin: 20px auto 15px
   text-align: center
-  color: #079fff
+  color: $light_blue
   @include fonts_stack(15px)
 
 .email_send_print
@@ -311,6 +324,26 @@
       width: 90%
       margin: 20px auto 0
 
+  .flight_dates
+    display: block
+    width: auto
+  .wrap_time
+    display: block
+    width: auto
+    margin-top: 10px
+
+  .time_element,
+  .landing_date,
+  .departure_date
+    width: 99px
+
+  .wrap_date
+    text-align: center
+
+  .time_pick
+    input
+      width: 100%
+
 @media (max-width: 992px)
 
   .vdf_modal
@@ -328,16 +361,47 @@
       .or
         display: none
     .vdf_modal_footer
-      padding: 10px 12px 15px 12px
+      padding: 12px 12px 12px 12px
       .inline_block_btn
         margin-left: 5px
         margin-right: 5px
         padding: 0 20px
+    .file_container
+      width: 30%
 
   .departure
     margin-top: 15px
   .table_label
     margin-top: 15px
+
+  .flight_dates
+    display: inline-block
+    //width: auto
+
+  .time_element,
+  .landing_date,
+  .departure_date
+    width: 120px
+
+  .wrap_time
+    display: inline-block
+    margin-top: 0
+    //width: auto
+
+  .time_pick
+    width: 160px
+
+  .timepicker_wrap
+    padding: 10px
+    top: 27px
+    left: 0
+    //right: none
+
+  .time,
+  .mins,
+  .meridian
+    margin: 0 10px
+    width: 48px
 
 @media (max-width: 768px)
   .vdf_modal
@@ -345,8 +409,28 @@
     .vdf_modal_content
       width: 95%
 
+
 @media (max-width: 640px)
   .vdf_modal
     width: 92%
     .vdf_modal_content
       width: 100%
+    .file_container
+      width: 40%
+
+
+@media (max-width: 480px)
+
+  .time_pick
+    width: 100px
+
+  .time_element,
+  .landing_date,
+  .departure_date
+    width: 100px
+
+  .time,
+  .mins,
+  .meridian
+    margin: 0
+    width: 45px

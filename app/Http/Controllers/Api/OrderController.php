@@ -11,6 +11,8 @@ use App\Http\Controllers\HomeController;
 use Rentintersimrepo\orders\ViewHelper;
 use Mail;
 use App\Mail\OrderMail;
+use DB;
+use Excel;
 
 class OrderController extends Controller
 {
@@ -74,6 +76,10 @@ class OrderController extends Controller
 
         ]);
 
+        if ($request->input('landing') >= $request->input('departure') ||
+            ($request->input('departure') - $request->input('landing')) < 2700 )
+            return response()->json(['sim' => 'The landing or departure selection is not correct'], 403);
+
             $sim = $this->helper->getSim($request->input('sim'));
         if($sim != null){
             if ($sim->state != 'available')
@@ -86,8 +92,8 @@ class OrderController extends Controller
         $newOrder = Order::forceCreate([
             'from' => $this->helper->setStartTime($request->input('landing')),
             'to' =>  $this->helper->setEndTime($request->input('departure')),
-            'landing' =>  $request->input('landing'),
-            'departure' =>  $request->input('departure'),
+            'landing' =>  $request->input('landing_string'),
+            'departure' =>  $request->input('departure_string'),
             'reference_number' =>  $request->input('reference_number'),
             'status' =>  $status,
             'costumer_number' =>  $request->input('costumer_number'),
@@ -103,6 +109,8 @@ class OrderController extends Controller
         if($request->has('phone_id') && $request->input('phone_id') != ''){
             if (Auth::user()->level == 'Super admin'){
                 $number = $this->helper->setNumber($newOrder->id, $request->input('phone_id'));
+                if ($number != $request->input('phone_id'))
+                    return response()->json(['sim' => $number], 403);
             }
             } else {
             $number = $this->getNumber($newOrder->id);
@@ -177,8 +185,8 @@ class OrderController extends Controller
 
 //            $Order->from = $this->helper->setStartTime($request->input('landing'));
 //            $Order->to =  $this->helper->setEndTime($request->input('departure'));
-//            $Order->landing =  $request->input('landing');
-//            $Order->departure =  $request->input('departure');
+//            $Order->landing =  $request->input('landing_string');
+//            $Order->departure =  $request->input('departure_string');
             $Order->reference_number =  $request->input('reference_number');
 //            $Order->costumer_number =  $request->input('costumer_number');
 //            $Order->package_id = $request->input('package_id');
@@ -202,18 +210,16 @@ class OrderController extends Controller
             }
             */
             $Order->save();
-/*
+
             $number = null;
             if ($request->has('phone_id') && $request->input('phone_id') != '' && $request->input('phone_id') != $Order->phone_id) {
                 if (Auth::user()->level == 'Super admin') {
                     $number = $this->helper->setNumber($Order->id, $request->input('phone_id'));
                 }
-            } else {
-                $number = $this->getNumber($Order->id);
             }
             if ($number != null) {
                 return $this->edit($Order->id);
-            }*/
+            }
 
             return response($Order->toArray(), 200);
 
@@ -232,7 +238,8 @@ class OrderController extends Controller
         $Order = Order::find($id);
         if ($Order != null){
             if ($Order->status != 'active'){
-                $Order->delete();
+//                $this->helper->deactivate($id);
+                $this->helper->freeResources($Order, 'deleted');
                 return response()->json(['deleted'], 200);
             }
             return response()->json(['not allowed'], 403);
@@ -260,8 +267,32 @@ class OrderController extends Controller
         $number = $this->helper->getNumber($order);
         else return $order->phone_id;
         }
-
+//        if ($number != null) {
+//            echo 'Success. the number is ' . $order->phone->phone . '<a href=' . url('home') . '> GO BACK! </a>';
+//            return response()->json(['number' => $order->phone->phone], 200);
+//        }
+//        else
+//            echo 'Number not found. try other dates or package <a href=' . url('home') . '> GO BACK! </a>';
+//        return response()->json(['number' => 'not found'], 403);
         return $number;
+    }
+
+    public function getNumberExternal($orderid)
+    {   $number = null;
+        $order = Order::find($orderid);
+        if($order->exists){
+            if ($order->phone_id == 0)
+                $number = $this->helper->getNumber($order);
+            else return $order->phone_id;
+        }
+        if ($number != null) {
+//            echo 'Success. the number is ' . $order->phone->phone . '<a href=' . url('home') . '> GO BACK! </a>';
+            return response()->json(['number' => $order->phone->phone], 200);
+        }
+        else
+//            echo 'Number not found. try other dates or package <a href=' . url('home') . '> GO BACK! </a>';
+        return response()->json(['number' => 'not found'], 403);
+//        return $number;
     }
 
     public function activate()
@@ -274,10 +305,64 @@ class OrderController extends Controller
         $this->helper->startDeactivation();
     }
 
-    public function sendMail(Request $request)
+    public function sendMail($orderID, Request $request)
     {
-        Mail::to('narek@horizondvp.com')->send(new OrderMail);
+        $this->validate(request(), [
+        'email' => 'required|email'
+        ]);
+
+        $data = array(
+           'order' => $orderID,
+            'text' => $request->input('remark')
+        );
+
+        Mail::to($request->input('email'))->send(new OrderMail($data));
 
         return redirect('home');
     }
+
+    public function search(Request $request)
+    {
+        $query = stripcslashes($request->input('query'));
+
+//        $result1 =  DB::table('orders')->where('status', '!=', 'finished');
+
+        $result =  Order::orWhereIn('phone_id', function($q) use($query)  {
+        $q->select('id')->from('phones')->where('phone', 'LIKE', '%'.$query.'%');
+        })->orWhereIn('sim_id', function($q) use($query)  {
+            $q->select('id')->from('sims')->where('number', 'LIKE', '%'.$query.'%');
+        })->orWhere('reference_number', 'LIKE', '%'.$query.'%')->paginate(env('PAGINATE_DEFAULT'));
+
+//        dd($result);
+        $ordersArray = HomeController::solveOrderList($result, $this->viewHelper);
+        $counts = HomeController::getCounts(Auth::user()->id);
+
+//        dd($ordersArray);
+
+//        dd($simsArray);
+        return view('home', compact('ordersArray'), compact('counts'));
+    }
+
+    public function export()
+    {
+        $user = Auth::user();
+        $orders = null;
+        if ($user->level != 'Super admin')
+            $orders = Order::employee($user->id)->orderby('id', 'desc')->toArray();
+        if ($user->level == 'Super admin')
+            $orders = Order::get();
+        $ordersArray = HomeController::solveOrderList($orders, $this->viewHelper);
+
+        Excel::create('Orders', function($excel) use ($ordersArray) {
+
+            $excel->sheet('orders', function($sheet) use($ordersArray) {
+
+                $sheet->fromArray($ordersArray);
+
+            });
+
+        })->download('xlsx');
+    }
+
+
 }

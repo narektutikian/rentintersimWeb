@@ -358,7 +358,7 @@ $(document).ready(function () {
                 _token: CSRF_TOKEN,
                 number: $('#number').val(),
                 provider_id: $('#provider_id').val(),
-                is_parking: $('#is_parking').val()
+                is_parking: $('#is_parking-edit').is(":checked")
             };
             var id = $('#id').val();
 
@@ -464,7 +464,7 @@ $(document).ready(function () {
                 initial_sim_id: $('#sim_id-edit').val(),
                 package_id: $('#package_id-edit').val(),
                 provider_id: $('#provider_id-edit').val(),
-                is_special: $('#is_special-edit').val()
+                is_special: $('#is_special-edit').is(":checked")
             };
             var id = $('#id').val();
             // console.log( new FormData($("#edit-number-form")[0]));
@@ -513,9 +513,10 @@ $(document).ready(function () {
                     $(".success_response").append("DONE " + msg);
                 },
                 error: function (error) {
+                    // console.log(error);
                     $(".error_response").empty();
                     $(".success_response").empty();
-                    $(".error_response").append("ERROR" + error);
+                    $(".error_response").append("ERROR " + error.responseText);
                     // $("#sim-edit-response").append("<div>"+"ERROR "+ error.responseJSON.number[0]+ " ," +error.responseJSON.provider_id[0] +"</div>");
                     // console.log(error.responseJSON.number[0]);
                 }
@@ -535,22 +536,23 @@ $(document).ready(function () {
                 for (var prop in json) {
                     var icon = '<a href="#" class="open_nested" data-toggle="collapse" data-target="#demo' + (json[prop]["id"] || "0") + '"><i class="icon-dropdown"></i></a>';
                     icon = (json[prop]["child"])? icon : '';
-                    var status_text = (json[prop]["is_active"] == 1) ? ' Active ' : '';
+                    var status_text =  ' Active ';
 
                     string += '<tr>' +
                         '<td class="w25">' +
                         icon +
                         '</td>' +
-                            '<td class="editable_cell" data-th="Name">' + json[prop]["name"] + ' (' + json[prop]["type"] + ') ' + '</td>' +
-                            '<td class="w160 editable_cell" data-th="Username">' + json[prop]["login"] + '</td>' +
-                            '<td class="w110left editable_cell" data-th="Level">' + json[prop]["level"] + '</td>' +
-                            '<td class="w65" data-th="Active">' + json[prop]["active"] + '</td>' +
-                            '<td class="w80" data-th="Pending">' + json[prop]["pending"] + '</td>' +
-                            '<td class="w65" data-th="Waiting">' + json[prop]["waiting"] + '</td>' +
-                            '<td class="w60c table_action_cell" data-th="Action">' +
-                                '<span class="table_icon edit" data-toggle="modal" data-target="#modal_edit_user" data-form="#modal_edit_user"><i class="icon-edit"></i></span>' +
+                            '<td class="editable_cell">' + json[prop]["name"] + ' (' + json[prop]["type"] + ') ' + '</td>' +
+                            '<td class="w160 editable_cell">' + json[prop]["login"] + '</td>' +
+                            '<td class="w110left editable_cell">' + json[prop]["level"] + '</td>' +
+                            '<td class="w65">' + json[prop]["active"] + '</td>' +
+                            '<td class="w80">' + json[prop]["pending"] + '</td>' +
+                            '<td class="w65">' + json[prop]["waiting"] + '</td>' +
+                            '<td class="w60c table_action_cell">' +
+                                '<span class="table_icon edit" data-toggle="modal"' +
+                        'data-target="#modal_edit_user" data-form="#modal_edit_user" onclick="editUser('+ json[prop]["id"] +')"><i class="icon-edit"></i></span>' +
                             '</td>' +
-                            '<td class="w_70_status table_status_cell" data-th="Status">' +
+                            '<td class="w_70_status table_status_cell">' +
                                 '<span class="status_text_small not_used">' + status_text + '</span>' +
                             '</td>' +
                             '<td class="table_status_cell w_70_status">' +
@@ -662,7 +664,63 @@ $(document).ready(function () {
 
     });
 
+    /***** EDIT USER  *****/
+    $('#edit_user_submit').on('click', function (e) {
+        e.stopPropagation(); // Stop stuff happening
+        console.log('user edit bef vald');
+        if ($(this).closest(".vd_form").valid()) {
+            console.log('user edit');
+            var data = {
+                _token: CSRF_TOKEN,
+                name: $(".name").val(),
+                level: $(".level").val(),
+                type: $(".type").val(),
+                supervisor_id: $(".supervisor_id").val(),
+                email: $(".email").val(),
+                email2: $(".email2").val(),
+                username: $(".login").val(),
+                password: $(".password").val()
+            };
+
+            $.ajax({
+                url: 'user/' + $(".user_edit_id").val(),
+                type: 'PUT',
+                data: data,
+                // cache: false,
+                // dataType: 'json',
+                // processData: false, // Don't process the files
+                // contentType: false, // Set content type to false as jQuery will tell the server its a query string request
+                success: function (msg) {
+                    $(".error_response").empty();
+                    $(".success_response").empty();
+                    $(".success_response").append("DONE ");
+                },
+                error: function (error) {
+                    // console.log(error);
+                    $(".error_response").empty();
+                    $(".success_response").empty();
+                    $(".error_response").append("ERROR " + error.responseText);
+                    // $("#sim-edit-response").append("<div>"+"ERROR "+ error.responseJSON.number[0]+ " ," +error.responseJSON.provider_id[0] +"</div>");
+                    // console.log(error.responseJSON.number[0]);
+                }
+            });
+        }
+    });
 
 }); // closes document ready
 
+function editUser(id) {
+    $.get("/user/" + id + "/edit", function (data, status) {
+        if (status == "success"){
+            $(".name").val(data.name);
+            $(".user_edit_id").val(data.id);
+            $(".level").val(data.level);
+            $(".type").val(data.type);
+            $(".supervisor_id").val(data.supervisor_id);
+            $(".email").val(data.email);
+            $(".email2").val(data.email2);
+            $(".login").val(data.login);
 
+        }
+    });
+}

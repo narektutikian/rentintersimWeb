@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="/js/perfect-scrollbar/css/perfect-scrollbar.css">
     <link rel="stylesheet" href="/css/bootstrap-datepicker3.css">
     <link rel="stylesheet" href="/js/owl-carousel/assets/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="/js/timepicki/css/timepicki.css">
     <link rel="stylesheet" href="/css/style.css">
 
     <!-- Scripts -->
@@ -25,6 +26,9 @@
     </script>
 </head>
 <body>
+<div class="loader">
+    <div class="loader_inner"></div>
+</div>
 <div class="wrapper">
     @include('header')
          @yield('content')
@@ -60,6 +64,7 @@
 <script src="/js/moment.min.js"></script>
 <script src="/js/bootstrap-datetimepicker.js"></script>
 <script src="/js/owl-carousel/owl.carousel.js"></script>
+<script src="/js/timepicki/js/timepicki.js"></script>
 <script src="/js/scripts.js"></script>
 <script src="/js/validation.js"></script>
 <script src="/js/requests.js"></script>

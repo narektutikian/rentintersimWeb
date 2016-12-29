@@ -9,27 +9,34 @@ $(document).ready(function () {
         e.stopPropagation(); // Stop stuff happening
         if ($(this).closest(".vd_form").valid()) {
 
-            var departure = $('#departure_date').val() + " "
-                + $('#departure_hour').text() + ":" + $('#departure_minute').text();
-            var landing = $('#landing_date').val() + " "
-                + $('#landing_hour').text() + ":" + $('#landing_minute').text();
+            var departure = $('#departure_date').val() + " " + $("#time_element2").val();
+            var landing = $('#landing_date').val() + " " + $("#time_element").val();
 
-            console.log(departure + " " + landing);
+            // console.log(departure + " " + landing);
             var data = {
                 _token: CSRF_TOKEN,
                 sim: $('#sim').val(),
                 phone_id: $('#phone_number').val(),
                 landing: moment(landing, "DD/MM/YYYY HH:mm").valueOf() / 1000,
                 departure: moment(departure, "DD/MM/YYYY HH:mm").valueOf() / 1000,
+                landing_string: moment(landing, "DD/MM/YYYY HH:mm").format("DD/MM/YYYY HH:mm"),
+                departure_string: moment(departure, "DD/MM/YYYY HH:mm").format("DD/MM/YYYY HH:mm"),
                 package_id: package_id, // put package id
                 reference_number: $('#reference_number').val(),
                 remark: $('#remark').val(),
             };
 
+            // console.log("landing: " + data.landing  + " departure " + data.departure);
+
             $.ajax({
                 type: "POST",
                 url: 'order',
                 data: data,
+                beforeSend: function() {
+                    $(".error_response").empty();
+                    $(".success_response").empty();
+                    $(".success_response").append("Please wait <img src='/img/loader.gif' width='20'/>");
+                },
                 success: function (msg) {
                     $(".error_response").empty();
                     $(".success_response").empty();
@@ -63,7 +70,7 @@ $(document).ready(function () {
 
                 },
                 error: function (error) {
-                    console.log(error);
+                    // console.log(error);
                     $(".error_response").empty();
                     $(".success_response").empty();
                     $(".error_response").append("ERROR  ");
@@ -222,13 +229,15 @@ $(document).ready(function () {
             var landing = $('#landing_date-edit').val() + " "
                 + $('#landing_hour-edit').text() + ":" + $('#landing_minute-edit').text();
 
-            console.log(departure + " " + landing);
+            console.log($('#time_element').val());
             var data = {
                 _token: CSRF_TOKEN,
                 sim: $('#sim-edit').val(),
                 phone_id: $('#phone_number-edit').val(),
                 landing: moment(landing, "DD/MM/YYYY HH:mm").valueOf() / 1000,
                 departure: moment(departure, "DD/MM/YYYY HH:mm").valueOf() / 1000,
+                landing_string: moment(landing, "DD/MM/YYYY HH:mm").format("DD/MM/YYYY HH:mm"),
+                departure_string: moment(departure, "DD/MM/YYYY HH:mm").format("DD/MM/YYYY HH:mm"),
                 package_id: package_id, // put package id
                 reference_number: $('#reference_number-edit').val(),
                 remark: $('#remark-edit').val(),
@@ -280,7 +289,115 @@ $(document).ready(function () {
         }
     });
 
+    $('.call_mail').on('click', function () {
+
+        var row_id = $(this).attr('data-row-id');
+        edit_id = row_id;
+
+        $.get("/order/" + row_id + "/edit", function (order_data, order_status) {
+
+            if (order_status == "success") {
+
+                $.get("/type-provider/1", function (data, type_status) {
+
+                    if (type_status == "success") {
+
+                        $.each(data, function (i, item) {
+
+
+
+                            if (item.id == order_data[0].package_id) {
+                                package_id = item.id;
+                                $(".single_package").append(
+                                    "<a title='Basic Package'  class='selected_package' title='" + item.name + "' > " +
+                                    "<h4>" + item.name + "</h4>" +
+                                    "<span>" + item.description + "</span>" +
+                                    "</a>" );
+                            }
+
+                        });
+
+                        $('.phone').val(order_data[0].phone.phone);
+                        $('.mail_order').text("#" + order_data[0].id);
+
+
+
+                        $('.from').text(order_data[0].landing);
+                        $('.to').text(order_data[0].departure);
+
+
+                        // console.log(order_data[0].status)
+
+
+                    }
+                });
+            }
+        });
+
+
+    });
+
+    /***** SEND ORDER *****/
+
+    $('#send-order').on('click', function (e) {
+        e.stopPropagation(); // Stop stuff happening
+        if ($(this).closest(".vd_form").valid()) {
+
+            // console.log(departure + " " + landing);
+            var data = {
+                _token: CSRF_TOKEN,
+                email: $('#email').val(),
+                remark: $('#send_text').val(),
+            };
+
+            $.ajax({
+                type: "GET",
+                url: 'send-mail/' + edit_id,
+                data: data,
+                beforeSend: function() {
+                    $(".error_response").empty();
+                    $(".success_response").empty();
+                    $(".success_response").append("Please wait <img src='/img/loader.gif' width='20'/>");
+                },
+                success: function (msg) {
+                    $(".error_response").empty();
+                    $(".success_response").empty();
+                    $(".success_response").append("MASSAGE SENT SUCCESSFULLY");
+                    $("#edit-order").remove();
+                    $(".close").text("close");
+                    // $("#create-order").attr("id", "edit-order");
+
+                },
+                error: function (error) {
+                    $(".error_response").empty();
+                    $(".success_response").empty();
+                    $(".error_response").append("ERROR SENDING MASSAGE");
+                    // $("#sim-edit-response").append("<div>"+"ERROR "+ error.responseJSON.number[0]+ " ," +error.responseJSON.provider_id[0] +"</div>");
+                    // console.log(error.responseJSON.number[0]);
+                }
+            });
+        }
+    });
+
 });
 /**
  * Created by narek on 12/16/16.
  */
+function getNumber(id) {
+    // console.log("get number for " + id)
+    $.ajax({
+        type: "GET",
+        url: 'get-number/' + id,
+        success: function (msg) {
+            // console.log(msg);
+            $('a#'+ id).remove();
+            $("td[data-cell-id='"+ id +"']" ).text(msg.number);
+            location.reload();
+        },
+        error: function (error) {
+            // console.log("error " + error);
+            $('a#'+ id).html("number not found").css("color", "red");
+            $('a#'+ id).parent('td');
+        }
+    });
+}

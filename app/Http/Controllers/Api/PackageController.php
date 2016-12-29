@@ -119,9 +119,9 @@ class PackageController extends Controller
         //
         $this->validate(request(), [
 
-            'type_code' => 'required',
+//            'type_code' => 'required',
             'name' => 'required',
-            'description' => 'required',
+//            'description' => 'required',
             'provider_id' => 'required',
 //            'status' => 'required',
 

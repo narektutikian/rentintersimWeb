@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-md-6 col-sm-2 col-xs-2">
                 <div class="logo">
-                    <a href="{{url('/dashboard')}}"><img src="/{{Auth::user()->logo}}" alt="Logo"></a>
+                    <a href="{{url('/dashboard')}}"><img src="/images/avatars/3e5dcf6e56e442925b8c5b02f264d3d2.jpg" alt="Logo"></a>
                 </div>
                 <nav class="main_nav">
                     <ul>
@@ -21,7 +21,7 @@
             <div class="col-md-6 col-sm-10 col-sm-offset-0 col-xs-10 col-xs-offset-0">
                 <nav class="profile_nav">
                     <ul class="personal_info">
-                        <li class="date_time"><data value="October 26, 2016 17:12">October 26, 2016 <i class="icon-time"></i> 17:13</data></li>
+                        <li class="date_time"><data value=""></data></li>
                         <li class="profile">
                             <span class="profile_name">{{ Auth::user()->name }} <i class="icon-dropdown"></i></span>
                             <ul class="header_dropdown choose_user">
@@ -58,10 +58,10 @@
     </div>
 
     <ul class="mobile_nav">
-        <li><a href="#">Orders List</a></li>
+        <li><a href="{{url('home')}}">Orders List</a></li>
         <li><a href="#">Reports</a></li>
         @if (Auth::user()->type != 'employee')
-            <li><a href="#">Admin Panel</a></li>
+            <li><a href="{{url('/dashboard')}}">Admin Panel</a></li>
         @endif
     </ul>
 </header>

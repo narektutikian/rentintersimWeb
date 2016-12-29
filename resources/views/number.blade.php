@@ -52,7 +52,7 @@
                             <tr>
                                 <td class="rwd-td0 table_id_cell editable_cell" data-th="Id">{{$number['id']}}</td>
                                 <td class="rwd-td1 editable_cell" data-th="Phone Number">{{$number['phone']}}</td>
-                                <td class="rwd-td2 editable_cell" data-th="SIM Number">{{$number['current_sim_id']}}</td>
+                                    <td class="rwd-td2 editable_cell {{ ($number['state'] == 'not in use') ? 'disable' : '' }}" data-th="SIM Number">{{$number['current_sim_id']}} </td>
                                 <td class="rwd-td3 editable_cell" data-th="Provider">{{$number['provider_id']}}</td>
                                 <td class="rwd-td4 editable_cell" data-th="Type">{{$number['package_id']}}</td>
                                 <td class="rwd-td5 table_action_cell" data-th="Action">
@@ -61,15 +61,15 @@
                                     </span>
 
                                     <label class="vdf_checkbox">
-                                        <input type="checkbox" name="num_chkb{{$number['id']}}" value="" />
+                                        <input type="checkbox" name="num_chkb{{$number['id']}}" value="" {{ ($number['is_special'] == 1) ? 'checked' : '' }}/>
                                         <i class="icon-special"></i>
                                     </label>
                                 </td>
                                 <td class="rwd-td6" data-th="Status">
                                     <span class="table_status_text not_used">{{$number['state']}}</span>
                                 </td>
-                                <td class="rwd-td7 table_status_cell">
-                                    <span class="remove_row" data-toggle="modal" data-target="#confirm_delete">
+                                <td class="rwd-td7 table_status_cell" data-th="Remove">
+                                    <span class="remove_row {{ ($number['state'] != 'not in use') ? 'disable' : '' }}" data-toggle="modal" data-target="#confirm_delete" data-row-id="{{$number['id']}}">
                                         <i class="icon-delete"></i>
                                     </span>
                                 </td>
@@ -94,8 +94,9 @@
             <div class="modal-content vdf_modal_content">
                 <div class="modal-header vdf_modal_header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <div class="vdf_modal_sub_header">
+                    <div class="vdf_modal_sub_header vdf_two_titles">
                         <h3>Add number</h3>
+                        <h3>Add from file</h3>
                     </div>
                 </div>
                 <form method="post" action="{{url('/number')}}" id="add-number-form" class="form-horizontal vd_form">
@@ -118,7 +119,7 @@
                                             <select name="prk_sim_num" id="sim_id" class="block_btn_30 modal_input vd_select">
                                                 <option value=""></option>
                                                 @foreach($sims as $sim)
-                                                <option value="{{$sim['id']}}">{{$sim['number']}}</option>
+                                                <option value="{{$sim->id}}">{{$sim->number}}</option>
                                                 @endforeach
                                             </select>
                                             <i class="input_icon icon-sim"></i>
@@ -223,10 +224,10 @@
                                     <div class="col-md-6">
                                         <label class="table_label">Parking SIM number</label>
                                         <div class="select_wrapper">
-                                            <select name="initial_sim_id"  id="sim_id-edit" class="block_btn_30 modal_input vd_select" data-th="SIM Number">
+                                            <select name="initial_sim_id"  id="sim_id-edit" class="block_btn_30 modal_input" data-th="SIM Number">
                                                 <option value=""></option>
                                                 @foreach($sims as $sim)
-                                                <option value="{{$sim['id']}}">{{$sim['number']}}</option>
+                                                <option value="{{$sim->id}}">{{$sim->number}}</option>
                                                 @endforeach
                                             </select>
                                             <i class="input_icon icon-sim"></i>
@@ -262,7 +263,7 @@
                                     <div class="col-md-12">
                                         <div class="special_number">
                                             <label class="vdf_checkbox">
-                                                <input type="checkbox" value="b" />
+                                                <input type="checkbox" id="is_special-edit" value="b" />
                                                 <i class="icon-special"></i>
                                             </label>
                                             <span class="vdf_checkbox_text">Special number</span>
@@ -295,7 +296,7 @@
                     </div>
                     <div class="modal-footer vdf_modal_footer">
                         <a href="#" class="inline_block_btn light_gray_btn close vd_form_reset" data-dismiss="modal" aria-label="Close">Cancel</a>
-                        <a href="#" class="inline_block_btn light_green_btn vd_form_submit" id="edit-number">Edit Number</a>
+                        <a href="#" class="inline_block_btn light_green_btn vd_form_submit" id="edit-number">Update Number</a>
 
                         <span class="success_response"></span>
                         <span class="error_response"></span>

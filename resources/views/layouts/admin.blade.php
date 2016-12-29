@@ -12,7 +12,9 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-
+<div class="loader">
+    <div class="loader_inner"></div>
+</div>
 <div class="wrapper">
 @include('header')
     <div class="layout">
@@ -27,8 +29,8 @@
                         @if(Auth::user()->level == 'Super admin')
                     <li class="{{ ($viewName == 'number') ? 'active' : '' }}"><a href="{{url('/number')}}" title="Number Management">Number Management</a></li>
                     <li class="{{ ($viewName == 'sim') ? 'active' : '' }}"><a href="{{url('/sim')}}" title="SIM Management">SIM Management</a></li>
-                    <li><a href="{{url('/type')}}" class="jype_management" title="Type Management">Type Management</a></li>
-                    <li><a href="{{url('/type')}}" title="Settings">Settings</a></li>
+                    <li class="{{ ($viewName == 'type') ? 'active' : '' }}"><a href="{{url('/type')}}" class="type_management " title="Type Management">Type Management</a></li>
+                    {{--<li><a href="{{url('/type')}}" title="Settings">Settings</a></li>--}}
 
                     <!--<li  class="show_settings {{ ($viewName == 'type') ? 'active' : '' }}">
                         <a href="#" title="Settings" class="show_settings_link">Settings <i class="icon-dropdown"></i></a>
@@ -78,7 +80,6 @@
 <script src="/js/scripts.js"></script>
 <script src="/js/validation.js"></script>
 <script src="/js/requests.js"></script>
-<script src="/js/order-requests.js"></script>
-
+<script src="{{ asset('js/order-requests.js') }}"></script>
 </body>
 </html>
