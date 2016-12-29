@@ -74,8 +74,8 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
 
 
 Route::get('/test', function (){
-    $oldOrders = Order::where([['status', 'pending'], ['package_id', 28]])->orderby('to', 'asc')->get();
-    dd($oldOrders);
+    $res = file_get_contents("http://176.35.171.143:8086/api/vfapi.php?key=7963ad6960b1088b94db2c32f2975e86&call=simcheck&cli=07393234235");
+    echo $res;
 });
 
 
