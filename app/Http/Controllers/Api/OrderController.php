@@ -318,7 +318,7 @@ class OrderController extends Controller
 
         Mail::to($request->input('email'))->queue(new OrderMail($data));
 
-        return redirect('home');
+
     }
 
     public function search(Request $request)
