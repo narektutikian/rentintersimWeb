@@ -64,6 +64,7 @@ return [
             'prefix' => '',
             'strict' => true,
             'engine' => null,
+            'options' => array( PDO::ATTR_TIMEOUT => 0, )
         ],
 
         'pgsql' => [
