@@ -316,7 +316,7 @@ class OrderController extends Controller
             'text' => $request->input('remark')
         );
 
-        Mail::to($request->input('email'))->send(new OrderMail($data));
+        Mail::to($request->input('email'))->queue(new OrderMail($data));
 
         return redirect('home');
     }
