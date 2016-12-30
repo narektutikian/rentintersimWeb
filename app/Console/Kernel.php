@@ -32,8 +32,8 @@ class Kernel extends ConsoleKernel
 
         $schedule->call('Rentintersimrepo\orders\CreateHelper@startDeactivation')->everyMinute();
         $schedule->call('Rentintersimrepo\orders\CreateHelper@startActivation')->everyMinute();
-//        $schedule->command('queue:work')->everyFiveMinutes();
-        $schedule->command('queue:restart')->hourly();
+        $schedule->command('queue:work --daemon')->everyFiveMinutes()->withoutOverlapping();
+
 
     }
 
