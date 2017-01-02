@@ -30,9 +30,9 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')
         //          ->hourly();
 
-        $schedule->call('Rentintersimrepo\orders\CreateHelper@startDeactivation')->everyMinute();
-        $schedule->call('Rentintersimrepo\orders\CreateHelper@startActivation')->everyMinute();
-        $schedule->command('queue:work --daemon')->everyFiveMinutes()->withoutOverlapping();
+        $schedule->call('Rentintersimrepo\orders\CreateHelper@startDeactivation')->everyFiveMinutes();
+        $schedule->call('Rentintersimrepo\orders\CreateHelper@startActivation')->everyFiveMinutes();
+        $schedule->command('queue:work --daemon')->everyTenMinutes()->withoutOverlapping();
 
 
     }

@@ -191,7 +191,7 @@ class CreateHelper
         if ($orders != null){
             foreach ($orders as $order){
                 $this->activate($order->id);
-                sleep(15);
+                sleep(10);
             }
         }
 //        dd($orders, $now->timestamp);
@@ -203,8 +203,8 @@ class CreateHelper
         if ($order == null)
             exit();
         sleep(5);
-//        $res = file_get_contents("http://176.35.171.143:8086/api/vfapi.php?key=7963ad6960b1088b94db2c32f2975e86&call=simswap&cli=0".$order->phone->phone."&sim=".$order->sim->number);
-        $res = 0;
+        $res = file_get_contents("http://176.35.171.143:8086/api/vfapi.php?key=7963ad6960b1088b94db2c32f2975e86&call=simswap&cli=".$order->phone->phone."&sim=".$order->sim->number);
+//        $res = 0;
         Activation::forceCreate([
             'phone_number' =>  $order->phone->phone,
             'sim_number' => $order->sim->number,
@@ -229,7 +229,7 @@ class CreateHelper
         if ($orders != null){
             foreach ($orders as $order){
                 $this->deactivate($order);
-                sleep(15);
+                sleep(10);
             }
         }
 //        dd($orders, $now->timestamp);
@@ -244,8 +244,8 @@ class CreateHelper
         $phone->current_sim_id = $phone->initial_sim_id;
 
         sleep(5);
-//        $res = file_get_contents("http://176.35.171.143:8086/api/vfapi.php?key=7963ad6960b1088b94db2c32f2975e86&call=simswap&cli=0".$order->phone->phone."&sim=".$phone->parking_sim->number);
-        $res = 0;
+        $res = file_get_contents("http://176.35.171.143:8086/api/vfapi.php?key=7963ad6960b1088b94db2c32f2975e86&call=simswap&cli=".$order->phone->phone."&sim=".$phone->parking_sim->number);
+//        $res = 0;
         Activation::forceCreate([
             'phone_number' =>  $order->phone->phone,
             'sim_number' => $phone->parking_sim->number,
@@ -285,8 +285,8 @@ class CreateHelper
 
     protected function sendMail($order)
     {
-//        Mail::to($order->creator->email, $order->creator->name)
-//            ->queue(new notifications($order));
+        Mail::to($order->creator->email, $order->creator->name)
+            ->queue(new notifications($order));
     }
 
 }
