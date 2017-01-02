@@ -190,7 +190,7 @@
                                         <label class="table_label">Type Name</label>
                                         <div class="relative">
                                         <input type="hidden" name="some_type_edit_id" data-th="Id" id="id-edit" value=""/>
-                                            <input type="text" name="name" id="name-edit" class="block_btn_30 modal_input vd_number" data-th="Type Name" value=""/>
+                                            <input type="text" name="name" id="name-edit" class="block_btn_30 modal_input vd_required" data-th="Type Name" value=""/>
                                             {{csrf_field()}}
                                             <i class="input_icon icon-add_type"></i>
                                         </div>
@@ -210,7 +210,7 @@
                                     <div class="col-md-6">
                                         <label class="table_label">Type Code</label>
                                         <div class="relative">
-                                            <input type="text" name="type_code" id="type_code-edit" class="block_btn_30 modal_input vd_number" data-th="Type Code" value=""/>
+                                            <input type="text" name="type_code" id="type_code-edit" class="block_btn_30 modal_input" data-th="Type Code" value=""/>
                                             <i class="input_icon icon-type"></i>
                                         </div>
                                     </div>
