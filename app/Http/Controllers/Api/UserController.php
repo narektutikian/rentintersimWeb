@@ -107,14 +107,14 @@ class UserController extends Controller
 
 
             'name' => $request->input('name'),
-            'email' => $request->input('email'),
+            'email' => $request->input('email|unique:users'),
 //            'logo' => $request->input('name
-            'login' => $request->input('username'),
+            'login' => $request->input('username|unique:users,login'),
             'password' => Hash::make($request->input('password')),
             'type' => $request->input('type'),
             'level' => $request->input('level'),
 //            'time_zone' => $request->input('name
-              'email2' => $request->input('email2'),
+              'email2' => $request->input('email2|unique:users'),
 //            'phone' => $request->input('name
             'language_id' => 1,
 //            'sim_balance' => $request->input('name'),
@@ -208,27 +208,41 @@ class UserController extends Controller
 
 
         $user = User::find($id);
+        $userType = $user->type;
+        $userLevel = $user->level;
         $submiter = User::find($user->supervisor_id);
             $user->name = $request->input('name');
+
+        if ($request->has('email') && $request->input('email') != $user->email){
+            $this->validate(request(), ['email' => 'unique:users,email']);
             $user->email = $request->input('email');
+        }
 //            'logo' => $request->input('name
-        if ($request->has('username') && $request->has('username') != $user->login){
-            $this->validate(request(), ['username' => 'unique:users,login',]);
+        if ($request->has('username') && $request->input('username') != $user->login){
+            $this->validate(request(), ['username' => 'unique:users,login']);
             $user->login = $request->input('username');
         }
-            $user->login = $request->input('username');
+
         if ($request->has('password'))
             $user->password = Hash::make($request->input('password'));
+
+        if($userType == 'admin' && $request->input('type') != 'admin')
+            return response('You cannot change type admin', 403);
+
             $user->type = $request->input('type');
             $user->level = $request->input('level');
-//            'time_zone' => $request->input('name
+
+        if ($request->has('email2') && $request->input('email2') != $user->email2){
+            $this->validate(request(), ['email2' => 'unique:users,email2']);
             $user->email2 = $request->input('email2');
-//            'phone' => $request->input('name
+        }
             $user->language_id = 1;
+            $user->is_active = 1;
+//            'phone' => $request->input('name
 //            'sim_balance' => $request->input('name'),
 //            'phone_balance' => $request->input('name'),
 //            $user->supervisor_id = $user->id;
-            $user->is_active = 1;
+//            'time_zone' => $request->input('name
 
 
 
@@ -241,10 +255,13 @@ class UserController extends Controller
             }
 
         }
-
-        if ($this->manager->UserEdit($user, $submiter)){
-            $user->save();
+        if ($userType != 'admin'){
+            if ($this->manager->UserEdit($user, $submiter)){
+                $user->save();
+            }
         }
+        elseif ($userLevel == $request->input('level'))
+            $user->save();
         else {
 
             return response('You cannot create this type of user', 401);
