@@ -95,6 +95,21 @@ class UserManager
         return false;
     }
 
+
+    function UserEdit($newUser, $user){
+        if (in_array($newUser->level, $this->typeValidator($user->level))){
+            if ($newUser->type == 'admin')
+                return false;
+
+        else
+            return true;
+        }
+        elseif ($newUser->type != 'admin' && $newUser->level == $user->level)
+            return true;
+        return false;
+    }
+
+
     protected function solveUsers($users)
     {
 

@@ -204,8 +204,8 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="table_label {{ (Auth::user()->level != 'Super admin') ? 'hidden' : '' }}">Parent Username</label>
-                                        <div class="form_row {{ (Auth::user()->level != 'Super admin') ? 'hidden' : '' }}">
+                                        <label class="table_label {{ (Auth::user()->level != 'Super admin') ? 'hidden' : 'hidden' }}">Parent Username</label>
+                                        <div class="form_row {{ (Auth::user()->level != 'Super admin') ? 'hidden' : 'hidden' }}">
                                             <div class="select_wrapper">
                                                 <select class="block_btn_30 modal_input supervisor_id" name="supervisor_id" id="supervisor_id">
                                                     <option value="{{Auth::user()->id}}">{{Auth::user()->login}}</option>

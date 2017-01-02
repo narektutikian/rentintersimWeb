@@ -49,6 +49,7 @@ class UserController extends Controller
 //        $done[] = $net[0];
 //        echo '<pre>';
 //        dd($net);
+
         return view('user');
     }
 
@@ -84,7 +85,7 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required',
 //            'logo' => 'required',
-            'username' => 'required',
+            'username' => 'required|unique:users,login',
             'password' => 'required',
             'type' => 'required',
             'level' => 'required',
@@ -184,7 +185,6 @@ class UserController extends Controller
         //
 
         $user = Auth::user();
-        $submiter = $user;
         $this->validate(request(), [
 
             'name' => 'required',
@@ -208,9 +208,14 @@ class UserController extends Controller
 
 
         $user = User::find($id);
+        $submiter = User::find($user->supervisor_id);
             $user->name = $request->input('name');
             $user->email = $request->input('email');
 //            'logo' => $request->input('name
+        if ($request->has('username') && $request->has('username') != $user->login){
+            $this->validate(request(), ['username' => 'unique:users,login',]);
+            $user->login = $request->input('username');
+        }
             $user->login = $request->input('username');
         if ($request->has('password'))
             $user->password = Hash::make($request->input('password'));
@@ -222,21 +227,22 @@ class UserController extends Controller
             $user->language_id = 1;
 //            'sim_balance' => $request->input('name'),
 //            'phone_balance' => $request->input('name'),
-            $user->supervisor_id = $user->id;
+//            $user->supervisor_id = $user->id;
             $user->is_active = 1;
 
 
 
 
         if ($user->level == 'Super admin'){
-            if($request->has('supervisor_id') && $request->input('supervisor_id') != $user->id){
+            if($request->has('supervisor_id') && $request->input('supervisor_id') != $user->supervisor_id){
 
                 $submiter = User::find($request->input('supervisor_id'));
-//                $newUser['supervisor_id'] =  $request->input('supervisor_id');
+                $user->supervisor_id =  $request->input('supervisor_id');
             }
+
         }
 
-        if ($this->manager->UserCreation($user, $submiter)){
+        if ($this->manager->UserEdit($user, $submiter)){
             $user->save();
         }
         else {
