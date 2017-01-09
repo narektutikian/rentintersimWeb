@@ -218,7 +218,8 @@ $( document ).ready(function() {
                 step_size_minutes:15,
                 overflow_minutes:true,
                 increase_direction:'up',
-                disable_keyboard_mobile: true
+                disable_keyboard_mobile: true,
+                start_time: ["00", "00"]
             });
 
             $('.wrap_package_list').show(); // show package list after modal was open
