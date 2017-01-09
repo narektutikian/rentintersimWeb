@@ -83,14 +83,14 @@ class UserController extends Controller
         $this->validate(request(), [
 
             'name' => 'required',
-            'email' => 'required',
+            'email' => 'required|unique:users',
 //            'logo' => 'required',
             'username' => 'required|unique:users,login',
             'password' => 'required',
             'type' => 'required',
             'level' => 'required',
 //            'time_zone' => 'required',
-//            'email2' => 'unique:users',
+            'email2' => 'unique:users',
 //            'phone' => 'required',
 //            'language_id' => 'required',
 //            'sim_balance' => 'required',
@@ -107,14 +107,14 @@ class UserController extends Controller
 
 
             'name' => $request->input('name'),
-            'email' => $request->input('email|unique:users'),
+            'email' => $request->input('email'),
 //            'logo' => $request->input('name
-            'login' => $request->input('username|unique:users,login'),
+            'login' => $request->input('username'),
             'password' => Hash::make($request->input('password')),
             'type' => $request->input('type'),
             'level' => $request->input('level'),
 //            'time_zone' => $request->input('name
-              'email2' => $request->input('email2|unique:users'),
+              'email2' => $request->input('email2'),
 //            'phone' => $request->input('name
             'language_id' => 1,
 //            'sim_balance' => $request->input('name'),
@@ -184,7 +184,7 @@ class UserController extends Controller
         //
         //
 
-        $user = Auth::user();
+
         $this->validate(request(), [
 
             'name' => 'required',
