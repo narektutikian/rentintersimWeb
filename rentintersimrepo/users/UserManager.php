@@ -18,14 +18,18 @@ class UserManager
     public function getMyNetwork($id){
         $users = User::select('id', 'login', 'level', 'type', 'supervisor_id', 'name')->get()->toArray();
         $network = $this->buildTree($this->solveUsers($users), $id);
-//        $flat = $this->flatten($network);
-//        return $flat;
+//        echo '<pre/>';
+//        print_r($network);
+//        die();
         return $network;
     }
     public function getMyFlatNetwork($id){
         $users = User::select('id', 'login', 'level', 'type', 'supervisor_id', 'name')->get()->toArray();
         $network = $this->buildTree($this->solveUsers($users), $id);
         $flat = $this->flatten($network);
+//        echo '<pre/>';
+//        print_r($flat);
+//        die();
         return $flat;
 //            return $network;
     }
@@ -58,7 +62,7 @@ class UserManager
             foreach ($element as $key => $node) {
 //            if (is_array($node))
                 if (array_key_exists('child', $node)) {
-                    $flatArray +=  $this->flatten($node['child'],$flatArray);
+                    $flatArray +=  $this->flatten($node['child'], $flatArray);
                     unset($node['child']);
                     $flatArray[] = $node;
 //                    if (count($flat)>1)
@@ -72,6 +76,30 @@ class UserManager
 
         return $flatArray;
     }
+/*****  Not working one  *****
+    function flatten($element)
+    {
+        $flatArray = array();
+        if (count($element) == 1 && !array_key_exists('child', $element) && !is_array($element)) {
+            $flatArray[] = $element;
+        }
+        foreach ($element as $key => $node) {
+//            if (is_array($node))
+            if (array_key_exists('child', $node)) {
+                $flatArray =  array_merge($flatArray, $this->flatten($node['child']));
+                unset($node['child']);
+                $flatArray[] = $node;
+//                    if (count($flat)>1)
+//                    $flatArray[] = $flat;
+
+            } else {
+                $flatArray[] = $node;
+            }
+        }
+
+
+        return $flatArray;
+    }*/
 
     function typeValidator($level){
         if($level == 'Super admin')
