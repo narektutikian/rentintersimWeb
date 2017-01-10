@@ -313,9 +313,14 @@ class UserController extends Controller
 
     public function getFlatTree(){
         $tree = $this->manager->getMyFlatNetwork(Auth::user()->id);
-        dd($tree);
+//        dd($tree);
         return response()->json($tree);
     }
 
+    public function getIdTree(){
+        $tree = $this->manager->getMyFlatNetwork(Auth::user()->id);
+        $tree = $this->manager->subNetID($tree);
+        return response()->json($tree);
+    }
 
 }

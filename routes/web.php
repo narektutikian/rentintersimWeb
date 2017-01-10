@@ -54,6 +54,7 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
     /***Ajax requests***/
     Route::get('user-tree', 'UserController@getUserTree');
     Route::get('user-flat-tree', 'UserController@getFlatTree');
+    Route::get('user-id-tree', 'UserController@getIdTree');
     Route::get('type-provider/{providerId}', 'PackageController@typeofProvider');
 
     /******Export Import routes******/

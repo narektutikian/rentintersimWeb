@@ -27,6 +27,7 @@ class UserManager
         $users = User::select('id', 'login', 'level', 'type', 'supervisor_id', 'name')->get()->toArray();
         $network = $this->buildTree($this->solveUsers($users), $id);
         $flat = $this->flatten($network);
+
 //        echo '<pre/>';
 //        print_r($flat);
 //        die();
@@ -150,6 +151,16 @@ class UserManager
         }
         return $users;
 
+    }
+
+    public function subNetID ($flatNetwork)
+    {
+
+       $ids= array();
+        foreach ($flatNetwork as $key => $item) {
+            $ids[$key] = $item['id'];
+        }
+        return $ids;
     }
 
 }
