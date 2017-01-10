@@ -23,7 +23,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+Route::get('/home', 'Api\OrderController@index');
 Route::get('/dashboard', 'HomeController@dashboard');
 
 Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {

@@ -33,6 +33,8 @@ class notifications extends Mailable
     public function build()
     {
         $address = 'service@syc.co.il';
+        if (env('APP_ENV') == 'local')
+            $address = 'narek@horizondvp.com';
         $name = 'RentInterSim';
         $subject = 'Order Status Change';
 //        dd($this->data);

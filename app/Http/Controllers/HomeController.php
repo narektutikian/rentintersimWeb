@@ -7,21 +7,25 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Models\Order;
 use Rentintersimrepo\orders\ViewHelper;
+use Rentintersimrepo\users\UserManager;
 
 
 class HomeController extends Controller
 {
     protected $viewHelper;
+    protected $userManager;
 
     /**
      * Create a new controller instance.
-     *
+     * @param Rentintersimrepo\users\UserManager
+     * @param Rentintersimrepo\users\UserManager
      * @return void
      */
-    public function __construct(ViewHelper $viewHelper)
+    public function __construct(ViewHelper $viewHelper, UserManager $userManager)
     {
         $this->middleware('auth');
         $this->viewHelper = $viewHelper;
+        $this->userManager = $userManager;
     }
 
     /**
@@ -31,20 +35,24 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
+      /*  $user = Auth::user();
+
         $orders = null;
-        if ($user->level != 'Super admin')
-            $orders = Order::employee($user->id)->orderby('id', 'desc')->paginate(env('PAGINATE_DEFAULT'));
+        if ($user->level != 'Super admin'){
+            $net = $this->userManager->getMyFlatNetwork($user->id);
+            $net = $this->userManager->subNetID($net);
+            $orders = Order::whereIn('created_by', $net)->orderby('id', 'desc')->paginate(env('PAGINATE_DEFAULT'));
+        }
         if ($user->level == 'Super admin')
             $orders = Order::orderby('id', 'desc')->paginate(env('PAGINATE_DEFAULT'));
        $ordersArray = $this->solveOrderList($orders, $this->viewHelper);
-        $counts = $this->getCounts($user->id);
+        $counts = $this->getCounts($user->id, $this->userManager);
 
 //        dd($specials);
 
 
 //        var_dump($ordersArray);
-        return view('home', compact('ordersArray'), compact('counts'));
+        return view('home', compact('ordersArray'), compact('counts'));*/
 
     }
 
@@ -59,7 +67,7 @@ class HomeController extends Controller
         return redirect('home');
     }
 
-    public static function solveOrderList($orders, $viewHelper){
+ /*   public static function solveOrderList($orders, $viewHelper){
     $ordersArray = $orders;
 //        dd($orders);
     foreach ($orders as $key => $order) {
@@ -81,13 +89,16 @@ class HomeController extends Controller
 
     }
     return $ordersArray;
-    }
+    }*/
 
-    public static function getCounts($id){
+    /*public static function getCounts($id, $userManager){
         $orders = null;
         $user = Auth::user();
-        if ($user->level != 'Super admin')
-            $orders = Order::employee($id);
+        if ($user->level != 'Super admin'){
+            $net = $userManager->getMyFlatNetwork($user->id);
+            $net = $userManager->subNetID($net);
+            $orders = Order::whereIn('created_by', $net);
+        }
         if ($user->level == 'Super admin')
         $orders = Order::where('deleted_at', null);
         $ordersp = clone($orders);
@@ -101,7 +112,7 @@ class HomeController extends Controller
         ]);
 //        dd($counts);
         return $counts;
-    }
+    }*/
 
 
 }

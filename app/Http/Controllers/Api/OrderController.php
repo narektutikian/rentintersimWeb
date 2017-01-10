@@ -13,16 +13,19 @@ use Mail;
 use App\Mail\OrderMail;
 use DB;
 use Excel;
+use Rentintersimrepo\users\UserManager;
 
 class OrderController extends Controller
 {
     protected $helper;
     protected $viewHelper;
+    protected $userManager;
 
-    public function __construct(Helper $helper, ViewHelper $viewHelper)
+    public function __construct(Helper $helper, ViewHelper $viewHelper, UserManager $userManager)
     {
         $this->helper = $helper;
         $this->viewHelper = $viewHelper;
+        $this->userManager = $userManager;
     }
 
     /**
@@ -33,6 +36,25 @@ class OrderController extends Controller
     public function index()
     {
         //
+        $user = Auth::user();
+
+        $orders = null;
+        if ($user->level != 'Super admin'){
+            $net = $this->userManager->getMyFlatNetwork($user->id);
+            $net = $this->userManager->subNetID($net);
+            $orders = Order::whereIn('created_by', $net)->orderby('id', 'desc')->paginate(env('PAGINATE_DEFAULT'));
+//            dd($orders);
+        }
+        if ($user->level == 'Super admin')
+            $orders = Order::orderby('id', 'desc')->paginate(env('PAGINATE_DEFAULT'));
+        $ordersArray = $this->viewHelper->solveOrderList($orders);
+        $counts = $this->viewHelper->getCounts($this->userManager);
+
+//        dd($specials);
+
+
+//        var_dump($ordersArray);
+        return view('home', compact('ordersArray'), compact('counts'));
 
 
     }
@@ -249,12 +271,14 @@ class OrderController extends Controller
     public function filter($filter){
         $user = Auth::user();
         $orders = null;
-        if ($user->level != 'Super admin')
-        $orders = Order::employee($user->id)->filter($filter)->orderby('id', 'desc')->paginate(env('PAGINATE_DEFAULT'));
+        if ($user->level != 'Super admin'){
+            $net = $this->userManager->subNetID($this->userManager->getMyFlatNetwork($user->id));
+            $orders = Order::whereIn('created_by', $net)->filter($filter)->orderby('id', 'desc')->paginate(env('PAGINATE_DEFAULT'));
+        }
         if ($user->level == 'Super admin')
             $orders = Order::filter($filter)->orderby('id', 'desc')->paginate(env('PAGINATE_DEFAULT'));
-        $ordersArray = HomeController::solveOrderList($orders, $this->viewHelper);
-        $counts = HomeController::getCounts($user->id);
+        $ordersArray = $this->viewHelper->solveOrderList($orders);
+        $counts = $this->viewHelper->getCounts($this->userManager);
 
         return view('home', compact('ordersArray'), compact('counts'));
     }
@@ -324,22 +348,24 @@ class OrderController extends Controller
     public function search(Request $request)
     {
         $query = stripcslashes($request->input('query'));
+        $net = $this->userManager->subNetID($this->userManager->getMyFlatNetwork(Auth::user()->id));
 
-//        $result1 =  DB::table('orders')->where('status', '!=', 'finished');
+        $result = Order::where(function ($q) use ($query) {
+            $q->whereIn('phone_id', function ($q) use ($query) {
+                $q->select('id')->from('phones')->
+                where('phone', 'LIKE', '%' . $query . '%');
+            })
+                ->orWhereIn('sim_id', function ($q) use ($query) {
+                $q->select('id')->from('sims')->where('number', 'LIKE', '%' . $query . '%');
+            })
+                ->orWhere('reference_number', 'LIKE', '%' . $query . '%');
+        })
+            ->whereIn('created_by', $net)
+            ->paginate(env('PAGINATE_DEFAULT'));
 
-        $result =  Order::orWhereIn('phone_id', function($q) use($query)  {
-        $q->select('id')->from('phones')->where('phone', 'LIKE', '%'.$query.'%');
-        })->orWhereIn('sim_id', function($q) use($query)  {
-            $q->select('id')->from('sims')->where('number', 'LIKE', '%'.$query.'%');
-        })->orWhere('reference_number', 'LIKE', '%'.$query.'%')->paginate(env('PAGINATE_DEFAULT'));
+        $ordersArray = $this->viewHelper->solveOrderList($result);
+        $counts = $this->viewHelper->getCounts($this->userManager);
 
-//        dd($result);
-        $ordersArray = HomeController::solveOrderList($result, $this->viewHelper);
-        $counts = HomeController::getCounts(Auth::user()->id);
-
-//        dd($ordersArray);
-
-//        dd($simsArray);
         return view('home', compact('ordersArray'), compact('counts'));
     }
 
@@ -347,11 +373,13 @@ class OrderController extends Controller
     {
         $user = Auth::user();
         $orders = null;
-        if ($user->level != 'Super admin')
-            $orders = Order::employee($user->id)->orderby('id', 'desc')->toArray();
+        if ($user->level != 'Super admin'){
+            $net = $this->userManager->subNetID($this->userManager->getMyFlatNetwork(Auth::user()->id));
+            $orders = Order::whereIn('created_by', $net)->orderby('id', 'desc')->get();
+        }
         if ($user->level == 'Super admin')
             $orders = Order::get();
-        $ordersArray = HomeController::solveOrderList($orders, $this->viewHelper);
+        $ordersArray = $this->viewHelper->solveOrderList($orders);
 
         Excel::create('Orders', function($excel) use ($ordersArray) {
 

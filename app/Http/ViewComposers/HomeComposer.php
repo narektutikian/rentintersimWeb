@@ -44,7 +44,7 @@ class HomeComposer
     public function compose(View $view)
     {
 //        $id = Auth::user()->id;
-        $specials = Phone::where([['is_special', 1]])->get()->toArray();
+        $specials = Phone::where([['is_special', 1], ['state', 'not in use']])->get()->toArray();
 
         $view->with('viewName', $view->getName())
             ->with('specials', $specials);

@@ -10,7 +10,7 @@ namespace Rentintersimrepo\users;
 
 use App\User;
 use App\Models\Order;
-
+use Illuminate\Support\Facades\Auth;
 
 
 class UserManager
@@ -21,7 +21,11 @@ class UserManager
 //        echo '<pre/>';
 //        print_r($network);
 //        die();
-        return $network;
+        $final = Auth::user()->toArray();
+        $final = $this->solveUsers(array($final))[0];
+//        dd($final);
+        $final['child'] = $network;
+        return [$final];
     }
     public function getMyFlatNetwork($id){
         $users = User::select('id', 'login', 'level', 'type', 'supervisor_id', 'name')->get()->toArray();
@@ -31,7 +35,11 @@ class UserManager
 //        echo '<pre/>';
 //        print_r($flat);
 //        die();
-        return $flat;
+        $final = Auth::user()->toArray();
+        $final = $this->solveUsers(array($final));
+//        dd($final);
+        $final += $flat;
+        return $final;
 //            return $network;
     }
     function buildTree($elements, $parentId = 0)
