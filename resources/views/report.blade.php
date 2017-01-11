@@ -9,63 +9,92 @@
                         {{--<div class="filter_text">Filter by status:</div>--}}
                         <div>
                             <form>
-                               <p> Provider: <select name="provider">
-                                            <option value=""></option>
-                                            <option value="1">Vodafone</option>
-                                            </select> <br />
-                               </p>
-                                <div class="col-md-5">
-                                 Provider: <select name="level">
-                                        <option value=""></option>
-                                        <option value="Distributor">Distributor</option>
-                                        <option value="Dealer">Dealer</option>
-                                        <option value="Subealer">Subealer</option>
-                                    </select>
-                                    </div>
-                                <div class="col-md-5">
-                                    Provider: <select name="username">
-                                        <option value=""></option>
-                                        <option value="Distributor">Alanis</option>
-                                    </select>
-                                    </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="table_label">Provider:</label>
+                                            <div class="select_wrapper">
+                                                <select name="provider" class="block_btn_30 modal_input">
+                                                    <option value=""></option>
+                                                    <option value="1">Vodafone</option>
+                                                </select>
+                                            </div>
 
-
-                                <div class="col-md-5">
-                                <div class="departure" style="width: 300px"><i class="icon-landing"></i> From</div>
-                                <div class="wrap_date">
-                                    <div class="input-group date flight_dates" data-provide="datepicker">
-                                        <div class="input-group-addon">
-                                            <span class="glyphicon glyphicon-calendar"></span>
                                         </div>
-                                        <input type="text" name="departure_date" id="departure_date" class="inline_block_btn departure_date vd_date_required" data-date-format="DD/MM/YYYY">
-                                    </div>
 
-                                </div>
                                     </div>
-                                <div class="col-md-5">
-                                <div class="departure"  style="width: 300px"><i class="icon-landing"></i> To</div>
-                                <div class="wrap_date">
-                                    <div class="input-group date flight_dates" data-provide="datepicker">
-                                        <div class="input-group-addon">
-                                            <span class="glyphicon glyphicon-calendar"></span>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="table_label">Provider:</label>
+                                            <div class="select_wrapper">
+                                                <select name="level" class="block_btn_30 modal_input">
+                                                    <option value=""></option>
+                                                    <option value="Distributor">Distributor</option>
+                                                    <option value="Dealer">Dealer</option>
+                                                    <option value="Subealer">Subealer</option>
+                                                </select>
+                                            </div>
                                         </div>
-                                        <input type="text" name="departure_date" id="departure_date" class="inline_block_btn departure_date vd_date_required" data-date-format="DD/MM/YYYY">
-                                    </div>
 
+                                        <div class="form-group">
+                                            <div class="departure"><i class="icon-landing"></i> From</div>
+                                            <div class="wrap_date">
+                                                <div class="input-group date flight_dates" data-provide="datepicker">
+                                                    <div class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                    </div>
+                                                    <input type="text" name="departure_date" id="departure_date" class="inline_block_btn departure_date vd_date_required" data-date-format="DD/MM/YYYY">
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="table_label">Provider:</label>
+                                            <div class="select_wrapper">
+                                                <select name="username" class="block_btn_30 modal_input">
+                                                    <option value=""></option>
+                                                    <option value="Distributor">Alanis</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="departure" ><i class="icon-landing"></i> To</div>
+                                            <div class="wrap_date">
+                                                <div class="input-group date flight_dates" data-provide="datepicker">
+                                                    <div class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                    </div>
+                                                    <input type="text" name="departure_date" id="departure_date" class="inline_block_btn departure_date vd_date_required" data-date-format="DD/MM/YYYY">
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
                                 </div>
-                                    </div>
-                                <div class="col-md-10">
 
-                                <p style="margin-top: 10px">
-                                Number: <input type="text" class="inline_block_btn" name="number" value="">
-                                </p>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="table_label">Number:</label>
+                                            <input type="text" class="block_btn_30 modal_input_without_icon" name="number" value="">
+                                        </div>
                                     </div>
+                                </div>
 
-                                <div class="col-md-10" style="padding-top: 10px">
-
-                                <input type="reset" value="Clear">
-                                <input type="submit" value="Report">
+                                <div class="row">
+                                    <div class="col-md-10" style="padding-top: 10px">
+                                        <input type="reset" class="btn btn-warning" value="Clear">
+                                        <input type="submit" class="btn btn-info" value="Report">
                                     </div>
+                                </div>
+
                             </form>
                         </div>
                         <div class="filter_buttons">
