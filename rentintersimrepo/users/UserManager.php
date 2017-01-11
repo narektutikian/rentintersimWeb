@@ -35,10 +35,10 @@ class UserManager
 //        echo '<pre/>';
 //        print_r($flat);
 //        die();
-        $final = Auth::user()->toArray();
-        $final = $this->solveUsers(array($final));
+        $final = $this->solveUsers(array(Auth::user()->toArray()));
+//        dd($flat);
+        $final = array_merge($final, $flat);
 //        dd($final);
-        $final += $flat;
         return $final;
 //            return $network;
     }

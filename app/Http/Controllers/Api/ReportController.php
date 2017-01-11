@@ -15,7 +15,7 @@ use DB;
 use Excel;
 use Rentintersimrepo\users\UserManager;
 
-class OrderController extends Controller
+class ReportController extends Controller
 {
     protected $helper;
     protected $viewHelper;
@@ -54,7 +54,7 @@ class OrderController extends Controller
 
 
 //        var_dump($ordersArray);
-        return view('home', compact('ordersArray'), compact('counts'));
+        return view('report', compact('ordersArray'), compact('counts'));
 
 
     }
@@ -343,7 +343,7 @@ class OrderController extends Controller
         $query = stripcslashes($request->input('query'));
         $net = $this->userManager->subNetID($this->userManager->getMyFlatNetwork(Auth::user()->id));
 
-        $result = Order::where(function ($q) use ($query) {
+        $result = Order::withTrashed()->where('status', '!=', 'deleted')->where(function ($q) use ($query) {
             $q->whereIn('phone_id', function ($q) use ($query) {
                 $q->select('id')->from('phones')->
                 where('phone', 'LIKE', '%' . $query . '%');
@@ -357,9 +357,11 @@ class OrderController extends Controller
             ->paginate(env('PAGINATE_DEFAULT'));
 
         $ordersArray = $this->viewHelper->solveOrderList($result);
-        $counts = $this->viewHelper->getCounts($this->userManager);
+//        $counts = $this->viewHelper->getCounts($this->userManager);
 
-        return view('home', compact('ordersArray'), compact('counts'));
+        return view('report', compact('ordersArray')
+//            , compact('counts')
+        );
     }
 
     public function export()

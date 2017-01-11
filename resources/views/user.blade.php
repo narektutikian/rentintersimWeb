@@ -178,7 +178,6 @@
                                         <div class="select_wrapper">
                                             <select class="block_btn_30 modal_input level" name="level" data-th="Level">
                                                 <option value=""></option>
-                                                <option value="Admin">Admin</option>
                                                 <option value="Dealer">Dealer</option>
                                                 <option value="Subdealer">SubDealer</option>
                                                 <option value="Distributor">Distributor</option>
@@ -248,7 +247,7 @@
                                     <div class="col-md-6">
                                         <label class="table_label">Password</label>
                                         <div class="relative">
-                                            <input type="password" class="block_btn_30 modal_input" name="password" value=""/>
+                                            <input type="password" class="block_btn_30 modal_input password" name="password" value=""/>
                                             <i class="input_icon icon-password"></i>
                                         </div>
                                     </div>
