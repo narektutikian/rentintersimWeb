@@ -750,9 +750,9 @@ function filterLevel(level) {
         }
         setTimeout(function(){
             $icon.removeClass('icon-time') ;
-        }, 5000);
+            $icon.addClass('icon-username');
+        }, 2000);
 
-        $icon.addClass('icon-username');
     });
 
 }

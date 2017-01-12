@@ -36,7 +36,7 @@
                                                     <option value="{{$item}}" {{ (Auth::user()->level == $item) ? 'selected' : '' }}>{{$item}}</option>
                                                     @endforeach
                                                 </select>
-                                                <i class="input_icon icon-level"></i>
+                                                <i class="input_icon_small icon-level"></i>
                                             </div>
                                         </div>
 
@@ -64,7 +64,7 @@
                                                     <option value="{{$user->id}}" {{ (Auth::user()->id == $user->id) ? 'selected' : '' }}>{{$user->login}}</option>
                                                     @endforeach
                                                 </select>
-                                                <i class="input_icon icon-username"></i>
+                                                <i class="input_icon_small icon-username"></i>
                                             </div>
                                         </div>
 

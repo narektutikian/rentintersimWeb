@@ -93,6 +93,17 @@ table {
   color: #1b6db2;
   font-size: 22px; }
 
+.input_icon_small {
+  color: #8da1b0;
+  position: absolute;
+  top: 15px;
+  transform: translateY(-50%);
+  left: 14px;
+  color: #1b6db2;
+  font-size: 22px;
+  font-size: 18px;
+  left: 8px; }
+
 .light_blue_btn {
   background: #079fff;
   border: 1px solid #079fff;
