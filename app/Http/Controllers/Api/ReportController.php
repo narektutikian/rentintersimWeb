@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\ViewComposers\NumberComposer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
@@ -14,6 +15,8 @@ use App\Mail\OrderMail;
 use DB;
 use Excel;
 use Rentintersimrepo\users\UserManager;
+use Carbon\Carbon;
+use App\Models\Phone;
 
 class ReportController extends Controller
 {
@@ -389,7 +392,59 @@ class ReportController extends Controller
 
     public function generateReport(Request $request)
     {
-        dd($request->all());
+        $net = $this->userManager->subNetID($this->userManager->getMyFlatNetwork(Auth::user()->id));
+        if (!$request->has('provider'))
+            $report = Order::where('id', '<', 0);
+        else {
+            $report = Order::withTrashed()->where('status', 'suspended')->whereIn('created_by', $net);
+            if ($request->has('username'))
+                $report = $report->where('created_by', $request->input('username'));
+            if ($request->has('from')){
+                $from = Carbon::createFromFormat('d/m/Y', $request->input('from'));
+                $report = $report->where('from', '>', $from->timestamp);
+            }
+            if ($request->has('to')){
+                $from = Carbon::createFromFormat('d/m/Y', $request->input('to'));
+                $report = $report->where('to', '<', $from->timestamp);
+            }
+            if ($request->has('number')){
+                $number = Phone::where('phone', $request->input('number'))->first()->id;
+//                dd($number);
+                if ($number != null)
+                $report = $report->where('phone_id', $number);
+            }
+
+        }
+
+
+
+
+
+            if ($request->has('export')){
+            $report = $report->get();
+            $ordersArray = $this->viewHelper->solveOrderList($report);
+            Excel::create('Report', function($excel) use ($ordersArray) {
+
+                $excel->sheet('report', function($sheet) use($ordersArray) {
+
+                    $sheet->fromArray($ordersArray);
+
+                });
+
+            })->download('xlsx');
+            }
+
+            else { $report = $report->paginate(env('PAGINATE_DEFAULT')); }
+
+            $ordersArray = $this->viewHelper->solveOrderList($report);
+            $ordersArray->setPath("report?provider=".$request->input('provider').
+                "&level=".$request->input('level').
+                "&from=".$request->input('from').
+                "&username=".$request->input('username').
+                "&to=".$request->input('to').
+                "&number=".$request->input('number'));
+            return view('report', compact('ordersArray'));
+
 
     }
 

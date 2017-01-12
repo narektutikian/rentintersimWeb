@@ -33,7 +33,7 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
     Route::resource('number', 'PhoneController');
     Route::resource('sim', 'SIMController');
     Route::resource('type', 'PackageController');
-    Route::resource('report', 'ReportController');
+//    Route::resource('report', 'ReportController');
 
     /*****Get new Number******/
     Route::get('get-number/{orderId}', 'OrderController@getNumberExternal');
@@ -77,7 +77,7 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
 
     Route::get('send-mail/{orderID}', 'OrderController@sendMail');
 
-    Route::post('report', 'ReportController@generateReport');
+    Route::get('report', 'ReportController@generateReport');
 });
 
 

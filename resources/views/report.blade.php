@@ -8,8 +8,8 @@
                     <div class="orders_list_wrapper">
                         {{--<div class="filter_text">Filter by status:</div>--}}
                         <div>
-                            <form method="post" action="{{url('report')}}">
-                                {{csrf_field()}}
+                            <form method="get" action="{{url('report')}}">
+                                {{--{{csrf_field()}}--}}
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -32,8 +32,13 @@
                                             <div class="select_wrapper">
                                                 <select name="level" class="block_btn_30 modal_input" onchange="filterLevel(this.value)">
                                                     <option value="All">All</option>
+                                                    @php if(isset ($_GET['level']))
+                                                    $levelCur = $_GET['level'];
+                                                else
+                                                    $levelCur =  Auth::user()->level;
+                                                    @endphp
                                                     @foreach($level as $item)
-                                                    <option value="{{$item}}" {{ (Auth::user()->level == $item) ? 'selected' : '' }}>{{$item}}</option>
+                                                    <option value="{{$item}}" {{ ($levelCur == $item) ? 'selected' : '' }}>{{$item}}</option>
                                                     @endforeach
                                                 </select>
                                                 <i class="input_icon icon-level"></i>
@@ -47,7 +52,7 @@
                                                     <div class="input-group-addon">
                                                         <span class="glyphicon glyphicon-calendar"></span>
                                                     </div>
-                                                    <input type="text" name="from" id="departure_date" class="inline_block_btn departure_date vd_date_required" data-date-format="DD/MM/YYYY">
+                                                    <input type="text" name="from" id="departure_date" class="inline_block_btn departure_date vd_date_required" data-date-format="DD/MM/YYYY" value="{{ (isset($_GET['from'])) ? $_GET['from'] : '' }}">
                                                 </div>
                                             </div>
                                         </div>
@@ -60,8 +65,13 @@
                                             <div class="select_wrapper" id="user-select">
                                                 <select name="username" class="block_btn_30 modal_input username">
                                                     <option value=""></option>
+                                                    @php if(isset ($_GET['username']))
+                                                    $id = $_GET['username'];
+                                                else
+                                                    $id =  Auth::user()->id;
+                                                    @endphp
                                                     @foreach($users as $user)
-                                                    <option value="{{$user->id}}" {{ (Auth::user()->id == $user->id) ? 'selected' : '' }}>{{$user->login}}</option>
+                                                    <option value="{{$user->id}}" {{ ($id == $user->id) ? 'selected' : '' }}>{{$user->login}}</option>
                                                     @endforeach
                                                 </select>
                                                 <i class="input_icon icon-username"></i>
@@ -75,7 +85,7 @@
                                                     <div class="input-group-addon">
                                                         <span class="glyphicon glyphicon-calendar"></span>
                                                     </div>
-                                                    <input type="text" name="to" id="departure_date" class="inline_block_btn departure_date vd_date_required" data-date-format="DD/MM/YYYY">
+                                                    <input type="text" name="to" id="departure_date" class="inline_block_btn departure_date vd_date_required" data-date-format="DD/MM/YYYY" value="{{ (isset($_GET['to'])) ? $_GET['to'] : '' }}">
                                                 </div>
                                             </div>
                                         </div>
@@ -88,7 +98,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="table_label">Phone Number</label>
-                                            <input type="text" class="block_btn_30 modal_input_without_icon" name="number" value="">
+                                            <input type="text" class="block_btn_30 modal_input_without_icon" name="number" value="{{ (isset($_GET['number'])) ? $_GET['number'] : '' }}">
                                         </div>
                                     </div>
                                 </div>
