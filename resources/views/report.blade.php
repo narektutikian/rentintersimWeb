@@ -41,7 +41,7 @@
                                                     <option value="{{$item}}" {{ ($levelCur == $item) ? 'selected' : '' }}>{{$item}}</option>
                                                     @endforeach
                                                 </select>
-                                                <i class="input_icon icon-level"></i>
+                                                <i class="input_icon_small icon-level"></i>
                                             </div>
                                         </div>
 
@@ -74,7 +74,7 @@
                                                     <option value="{{$user->id}}" {{ ($id == $user->id) ? 'selected' : '' }}>{{$user->login}}</option>
                                                     @endforeach
                                                 </select>
-                                                <i class="input_icon icon-username"></i>
+                                                <i class="input_icon_small icon-username"></i>
                                             </div>
                                         </div>
 
