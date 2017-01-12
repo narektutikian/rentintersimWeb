@@ -724,3 +724,35 @@ function editUser(id) {
         }
     });
 }
+
+function filterLevel(level) {
+
+    var $icon = $('#user-select>i');
+
+    $icon.removeClass('icon-username');
+    $icon.addClass('icon-time');
+
+    $.get("/user-by-level/" + level, function (data, status) {
+        if (status == "success"){
+            console.log(data);
+            var options = "<option value=''></option>";
+            // console.log(data);
+            $.each(data, function (i, item) {
+                options += "<option value=" +item.id +">" + item.login + "</option>";
+            });
+
+            $('.username')
+                .find('option')
+                .remove()
+                .end()
+                .append(options);
+
+        }
+        setTimeout(function(){
+            $icon.removeClass('icon-time') ;
+        }, 5000);
+
+        $icon.addClass('icon-username');
+    });
+
+}

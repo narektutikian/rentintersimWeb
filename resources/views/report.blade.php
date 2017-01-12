@@ -8,15 +8,16 @@
                     <div class="orders_list_wrapper">
                         {{--<div class="filter_text">Filter by status:</div>--}}
                         <div>
-                            <form>
+                            <form method="post" action="{{url('report')}}">
+                                {{csrf_field()}}
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="table_label">Provider:</label>
+                                            <label class="table_label">Provider</label>
                                             <div class="select_wrapper">
                                                 <select name="provider" class="block_btn_30 modal_input">
                                                     <option value=""></option>
-                                                    <option value="1">Vodafone</option>
+                                                    <option value="1" selected>Vodafone</option>
                                                 </select>
                                             </div>
 
@@ -27,14 +28,15 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="table_label">Provider:</label>
+                                            <label class="table_label">Level</label>
                                             <div class="select_wrapper">
-                                                <select name="level" class="block_btn_30 modal_input">
-                                                    <option value=""></option>
-                                                    <option value="Distributor">Distributor</option>
-                                                    <option value="Dealer">Dealer</option>
-                                                    <option value="Subealer">Subealer</option>
+                                                <select name="level" class="block_btn_30 modal_input" onchange="filterLevel(this.value)">
+                                                    <option value="All">All</option>
+                                                    @foreach($level as $item)
+                                                    <option value="{{$item}}" {{ (Auth::user()->level == $item) ? 'selected' : '' }}>{{$item}}</option>
+                                                    @endforeach
                                                 </select>
+                                                <i class="input_icon icon-level"></i>
                                             </div>
                                         </div>
 
@@ -45,7 +47,7 @@
                                                     <div class="input-group-addon">
                                                         <span class="glyphicon glyphicon-calendar"></span>
                                                     </div>
-                                                    <input type="text" name="departure_date" id="departure_date" class="inline_block_btn departure_date vd_date_required" data-date-format="DD/MM/YYYY">
+                                                    <input type="text" name="from" id="departure_date" class="inline_block_btn departure_date vd_date_required" data-date-format="DD/MM/YYYY">
                                                 </div>
                                             </div>
                                         </div>
@@ -54,12 +56,15 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="table_label">Provider:</label>
-                                            <div class="select_wrapper">
-                                                <select name="username" class="block_btn_30 modal_input">
+                                            <label class="table_label">Username</label>
+                                            <div class="select_wrapper" id="user-select">
+                                                <select name="username" class="block_btn_30 modal_input username">
                                                     <option value=""></option>
-                                                    <option value="Distributor">Alanis</option>
+                                                    @foreach($users as $user)
+                                                    <option value="{{$user->id}}" {{ (Auth::user()->id == $user->id) ? 'selected' : '' }}>{{$user->login}}</option>
+                                                    @endforeach
                                                 </select>
+                                                <i class="input_icon icon-username"></i>
                                             </div>
                                         </div>
 
@@ -70,7 +75,7 @@
                                                     <div class="input-group-addon">
                                                         <span class="glyphicon glyphicon-calendar"></span>
                                                     </div>
-                                                    <input type="text" name="departure_date" id="departure_date" class="inline_block_btn departure_date vd_date_required" data-date-format="DD/MM/YYYY">
+                                                    <input type="text" name="to" id="departure_date" class="inline_block_btn departure_date vd_date_required" data-date-format="DD/MM/YYYY">
                                                 </div>
                                             </div>
                                         </div>
@@ -82,7 +87,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="table_label">Number:</label>
+                                            <label class="table_label">Phone Number</label>
                                             <input type="text" class="block_btn_30 modal_input_without_icon" name="number" value="">
                                         </div>
                                     </div>
@@ -91,7 +96,8 @@
                                 <div class="row">
                                     <div class="col-md-10" style="padding-top: 10px">
                                         <input type="reset" class="btn btn-warning" value="Clear">
-                                        <input type="submit" class="btn btn-info" value="Report">
+                                        <input type="submit" name="report" class="btn btn-info" value="Report">
+                                        <input type="submit" name="export" class="btn btn-info" value="Export">
                                     </div>
                                 </div>
 
@@ -117,7 +123,7 @@
                                     {{csrf_field()}}
                                     <button type="submit" class="search_button"><i class="icon-search"></i></button>
                                 </form>
-                                <a href="{{url('/exportorders')}}" class="export_user"><i class="icon-export"></i>Export</a>
+                                {{--<a href="{{url('/exportorders')}}" class="export_user"><i class="icon-export"></i>Export</a>--}}
                                 {{--<a href="#" class="add_new_btn" data-toggle="modal" data-target="#modal_new_order"><i class="icon-new_order"></i>New Order</a>--}}
                             </div>
                         </div>

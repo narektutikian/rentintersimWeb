@@ -27,6 +27,7 @@ class ComposerServiceProvider extends ServiceProvider
         View::composer('type', 'App\Http\ViewComposers\TypeComposer');
         View::composer('sim', 'App\Http\ViewComposers\SimComposer');
         View::composer('home', 'App\Http\ViewComposers\HomeComposer');
+        View::composer('report', 'App\Http\ViewComposers\ReportComposer');
 
 
 

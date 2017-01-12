@@ -56,6 +56,7 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
     Route::get('user-tree', 'UserController@getUserTree');
     Route::get('user-flat-tree', 'UserController@getFlatTree');
     Route::get('user-id-tree', 'UserController@getIdTree');
+    Route::get('user-by-level/{level}', 'UserController@getByLevel');
     Route::get('type-provider/{providerId}', 'PackageController@typeofProvider');
 
     /******Export Import routes******/
@@ -75,6 +76,8 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
     Route::get('search/report', 'ReportController@search');
 
     Route::get('send-mail/{orderID}', 'OrderController@sendMail');
+
+    Route::post('report', 'ReportController@generateReport');
 });
 
 

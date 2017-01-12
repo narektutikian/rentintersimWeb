@@ -387,5 +387,11 @@ class ReportController extends Controller
         })->download('xlsx');
     }
 
+    public function generateReport(Request $request)
+    {
+        dd($request->all());
+
+    }
+
 
 }
