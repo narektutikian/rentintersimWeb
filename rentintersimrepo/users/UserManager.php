@@ -170,5 +170,19 @@ class UserManager
         }
         return $ids;
     }
+    public function deleteUser($user)
+    {
+        $parent = User::find($user->supervisor_id);
+        $myCildren = User::where('supervisor_id', $user->id)->where('level', $user->level)->where('type', '!=', 'admin')->get();
+        foreach ($myCildren as $item) {
+            $item->delete();
+        }
+        $children = User::where('supervisor_id', $user->id)->get();
+        foreach ($children as $child){
+            $child->supervisor_id = $parent->id;
+            $child->save();
+        }
+        $user->delete();
+    }
 
 }

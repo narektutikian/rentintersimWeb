@@ -556,7 +556,7 @@ $(document).ready(function () {
                                 '<span class="status_text_small not_used">' + status_text + '</span>' +
                             '</td>' +
                             '<td class="table_status_cell w_70_status">' +
-                                '<span class="remove_row" data-toggle="modal" data-target="#confirm_delete">' +
+                                '<span class="remove_row" data-toggle="modal" data-target="#confirm_delete" data-row-id="' + json[prop]["id"]+ '">' +
                                     '<i class="icon-delete"></i>' +
                                 '</span>' +
                             '</td>' +
@@ -582,7 +582,7 @@ $(document).ready(function () {
             recursiveIteration(json);
 
             $('#wrap_tree_table').prepend(
-                '<table class="responsive_table table user_management_table" data-toggle="table" data-page="sim">' +
+                '<table class="responsive_table table user_management_table" data-toggle="table" data-page="user">' +
                     '<thead>' +
                         '<tr>' +
                         '<th>' +
@@ -646,6 +646,8 @@ $(document).ready(function () {
         var self =  $(this);
         var id = self.attr('data-row-id');
         var page = self.parents('table').attr('data-page');
+        if (typeof page === 'undefined')
+           page = 'user';
         var url = '/' + page + '/' + id;
         $('#confirm_delete').modal({ backdrop: 'static', keyboard: false })
             .one('click', '#delete', function () {
@@ -657,7 +659,8 @@ $(document).ready(function () {
                     success: function(result) {
                         // Do something with the result
                         console.log('success ');
-                        self.closest('tr').remove();
+                        // self.closest('tr').remove();
+                        location.reload();
                     }
                 });
             });

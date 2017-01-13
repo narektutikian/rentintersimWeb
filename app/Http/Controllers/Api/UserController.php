@@ -283,6 +283,13 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+        if (Auth::user()->level == 'Super admin'){
+           $user = User::find($id);
+            if($user->level != 'Super admin')
+            $this->manager->deleteUser($user);
+            return response('success');
+        }
+        else {return response('forbidden', 403);}
     }
 
     public function showImitation(){
