@@ -1637,6 +1637,8 @@ input[type="radio"].toggle.checked + label {
       text-align: center;
       background: #1b6db2;
       color: #ffffff; }
+    .vdf_modal .vdf_modal_left .inline_block_btn {
+      padding: 0px 12px; }
   .vdf_modal .vdf_modal_right {
     position: relative;
     padding-top: 15px; }
