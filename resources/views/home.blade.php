@@ -100,7 +100,7 @@
                                             @endif
                                         </td>
                                         <td class="rwd-td7 table_action_cell_large" data-field="Action" data-th="Action">
-                                            <span class="table_icon call_edit {{ ($order['status'] == 'active') ? 'disable' : '' }}" data-toggle="modal" data-row-id="{{$order['id']}}" data-target="#modal_edit_order" data-form="#modal_edit_order">
+                                            <span class="table_icon call_edit {{ ($order['status'] == 'active' && Auth::user()->level != 'Super admin') ? 'disable' : '' }}" data-toggle="modal" data-row-id="{{$order['id']}}" data-target="#modal_edit_order" data-form="#modal_edit_order">
                                                 <i class="icon-edit"></i>
                                             </span>
                                             <span class="table_icon print" data-toggle="modal" data-target="#modal_print_order" data-form="modal_print_order">
@@ -114,7 +114,8 @@
                                             <span class="table_status_text not_used">{{$order['status']}}</span>
                                         </td>
                                         <td class="rwd-td9 table_status_cell" data-th="Remove">
-                                            <span class="remove_row {{ ($order['status'] == 'active') ? 'disable' : '' }}" data-toggle="modal" data-target="#confirm_delete" data-row-id="{{$order['id']}}">
+
+                                            <span class="remove_row {{ ($order['status'] == 'active' ) ? 'disable' : '' }} " data-toggle="modal" data-target="#confirm_delete" data-row-id="{{$order['id']}}">
                                                 <i class="icon-delete"></i>
                                             </span>
                                         </td>
@@ -324,6 +325,10 @@
                                     <div class="col-md-12">
                                         <label class="table_label">Enter remarks</label>
                                         <textarea name="rem_txt2" id="remark-edit" class="modal_textarea"></textarea>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <a href="#" class="inline_block_btn light_green_btn" onclick="" id="activate-button">Activate order</a>
+                                        <a href="#" class="inline_block_btn light_green_btn" onclick="" id="suspend-button">Suspend order</a>
                                     </div>
                                 </div>
                             </div>

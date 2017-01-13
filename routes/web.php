@@ -42,8 +42,8 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
     Route::get('get-number/{orderId}', 'OrderController@getNumberExternal');
 
     /*****Activate - Deactivate******/
-    Route::get('activate', 'OrderController@activate');
-    Route::get('deactivate', 'OrderController@deactivate');
+    Route::get('activate/{id}', 'OrderController@activate');
+    Route::get('deactivate/{id}', 'OrderController@deactivate');
 
     /*****Auth Routes******/
     Route::get('imitate', 'UserController@showImitation');

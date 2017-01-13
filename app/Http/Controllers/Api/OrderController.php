@@ -312,14 +312,22 @@ class OrderController extends Controller
 
     }
 
-    public function activate()
+    public function activate($id)
     {
-        $this->helper->startActivation();
+        $this->helper->activate($id);
+        $order = Order::find($id);
+        if ($order->status == 'active')
+            return response('success');
+        else return response('error', 403);
     }
 
-    public function deactivate()
+    public function deactivate($id)
     {
-        $this->helper->startDeactivation();
+        $order = Order::find($id);
+        if ($order->status == 'active')
+        $this->helper->deactivate($order);
+        else {return response('suspension error', 403);}
+        return response('success');
     }
 
     public function sendMail($orderID, Request $request)

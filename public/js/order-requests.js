@@ -205,6 +205,14 @@ $(document).ready(function () {
                         $('#editor').text(order_data[0].editor.name + " " + order_data[0].updated_at);
                         $('.landing_date').val(order_data[0].landing.split(' ')[0]);
                         $('.departure_date').val(order_data[0].departure.split(' ')[0]);
+                        $('#activate-button').attr("onclick", "activateOrder("+ order_data[0].id +")");
+                        $('#suspend-button').attr("onclick", "suspend("+ order_data[0].id +")");
+
+                        if (order_data[0].status != 'pending')
+                        $('#activate-button').addClass('disable');
+
+                        if (order_data[0].status != 'active')
+                            $('#suspend-button').addClass('disable');
 
 
                         // console.log(order_data[0].status)
@@ -388,6 +396,11 @@ function getNumber(id) {
     $.ajax({
         type: "GET",
         url: 'get-number/' + id,
+        beforeSend: function() {
+            $(".error_response").empty();
+            $(".success_response").empty();
+            $(".success_response").append("Please wait <img src='/img/loader.gif' width='20'/>");
+        },
         success: function (msg) {
             // console.log(msg);
             $('a#'+ id).remove();
@@ -400,4 +413,46 @@ function getNumber(id) {
             $('a#'+ id).parent('td');
         }
     });
+}
+
+function activateOrder(id) {
+    // console.log("get number for " + id)
+    $.ajax({
+        type: "GET",
+        url: 'activate/' + id,
+        beforeSend: function() {
+            $(".error_response").empty();
+            $(".success_response").empty();
+            $(".success_response").append("Please wait <img src='/img/loader.gif' width='20'/>");
+        },
+        success: function (msg) {
+            location.reload();
+        },
+        error: function (error) {
+            $(".error_response").empty();
+            $(".success_response").empty();
+            $(".error_response").append("ACTIVATION ERROR");
+        }
+    });
+}
+
+    function suspend(id) {
+        // console.log("get number for " + id)
+        $.ajax({
+            type: "GET",
+            url: 'deactivate/' + id,
+            beforeSend: function() {
+                $(".error_response").empty();
+                $(".success_response").empty();
+                $(".success_response").append("Please wait <img src='/img/loader.gif' width='20'/>");
+            },
+            success: function (msg) {
+                location.reload();
+            },
+            error: function (error) {
+                $(".error_response").empty();
+                $(".success_response").empty();
+                $(".error_response").append("ACTIVATION ERROR");
+            }
+        });
 }

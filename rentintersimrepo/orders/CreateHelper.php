@@ -200,6 +200,8 @@ class CreateHelper
     public function activate ($orderId)
     {
         $order = Order::find($orderId);
+        if ($order->status != 'pending')
+            exit();
         if ($order == null)
             exit();
         sleep(5);
