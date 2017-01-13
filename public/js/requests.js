@@ -735,7 +735,7 @@ function filterLevel(level) {
     $.get("/user-by-level/" + level, function (data, status) {
         if (status == "success"){
             console.log(data);
-            var options = "<option value=''></option>";
+            var options = "<option value=''>All</option>";
             // console.log(data);
             $.each(data, function (i, item) {
                 options += "<option value=" +item.id +">" + item.login + "</option>";
@@ -751,7 +751,7 @@ function filterLevel(level) {
         setTimeout(function(){
             $icon.removeClass('icon-time') ;
             $icon.addClass('icon-username');
-        }, 2000);
+        }, 500);
 
     });
 

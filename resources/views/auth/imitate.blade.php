@@ -17,17 +17,20 @@
             {{ csrf_field() }}
             <h3>User imitation</h3>
             <div class="form-group form_row">
-                <select class="block_btn login_input styled_select" name="login">
+                <select class="block_btn login_input styled_select username" name="login">
                     <option value="{{Auth::user()->id}}" >{{Auth::user()->login}}</option>
                     @foreach($net as $user)
-                        <option value="{{$user['id']}}" >{{$user['login']}}</option>
+                        <option value="{{$user['id']}}" {{ (Auth::user()->id == $user['id']) ? 'selected' : '' }}>{{$user['login']}}</option>
                     @endforeach
                  </select>
                 <i class="input_icon icon-password"></i>
             </div>
             <div class="form-group form_row">
-                <select class="block_btn login_input styled_select">
-                    <option value="Level" style="background-color: red; border-bottom: 1px solid #ffff00;">Level</option>
+                <select class="block_btn login_input styled_select" onchange="filterLevel(this.value)">
+                    <option value="All" style="background-color: red; border-bottom: 1px solid #ffff00;">All</option>
+                    {{--<option value="Distributor" style="background-color: red; border-bottom: 1px solid #ffff00;">Distributor</option>--}}
+                    {{--<option value="Dealer" style="background-color: red; border-bottom: 1px solid #ffff00;">Dealer</option>--}}
+                    {{--<option value="Subdealer" style="background-color: red; border-bottom: 1px solid #ffff00;">Subdealer</option>--}}
                 </select>
                 <i class="input_icon icon-level"></i>
             </div>
@@ -43,14 +46,15 @@
     </div>
 </div>
 
-<script src="js/jquery-2.2.4.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/pie-chart/pie-chart.js"></script>
-<script src="js/perfect-scrollbar/js/perfect-scrollbar.min.js"></script>
-<script src="js/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js"></script>
-<script src="js/moment.min.js"></script>
-<script src="js/bootstrap-datetimepicker.js"></script>
-<script src="js/scripts.js"></script>
+<script src="{{asset('js/jquery-2.2.4.min.js')}}"></script>
+<script src="{{asset('js/bootstrap.min.js')}}"></script>
+<script src="{{asset('js/pie-chart/pie-chart.js')}}"></script>
+<script src="{{asset('js/perfect-scrollbar/js/perfect-scrollbar.min.js')}}"></script>
+<script src="{{asset('js/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js')}}"></script>
+<script src="{{asset('js/moment.min.js')}}"></script>
+<script src="{{asset('js/bootstrap-datetimepicker.js')}}"></script>
+<script src="{{asset('js/scripts.js')}}"></script>
+<script src="{{asset('js/requests.js')}}"></script>
 </body>
 </html>
 

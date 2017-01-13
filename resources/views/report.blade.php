@@ -64,7 +64,7 @@
                                             <label class="table_label">Username</label>
                                             <div class="select_wrapper" id="user-select">
                                                 <select name="username" class="block_btn_30 modal_input username">
-                                                    <option value=""></option>
+                                                    <option value="">All</option>
                                                     @php if(isset ($_GET['username']))
                                                     $id = $_GET['username'];
                                                 else
@@ -159,8 +159,8 @@
                                             <th data-field="dealer" data-sortable="true" data-th="Dealer">Dealer </th>
 
                                             <th data-th="Reference N">Reference #</th>
-                                            {{--<th data-th="action">Action</th>--}}
-                                            <th data-field="status" data-sortable="true" data-th="Status">Status</th>
+                                            {{--<th data-th="action">Action</th>
+                                            <th data-field="status" data-sortable="true" data-th="Status">Status</th>--}}
                                             <th>Duration</th>
                                         </tr>
                                     </thead>
@@ -216,17 +216,18 @@
                                             <span class="table_icon call_mail"  data-toggle="modal" data-target="#modal_order_email" data-row-id="{{$order['id']}}">
                                                 <i class="icon-email"></i>
                                             </span>
-                                        </td>--}}
+                                        </td>
                                         <td class="rwd-td8" data-field="Status" data-th="Status">
                                             <span class="table_status_text not_used">{{$order['status']}}</span>
-                                        </td>
+                                        </td>--}}
                                         <td class="rwd-td9 table_status_cell" data-th="Remove">
-                                            1 h 20 m 12s
+                                            {{$order['duration']}}
                                         </td>
                                     </tr>
                                     @endforeach
                                     </tbody>
                                 </table>
+                                {{--<p>{{$total}}</p>--}}
                     {{$ordersArray->links()}}
                             </div><!--#wrap_orders_table-->
                         </div>

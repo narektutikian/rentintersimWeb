@@ -23,10 +23,13 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'Api\OrderController@index');
+
 Route::get('/dashboard', 'HomeController@dashboard');
 
 Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
+
+    Route::get('/home', 'OrderController@index');
+
     /* Resource Routes */
     Route::resource('user', 'UserController');
     Route::resource('order', 'OrderController');

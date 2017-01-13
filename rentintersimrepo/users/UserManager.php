@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Auth;
 class UserManager
 {
     public function getMyNetwork($id){
-        $users = User::select('id', 'login', 'level', 'type', 'supervisor_id', 'name')->get()->toArray();
+        $users = User::select('id', 'login', 'level', 'type', 'supervisor_id', 'name')->orderBy('level', 'asc')->get()->toArray();
         $network = $this->buildTree($this->solveUsers($users), $id);
 //        echo '<pre/>';
 //        print_r($network);
@@ -28,7 +28,7 @@ class UserManager
         return [$final];
     }
     public function getMyFlatNetwork($id){
-        $users = User::select('id', 'login', 'level', 'type', 'supervisor_id', 'name')->get()->toArray();
+        $users = User::select('id', 'login', 'level', 'type', 'supervisor_id', 'name')->orderBy('level', 'asc')->get()->toArray();
         $network = $this->buildTree($this->solveUsers($users), $id);
         $flat = $this->flatten($network);
 

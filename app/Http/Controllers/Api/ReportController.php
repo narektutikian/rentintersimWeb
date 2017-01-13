@@ -437,13 +437,14 @@ class ReportController extends Controller
             else { $report = $report->paginate(env('PAGINATE_DEFAULT')); }
 
             $ordersArray = $this->viewHelper->solveOrderList($report);
+            $total = $this->viewHelper->totalDuration($ordersArray);
             $ordersArray->setPath("report?provider=".$request->input('provider').
                 "&level=".$request->input('level').
                 "&from=".$request->input('from').
                 "&username=".$request->input('username').
                 "&to=".$request->input('to').
                 "&number=".$request->input('number'));
-            return view('report', compact('ordersArray'));
+            return view('report', compact('ordersArray'), compact('total'));
 
 
     }
