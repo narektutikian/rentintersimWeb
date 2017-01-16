@@ -322,14 +322,24 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <div class="col-md-12">
-                                        <label class="table_label">Enter remarks</label>
-                                        <textarea name="rem_txt2" id="remark-edit" class="modal_textarea"></textarea>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <label class="table_label">Enter remarks</label>
+                                            <textarea name="rem_txt2" id="remark-edit" class="modal_textarea"></textarea>
+                                        </div>
+
                                     </div>
-                                    <div class="col-md-12">
-                                        <a href="#" class="inline_block_btn light_green_btn" onclick="" id="activate-button">Activate order</a>
-                                        <a href="#" class="inline_block_btn light_green_btn" onclick="" id="suspend-button">Suspend order</a>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="text-center">
+                                                <a href="#" class="inline_block_btn light_green_btn" onclick="" id="activate-button">Activate order</a>
+                                                <a href="#" class="inline_block_btn light_green_btn" onclick="" id="suspend-button">Suspend order</a>
+                                            </div>
+                                        </div>
                                     </div>
+
                                 </div>
                             </div>
                             <div class="col-md-6 vdf_modal_right">
@@ -489,8 +499,7 @@
                             </div>
                             <div class="col-md-6 vdf_modal_right">
                                 <label class="table_label">Destination flight details</label>
-                                <span class="arrow-down"><i class="icon-arrow_down"></i></span>cvcvcv
-                                <span class="arrow-up"><i class="icon-arrow_up"></i></span>cvcv
+
                                 <div class="form-group">
                                     <div class="col-md-6">
                                         <div class="departure"><i class="icon-landing"></i> Landing date and time</div>
@@ -528,12 +537,12 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="departure"><i class="icon-departure"></i> Departure date and time</div>
-                                        <div class="input-group date flight_dates" data-provide="datepicker">
+                                        <!--<div class="input-group date flight_dates" data-provide="datepicker">
                                             <div class="input-group-addon">
                                                 <span class="glyphicon glyphicon-calendar"></span>
                                             </div>
                                             <input type="text" name="departure_date-edit" id="departure_date-edit"  class="inline_block_btn vd_required departure_date" data-date-format="DD/MM/YYYY">
-                                        </div>
+                                        </div>-->
                                         <div class="wrap_date">
                                             <div class="input-group date flight_dates" data-provide="datepicker">
                                                 <div class="input-group-addon">
