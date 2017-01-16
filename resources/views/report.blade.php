@@ -22,7 +22,12 @@
                                             </div>
 
                                         </div>
-
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="table_label">Phone Number</label>
+                                            <input type="text" class="block_btn_30 modal_input_without_icon" name="number" value="{{ (isset($_GET['number'])) ? $_GET['number'] : '' }}">
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -46,7 +51,8 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <div class="departure"><i class="icon-landing"></i> From</div>
+                                            <!--<div class="departure"><i class="icon-landing"></i> From</div>-->
+                                            <label class="table_label">From</label>
                                             <div class="wrap_date">
                                                 <div class="input-group date flight_dates" data-provide="datepicker">
                                                     <div class="input-group-addon">
@@ -79,7 +85,8 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <div class="departure" ><i class="icon-landing"></i> To</div>
+                                            <!--<div class="departure" ><i class="icon-landing"></i> To</div>-->
+                                            <label class="table_label">To</label>
                                             <div class="wrap_date">
                                                 <div class="input-group date flight_dates" data-provide="datepicker">
                                                     <div class="input-group-addon">
@@ -94,20 +101,24 @@
                                     </div>
                                 </div>
 
-                                <div class="row">
+                            <!--<div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="table_label">Phone Number</label>
                                             <input type="text" class="block_btn_30 modal_input_without_icon" name="number" value="{{ (isset($_GET['number'])) ? $_GET['number'] : '' }}">
                                         </div>
                                     </div>
-                                </div>
+                                </div>-->
 
                                 <div class="row">
-                                    <div class="col-md-10" style="padding-top: 10px">
-                                        <input type="reset" class="btn btn-warning" value="Clear">
-                                        <input type="submit" name="report" class="btn btn-info" value="Report">
-                                        <input type="submit" name="export" class="btn btn-info" value="Export">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <div class="report_buttons">
+                                                <input type="reset" class="btn btn-warning" value="Clear">
+                                                <input type="submit" name="report" class="btn btn-info" value="Report">
+                                                <input type="submit" name="export" class="btn btn-info" value="Export">
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
