@@ -2654,6 +2654,12 @@ header {
     padding: 15px; }
     .layout #orders_list .orders_list_wrapper .filter_buttons {
       font-size: 0; }
+  .layout #orders_list .report_buttons {
+    text-align: right; }
+    .layout #orders_list .report_buttons input {
+      margin-left: 25px; }
+  .layout #orders_list .search_button {
+    top: 1px; }
 
 @media (max-width: 1200px) {
   .layout #number_management .filter_status .filter_status_wrapper .filter_buttons {
@@ -2663,6 +2669,16 @@ header {
       margin-right: 4%; }
       .layout #number_management .filter_status .filter_status_wrapper .filter_buttons .filter_option.last {
         margin-right: 0; } }
+@media (max-width: 992px) {
+  .layout #orders_list .orders_list_wrapper {
+    padding: 15px; }
+  .layout #orders_list .report_buttons {
+    text-align: center; }
+    .layout #orders_list .report_buttons input {
+      margin-left: 0;
+      margin-top: 15px;
+      display: block;
+      width: 100%; } }
 @media (max-width: 768px) {
   .layout #number_management .filter_status .filter_status_wrapper .filter_buttons {
     font-size: 0;
