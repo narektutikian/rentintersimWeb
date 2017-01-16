@@ -423,6 +423,7 @@ class ReportController extends Controller
             if ($request->has('export')){
             $report = $report->get();
             $ordersArray = $this->viewHelper->solveOrderList($report);
+            $ordersArray = $this->viewHelper->prepareExport($ordersArray);
             Excel::create('Report', function($excel) use ($ordersArray) {
 
                 $excel->sheet('report', function($sheet) use($ordersArray) {

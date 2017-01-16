@@ -39,6 +39,7 @@ class ViewHelper
                 $ordersArray[$key]['phone_id'] = $order->phone->phone;
             if ($order->sim != null)
             $ordersArray[$key]['provider'] = $order->sim->provider->name;
+            else  $ordersArray[$key]['provider'] = 'sim deleted';
             $ordersArray[$key]['from'] = $this->present($ordersArray[$key]['from']);
             $ordersArray[$key]['to'] = $this->present($ordersArray[$key]['to']);
 //        $ordersArray[$key]['package_id'] = $order->package->name;
@@ -125,6 +126,22 @@ class ViewHelper
 //        return CarbonInterval::create($interval->y, $interval->m, 0, $interval->d, $interval->h, $interval->i, $interval->s);
         return $from->diff($to);
 
+    }
+    public function prepareExport($orders)
+    {
+        foreach ($orders as $order){
+            unset($order['from']);
+            unset($order['to']);
+            unset($order['status']);
+            unset($order['remark']);
+            unset($order['package_id']);
+            unset($order['updated_by']);
+            unset($order['created_at']);
+            unset($order['updated_at']);
+            unset($order['package_name']);
+            unset($order['sim']);
+        }
+        return $orders;
     }
 
 }
