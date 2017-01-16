@@ -28,15 +28,21 @@ class ViewHelper
         $ordersArray = $orders;
 //        dd($orders);
         foreach ($orders as $key => $order) {
-            $ordersArray[$key]['created_by'] = $order->creator->login;
-            $ordersArray[$key]['updated_by'] = $order->editor->login;
-            $ordersArray[$key]['sim_id'] = $order->sim->number;
+            if ($order->creator != null)
+                $ordersArray[$key]['created_by'] = $order->creator->login;
+            if ($order->editor != null)
+                $ordersArray[$key]['updated_by'] = $order->editor->login;
+            if($order->sim != null)
+                $ordersArray[$key]['sim_id'] = $order->sim->number;
             if ($ordersArray[$key]['phone_id'] != 0)
+                if($order->phone != null)
                 $ordersArray[$key]['phone_id'] = $order->phone->phone;
+            if ($order->sim != null)
             $ordersArray[$key]['provider'] = $order->sim->provider->name;
             $ordersArray[$key]['from'] = $this->present($ordersArray[$key]['from']);
             $ordersArray[$key]['to'] = $this->present($ordersArray[$key]['to']);
 //        $ordersArray[$key]['package_id'] = $order->package->name;
+            if ($order->package != null)
             $ordersArray[$key]['package_name'] = $order->package->name;
 //        $ordersArray[$key]['landing'] = $viewHelper->present($ordersArray[$key]['landing']);
 //        $ordersArray[$key]['departure'] = $viewHelper->present($ordersArray[$key]['departure']);
