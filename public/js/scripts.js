@@ -502,6 +502,7 @@ $( document ).ready(function() {
 
         event.preventDefault();
         $('#modal_view_order').modal('toggle');
+        console.log('view order');
 
     });
 

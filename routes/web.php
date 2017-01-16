@@ -86,7 +86,9 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
 
 Route::get('/test', function (){
 
-    return view('mail.notify')->with('order', Order::find(245))->with('text', 'text');
+    echo Carbon::now();
+    echo '<br/>';
+    echo Carbon::now()->addHours(1);
 });
 
 
