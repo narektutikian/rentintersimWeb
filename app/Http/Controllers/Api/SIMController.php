@@ -230,10 +230,19 @@ class SIMController extends Controller
             $reader->ignoreEmpty();
             $results = $reader->get();
             foreach ($results as $row){
-//                dd($row);
-            $query = Sim::forceCreate($row->toArray());
-                if ($query) continue;
-                else {return response()->json(['file content error']. 443);}
+
+                $entity = $row->toArray();
+//                dd($entity);
+                if ($this->validNumber($entity['number'])) {
+//                    dd($entity);
+                    $query = Sim::forceCreate($entity);
+                    if ($query) continue;
+                    else {
+                        return response('file content error', 403);
+                    }
+                } else {
+                    return response('duplicate entry', 403);
+                }
 //
             }
 
@@ -242,8 +251,18 @@ class SIMController extends Controller
             Storage::delete($file);
         }
         else {return response()->json(['error uploading file'], 403);}
-        return response()->json($file);
+        return response()->json("process finished check results");
 
+    }
+
+    public function validNumber($number)
+    {
+        $count = Sim::where('number', $number)->count();
+//        dd($count);
+        if ($count == 0)
+        return true;
+        else
+            return false;
     }
 
 }
