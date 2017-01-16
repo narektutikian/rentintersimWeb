@@ -225,14 +225,18 @@ class PackageController extends Controller
                 $results = $reader->get();
                 foreach ($results as $row){
 //                dd($row);
+
                     $query = Package::forceCreate($row->toArray());
+
                     if ($query) continue;
+
                     else {return response()->json(['file content error']. 443);}
 //
                 }
 
 
             });
+
             Storage::delete($file);
         }
         else {return response()->json(['error uploading file'], 443);}
