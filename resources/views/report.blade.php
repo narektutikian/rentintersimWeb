@@ -52,15 +52,33 @@
 
                                         <div class="form-group">
                                             <!--<div class="departure"><i class="icon-landing"></i> From</div>-->
-                                            <label class="table_label">From</label>
-                                            <div class="wrap_date">
-                                                <div class="input-group date flight_dates" data-provide="datepicker">
-                                                    <div class="input-group-addon">
-                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <label class="table_label">From</label>
+                                                    <div class="wrap_date">
+                                                        <div class="input-group date flight_dates" data-provide="datepicker">
+                                                            <div class="input-group-addon">
+                                                                <span class="glyphicon glyphicon-calendar"></span>
+                                                            </div>
+                                                            <input type="text" name="from" id="departure_date" class="inline_block_btn departure_date vd_date_required" data-date-format="DD/MM/YYYY" value="{{ (isset($_GET['from'])) ? $_GET['from'] : '' }}">
+                                                        </div>
                                                     </div>
-                                                    <input type="text" name="from" id="departure_date" class="inline_block_btn departure_date vd_date_required" data-date-format="DD/MM/YYYY" value="{{ (isset($_GET['from'])) ? $_GET['from'] : '' }}">
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <!--<div class="departure" ><i class="icon-landing"></i> To</div>-->
+                                                    <label class="table_label">To</label>
+                                                    <div class="wrap_date">
+                                                        <div class="input-group date flight_dates" data-provide="datepicker">
+                                                            <div class="input-group-addon">
+                                                                <span class="glyphicon glyphicon-calendar"></span>
+                                                            </div>
+                                                            <input type="text" name="to" id="departure_date" class="inline_block_btn departure_date vd_date_required" data-date-format="DD/MM/YYYY" value="{{ (isset($_GET['to'])) ? $_GET['to'] : '' }}">
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
+
+
                                         </div>
 
 
@@ -84,18 +102,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="form-group">
-                                            <!--<div class="departure" ><i class="icon-landing"></i> To</div>-->
-                                            <label class="table_label">To</label>
-                                            <div class="wrap_date">
-                                                <div class="input-group date flight_dates" data-provide="datepicker">
-                                                    <div class="input-group-addon">
-                                                        <span class="glyphicon glyphicon-calendar"></span>
-                                                    </div>
-                                                    <input type="text" name="to" id="departure_date" class="inline_block_btn departure_date vd_date_required" data-date-format="DD/MM/YYYY" value="{{ (isset($_GET['to'])) ? $_GET['to'] : '' }}">
-                                                </div>
-                                            </div>
-                                        </div>
+
 
 
                                     </div>
