@@ -34,7 +34,8 @@ $(document).ready(function () {
                     success: function (msg) {
                         $(".error_response").empty();
                         $(".success_response").empty();
-                        $(".success_response").append("DONE " + msg);
+                        $(".success_response").append("DONE ");
+                        location.reload();
                     },
                     error: function (error) {
                         $(".error_response").empty();
@@ -61,7 +62,8 @@ $(document).ready(function () {
                 success: function (msg) {
                     $(".error_response").empty();
                     $(".success_response").empty();
-                    $(".success_response").append("DONE " + msg);
+                    $(".success_response").append("DONE ");
+                    location.reload();
                 },
                 error: function (error) {
                     $(".error_response").empty();
@@ -103,7 +105,8 @@ $(document).ready(function () {
                 success: function (msg) {
                     $(".error_response").empty();
                     $(".success_response").empty();
-                    $(".success_response").append("DONE " + msg);
+                    $(".success_response").append("DONE ");
+                    location.reload();
                 },
                 error: function (error) {
                     $(".error_response").empty();
@@ -147,6 +150,7 @@ $(document).ready(function () {
                     $(".error_response").empty();
                     $(".success_response").empty();
                     $(".success_response").append("DONE");
+
                 },
                 error: function (error) {
                     $(".error_response").empty();
@@ -309,7 +313,8 @@ $(document).ready(function () {
                     success: function (msg) {
                         $(".error_response").empty();
                         $(".success_response").empty();
-                        $(".success_response").append("DONE " + msg);
+                        $(".success_response").append("DONE ");
+                        location.reload();
                     },
                     error: function (error) {
                         $(".error_response").empty();
@@ -333,7 +338,8 @@ $(document).ready(function () {
                 success: function (msg) {
                     $(".error_response").empty();
                     $(".success_response").empty();
-                    $(".success_response").append("DONE " + msg);
+                    $(".success_response").append("DONE ");
+                    location.reload();
                 },
                 error: function (error) {
                     $(".error_response").empty();
@@ -369,7 +375,8 @@ $(document).ready(function () {
                 success: function (msg) {
                     $(".error_response").empty();
                     $(".success_response").empty();
-                    $(".success_response").append("DONE " + msg);
+                    $(".success_response").append("DONE ");
+                    location.reload();
                 },
                 error: function (error) {
                     $(".error_response").empty();
@@ -409,7 +416,8 @@ $(document).ready(function () {
                     success: function (msg) {
                         $(".error_response").empty();
                         $(".success_response").empty();
-                        $(".success_response").append("DONE " + msg);
+                        $(".success_response").append("DONE " );
+                        location.reload();
                     },
                     error: function (error) {
                         $(".error_response").empty();
@@ -436,7 +444,8 @@ $(document).ready(function () {
                 success: function (msg) {
                     $(".error_response").empty();
                     $(".success_response").empty();
-                    $(".success_response").append("DONE " + msg);
+                    $(".success_response").append("DONE " );
+                    location.reload();
                 },
                 error: function (error) {
                     $(".error_response").empty();
@@ -480,7 +489,8 @@ $(document).ready(function () {
                 success: function (msg) {
                     $(".error_response").empty();
                     $(".success_response").empty();
-                    $(".success_response").append("DONE " + msg);
+                    $(".success_response").append("DONE " );
+                    location.reload();
                 },
                 error: function (error) {
                     $(".error_response").empty();
@@ -510,7 +520,8 @@ $(document).ready(function () {
                 success: function (msg) {
                     $(".error_response").empty();
                     $(".success_response").empty();
-                    $(".success_response").append("DONE " + msg);
+                    $(".success_response").append("DONE");
+                    location.reload();
                 },
                 error: function (error) {
                     // console.log(error);
@@ -530,6 +541,9 @@ $(document).ready(function () {
         success: function (json) {
 
             var string = '';
+            var desabled_class = '';
+            if (json[0]["level"] != "Super admin")
+                desabled_class  = 'disable';
 
             function recursiveIteration(json) {
 
@@ -555,7 +569,7 @@ $(document).ready(function () {
                             '<td class="w_70_status table_status_cell">' +
                                 '<span class="status_text_small not_used">' + status_text + '</span>' +
                             '</td>' +
-                            '<td class="table_status_cell w_70_status">' +
+                            '<td class="table_status_cell w_70_status '+ desabled_class +' ">' +
                                 '<span class="remove_row" data-toggle="modal" data-target="#confirm_delete" data-row-id="' + json[prop]["id"]+ '">' +
                                     '<i class="icon-delete"></i>' +
                                 '</span>' +
@@ -697,6 +711,7 @@ $(document).ready(function () {
                     $(".error_response").empty();
                     $(".success_response").empty();
                     $(".success_response").append("DONE ");
+                    location.reload();
                 },
                 error: function (error) {
                     // console.log(error);

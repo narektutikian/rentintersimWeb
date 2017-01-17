@@ -56,17 +56,17 @@
                                 <td class="rwd-td3 editable_cell" data-th="Provider">{{$number['provider_id']}}</td>
                                 <td class="rwd-td4 editable_cell" data-th="Type">{{$number['package_id']}}</td>
                                 <td class="rwd-td5 table_action_cell" data-th="Action">
-                                    <span class="table_icon edit" data-toggle="modal" data-target="#modal_edit_number" data-form="#modal_edit_number">
+                                    <span class="table_icon edit {{ ($number['state'] != 'not in use') ? 'disable' : '' }}" data-toggle="modal" data-target="#modal_edit_number" data-form="#modal_edit_number">
                                         <i class="icon-edit"></i>
                                     </span>
 
-                                    <label class="vdf_checkbox">
+                                    <label class="vdf_checkbox disable">
                                         <input type="checkbox" name="num_chkb{{$number['id']}}" value="" {{ ($number['is_special'] == 1) ? 'checked' : '' }}/>
                                         <i class="icon-special"></i>
                                     </label>
                                 </td>
-                                <td class="rwd-td6" data-th="Status">
-                                    <span class="table_status_text not_used">{{$number['state']}}</span>
+                                <td class="rwd-td6 " data-th="Status">
+                                    <span class="table_status_text not_used ">{{$number['state']}}</span>
                                 </td>
                                 <td class="rwd-td7 table_status_cell" data-th="Remove">
                                     <span class="remove_row {{ ($number['state'] != 'not in use') ? 'disable' : '' }}" data-toggle="modal" data-target="#confirm_delete" data-row-id="{{$number['id']}}">

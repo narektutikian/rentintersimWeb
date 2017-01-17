@@ -57,6 +57,8 @@ class PhoneController extends Controller
 //            'is_active' => 'required',
 //
         ]);
+        $number = $this->validateNumber($request->input('phone'));
+
 
         $isSpecial = 0;
         if ($request->input('is_special') == 'true')
@@ -64,7 +66,7 @@ class PhoneController extends Controller
 
         $newPhone = Phone::forceCreate([
 
-            'phone' => $request->input('phone'),
+            'phone' => $number,
             'state' => 'not in use',
             'initial_sim_id' => $request->input('initial_sim_id'),
             'current_sim_id' => $request->input('initial_sim_id'),
@@ -243,8 +245,12 @@ class PhoneController extends Controller
                 $reader->ignoreEmpty();
                 $results = $reader->get();
                 foreach ($results as $row){
-//                dd($row);
-                    $query = Phone::forceCreate($row->toArray());
+                $entity = $row->toArray();
+                    $entity['phone'] = $this->validateNumber($entity['phone']);
+                    $entity['state'] = 'not in use';
+                    $entity['current_sim_id'] = $entity['initial_sim_id'];
+
+                    $query = Phone::forceCreate($entity);
                     if ($query) continue;
                     else {return response()->json(['file content error']. 443);}
 //
@@ -258,6 +264,14 @@ class PhoneController extends Controller
         else {return response()->json(['error uploading file'], 443);}
         return response()->json([$file]);
 
+    }
+
+    protected function validateNumber($number)
+    {
+        $number = (string)$number;
+        if ($number[0] == 0)
+            return $number;
+        else return substr_replace($number,'0',0,0);
     }
 
 
