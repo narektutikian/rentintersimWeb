@@ -315,14 +315,10 @@ $( document ).ready(function() {
             
             var attribute_title = $(this).attr('data-th');
             var cell_value = $(this)[0].innerHTML.trim();
-
-
-            console.log(cell_value + " cell val");
-            console.log(attribute_title + " attr title");
+            var cell_status;
 
             if (attribute_title == "Status"){
-                var cell_status = $(this).find('.table_status_text').text();
-                console.log(cell_status + " cell status");
+                cell_status = $(this).find('.table_status_text').text();
             }
 
             // Capture Modal Open Event
@@ -342,8 +338,16 @@ $( document ).ready(function() {
                         $(this).find('input[data-th="' + attribute_title + '"]').each(function(){
 
                             $(this).val(cell_value);
+                            if(attribute_title == "Status"){
+
+                                if(cell_status == "available"){
+
+                                    $(this).prop('checked', true);
+                                }
+                            }
                         });
-                    }else if(prop_name.toUpperCase()  == "SELECT"){
+
+                    } else if(prop_name.toUpperCase()  == "SELECT"){
 
                         $(this).find('select[data-th="' + attribute_title + '"] option').each(function () {
                             if ($(this).text().toLowerCase() == cell_value.toLowerCase()) {
@@ -352,14 +356,14 @@ $( document ).ready(function() {
                             }
                         });
 
-                    }else if(prop_name.toUpperCase()  == "TEXTAREA"){
+                    } else if(prop_name.toUpperCase()  == "TEXTAREA"){
 
                         $(this).find('textarea[data-th="' + attribute_title + '"]').each(function(){
 
                             $(this).val(cell_value);
                         });
                     }
-                }else {
+                } else {
                     console.log('Property data-th="' + attribute_title + '" not found');
                 }
             });
@@ -511,7 +515,6 @@ $( document ).ready(function() {
 
         event.preventDefault();
         $('#modal_view_order').modal('toggle');
-        console.log('view order');
 
     });
 
