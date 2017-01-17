@@ -340,7 +340,7 @@ $( document ).ready(function() {
                             $(this).val(cell_value);
                             if(attribute_title == "Status"){
 
-                                if(cell_status == "available"){
+                                if(cell_status == "parking"){
 
                                     $(this).prop('checked', true);
                                 }
