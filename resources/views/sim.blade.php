@@ -203,7 +203,7 @@
                                 <div class="form-group">
                                     <div class="col-md-12 special_number">
                                         <label class="vdf_checkbox">
-                                            <input type="checkbox" id="is_parking-edit" name="num_chkb" value="" />
+                                            <input type="checkbox" id="is_parking-edit" name="num_chkb" data-th="Status" value="" />
                                             <i class="icon-parking_sim"></i>
                                         </label>
                                         <span class="vdf_checkbox_text">Parking SIM</span>
