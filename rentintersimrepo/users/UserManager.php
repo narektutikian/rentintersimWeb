@@ -11,6 +11,7 @@ namespace Rentintersimrepo\users;
 use App\User;
 use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
+use DB;
 
 
 class UserManager
@@ -172,17 +173,35 @@ class UserManager
     }
     public function deleteUser($user)
     {
+        DB::transaction(function () use ($user) {
+
         $parent = User::find($user->supervisor_id);
         $myCildren = User::where('supervisor_id', $user->id)->where('level', $user->level)->where('type', '!=', 'admin')->get();
         foreach ($myCildren as $item) {
+            $this->changeOrderOwner($item, $parent);
             $item->delete();
         }
         $children = User::where('supervisor_id', $user->id)->get();
         foreach ($children as $child){
             $child->supervisor_id = $parent->id;
+            $this->changeOrderOwner($child, $parent);
             $child->save();
         }
+
+
+            $this->changeOrderOwner($user, $parent);
+
         $user->delete();
+        }, 5);
+    }
+
+    protected function changeOrderOwner($fromUser, $toUser)
+    {
+        $orders = Order::withTrashed()->where('created_by', $fromUser->id)->get();
+        foreach ($orders as $order) {
+            $order->created_by = $toUser->id;
+            $order->save();
+            }
     }
 
 }

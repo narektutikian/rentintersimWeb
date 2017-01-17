@@ -32,7 +32,7 @@ class Kernel extends ConsoleKernel
 
         $schedule->call('Rentintersimrepo\orders\CreateHelper@startDeactivation')->everyFiveMinutes();
         $schedule->call('Rentintersimrepo\orders\CreateHelper@startActivation')->everyFiveMinutes();
-        $schedule->command('queue:work', ['--daemon', '--timeout' => 60, '--sleep' => '3'])
+        $schedule->command('queue:work', ['--daemon', '--timeout' => 60, '--sleep' => '3', '--tries' => 3])
             ->everyTenMinutes()
             ->withoutOverlapping()
             ->sendOutputTo(storage_path('logs/cron_backups_mail_' . date('Y-m-d_H-i') . '.log'));

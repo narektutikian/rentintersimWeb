@@ -86,9 +86,9 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
 
 Route::get('/test', function (){
 
-    echo Carbon::now();
-    echo '<br/>';
-    echo Carbon::now()->addHours(1);
+    echo '<pre />';
+    print_r(Order::find(261)->creator);
+
 });
 
 

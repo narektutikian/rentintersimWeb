@@ -202,9 +202,14 @@ $(document).ready(function () {
                         }
                         $('#order_status-edit').val(order_data[0].status);
                         $('#creator').text(order_data[0].creator.name + " " + order_data[0].created_at);
-                        $('#editor').text(order_data[0].editor.name + " " + order_data[0].updated_at);
+                        if (order_data[0].editor != null)
+                        $('#editor').text(order_data[0].editor.name);
+                        $('#edited_at').text(" " + order_data[0].updated_at);
                         $('.landing_date').val(order_data[0].landing.split(' ')[0]);
                         $('.departure_date').val(order_data[0].departure.split(' ')[0]);
+                        $('.landing_time_val').val(order_data[0].landing.split(' ')[1]);
+                        $('.departure_time_val').val(order_data[0].departure.split(' ')[1]);
+
                         $('#activate-button').attr("onclick", "activateOrder("+ order_data[0].id +")");
                         $('#suspend-button').attr("onclick", "suspend("+ order_data[0].id +")");
 

@@ -16,13 +16,13 @@ class notifications extends Mailable
 
     /**
      * Create a new message instance.
-     * @param App\Models\Order
+     * @param int
      * @return void
      */
-    public function __construct(Order $order)
+    public function __construct($orderID)
     {
         //
-        $this->order = $order;
+        $this->order = Order::withTrashed()->find($orderID);
     }
 
     /**
@@ -37,10 +37,9 @@ class notifications extends Mailable
             $address = 'narek@horizondvp.com';
         $name = 'RentInterSim';
         $subject = 'Order Status Change';
-//        dd($this->data);
-
-//        $order = Order::find($this->data['order']);
-        $cc = [$this->order->editor->email,  $this->order->editor->email2];
+        $cc = [$this->order->creator->email2];
+        if ($this->order->editor != null)
+        $cc += [$this->order->editor->email];
 
         return $this->view('mail.notify')
             ->with('order', $this->order)

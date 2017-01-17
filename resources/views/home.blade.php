@@ -218,7 +218,7 @@
                                             </div>
                                             <div class="wrap_time">
                                                 <i class="departure_time icon-time"></i>
-                                                <input type="text" name="timepicker2" id="time_element2" class="inline_block_btn time_element vd_time_required"/>
+                                                <input type="text" name="timepicker2" id="time_element" class="inline_block_btn time_element vd_time_required departure_time_val"/>
                                             </div>
                                         </div>
 
@@ -352,11 +352,11 @@
                                                 <div class="input-group-addon">
                                                     <span class="glyphicon glyphicon-calendar"></span>
                                                 </div>
-                                                <input type="text" name="departure_date" id="departure_date" class="inline_block_btn departure_date vd_date_required" data-date-format="DD/MM/YYYY">
+                                                <input type="text" name="departure_date" id="departure_date" class="inline_block_btn departure_date vd_date_required" data-date-format="DD/MM/YYYY" disabled>
                                             </div>
                                             <div class="wrap_time">
                                                 <i class="departure_time icon-time"></i>
-                                                <input type="text" name="timepicker3" id="time_element2" class="inline_block_btn time_element vd_time_requiredc" disabled/>
+                                                <input type="text" name="timepicker3" id="time_element2" class="inline_block_btn time_element vd_time_requiredc landing_time_val" disabled/>
                                             </div>
                                         </div>
                                         {{--<div class="wrap_time from">--}}
@@ -380,11 +380,11 @@
                                                 <div class="input-group-addon">
                                                     <span class="glyphicon glyphicon-calendar"></span>
                                                 </div>
-                                                <input type="text" name="departure_date" id="departure_date" class="inline_block_btn departure_date vd_date_required" data-date-format="DD/MM/YYYY">
+                                                <input type="text" name="departure_date" id="departure_date" class="inline_block_btn departure_date vd_date_required" data-date-format="DD/MM/YYYY" disabled>
                                             </div>
                                             <div class="wrap_time">
                                                 <i class="departure_time icon-time"></i>
-                                                <input type="text" name="timepicker4" id="time_element2" class="inline_block_btn time_element vd_time_requiredc" disabled/>
+                                                <input type="text" name="timepicker4" id="time_element2" class="inline_block_btn time_element vd_time_requiredc departure_time_val" disabled/>
                                             </div>
                                         </div>
                                         {{--<div class="wrap_time to">--}}
@@ -438,10 +438,10 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <span class="order_key">Created by: </span><span class="order_value" id="creator">Vallie Champlin 15/12/2016 12:40</span>
+                                        <span class="order_key">Created by: </span><span class="order_value" id="creator">Deleted User 15/12/2016 12:40</span>
                                     </div>
                                     <div class="col-md-12">
-                                        <span class="order_key">Updated by: </span><span class="order_value" id="editor">Alexanne Robel 07/03/2017 15:22</span>
+                                        <span class="order_key">Updated by: </span><span class="order_value" id="editor">Deleted User</span> <span id="edited_at"></span>
                                     </div>
                                 </div>
                             </div>

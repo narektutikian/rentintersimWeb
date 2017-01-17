@@ -101,7 +101,7 @@ class CreateHelper
         $sim = $order->sim;
         $sim->state = $status;
         $sim->save();
-        $this->sendMail($order);
+        $this->sendMail($order->id);
     }
 
     protected function isTimeCompatible($newOrder, $oldOrder)
@@ -281,14 +281,15 @@ class CreateHelper
         $sim->state = 'available';
 
         $sim->save();
-        $this->sendMail($order);
+        $this->sendMail($order->id);
         $order->delete();
     }
 
-    protected function sendMail($order)
+    protected function sendMail($orderID)
     {
+        $order = Order::withTrashed()->find($orderID);
         Mail::to($order->creator->email, $order->creator->name)
-            ->queue(new notifications($order));
+            ->queue(new notifications($orderID));
     }
 
 }
