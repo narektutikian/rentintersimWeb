@@ -256,7 +256,7 @@ class CreateHelper
             'order_id' => $order->id
         ]);
 
-        $this->freeResources($order, 'suspended');
+        $this->freeResources($order, 'done');
 
     }
 
@@ -269,7 +269,7 @@ class CreateHelper
             if(Order::where('phone_id', $order->phone_id)->where('status', 'pending')->count() > 1) //not tested
                 $phone->state = 'pending';
 
-                if (Order::where('phone_id', $order->phone_id)->where('status', 'active')->count() > 0 && $status != 'suspended')
+                if (Order::where('phone_id', $order->phone_id)->where('status', 'active')->count() > 0 && $status != 'done')
                     $phone->state = 'active';
 
             $phone->save();

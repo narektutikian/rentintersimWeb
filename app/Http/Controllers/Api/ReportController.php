@@ -396,7 +396,7 @@ class ReportController extends Controller
         if (!$request->has('provider'))
             $report = Order::where('id', '<', 0);
         else {
-            $report = Order::withTrashed()->where('status', 'suspended')->whereIn('created_by', $net);
+            $report = Order::withTrashed()->where('status', 'done')->whereIn('created_by', $net);
             if ($request->has('username'))
                 $report = $report->where('created_by', $request->input('username'));
             if ($request->has('from')){
