@@ -316,6 +316,15 @@ $( document ).ready(function() {
             var attribute_title = $(this).attr('data-th');
             var cell_value = $(this)[0].innerHTML.trim();
 
+
+            console.log(cell_value + " cell val");
+            console.log(attribute_title + " attr title");
+
+            if (attribute_title == "Status"){
+                var cell_status = $(this).find('.table_status_text').text();
+                console.log(cell_status + " cell status");
+            }
+
             // Capture Modal Open Event
             $(target_form_id).one('shown.bs.modal', function () {
 

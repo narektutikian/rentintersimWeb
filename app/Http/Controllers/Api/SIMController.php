@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Sim;
 use Excel;
 use Storage;
+use App\Models\Phone;
 
 class SIMController extends Controller
 {
@@ -170,6 +171,16 @@ class SIMController extends Controller
             unset($simsArray[$key]['deleted_at']);
             unset($simsArray[$key]['created_at']);
             unset($simsArray[$key]['updated_at']);
+
+            if ($sim['state'] == 'available')
+                $simsArray[$key]['editable'] = 1;
+            elseif ($sim['state'] == 'parking'){
+                $count = Phone::where('initial_sim_id', $sim['id'])->count();
+                if ($count == 0)
+                    $simsArray[$key]['editable'] = 1;
+            } else {$simsArray[$key]['editable'] = 0;}
+
+
         }
         return $simsArray;
     }

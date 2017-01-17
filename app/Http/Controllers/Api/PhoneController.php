@@ -175,8 +175,11 @@ class PhoneController extends Controller
         $phonesArray = $phones;
         foreach ($phones as $key => $phone) {
 
-            $phonesArray[$key]['current_sim_id'] = $phone->sim->number;
+            if ($phone->sim != null){
+                $phonesArray[$key]['current_sim_id'] = $phone->sim->number;
             $phonesArray[$key]['provider_id'] = $phone->sim->provider->name;
+            }
+            if ($phone->package != null)
             $phonesArray[$key]['package_id'] = $phone->package->name;
 //            $phonesArray[$key]['package_id'] = $phone->package->name;
         }
@@ -249,6 +252,7 @@ class PhoneController extends Controller
 
 
             });
+
             Storage::delete($file);
         }
         else {return response()->json(['error uploading file'], 443);}

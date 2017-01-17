@@ -56,15 +56,15 @@
                             <td class="rwd-td1 editable_cell" data-th="SIM Number">{{$sim['number']}}</td>
                             <td class="rwd-td2 editable_cell" data-th="Provider">{{$sim['provider_id']}}</td>
                             <td class="rwd-td3 table_action_cell" data-th="Action">
-                                <span class="table_icon edit" data-toggle="modal" data-target="#modal_edit_sim" data-form="#modal_edit_sim">
+                                <span class="table_icon edit {{ ($sim['editable']) ? '' : 'disable' }}" data-toggle="modal" data-target="#modal_edit_sim" data-form="#modal_edit_sim">
                                     <i class="icon-edit"></i>
                                 </span>
                             </td>
-                            <td class="rwd-td4" data-th="Status">
+                            <td class="rwd-td4 editable_cell status_td" data-th="Status">
                                 <span class="table_status_text not_used ">{{$sim['state']}}</span>
                             </td>
                             <td class="rwd-td5 table_status_cell" data-th="Remove">
-                                <span class="remove_row {{ ($sim['state'] != 'available') ? 'disable' : '' }}" data-toggle="modal" data-target="#confirm_delete" data-row-id="{{$sim['id']}}">
+                                <span class="remove_row {{ ($sim['editable']) ? '' : 'disable' }}" data-toggle="modal" data-target="#confirm_delete" data-row-id="{{$sim['id']}}">
                                     <i class="icon-delete"></i>
                                 </span>
                             </td>
