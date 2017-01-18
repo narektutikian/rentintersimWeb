@@ -206,6 +206,7 @@ class SIMController extends Controller
 
             });
 
+
         })->export('xlsx');
 
        /*

@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/css/bootstrap-datepicker3.css">
     <link rel="stylesheet" href="/js/owl-carousel/assets/owl.carousel.css">
     <link rel="stylesheet" href="/css/style.css">
+
 </head>
 <body>
 <div class="loader">
