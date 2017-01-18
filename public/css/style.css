@@ -1761,6 +1761,17 @@ input[type="radio"].toggle.checked + label {
   padding: 10px 2px;
   right: 0; }
 
+.colon {
+  float: left;
+  color: #000000;
+  height: 121px;
+  line-height: 121px;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-family: "proxima_nova_rgregular", Arial, Helvetica, sans-serif;
+  font-weight: bold; }
+
 .arrow_top {
   left: 50%;
   margin-left: -9px; }
@@ -1769,7 +1780,7 @@ input[type="radio"].toggle.checked + label {
 .mins,
 .meridian {
   margin: 0;
-  width: 45px; }
+  width: 43px; }
 
 .input.timepicki-input {
   color: #1b6db2; }
