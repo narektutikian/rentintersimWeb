@@ -506,14 +506,82 @@ $( document ).ready(function() {
 
     /* Open order modal after double click */
 
-    $('.link').on('click', function (event) {
-
-        event.preventDefault();
-    });
+    // $('.link').on('click', function (event) {
+    //
+    //     event.preventDefault();
+    // });
     $('.link').on('dblclick', function (event) {
 
         event.preventDefault();
         $('#modal_view_order').modal('toggle');
+
+        /******* Open View modal  *******/
+
+            var row_id = $(this).parents('td').attr('data-row-id');
+
+
+            $.get("/order/" + row_id + "/edit", function (order_data, order_status) {
+
+                if (order_status == "success") {
+
+                    console.log(order_data);
+
+                    $.get("/type-provider/1", function (data, type_status) {
+
+                        if (type_status == "success") {
+
+                            $.each(data, function (i, item) {
+
+                                // console.log("success dfdfsfsd ");
+                                // console.log(order_data.package_id);
+                                // console.log(item.id);
+
+                                if (item.id == order_data[0].package_id) {
+                                    package_id = item.id;
+                                    // $("#wrap_package_list_view").empty();
+                                    $("#wrap_package_list_view").append("<div class='package_item'>" +
+                                        "<a href='#' data-id='" + item.id + "' class='editable_package' title='Basic Package'>" +
+                                        "<h4>" + item.name + "</h4>" +
+                                        "<span>" + item.description + "</span>" +
+                                        "</a>" +
+                                        "</div>");
+                                }
+                                // else {
+                                //
+                                //     $(".wrap_package_list_edit").append("<div class='package_item'>" +
+                                //         "<a href='#' data-id='" + item.id + "' title='Basic Package'>" +
+                                //         "<h4>" + item.name + "</h4>" +
+                                //         "<span>" + item.description + "</span>" +
+                                //         "</a>" +
+                                //         "</div>");
+                                // }
+                            });
+
+                            $('.sim-edit').val(order_data[0].sim_id);
+                            $('.remark-view').val(order_data[0].remark);
+                            $('.reference_number-view').val(order_data[0].reference_number);
+                            if (order_data[0].status != "waiting") {
+                                $('#phone_number-view2').val(order_data[0].phone.phone);
+                                 }
+                            $('#order_status-view').val(order_data[0].status);
+                            $('.creator').text(order_data[0].creator.name + " " + order_data[0].created_at);
+                            if (order_data[0].editor != null)
+                                $('.editor').text(order_data[0].editor.name);
+                            $('.edited_at').text(" " + order_data[0].updated_at);
+                            $('.landing_date').val(order_data[0].landing.split(' ')[0]);
+                            $('.departure_date').val(order_data[0].departure.split(' ')[0]);
+                            $('.landing_time_val').val(order_data[0].landing.split(' ')[1]);
+                            $('.departure_time_val').val(order_data[0].departure.split(' ')[1]);
+
+
+
+                            // console.log(order_data[0].status)
+
+
+                        }
+                    });
+                }
+            });
 
     });
 

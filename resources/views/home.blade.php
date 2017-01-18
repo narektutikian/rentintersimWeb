@@ -102,8 +102,8 @@
                                             <span class="hint">i</span>
                                             @endif
                                         </td>
-                                        <td class="rwd-td7 table_action_cell_large" data-field="Action" data-th="Action">
-                                            <span class="table_icon call_edit {{ ($order['status'] == 'active' && Auth::user()->level != 'Super admin' || $order['status'] == 'done') ? 'disable' : '' }}" data-toggle="modal" data-row-id="{{$order['id']}}" data-target="#modal_edit_order" data-form="#modal_edit_order">
+                                        <td class="rwd-td7 table_action_cell_large" data-field="Action" data-th="Action" data-row-id="{{$order['id']}}">
+                                            <span class="table_icon call_edit {{ ($order['status'] == 'active' && Auth::user()->level != 'Super admin' || $order['status'] == 'done') ? 'disable' : '' }}" data-toggle="modal"  data-target="#modal_edit_order" data-form="#modal_edit_order">
                                                 <i class="icon-edit"></i>
                                             </span>
                                             <span class="table_icon print" data-toggle="modal" data-target="#modal_print_order" data-form="modal_print_order">
@@ -419,7 +419,7 @@
                                         <label class="table_label">Customer phone number</label>
                                             @if(Auth::user()->level == 'Super admin')
                                         <div class="select_wrapper">
-                                                <select  name="phone_number" id="phone_number-edit" class="block_btn_30 modal_input">
+                                                <select  name="phone_number" id="phone_number-edit" class="block_btn_30 modal_input" disabled>
                                                     <option value=""></option>
                                                     @foreach($specials as $special)
                                                         <option value="{{$special['id']}}">{{$special['phone']}}</option>
@@ -482,8 +482,8 @@
                             <div class="col-md-6 vdf_modal_left ovh">
                                 <div class="form-group">
                                     <div class="col-md-6">
-                                        <label class="table_label">Enter a SIM number</label>
-                                        <input type="text" name="sim-edit" id="sim-edit" class="block_btn_30 modal_input_without_icon vd_number" data-th="SIM Number" value=""/>
+                                        <label class="table_label">SIM number</label>
+                                        <input type="text" name="sim-edit" class="block_btn_30 modal_input_without_icon vd_number sim-edit" data-th="SIM Number" value="" disabled/>
                                     </div>
                                     <div class="col-md-6">
                                         <label class="table_label">SIM provider</label>
@@ -492,13 +492,13 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-12">
-                                        <div class="wrap_package_list_edit"></div>
+                                        <div class="wrap_package_list_edit" id="wrap_package_list_view"></div>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-12">
-                                        <label class="table_label">Enter remarks</label>
-                                        <textarea name="rem_txt2" id="remark-edit" class="modal_textarea"></textarea>
+                                        <label class="table_label">Remarks</label>
+                                        <textarea name="rem_txt2" class="modal_textarea remark-view" disabled></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -513,107 +513,59 @@
                                                 <div class="input-group-addon">
                                                     <span class="glyphicon glyphicon-calendar"></span>
                                                 </div>
-                                                <input type="text" name="departure_date" id="departure_date" class="inline_block_btn departure_date vd_date_required" data-date-format="DD/MM/YYYY">
+                                                <input type="text" name="departure_date" class="inline_block_btn landing_date vd_date_required" data-date-format="DD/MM/YYYY" disabled>
                                             </div>
                                             <div class="wrap_time">
                                                 <i class="departure_time icon-time"></i>
-                                                <input type="text" name="timepicker5" class="inline_block_btn time_element vd_time_required"/>
+                                                <input type="text" name="timepicker5" class="inline_block_btn time_element vd_time_required landing_time_val"/>
                                             </div>
                                         </div>
-                                        {{--<div class="input-group date flight_dates" data-provide="datepicker">--}}
-                                            {{--<div class="input-group-addon">--}}
-                                                {{--<span class="glyphicon glyphicon-calendar"></span>--}}
-                                            {{--</div>--}}
-                                            {{--<input type="text" name="landing_date-edit" id="landing_date-edit"class="inline_block_btn landing_date vd_required" data-date-format="DD/MM/YYYY">--}}
-                                        {{--</div>--}}
-                                        {{--<div class="wrap_time from">--}}
-                                            {{--<i class="departure_time icon-time"></i>--}}
-                                            {{--<div class="time_picker">--}}
-                                                {{--<div  class="inline_block_btn numeric_input vdf_time vdf_hour" id="landing_hour-edit">0</div>--}}
-                                                {{--<span class="arrow-down"><i class="icon-arrow_down"></i></span>--}}
-                                                {{--<span class="arrow-up"><i class="icon-arrow_up"></i></span>--}}
-                                            {{--</div>--}}
-                                            {{--<div class="time_picker">--}}
-                                                {{--<div class="inline_block_btn vdf_minute_picker vdf_time vdf_min" id="landing_minute-edit">0</div>--}}
-                                                {{--<span class="arrow-down"><i class="icon-arrow_down"></i></span>--}}
-                                                {{--<span class="arrow-up"><i class="icon-arrow_up"></i></span>--}}
-                                            {{--</div>--}}
-                                        {{--</div>--}}
+
                                     </div>
                                     <div class="col-md-6">
                                         <div class="departure"><i class="icon-departure"></i> Departure date and time</div>
-                                        <!--<div class="input-group date flight_dates" data-provide="datepicker">
-                                            <div class="input-group-addon">
-                                                <span class="glyphicon glyphicon-calendar"></span>
-                                            </div>
-                                            <input type="text" name="departure_date-edit" id="departure_date-edit"  class="inline_block_btn vd_required departure_date" data-date-format="DD/MM/YYYY">
-                                        </div>-->
+
                                         <div class="wrap_date">
                                             <div class="input-group date flight_dates" data-provide="datepicker">
                                                 <div class="input-group-addon">
                                                     <span class="glyphicon glyphicon-calendar"></span>
                                                 </div>
-                                                <input type="text" name="departure_date" id="departure_date" class="inline_block_btn departure_date vd_date_required" data-date-format="DD/MM/YYYY">
+                                                <input type="text" name="departure_date" class="inline_block_btn departure_date vd_date_required" data-date-format="DD/MM/YYYY" disabled>
                                             </div>
                                             <div class="wrap_time">
                                                 <i class="departure_time icon-time"></i>
-                                                <input type="text" name="timepicker6" class="inline_block_btn time_element vd_time_required"/>
+                                                <input type="text" name="timepicker6" class="inline_block_btn time_element vd_time_required departure_time_val"/>
                                             </div>
                                         </div>
-                                        {{--<div class="wrap_time to">--}}
-                                            {{--<i class="departure_time icon-time"></i>--}}
-                                            {{--<div class="time_picker">--}}
-                                                {{--<div  class="inline_block_btn numeric_input vdf_time vdf_hour" id="departure_hour-edit">0</div>--}}
-                                                {{--<span class="arrow-down"><i class="icon-arrow_down"></i></span>--}}
-                                                {{--<span class="arrow-up"><i class="icon-arrow_up"></i></span>--}}
-                                            {{--</div>--}}
-                                            {{--<div class="time_picker">--}}
-                                                {{--<div class="inline_block_btn vdf_minute_picker vdf_time vdf_min" id="departure_minute-edit">0</div>--}}
-                                                {{--<span class="arrow-down"><i class="icon-arrow_down"></i></span>--}}
-                                                {{--<span class="arrow-up"><i class="icon-arrow_up"></i></span>--}}
-                                            {{--</div>--}}
-                                        {{--</div>--}}
+
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <div class="col-md-12">
                                         <label class="table_label">Reference Number</label>
-                                        <input type="text" id="reference_number-edit" class="block_btn_30 modal_input_without_icon" value="">
+                                        <input type="text" id="reference_number-edit" class="block_btn_30 modal_input_without_icon reference_number-view" value="">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-6">
                                         <label class="table_label">Customer phone number</label>
-                                            @if(Auth::user()->level == 'Super admin')
-                                        <div class="select_wrapper">
-                                                <select  name="phone_number" id="phone_number-edit" class="block_btn_30 modal_input">
-                                                    <option value=""></option>
-                                                    @foreach($specials as $special)
-                                                        <option value="{{$special['id']}}">{{$special['phone']}}</option>
-                                                    @endforeach
-                                                </select>
-                                                <i class="input_icon icon-sim"></i>
-                                        </div>
-                                            @else
                                         <div class="relative">
-                                                <input type="test" id="phone_number-edit2" class="block_btn_30 modal_input" name="phone_number-edit2" value="" disabled>
+                                                <input type="test" id="phone_number-view2" class="block_btn_30 modal_input" name="phone_number-edit2" value="" disabled>
                                                 <i class="input_icon icon-sim"></i>
                                         </div>
-                                            @endif
-
                                     </div>
                                     <div class="col-md-6">
                                         <label class="table_label">Order Status</label>
-                                        <input type="text" name="order_status-edit" id="order_status-edit" class="block_btn_30 modal_input_without_icon" value="" disabled>
+                                        <input type="text" name="order_status-edit" id="order_status-view" class="block_btn_30 modal_input_without_icon" value="" disabled>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <span class="order_key">Created by: </span><span class="order_value" id="creator">Vallie Champlin 15/12/2016 12:40</span>
+                                        <span class="order_key">Created by: </span><span class="order_value creator">Vallie Champlin 15/12/2016 12:40</span>
                                     </div>
                                     <div class="col-md-12">
-                                        <span class="order_key">Updated by: </span><span class="order_value" id="editor">Alexanne Robel 07/03/2017 15:22</span>
+                                        <span class="order_key">Updated by: </span><span class="order_value editor" >Deleted User</span> <span class="edited_at"></span>
                                     </div>
                                 </div>
                             </div>
@@ -621,9 +573,9 @@
                         </div>
                     </div>
                     <div class="modal-footer vdf_modal_footer">
-                        <a href="#" class="inline_block_btn light_gray_btn close vd_form_reset" data-dismiss="modal" aria-label="Close">Cancel</a>
+                        <a href="#" class="inline_block_btn light_gray_btn close vd_form_reset" data-dismiss="modal" aria-label="Close">Close</a>
                         {{--<button type="submit" href="#" class="inline_block_btn light_green_btn vd_form_submit" id="create-order">Edit order</button>--}}
-                        <a href="#" class="inline_block_btn light_green_btn vd_form_submit" id="edit-order">Edit order</a>
+                        {{--<a href="#" class="inline_block_btn light_green_btn vd_form_submit" id="edit-order">Edit order</a>--}}
                         <span class="success_response"></span>
                         <span class="error_response"></span>
                     </div>
@@ -641,7 +593,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <div class="vdf_modal_sub_header">
                         <div class="col-md-7">
-                            <h3>Mail message: Order <span class="mail_order">#124875</span></h3>
+                            <h3>Mail message: Order <span class="mail_order">error</span></h3>
                         </div>
                         <div class="col-md-5">
                             <div class="point_to">
@@ -727,7 +679,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <div class="form-group">
                         <div class="col-md-12">
-                            <h3>Mail message: Order <span class="mail_order">#124875</span></h3>
+                            <h3>Order <span class="mail_order">#124875</span></h3>
                         </div>
                     </div>
                 </div>
@@ -736,25 +688,21 @@
                         <div class="form-group">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <div class="col-md-12">
-                                        <img  src="/img/print_image.jpg" class="print_image" alt="print image">
-                                    </div>
+                                    {{--<div class="col-md-12">--}}
+                                        {{--<img  src="/img/print_image.jpg" class="print_image" alt="print image">--}}
+                                    {{--</div>--}}
                                     <div class="clear"></div>
                                 </div>
                                 <div class="form-group">
 
-                                    <div class="email_phone_num">Phone Number : 044 758 34 22</div>
+                                    <div class="email_phone_num"></div>
 
                                     <div class="clear"></div>
                                 </div>
                                 <div class="form-group">
                                     <div class="email_print">
-                                        <div class="single_package email_print">
-                                            <label class="table_label">Selected Package </label>
-                                            <a class="selected_package" title="Basic Package">
-                                                <h4>Basic Package</h4>
-                                                <span>8 Mb Data Unlimited local Call + SMS</span>
-                                            </a>
+                                        <div class="single_package email_print selected_package_print">
+
                                         </div>
                                     </div>
                                     <div class="clear"></div>
@@ -774,11 +722,11 @@
                                         <label class="table_label">Active Period</label>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="departure">From : <div class="email_date_time">13/12/2016 17:05</div></div>
+                                        <div class="departure">From : <div class="email_date_time from_print"></div></div>
                                         <div class="clear"></div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="departure"> To : <div class="email_date_time">14/01/2017 10:20</div></div>
+                                        <div class="departure"> To : <div class="email_date_time to_print"></div></div>
                                         <div class="clear"></div>
                                     </div>
                                 </div>
@@ -788,7 +736,7 @@
                         <div class="clear"></div>
                     </div>
                     <div class="modal-footer vdf_modal_footer">
-                        <span class="c_support">Customer support: +373 95 728 147</span>
+                        <span class="c_support">Customer support: +972 722131366</span>
 
                         <span class="email_send_print no-print">
                             <i class="icon-print"></i>

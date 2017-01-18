@@ -88,6 +88,7 @@ $(document).ready(function () {
         }
     });
 
+
     $.get("/type-provider/1", function (data, status) {
         console.log("type loading");
         if (status == "success") {
@@ -111,9 +112,11 @@ $(document).ready(function () {
         }
     });
 
+    /******* Open Edit modal  *******/
+
     $('.call_edit').on('click', function () {
 
-        var row_id = $(this).attr('data-row-id');
+        var row_id = $(this).parents('td').attr('data-row-id');
         edit_id = row_id;
         var editable_form = $(this).attr('data-form');
         var from = [], to = [];
@@ -232,6 +235,33 @@ $(document).ready(function () {
 
 
     });
+
+  /***** Open print modal *******/
+    $('.print').on('click', function () {
+
+        var row_id = $(this).parents('td').attr('data-row-id');
+
+        $.get("/order/" + row_id + "/edit", function (order_data, order_status) {
+            if (order_status == "success") {
+
+                $('.email_phone_num').text("Phone Number : " + order_data[0].phone.phone);
+                $('.selected_package_print').empty();
+                $('.selected_package_print').append("<label class='table_label'>Selected Package </label>" +
+                "<a class='selected_package' title='"+ order_data[0].package.name +"'>" +
+                    "<h4>"+ order_data[0].package.name +"</h4>" +
+                "<span>"+ order_data[0].package.description +"</span>" +
+                "</a>");
+                $('.from_print').text(order_data[0].from);
+                $('.to_print').text(order_data[0].to);
+                $('.mail_order').text(" #" + order_data[0].id);
+
+            }
+
+        });
+
+    });
+
+
 
     /***** EDIT ORDER *****/
 
