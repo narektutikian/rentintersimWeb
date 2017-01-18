@@ -103,7 +103,7 @@
                                             @endif
                                         </td>
                                         <td class="rwd-td7 table_action_cell_large" data-field="Action" data-th="Action">
-                                            <span class="table_icon call_edit {{ ($order['status'] == 'active' && Auth::user()->level != 'Super admin') ? 'disable' : '' }}" data-toggle="modal" data-row-id="{{$order['id']}}" data-target="#modal_edit_order" data-form="#modal_edit_order">
+                                            <span class="table_icon call_edit {{ ($order['status'] == 'active' && Auth::user()->level != 'Super admin' || $order['status'] == 'done') ? 'disable' : '' }}" data-toggle="modal" data-row-id="{{$order['id']}}" data-target="#modal_edit_order" data-form="#modal_edit_order">
                                                 <i class="icon-edit"></i>
                                             </span>
                                             <span class="table_icon print" data-toggle="modal" data-target="#modal_print_order" data-form="modal_print_order">
