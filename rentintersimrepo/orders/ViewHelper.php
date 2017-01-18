@@ -86,12 +86,14 @@ class ViewHelper
             $orders = Order::where('deleted_at', null);
         $ordersp = clone($orders);
         $ordersw = clone($orders);
+        $ordersd = clone($orders);
 //        dd($orders);
         $counts = ([
             'All' => $orders->count(),
             'active' => $orders->filter('active')->count(),
             'pending' => $ordersp->filter('pending')->count(),
             'waiting' => $ordersw->filter('waiting')->count(),
+            'done' => $ordersd->filter('done')->count(),
         ]);
 //        dd($counts);
         return $counts;
