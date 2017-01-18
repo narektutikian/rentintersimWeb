@@ -64,10 +64,10 @@
 .filter_option
   display: inline-block
   vertical-align: middle
-  margin-right: 12px
+  margin-right: 8px
   height: 30px
   line-height: 28px
-  padding: 0 10px 0 5px
+  padding: 0 5px 0 5px
   text-align: center
   @include border-radius(4px)
   text-transform: capitalize
@@ -85,7 +85,7 @@
   float: left
   height: 30px
   line-height: 30px
-  margin-right: 10px
+  margin-right: 8px
   color: $dark-blue
   @include fonts-stack(16px)
 .search_management_option
@@ -95,7 +95,7 @@
   display: inline-block
   vertical-align: middle
   position: relative
-  width: 250px
+  width: 190px
   .search_input
     padding: 2px 40px 2px 5px
     color: $light_blue
@@ -151,8 +151,8 @@
 
 .status
   @include status
-  margin-right: 5px
-  margin-left: 5px
+  margin-right: 3px
+  margin-left: 3px
   @include border-radius(6px)
   &.active
     @include active_gradient
@@ -163,6 +163,8 @@
   &.disabled
     @include disabled
   &.waiting
+    @include waiting
+  &.done
     @include waiting
 
 .export_user

@@ -338,8 +338,8 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="text-center">
-                                                <a href="#" class="inline_block_btn light_green_btn" onclick="" id="activate-button">Activate order</a>
-                                                <a href="#" class="inline_block_btn light_green_btn" onclick="" id="suspend-button">Suspend order</a>
+                                                <a href="#" class="inline_block_btn light_blue_btn" onclick="" id="activate-button">Activate order</a>
+                                                <a href="#" class="inline_block_btn light_gray_btn" onclick="" id="suspend-button">Suspend order</a>
                                             </div>
                                         </div>
                                     </div>

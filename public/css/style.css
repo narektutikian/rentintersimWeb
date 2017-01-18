@@ -1068,10 +1068,10 @@ input[type="radio"].toggle.checked + label {
 .filter_option {
   display: inline-block;
   vertical-align: middle;
-  margin-right: 12px;
+  margin-right: 8px;
   height: 30px;
   line-height: 28px;
-  padding: 0 10px 0 5px;
+  padding: 0 5px 0 5px;
   text-align: center;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -1095,7 +1095,7 @@ input[type="radio"].toggle.checked + label {
   float: left;
   height: 30px;
   line-height: 30px;
-  margin-right: 10px;
+  margin-right: 8px;
   color: #1b6db2;
   font-size: 16px;
   font-weight: normal;
@@ -1110,7 +1110,7 @@ input[type="radio"].toggle.checked + label {
   display: inline-block;
   vertical-align: middle;
   position: relative;
-  width: 250px; }
+  width: 190px; }
   .search_form_option .search_input {
     padding: 2px 40px 2px 5px;
     color: #079fff;
@@ -1189,8 +1189,8 @@ input[type="radio"].toggle.checked + label {
   vertical-align: middle;
   width: 10px;
   height: 10px;
-  margin-right: 5px;
-  margin-left: 5px;
+  margin-right: 3px;
+  margin-left: 3px;
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
   -ms-border-radius: 6px;
@@ -1220,11 +1220,17 @@ input[type="radio"].toggle.checked + label {
     background: -moz-linear-gradient(#c6d0e1, #adb0b5);
     background: linear-gradient(#c6d0e1, #adb0b5); }
   .status.waiting {
-    background: #bf98ef;
-    background: -webkit-linear-gradient(#d9b9ff, #b48be7);
-    background: -o-linear-gradient(#d9b9ff, #b48be7);
-    background: -moz-linear-gradient(#d9b9ff, #b48be7);
-    background: linear-gradient(#d9b9ff, #b48be7); }
+    background: #337ab7;
+    background: -webkit-linear-gradient(#3583C2, #2E649C);
+    background: -o-linear-gradient(#3583C2, #2E649C);
+    background: -moz-linear-gradient(#3583C2, #2E649C);
+    background: linear-gradient(#3583C2, #2E649C); }
+  .status.done {
+    background: #337ab7;
+    background: -webkit-linear-gradient(#3583C2, #2E649C);
+    background: -o-linear-gradient(#3583C2, #2E649C);
+    background: -moz-linear-gradient(#3583C2, #2E649C);
+    background: linear-gradient(#3583C2, #2E649C); }
 
 .export_user {
   text-align: left; }
@@ -2212,8 +2218,8 @@ header {
     display: inline-block;
     vertical-align: middle;
     margin-right: 75px;
-    width: 60px;
-    height: 60px; }
+    width: 95px;
+    height: 58px; }
     header .logo img {
       display: block;
       width: 100%; }
@@ -2658,7 +2664,7 @@ header {
     text-align: right; }
     .layout #orders_list .report_buttons input {
       margin-left: 25px; }
-  .layout #orders_list .search_button {
+  .layout #orders_list .search_button.low {
     top: 1px; }
 
 @media (max-width: 1200px) {

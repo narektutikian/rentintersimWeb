@@ -166,6 +166,13 @@
   background: -moz-linear-gradient(#d9b9ff, #b48be7) /* For Firefox 3.6 to 15 */
   background: linear-gradient(#d9b9ff, #b48be7) /* Standard syntax */
 
+@mixin waiting
+  background: $primary /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(#3583C2, #2E649C) /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#3583C2, #2E649C) /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#3583C2, #2E649C) /* For Firefox 3.6 to 15 */
+  background: linear-gradient(#3583C2, #2E649C) /* Standard syntax */
+
 @mixin transform($deg)
   -webkit-transform: rotate($deg)
   -moz-transform: rotate($deg)

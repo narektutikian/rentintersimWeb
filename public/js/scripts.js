@@ -391,7 +391,6 @@ $( document ).ready(function() {
         // location.reload();
     });
 
-
     /* highlight selected package */
     $(document).on('click', '.package_item a', function () {
 
