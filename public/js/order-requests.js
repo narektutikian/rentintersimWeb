@@ -179,15 +179,16 @@ $(document).ready(function () {
                                     "<span>" + item.description + "</span>" +
                                     "</a>" +
                                     "</div>");
-                            } else {
-
-                                $(".wrap_package_list_edit").append("<div class='package_item'>" +
-                                    "<a href='#' data-id='" + item.id + "' title='Basic Package'>" +
-                                    "<h4>" + item.name + "</h4>" +
-                                    "<span>" + item.description + "</span>" +
-                                    "</a>" +
-                                    "</div>");
                             }
+                            // else {
+                            //
+                            //     $(".wrap_package_list_edit").append("<div class='package_item'>" +
+                            //         "<a href='#' data-id='" + item.id + "' title='Basic Package'>" +
+                            //         "<h4>" + item.name + "</h4>" +
+                            //         "<span>" + item.description + "</span>" +
+                            //         "</a>" +
+                            //         "</div>");
+                            // }
                         });
 
                         $('#sim-edit').val(order_data[0].sim_id);

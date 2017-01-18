@@ -204,7 +204,11 @@ class CreateHelper
             exit();
         if ($order == null)
             exit();
+        $res = null;
         sleep(5);
+        if (env('APP_ENV') == 'local')
+            $res = 0;
+        else
         $res = file_get_contents("http://176.35.171.143:8086/api/vfapi.php?key=7963ad6960b1088b94db2c32f2975e86&call=simswap&cli=".$order->phone->phone."&sim=".$order->sim->number);
 //        $res = 0;
         Activation::forceCreate([
@@ -246,6 +250,9 @@ class CreateHelper
         $phone->current_sim_id = $phone->initial_sim_id;
 
         sleep(5);
+        if (env('APP_ENV') == 'local')
+            $res = 0;
+        else
         $res = file_get_contents("http://176.35.171.143:8086/api/vfapi.php?key=7963ad6960b1088b94db2c32f2975e86&call=simswap&cli=".$order->phone->phone."&sim=".$phone->parking_sim->number);
 //        $res = 0;
         Activation::forceCreate([

@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/css/bootstrap-datepicker3.css">
     <link rel="stylesheet" href="/js/owl-carousel/assets/owl.carousel.css">
     <link rel="stylesheet" href="/css/style.css">
+
 </head>
 <body>
 <div class="loader">
@@ -80,6 +81,6 @@
 <script src="/js/scripts.js"></script>
 <script src="/js/validation.js"></script>
 <script src="/js/requests.js"></script>
-<script src="{{ asset('js/order-requests.js') }}"></script>
+<script src="/js/order-requests.js"></script>
 </body>
 </html>

@@ -21,7 +21,7 @@
                                         <span class="status waiting"></span> waiting ({{$counts['waiting']}}) </a>
                                     </a>
                             <a class="filter_option  {{ (Request::is('filter-orderlist/done')) ? 'blue' : 'light_blue' }} last" href="{{url('filter-orderlist/done')}}">
-                                <span class="status done"></span> done ({{$counts['waiting']}}) </a>
+                                <span class="status done"></span> done ({{$counts['done']}}) </a>
                             </a>
                             <div class="search_management_option">
                                 <form action="{{url('/search/order')}}" method="get" class="search_form_option">
@@ -103,7 +103,7 @@
                                             @endif
                                         </td>
                                         <td class="rwd-td7 table_action_cell_large" data-field="Action" data-th="Action">
-                                            <span class="table_icon call_edit {{ ($order['status'] == 'active' && Auth::user()->level != 'Super admin') ? 'disable' : '' }}" data-toggle="modal" data-row-id="{{$order['id']}}" data-target="#modal_edit_order" data-form="#modal_edit_order">
+                                            <span class="table_icon call_edit {{ ($order['status'] == 'active' && Auth::user()->level != 'Super admin' || $order['status'] == 'done') ? 'disable' : '' }}" data-toggle="modal" data-row-id="{{$order['id']}}" data-target="#modal_edit_order" data-form="#modal_edit_order">
                                                 <i class="icon-edit"></i>
                                             </span>
                                             <span class="table_icon print" data-toggle="modal" data-target="#modal_print_order" data-form="modal_print_order">
@@ -357,7 +357,7 @@
                                                 <div class="input-group-addon">
                                                     <span class="glyphicon glyphicon-calendar"></span>
                                                 </div>
-                                                <input type="text" name="departure_date" id="departure_date" class="inline_block_btn departure_date vd_date_required" data-date-format="DD/MM/YYYY" disabled>
+                                                <input type="text" name="landing_date" id="landing_date" class="inline_block_btn landing_date vd_date_required" data-date-format="DD/MM/YYYY" disabled>
                                             </div>
                                             <div class="wrap_time">
                                                 <i class="departure_time icon-time"></i>
