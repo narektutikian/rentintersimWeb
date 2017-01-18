@@ -282,6 +282,7 @@ class CreateHelper
 
         $sim->save();
         $this->sendMail($order->id);
+        if ($status == 'deleted')
         $order->delete();
     }
 

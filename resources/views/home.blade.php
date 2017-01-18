@@ -17,9 +17,12 @@
                             <a class="filter_option  {{ (Request::is('filter-orderlist/pending')) ? 'blue' : 'light_blue' }}" href="{{url('filter-orderlist/pending')}}">
                                 <span class="status inactive"></span> pending ({{$counts['pending']}})
                             </a>
-                            <a class="filter_option  {{ (Request::is('filter-orderlist/waiting')) ? 'blue' : 'light_blue' }} last" href="{{url('filter-orderlist/waiting')}}">
+                            <a class="filter_option  {{ (Request::is('filter-orderlist/waiting')) ? 'blue' : 'light_blue' }} " href="{{url('filter-orderlist/waiting')}}">
                                         <span class="status waiting"></span> waiting ({{$counts['waiting']}}) </a>
                                     </a>
+                            <a class="filter_option  {{ (Request::is('filter-orderlist/done')) ? 'blue' : 'light_blue' }} last" href="{{url('filter-orderlist/done')}}">
+                                <span class="status waiting"></span> done ({{$counts['waiting']}}) </a>
+                            </a>
                             <div class="search_management_option">
                                 <form action="{{url('/search/order')}}" method="get" class="search_form_option">
                                     <input type="text" class="block_btn_30 search_input" name="query" value="" placeholder="Search">
