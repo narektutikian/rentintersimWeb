@@ -21,7 +21,7 @@
                                         <span class="status waiting"></span> waiting ({{$counts['waiting']}}) </a>
                                     </a>
                             <a class="filter_option  {{ (Request::is('filter-orderlist/done')) ? 'blue' : 'light_blue' }} last" href="{{url('filter-orderlist/done')}}">
-                                <span class="status waiting"></span> done ({{$counts['waiting']}}) </a>
+                                <span class="status done"></span> done ({{$counts['waiting']}}) </a>
                             </a>
                             <div class="search_management_option">
                                 <form action="{{url('/search/order')}}" method="get" class="search_form_option">
