@@ -248,11 +248,19 @@ $( document ).ready(function() {
                 }
             });
 
-
+            $( "<span class='colon'>:</span>" ).insertAfter($(".wrap_time").find(".time"));
 
         }, 600);
 
     });
+
+    $('#modal_new_order').one("hidden.bs.modal", function () {
+
+        $(".wrap_time").find('.colon').remove();
+    });
+
+
+
 
     $('#modal_edit_order').on('show.bs.modal', function () {
 
@@ -300,10 +308,41 @@ $( document ).ready(function() {
 
 
     /* Bootstrap Datepicker */
+    var date = new Date();
+    date.setDate(date.getDate());
+
+    console.log('DATE ', date);
+
     $('.date').datetimepicker({
-        keepOpen : true
+        //keepOpen : true,
+        //maxDate: 'now',
+        //showTodayButton: true,
+        showClear: true,
+        minDate: date
     });
 
+    var ln_date_min, dp_date_max ;
+
+    $('#landing_date').closest('.date').on('dp.change', function(e){
+
+        ln_date_min =  $('#landing_date').closest('.date').data('date');
+
+        var res = ln_date_min.split('/');
+        var final_res = res[1] + '/' + res[0] + '/' + res[2];
+
+        $('#departure_date').closest('.date').data("DateTimePicker").minDate(ln_date_min);
+        $('#departure_date').closest('.date').find('td.active').removeClass('active');
+        $('#departure_date').closest('.date').find('td[data-day="' + final_res + '"]').addClass('active');
+
+    });
+
+    $('#departure_date').closest('.date').on('dp.change', function(e){
+
+        dp_date_max =  $('#departure_date').closest('.date').data('date');
+
+        $('#landing_date').closest('.date').data("DateTimePicker").maxDate(dp_date_max);
+
+    });
 
     /* Put Editable values inside modal window */
     $(document).on('click', '.table .table_action_cell .edit', function () {
