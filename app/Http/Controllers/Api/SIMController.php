@@ -196,6 +196,7 @@ class SIMController extends Controller
 
     public function export()
     {
+        ini_set('memory_limit','60m');
         $data = $this->solveSimList(Sim::get());
         Excel::create('Sims', function($excel) use ($data) {
 
@@ -205,7 +206,7 @@ class SIMController extends Controller
 
             });
 
-        })->download('xlsx');
+        })->export('xlsx');
 
        /*
 
