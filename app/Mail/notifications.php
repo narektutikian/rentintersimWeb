@@ -36,10 +36,12 @@ class notifications extends Mailable
         if (env('APP_ENV') == 'local')
             $address = 'narek@horizondvp.com';
         $name = 'RentInterSim';
-        $subject = 'Order Status Change';
-        $cc = [$this->order->creator->email2];
+        $subject = 'Status Change for Order #'. $this->order->id;
+        $cc = $this->order->creator->email2;
         if ($this->order->editor != null)
-        $cc += [$this->order->editor->email];
+        $cc .= ', '. $this->order->editor->email;
+
+
 
         return $this->view('mail.notify')
             ->with('order', $this->order)

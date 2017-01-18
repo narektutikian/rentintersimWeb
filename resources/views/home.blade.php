@@ -218,7 +218,7 @@
                                             </div>
                                             <div class="wrap_time">
                                                 <i class="departure_time icon-time"></i>
-                                                <input type="text" name="timepicker2" id="time_element" class="inline_block_btn time_element vd_time_required departure_time_val"/>
+                                                <input type="text" name="timepicker2" id="time_element2" class="inline_block_btn time_element vd_time_required departure_time_val"/>
                                             </div>
                                         </div>
 
@@ -330,6 +330,7 @@
 
                                     </div>
                                 </div>
+                                @if(Auth::user()->level == 'Super admin')
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-md-12">
@@ -341,6 +342,7 @@
                                     </div>
 
                                 </div>
+                                @endif
                             </div>
                             <div class="col-md-6 vdf_modal_right">
                                 <label class="table_label">Destination flight details</label>

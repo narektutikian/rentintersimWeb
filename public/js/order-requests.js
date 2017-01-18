@@ -38,6 +38,7 @@ $(document).ready(function () {
                     $(".success_response").append("Please wait <img src='/img/loader.gif' width='20'/>");
                 },
                 success: function (msg) {
+                    location.reload();
                     $(".error_response").empty();
                     $(".success_response").empty();
                     $(".success_response").append("DONE");
@@ -261,6 +262,7 @@ $(document).ready(function () {
                 url: 'order/' + edit_id,
                 data: data,
                 success: function (msg) {
+                    location.reload();
                     $(".error_response").empty();
                     $(".success_response").empty();
                     $(".success_response").append("DONE");
@@ -373,6 +375,7 @@ $(document).ready(function () {
                     $(".success_response").append("Please wait <img src='/img/loader.gif' width='20'/>");
                 },
                 success: function (msg) {
+                    location.reload();
                     $(".error_response").empty();
                     $(".success_response").empty();
                     $(".success_response").append("MASSAGE SENT SUCCESSFULLY");
