@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
@@ -14,6 +15,7 @@ use App\Mail\OrderMail;
 use DB;
 use Excel;
 use Rentintersimrepo\users\UserManager;
+use App\Models\ManualActivation;
 
 class OrderController extends Controller
 {
@@ -314,18 +316,47 @@ class OrderController extends Controller
 
     public function activate($id)
     {
-        $this->helper->activate($id);
+
         $order = Order::find($id);
-        if ($order->status == 'active')
+        if ($order->status == 'pending'){
+            DB::transaction(function () use($order) {
+                $log = ManualActivation::forceCreate([
+                    'phone_number' => $order->phone_id,
+                    'sim_number' => $order->sim_id,
+                    'call' => 'activate',
+                    'old_time' => $order->landing,
+                    'order_id' => $order->id,
+                ]);
+                $order->landing = Carbon::now()->format('d/m/Y H:i');
+                $order->save();
+                $this->helper->activate($order->id);
+            }, 5);
+
+
             return response('success');
+        }
         else return response('error', 403);
     }
 
     public function deactivate($id)
     {
         $order = Order::find($id);
-        if ($order->status == 'active')
-        $this->helper->deactivate($order);
+        if ($order->status == 'active'){
+            DB::transaction(function () use($order) {
+                $log = ManualActivation::forceCreate([
+                   'phone_number' => $order->phone_id,
+                    'sim_number' => $order->sim_id,
+                    'call' => 'deactivate',
+                    'old_time' => $order->departure,
+                    'order_id' => $order->id,
+                ]);
+                $order->departure = Carbon::now()->format('d/m/Y H:i');
+                $order->save();
+                $this->helper->deactivate($order);
+            }, 5);
+
+        }
+
         else {return response('suspension error', 403);}
         return response('success');
     }

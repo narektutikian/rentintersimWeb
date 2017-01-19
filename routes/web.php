@@ -14,6 +14,7 @@
 use App\User;
 use App\Models\Order;
 
+
 //use Auth;
 use Carbon\Carbon;
 
@@ -87,7 +88,7 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
 Route::get('/test', function (){
 
     echo '<pre />';
-    print_r(Order::find(261)->creator);
+    print_r(Order::find(1));
 
 });
 
