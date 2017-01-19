@@ -401,6 +401,8 @@ input[type="radio"].toggle.checked + label {
     color: #2cc763;
     border: 1px solid #2cc763;
     background: #F3F3F3; }
+  .vdf_checkbox.disable {
+    opacity: 1; }
 
 /* end of Styling Checkbox */
 .table_label {
