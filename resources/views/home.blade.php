@@ -81,12 +81,12 @@
                                                 {{$order['provider']}}
                                             </a>
                                         </td>
-                                        <td class="rwd-td3 table_time_cell_large from align_order" data-field="From" data-th="From" data-row-id="{{$order['id']}}" data-target="#modal_view_order" data-form="#modal_view_order">
+                                        <td class="rwd-td3 editable_cell table_time_cell_large from align_order" data-field="From" data-th="From" data-row-id="{{$order['id']}}" data-target="#modal_view_order" data-form="#modal_view_order">
                                             <a href="#modal_view_order" role="button" class="link">
                                                 {{$order['landing']}}
                                             </a>
                                         </td>
-                                        <td class="rwd-td4 table_time_cell_large to align_order" data-field="To" data-th="To" data-row-id="{{$order['id']}}" data-target="#modal_view_order" data-form="#modal_view_order">
+                                        <td class="rwd-td4 editable_cell table_time_cell_large to align_order" data-field="To" data-th="To" data-row-id="{{$order['id']}}" data-target="#modal_view_order" data-form="#modal_view_order">
                                             <a href="#modal_view_order" role="button" class="link">
                                                 {{$order['departure']}}
                                             </a>

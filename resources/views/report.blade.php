@@ -239,7 +239,7 @@
                                             <span class="table_status_text not_used">{{$order['status']}}</span>
                                         </td>--}}
                                         <td class="rwd-td9 table_status_cell" data-th="Remove">
-                                            {{$order['duration']}} days
+                                            {{$order['duration']}} day(s)
                                         </td>
                                     </tr>
                                     @endforeach
