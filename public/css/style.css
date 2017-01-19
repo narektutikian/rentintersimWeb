@@ -1393,6 +1393,13 @@ input[type="radio"].toggle.checked + label {
         color: #ffffff; }
       .single_package a.selected_package span {
         color: #ffffff; }
+  .single_package#wrap_package_list_view {
+    float: none; }
+    .single_package#wrap_package_list_view .selected_package {
+      padding: 0 10px; }
+      .single_package#wrap_package_list_view .selected_package h4 {
+        margin-top: 10px;
+        margin-bottom: 12px; }
 
 .print_image {
   display: block;

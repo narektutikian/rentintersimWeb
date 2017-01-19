@@ -86,8 +86,10 @@
                                                 {{$order['landing']}}
                                             </a>
                                         </td>
-                                        <td class="rwd-td4 table_time_cell_large to align_order" data-field="To" data-th="To" data-toggle="modal" data-row-id="{{$order['id']}}" data-target="#modal_edit_order" data-form="#modal_edit_order">
-                                            {{$order['departure']}}
+                                        <td class="rwd-td4 table_time_cell_large to align_order" data-field="To" data-th="To" data-row-id="{{$order['id']}}" data-target="#modal_view_order" data-form="#modal_view_order">
+                                            <a href="#modal_view_order" role="button" class="link">
+                                                {{$order['departure']}}
+                                            </a>
                                         </td>
                                         <td class="rwd-td5 editable_cell align_order" data-field="Created by" data-th="Created by" data-row-id="{{$order['id']}}" data-target="#modal_view_order" data-form="#modal_view_order">
                                             <a href="#modal_view_order" role="button" class="link">
@@ -320,9 +322,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <div class="col-md-12">
-                                        <div class="single_package email_print" id="wrap_package_list_edit"></div>
-                                    </div>
+                                    <div class="single_package email_print" id="wrap_package_list_edit"></div>
                                 </div>
                                 <div class="form-group">
                                     <div class="row">
