@@ -2121,6 +2121,23 @@ textarea.error {
   font-style: normal;
   font-family: "proxima_nova_rgregular", Arial, Helvetica, sans-serif; }
 
+.required_mark {
+  color: red;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-family: "proxima_nova_rgregular", Arial, Helvetica, sans-serif; }
+
+.required_mark_description {
+  position: absolute;
+  bottom: 40px;
+  left: 25px;
+  color: #1b6db2;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-family: "proxima_nova_rgregular", Arial, Helvetica, sans-serif; }
+
 .disable {
   pointer-events: none;
   cursor: default;

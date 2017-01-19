@@ -548,6 +548,7 @@ $( document ).ready(function() {
     $('.link').on('click', function (event) {
         event.preventDefault();
     });
+
     $('.link').on('dblclick', function (event) {
 
         event.preventDefault();

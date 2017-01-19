@@ -44,7 +44,7 @@
                             <div class="col-md-6 vdf_modal_left">
                                 <div class="form-group">
                                     <div class="col-md-6">
-                                        <label class="table_label">Name</label>
+                                        <label class="table_label">Name <span class="required_mark">*</span></label>
                                         <div class="form_row">
                                             <input type="text" name="name" id="name" class="block_btn_30 modal_input vd_required" value=""/>
                                             {{csrf_field()}}
@@ -52,7 +52,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="table_label">Level</label>
+                                        <label class="table_label">Level <span class="required_mark">*</span></label>
                                         <div class="form_row">
                                             <div class="select_wrapper">
                                                 <select class="block_btn_30 modal_input vd_select" name="level"  id="level">
@@ -68,7 +68,7 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-6">
-                                        <label class="table_label">Type</label>
+                                        <label class="table_label">Type <span class="required_mark">*</span></label>
                                         <div class="form_row">
                                             <div class="select_wrapper">
                                                 <select class="block_btn_30 modal_input vd_select" name="type" id="type">
@@ -82,7 +82,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="table_label {{ (Auth::user()->level != 'Super admin') ? 'hidden' : '' }}">Parent Username</label>
+                                        <label class="table_label {{ (Auth::user()->level != 'Super admin') ? 'hidden' : '' }}">Parent Username </label>
                                         <div class="form_row {{ (Auth::user()->level != 'Super admin') ? 'hidden' : '' }}">
                                             <div class="select_wrapper">
                                                 <select class="block_btn_30 modal_input" name="supervisor_id" id="supervisor_id">
@@ -99,7 +99,7 @@
 
                                 <div class="form-group">
                                     <div class="col-md-6">
-                                        <label class="table_label">Primary Email</label>
+                                        <label class="table_label">Primary Email <span class="required_mark">*</span></label>
                                         <div class="form_row">
                                             <input type="text" class="block_btn_30 modal_input vd_email vd_required" name="email" id="email" value="" data-th="Primary Email"/>
                                             <i class="input_icon icon-email"></i>
@@ -119,14 +119,14 @@
                             <div class="col-md-6 vdf_modal_right">
                                 <div class="form-group">
                                     <div class="col-md-6">
-                                        <label class="table_label">Username</label>
+                                        <label class="table_label">Username <span class="required_mark">*</span></label>
                                         <div class="form_row">
                                             <input type="text" class="block_btn_30 modal_input vd_required" id="username" name="username" value=""/>
                                             <i class="input_icon icon-username"></i>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="table_label">Password</label>
+                                        <label class="table_label">Password <span class="required_mark">*</span></label>
                                         <div class="form_row">
                                             <input type="password" class="block_btn_30 modal_input vd_required" id="password" name="password" value=""/>
                                             <i class="input_icon icon-password"></i>
@@ -140,6 +140,7 @@
                     <a href="#" class="inline_block_btn light_gray_btn close vd_form_reset" data-dismiss="modal" aria-label="Close">Cancel</a>
                     <a href="#" class="inline_block_btn light_green_btn vd_form_submit" id="create-user">Create User</a>
 
+                    <span class="required_mark_description">* Required field</span>
                     <span class="success_response"></span>
                     <span class="error_response"></span>
                 </div>
@@ -164,7 +165,7 @@
                             <div class="col-md-6 vdf_modal_left">
                                 <div class="form-group">
                                     <div class="col-md-6">
-                                        <label class="table_label">Name</label>
+                                        <label class="table_label">Name <span class="required_mark">*</span></label>
                                         <div class="relative">
                                             <input type="text" class="block_btn_30 modal_input name" name="name" id="name_edit" data-th="Name" value=""/>
                                             <input type="hidden" value="" class="user_edit_id" />
@@ -174,7 +175,7 @@
 
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="table_label">Level</label>
+                                        <label class="table_label">Level <span class="required_mark">*</span></label>
                                         <div class="select_wrapper">
                                             <select class="block_btn_30 modal_input level" name="level" data-th="Level">
                                                 <option value=""></option>
@@ -191,7 +192,7 @@
                                 <div class="form-group">
                                     <div class="col-md-6">
 
-                                        <label class="table_label">Type</label>
+                                        <label class="table_label">Type <span class="required_mark">*</span></label>
                                         <div class="select_wrapper">
                                             <select class="block_btn_30 modal_input type" name="type" data-th="Type">
                                                 <option value=""></option>
@@ -219,7 +220,7 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-6">
-                                        <label class="table_label">Primary Email</label>
+                                        <label class="table_label">Primary Email <span class="required_mark">*</span></label>
                                         <div class="form_row">
                                             <input type="text" class="block_btn_30 modal_input vd_email vd_required email" name="email" id="email" value="" data-th="Primary Email"/>
                                             <i class="input_icon icon-email"></i>
@@ -238,7 +239,7 @@
                             <div class="col-md-6 vdf_modal_right">
                                 <div class="form-group">
                                     <div class="col-md-6">
-                                        <label class="table_label">Username</label>
+                                        <label class="table_label">Username <span class="required_mark">*</span></label>
                                         <div class="relative">
                                             <input type="text" class="block_btn_30 modal_input login" data-th="Username" name="login" value=""/>
                                             <i class="input_icon icon-username"></i>
@@ -261,6 +262,7 @@
                     <a href="#" class="inline_block_btn light_gray_btn close vd_form_reset" data-dismiss="modal" aria-label="Close">Cancel</a>
                     <a href="#" class="inline_block_btn light_green_btn vd_form_submit" id="edit_user_submit">Update User</a>
 
+                    <span class="required_mark_description">* Required field</span>
                     <span class="success_response"></span>
                     <span class="error_response"></span>
                 </div>

@@ -155,7 +155,7 @@
                             <div class="col-md-6 vdf_modal_left ovh">
                                 <div class="form-group">
                                     <div class="col-md-6">
-                                        <label class="table_label">Enter a SIM number</label>
+                                        <label class="table_label">Enter a SIM number <span class="required_mark">*</span></label>
                                         <input type="text" name="sim1" id="sim" class="block_btn_30 modal_input_without_icon vd_number" value=""/>
                                     </div>
                                     <div class="col-md-6">
@@ -177,7 +177,7 @@
                                 </div>
                             </div>
                             <div class="col-md-6 vdf_modal_right">
-                                <label class="table_label">Destination flight details</label>
+                                <label class="table_label">Destination flight details <span class="required_mark">*</span></label>
                                 <div class="form-group">
                                     <div class="col-md-6">
                                         <div class="departure"><i class="icon-landing"></i> Landing date and time</div>
@@ -288,6 +288,7 @@
                         {{--<button type="submit" href="#" class="inline_block_btn light_green_btn vd_form_submit" id="create-order">Create order</button>--}}
                         <a href="#" class="inline_block_btn light_green_btn vd_form_submit" id="create-order">Create Order</a>
 
+                        <span class="required_mark_description">* Required field</span>
                         <span class="success_response"></span>
                         <span class="error_response"></span>
                     </div>

@@ -109,7 +109,7 @@
                             <div class="col-md-6 vdf_modal_left">
                                 <div class="form-group">
                                     <div class="col-md-6">
-                                        <label class="table_label">Phone Number</label>
+                                        <label class="table_label">Phone Number <span class="required_mark">*</span></label>
                                         <div class="relative">
                                             <input type="text" name="phone_number" id="number" class="block_btn_30 modal_input vd_number" value=""/>
                                             {{csrf_field()}}
@@ -117,7 +117,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="table_label">Parking SIM number</label>
+                                        <label class="table_label">Parking SIM number <span class="required_mark">*</span></label>
                                         <div class="select_wrapper">
                                             <select name="prk_sim_num" id="sim_id" class="block_btn_30 modal_input vd_select">
                                                 <option value=""></option>
@@ -132,7 +132,7 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-6">
-                                        <label class="table_label">Provider </label>
+                                        <label class="table_label">Provider <span class="required_mark">*</span></label>
                                         <div class="select_wrapper">
                                             <select name="some_prov_num" id="provider_id" class="block_btn_30 modal_input vd_select">
                                                 <option value=""></option>
@@ -142,7 +142,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="table_label">Type</label>
+                                        <label class="table_label">Type <span class="required_mark">*</span></label>
                                         <div class="select_wrapper">
                                             <select name="prk_sim_num2" id="package_id" class="block_btn_30 modal_input vd_select">
                                                 <option value=""></option>
@@ -190,6 +190,7 @@
                         <a href="#" class="inline_block_btn light_gray_btn close vd_form_reset" data-dismiss="modal" aria-label="Close">Cancel</a>
                         <a href="#" class="inline_block_btn light_green_btn vd_form_submit" id="add-number">Add Number</a>
 
+                        <span class="required_mark_description">* Required field</span>
                         <span class="success_response"></span>
                         <span class="error_response"></span>
                     </div>
@@ -216,7 +217,7 @@
                             <div class="col-md-6 vdf_modal_left">
                                 <div class="form-group">
                                     <div class="col-md-6">
-                                        <label class="table_label">Phone Number</label>
+                                        <label class="table_label">Phone Number <span class="required_mark">*</span></label>
                                         <div class="relative">
                                             <input type="hidden" name="some_numb_edit_id" data-th="Id" id="id" value=""/>
                                             <input type="text" name="phone" id="number-edit" class="block_btn_30 modal_input vd_number" data-th="Phone Number" value=""/>
@@ -239,7 +240,7 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-6">
-                                        <label class="table_label">Provider </label>
+                                        <label class="table_label">Provider <span class="required_mark">*</span></label>
                                         <div class="select_wrapper">
                                             <select name="provider_id" id="provider_id-edit" class="block_btn_30 modal_input vd_select" data-th="Provider">
                                                 <option value=""></option>
@@ -250,7 +251,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="table_label">Type</label>
+                                        <label class="table_label">Type <span class="required_mark">*</span></label>
                                         <div class="select_wrapper">
                                             <select name="package_id" class="block_btn_30 modal_input vd_select" id="package_id-edit" data-th="Type">
                                                 <option value=""></option>
@@ -301,6 +302,7 @@
                         <a href="#" class="inline_block_btn light_gray_btn close vd_form_reset" data-dismiss="modal" aria-label="Close">Cancel</a>
                         <a href="#" class="inline_block_btn light_green_btn vd_form_submit" id="edit-number">Update Number</a>
 
+                        <span class="required_mark_description">* Required field</span>
                         <span class="success_response"></span>
                         <span class="error_response"></span>
                     </div>
