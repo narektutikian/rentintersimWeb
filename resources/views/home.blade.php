@@ -182,7 +182,7 @@
                                     <div class="col-md-6">
                                         <div class="departure"><i class="icon-landing"></i> Landing date and time</div>
                                         <div class="wrap_date">
-                                            <div class="input-group date flight_dates" data-provide="datepicker">
+                                            <div class="input-group flight_dates flight_picker" data-provide="datepicker">
                                                 <div class="input-group-addon">
                                                     <span class="glyphicon glyphicon-calendar"></span>
                                                 </div>
@@ -215,7 +215,7 @@
                                     <div class="col-md-6">
                                         <div class="departure"><i class="icon-departure"></i> Departure date and time</div>
                                         <div class="wrap_date">
-                                            <div class="input-group date flight_dates" data-provide="datepicker">
+                                            <div class="input-group flight_dates flight_picker" data-provide="datepicker">
                                                 <div class="input-group-addon">
                                                     <span class="glyphicon glyphicon-calendar"></span>
                                                 </div>

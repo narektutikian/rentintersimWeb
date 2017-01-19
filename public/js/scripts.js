@@ -317,8 +317,8 @@ $( document ).ready(function() {
         //keepOpen : true,
         //maxDate: 'now',
         //showTodayButton: true,
-        showClear: true,
-        minDate: date
+        //showClear: true,
+        //minDate: date
     });
 
     $('.flight_dates').datetimepicker({
