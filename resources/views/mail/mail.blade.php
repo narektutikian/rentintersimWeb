@@ -54,7 +54,7 @@
             <tr>
                 <td>--
                     <br />SYC GROUP
-                    <br /> Phone: +(972)-52-890-7711
+                    <br /> Phone: +972-722131366
                     <br /> Email: service@syc.co.il </td>
             </tr>
             </tbody>

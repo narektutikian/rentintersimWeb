@@ -101,6 +101,9 @@ class PhoneController extends Controller
      */
     public function edit($id)
     {
+        $number = Phone::find($id);
+        $number = self::solvePhoneList([$number]);
+        return response($number);
 
     }
 
@@ -132,13 +135,17 @@ class PhoneController extends Controller
         //
         $phone = Phone::find($id);
 
-        if ($phone->phone != $request->input('phone'))
+        if ($phone->phone != $request->input('phone')){
             $this->validate(request(), ['phone' => 'unique:phones']);
-
-        $phone->phone = $request->input('phone');
+        }
+        $number = $this->validateNumber($request->input('phone'));
+        $phone->phone = $number;
 //        $phone->state = 'not in use';
-        if ($request->has('initial_sim_id'))
-        $phone->initial_sim_id = $request->input('initial_sim_id');
+        if ($request->has('initial_sim_id')){
+            $phone->initial_sim_id = $request->input('initial_sim_id');
+            $phone->current_sim_id = $request->input('initial_sim_id');
+
+        }
 //         $phone-> current_sim_id = $request->input('lending');
         $phone->package_id = $request->input('package_id');
 //        $phone->provider_id = $request->input('provider_id');
@@ -190,6 +197,9 @@ class PhoneController extends Controller
 
     public function filter($filter){
 
+        if ($filter == 'special')
+            $phones = Phone::where('is_special', 1)->orderby('id', 'desc')->paginate(env('PAGINATE_DEFAULT'));
+        else
         $phones = Phone::filter($filter)->orderby('id', 'desc')->paginate(env('PAGINATE_DEFAULT'));
         $phonesArray = $this->solvePhoneList($phones);
 

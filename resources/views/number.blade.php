@@ -18,8 +18,8 @@
                     <a class="filter_option {{ (Request::is('filter-numberlist/not in use')) ? 'blue' : 'light_blue' }}" href="{{url('/filter-numberlist/not in use')}}">
                         <span class="status disabled"></span> not in use ({{$counts['not in use']}})
                     </a>
-                    <a class="filter_option {{ (Request::is('filter-numberlist/not in use')) ? 'blue' : 'light_blue' }} last" href="{{url('/filter-numberlist/not in use')}}">
-                        <span class="status done"></span> Special ({{$counts['not in use']}})
+                    <a class="filter_option {{ (Request::is('filter-numberlist/special')) ? 'blue' : 'light_blue' }} last" href="{{url('/filter-numberlist/special')}}">
+                        <span class="status done"></span> Special ({{$counts['specials']}})
                     </a>
                     <div class="search_management_option">
                         <form action="{{url('search/number')}}" class="search_form_option">
@@ -58,8 +58,8 @@
                                     <td class="rwd-td2 editable_cell {{ ($number['state'] == 'not in use') ? 'disable' : '' }}" data-th="SIM Number">{{$number['current_sim_id']}} </td>
                                 <td class="rwd-td3 editable_cell" data-th="Provider">{{$number['provider_id']}}</td>
                                 <td class="rwd-td4 editable_cell" data-th="Type">{{$number['package_id']}}</td>
-                                <td class="rwd-td5 table_action_cell" data-th="Action">
-                                    <span class="table_icon edit {{ ($number['state'] != 'not in use') ? 'disable' : '' }}" data-toggle="modal" data-target="#modal_edit_number" data-form="#modal_edit_number">
+                                <td class="rwd-td5 table_action_cell" data-th="Action" data-row-id="{{$number['id']}}">
+                                    <span class="table_icon edit number_edit {{ ($number['state'] != 'not in use') ? 'disable' : '' }}" data-toggle="modal" data-target="#modal_edit_number" data-form="#modal_edit_number">
                                         <i class="icon-edit"></i>
                                     </span>
 
@@ -91,7 +91,7 @@
 
 
 
-    <!-- Add User Modal -->
+    <!-- Add Number Modal -->
     <div class="modal fade" id="modal_add_number" tabindex="-1" role="dialog" aria-labelledby="modal_add_number">
         <div class="modal-dialog vdf_modal" role="document">
             <div class="modal-content vdf_modal_content">
