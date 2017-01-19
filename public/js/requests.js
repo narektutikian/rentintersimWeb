@@ -495,7 +495,7 @@ $(document).ready(function () {
                 error: function (error) {
                     $(".error_response").empty();
                     $(".success_response").empty();
-                    $(".error_response").append("ERROR");
+                    $(".error_response").append("ERROR " + error.responseText);
                     // $("#sim-edit-response").append("<div>"+"ERROR "+ error.responseJSON.number[0]+ " ," +error.responseJSON.provider_id[0] +"</div>");
                     // console.log(error.responseJSON.number[0]);
                 }
@@ -723,6 +723,31 @@ $(document).ready(function () {
                 }
             });
         }
+    });
+
+    $('.number_edit').on('click', function () {
+        var row_id = $(this).parents('td').attr('data-row-id');
+
+        $.get("/number/" + row_id + "/edit", function (order_data, order_status) {
+            if (order_status == "success") {
+
+                $("#sim_id-edit").append($('<option>', {
+                    value: order_data[0].initial_sim_id,
+                    text: order_data[0].current_sim_id
+                }));
+                $("#sim_id-edit").val(order_data[0].initial_sim_id);
+
+
+                if(order_data[0].is_special == 1){
+
+                    $("#is_special-edit").attr("checked", true);
+                }
+                else if (order_data[0].is_special == 0)
+                $("#is_special-edit").prop('checked', false);
+            }
+
+        });
+
     });
 
 }); // closes document ready

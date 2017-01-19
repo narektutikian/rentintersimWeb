@@ -49,6 +49,7 @@ class NumberComposer
             'pending' => Phone::filter('pending')->count(),
             'not in use' => Phone::filter('not in use')->count(),
         ]);
+        $counts['specials'] = Phone::where('is_special', 1)->count();
 
         $parking = DB::table('sims')->select('id', 'state', 'number')->where('state','=', 'parking')->whereNotIn('id', function($q){
             $q->select('initial_sim_id')->from('phones')->where('id', '>', 0);
