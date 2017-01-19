@@ -401,6 +401,8 @@ input[type="radio"].toggle.checked + label {
     color: #2cc763;
     border: 1px solid #2cc763;
     background: #F3F3F3; }
+  .vdf_checkbox.disable {
+    opacity: 1; }
 
 /* end of Styling Checkbox */
 .table_label {
@@ -1393,6 +1395,13 @@ input[type="radio"].toggle.checked + label {
         color: #ffffff; }
       .single_package a.selected_package span {
         color: #ffffff; }
+  .single_package#wrap_package_list_view {
+    float: none; }
+    .single_package#wrap_package_list_view .selected_package {
+      padding: 0 10px; }
+      .single_package#wrap_package_list_view .selected_package h4 {
+        margin-top: 10px;
+        margin-bottom: 12px; }
 
 .print_image {
   display: block;
@@ -2109,6 +2118,23 @@ textarea.error {
   bottom: 10px;
   left: 25px;
   color: red;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-family: "proxima_nova_rgregular", Arial, Helvetica, sans-serif; }
+
+.required_mark {
+  color: red;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-family: "proxima_nova_rgregular", Arial, Helvetica, sans-serif; }
+
+.required_mark_description {
+  position: absolute;
+  bottom: 40px;
+  left: 25px;
+  color: #1b6db2;
   font-size: 14px;
   font-weight: normal;
   font-style: normal;

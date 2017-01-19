@@ -86,8 +86,10 @@
                                                 {{$order['landing']}}
                                             </a>
                                         </td>
-                                        <td class="rwd-td4 table_time_cell_large to align_order" data-field="To" data-th="To" data-toggle="modal" data-row-id="{{$order['id']}}" data-target="#modal_edit_order" data-form="#modal_edit_order">
-                                            {{$order['departure']}}
+                                        <td class="rwd-td4 table_time_cell_large to align_order" data-field="To" data-th="To" data-row-id="{{$order['id']}}" data-target="#modal_view_order" data-form="#modal_view_order">
+                                            <a href="#modal_view_order" role="button" class="link">
+                                                {{$order['departure']}}
+                                            </a>
                                         </td>
                                         <td class="rwd-td5 editable_cell align_order" data-field="Created by" data-th="Created by" data-row-id="{{$order['id']}}" data-target="#modal_view_order" data-form="#modal_view_order">
                                             <a href="#modal_view_order" role="button" class="link">
@@ -153,7 +155,7 @@
                             <div class="col-md-6 vdf_modal_left ovh">
                                 <div class="form-group">
                                     <div class="col-md-6">
-                                        <label class="table_label">Enter a SIM number</label>
+                                        <label class="table_label">Enter a SIM number <span class="required_mark">*</span></label>
                                         <input type="text" name="sim1" id="sim" class="block_btn_30 modal_input_without_icon vd_number" value=""/>
                                     </div>
                                     <div class="col-md-6">
@@ -175,7 +177,7 @@
                                 </div>
                             </div>
                             <div class="col-md-6 vdf_modal_right">
-                                <label class="table_label">Destination flight details</label>
+                                <label class="table_label">Destination flight details <span class="required_mark">*</span></label>
                                 <div class="form-group">
                                     <div class="col-md-6">
                                         <div class="departure"><i class="icon-landing"></i> Landing date and time</div>
@@ -286,6 +288,7 @@
                         {{--<button type="submit" href="#" class="inline_block_btn light_green_btn vd_form_submit" id="create-order">Create order</button>--}}
                         <a href="#" class="inline_block_btn light_green_btn vd_form_submit" id="create-order">Create Order</a>
 
+                        <span class="required_mark_description">* Required field</span>
                         <span class="success_response"></span>
                         <span class="error_response"></span>
                     </div>
@@ -320,9 +323,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <div class="col-md-12">
-                                        <div class="single_package email_print" id="wrap_package_list_edit"></div>
-                                    </div>
+                                    <div class="single_package email_print" id="wrap_package_list_edit"></div>
                                 </div>
                                 <div class="form-group">
                                     <div class="row">

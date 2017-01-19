@@ -97,7 +97,7 @@
                             <div class="col-md-6 vdf_modal_left">
                                 <div class="form-group">
                                     <div class="col-md-6">
-                                        <label class="table_label">SIM Number</label>
+                                        <label class="table_label">SIM Number <span class="required_mark">*</span></label>
                                         <div class="relative">
                                             <input type="text" name="some_sim_edit" id="sim-number" class="block_btn_30 modal_input vd_number" value=""/>
                                             {{csrf_field()}}
@@ -105,7 +105,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="table_label">Provider</label>
+                                        <label class="table_label">Provider <span class="required_mark">*</span></label>
                                         <div class="select_wrapper">
                                             <select name="sim_select" id="provider-id" class="block_btn_30 modal_input vd_select">
                                                 <option value=""></option>
@@ -151,7 +151,7 @@
                         {{--<input type="submit" class="inline_block_btn light_green_btn vd_form_submit" id="add-sim" value="Add SIM">--}}
                         <a href="#" class="inline_block_btn light_green_btn vd_form_submit" id="add-sim">Add SIM</a>
 
-
+                        <span class="required_mark_description">* Required field</span>
                         <span class="success_response"></span>
                         <span class="error_response"></span>
                     </div>
@@ -180,7 +180,7 @@
                             <div class="col-md-6 vdf_modal_left">
                                 <div class="form-group">
                                     <div class="col-md-6">
-                                        <label class="table_label">SIM Number</label>
+                                        <label class="table_label">SIM Number <span class="required_mark">*</span></label>
                                         <div class="relative">
                                             <input type="hidden" name="some_sim_edit_id" class="block_btn_30 modal_input" data-th="Id" id="id" value=""/>
                                             <input type="text" name="some_sim_edit2" class="block_btn_30 modal_input vd_number vd_number" id="number" data-th="SIM Number" value=""/>
@@ -188,7 +188,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="table_label">Provider</label>
+                                        <label class="table_label">Provider <span class="required_mark">*</span></label>
                                         <div class="select_wrapper">
                                             <select name="sim_select" class="block_btn_30 modal_input vd_select" id="provider_id" data-th="Provider">
                                                 <option value=""></option>
@@ -238,6 +238,7 @@
                     {{--<input type="submit" class="inline_block_btn light_green_btn vd_form_submit" id="edit-sim" value="Edit SIM">--}}
                     <a href="#" class="inline_block_btn light_green_btn vd_form_submit" id="edit-sim">Update SIM</a>
 
+                    <span class="required_mark_description">* Required field</span>
                     <span class="success_response"></span>
                     <span class="error_response"></span>
                 </div>

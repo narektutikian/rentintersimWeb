@@ -96,14 +96,14 @@
                             <div class="col-md-6 vdf_modal_left">
                                 <div class="form-group">
                                     <div class="col-md-6">
-                                        <label class="table_label">Type Name</label>
+                                        <label class="table_label">Type Name <span class="required_mark">*</span></label>
                                         <div class="relative">
                                             <input type="text" class="block_btn_30 modal_input vd_required" id="name" name="name" value=""/>
                                             <i class="input_icon icon-add_type"></i>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="table_label">Provider</label>
+                                        <label class="table_label">Provider <span class="required_mark">*</span></label>
 
                                         <div class="select_wrapper">
                                             <select name="provider_id" class="block_btn_30 modal_input vd_select" id="provider_id" >
@@ -117,14 +117,14 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-6">
-                                        <label class="table_label">Type Code</label>
+                                        <label class="table_label">Type Code <span class="required_mark">*</span></label>
                                         <div class="relative">
                                             <input type="text" class="block_btn_30 modal_input vd_number" id="type_code" name="type_code" value=""/>
                                             <i class="input_icon icon-type"></i>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="table_label">Description</label>
+                                        <label class="table_label">Description <span class="required_mark">*</span></label>
                                         <textarea class="modal_textarea vd_required" id="description" name="description"></textarea>
                                     </div>
                                 </div>
@@ -157,6 +157,7 @@
                         <a href="#"  class="inline_block_btn light_gray_btn close vd_form_reset" data-dismiss="modal" aria-label="Close">Cancel</a>
                         <a href="#" id="add-type" class="inline_block_btn light_green_btn vd_form_submit">Create New Type</a>
 
+                        <span class="required_mark_description">* Required field</span>
                         <span class="success_response"></span>
                         <span class="error_response"></span>
                     </div>
@@ -187,7 +188,7 @@
                             <div class="col-md-6 vdf_modal_left">
                                 <div class="form-group">
                                     <div class="col-md-6">
-                                        <label class="table_label">Type Name</label>
+                                        <label class="table_label">Type Name <span class="required_mark">*</span></label>
                                         <div class="relative">
                                         <input type="hidden" name="some_type_edit_id" data-th="Id" id="id-edit" value=""/>
                                             <input type="text" name="name" id="name-edit" class="block_btn_30 modal_input vd_required" data-th="Type Name" value=""/>
@@ -196,7 +197,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="table_label">Provider</label>
+                                        <label class="table_label">Provider <span class="required_mark">*</span></label>
                                         <div class="select_wrapper">
                                             <select name="provider_id" id="provider_id-edit" class="block_btn_30 modal_input vd_select" data-th="Provider">
                                                 <option value=""></option>
@@ -208,14 +209,14 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-6">
-                                        <label class="table_label">Type Code</label>
+                                        <label class="table_label">Type Code <span class="required_mark">*</span></label>
                                         <div class="relative">
                                             <input type="text" name="type_code" id="type_code-edit" class="block_btn_30 modal_input" data-th="Type Code" value=""/>
                                             <i class="input_icon icon-type"></i>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="table_label">Description</label>
+                                        <label class="table_label">Description <span class="required_mark">*</span></label>
                                         <textarea class="modal_textarea vd_required" id="description-edit" data-th="Description"></textarea>
                                     </div>
                                 </div>
@@ -244,6 +245,7 @@
                         <a href="#" class="inline_block_btn light_gray_btn close vd_form_reset" data-dismiss="modal" aria-label="Close">Cancel</a>
                         <a href="#" class="inline_block_btn light_green_btn vd_form_submit" id="type-edit">Update type</a>
 
+                        <span class="required_mark_description">* Required field</span>
                         <span class="success_response"></span>
                         <span class="error_response"></span>
                     </div>
