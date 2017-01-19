@@ -685,68 +685,73 @@
                     </div>
                 </div>
 
-                    <div class="modal-body vdf_modal_body">
-                        <div class="form-group">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    {{--<div class="col-md-12">--}}
-                                        {{--<img  src="/img/print_image.jpg" class="print_image" alt="print image">--}}
-                                    {{--</div>--}}
-                                    <div class="clear"></div>
-                                </div>
-                                <div class="form-group">
-
-                                    <div class="email_phone_num"></div>
-
-                                    <div class="clear"></div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="email_print">
-                                        <div class="single_package email_print selected_package_print">
-
-                                        </div>
-                                    </div>
-                                    <div class="clear"></div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-12">
-                                        <div class="email_message">
-                                            {{--<h3>Dear Username,</h3>--}}
-                                            {{--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>--}}
-
-                                        </div>
-                                    </div>
-                                    <div class="clear"></div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-12">
-                                        <label class="table_label">Active Period</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="departure">From : <div class="email_date_time from_print"></div></div>
-                                        <div class="clear"></div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="departure"> To : <div class="email_date_time to_print"></div></div>
-                                        <div class="clear"></div>
-                                    </div>
-                                </div>
-
+                <div class="modal-body vdf_modal_body">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                {{--<div class="col-md-12">--}}
+                                    {{--<img  src="/img/print_image.jpg" class="print_image" alt="print image">--}}
+                                {{--</div>--}}
+                                <div class="clear"></div>
                             </div>
-                        </div>
-                        <div class="clear"></div>
-                    </div>
-                    <div class="modal-footer vdf_modal_footer">
-                        <span class="c_support">Customer support: +972 722131366</span>
+                            <div class="form-group">
 
-                        <span class="email_send_print no-print">
-                            <i class="icon-print"></i>
-                        </span>
+                                <div class="email_phone_num"></div>
+
+                                <div class="clear"></div>
+                            </div>
+                            <div class="form-group">
+                                <div class="email_print">
+                                    <div class="single_package email_print selected_package_print">
+
+                                    </div>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <div class="email_message">
+                                        {{--<h3>Dear Username,</h3>--}}
+                                        {{--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>--}}
+
+                                    </div>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <label class="table_label">Active Period</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="departure">From : <div class="email_date_time from_print"></div></div>
+                                    <div class="clear"></div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="departure"> To : <div class="email_date_time to_print"></div></div>
+                                    <div class="clear"></div>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="modal-footer vdf_modal_footer">
+                    <span class="c_support">Customer support: +972 722131366</span>
+
+                    <span class="email_send_print no-print">
+                        <i class="icon-print"></i>
+                    </span>
+                </div>
 
             </div>
         </div>
     </div>
     <!--end Print Modal-->
+
+
+    <!--New Mail Modal 1-->
+    <!--end of New Mail Modal 1-->
+
 
 @endsection

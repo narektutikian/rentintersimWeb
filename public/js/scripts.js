@@ -321,26 +321,34 @@ $( document ).ready(function() {
         minDate: date
     });
 
+    $('.flight_dates').datetimepicker({
+        //keepOpen : true,
+        //maxDate: 'now',
+        //showTodayButton: true,
+        showClear: true,
+        minDate: date
+    });
+
     var ln_date_min, dp_date_max ;
 
-    $('#landing_date').closest('.date').on('dp.change', function(e){
+    $('#landing_date').closest('.flight_dates').on('dp.change', function(e){
 
-        ln_date_min =  $('#landing_date').closest('.date').data('date');
+        ln_date_min =  $('#landing_date').closest('.flight_dates').data('date');
 
         var res = ln_date_min.split('/');
         var final_res = res[1] + '/' + res[0] + '/' + res[2];
 
-        $('#departure_date').closest('.date').data("DateTimePicker").minDate(ln_date_min);
-        $('#departure_date').closest('.date').find('td.active').removeClass('active');
-        $('#departure_date').closest('.date').find('td[data-day="' + final_res + '"]').addClass('active');
+        $('#departure_date').closest('.flight_dates').data("DateTimePicker").minDate(ln_date_min);
+        $('#departure_date').closest('.flight_dates').find('td.active').removeClass('active');
+        $('#departure_date').closest('.flight_dates').find('td[data-day="' + final_res + '"]').addClass('active');
 
     });
 
-    $('#departure_date').closest('.date').on('dp.change', function(e){
+    $('#departure_date').closest('.flight_dates').on('dp.change', function(e){
 
         dp_date_max =  $('#departure_date').closest('.date').data('date');
 
-        $('#landing_date').closest('.date').data("DateTimePicker").maxDate(dp_date_max);
+        $('#landing_date').closest('.flight_dates').data("DateTimePicker").maxDate(dp_date_max);
 
     });
 
