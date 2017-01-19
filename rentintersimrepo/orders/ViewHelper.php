@@ -47,7 +47,7 @@ class ViewHelper
             $ordersArray[$key]['package_name'] = $order->package->name;
 //        $ordersArray[$key]['landing'] = $viewHelper->present($ordersArray[$key]['landing']);
 //        $ordersArray[$key]['departure'] = $viewHelper->present($ordersArray[$key]['departure']);
-            $ordersArray[$key]['duration'] = $this->format_interval($this->calculateInterval($ordersArray[$key]['landing'], $ordersArray[$key]['departure']));
+            $ordersArray[$key]['duration'] = $this->calculateInterval($ordersArray[$key]['landing'], $ordersArray[$key]['departure']);
             unset($ordersArray[$key]['costumer_number']);
             unset($ordersArray[$key]['deleted_at']);
 
@@ -57,21 +57,22 @@ class ViewHelper
 
     public function totalDuration($solvedArray)
     {
-        $total = new DateInterval('P0Y0DT0H0M');
+//        $total = new DateInterval('P0Y0DT0H0M');
 //        dd($total);
         foreach ($solvedArray as $item){
-            $diff = $this->calculateInterval($item['landing'], $item['departure']);
-            $total->y += $diff->y;
-            $total->m += $diff->m;
-            $total->d += $diff->d;
-            $total->h += $diff->h;
-            $total->i += $diff->i;
-            $total->s += $diff->s;
+//            $diff = $this->calculateInterval($item['landing'], $item['departure']);
+//            $total->y += $diff->y;
+//            $total->m += $diff->m;
+//            $total->d += $diff->d;
+//            $total->h += $diff->h;
+//            $total->i += $diff->i;
+//            $total->s += $diff->s;
+
 
         }
 //        $interval_spec = 'P'.$total->y.'Y'.$total->m.'M'.$total->d.'DT'.$total->h.'H'.$total->i.'M'.$total->s.'S';
-        return CarbonInterval::create($total->y, $total->m, 0, $total->d, $total->h, $total->i, $total->s);
-
+//        return CarbonInterval::create($total->y, $total->m, 0, $total->d, $total->h, $total->i, $total->s);
+            return -1;
     }
 
     public function getCounts($userManager){
@@ -122,11 +123,17 @@ class ViewHelper
 
     private function calculateInterval ($timestampFrom, $timestampTo)
     {
-        $from = Carbon::createFromFormat('d/m/Y H:i', $timestampFrom);
-        $to = Carbon::createFromFormat('d/m/Y H:i', $timestampTo);
-//        $interval =
 //        return CarbonInterval::create($interval->y, $interval->m, 0, $interval->d, $interval->h, $interval->i, $interval->s);
-        return $from->diff($to);
+        $from = Carbon::createFromFormat('d/m/Y H:i', $timestampFrom)->timestamp;
+        $to = Carbon::createFromFormat('d/m/Y H:i', $timestampTo)->timestamp + 60;
+        $seconds = $to - $from;
+        $interval = floor($seconds / 86400);
+        if ($seconds % 86400 > 0)
+            $interval++;
+
+//        dd($interval);
+
+        return $interval;
 
     }
     public function prepareExport($orders)

@@ -60,7 +60,7 @@
                                                             <div class="input-group-addon">
                                                                 <span class="glyphicon glyphicon-calendar"></span>
                                                             </div>
-                                                            <input type="text" name="from" id="departure_date" class="inline_block_btn departure_date vd_date_required" data-date-format="DD/MM/YYYY" value="{{ (isset($_GET['from'])) ? $_GET['from'] : '' }}">
+                                                            <input type="text" name="from" class="inline_block_btn departure_date vd_date_required" data-date-format="DD/MM/YYYY" value="{{ (isset($_GET['from'])) ? $_GET['from'] : '' }}">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -72,7 +72,7 @@
                                                             <div class="input-group-addon">
                                                                 <span class="glyphicon glyphicon-calendar"></span>
                                                             </div>
-                                                            <input type="text" name="to" id="departure_date" class="inline_block_btn departure_date vd_date_required" data-date-format="DD/MM/YYYY" value="{{ (isset($_GET['to'])) ? $_GET['to'] : '' }}">
+                                                            <input type="text" name="to" class="inline_block_btn departure_date vd_date_required" data-date-format="DD/MM/YYYY" value="{{ (isset($_GET['to'])) ? $_GET['to'] : '' }}">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -239,7 +239,7 @@
                                             <span class="table_status_text not_used">{{$order['status']}}</span>
                                         </td>--}}
                                         <td class="rwd-td9 table_status_cell" data-th="Remove">
-                                            {{$order['duration']}}
+                                            {{$order['duration']}} days
                                         </td>
                                     </tr>
                                     @endforeach
@@ -256,162 +256,7 @@
     </div>
 
 
-    <!-- View Order Modal -->
-    <div class="modal fade" id="modal_view_order" tabindex="-1" role="dialog" aria-labelledby="modal_view_order">
-        <div class="modal-dialog vdf_modal" role="document">
-            <div class="modal-content vdf_modal_content">
-                <div class="modal-header vdf_modal_header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <div class="vdf_modal_sub_header">
-                        <h3>View Order</h3>
-                    </div>
-                </div>
-                <form action="/" class="form-horizontal vd_form">
-                    <div class="modal-body vdf_modal_body">
-
-                        <div class="form-group">
-                            <div class="col-md-6 vdf_modal_left ovh">
-                                <div class="form-group">
-                                    <div class="col-md-6">
-                                        <label class="table_label">Enter a SIM number</label>
-                                        <input type="text" name="sim-edit" id="sim-edit" class="block_btn_30 modal_input_without_icon vd_number" data-th="SIM Number" value=""/>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="table_label">SIM provider</label>
-                                        <input type="text" name="sim_prv2" class="block_btn_30 modal_input_without_icon vd_required" data-th="Provider" value="Vodafone" disabled/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-12">
-                                        <div class="wrap_package_list_edit"></div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-12">
-                                        <label class="table_label">Enter remarks</label>
-                                        <textarea name="rem_txt2" id="remark-edit" class="modal_textarea"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 vdf_modal_right">
-                                <label class="table_label">Destination flight details</label>
-                                <span class="arrow-down"><i class="icon-arrow_down"></i></span>cvcvcv
-                                <span class="arrow-up"><i class="icon-arrow_up"></i></span>cvcv
-                                <div class="form-group">
-                                    <div class="col-md-6">
-                                        <div class="departure"><i class="icon-landing"></i> Landing date and time</div>
-                                        <div class="wrap_date">
-                                            <div class="input-group date flight_dates" data-provide="datepicker">
-                                                <div class="input-group-addon">
-                                                    <span class="glyphicon glyphicon-calendar"></span>
-                                                </div>
-                                                <input type="text" name="departure_date" id="departure_date" class="inline_block_btn departure_date vd_date_required" data-date-format="DD/MM/YYYY">
-                                            </div>
-                                            <div class="wrap_time">
-                                                <i class="departure_time icon-time"></i>
-                                                <input type="text" name="timepicker5" class="inline_block_btn time_element vd_time_required"/>
-                                            </div>
-                                        </div>
-                                        {{--<div class="input-group date flight_dates" data-provide="datepicker">--}}
-                                            {{--<div class="input-group-addon">--}}
-                                                {{--<span class="glyphicon glyphicon-calendar"></span>--}}
-                                            {{--</div>--}}
-                                            {{--<input type="text" name="landing_date-edit" id="landing_date-edit"class="inline_block_btn landing_date vd_required" data-date-format="DD/MM/YYYY">--}}
-                                        {{--</div>--}}
-                                        {{--<div class="wrap_time from">--}}
-                                            {{--<i class="departure_time icon-time"></i>--}}
-                                            {{--<div class="time_picker">--}}
-                                                {{--<div  class="inline_block_btn numeric_input vdf_time vdf_hour" id="landing_hour-edit">0</div>--}}
-                                                {{--<span class="arrow-down"><i class="icon-arrow_down"></i></span>--}}
-                                                {{--<span class="arrow-up"><i class="icon-arrow_up"></i></span>--}}
-                                            {{--</div>--}}
-                                            {{--<div class="time_picker">--}}
-                                                {{--<div class="inline_block_btn vdf_minute_picker vdf_time vdf_min" id="landing_minute-edit">0</div>--}}
-                                                {{--<span class="arrow-down"><i class="icon-arrow_down"></i></span>--}}
-                                                {{--<span class="arrow-up"><i class="icon-arrow_up"></i></span>--}}
-                                            {{--</div>--}}
-                                        {{--</div>--}}
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="departure"><i class="icon-departure"></i> Departure date and time</div>
-                                        <div class="input-group date flight_dates" data-provide="datepicker">
-                                            <div class="input-group-addon">
-                                                <span class="glyphicon glyphicon-calendar"></span>
-                                            </div>
-                                            <input type="text" name="departure_date-edit" id="departure_date-edit"  class="inline_block_btn vd_required departure_date" data-date-format="DD/MM/YYYY">
-                                        </div>
-                                        <div class="wrap_date">
-                                            <div class="input-group date flight_dates" data-provide="datepicker">
-                                                <div class="input-group-addon">
-                                                    <span class="glyphicon glyphicon-calendar"></span>
-                                                </div>
-                                                <input type="text" name="departure_date" id="departure_date" class="inline_block_btn departure_date vd_date_required" data-date-format="DD/MM/YYYY">
-                                            </div>
-                                            <div class="wrap_time">
-                                                <i class="departure_time icon-time"></i>
-                                                <input type="text" name="timepicker6" class="inline_block_btn time_element vd_time_required"/>
-                                            </div>
-                                        </div>
-                                        {{--<div class="wrap_time to">--}}
-                                            {{--<i class="departure_time icon-time"></i>--}}
-                                            {{--<div class="time_picker">--}}
-                                                {{--<div  class="inline_block_btn numeric_input vdf_time vdf_hour" id="departure_hour-edit">0</div>--}}
-                                                {{--<span class="arrow-down"><i class="icon-arrow_down"></i></span>--}}
-                                                {{--<span class="arrow-up"><i class="icon-arrow_up"></i></span>--}}
-                                            {{--</div>--}}
-                                            {{--<div class="time_picker">--}}
-                                                {{--<div class="inline_block_btn vdf_minute_picker vdf_time vdf_min" id="departure_minute-edit">0</div>--}}
-                                                {{--<span class="arrow-down"><i class="icon-arrow_down"></i></span>--}}
-                                                {{--<span class="arrow-up"><i class="icon-arrow_up"></i></span>--}}
-                                            {{--</div>--}}
-                                        {{--</div>--}}
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="col-md-12">
-                                        <label class="table_label">Reference Number</label>
-                                        <input type="text" id="reference_number-edit" class="block_btn_30 modal_input_without_icon" value="">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-6">
-                                        <label class="table_label">Customer phone number</label>
-
-                                        <div class="relative">
-                                                <input type="test" id="phone_number-edit2" class="block_btn_30 modal_input" name="phone_number-edit2" value="" disabled>
-                                                <i class="input_icon icon-sim"></i>
-                                        </div>
-
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="table_label">Order Status</label>
-                                        <input type="text" name="order_status-edit" id="order_status-edit" class="block_btn_30 modal_input_without_icon" value="" disabled>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <span class="order_key">Created by: </span><span class="order_value" id="creator">Vallie Champlin 15/12/2016 12:40</span>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <span class="order_key">Updated by: </span><span class="order_value" id="editor">Alexanne Robel 07/03/2017 15:22</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="modal-footer vdf_modal_footer">
-                        <a href="#" class="inline_block_btn light_gray_btn close vd_form_reset" data-dismiss="modal" aria-label="Close">Cancel</a>
-                        {{--<button type="submit" href="#" class="inline_block_btn light_green_btn vd_form_submit" id="create-order">Edit order</button>--}}
-                        <a href="#" class="inline_block_btn light_green_btn vd_form_submit" id="edit-order">Edit order</a>
-                        <span class="success_response"></span>
-                        <span class="error_response"></span>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div><!-- end View Order Modal -->
+    @include('ordermodal.view')
 
 
     <!--Email Modal-->

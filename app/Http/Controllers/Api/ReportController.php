@@ -392,6 +392,8 @@ class ReportController extends Controller
 
     public function generateReport(Request $request)
     {
+        $fromS = '2017/01/01';
+        $toS = '0000/00/00';
         $net = $this->userManager->subNetID($this->userManager->getMyFlatNetwork(Auth::user()->id));
         if (!$request->has('provider'))
             $report = Order::where('id', '<', 0);
@@ -400,12 +402,14 @@ class ReportController extends Controller
             if ($request->has('username'))
                 $report = $report->where('created_by', $request->input('username'));
             if ($request->has('from')){
-                $from = Carbon::createFromFormat('d/m/Y', $request->input('from'));
+                $from = Carbon::createFromFormat('d/m/Y', $request->input('from'))->subDays(1);
                 $report = $report->where('from', '>', $from->timestamp);
+                $fromS = $request->input('from');
             }
             if ($request->has('to')){
-                $from = Carbon::createFromFormat('d/m/Y', $request->input('to'));
-                $report = $report->where('to', '<', $from->timestamp);
+                $to = Carbon::createFromFormat('d/m/Y', $request->input('to'))->addDays(1);
+                $report = $report->where('from', '<', $to->timestamp);
+                $toS = $request->input('to');
             }
             if ($request->has('number')){
                 $number = Phone::where('phone', $request->input('number'))->first()->id;
@@ -424,7 +428,7 @@ class ReportController extends Controller
             $report = $report->get();
             $ordersArray = $this->viewHelper->solveOrderList($report);
             $ordersArray = $this->viewHelper->prepareExport($ordersArray);
-            Excel::create('Report', function($excel) use ($ordersArray) {
+            Excel::create('Report from-'.$fromS. '&to-'.$toS , function($excel) use ($ordersArray) {
 
                 $excel->sheet('report', function($sheet) use($ordersArray) {
 
