@@ -168,21 +168,22 @@ $(document).ready(function () {
 
                     if (type_status == "success") {
 
-                        $.each(data, function (i, item) {
+                        // $.each(data, function (i, item) {
 
                             // console.log("success dfdfsfsd ");
                             // console.log(order_data.package_id);
                             // console.log(item.id);
 
-                            if (item.id == order_data[0].package_id) {
-                                package_id = item.id;
-                                $(".wrap_package_list_edit").append("<div class='package_item'>" +
-                                    "<a href='#' data-id='" + item.id + "' class='editable_package' title='Basic Package'>" +
-                                    "<h4>" + item.name + "</h4>" +
-                                    "<span>" + item.description + "</span>" +
-                                    "</a>" +
-                                    "</div>");
-                            }
+                            // if (item.id == order_data[0].package_id) {
+                            //     package_id = item.id;
+                            //     $(".wrap_package_list").empty();
+                            //     $(".wrap_package_list_edit").append("<div class='package_item'>" +
+                            //         "<a href='#' data-id='" + item.id + "' class='editable_package' title='Basic Package'>" +
+                            //         "<h4>" + item.name + "</h4>" +
+                            //         "<span>" + item.description + "</span>" +
+                            //         "</a>" +
+                            //         "</div>");
+                            // }
                             // else {
                             //
                             //     $(".wrap_package_list_edit").append("<div class='package_item'>" +
@@ -192,7 +193,14 @@ $(document).ready(function () {
                             //         "</a>" +
                             //         "</div>");
                             // }
-                        });
+                        // });
+
+                        $('#wrap_package_list_edit').empty();
+                        $('#wrap_package_list_edit').append("<label class='table_label'>Selected Package </label>" +
+                            "<a class='selected_package' title='"+ order_data[0].package.name +"'>" +
+                            "<h4>"+ order_data[0].package.name +"</h4>" +
+                            "<span>"+ order_data[0].package.description +"</span>" +
+                            "</a>");
 
                         $('#sim-edit').val(order_data[0].sim_id);
                         $('#remark-edit').val(order_data[0].remark);
@@ -354,6 +362,7 @@ $(document).ready(function () {
 
                             if (item.id == order_data[0].package_id) {
                                 package_id = item.id;
+                                $(".single_package").empty();
                                 $(".single_package").append(
                                     "<a title='Basic Package'  class='selected_package' title='" + item.name + "' > " +
                                     "<h4>" + item.name + "</h4>" +

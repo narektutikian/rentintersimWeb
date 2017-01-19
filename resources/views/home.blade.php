@@ -321,7 +321,7 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-12">
-                                        <div class="wrap_package_list_edit"></div>
+                                        <div class="single_package email_print" id="wrap_package_list_edit"></div>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -492,7 +492,7 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-12">
-                                        <div class="wrap_package_list_edit" id="wrap_package_list_view"></div>
+                                        <div class="single_package email_print" id="wrap_package_list_view"></div>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -517,7 +517,7 @@
                                             </div>
                                             <div class="wrap_time">
                                                 <i class="departure_time icon-time"></i>
-                                                <input type="text" name="timepicker5" class="inline_block_btn time_element vd_time_required landing_time_val"/>
+                                                <input type="text" name="timepicker5" class="inline_block_btn time_element vd_time_required landing_time_val" disabled/>
                                             </div>
                                         </div>
 
@@ -534,7 +534,7 @@
                                             </div>
                                             <div class="wrap_time">
                                                 <i class="departure_time icon-time"></i>
-                                                <input type="text" name="timepicker6" class="inline_block_btn time_element vd_time_required departure_time_val"/>
+                                                <input type="text" name="timepicker6" class="inline_block_btn time_element vd_time_required departure_time_val" disabled/>
                                             </div>
                                         </div>
 
@@ -544,7 +544,7 @@
                                 <div class="form-group">
                                     <div class="col-md-12">
                                         <label class="table_label">Reference Number</label>
-                                        <input type="text" id="reference_number-edit" class="block_btn_30 modal_input_without_icon reference_number-view" value="">
+                                        <input type="text" id="reference_number-edit" class="block_btn_30 modal_input_without_icon reference_number-view" value="" disabled>
                                     </div>
                                 </div>
                                 <div class="form-group">
