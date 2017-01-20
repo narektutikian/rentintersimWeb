@@ -119,7 +119,7 @@
                                     <label class="table_label">Customer phone number</label>
                                     @if(Auth::user()->level == 'Super admin')
                                         <div class="select_wrapper">
-                                            <select  name="phone_number" id="phone_number" class="block_btn_30 modal_input">
+                                            <select  name="phone_number" id="phone_number" class="block_btn_30 modal_input" disabled>
                                                 <option value=""></option>
                                                 {{--@foreach($specials as $special)--}}
                                                     {{--<option value="{{$special['id']}}">{{$special['phone']}}</option>--}}
