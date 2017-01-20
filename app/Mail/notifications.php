@@ -37,7 +37,7 @@ class notifications extends Mailable
             $address = 'narek@horizondvp.com';
         $name = 'RentInterSim';
         $subject = 'Status Change for Order #'. $this->order->id;
-        $cc = [$this->order->creator->email2];
+        $cc = array($this->order->creator->email2);
         if ($this->order->editor != null)
             $cc[] = $this->order->editor->email;
 

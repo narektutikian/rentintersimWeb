@@ -492,7 +492,7 @@ function activateOrder(id) {
     // console.log("get number for " + id)
     $.ajax({
         type: "GET",
-        url: 'activate/' + id,
+        url: '/activate/' + id,
         beforeSend: function() {
             $(".error_response").empty();
             $(".success_response").empty();
@@ -513,7 +513,7 @@ function activateOrder(id) {
         // console.log("get number for " + id)
         $.ajax({
             type: "GET",
-            url: 'deactivate/' + id,
+            url: '/deactivate/' + id,
             beforeSend: function() {
                 $(".error_response").empty();
                 $(".success_response").empty();

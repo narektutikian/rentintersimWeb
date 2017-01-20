@@ -8,7 +8,7 @@
 
 <div style="background: #ffffff; max-width: 600px; margin: 0 auto; padding: 0; font-size: 100%; font: inherit; vertical-align: baseline; border-collapse: collapse; border-spacing: 0;">
     <div style="width: 76px; height: 47px; padding: 20px 20px 25px 7px;">
-        <img src="{{$message->embed(public_path() .'/img/email_logo.png')}}" alt="Logo">
+        <img src="{{$message->embed(public_path() .'/img/mail_logo.png')}}" alt="Logo">
     </div>
     <div style="box-sizing: border-box;-moz-box-sizing: border-box; -webkit-box-sizing: border-box; background: #ffffff;  border-top: 1px solid #DDDDDD; border-right: 1px solid #DDDDDD; border-left: 1px solid #DDDDDD; color: #1b6db2; line-height: 1; padding: 40px 10px 10px 10px; min-width: 300px; text-transform: uppercase; font-size: 16px; font-weight: normal; font-style: normal; font-family: proxima_nova_rgregular, Arial, Helvetica, sans-serif;">
         Status changed for order #{{$order->id}}
