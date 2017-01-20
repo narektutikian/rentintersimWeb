@@ -411,7 +411,7 @@ $( document ).ready(function() {
                         });
                     }
                 } else {
-                    console.log('Property data-th="' + attribute_title + '" not found');
+                    // console.log('Property data-th="' + attribute_title + '" not found');
                 }
             });
 

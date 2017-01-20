@@ -284,5 +284,11 @@ class PhoneController extends Controller
         else return substr_replace($number,'0',0,0);
     }
 
+    public function specials($packageID)
+    {
+//        dd( Phone::select('id', 'phone')->where('is_special', 1)->where('package_id', $packageID)->get()->toArray());
+        return Phone::select('id', 'phone')->where('is_special', 1)->where('package_id', $packageID)->get()->toArray();
+    }
+
 
 }

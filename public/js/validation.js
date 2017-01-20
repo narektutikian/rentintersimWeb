@@ -1,5 +1,5 @@
 $( document ).ready(function() {
-    console.log("validation!");
+    // console.log("validation!");
 
     var validator;
     $('.vd_form').each(function() {   // <- selects every <form> on page

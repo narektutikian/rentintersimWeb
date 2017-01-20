@@ -88,9 +88,9 @@ $(document).ready(function () {
         }
     });
 
-
+/**** Getting all types for provider vodafone ****/
     $.get("/type-provider/1", function (data, status) {
-        console.log("type loading");
+        // console.log("type loading");
         if (status == "success") {
             $.each(data, function (i, item) {
 
@@ -102,11 +102,36 @@ $(document).ready(function () {
                     "</div>");
 
             });
-
+/**** SELECT PACKAGE FOR NEW ORDER *****/
             $(document).on('click', '.package_item > a', function () {
 
                 package_id = $(this).attr('data-id');
-                console.log('package_id ', package_id);
+
+                var select = $('#phone_number');
+                select.find('option').remove();
+                $.get("/phone/specials/" + package_id, function (data, status) {
+                    if (status == "success"){
+                        if (data[0] != null) {
+
+                            var options = "<option value=''></option>";
+                            // console.log(data);
+                            $.each(data, function (i, item) {
+                                options += "<option value=" +item.id +">" + item.phone + "</option>";
+                            });
+
+                            select
+                                .find('option')
+                                .remove()
+                                .end()
+                                .append(options);
+
+                        }
+                        // setTimeout(function(){
+                        //     $icon.removeClass('icon-time') ;
+                        //     $icon.addClass('icon-username');
+                        // }, 500);
+                    }
+                });
                 return false;
             });
         }
