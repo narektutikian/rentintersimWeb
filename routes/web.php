@@ -87,9 +87,14 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
 
 
 Route::get('/test', function (){
+    $order = Order::find(272);
+//    dd($order->editor);
+    $cc = [$order->creator->email2];
+    if ($order->editor != null)
+        $cc[] = $order->editor->email;
 
     echo '<pre />';
-    print_r(Order::find(1));
+    print_r($cc);
 
 });
 

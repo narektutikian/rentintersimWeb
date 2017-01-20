@@ -2,101 +2,86 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>RentInterSim</title>
 </head>
-<body style="background: #FAFAFA; color: #333333;">
-<center>
-    <table border="0" cellpadding="20" cellspacing="0" height="100%" width="600" style="background: #ffffff; border: 1px solid #DDDDDD;">
-        <tbody>
-        <tr>
-            <td style="background: #079fff; padding: 10px 10px;">
-                <div class="logo" height="60" width="60" style="display: inline-block; vertical-align: middle; margin-right: 25px;">
-                    <a href="index.html" style="display: block;"><img src="{{$message->embed(public_path() .'/img/logo.jpg')}}" alt="Logo" style="display: block;"></a>
-                    {{--<a href="index.html" style="display: block;"><img src="/img/logo.jpg" alt="Logo" style="display: block;"></a>--}}
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td style="padding: 3px 10px;">
-                <div style="height: 40px; line-height: 40px; padding: 0 15px; background: #079fff; color: #ffffff; font-size: 15px; font-weight: bold; font-style: normal; font-family: proxima_nova_rgregular, Arial, Helvetica, sans-serif;">Status change for Order #{{$order->id}}</div>
-            </td>
-        </tr>
-        <tr>
-            <td style="padding: 3px 10px;">
-                <div style="height: 40px; line-height: 40px; padding: 0 15px; background: #079fff; color: #ffffff; font-size: 15px; font-weight: bold; font-style: normal; font-family: proxima_nova_rgregular, Arial, Helvetica, sans-serif;">New status is "{{$order->status}}"</div>
-            </td>
-        </tr>
-        <tr>
-            <td style="padding: 10px 10px;">
-                <div style="line-height: 40px; padding: 0 15px; background: #079fff; color: #ffffff; font-size: 15px; font-weight: bold; font-style: normal; font-family: proxima_nova_rgregular, Arial, Helvetica, sans-serif;">Number:  "{{$order->phone->phone}}" is assigned to SIM #: "{{$order->sim->number}}"</div>
-            </td>
-        </tr>
-        <tr>
-            <td style="font-size: 0; padding: 10px 10px;">
-                <div class="email_dates" style="display: inline-block; vertical-align: middle; width: 48%;">
-                    <div class="departure" height="30" style="height: 30px; line-height: 30px; background: #079fff; color: #ffffff; text-align: center; font-size: 15px; font-weight: normal; font-style: normal; font-family: proxima_nova_rgregular, Arial, Helvetica, sans-serif;">
-                        From</div>
+<body>
 
-                    <div class="email_date_time" style="margin-top: 15px; color: #079fff; text-align: center; font-size: 15px; font-weight: normal; font-style: normal;">{{$order->landing}} </div>
+<div style="background: #ffffff; max-width: 600px; margin: 0 auto; padding: 0; font-size: 100%; font: inherit; vertical-align: baseline; border-collapse: collapse; border-spacing: 0;">
+    <div style="width: 76px; height: 47px; padding: 20px 20px 25px 7px;">
+        <img src="{{$message->embed(public_path() .'/img/email_logo.png')}}" alt="Logo">
+    </div>
+    <div style="box-sizing: border-box;-moz-box-sizing: border-box; -webkit-box-sizing: border-box; background: #ffffff;  border-top: 1px solid #DDDDDD; border-right: 1px solid #DDDDDD; border-left: 1px solid #DDDDDD; color: #1b6db2; line-height: 1; padding: 40px 10px 10px 10px; min-width: 300px; text-transform: uppercase; font-size: 16px; font-weight: normal; font-style: normal; font-family: proxima_nova_rgregular, Arial, Helvetica, sans-serif;">
+        Status changed for order #{{$order->id}}
+    </div>
 
-                </div>
-                <div class="email_dates" style="display: inline-block; vertical-align: middle; width: 48%; margin-left: 4%;">
-                    <div class="departure" width="45%" height="30" style="height: 30px; line-height: 30px; background: #079fff; color: #ffffff; text-align: center; font-size: 15px; font-weight: normal; font-style: normal; font-family: proxima_nova_rgregular, Arial, Helvetica, sans-serif;"> To</div>
+    <div style="box-sizing: border-box;-moz-box-sizing: border-box; -webkit-box-sizing: border-box; background: #1b6db2; color: #ffffff; line-height: 1; padding: 14px 10px; min-width: 300px; border: 1px solid #d4e1ea; font-size: 16px; font-weight: normal; font-style: normal; font-family: proxima_nova_rgregular, Arial, Helvetica, sans-serif;">
+        New status is "{{$order->status}}"
+    </div>
+    <div style="box-sizing: border-box;-moz-box-sizing: border-box; -webkit-box-sizing: border-box; padding: 17px 10px; border-right: 1px solid #DDDDDD; border-left: 1px solid #DDDDDD; min-width: 300px; "></div>
+    <div style="box-sizing: border-box;-moz-box-sizing: border-box; -webkit-box-sizing: border-box; background: #079fff; color: #ffffff; line-height: 1; padding: 14px 10px; min-width: 300px; font-size: 16px; font-weight: normal; font-style: normal; font-family: proxima_nova_rgregular, Arial, Helvetica, sans-serif;">
+        Order details
+    </div>
 
-                    <div class="email_date_time" style="margin-top: 15px; color: #079fff; text-align: center; font-size: 15px; font-weight: normal; font-style: normal;">{{$order->departure}}</div>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td style="padding: 3px 10px;">
-                <div style="height: 40px; line-height: 40px; padding: 0 15px; background: #079fff; color: #ffffff; font-size: 15px; font-weight: bold; font-style: normal; font-family: proxima_nova_rgregular, Arial, Helvetica, sans-serif;">The Order is </div>
-            </td>
-        </tr>
-        <tr>
-            <td style="font-size: 0; padding: 10px 10px;">
-                <div class="email_dates" style="display: inline-block; vertical-align: middle; width: 48%;">
-                    <div class="departure" height="30" style="height: 30px; line-height: 30px; background: #079fff; color: #ffffff; text-align: center; font-size: 15px; font-weight: normal; font-style: normal; font-family: proxima_nova_rgregular, Arial, Helvetica, sans-serif;">
-                        Created by</div>
+    <div style="text-align: center;">
 
-                    <div class="email_date_time" style="margin-top: 15px; color: #079fff; text-align: center; font-size: 15px; font-weight: normal; font-style: normal;">{{$order->creator->name}} </div>
+        <div style="font-size: 0; box-sizing: border-box;-moz-box-sizing: border-box; -webkit-box-sizing: border-box; ">
+            <div style="box-sizing: border-box;-moz-box-sizing: border-box; -webkit-box-sizing: border-box; display:inline-block; vertical-align: middle; width: 300px; padding: 13px 18px 10px 8px; color: #079fff; line-height: 1;  border-bottom: 1px solid #DDDDDD; border-right: 1px solid #DDDDDD; border-left: 1px solid #DDDDDD; text-align: left; font-size: 15px; font-weight: normal; font-style: normal; font-family: proxima_nova_rgregular, Arial, Helvetica, sans-serif; ">
+                Number
+            </div>
+            <div style="box-sizing: border-box;-moz-box-sizing: border-box; -webkit-box-sizing: border-box; display:inline-block; vertical-align: middle; width: 300px; text-align: left; padding: 13px 10px 10px 8px; color: #494949; line-height: 1;   border-bottom: 1px solid #DDDDDD; border-right: 1px solid #DDDDDD; border-left: 1px solid #DDDDDD; font-size: 15px; font-weight: normal; font-style: normal; font-family: proxima_nova_rgregular, Arial, Helvetica, sans-serif;">
+                {{$order->phone->phone}}
+            </div>
+        </div>
+        <div style="font-size: 0; box-sizing: border-box;-moz-box-sizing: border-box; -webkit-box-sizing: border-box; ">
+            <div style="box-sizing: border-box;-moz-box-sizing: border-box; -webkit-box-sizing: border-box; display:inline-block; vertical-align: middle; width: 300px; padding: 13px 18px 10px 8px; color: #079fff; line-height: 1;  border-bottom: 1px solid #DDDDDD; border-right: 1px solid #DDDDDD; border-left: 1px solid #DDDDDD; text-align: left; font-size: 15px; font-weight: normal; font-style: normal; font-family: proxima_nova_rgregular, Arial, Helvetica, sans-serif;">
+                SIM
+            </div>
+            <div style="box-sizing: border-box;-moz-box-sizing: border-box; -webkit-box-sizing: border-box; display:inline-block; vertical-align: middle; width: 300px; padding: 13px 10px 10px 8px; color: #494949; line-height: 1;  border-bottom: 1px solid #DDDDDD; border-right: 1px solid #DDDDDD; border-left: 1px solid #DDDDDD; text-align: left; font-size: 15px; font-weight: normal; font-style: normal; font-family: proxima_nova_rgregular, Arial, Helvetica, sans-serif;">
+                {{$order->sim->number}}
+            </div>
+        </div>
+        <div style="box-sizing: border-box;-moz-box-sizing: border-box; -webkit-box-sizing: border-box; font-size: 0;">
+            <div style="box-sizing: border-box;-moz-box-sizing: border-box; -webkit-box-sizing: border-box; display:inline-block; vertical-align: middle; width: 300px; padding: 13px 18px 10px 8px; color: #079fff; line-height: 1;  border-bottom: 1px solid #DDDDDD; border-right: 1px solid #DDDDDD; border-left: 1px solid #DDDDDD; text-align: left; font-size: 15px; font-weight: normal; font-style: normal; font-family: proxima_nova_rgregular, Arial, Helvetica, sans-serif;">
+                From
+            </div>
+            <div style="box-sizing: border-box;-moz-box-sizing: border-box; -webkit-box-sizing: border-box; display:inline-block; vertical-align: middle; width: 300px; padding: 13px 10px 10px 8px; color: #494949; line-height: 1;  border-bottom: 1px solid #DDDDDD; border-right: 1px solid #DDDDDD; border-left: 1px solid #DDDDDD; text-align: left; font-size: 15px; font-weight: normal; font-style: normal; font-family: proxima_nova_rgregular, Arial, Helvetica, sans-serif;">
+                {{$order->landing}}
+            </div>
+        </div>
+        <div style="font-size: 0; box-sizing: border-box;-moz-box-sizing: border-box; -webkit-box-sizing: border-box; ">
+            <div style="box-sizing: border-box;-moz-box-sizing: border-box; -webkit-box-sizing: border-box; display:inline-block; vertical-align: middle; width: 300px; padding: 13px 18px 10px 8px; color: #079fff; line-height: 1;  border-bottom: 1px solid #DDDDDD; border-right: 1px solid #DDDDDD; border-left: 1px solid #DDDDDD; text-align: left; font-size: 15px; font-weight: normal; font-style: normal; font-family: proxima_nova_rgregular, Arial, Helvetica, sans-serif;">
+                to
+            </div>
+            <div style="box-sizing: border-box;-moz-box-sizing: border-box; -webkit-box-sizing: border-box; display:inline-block; vertical-align: middle; width: 300px; padding: 13px 10px 10px 8px; color: #494949; line-height: 1;  border-bottom: 1px solid #DDDDDD; border-right: 1px solid #DDDDDD; border-left: 1px solid #DDDDDD; text-align: left; font-size: 15px; font-weight: normal; font-style: normal; font-family: proxima_nova_rgregular, Arial, Helvetica, sans-serif;">
+                {{$order->departure}}
+            </div>
+        </div>
+        <div style="font-size: 0; box-sizing: border-box;-moz-box-sizing: border-box; -webkit-box-sizing: border-box; ">
+            <div style="box-sizing: border-box;-moz-box-sizing: border-box; -webkit-box-sizing: border-box; display:inline-block; vertical-align: middle; width: 300px; padding: 13px 18px 10px 8px; color: #079fff; line-height: 1;  border-bottom: 1px solid #DDDDDD; border-right: 1px solid #DDDDDD; border-left: 1px solid #DDDDDD; text-align: left; font-size: 15px; font-weight: normal; font-style: normal; font-family: proxima_nova_rgregular, Arial, Helvetica, sans-serif;">
+                Created by
+            </div>
+            <div style="box-sizing: border-box;-moz-box-sizing: border-box; -webkit-box-sizing: border-box; display:inline-block; vertical-align: middle; width: 300px; padding: 13px 10px 10px 8px; color: #494949; line-height: 1;  border-bottom: 1px solid #DDDDDD; border-right: 1px solid #DDDDDD; border-left: 1px solid #DDDDDD; text-align: left; font-size: 15px; font-weight: normal; font-style: normal; font-family: proxima_nova_rgregular, Arial, Helvetica, sans-serif;">
+                {{$order->creator->name}} at {{$order->created_at}}
+            </div>
+        </div>
+        <div style="font-size: 0; box-sizing: border-box;-moz-box-sizing: border-box; -webkit-box-sizing: border-box;">
+            <div style="box-sizing: border-box;-moz-box-sizing: border-box; -webkit-box-sizing: border-box; display:inline-block; vertical-align: middle; width: 300px; padding: 13px 18px 10px 8px; color: #079fff; line-height: 1; border-bottom: 1px solid #DDDDDD; border-right: 1px solid #DDDDDD; border-left: 1px solid #DDDDDD; text-align: left; font-size: 15px; font-weight: normal; font-style: normal; font-family: proxima_nova_rgregular, Arial, Helvetica, sans-serif;">
+                Updated by
+            </div>
+            <div style="box-sizing: border-box;-moz-box-sizing: border-box; -webkit-box-sizing: border-box; display:inline-block; vertical-align: middle; width: 300px; padding: 13px 10px 10px 8px; color: #494949; line-height: 1; border-bottom: 1px solid #DDDDDD; border-right: 1px solid #DDDDDD; border-left: 1px solid #DDDDDD; text-align: left; font-size: 15px; font-weight: normal; font-style: normal; font-family: proxima_nova_rgregular, Arial, Helvetica, sans-serif;">
+                {{($order->editor != null) ? $order->editor->name : $order->creator->name}} at {{$order->updated_at}}
+            </div>
+        </div>
 
-                </div>
-                <div class="email_dates" style="display: inline-block; vertical-align: middle; width: 48%; margin-left: 4%;">
-                    <div class="departure" width="45%" height="30" style="height: 30px; line-height: 30px; background: #079fff; color: #ffffff; text-align: center; font-size: 15px; font-weight: normal; font-style: normal; font-family: proxima_nova_rgregular, Arial, Helvetica, sans-serif;"> At</div>
+    </div>
+    <div style="border: 1px solid #DDDDDD;  min-width: 298px;">
+        <div style="box-sizing: border-box;-moz-box-sizing: border-box; -webkit-box-sizing: border-box; color: #1b6db2; padding: 18px 10px 6px 10px; text-transform: uppercase; font-size: 17px; font-weight: normal; font-style: normal; font-family: proxima_nova_rgregular, Arial, Helvetica, sans-serif;">
+            SYC GROUP
+        </div>
+        <div style="box-sizing: border-box;-moz-box-sizing: border-box; -webkit-box-sizing: border-box; padding: 2px 10px; color: #494949; line-height: 1; font-size: 16px; font-weight: normal; font-style: normal; font-family: proxima_nova_rgregular, Arial, Helvetica, sans-serif;">Phone: +972-722131366</div>
+        <div style="box-sizing: border-box;-moz-box-sizing: border-box; -webkit-box-sizing: border-box; padding: 2px 10px 10px 10px; color: #494949; line-height: 1; font-size: 16px; font-weight: normal; font-style: normal; font-family: proxima_nova_rgregular, Arial, Helvetica, sans-serif;">Email: service@syc.co.il</div>
+    </div>
+</div>
 
-                    <div class="email_date_time" style="margin-top: 15px; color: #079fff; text-align: center; font-size: 15px; font-weight: normal; font-style: normal;">{{$order->created_at}}</div>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td style="font-size: 0; padding: 10px 10px;">
-                <div class="email_dates" style="display: inline-block; vertical-align: middle; width: 48%;">
-                    <div class="departure" height="30" style="height: 30px; line-height: 30px; background: #079fff; color: #ffffff; text-align: center; font-size: 15px; font-weight: normal; font-style: normal; font-family: proxima_nova_rgregular, Arial, Helvetica, sans-serif;">
-                       Updated by</div>
-
-                    <div class="email_date_time" style="margin-top: 15px; color: #079fff; text-align: center; font-size: 15px; font-weight: normal; font-style: normal;">{{$order->editor->name}}</div>
-
-                </div>
-                <div class="email_dates" style="display: inline-block; vertical-align: middle; width: 48%; margin-left: 4%;">
-                    <div class="departure" width="45%" height="30" style="height: 30px; line-height: 30px; background: #079fff; color: #ffffff; text-align: center; font-size: 15px; font-weight: normal; font-style: normal; font-family: proxima_nova_rgregular, Arial, Helvetica, sans-serif;"> At</div>
-
-                    <div class="email_date_time" style="margin-top: 15px; color: #079fff; text-align: center; font-size: 15px; font-weight: normal; font-style: normal;">{{$order->updated_at}}</div>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td style="padding: 3px 20px;">
-                {{--<p>text</p>--}}
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <br />SYC GROUP
-                <br /> Phone: +972-722131366
-                <br /> Email: service@syc.co.il </td>
-        </tr>
-        </tbody>
-    </table>
-</center>
 </body>
 </html>
