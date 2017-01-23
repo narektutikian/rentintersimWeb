@@ -124,16 +124,24 @@ class ViewHelper
     private function calculateInterval ($timestampFrom, $timestampTo)
     {
 //        return CarbonInterval::create($interval->y, $interval->m, 0, $interval->d, $interval->h, $interval->i, $interval->s);
-        $from = Carbon::createFromFormat('d/m/Y H:i', $timestampFrom)->timestamp;
-        $to = Carbon::createFromFormat('d/m/Y H:i', $timestampTo)->timestamp + 60;
-        $seconds = $to - $from;
-        $interval = floor($seconds / 86400);
-        if ($seconds % 86400 > 0)
-            $interval++;
+        $from = Carbon::createFromFormat('d/m/Y H:i', $timestampFrom);
+        $to = Carbon::createFromFormat('d/m/Y H:i', $timestampTo);
+        $from->setTime(0,0);
+        $to->setTime(0,0);
+        $seconds = $to->timestamp - $from->timestamp;
+        if ($seconds == 0)
+            return 1;
+        $interval = ceil($seconds / 86400);
+////        if ($seconds % 86400 > 0)
+////            $interval++;
+//        $resultDay = $from->addDays($interval);
+////        dd($resultDay);
+//        if ($resultDay->day != $to->day)
+//            $interval++;
 
 //        dd($interval);
 
-        return $interval;
+        return ++$interval;
 
     }
     public function prepareExport($orders)
