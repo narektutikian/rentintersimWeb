@@ -277,6 +277,7 @@ $(document).ready(function () {
         $.get("/order/" + row_id + "/edit", function (order_data, order_status) {
             if (order_status == "success") {
 
+               if (order_data[0].status != "waiting")
                 $('.email_phone_num').text("Phone Number : " + order_data[0].phone.phone);
                 $('.selected_package_print').empty();
                 $('.selected_package_print').append("<label class='table_label'>Selected Package </label>" +
