@@ -235,6 +235,9 @@
             <div class="modal-content vdf_modal_content">
                 <div class="modal-header modal_print_header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <div class="vdf_modal_sub_header">
+                        <h3>Order <span class="mail_order">#124875</span></h3>
+                    </div>
                     <div class="form-group">
                         <div class="col-md-12">
                             <h3>Order <span class="mail_order">#124875</span></h3>
