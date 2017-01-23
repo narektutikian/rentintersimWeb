@@ -322,6 +322,7 @@ $( document ).ready(function() {
         showClear: true,
         minDate: date
     });
+     // $('.flight_dates').datetimepicker('show');
 
     var ln_date_min, dp_date_max ;
 
@@ -350,6 +351,7 @@ $( document ).ready(function() {
 
         $(this).closest('#modal_new_order').find('#landing_date').val("");
         $(this).closest('#modal_new_order').find('#departure_date').val("");
+
     })
 
     /* Put Editable values inside modal window */

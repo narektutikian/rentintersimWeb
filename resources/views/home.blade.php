@@ -238,11 +238,6 @@
                     <div class="vdf_modal_sub_header">
                         <h3>Order <span class="mail_order">#124875</span></h3>
                     </div>
-                    <div class="form-group">
-                        <div class="col-md-12">
-                            <h3>Order <span class="mail_order">#124875</span></h3>
-                        </div>
-                    </div>
                 </div>
 
                 <div class="modal-body vdf_modal_body">
