@@ -333,6 +333,8 @@ $( document ).ready(function() {
         var res = ln_date_min.split('/');
         var final_res = res[1] + '/' + res[0] + '/' + res[2];
 
+        $('#departure_date').val("");
+        console.log('landing');
         $('#departure_date').closest('.flight_dates').data("DateTimePicker").minDate(ln_date_min);
         $('#departure_date').closest('.flight_dates').find('td.active').removeClass('active');
         $('#departure_date').closest('.flight_dates').find('td[data-day="' + final_res + '"]').addClass('active');
@@ -340,19 +342,33 @@ $( document ).ready(function() {
     });
 
     $('#departure_date').closest('.flight_dates').on('dp.change', function(e){
-
+        console.log('departure');
         dp_date_max =  $('#departure_date').closest('.flight_dates').data('date');
 
         $('#landing_date').closest('.flight_dates').data("DateTimePicker").maxDate(dp_date_max);
 
     });
 
-    $("#cancel_order").on('click', function(){
+    $('#modal_new_order').on("hidden.bs.modal", function () {
 
-        $(this).closest('#modal_new_order').find('#landing_date').val("");
-        $(this).closest('#modal_new_order').find('#departure_date').val("");
+        // reset datepicker for new order modal
+        var id = $(this).attr('id');
+        console.log('hidden ');
 
-    })
+        if(id == 'modal_new_order'){
+            console.log('IF ', id);
+            $('#' + id).find('#landing_date').val("");
+            $('#' + id).find('#departure_date').val("");
+
+            $('#' + id).find('.flight_dates').datetimepicker({
+                showClear: true,
+                minDate: date
+            });
+            $('#' + id).find('.flight_dates').data("DateTimePicker").maxDate(false);
+        }
+
+    });
+
 
     /* Put Editable values inside modal window */
     $(document).on('click', '.table .table_action_cell .edit', function () {
@@ -439,6 +455,8 @@ $( document ).ready(function() {
         $(this).find('form')[0].reset();
         // location.reload();
     });
+
+
 
     /* highlight selected package */
     $(document).on('click', '.package_item a', function () {
