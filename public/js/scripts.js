@@ -313,13 +313,7 @@ $( document ).ready(function() {
 
     console.log('DATE ', date);
 
-    $('.date').datetimepicker({
-        //keepOpen : true,
-        //maxDate: 'now',
-        //showTodayButton: true,
-        //showClear: true,
-        //minDate: date
-    });
+    $('.date').datetimepicker();
 
     $('.flight_dates').datetimepicker({
         //keepOpen : true,
@@ -346,11 +340,17 @@ $( document ).ready(function() {
 
     $('#departure_date').closest('.flight_dates').on('dp.change', function(e){
 
-        dp_date_max =  $('#departure_date').closest('.date').data('date');
+        dp_date_max =  $('#departure_date').closest('.flight_dates').data('date');
 
         $('#landing_date').closest('.flight_dates').data("DateTimePicker").maxDate(dp_date_max);
 
     });
+
+    $("#cancel_order").on('click', function(){
+
+        $(this).closest('#modal_new_order').find('#landing_date').val("");
+        $(this).closest('#modal_new_order').find('#departure_date').val("");
+    })
 
     /* Put Editable values inside modal window */
     $(document).on('click', '.table .table_action_cell .edit', function () {
