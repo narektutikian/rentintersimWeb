@@ -365,6 +365,7 @@ $( document ).ready(function() {
                 minDate: date
             });
             $('#' + id).find('.flight_dates').data("DateTimePicker").maxDate(false);
+
         }
 
     });
@@ -453,6 +454,7 @@ $( document ).ready(function() {
     $('.modal').one("hidden.bs.modal", function () {
 
         $(this).find('form')[0].reset();
+
         // location.reload();
     });
 
@@ -472,7 +474,7 @@ $( document ).ready(function() {
         window.print();
     });
 
-    /* Numeric inputs for time picker */
+/*    /!* Numeric inputs for time picker *!/
     $('.numeric_input').keydown(function(event) {
 
         if (event.keyCode == 8 || (event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 96 && event.keyCode <= 105)) {
@@ -490,7 +492,7 @@ $( document ).ready(function() {
 
     });
 
-        /* Change hours/minutes by click */
+        /!* Change hours/minutes by click *!/
         $('.arrow-up').on('click', function(){
 
             if($(this).siblings().hasClass('vdf_hour')){
@@ -548,7 +550,7 @@ $( document ).ready(function() {
 
             }
 
-        });
+        });*/
 
         /* end of Change hours/minutes by click */
     /* end of Numeric inputs for time picker */
@@ -597,32 +599,6 @@ $( document ).ready(function() {
 
                         if (type_status == "success") {
 
-                            // $.each(data, function (i, item) {
-
-                                // console.log("success dfdfsfsd ");
-                                // console.log(order_data.package_id);
-                                // console.log(item.id);
-
-                                // if (item.id == order_data[0].package_id) {
-                                //     package_id = item.id;
-                                //     $("#wrap_package_list").empty();
-                                //     $("#wrap_package_list_view").append("<div class='package_item'>" +
-                                //         "<a href='#' data-id='" + item.id + "' class='editable_package' title='Basic Package'>" +
-                                //         "<h4>" + item.name + "</h4>" +
-                                //         "<span>" + item.description + "</span>" +
-                                //         "</a>" +
-                                //         "</div>");
-                                // }
-                                // else {
-                                //
-                                //     $(".wrap_package_list_edit").append("<div class='package_item'>" +
-                                //         "<a href='#' data-id='" + item.id + "' title='Basic Package'>" +
-                                //         "<h4>" + item.name + "</h4>" +
-                                //         "<span>" + item.description + "</span>" +
-                                //         "</a>" +
-                                //         "</div>");
-                                // }
-                            // });
                             $('#wrap_package_list_view').empty();
                             $('#wrap_package_list_view').append("<label class='table_label'>Selected Package </label>" +
                                 "<a class='selected_package' title='"+ order_data[0].package.name +"'>" +

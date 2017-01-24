@@ -30,12 +30,14 @@ class OrderMail extends Mailable
      */
     public function build()
     {
+        $order = Order::find($this->data['order']);
+
         $address = 'service@syc.co.il';
         $name = 'RentInterSim';
-        $subject = 'Your Order';
+        $subject = 'Your Order #'. $order->id;
 //        dd($this->data);
 
-        $order = Order::find($this->data['order']);
+
 
         return $this->view('mail.mail')
             ->with('order', $order)

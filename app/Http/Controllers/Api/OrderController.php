@@ -328,6 +328,7 @@ class OrderController extends Controller
                     'order_id' => $order->id,
                 ]);
                 $order->landing = Carbon::now()->format('d/m/Y H:i');
+                $order->from = Carbon::now()->timestamp;
                 $order->save();
                 $this->helper->activate($order->id);
             }, 5);
@@ -351,6 +352,7 @@ class OrderController extends Controller
                     'order_id' => $order->id,
                 ]);
                 $order->departure = Carbon::now()->format('d/m/Y H:i');
+                $order->to = Carbon::now()->timestamp;
                 $order->save();
                 $this->helper->deactivate($order);
             }, 5);
