@@ -87,19 +87,12 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
 
 
 Route::get('/test', function (){
-    $order = Order::find(272);
-//    dd($order->editor);
-    if ($order->creator->email2 != null)
-        echo "!= null <br>";
-    if ($order->creator->email2 != "")
-        echo "== '' <br>";
-    else echo "!= '' <br>";
-    $cc = [$order->creator->email2];
-    if ($order->editor != null)
-        $cc[] = $order->editor->email;
-
-    echo '<pre />';
-    print_r($cc);
+    $orders = Order::where('status', 'done')->get();
+    foreach ($orders as $order){
+        $order->from = Carbon::createFromFormat('d/m/Y H:i', $order->landing)->timestamp;
+        $order->save();
+    }
+    echo "Done";
 
 });
 

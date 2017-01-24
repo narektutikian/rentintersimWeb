@@ -402,12 +402,12 @@ class ReportController extends Controller
             if ($request->has('username'))
                 $report = $report->where('created_by', $request->input('username'));
             if ($request->has('from')){
-                $from = Carbon::createFromFormat('d/m/Y', $request->input('from'))->setTime(0,0)->subHour();
+                $from = Carbon::createFromFormat('d/m/Y', $request->input('from'))->setTime(0,0,0)->subHour();
                 $report = $report->where('from', '>', $from->timestamp);
                 $fromS = $request->input('from');
             }
             if ($request->has('to')){
-                $to = Carbon::createFromFormat('d/m/Y', $request->input('to'))->setTime(23,59)->addHours(4);
+                $to = Carbon::createFromFormat('d/m/Y', $request->input('to'))->setTime(23,59,59);
                 $report = $report->where('from', '<', $to->timestamp);
                 $toS = $request->input('to');
             }
