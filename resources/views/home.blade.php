@@ -120,7 +120,7 @@
                                         </td>
                                         <td class="rwd-td9 table_status_cell" data-th="Remove">
 
-                                            <span class="remove_row {{ ($order['status'] == 'active' ) ? 'disable' : '' }} " data-toggle="modal" data-target="#confirm_delete" data-row-id="{{$order['id']}}">
+                                            <span class="remove_row {{ ($order['status'] == 'active' || (Auth::user()->level != 'Super admin' && $order['status'] == 'done')) ? 'disable' : '' }} " data-toggle="modal" data-target="#confirm_delete" data-row-id="{{$order['id']}}">
                                                 <i class="icon-delete"></i>
                                             </span>
                                         </td>
@@ -252,6 +252,7 @@
                             <div class="form-group">
 
                                 <div class="email_phone_num"></div>
+                                <div class="email_sim_num"></div>
 
                                 <div class="clear"></div>
                             </div>

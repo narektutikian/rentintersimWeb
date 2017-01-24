@@ -144,12 +144,11 @@ class ViewHelper
         return ++$interval;
 
     }
-    public function prepareExport($orders)
+    public function prepareExport($orders, $propose)
     {
         foreach ($orders as $order){
             unset($order['from']);
             unset($order['to']);
-            unset($order['status']);
             unset($order['remark']);
             unset($order['package_id']);
             unset($order['updated_by']);
@@ -157,6 +156,28 @@ class ViewHelper
             unset($order['updated_at']);
             unset($order['package_name']);
             unset($order['sim']);
+            $order['Phone'] = $order['phone_id'];
+            unset($order['phone_id']);
+            $order['Sim number'] = $order['sim_id'];
+            unset($order['sim_id']);
+            $order['Provider'] = $order['provider'];
+            unset($order['provider']);
+            $order['From'] = $order['landing'];
+            unset($order['landing']);
+            $order['To'] = $order['departure'];
+            unset($order['departure']);
+            $order['Dealer'] = $order['created_by'];
+            unset($order['created_by']);
+            $order['Reference #'] = $order['reference_number'];
+            unset($order['reference_number']);
+            if ($propose == 'report')
+            $order['Duration (in days)'] = $order['duration'];
+            unset($order['duration']);
+            if ($propose == 'order')
+            $order['Status'] = $order['status'];
+            unset($order['status']);
+
+
         }
         return $orders;
     }

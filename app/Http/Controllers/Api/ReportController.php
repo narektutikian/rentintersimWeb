@@ -398,7 +398,9 @@ class ReportController extends Controller
         if (!$request->has('provider'))
             $report = Order::where('id', '<', 0);
         else {
-            $report = Order::withTrashed()->where('status', 'done')->whereIn('created_by', $net);
+            $report = Order::withTrashed()->where(function ($q){
+                $q->where('status', 'done')->orWhere('status', 'active');
+            })->whereIn('created_by', $net);
             if ($request->has('username'))
                 $report = $report->where('created_by', $request->input('username'));
             if ($request->has('from')){
@@ -427,7 +429,7 @@ class ReportController extends Controller
             if ($request->has('export')){
             $report = $report->get();
             $ordersArray = $this->viewHelper->solveOrderList($report);
-            $ordersArray = $this->viewHelper->prepareExport($ordersArray);
+            $ordersArray = $this->viewHelper->prepareExport($ordersArray, 'report');
             Excel::create('Report from-'.$fromS. '&to-'.$toS , function($excel) use ($ordersArray) {
 
                 $excel->sheet('report', function($sheet) use($ordersArray) {

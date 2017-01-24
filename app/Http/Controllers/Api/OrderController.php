@@ -263,6 +263,10 @@ class OrderController extends Controller
         if ($Order != null){
             if ($Order->status != 'active'){
 //                $this->helper->deactivate($id);
+                if($Order->status == 'done'){
+                    $Order->delete();
+                    return response()->json(['deleted'], 200);
+                }
                 $this->helper->freeResources($Order, 'deleted');
                 return response()->json(['deleted'], 200);
             }
@@ -413,7 +417,7 @@ class OrderController extends Controller
         }
         if ($user->level == 'Super admin')
             $orders = Order::get();
-        $ordersArray = $this->viewHelper->solveOrderList($orders);
+        $ordersArray = $this->viewHelper->prepareExport($this->viewHelper->solveOrderList($orders), 'order');
 
         Excel::create('Orders', function($excel) use ($ordersArray) {
 

@@ -121,7 +121,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <div class="report_buttons">
-                                                <input type="reset" class="btn btn-warning" value="Clear">
+                                                {{--<input type="reset" class="btn btn-warning" value="Clear">--}}
                                                 <input type="submit" name="report" class="btn btn-info" value="Report">
                                                 <input type="submit" name="export" class="btn btn-info" value="Export">
                                             </div>

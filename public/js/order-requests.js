@@ -278,15 +278,17 @@ $(document).ready(function () {
             if (order_status == "success") {
 
                if (order_data[0].status != "waiting")
-                $('.email_phone_num').text("Phone Number : " + order_data[0].phone.phone);
+                   $('.email_phone_num').empty();
+                $('.email_phone_num').append("Phone Number : " + order_data[0].phone.phone +
+                    " <br/> Sim Number : " + order_data[0].sim.number);
                 $('.selected_package_print').empty();
                 $('.selected_package_print').append("<label class='table_label'>Selected Package </label>" +
                 "<a class='selected_package' title='"+ order_data[0].package.name +"'>" +
                     "<h4>"+ order_data[0].package.name +"</h4>" +
                 "<span>"+ order_data[0].package.description +"</span>" +
                 "</a>");
-                $('.from_print').text(order_data[0].from);
-                $('.to_print').text(order_data[0].to);
+                $('.from_print').text(order_data[0].landing);
+                $('.to_print').text(order_data[0].departure);
                 $('.mail_order').text(" #" + order_data[0].id);
 
             }
