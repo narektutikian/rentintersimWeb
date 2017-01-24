@@ -17,7 +17,7 @@ use App\Models\Order;
 use App\Models\Activation;
 use Illuminate\Support\Facades\Log;
 use Mail;
-
+use DB;
 
 class CreateHelper
 {
@@ -42,12 +42,14 @@ class CreateHelper
 
     public function getNumber($order){
 //        dd($order);
-        $number = null;
-        $number = $this->retryGetNumber($order);
-        if ($number == null){
-            $number = $this->getNewNumber($order);
-        }
-        return $number;
+        DB::transaction(function () use ($order) {
+            $number = null;
+            $number = $this->retryGetNumber($order);
+            if ($number == null) {
+                $number = $this->getNewNumber($order);
+            }
+            return $number;
+        },5 );
     }
 
     protected function getNewNumber($order)
@@ -199,6 +201,7 @@ class CreateHelper
 
     public function activate ($orderId)
     {
+        DB::transaction(function () use ($orderId) {
         $order = Order::find($orderId);
         if ($order->status != 'pending')
             exit();
@@ -222,11 +225,15 @@ class CreateHelper
         $phone = $order->phone;
         $phone->current_sim_id = $order->sim_id;
         $phone->save();
+        $order->from = Carbon::createFromFormat('d/m/Y H:i', $order->landing)->timestamp;
+        $order->save();
         $this->setStatus($order, 'active');
+        }, 5);
     }
 
     public function startDeactivation()
     {
+
         $now = Carbon::now();
 //        dd($now->timestamp);
         $orders = Order::where('status', 'active')->where('to', '<', $now->timestamp)->get();
@@ -243,7 +250,7 @@ class CreateHelper
 
     public function deactivate ($order)
     {
-
+        DB::transaction(function () use ($order) {
         if ($order == null)
             exit();
         $phone = $order->phone;
@@ -264,6 +271,7 @@ class CreateHelper
         ]);
 
         $this->freeResources($order, 'done');
+    }, 5);
 
     }
 
