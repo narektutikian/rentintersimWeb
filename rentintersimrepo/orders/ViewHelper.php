@@ -8,6 +8,8 @@
 
 namespace Rentintersimrepo\orders;
 
+use App\Models\Phone;
+use App\Models\Sim;
 use Carbon\Carbon;
 use Auth;
 use App\Models\Order;
@@ -32,14 +34,18 @@ class ViewHelper
                 $ordersArray[$key]['created_by'] = $order->creator->login;
             if ($order->editor != null)
                 $ordersArray[$key]['updated_by'] = $order->editor->login;
+            if ($order->sim != null)
+                $ordersArray[$key]['provider'] = $order->sim->provider->name;
+            else  $ordersArray[$key]['provider'] = Sim::withTrashed()->find($ordersArray[$key]['sim_id'])->provider->name;
             if($order->sim != null)
                 $ordersArray[$key]['sim_id'] = $order->sim->number;
+            else
+                $ordersArray[$key]['sim_id'] = Sim::withTrashed()->find($ordersArray[$key]['sim_id'])->number;
             if ($ordersArray[$key]['phone_id'] != 0)
                 if($order->phone != null)
                 $ordersArray[$key]['phone_id'] = $order->phone->phone;
-            if ($order->sim != null)
-            $ordersArray[$key]['provider'] = $order->sim->provider->name;
-            else  $ordersArray[$key]['provider'] = 'sim deleted';
+                else
+                    $ordersArray[$key]['phone_id'] = Phone::withTrashed()->find($ordersArray[$key]['phone_id'])->phone;
             $ordersArray[$key]['from'] = $this->present($ordersArray[$key]['from']);
             $ordersArray[$key]['to'] = $this->present($ordersArray[$key]['to']);
 //        $ordersArray[$key]['package_id'] = $order->package->name;

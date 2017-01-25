@@ -17,6 +17,7 @@ use App\Models\Order;
 
 //use Auth;
 use Carbon\Carbon;
+use App\Models\Sim;
 
 Route::get('/', function () {
     return redirect('home');
@@ -87,12 +88,8 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
 
 
 Route::get('/test', function (){
-//    $oldOrders = Order::where([['package_id', 29], ['phone_id', '!=', 0], ['status', '!=', 'done' ]])->whereNotIn('phone_id',
-//        function ($q) {
-//            $q->select('id')->from('phones')->where('is_special', 1);
-//        })
-//        ->orderby('id', 'asc')->get();
-//    dd($oldOrders);
+    $sim= Sim::withTrashed()->find(18)->provider->name;
+echo $sim;
 
 });
 

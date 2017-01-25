@@ -308,7 +308,8 @@ class OrderController extends Controller
                 $number = $this->helper->getNumber($order);
             else return $order->phone_id;
         }
-        if ($number != null) {
+        $orderNew = Order::find($orderid);
+        if ($orderNew->phone_id != 0) {
 
             return response()->json(['number' => $order->phone->phone], 200);
         }
