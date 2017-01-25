@@ -435,7 +435,7 @@ $(document).ready(function () {
 
             $.ajax({
                 type: "GET",
-                url: 'send-mail/' + edit_id,
+                url: '/send-mail/' + edit_id,
                 data: data,
                 beforeSend: function() {
                     $(".error_response").empty();
