@@ -52,7 +52,7 @@ $(document).ready(function () {
             e.stopPropagation(); // Stop stuff happening
 
             $.ajax({
-                url: 'import-type',
+                url: '/import-type',
                 type: 'POST',
                 data: new FormData($("#insert-type")[0]),
                 cache: false,
@@ -328,7 +328,7 @@ $(document).ready(function () {
         else {
             e.stopPropagation(); // Stop stuff happening
             $.ajax({
-                url: 'import-sim',
+                url: '/import-sim',
                 type: 'POST',
                 data: new FormData($("#insert-sim")[0]),
                 cache: false,
@@ -434,7 +434,7 @@ $(document).ready(function () {
 
             e.stopPropagation(); // Stop stuff happening
             $.ajax({
-                url: 'import-number',
+                url: '/import-number',
                 type: 'POST',
                 data: new FormData($("#add-number-form")[0]),
                 cache: false,
@@ -510,7 +510,7 @@ $(document).ready(function () {
         if ($(this).closest(".vd_form").valid()) {
             console.log('user create');
             $.ajax({
-                url: 'user',
+                url: '/user',
                 type: 'POST',
                 data: new FormData($("#add-user")[0]),
                 cache: false,
@@ -700,7 +700,7 @@ $(document).ready(function () {
             };
 
             $.ajax({
-                url: 'user/' + $(".user_edit_id").val(),
+                url: '/user/' + $(".user_edit_id").val(),
                 type: 'PUT',
                 data: data,
                 // cache: false,

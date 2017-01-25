@@ -30,7 +30,7 @@ $(document).ready(function () {
 
             $.ajax({
                 type: "POST",
-                url: 'order',
+                url: '/order',
                 data: data,
                 beforeSend: function() {
                     $(".error_response").empty();
@@ -326,7 +326,7 @@ $(document).ready(function () {
 
             $.ajax({
                 type: "PUT",
-                url: 'order/' + edit_id,
+                url: '/order/' + edit_id,
                 data: data,
                 success: function (msg) {
                     location.reload();
@@ -471,7 +471,7 @@ function getNumber(id) {
     // console.log("get number for " + id)
     $.ajax({
         type: "GET",
-        url: 'get-number/' + id,
+        url: '/get-number/' + id,
         beforeSend: function() {
             $(".error_response").empty();
             $(".success_response").empty();
