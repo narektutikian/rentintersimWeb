@@ -39,7 +39,7 @@ $(document).ready(function () {
                 },
                 success: function (msg) {
                     location.reload();
-                    $(".error_response").empty();
+                    /*$(".error_response").empty();
                     $(".success_response").empty();
                     $(".success_response").append("DONE");
                     $("#create-order").remove();
@@ -67,7 +67,7 @@ $(document).ready(function () {
                         $(".error_response").empty();
                         $(".success_response").empty();
                         $(".success_response").append("Order created but there is no available number. Try getting number in Order table.");
-                    }
+                    }*/
 
                 },
                 error: function (error) {

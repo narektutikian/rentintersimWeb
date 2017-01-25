@@ -87,12 +87,12 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
 
 
 Route::get('/test', function (){
-    $orders = Order::where('status', 'done')->get();
-    foreach ($orders as $order){
-        $order->from = Carbon::createFromFormat('d/m/Y H:i', $order->landing)->timestamp;
-        $order->save();
-    }
-    echo "Done";
+//    $oldOrders = Order::where([['package_id', 29], ['phone_id', '!=', 0], ['status', '!=', 'done' ]])->whereNotIn('phone_id',
+//        function ($q) {
+//            $q->select('id')->from('phones')->where('is_special', 1);
+//        })
+//        ->orderby('id', 'asc')->get();
+//    dd($oldOrders);
 
 });
 
