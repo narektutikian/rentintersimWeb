@@ -287,7 +287,7 @@ class PhoneController extends Controller
     public function specials($packageID)
     {
 //        dd( Phone::select('id', 'phone')->where('is_special', 1)->where('package_id', $packageID)->get()->toArray());
-        return Phone::select('id', 'phone')->where('is_special', 1)->where('package_id', $packageID)->get()->toArray();
+        return Phone::select('id', 'phone')->where('is_special', 1)->where('package_id', $packageID)->where('state', 'not in use')->get()->toArray();
     }
 
 

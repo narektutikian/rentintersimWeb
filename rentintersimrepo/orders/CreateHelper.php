@@ -74,7 +74,11 @@ class CreateHelper
 //        Log::info('Create Helper -> retryGetNewNumber'. date('H:i:s'));
         $number = null;
 
-        $oldOrders = Order::where([['package_id', $order->package_id], ['phone_id', '!=', 0]])->orderby('id', 'asc')->get();
+        $oldOrders = Order::where([['package_id', $order->package_id], ['phone_id', '!=', 0], ['status', '!=', 'done' ]])->whereNotIn('phone_id',
+            function ($q) {
+             $q->select('id')->from('phones')->where('is_special', 1);
+            })
+            ->orderby('id', 'asc')->get();
         foreach ($oldOrders as $oldOrder){
             if ($this->isTimeCompatible($order, $oldOrder)) {
                 if ($this->isNumberCompatible($order, $oldOrder)){
