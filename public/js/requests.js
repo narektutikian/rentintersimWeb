@@ -687,8 +687,8 @@ $(document).ready(function () {
             data : {_token : CSRF_TOKEN},
             success: function(result) {
                 // Do something with the result
-                console.log('success ');
-                //location.reload();
+                // console.log('success ');
+                location.reload();
             }
         });
 
@@ -703,31 +703,54 @@ $(document).ready(function () {
 
     });
 
-    /* Remove Row */
+    /* Recover Row */
     $(document).on('click', '.recover_row', function () {
 
+
+        $('#recover-req-id').val('');
+        $('#recover-req-url').val('');
         var self =  $(this);
+
         var id = self.attr('data-row-id');
         var page = self.parents('table').attr('data-page');
 
-        var url = '/' + page + '/recover/' + id;
-        $('#confirm_recover').modal({ backdrop: 'static', keyboard: false })
-            .one('click', '#recover', function () {
 
-                $.ajax({
-                    url: url,
-                    type: 'post',
-                    data : {_token : CSRF_TOKEN},
-                    success: function(result) {
-                        // Do something with the result
-                        // console.log('success ' + result);
-                        // self.closest('tr').remove();
-                        location.reload();
-                    }
-                });
-            });
+        $('#recover-req-id').val(id);
+        $('#recover-req-url').val(page);
 
     });
+
+    $(document).one('click', '#recover', function () {
+
+        var newId = $('#recover-req-id').val();
+        var newPage = $('#recover-req-url').val();
+
+        var url = '/' + newPage + '/recover/' + newId;
+
+        console.log('NEW url ', url);
+
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data : {_token : CSRF_TOKEN},
+            success: function(result) {
+                // Do something with the result
+                // console.log('success ');
+                location.reload();
+            }
+        });
+
+        return false;
+
+    });
+
+    $('#confirm_recover').one("hidden.bs.modal", function () {
+
+        $('#recover-req-id').val('');
+        $('#recover-req-url').val('');
+
+    });
+
 
     /***** EDIT USER  *****/
     $('#edit_user_submit').on('click', function (e) {
