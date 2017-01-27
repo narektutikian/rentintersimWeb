@@ -84,6 +84,10 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
 
     Route::get('report', 'ReportController@generateReport');
     Route::get('phone/specials/{packageID}', 'PhoneController@specials');
+
+    /**** Recover Routes ****/
+    Route::post('sim/recover/{id}', 'SIMController@recover');
+    Route::post('number/recover/{id}', 'PhoneController@recover');
 });
 
 
