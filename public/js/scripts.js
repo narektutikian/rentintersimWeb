@@ -466,9 +466,10 @@ $( document ).ready(function() {
     /* Bootstrap Modal Close Event */
     $('.modal').one("hidden.bs.modal", function () {
 
-        $(this).find('form')[0].reset();
+        if(typeof $(this).find('form')[0] != "undefined"){
+            $(this).find('form')[0].reset();
+        }
 
-        // location.reload();
     });
 
 

@@ -657,27 +657,49 @@ $(document).ready(function () {
     /* Remove Row */
     $(document).on('click', '.remove_row', function () {
 
+
+        $('#hidden-req-id').val('');
+        $('#hidden-req-url').val('');
         var self =  $(this);
+
         var id = self.attr('data-row-id');
         var page = self.parents('table').attr('data-page');
-        if (typeof page === 'undefined')
-           page = 'user';
-        var url = '/' + page + '/' + id;
-        $('#confirm_delete').modal({ backdrop: 'static', keyboard: false })
-            .one('click', '#delete', function () {
 
-                $.ajax({
-                    url: url,
-                    type: 'DELETE',
-                    data : {_token : CSRF_TOKEN},
-                    success: function(result) {
-                        // Do something with the result
-                        console.log('success ');
-                        // self.closest('tr').remove();
-                        location.reload();
-                    }
-                });
-            });
+
+        $('#hidden-req-id').val(id);
+        $('#hidden-req-url').val(page);
+
+    });
+
+
+    $(document).one('click', '#delete', function () {
+
+        var newId = $('#hidden-req-id').val();
+        var newPage = $('#hidden-req-url').val();
+
+        var url = '/' + newPage + '/' + newId;
+
+        console.log('NEW url ', url);
+
+        $.ajax({
+            url: url,
+            type: 'DELETE',
+            data : {_token : CSRF_TOKEN},
+            success: function(result) {
+                // Do something with the result
+                console.log('success ');
+                //location.reload();
+            }
+        });
+
+        return false;
+
+    });
+
+    $('#confirm_delete').one("hidden.bs.modal", function () {
+
+        $('#hidden-req-id').val('');
+        $('#hidden-req-url').val('');
 
     });
 

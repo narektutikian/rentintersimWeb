@@ -52,37 +52,23 @@
 
 </div>
 
-<div id="confirm_delete" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="confirm_delete">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                Are you sure?
-            </div>
-            <div class="modal-footer">
-                <button type="button" data-dismiss="modal" class="btn btn-primary" id="delete">Delete</button>
-                <button type="button" data-dismiss="modal" class="btn">Cancel</button>
-            </div>
-        </div>
+{{--<div id="confirm_delete" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="confirm_delete">--}}
+    {{--<div class="modal-dialog" role="document">--}}
+        {{--<div class="modal-content">--}}
+            {{--<div class="modal-body">--}}
+                {{--Are you sure? fgfgfg--}}
+                {{--<input type="hidden" value="" id="hidden-req-id">--}}
+                {{--<input type="hidden" value="" id="hidden-req-url">--}}
+            {{--</div>--}}
+            {{--<div class="modal-footer">--}}
+                {{--<button type="button" data-dismiss="modal" class="btn btn-primary" id="delete2">Delete</button>--}}
+                {{--<button type="button" data-dismiss="modal" class="btn">Cancel</button>--}}
+            {{--</div>--}}
+        {{--</div>--}}
 
-    </div>
-</div>
+    {{--</div>--}}
+{{--</div>--}}
 
-<div id="confirm_recover" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="confirm_recover">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <form action="/" class="form-horizontal">
-                <div class="modal-body">
-                    Are you sure?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" data-dismiss="modal" class="btn btn-primary" id="recover">Recover</button>
-                    <button type="button" data-dismiss="modal" class="btn">Cancel</button>
-                </div>
-            </form>
-        </div>
-
-    </div>
-</div>
 
 <script src="/js/jquery-2.2.4.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
