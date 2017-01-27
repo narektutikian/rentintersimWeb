@@ -1,5 +1,7 @@
 $( document ).ready(function() {
 
+    console.log('last script');
+
     $('header .mobile_nav_button').on('click', function(){
         $('header .mobile_nav').slideToggle();
     });
@@ -317,37 +319,46 @@ $( document ).ready(function() {
 
     $('.date').datetimepicker();
 
-    $('.flight_dates').datetimepicker({
-        //keepOpen : true,
-        //maxDate: 'now',
-        //showTodayButton: true,
+    $('.lnd').datetimepicker({
         showClear: true,
         minDate: date
     });
-     // $('.flight_dates').datetimepicker('show');
+    $('.dpr').datetimepicker({
+        showClear: true,
+        minDate: date
+    });
 
     var ln_date_min, dp_date_max ;
 
-    $('#landing_date').closest('.flight_dates').on('dp.change', function(e){
+    $('#lnd').on('dp.change', function(e){
 
-        ln_date_min =  $('#landing_date').closest('.flight_dates').data('date');
+        $("#dpr").prop('disabled', true);
+
+        console.log('lnd ', $(this));
+        ln_date_min =  $('#landing_date').closest('.lnd').data('date');
 
         var res = ln_date_min.split('/');
         var final_res = res[1] + '/' + res[0] + '/' + res[2];
 
         $('#departure_date').val("");
-        // console.log('landing');
-        $('#departure_date').closest('.flight_dates').data("DateTimePicker").minDate(ln_date_min);
-        $('#departure_date').closest('.flight_dates').find('td.active').removeClass('active');
-        $('#departure_date').closest('.flight_dates').find('td[data-day="' + final_res + '"]').addClass('active');
-
+        $('#departure_date').closest('.dpr').data("DateTimePicker").minDate(ln_date_min);
+        $('#departure_date').closest('.dpr').find('td.active').removeClass('active');
+        $('#departure_date').closest('.dpr').find('td[data-day="' + final_res + '"]').addClass('active');
     });
 
-    $('#departure_date').closest('.flight_dates').on('dp.change', function(e){
-        // console.log('departure');
-        dp_date_max =  $('#departure_date').closest('.flight_dates').data('date');
+    $('#dpr').on('dp.change', function(e){
+        console.log('dpr ', $(this));
+        var check_min_date =  $(this).closest('#modal_new_order').find('#landing_date').parent('.lnd').data('date');
+        console.log('departure ', check_min_date);
 
-        $('#landing_date').closest('.flight_dates').data("DateTimePicker").maxDate(dp_date_max);
+        if(typeof check_min_date != 'undefined'){
+            dp_date_max =  $('#departure_date').closest('.dpr').data('date');
+            $('#landing_date').closest('.lnd').data("DateTimePicker").maxDate(dp_date_max);
+        } else if(typeof check_min_date == 'undefined') {
+            //e.preventDefault();
+            console.log('Please choose landing date first ');
+        }
+
 
     });
 
@@ -355,7 +366,6 @@ $( document ).ready(function() {
 
         // reset datepicker for new order modal
         var id = $(this).attr('id');
-        // console.log('hidden ');
 
         if(id == 'modal_new_order'){
             // console.log('IF ', id);

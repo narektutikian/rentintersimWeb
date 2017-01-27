@@ -822,7 +822,9 @@ html, body {
       border-radius: 4px;
       text-align: center; }
       .login_page .login_wrapper .login_form.tall {
-        height: 300px; }
+        height: 330px; }
+        .login_page .login_wrapper .login_form.tall .help-block {
+          color: red; }
       .login_page .login_wrapper .login_form.short {
         height: 270px; }
       .login_page .login_wrapper .login_form h3 {
