@@ -314,10 +314,12 @@ $(document).ready(function () {
         $.get("/order/" + row_id + "/edit", function (order_data, order_status) {
             if (order_status == "success") {
 
-               if (order_data[0].status != "waiting")
+               if (order_data[0].status != "waiting"){
                    $('.email_phone_num').empty();
-                $('.email_phone_num').append("Phone Number : " + order_data[0].phone.phone +
-                    " <br/> Sim Number : " + order_data[0].sim.number);
+                   $('.email_phone_num').append("Phone Number : " + order_data[0].phone.phone +
+                       " <br/> Sim Number : " + order_data[0].sim.number);
+               }
+
                 $('.selected_package_print').empty();
                 $('.selected_package_print').append("<label class='table_label'>Selected Package </label>" +
                 "<a class='selected_package' title='"+ order_data[0].package.name +"'>" +
