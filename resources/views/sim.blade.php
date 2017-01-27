@@ -19,8 +19,11 @@
                     <a class="filter_option  {{ (Request::is('filter-simlist/available')) ? 'blue' : 'light_blue' }}" href="{{url('/filter-simlist/available')}}">
                         <span class="status available"></span> Available ({{$counts['Available']}})
                     </a>
-                    <a class="filter_option  {{ (Request::is('filter-simlist/parking')) ? 'blue' : 'light_blue' }} last" href="{{url('/filter-simlist/parking')}}">
+                    <a class="filter_option  {{ (Request::is('filter-simlist/parking')) ? 'blue' : 'light_blue' }}" href="{{url('/filter-simlist/parking')}}">
                         <span class="status disabled"></span> Parking ({{$counts['Parking']}})
+                    </a>
+                    <a class="filter_option  {{ (Request::is('filter-simlist/deleted')) ? 'blue' : 'light_blue' }} last" href="{{url('/filter-simlist/deleted')}}">
+                        <span class="status available"></span> <span class="show-deleted"><i class="icon-delete"></i></span>
                     </a>
                     <div class="search_management_option">
                         <form action="{{url('search/sim')}}" class="search_form_option vd_form">
