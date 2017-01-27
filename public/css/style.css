@@ -1875,7 +1875,8 @@ input[type="radio"].toggle.checked + label {
   width: 200px;
   display: block;
   margin: 0 auto;
-  text-align: center; }
+  text-align: center;
+  float: none; }
   .email_print .single_package a {
     padding: 0 10px; }
 
