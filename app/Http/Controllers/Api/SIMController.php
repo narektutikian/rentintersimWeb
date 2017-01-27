@@ -154,7 +154,7 @@ class SIMController extends Controller
     {
         //
         $sim = Sim::find($id);
-        if ($sim != null & $sim->state == 'available')
+        if ($this->isEditable($sim))
             $sim->delete();
         else
             return response()->json(['sim' => 'deletion not allowed'], 403);
@@ -162,7 +162,7 @@ class SIMController extends Controller
         return response()->json(['sim' => 'deleted'], 200);
     }
 
-    public static function solveSimList($sims){
+    public function solveSimList($sims){
         $simsArray = $sims;
         foreach ($sims as $key => $sim) {
             $simsArray[$key]['provider_id'] = $sim->provider->name;
@@ -171,16 +171,7 @@ class SIMController extends Controller
             unset($simsArray[$key]['deleted_at']);
             unset($simsArray[$key]['created_at']);
             unset($simsArray[$key]['updated_at']);
-
-            if ($sim['state'] == 'available')
-                $simsArray[$key]['editable'] = 1;
-            elseif ($sim['state'] == 'parking'){
-                $count = Phone::where('initial_sim_id', $sim['id'])->count();
-                if ($count == 0)
-                    $simsArray[$key]['editable'] = 1;
-            } else {$simsArray[$key]['editable'] = 0;}
-
-
+            $simsArray[$key]['editable'] = $this->isEditable($sim);
         }
         return $simsArray;
     }
@@ -286,6 +277,17 @@ class SIMController extends Controller
         $sim = Sim::onlyTrashed()->find($id);
         $sim->restore();
         return $sim;
+    }
+
+    public function isEditable($sim)
+    {
+        if ($sim->state == 'available')
+            return 1;
+        elseif ($sim->state == 'parking'){
+            $count = Phone::where('initial_sim_id', $sim->id)->count();
+            if ($count == 0)
+                return 1;
+        } else {return 0;}
     }
 
 }
