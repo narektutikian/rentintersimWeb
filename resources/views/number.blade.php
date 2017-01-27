@@ -18,8 +18,11 @@
                     <a class="filter_option {{ (Request::is('filter-numberlist/not in use')) ? 'blue' : 'light_blue' }}" href="{{url('/filter-numberlist/not in use')}}">
                         <span class="status disabled"></span> not in use ({{$counts['not in use']}})
                     </a>
-                    <a class="filter_option {{ (Request::is('filter-numberlist/special')) ? 'blue' : 'light_blue' }} last" href="{{url('/filter-numberlist/special')}}">
+                    <a class="filter_option {{ (Request::is('filter-numberlist/special')) ? 'blue' : 'light_blue' }} " href="{{url('/filter-numberlist/special')}}">
                         <span class="status done"></span> Special ({{$counts['specials']}})
+                    </a>
+                    <a class="filter_option light_blue last" href="{{url('/filter-numberlist/deleted')}}">
+                        <span class="show-deleted"><i class="icon-delete"></i></span>
                     </a>
                     <div class="search_management_option">
                         <form action="{{url('search/number')}}" class="search_form_option">

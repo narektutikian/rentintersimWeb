@@ -1092,6 +1092,30 @@ input[type="radio"].toggle.checked + label {
     border: 1px solid #1b6db2; }
   .filter_option.light_blue {
     border: 1px solid #bed5e4; }
+  .filter_option .show-deleted {
+    margin-top: 4px;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 18px;
+    color: #2cc763; }
+
+.recover_row {
+  display: inline-block;
+  vertical-align: middle;
+  background: #2cc763;
+  color: #ffffff;
+  width: 32px;
+  height: 32px;
+  text-align: center;
+  line-height: 38px;
+  font-size: 18px;
+  -webkit-border-radius: 16px;
+  -moz-border-radius: 16px;
+  -ms-border-radius: 16px;
+  border-radius: 16px;
+  cursor: pointer; }
+  .recover_row:hover {
+    background: #186838; }
 
 .filter_text {
   float: left;

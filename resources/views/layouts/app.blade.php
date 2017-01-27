@@ -57,22 +57,7 @@
 </div>
 
 
-<div id="confirm_recover" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="confirm_recover">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <form action="/" class="form-horizontal">
-                <div class="modal-body">
-                    Are you sure?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" data-dismiss="modal" class="btn btn-primary" id="recover">Recover</button>
-                    <button type="button" data-dismiss="modal" class="btn">Cancel</button>
-                </div>
-            </form>
-        </div>
 
-    </div>
-</div>
 
 
 <script src="/js/jquery-2.2.4.min.js"></script>

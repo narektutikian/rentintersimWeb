@@ -81,6 +81,29 @@
   &.light_blue
     border: 1px solid $search_border
 
+  .show-deleted
+    margin-top: 4px
+    display: inline-block
+    vertical-align: middle
+    font-size: 18px
+    color: $active_green
+
+.recover_row
+  display: inline-block
+  vertical-align: middle
+  background: $active_green
+  color: $white
+  width: 32px
+  height: 32px
+  text-align: center
+  line-height: 38px
+  font-size: 18px
+  @include border_radius(16px)
+  cursor: pointer
+  &:hover
+    background: #186838
+
+
 .filter_text
   float: left
   height: 30px
