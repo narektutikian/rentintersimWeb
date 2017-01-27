@@ -143,7 +143,7 @@ $(document).ready(function () {
 
         var row_id = $(this).parents('td').attr('data-row-id');
         edit_id = row_id;
-        var editable_form = $(this).attr('data-form');
+        /*var editable_form = $(this).attr('data-form');
         var from = [], to = [];
 
         $(this).closest('td').siblings('.table_time_cell_large.from').each(function () {
@@ -183,7 +183,7 @@ $(document).ready(function () {
 
             from.push(hour_cell);
             to.push(min_cell);
-        }
+        }*/
 
         $.get("/order/" + row_id + "/edit", function (order_data, order_status) {
 
@@ -243,11 +243,16 @@ $(document).ready(function () {
                         $('#activate-button').attr("onclick", "activateOrder("+ order_data[0].id +")");
                         $('#suspend-button').attr("onclick", "suspend("+ order_data[0].id +")");
 
-                        if (order_data[0].status != 'pending')
-                        $('#activate-button').addClass('disable');
+                        if (order_data[0].status != 'pending'){
+                            $('#activate-button').addClass('disable');
+                            $('#suspend-button').removeClass('disable');
+                        }
 
-                        if (order_data[0].status != 'active')
+                        if (order_data[0].status != 'active'){
                             $('#suspend-button').addClass('disable');
+                            $('#activate-button').removeClass('disable');
+                        }
+
                 var select = $("#phone_number-edit");
                 if (order_data[0].status != "waiting") {
                     $('#phone_number-edit2').val(order_data[0].phone.phone);
@@ -258,6 +263,8 @@ $(document).ready(function () {
                     select.val(order_data[0].phone.id);
                 }
                 else if (order_data[0].status == "waiting"){
+                    $('#activate-button').addClass('disable');
+                    $('#suspend-button').addClass('disable');
 
                     select.find('option').remove();
                     select.removeAttr("disabled");
