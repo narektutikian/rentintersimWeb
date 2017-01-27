@@ -199,6 +199,8 @@ class PhoneController extends Controller
 
         if ($filter == 'special')
             $phones = Phone::where('is_special', 1)->orderby('id', 'desc')->paginate(env('PAGINATE_DEFAULT'));
+        elseif ($filter == 'deleted')
+            $phones = Phone::onlyTrashed()->orderby('id', 'desc')->paginate(env('PAGINATE_DEFAULT'));
         else
         $phones = Phone::filter($filter)->orderby('id', 'desc')->paginate(env('PAGINATE_DEFAULT'));
         $phonesArray = $this->solvePhoneList($phones);
@@ -288,6 +290,13 @@ class PhoneController extends Controller
     {
 //        dd( Phone::select('id', 'phone')->where('is_special', 1)->where('package_id', $packageID)->get()->toArray());
         return Phone::select('id', 'phone')->where('is_special', 1)->where('package_id', $packageID)->where('state', 'not in use')->get()->toArray();
+    }
+
+    public function recover($id)
+    {
+        $number = Phone::onlyTrashed()->find($id);
+        $number->restore();
+        return $number;
     }
 
 

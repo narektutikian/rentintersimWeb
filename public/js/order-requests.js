@@ -189,9 +189,9 @@ $(document).ready(function () {
 
             if (order_status == "success") {
 
-                $.get("/type-provider/1", function (data, type_status) {
-
-                    if (type_status == "success") {
+                // $.get("/type-provider/1", function (data, type_status) {
+                //
+                //     if (type_status == "success") {
 
                         // $.each(data, function (i, item) {
 
@@ -230,14 +230,6 @@ $(document).ready(function () {
                         $('#sim-edit').val(order_data[0].sim_id);
                         $('#remark-edit').val(order_data[0].remark);
                         $('#reference_number-edit').val(order_data[0].reference_number);
-                        if (order_data[0].status != "waiting") {
-                            $('#phone_number-edit2').val(order_data[0].phone.phone);
-                            $('#phone_number-edit').append($('<option>', {
-                                value: order_data[0].phone.id,
-                                text: order_data[0].phone.phone
-                            }));
-                            $("#phone_number-edit").val(order_data[0].phone.id);
-                        }
                         $('#order_status-edit').val(order_data[0].status);
                         $('#creator').text(order_data[0].creator.name + " " + order_data[0].created_at);
                         if (order_data[0].editor != null)
@@ -256,13 +248,51 @@ $(document).ready(function () {
 
                         if (order_data[0].status != 'active')
                             $('#suspend-button').addClass('disable');
+                var select = $("#phone_number-edit");
+                if (order_data[0].status != "waiting") {
+                    $('#phone_number-edit2').val(order_data[0].phone.phone);
+                    select.append($('<option>', {
+                        value: order_data[0].phone.id,
+                        text: order_data[0].phone.phone
+                    }));
+                    select.val(order_data[0].phone.id);
+                }
+                else if (order_data[0].status == "waiting"){
+
+                    select.find('option').remove();
+                    select.removeAttr("disabled");
+                    $.get("/phone/specials/" + order_data[0].package.id, function (specials, special_status) {
+                        if (special_status == "success"){
+                            // console.log(specials);
+                            if (specials[0] != null) {
+
+                                var options = "<option value=''></option>";
+                                // console.log(data);
+                                $.each(specials, function (i, item) {
+                                    options += "<option value=" +item.id +">" + item.phone + "</option>";
+                                });
+
+                                select
+                                    .find('option')
+                                    .remove()
+                                    .end()
+                                    .append(options);
+
+                            }
+                            // setTimeout(function(){
+                            //     $icon.removeClass('icon-time') ;
+                            //     $icon.addClass('icon-username');
+                            // }, 500);
+                        }
+                    });
+                }
 
 
                         // console.log(order_data[0].status)
 
 
-                    }
-                });
+                //     }
+                // });
             }
         });
 

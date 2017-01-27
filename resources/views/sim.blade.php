@@ -64,9 +64,15 @@
                                 <span class="table_status_text not_used ">{{$sim['state']}}</span>
                             </td>
                             <td class="rwd-td5 table_status_cell" data-th="Remove">
+                                @if (!Request::is('filter-simlist/deleted'))
                                 <span class="remove_row {{ ($sim['editable']) ? '' : 'disable' }}" data-toggle="modal" data-target="#confirm_delete" data-row-id="{{$sim['id']}}">
                                     <i class="icon-delete"></i>
                                 </span>
+                                    @elseif(Request::is('filter-simlist/deleted'))
+                                    <span class="recover_row {{ ($sim['editable']) ? '' : 'disable' }}" data-toggle="modal" data-target="#confirm_recover" data-row-id="{{$sim['id']}}">
+                                    <i class="icon-delete"></i>
+                                </span>
+                                    @endif
                             </td>
                         </tr>
                         @endforeach

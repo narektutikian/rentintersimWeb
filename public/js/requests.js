@@ -681,6 +681,32 @@ $(document).ready(function () {
 
     });
 
+    /* Remove Row */
+    $(document).on('click', '.recover_row', function () {
+
+        var self =  $(this);
+        var id = self.attr('data-row-id');
+        var page = self.parents('table').attr('data-page');
+
+        var url = '/' + page + '/recover/' + id;
+        $('#confirm_recover').modal({ backdrop: 'static', keyboard: false })
+            .one('click', '#recover', function () {
+
+                $.ajax({
+                    url: url,
+                    type: 'post',
+                    data : {_token : CSRF_TOKEN},
+                    success: function(result) {
+                        // Do something with the result
+                        // console.log('success ' + result);
+                        // self.closest('tr').remove();
+                        location.reload();
+                    }
+                });
+            });
+
+    });
+
     /***** EDIT USER  *****/
     $('#edit_user_submit').on('click', function (e) {
         e.stopPropagation(); // Stop stuff happening

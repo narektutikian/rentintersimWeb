@@ -186,7 +186,10 @@ class SIMController extends Controller
     }
 
     public function filter($filter){
-
+        $sims = [];
+        if ($filter == 'deleted')
+            $sims = Sim::onlyTrashed()->orderby('id', 'desc')->paginate(env('PAGINATE_DEFAULT'));
+        else
         $sims = Sim::filter($filter)->orderby('id', 'desc')->paginate(env('PAGINATE_DEFAULT'));
         $simsArray = $this->solvesimList($sims);
 
@@ -276,6 +279,13 @@ class SIMController extends Controller
         return true;
         else
             return false;
+    }
+
+    public function recover($id)
+    {
+        $sim = Sim::onlyTrashed()->find($id);
+        $sim->restore();
+        return $sim;
     }
 
 }

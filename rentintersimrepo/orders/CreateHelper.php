@@ -48,6 +48,7 @@ class CreateHelper
             if ($number == null) {
                 $number = $this->getNewNumber($order);
             }
+
             return $number;
         },5 );
     }
@@ -305,7 +306,7 @@ class CreateHelper
         $order->delete();
     }
 
-    protected function sendMail($orderID)
+    public function sendMail($orderID)
     {
         $order = Order::withTrashed()->find($orderID);
         Mail::to($order->creator->email, $order->creator->name)

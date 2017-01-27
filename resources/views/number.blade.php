@@ -72,9 +72,15 @@
                                     <span class="table_status_text not_used ">{{$number['state']}}</span>
                                 </td>
                                 <td class="rwd-td7 table_status_cell" data-th="Remove">
+                                    @if (!Request::is('filter-numberlist/deleted'))
                                     <span class="remove_row {{ ($number['state'] != 'not in use') ? 'disable' : '' }}" data-toggle="modal" data-target="#confirm_delete" data-row-id="{{$number['id']}}">
                                         <i class="icon-delete"></i>
                                     </span>
+                                    @elseif(Request::is('filter-numberlist/deleted'))
+                                        <span class="recover_row {{ ($number['state'] != 'not in use') ? 'disable' : '' }}" data-toggle="modal" data-target="#confirm_recover" data-row-id="{{$number['id']}}">
+                                        <i class="icon-delete"></i>
+                                    </span>
+                                    @endif
                                 </td>
                             </tr>
 
