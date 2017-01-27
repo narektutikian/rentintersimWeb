@@ -263,7 +263,7 @@ $(document).ready(function () {
                     select.removeAttr("disabled");
                     $.get("/phone/specials/" + order_data[0].package.id, function (specials, special_status) {
                         if (special_status == "success"){
-                            console.log(specials);
+                            // console.log(specials);
                             if (specials[0] != null) {
 
                                 var options = "<option value=''></option>";
