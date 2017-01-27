@@ -59,7 +59,7 @@
                             <td class="rwd-td1 editable_cell" data-th="SIM Number">{{$sim['number']}}</td>
                             <td class="rwd-td2 editable_cell" data-th="Provider">{{$sim['provider_id']}}</td>
                             <td class="rwd-td3 table_action_cell" data-th="Action">
-                                <span class="table_icon edit {{ ($sim['editable']) ? '' : 'disable' }}" data-toggle="modal" data-target="#modal_edit_sim" data-form="#modal_edit_sim">
+                                <span class="table_icon edit {{ (!$sim['editable'] || Request::is('filter-simlist/deleted')) ? 'disable' : '' }}" data-toggle="modal" data-target="#modal_edit_sim" data-form="#modal_edit_sim">
                                     <i class="icon-edit"></i>
                                 </span>
                             </td>

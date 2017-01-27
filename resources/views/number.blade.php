@@ -59,7 +59,7 @@
                                 <td class="rwd-td3 editable_cell" data-th="Provider">{{$number['provider_id']}}</td>
                                 <td class="rwd-td4 editable_cell" data-th="Type">{{$number['package_id']}}</td>
                                 <td class="rwd-td5 table_action_cell" data-th="Action" data-row-id="{{$number['id']}}">
-                                    <span class="table_icon edit number_edit {{ ($number['state'] != 'not in use') ? 'disable' : '' }}" data-toggle="modal" data-target="#modal_edit_number" data-form="#modal_edit_number">
+                                    <span class="table_icon edit number_edit {{ ($number['state'] != 'not in use' || Request::is('filter-numberlist/deleted')) ? 'disable' : '' }}" data-toggle="modal" data-target="#modal_edit_number" data-form="#modal_edit_number">
                                         <i class="icon-edit"></i>
                                     </span>
 
