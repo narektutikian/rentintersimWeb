@@ -26,7 +26,7 @@
                         <li class="profile">
                             <span class="profile_name">{{ Auth::user()->name }} <i class="icon-dropdown"></i></span>
                             <ul class="header_dropdown choose_user">
-                                <li><a href="#">Profile</a></li>
+                                {{--<li><a href="#">Profile</a></li>--}}
                                 <li> <a href="{{ url('/logout') }}"
                                         onclick="event.preventDefault();
                                                          document.getElementById('logout-form').submit();">

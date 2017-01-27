@@ -1930,6 +1930,22 @@ input[type="radio"].toggle.checked + label {
   font-style: normal;
   font-family: "proxima_nova_rgregular", Arial, Helvetica, sans-serif; }
 
+#activate-button.disable {
+  background: #abbecc;
+  border: 1px solid #abbecc; }
+
+#suspend-button {
+  background: red;
+  border: 1px solid red;
+  color: #ffffff;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  border-radius: 5px; }
+  #suspend-button.disable {
+    background: #abbecc;
+    border: 1px solid #abbecc; }
+
 @media print {
   .no-print, .no-print * {
     display: none !important; } }

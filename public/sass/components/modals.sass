@@ -325,6 +325,20 @@
     @include fonts_stack(14px)
 
 
+#activate-button.disable
+  background: $light_gray
+  border: 1px solid $light_gray
+
+#suspend-button
+  background: red
+  border: 1px solid red
+  color: $white
+  @include border_radius(5px)
+  &.disable
+    background: $light_gray
+    border: 1px solid $light_gray
+
+
 @media print
   .no-print, .no-print *
     display: none !important
