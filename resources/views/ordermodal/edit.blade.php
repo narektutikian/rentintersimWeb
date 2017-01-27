@@ -123,9 +123,6 @@
                                     <div class="select_wrapper">
                                         <select  name="phone_number" id="phone_number-edit" class="block_btn_30 modal_input" disabled>
                                             <option value=""></option>
-                                            @foreach($specials as $special)
-                                            <option value="{{$special['id']}}">{{$special['phone']}}</option>
-                                            @endforeach
                                         </select>
                                         <i class="input_icon icon-sim"></i>
                                     </div>

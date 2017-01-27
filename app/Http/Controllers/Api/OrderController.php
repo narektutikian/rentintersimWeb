@@ -142,7 +142,9 @@ class OrderController extends Controller
             if ($number != null){
                 return $this->edit($newOrder->id);
               }
-
+                $order = Order::find($newOrder->id);
+            if ($order->status == 'waiting')
+                $this->helper->sendMail($order->id);
         return response($newOrder->toArray(), 200);
 
 
