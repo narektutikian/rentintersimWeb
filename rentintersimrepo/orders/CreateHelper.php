@@ -23,7 +23,7 @@ class CreateHelper
 {
     public function setStartTime($datetime){
         return Carbon::createFromTimestamp($datetime)
-            ->addHours(1)
+            ->subHours(1)
             ->timestamp;
     }
 
@@ -218,7 +218,7 @@ class CreateHelper
         if (env('APP_ENV') == 'local')
             $res = 0;
         else
-        $res = file_get_contents("http://176.35.171.143:8086/api/vfapi.php?key=7963ad6960b1088b94db2c32f2975e86&call=simswap&cli=".$order->phone->phone."&sim=".$order->sim->number);
+
 //        $res = 0;
         Activation::forceCreate([
             'phone_number' =>  $order->phone->phone,

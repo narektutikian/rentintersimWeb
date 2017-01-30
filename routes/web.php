@@ -17,7 +17,7 @@ use App\Models\Order;
 
 //use Auth;
 use Carbon\Carbon;
-use App\Models\Phone;
+use App\Models\Activation;
 
 Route::get('/', function () {
     return redirect('home');
@@ -92,8 +92,10 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
 
 
 Route::get('/test', function (){
-    $number = Phone::withTrashed()->first();
-dd($number);
+    $number = Activation::whereIn('id', [115,114])->get();
+    $message= [];
+        return view('mail.activation')->with('activations', $number)->with('message', $message);
+//dd($number);
 
 });
 
