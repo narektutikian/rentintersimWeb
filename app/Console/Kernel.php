@@ -37,7 +37,7 @@ class Kernel extends ConsoleKernel
             ->everyTenMinutes()
             ->withoutOverlapping()
             ->sendOutputTo(storage_path('logs/cron_backups_mail_' . date('Y-m-d_H-i') . '.log'));
-        $schedule->command('check:activations')->dailyAt('13:00');
+        $schedule->command('check:activations')->everyFiveMinutes();
 
     }
 
