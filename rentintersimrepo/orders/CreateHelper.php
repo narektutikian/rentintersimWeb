@@ -247,16 +247,17 @@ class CreateHelper
 //        $orders = Order::where('status', 'active')->get();
         if ($orders != null){
             foreach ($orders as $order){
-                $this->deactivate($order);
+                $this->deactivate($order->id);
                 sleep(10);
             }
         }
 //        dd($orders, $now->timestamp);
     }
 
-    public function deactivate ($order)
+    public function deactivate ($orderID)
     {
-        DB::transaction(function () use ($order) {
+        DB::transaction(function () use ($orderID) {
+            $order = Order::find($orderID);
         if ($order == null)
             exit();
         $phone = $order->phone;
