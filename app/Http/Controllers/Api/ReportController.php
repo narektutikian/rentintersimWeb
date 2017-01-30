@@ -414,10 +414,10 @@ class ReportController extends Controller
                 $toS = $request->input('to');
             }
             if ($request->has('number')){
-                $number = Phone::where('phone', $request->input('number'))->first()->id;
-//                dd($number);
+                $number = Phone::withTrashed()->where('phone', $request->input('number'))->first();
+//                dd($number->id);
                 if ($number != null)
-                $report = $report->where('phone_id', $number);
+                $report = $report->where('phone_id', $number->id);
             }
 
         }

@@ -17,7 +17,7 @@ use App\Models\Order;
 
 //use Auth;
 use Carbon\Carbon;
-use App\Models\Sim;
+use App\Models\Phone;
 
 Route::get('/', function () {
     return redirect('home');
@@ -92,8 +92,8 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
 
 
 Route::get('/test', function (){
-    $sim= Sim::withTrashed()->find(18)->provider->name;
-echo $sim;
+    $number = Phone::where('phone', '111')->first();
+dd($number);
 
 });
 
