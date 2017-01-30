@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-md-6 col-sm-2 col-xs-2">
                 <div class="logo">
-                    <a href="{{url('/dashboard')}}"><img src="/img/logo.jpg" alt="Logo"></a>
+                    <a href="{{url('/dashboard')}}"><img src="/img/logo.png" alt="Logo"></a>
 
                 </div>
                 <nav class="main_nav">
