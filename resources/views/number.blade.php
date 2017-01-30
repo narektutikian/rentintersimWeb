@@ -47,6 +47,9 @@
                                 <th>SIM Number</th>
                                 <th data-field="provider" data-sortable="true">Provider </th>
                                 <th data-field="type" data-sortable="true">Type</th>
+                                @if(Request::is('filter-numberlist/deleted'))
+                                <th data-field="deleted_at" data-sortable="true">Deleted at</th>
+                                @endif
                                 <th>Action </th>
                                 <th data-field="status" data-sortable="true">Status </th>
                                 <th></th>
@@ -61,6 +64,9 @@
                                     <td class="rwd-td2 editable_cell {{ ($number['state'] == 'not in use') ? 'disable' : '' }}" data-th="SIM Number">{{$number['current_sim_id']}} </td>
                                 <td class="rwd-td3 editable_cell" data-th="Provider">{{$number['provider_id']}}</td>
                                 <td class="rwd-td4 editable_cell" data-th="Type">{{$number['package_id']}}</td>
+                                @if(Request::is('filter-numberlist/deleted'))
+                                <td class="rwd-td4 editable_cell" data-th="Deleted-at">{{$number['deleted']}}</td>
+                                @endif
                                 <td class="rwd-td5 table_action_cell" data-th="Action" data-row-id="{{$number['id']}}">
                                     <span class="table_icon edit number_edit {{ ($number['state'] != 'not in use' || Request::is('filter-numberlist/deleted')) ? 'disable' : '' }}" data-toggle="modal" data-target="#modal_edit_number" data-form="#modal_edit_number">
                                         <i class="icon-edit"></i>

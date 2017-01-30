@@ -9,6 +9,7 @@ use App\Models\Sim;
 use Excel;
 use Storage;
 use App\Models\Phone;
+use Carbon\Carbon;
 
 class SIMController extends Controller
 {
@@ -168,9 +169,15 @@ class SIMController extends Controller
             $simsArray[$key]['provider_id'] = $sim->provider->name;
             unset($simsArray[$key]['phone_id']);
             unset($simsArray[$key]['user_id']);
-            unset($simsArray[$key]['deleted_at']);
             unset($simsArray[$key]['created_at']);
             unset($simsArray[$key]['updated_at']);
+            unset($simsArray[$key]['is_parking']);
+            unset($simsArray[$key]['is_active']);
+            if ($sim->deleted_at != null){
+                $simsArray[$key]['deleted'] = $simsArray[$key]['deleted_at']->format('d/m/Y H:i');
+            }
+//            else
+                unset($simsArray[$key]['deleted_at']);
             $simsArray[$key]['editable'] = $this->isEditable($sim);
         }
         return $simsArray;

@@ -190,6 +190,7 @@ class CreateHelper
 
     public function startActivation()
     {
+        ini_set('max_execution_time', 90);
         $now = Carbon::now();
 //        dd($now->timestamp);
         $orders = Order::where('status', 'pending')->where('from', '<', $now->timestamp+150)->get();
@@ -238,7 +239,7 @@ class CreateHelper
 
     public function startDeactivation()
     {
-
+        ini_set('max_execution_time', 90);
         $now = Carbon::now();
 //        dd($now->timestamp);
         $orders = Order::where('status', 'active')->where('to', '<', $now->timestamp)->get();

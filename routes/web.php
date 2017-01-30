@@ -92,7 +92,7 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
 
 
 Route::get('/test', function (){
-    $number = Phone::where('phone', '111')->first();
+    $number = Phone::withTrashed()->first();
 dd($number);
 
 });
