@@ -208,7 +208,7 @@
                             <div class="col-md-5">
                                 <div class="form-group">
                                     <div class="col-md-12">
-                                        <img src="/img/print_image.jpg" class="print_image" alt="print image">
+                                        <img src="/img/print_image.png" class="print_image" alt="print image">
                                     </div>
                                 </div>
                             </div>
