@@ -25,7 +25,7 @@
                             </a>
                             <div class="search_management_option">
                                 <form action="{{url('/search/order')}}" method="get" class="search_form_option">
-                                    <input type="text" class="block_btn_30 search_input" name="query" value="" placeholder="Search">
+                                    <input type="text" class="block_btn_30 search_input" name="query" value="{{ (isset($_GET['query'])) ? $_GET['query'] : '' }}" placeholder="Search">
                                     {{csrf_field()}}
                                     <button type="submit" class="search_button"><i class="icon-search"></i></button>
                                 </form>
