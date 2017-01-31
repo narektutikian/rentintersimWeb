@@ -164,11 +164,21 @@ class UserManager
 
     public function subNetID ($flatNetwork)
     {
+        $ids= array();
+        if (Auth::user()->type != 'admin'){
+            $friends = User::select('id')->where('supervisor_id', Auth::user()->supervisor_id)->where('level', Auth::user()->level)->get()->toArray();
+            foreach ($friends as $friend){
+                $ids[] = $friend['id'];
+            }
+            $ids[] = Auth::user()->supervisor_id;
 
-       $ids= array();
-        foreach ($flatNetwork as $key => $item) {
-            $ids[$key] = $item['id'];
+
         }
+
+        foreach ($flatNetwork as $item) {
+            $ids[] = $item['id'];
+        }
+//        dd($ids);
         return $ids;
     }
     public function deleteUser($user)
