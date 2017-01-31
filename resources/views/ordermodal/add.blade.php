@@ -48,7 +48,7 @@
                                             </div>
                                             <input type="text" name="landing_date" id="landing_date" class="inline_block_btn landing_date vd_date_required" data-date-format="DD/MM/YYYY">
                                         </div>
-                                        <div class="wrap_time">
+                                        <div class="wrap_time" id="lnd_time">
                                             <i class="departure_time icon-time"></i>
                                             <input type="text" name="timepicker" id="time_element" class="inline_block_btn time_element vd_time_required"/>
                                         </div>
@@ -81,7 +81,7 @@
                                             </div>
                                             <input type="text" name="departure_date" id="departure_date" class="inline_block_btn departure_date vd_date_required" data-date-format="DD/MM/YYYY">
                                         </div>
-                                        <div class="wrap_time">
+                                        <div class="wrap_time" id="dpr_time">
                                             <i class="departure_time icon-time"></i>
                                             <input type="text" name="timepicker2" id="time_element2" class="inline_block_btn time_element vd_time_required departure_time_val"/>
                                         </div>

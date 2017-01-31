@@ -57,7 +57,7 @@
 		return this.each(function() {
 
 			var ele = $(this);
-			// console.log('ele ', ele);
+			 console.log('ele ', ele);
 			var ele_hei = ele.outerHeight();
 			ele_hei += 10;
 			$(ele).wrap("<div class='time_pick'>");
@@ -102,7 +102,7 @@
 			var inputs = ele_par.find('input');
 			
 			$('.reset_time').on("click", function(event) {
-				//console.log('reseted ', ele);
+				console.log('reseted ', ele);
 				ele.val("");
 				close_timepicki();
 			});

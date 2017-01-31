@@ -269,10 +269,17 @@ $( document ).ready(function() {
 
     $('#modal_new_order').on("hidden.bs.modal", function () {
 
-        console.log('remove colon 2 ');
+        console.log('remove colon 3 ');
 
-        $(this).find('.colon').remove();
-        $(this).find('.timepicker_wrap').remove();
+        //$(this).find('.colon').remove();
+        $(this).find('.time_pick').remove();
+        //$(this).find('.timepicker_wrap').remove();
+
+        $('#time_element').remove();
+        $('#time_element2').remove();
+
+        $('#lnd_time').append('<input type="text" name="timepicker" id="time_element" class="inline_block_btn time_element vd_time_required"/>');
+        $('#dpr_time').append('<input type="text" name="timepicker2" id="time_element2" class="inline_block_btn time_element vd_time_required"/>');
         $(this).find('form')[0].reset();
 
         // $(this).find('#time_element').timepicki({reset: true});
