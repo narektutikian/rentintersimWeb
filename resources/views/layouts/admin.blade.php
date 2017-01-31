@@ -24,7 +24,7 @@
             <nav class="layout_nav">
                 <ul>
                     @if(Auth::user()->level == 'Super admin')
-                    <li class="{{ ($viewName == 'dashboard') ? 'active' : '' }}"><a href="{{url('/dashboard')}}" title="DashboardUser Management">DashboardUser Management</a></li>
+                    <li class="{{ ($viewName == 'dashboard') ? 'active' : '' }}"><a href="{{url('/dashboard')}}" title="DashboardUser Management">Dashboard</a></li>
                     @endif
                     <li class="{{ ($viewName == 'user') ? 'active' : '' }}"><a href="{{url('/user')}}" title="User Management">User Management</a></li>
                         @if(Auth::user()->level == 'Super admin')
