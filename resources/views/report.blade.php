@@ -147,7 +147,7 @@
 
                             <div class="search_management_option">
                                 <form action="{{url('/search/report')}}" method="get" class="search_form_option">
-                                    <input type="text" class="block_btn_30 search_input" name="query" value="" placeholder="Search">
+                                    <input type="text" class="block_btn_30 search_input" name="query" value="{{ (isset($_GET['query'])) ? $_GET['query'] : '' }}" placeholder="Search">
                                     {{csrf_field()}}
                                     <button type="submit" class="search_button low"><i class="icon-search"></i></button>
                                 </form>

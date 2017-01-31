@@ -26,7 +26,7 @@
                     </a>
                     <div class="search_management_option">
                         <form action="{{url('search/number')}}" class="search_form_option">
-                            <input type="text" class="block_btn_30 search_input" name="query" placeholder="Search" value="">
+                            <input type="text" class="block_btn_30 search_input" name="query" placeholder="Search" value="{{ (isset($_GET['query'])) ? $_GET['query'] : '' }}">
                             <button type="submit" class="search_button"><i class="icon-search"></i></button>
                         </form>
                         <a href="{{url('/exportnumber')}}" class="export_user"><i class="icon-export"></i>Export</a>
