@@ -691,7 +691,6 @@ $( document ).ready(function() {
     /* Responsive scroll bars */
     $('#wrap_tree_table').perfectScrollbar();
 
-    $('#wrap_orders_table').perfectScrollbar();
 
 });
 

@@ -841,16 +841,6 @@ input[type="radio"].toggle.checked + label {
 .my-table td:before {
   display: none; }
 
-#wrap_orders_table {
-  position: relative;
-  width: 100%;
-  overflow: auto; }
-  #wrap_orders_table .bootstrap-table {
-    width: 1140px; }
-  #wrap_orders_table .fixed-table-body {
-    overflow-x: hidden;
-    overflow-y: hidden; }
-
 #wrap_tree_table.ps-container > .ps-scrollbar-x-rail > .ps-scrollbar-x {
   background-color: #2cc763; }
 
@@ -864,24 +854,6 @@ input[type="radio"].toggle.checked + label {
   background-color: #2cc763; }
 
 #wrap_tree_table.ps-container > .ps-scrollbar-x-rail {
-  background-color: #8d97a6;
-  display: block;
-  opacity: 0.5;
-  height: 12px; }
-
-#wrap_orders_table.ps-container > .ps-scrollbar-x-rail > .ps-scrollbar-x {
-  background-color: #2cc763; }
-
-#wrap_orders_table.ps-container:hover > .ps-scrollbar-x-rail:hover > .ps-scrollbar-x {
-  background-color: #2cc763; }
-
-#wrap_orders_table.ps-container:hover > .ps-scrollbar-x-rail:hover > .ps-scrollbar-x {
-  background-color: #2cc763; }
-
-#wrap_orders_table.ps-container:hover.ps-in-scrolling.ps-x > .ps-scrollbar-x-rail > .ps-scrollbar-x {
-  background-color: #2cc763; }
-
-#wrap_orders_table.ps-container > .ps-scrollbar-x-rail {
   background-color: #8d97a6;
   display: block;
   opacity: 0.5;

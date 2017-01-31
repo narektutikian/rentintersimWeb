@@ -164,7 +164,7 @@
                     <div class="row">
                         <div class="col-md-12">
 
-                            <div id="wrap_orders_table">
+                            <div id="wrap_report_table">
                                 <table class="rwd-table responsive_table table" data-toggle="table" data-page="order">
                                     <thead>
                                         <tr>
