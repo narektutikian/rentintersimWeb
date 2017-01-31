@@ -70,7 +70,7 @@
                                 </span>
                             </td>
                             <td class="rwd-td5 editable_cell status_td" data-th="Status">
-                                <span class="table_status_text not_used ">{{$sim['state']}}</span>
+                                <span class="table_status_text not_used ">{{(Request::is('filter-simlist/deleted')) ? 'deleted' : $sim['state']}}</span>
                             </td>
                             <td class="rwd-td6 table_status_cell" data-th="Remove">
                                 @if (!Request::is('filter-simlist/deleted'))

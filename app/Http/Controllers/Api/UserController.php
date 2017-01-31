@@ -17,6 +17,7 @@ class UserController extends Controller
     public function __construct(Manager $manager)
     {
         $this->manager = $manager;
+        $this->middleware('superAdmin')->only(['showImitation', 'imitate']);
     }
 
     /**

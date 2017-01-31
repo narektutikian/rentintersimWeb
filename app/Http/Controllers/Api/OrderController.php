@@ -28,6 +28,7 @@ class OrderController extends Controller
         $this->helper = $helper;
         $this->viewHelper = $viewHelper;
         $this->userManager = $userManager;
+        $this->middleware('superAdmin')->only(['activate', 'deactivate']);
     }
 
     /**

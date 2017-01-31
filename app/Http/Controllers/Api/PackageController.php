@@ -10,6 +10,12 @@ use Storage;
 
 class PackageController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('superAdmin')->except(['typeofProvider']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -33,11 +39,11 @@ class PackageController extends Controller
      */
     public function typeofProvider($providerId)
     {
-        $sims = Package::where('provider_id', $providerId)->get();
+        $packages = Package::where('provider_id', $providerId)->get();
 
 
 //      dd($packageArray);
-        return response()->json($sims);
+        return response()->json($packages);
     }
 
 
@@ -150,7 +156,7 @@ class PackageController extends Controller
     {
         //
         $package=Package::find($id);
-        $package->save();
+        $package->delete();
 
     }
 

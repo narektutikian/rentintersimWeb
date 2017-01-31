@@ -13,7 +13,14 @@ use Carbon\Carbon;
 
 class SIMController extends Controller
 {
-    /**
+
+    public function __construct()
+    {
+        $this->middleware('superAdmin');
+    }
+
+
+        /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response

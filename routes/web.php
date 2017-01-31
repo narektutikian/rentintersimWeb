@@ -30,6 +30,16 @@ Route::get('/dashboard', 'HomeController@dashboard');
 
 Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
 
+//    Super admin
+    /*****Activate - Deactivate******/
+    Route::get('activate/{id}', 'OrderController@activate');
+    Route::get('deactivate/{id}', 'OrderController@deactivate');
+
+    /*****Auth Routes******/
+    Route::get('imitate', 'UserController@showImitation');
+    Route::post('imitate', 'UserController@imitate');
+
+//    Super admin end
     Route::get('/home', 'OrderController@index');
 
     /* Resource Routes */
@@ -42,14 +52,6 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
 
     /*****Get new Number******/
     Route::get('get-number/{orderId}', 'OrderController@getNumberExternal');
-
-    /*****Activate - Deactivate******/
-    Route::get('activate/{id}', 'OrderController@activate');
-    Route::get('deactivate/{id}', 'OrderController@deactivate');
-
-    /*****Auth Routes******/
-    Route::get('imitate', 'UserController@showImitation');
-    Route::post('imitate', 'UserController@imitate');
 
     /*Filter Routes*/
     Route::get('filter-orderlist/{filter}', 'OrderController@filter');
@@ -89,6 +91,8 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
     Route::post('sim/recover/{id}', 'SIMController@recover');
     Route::post('number/recover/{id}', 'PhoneController@recover');
 });
+
+
 
 
 Route::get('/test', function (){
