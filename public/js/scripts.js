@@ -384,6 +384,7 @@ $( document ).ready(function() {
         $('#departure_date').closest('.dpr').data("DateTimePicker").minDate(ln_date_min);
         $('#departure_date').closest('.dpr').find('td.active').removeClass('active');
         $('#departure_date').closest('.dpr').find('td[data-day="' + final_res + '"]').addClass('active');
+        // $('#time_element').cle
     });
 
     $('#dpr').on('dp.change', function(e){

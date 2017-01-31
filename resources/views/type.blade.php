@@ -62,7 +62,7 @@
                                 <span class="table_status_text not_used">{{$package['status']}}</span>
                             </td>
                             <td class="table_status_cell" data-th="Remove">
-                                <span class="remove_row" data-toggle="modal" data-target="#confirm_delete">
+                                <span class="remove_row" data-toggle="modal" data-target="#confirm_delete"  data-row-id="{{$package['id']}}">
                                     <i class="icon-delete"></i>
                                 </span>
                             </td>

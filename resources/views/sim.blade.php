@@ -47,6 +47,9 @@
                                 <th class="table_id_cell" data-field="id" data-sortable="true">Id</th>
                                 <th data-th="Sim Number">Sim Number</th>
                                 <th data-field="provider" data-sortable="true" data-th="Provider">Provider</th>
+                                @if(Request::is('filter-simlist/deleted'))
+                                <th data-field="deleted_at" data-sortable="true" data-th="Deleted_at">Deleted at</th>
+                                @endif
                                 <th>Action </th>
                                 <th data-field="status" data-sortable="true" data-th="Status">Status </th>
                                 <th></th>
@@ -58,15 +61,18 @@
                             <td class="rwd-td0 table_id_cell editable_cell" data-th="Id">{{$sim['id']}}</td>
                             <td class="rwd-td1 editable_cell" data-th="SIM Number">{{$sim['number']}}</td>
                             <td class="rwd-td2 editable_cell" data-th="Provider">{{$sim['provider_id']}}</td>
-                            <td class="rwd-td3 table_action_cell" data-th="Action">
+                            @if(Request::is('filter-simlist/deleted'))
+                            <td class="rwd-td3 editable_cell" data-th="Provider">{{$sim['deleted']}}</td>
+                            @endif
+                            <td class="rwd-td4 table_action_cell" data-th="Action">
                                 <span class="table_icon edit {{ (!$sim['editable'] || Request::is('filter-simlist/deleted')) ? 'disable' : '' }}" data-toggle="modal" data-target="#modal_edit_sim" data-form="#modal_edit_sim">
                                     <i class="icon-edit"></i>
                                 </span>
                             </td>
-                            <td class="rwd-td4 editable_cell status_td" data-th="Status">
-                                <span class="table_status_text not_used ">{{$sim['state']}}</span>
+                            <td class="rwd-td5 editable_cell status_td" data-th="Status">
+                                <span class="table_status_text not_used ">{{(Request::is('filter-simlist/deleted')) ? 'deleted' : $sim['state']}}</span>
                             </td>
-                            <td class="rwd-td5 table_status_cell" data-th="Remove">
+                            <td class="rwd-td6 table_status_cell" data-th="Remove">
                                 @if (!Request::is('filter-simlist/deleted'))
                                 <span class="remove_row {{ ($sim['editable']) ? '' : 'disable' }}" data-toggle="modal" data-target="#confirm_delete" data-row-id="{{$sim['id']}}">
                                     <i class="icon-delete"></i>

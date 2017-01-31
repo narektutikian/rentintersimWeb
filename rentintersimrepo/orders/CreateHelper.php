@@ -190,6 +190,7 @@ class CreateHelper
 
     public function startActivation()
     {
+        ini_set('max_execution_time', 90);
         $now = Carbon::now();
 //        dd($now->timestamp);
         $orders = Order::where('status', 'pending')->where('from', '<', $now->timestamp+150)->get();
@@ -217,7 +218,7 @@ class CreateHelper
         if (env('APP_ENV') == 'local')
             $res = 0;
         else
-        $res = file_get_contents("http://176.35.171.143:8086/api/vfapi.php?key=7963ad6960b1088b94db2c32f2975e86&call=simswap&cli=".$order->phone->phone."&sim=".$order->sim->number);
+            $res = file_get_contents("http://176.35.171.143:8086/api/vfapi.php?key=7963ad6960b1088b94db2c32f2975e86&call=simswap&cli=".$order->phone->phone."&sim=".$order->sim->number);
 //        $res = 0;
         Activation::forceCreate([
             'phone_number' =>  $order->phone->phone,
@@ -238,7 +239,7 @@ class CreateHelper
 
     public function startDeactivation()
     {
-
+        ini_set('max_execution_time', 90);
         $now = Carbon::now();
 //        dd($now->timestamp);
         $orders = Order::where('status', 'active')->where('to', '<', $now->timestamp)->get();
@@ -246,16 +247,17 @@ class CreateHelper
 //        $orders = Order::where('status', 'active')->get();
         if ($orders != null){
             foreach ($orders as $order){
-                $this->deactivate($order);
+                $this->deactivate($order->id);
                 sleep(10);
             }
         }
 //        dd($orders, $now->timestamp);
     }
 
-    public function deactivate ($order)
+    public function deactivate ($orderID)
     {
-        DB::transaction(function () use ($order) {
+        DB::transaction(function () use ($orderID) {
+            $order = Order::find($orderID);
         if ($order == null)
             exit();
         $phone = $order->phone;

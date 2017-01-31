@@ -28,6 +28,7 @@ class OrderController extends Controller
         $this->helper = $helper;
         $this->viewHelper = $viewHelper;
         $this->userManager = $userManager;
+        $this->middleware('superAdmin')->only(['activate', 'deactivate']);
     }
 
     /**
@@ -361,7 +362,7 @@ class OrderController extends Controller
                 $order->departure = Carbon::now()->format('d/m/Y H:i');
                 $order->to = Carbon::now()->timestamp;
                 $order->save();
-                $this->helper->deactivate($order);
+                $this->helper->deactivate($order->id);
             }, 5);
 
         }

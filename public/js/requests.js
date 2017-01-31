@@ -664,6 +664,9 @@ $(document).ready(function () {
 
         var id = self.attr('data-row-id');
         var page = self.parents('table').attr('data-page');
+        if (typeof page === 'undefined')
+            page = "user";
+        // console.log(page);
 
 
         $('#hidden-req-id').val(id);

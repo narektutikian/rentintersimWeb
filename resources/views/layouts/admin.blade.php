@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <title>Vodafone</title>
+    <title>SIM Rent</title>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/bootstrap-table.min.css">
     <link rel="stylesheet" href="/js/perfect-scrollbar/css/perfect-scrollbar.css">
@@ -24,7 +24,7 @@
             <nav class="layout_nav">
                 <ul>
                     @if(Auth::user()->level == 'Super admin')
-                    <li class="{{ ($viewName == 'dashboard') ? 'active' : '' }}"><a href="{{url('/dashboard')}}" title="DashboardUser Management">DashboardUser Management</a></li>
+                    <li class="{{ ($viewName == 'dashboard') ? 'active' : '' }}"><a href="{{url('/dashboard')}}" title="DashboardUser Management">Dashboard</a></li>
                     @endif
                     <li class="{{ ($viewName == 'user') ? 'active' : '' }}"><a href="{{url('/user')}}" title="User Management">User Management</a></li>
                         @if(Auth::user()->level == 'Super admin')

@@ -7,9 +7,15 @@ use App\Http\Controllers\Controller;
 use App\Models\Phone;
 use Excel;
 use Storage;
+use Carbon\Carbon;
 
 class PhoneController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('superAdmin');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -102,7 +108,7 @@ class PhoneController extends Controller
     public function edit($id)
     {
         $number = Phone::find($id);
-        $number = self::solvePhoneList([$number]);
+        $number = $this->solvePhoneList([$number]);
         return response($number);
 
     }
@@ -180,7 +186,7 @@ class PhoneController extends Controller
 
     }
 
-    public static function solvePhoneList($phones){
+    public function solvePhoneList($phones){
         $phonesArray = $phones;
         foreach ($phones as $key => $phone) {
 
@@ -190,6 +196,10 @@ class PhoneController extends Controller
             }
             if ($phone->package != null)
             $phonesArray[$key]['package_id'] = $phone->package->name;
+            if ($phonesArray[$key]['deleted_at'] != null){
+                $phonesArray[$key]['deleted'] = $phonesArray[$key]['deleted_at']->format('d/m/Y H:i');
+//                dd($phonesArray[$key]['deleted']);
+            }
 //            $phonesArray[$key]['package_id'] = $phone->package->name;
         }
         return $phonesArray;
@@ -264,7 +274,7 @@ class PhoneController extends Controller
 
                     $query = Phone::forceCreate($entity);
                     if ($query) continue;
-                    else {return response()->json(['file content error']. 443);}
+                    else {return response()->json(['error' => 'file content error']. 443);}
 //
                 }
 

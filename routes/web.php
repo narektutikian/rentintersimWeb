@@ -17,7 +17,7 @@ use App\Models\Order;
 
 //use Auth;
 use Carbon\Carbon;
-use App\Models\Sim;
+use App\Models\Activation;
 
 Route::get('/', function () {
     return redirect('home');
@@ -30,6 +30,16 @@ Route::get('/dashboard', 'HomeController@dashboard');
 
 Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
 
+//    Super admin
+    /*****Activate - Deactivate******/
+    Route::get('activate/{id}', 'OrderController@activate');
+    Route::get('deactivate/{id}', 'OrderController@deactivate');
+
+    /*****Auth Routes******/
+    Route::get('imitate', 'UserController@showImitation');
+    Route::post('imitate', 'UserController@imitate');
+
+//    Super admin end
     Route::get('/home', 'OrderController@index');
 
     /* Resource Routes */
@@ -42,14 +52,6 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
 
     /*****Get new Number******/
     Route::get('get-number/{orderId}', 'OrderController@getNumberExternal');
-
-    /*****Activate - Deactivate******/
-    Route::get('activate/{id}', 'OrderController@activate');
-    Route::get('deactivate/{id}', 'OrderController@deactivate');
-
-    /*****Auth Routes******/
-    Route::get('imitate', 'UserController@showImitation');
-    Route::post('imitate', 'UserController@imitate');
 
     /*Filter Routes*/
     Route::get('filter-orderlist/{filter}', 'OrderController@filter');
@@ -91,9 +93,13 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
 });
 
 
+
+
 Route::get('/test', function (){
-    $sim= Sim::withTrashed()->find(18)->provider->name;
-echo $sim;
+    $number = Activation::whereIn('id', [115,114])->get();
+    $message= [];
+        return view('mail.activation')->with('activations', $number)->with('message', $message);
+//dd($number);
 
 });
 

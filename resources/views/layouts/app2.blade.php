@@ -9,7 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
-    <title>SIM Rent</title>
+    <title>Vodafone</title>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/bootstrap-table.min.css">
     <link rel="stylesheet" href="/js/perfect-scrollbar/css/perfect-scrollbar.css">
@@ -30,31 +30,31 @@
     <div class="loader_inner"></div>
 </div>
 <div class="wrapper">
-    @include('header')
+    {{--@include('header')--}}
          @yield('content')
         @yield('content_admin')
 
 </div>
 
-<div id="confirm_delete" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="confirm_delete">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <form action="/" class="form-horizontal">
-                <div class="modal-body">
-                    Are you sure?
+{{--<div id="confirm_delete" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="confirm_delete">--}}
+    {{--<div class="modal-dialog" role="document">--}}
+        {{--<div class="modal-content">--}}
+            {{--<form action="/" class="form-horizontal">--}}
+                {{--<div class="modal-body">--}}
+                    {{--Are you sure?--}}
 
-                    <input type="hidden" value="" id="hidden-req-id">
-                    <input type="hidden" value="" id="hidden-req-url">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" data-dismiss="modal" class="btn btn-primary" id="delete">Delete</button>
-                    <button type="button" data-dismiss="modal" class="btn">Cancel</button>
-                </div>
-            </form>
-        </div>
+                    {{--<input type="hidden" value="" id="hidden-req-id">--}}
+                    {{--<input type="hidden" value="" id="hidden-req-url">--}}
+                {{--</div>--}}
+                {{--<div class="modal-footer">--}}
+                    {{--<button type="button" data-dismiss="modal" class="btn btn-primary" id="delete">Delete</button>--}}
+                    {{--<button type="button" data-dismiss="modal" class="btn">Cancel</button>--}}
+                {{--</div>--}}
+            {{--</form>--}}
+        {{--</div>--}}
 
-    </div>
-</div>
+    {{--</div>--}}
+{{--</div>--}}
 
 
 
