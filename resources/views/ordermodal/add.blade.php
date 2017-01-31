@@ -1,5 +1,5 @@
 <!-- Add Order Modal -->
-<div class="modal fade" id="modal_new_order" tabindex="-1" role="dialog" aria-labelledby="modal_new_order">
+<div class="modal fade" id="modal_new_order" data-keyboard="false" role="dialog" aria-labelledby="modal_new_order">
     <div class="modal-dialog vdf_modal" role="document">
         <div class="modal-content vdf_modal_content">
             <div class="modal-header vdf_modal_header">
