@@ -63,7 +63,7 @@
                                         </div>
                                         <div class="wrap_time">
                                             <i class="departure_time icon-time"></i>
-                                            <input type="text" name="timepicker3" id="time_element2" class="inline_block_btn time_element vd_time_requiredc landing_time_val" disabled/>
+                                            <input type="text" name="timepicker3" id="time_element3" class="inline_block_btn time_element vd_time_requiredc landing_time_val" disabled/>
                                         </div>
                                     </div>
                                     {{--<div class="wrap_time from">--}}
@@ -91,7 +91,7 @@
                                         </div>
                                         <div class="wrap_time">
                                             <i class="departure_time icon-time"></i>
-                                            <input type="text" name="timepicker4" id="time_element2" class="inline_block_btn time_element vd_time_requiredc departure_time_val" disabled/>
+                                            <input type="text" name="timepicker4" id="time_element4" class="inline_block_btn time_element vd_time_requiredc departure_time_val" disabled/>
                                         </div>
                                     </div>
                                     {{--<div class="wrap_time to">--}}

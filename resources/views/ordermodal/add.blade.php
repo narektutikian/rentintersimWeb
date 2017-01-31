@@ -144,7 +144,7 @@
                     </div>
                 </div>
                 <div class="modal-footer vdf_modal_footer">
-                    <a href="#" id="cancel_order" class="inline_block_btn light_gray_btn close vd_form_reset" data-dismiss="modal" aria-label="Close">Cancel</a>
+                    <a href="#" id="cancel_order" class="inline_block_btn light_gray_btn close reset_time vd_form_reset">Cancel</a>
                     {{--<button type="submit" href="#" class="inline_block_btn light_green_btn vd_form_submit" id="create-order">Create order</button>--}}
                     <a href="#" class="inline_block_btn light_green_btn vd_form_submit" id="create-order">Create Order</a>
 

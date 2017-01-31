@@ -213,7 +213,18 @@ $( document ).ready(function() {
         // do something…
         setTimeout(function(){
 
-            $('.time_element').timepicki({
+            $('#time_element').timepicki({
+                show_meridian:false,
+                min_hour_value:0,
+                max_hour_value:23,
+                step_size_minutes:15,
+                overflow_minutes:true,
+                increase_direction:'up',
+                disable_keyboard_mobile: true,
+                start_time: ["00", "00"]
+            });
+
+            $('#time_element2').timepicki({
                 show_meridian:false,
                 min_hour_value:0,
                 max_hour_value:23,
@@ -256,10 +267,28 @@ $( document ).ready(function() {
 
     });
 
-    $('#modal_new_order').one("hidden.bs.modal", function () {
+    $('#modal_new_order').on("hidden.bs.modal", function () {
 
-        $(".wrap_time").find('.colon').remove();
+        console.log('remove colon 2 ');
+
+        $(this).find('.colon').remove();
+        $(this).find('.timepicker_wrap').remove();
         $(this).find('form')[0].reset();
+
+        // $(this).find('#time_element').timepicki({reset: true});
+        // $(this).find('#time_element2').timepicki({reset: true});
+
+
+    });
+
+    $('#cancel_order').on("click", function () {
+
+       console.log('cancel modal 2 ');
+       $(this).closest('#modal_new_order').modal('hide');
+        $('#time_element').val('');
+        $('#time_element2').val('');
+
+        return false;
 
     });
 
@@ -271,6 +300,7 @@ $( document ).ready(function() {
         // do something…
         setTimeout(function(){
 
+            /*
             $('.time_element').timepicki({
                 show_meridian:false,
                 min_hour_value:0,
@@ -280,6 +310,16 @@ $( document ).ready(function() {
                 increase_direction:'up',
                 disable_keyboard_mobile: true
             });
+
+            $('.time_element').timepicki({
+                show_meridian:false,
+                min_hour_value:0,
+                max_hour_value:23,
+                step_size_minutes:15,
+                overflow_minutes:true,
+                increase_direction:'up',
+                disable_keyboard_mobile: true
+            });*/
 
             $('.wrap_package_list_edit').show(); // show package list after modal was open
             $('.wrap_package_list_edit').owlCarousel({
