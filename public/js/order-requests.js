@@ -12,7 +12,7 @@ $(document).ready(function () {
             var departure = $('#departure_date').val() + " " + $("#time_element2").val();
             var landing = $('#landing_date').val() + " " + $("#time_element").val();
 
-            if ($("#time_element2").val() != "00:00" || $("#time_element").val() != "00:00") {
+            if ($("#time_element2").val() != "00:00" && $("#time_element").val() != "00:00") {
 
                 // console.log(departure + " " + landing);
                 var data = {
@@ -91,7 +91,7 @@ $(document).ready(function () {
             else {
                 $(".error_response").empty();
                 $(".success_response").empty();
-                $(".error_response").append("ERROR  Time can not have 00:00 value");
+                $(".error_response").append("ERROR  Time can not be 00:00");
 
             }
         }
