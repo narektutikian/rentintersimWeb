@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <title>Vodafone</title>
+    <title>SIM Rent</title>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/bootstrap-table.min.css">
     <link rel="stylesheet" href="/js/perfect-scrollbar/css/perfect-scrollbar.css">

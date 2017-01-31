@@ -12,79 +12,88 @@ $(document).ready(function () {
             var departure = $('#departure_date').val() + " " + $("#time_element2").val();
             var landing = $('#landing_date').val() + " " + $("#time_element").val();
 
-            // console.log(departure + " " + landing);
-            var data = {
-                _token: CSRF_TOKEN,
-                sim: $('#sim').val(),
-                phone_id: $('#phone_number').val(),
-                landing: moment(landing, "DD/MM/YYYY HH:mm").valueOf() / 1000,
-                departure: moment(departure, "DD/MM/YYYY HH:mm").valueOf() / 1000,
-                landing_string: moment(landing, "DD/MM/YYYY HH:mm").format("DD/MM/YYYY HH:mm"),
-                departure_string: moment(departure, "DD/MM/YYYY HH:mm").format("DD/MM/YYYY HH:mm"),
-                package_id: package_id, // put package id
-                reference_number: $('#reference_number').val(),
-                remark: $('#remark').val(),
-            };
+            if ($("#time_element2").val() != "00:00" || $("#time_element").val() != "00:00") {
 
-            // console.log("landing: " + data.landing  + " departure " + data.departure);
+                // console.log(departure + " " + landing);
+                var data = {
+                    _token: CSRF_TOKEN,
+                    sim: $('#sim').val(),
+                    phone_id: $('#phone_number').val(),
+                    landing: moment(landing, "DD/MM/YYYY HH:mm").valueOf() / 1000,
+                    departure: moment(departure, "DD/MM/YYYY HH:mm").valueOf() / 1000,
+                    landing_string: moment(landing, "DD/MM/YYYY HH:mm").format("DD/MM/YYYY HH:mm"),
+                    departure_string: moment(departure, "DD/MM/YYYY HH:mm").format("DD/MM/YYYY HH:mm"),
+                    package_id: package_id, // put package id
+                    reference_number: $('#reference_number').val(),
+                    remark: $('#remark').val(),
+                };
 
-            $.ajax({
-                type: "POST",
-                url: '/order',
-                data: data,
-                beforeSend: function() {
-                    $(".error_response").empty();
-                    $(".success_response").empty();
-                    $(".success_response").append("Please wait <img src='/img/loader.gif' width='20'/>");
-                },
-                success: function (msg) {
-                    location.reload();
-                    /*$(".error_response").empty();
-                    $(".success_response").empty();
-                    $(".success_response").append("DONE");
-                    $("#create-order").remove();
-                    $(".close").text("close");
-                    // $("#create-order").attr("id", "edit-order");
-                    var order_new;
-                    if (Array.isArray(msg)){
-                        order_new = msg[0];
-                    } else {
-                        order_new = msg;
-                        }
-                    $('#order_status').val(order_new.status);
-                    if (order_new.status != "waiting") {
-                        $('#phone_number2').val(order_new.phone.phone);
-                        $('#phone_number').append($('<option>', {
-                            value: order_new.phone.id,
-                            text: order_new.phone.phone
-                        }));
-                        $("#phone_number").val(order_new.phone.id);
-                        // edit_id = msg[0].id;
-                        // console.log("edit id " + edit_id);
-                        // edit_id = msg.id;
-                        // console.log("edit id " + edit_id);
-                    } else {
+                // console.log("landing: " + data.landing  + " departure " + data.departure);
+
+                $.ajax({
+                    type: "POST",
+                    url: '/order',
+                    data: data,
+                    beforeSend: function () {
                         $(".error_response").empty();
                         $(".success_response").empty();
-                        $(".success_response").append("Order created but there is no available number. Try getting number in Order table.");
-                    }*/
+                        $(".success_response").append("Please wait <img src='/img/loader.gif' width='20'/>");
+                    },
+                    success: function (msg) {
+                        location.reload();
+                        /*$(".error_response").empty();
+                         $(".success_response").empty();
+                         $(".success_response").append("DONE");
+                         $("#create-order").remove();
+                         $(".close").text("close");
+                         // $("#create-order").attr("id", "edit-order");
+                         var order_new;
+                         if (Array.isArray(msg)){
+                         order_new = msg[0];
+                         } else {
+                         order_new = msg;
+                         }
+                         $('#order_status').val(order_new.status);
+                         if (order_new.status != "waiting") {
+                         $('#phone_number2').val(order_new.phone.phone);
+                         $('#phone_number').append($('<option>', {
+                         value: order_new.phone.id,
+                         text: order_new.phone.phone
+                         }));
+                         $("#phone_number").val(order_new.phone.id);
+                         // edit_id = msg[0].id;
+                         // console.log("edit id " + edit_id);
+                         // edit_id = msg.id;
+                         // console.log("edit id " + edit_id);
+                         } else {
+                         $(".error_response").empty();
+                         $(".success_response").empty();
+                         $(".success_response").append("Order created but there is no available number. Try getting number in Order table.");
+                         }*/
 
-                },
-                error: function (error) {
-                    // console.log(error);
-                    $(".error_response").empty();
-                    $(".success_response").empty();
-                    $(".error_response").append("ERROR  ");
-                    if('sim' in error.responseJSON)
-                        $(".error_response").append(error.responseJSON.sim);
-                    else if('package_id' in error.responseJSON)
-                        $(".error_response").append(" Please select SIM Package");
-                    else
-                    $(".error_response").append(error.responseText);
+                    },
+                    error: function (error) {
+                        // console.log(error);
+                        $(".error_response").empty();
+                        $(".success_response").empty();
+                        $(".error_response").append("ERROR  ");
+                        if ('sim' in error.responseJSON)
+                            $(".error_response").append(error.responseJSON.sim);
+                        else if ('package_id' in error.responseJSON)
+                            $(".error_response").append(" Please select SIM Package");
+                        else
+                            $(".error_response").append(error.responseText);
 
-                    // console.log(error.responseJSON.number[0]);
-                }
-            });
+                        // console.log(error.responseJSON.number[0]);
+                    }
+                });
+            }
+            else {
+                $(".error_response").empty();
+                $(".success_response").empty();
+                $(".error_response").append("ERROR  Time can not have 00:00 value");
+
+            }
         }
     });
 
@@ -501,6 +510,7 @@ $(document).ready(function () {
             });
         }
     });
+
 
 });
 /**
