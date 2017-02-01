@@ -66,7 +66,7 @@
                                         {{--<td>{{$order['id']}}</td>--}}
                                         <td class="rwd-td0 table_id_cell editable_cell" data-th="Phone" data-row-id="{{$order['id']}}"  data-cell-id="{{$order['id']}}">
                                             @if($order['phone_id']==0)
-                                                <a id= "{{$order['id']}}" href="#" onClick = "getNumber({{$order['id']}});">Get Number</a>
+                                                <a id= "{{$order['id']}}" href="#" onClick = "getNumber({{$order['id']}});">In process</a>
                                             @else
                                             {{$order['phone_id']}}
                                             @endif
@@ -215,7 +215,7 @@
                         </div>
                     </div>
                     <div class="modal-footer vdf_modal_footer">
-                        <span class="c_support">Customer support: +972-722131366</span>
+                        <span class="c_support">Customer service: +44 2031501573 Ext. 1</span>
                         <a href="#" class="inline_block_btn light_gray_btn close vd_form_reset" data-dismiss="modal" aria-label="Close">Cancel</a>
                         <a href="#" class="inline_block_btn light_green_btn vd_form_submit" id="send-order">Send</a>
 

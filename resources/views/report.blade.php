@@ -331,7 +331,7 @@
                         </div>
                     </div>
                     <div class="modal-footer vdf_modal_footer">
-                        <span class="c_support">Customer support: +972-722131366</span>
+                        <span class="c_support">Customer service: +44 2031501573 Ext. 1</span>
                         <a href="#" class="inline_block_btn light_gray_btn close vd_form_reset" data-dismiss="modal" aria-label="Close">Cancel</a>
                         <a href="#" class="inline_block_btn light_green_btn vd_form_submit" id="send-order">Send</a>
 

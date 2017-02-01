@@ -41,7 +41,7 @@
         <div style="box-sizing: border-box;-moz-box-sizing: border-box; -webkit-box-sizing: border-box; color: #1b6db2; padding: 18px 10px 6px 10px; text-transform: uppercase; font-size: 17px; font-weight: normal; font-style: normal; font-family: proxima_nova_rgregular, Arial, Helvetica, sans-serif;">
             SYC GROUP
         </div>
-        <div style="box-sizing: border-box;-moz-box-sizing: border-box; -webkit-box-sizing: border-box; padding: 2px 10px; color: #494949; line-height: 1; font-size: 16px; font-weight: normal; font-style: normal; font-family: proxima_nova_rgregular, Arial, Helvetica, sans-serif;">Phone: +972-722131366</div>
+        <div style="box-sizing: border-box;-moz-box-sizing: border-box; -webkit-box-sizing: border-box; padding: 2px 10px; color: #494949; line-height: 1; font-size: 16px; font-weight: normal; font-style: normal; font-family: proxima_nova_rgregular, Arial, Helvetica, sans-serif;">Phone: +44 2031501573 Ext. 1</div>
         <div style="box-sizing: border-box;-moz-box-sizing: border-box; -webkit-box-sizing: border-box; padding: 2px 10px 10px 10px; color: #494949; line-height: 1; font-size: 16px; font-weight: normal; font-style: normal; font-family: proxima_nova_rgregular, Arial, Helvetica, sans-serif;">Email: service@syc.co.il</div>
     </div>
 </div>

@@ -40,12 +40,12 @@ $(document).ready(function () {
                         $(".success_response").append("Please wait <img src='/img/loader.gif' width='20'/>");
                     },
                     success: function (msg) {
-                        location.reload();
-                        /*$(".error_response").empty();
+                        // location.reload();
+                        $(".error_response").empty();
                          $(".success_response").empty();
                          $(".success_response").append("DONE");
                          $("#create-order").remove();
-                         $(".close").text("close");
+                         $(".close").text("OK");
                          // $("#create-order").attr("id", "edit-order");
                          var order_new;
                          if (Array.isArray(msg)){
@@ -69,7 +69,7 @@ $(document).ready(function () {
                          $(".error_response").empty();
                          $(".success_response").empty();
                          $(".success_response").append("Order created but there is no available number. Try getting number in Order table.");
-                         }*/
+                         }
 
                     },
                     error: function (error) {
