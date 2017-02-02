@@ -319,6 +319,7 @@ $(document).ready(function () {
     $('.print').on('click', function () {
 
         var row_id = $(this).parents('td').attr('data-row-id');
+        console.log(row_id);
 
         $.get("/order/" + row_id + "/edit", function (order_data, order_status) {
             if (order_status == "success") {

@@ -293,7 +293,7 @@
                     <div class="clear"></div>
                 </div>
                 <div class="modal-footer vdf_modal_footer">
-                    <span class="c_support">Customer support: +972 722131366</span>
+                    <span class="c_support">Customer service: +44 2031501573 Ext. 1</span>
 
                     <span class="email_send_print no-print">
                         <i class="icon-print"></i>
