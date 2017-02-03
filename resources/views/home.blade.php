@@ -43,7 +43,7 @@
                         <div class="col-md-12">
 
                             <div id="wrap_orders_table">
-                                <table class="rwd-table responsive_table table" data-toggle="table" data-page="order">
+                                <table class="rwd-table responsive_table table" data-toggle="table" data-page="order" >
                                     <thead>
                                         <tr>
                                             {{--<th data-field="id">ID</th>--}}
@@ -55,7 +55,7 @@
                                             <th data-field="dealer" data-sortable="true" data-th="Dealer">Dealer </th>
 
                                             <th data-th="Reference N">Reference #</th>
-                                            <th data-th="action">Action</th>
+                                            <th data-th="action" data-events="operateEvent">Action</th>
                                             <th data-field="status" data-sortable="true" data-th="Status">Status</th>
                                             <th></th>
                                         </tr>
@@ -96,16 +96,16 @@
                                                 {{$order['created_by']}}
                                             </a>
                                         </td>
-                                        <td class="rwd-td6 {{ ($order['reference_number'] != '') ? 'ref_number' : '' }} align_order" data-content="{{$order['reference_number']}}" data-field="Reference Number" data-th="Reference Number">
+                                        <td class="rwd-td6 {{ ($order['reference_number'] != '') ? 'ref_number' : '' }} align_order"  data-field="Reference Number" data-th="Reference Number">
                                             @if ($order['reference_number'] != '')
-                                            <span class="hint_text">
+                                            <span class="hint_text" data-toggle="tooltip"  data-trigger="click" data-original-title="{{$order['reference_number']}}">
                                                 {{substr($order['reference_number'], 0, 9)}}
-                                            </span>
                                             <span class="hint">i</span>
+                                            </span>
                                             @endif
                                         </td>
-                                        <td class="rwd-td7 table_action_cell_large" data-field="Action" data-th="Action" data-row-id="{{$order['id']}}">
-                                            <span class="table_icon call_edit {{ ($order['status'] == 'active' && Auth::user()->level != 'Super admin' || $order['status'] == 'done') ? 'disable' : '' }}" data-toggle="modal"  data-target="#modal_edit_order" data-form="#modal_edit_order">
+                                        <td class="rwd-td7 table_action_cell_large"  data-field="Action" data-th="Action" data-row-id="{{$order['id']}}">
+                                            <span class="table_icon {{ ($order['status'] == 'active' && Auth::user()->level != 'Super admin' || $order['status'] == 'done') ? 'disable' : '' }} call_edit" data-toggle="modal"  data-target="#modal_edit_order" data-form="#modal_edit_order" data-row-id="{{$order['id']}}">
                                                 <i class="icon-edit"></i>
                                             </span>
                                             <span class="table_icon print" data-toggle="modal" data-target="#modal_print_order" data-form="modal_print_order">
@@ -130,6 +130,18 @@
                                 </table>
                     {{$ordersArray->links()}}
                             </div><!--#wrap_orders_table-->
+
+                            {{--<table data-toggle="table" data-url="/user-flat-tree">--}}
+                                {{--<thead>--}}
+                                {{--<tr>--}}
+                                    {{--<th data-field="id" data-sortable="true">ID</th>--}}
+                                    {{--<th data-field="name" data-sortable="true">Name</th>--}}
+                                    {{--<th data-field="login">login</th>--}}
+                                    {{--<th data-field="level">level</th>--}}
+                                    {{--<th data-field="type">type</th>--}}
+                                {{--</tr>--}}
+                                {{--</thead>--}}
+                            </table>
                         </div>
                     </div>
                 </section>

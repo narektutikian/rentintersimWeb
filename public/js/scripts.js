@@ -1,6 +1,6 @@
 $( document ).ready(function() {
 
-    console.log('last script');
+    // console.log('last script');
 
     $('header .mobile_nav_button').on('click', function(){
         $('header .mobile_nav').slideToggle();
@@ -591,22 +591,36 @@ $( document ).ready(function() {
         /* end of Change hours/minutes by click */
     /* end of Numeric inputs for time picker */
 
-    $('.ref_number').on('click', function () {
-        var data_content = $(this).attr('data-content');
+    // $('.ref_number').on('click', function () {
+    //     var data_content = $(this).attr('data-content');
+    //
+    //     if($(this).closest('tr').siblings('tr').find('.show_data_content').length > 0){
+    //
+    //         $(this).closest('tr').siblings('tr').find('.show_data_content').remove();
+    //     }
+    //
+    //     if($(this).find('.show_data_content').length > 0){
+    //
+    //         $(this).find('.show_data_content').remove();
+    //     }else{
+    //         $(this).append('<span class="show_data_content">' + data_content + '</span>');
+    //     }
+    //
+    // });
 
-        if($(this).closest('tr').siblings('tr').find('.show_data_content').length > 0){
-
-            $(this).closest('tr').siblings('tr').find('.show_data_content').remove();
-        }
-
-        if($(this).find('.show_data_content').length > 0){
-
-            $(this).find('.show_data_content').remove();
-        }else{
-            $(this).append('<span class="show_data_content">' + data_content + '</span>');
-        }
-
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+        $('[data-toggle="popover"]').popover();
+        $('.table').on('all.bs.table', function (e, name, args) {
+            $('[data-toggle="tooltip"]').tooltip();
+            $('[data-toggle="popover"]').popover();
+        });
     });
+
+/*
+*
+* */
+
 
 
     /* Open order modal after double click */
@@ -681,3 +695,21 @@ $(window).load(function() {
     $(".loader_inner").fadeOut();
     $(".loader").delay(400).fadeOut("slow");
 });
+
+
+/*
+function actionFormatter(value, row, index) {
+    return [
+        '<a class="like" href="javascript:void(0)" title="Like">',
+        '<i class="glyphicon glyphicon-heart"></i>',
+        '</a>',
+        '<a class="edit ml10" href="javascript:void(0)" title="Edit">',
+        '<i class="glyphicon glyphicon-edit"></i>',
+        '</a>',
+        '<a class="remove ml10" href="javascript:void(0)" title="Remove">',
+        '<i class="glyphicon glyphicon-remove"></i>',
+        '</a>'
+    ].join('');
+}
+*/
+

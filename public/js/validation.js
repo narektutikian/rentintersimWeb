@@ -66,13 +66,13 @@ $( document ).ready(function() {
     /* Reset form fields after modal has been closed */
     $(document).on('click', '.vd_form_reset', function () {
 
-        console.log('vd_form_reset ');
+        // console.log('vd_form_reset ');
         thisForm.resetForm();
     });
     $(document).on('hide.bs.modal', '.modal', function () {
 
-        console.log('hide modal ');
-        console.log('validator ', validator);
+        // console.log('hide modal ');
+        // console.log('validator ', validator);
 
         thisForm.resetForm();
     });
