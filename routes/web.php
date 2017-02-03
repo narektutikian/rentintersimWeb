@@ -20,8 +20,8 @@ use Carbon\Carbon;
 use App\Models\Activation;
 
 Route::get('/', function () {
-    return redirect('home');
-})->middleware('auth');
+    return view('errors.503');
+});
 
 Auth::routes();
 
