@@ -45,7 +45,7 @@ class CheckActivations extends Command
         $errors = [];
         foreach ($activations as $item){
             if (env('APP_ENV') == 'local')
-                $res = 4;
+                $res = 'L';
             else
             $res = file_get_contents("http://176.35.171.143:8086/api/vfapi.php?key=7963ad6960b1088b94db2c32f2975e86&call=simswap&cli=".$item->phone_number."&sim=".$item->sim_number);
 //            echo "id=$item->id&cli=$item->phone_number&sim=$item->sim_number \n";
