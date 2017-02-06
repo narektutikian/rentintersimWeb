@@ -3,7 +3,7 @@
     <div class="modal-dialog vdf_modal" role="document">
         <div class="modal-content vdf_modal_content">
             <div class="modal-header vdf_modal_header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close ok" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <div class="vdf_modal_sub_header">
                     <h3>New Order</h3>
                 </div>
@@ -144,7 +144,15 @@
                     </div>
                 </div>
                 <div class="modal-footer vdf_modal_footer">
-                    <a href="#" id="cancel_order" class="inline_block_btn light_gray_btn close reset_time vd_form_reset">Cancel</a>
+                    <div id="new_actions" style="">
+                     <span class="table_icon print_new" data-toggle="modal" data-target="#modal_print_order" data-form="modal_print_order" >
+                                                <i class="icon-print"></i>
+                                            </span>
+                    <span class="table_icon call_mail_new"  data-toggle="modal" data-target="#modal_order_email">
+                                                <i class="icon-email"></i>
+                                            </span>
+                    </div>
+                    <a href="#" id="cancel_order" class="inline_block_btn light_gray_btn close reset_time vd_form_reset ok">Cancel</a>
                     {{--<button type="submit" href="#" class="inline_block_btn light_green_btn vd_form_submit" id="create-order">Create order</button>--}}
                     <a href="#" class="inline_block_btn light_green_btn vd_form_submit" id="create-order">Create Order</a>
 

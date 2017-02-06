@@ -281,8 +281,17 @@ $( document ).ready(function() {
         $('#lnd_time').append('<input type="text" name="timepicker" id="time_element" class="inline_block_btn time_element vd_time_required"/>');
         $('#dpr_time').append('<input type="text" name="timepicker2" id="time_element2" class="inline_block_btn time_element vd_time_required"/>');
         $(this).find('form')[0].reset();
+        /**** PUT Reload Logic Here****/
+        if (reload){
+            location.reload();
+        }
 
+    });
 
+    $('#modal_order_email').on("hidden.bs.modal", function () {
+        if ($("#refresh").val() == "refresh"){
+        location.reload();
+        }
     });
 
     $('#cancel_order').on("click", function () {
@@ -491,6 +500,9 @@ $( document ).ready(function() {
         if(typeof $(this).find('form')[0] != "undefined"){
             $(this).find('form')[0].reset();
         }
+        $(".error_response").empty();
+        $(".success_response").empty();
+
 
     });
 

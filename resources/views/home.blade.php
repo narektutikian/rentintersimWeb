@@ -187,6 +187,7 @@
                                         <label class="table_label">Phone Number </label>
                                         <div class="relative">
                                             <input type="text" name="number" class="block_btn_30 modal_input vd_number phone" value="" disabled/>
+                                            <input id="refresh" type="hidden" name="refresh" value="not-refresh">
                                             <i class="input_icon icon-phone_number"></i>
                                         </div>
                                     </div>
@@ -248,7 +249,7 @@
                 <div class="modal-header modal_print_header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <div class="vdf_modal_sub_header">
-                        <h3>Order <span class="mail_order">#124875</span></h3>
+                        <h3>Order <span class="mail_order">#</span></h3>
                     </div>
                 </div>
 

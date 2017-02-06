@@ -1943,6 +1943,12 @@ input[type="radio"].toggle.checked + label {
     background: #abbecc;
     border: 1px solid #abbecc; }
 
+#new_actions {
+  visibility: hidden;
+  display: inline-block; }
+  #new_actions span {
+    margin-top: 5px; }
+
 @media print {
   .no-print, .no-print * {
     display: none !important; } }

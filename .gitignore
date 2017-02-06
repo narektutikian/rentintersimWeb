@@ -6,3 +6,8 @@ Homestead.json
 Homestead.yaml
 .env
 .env1
+.htaccess
+resources/views/vendor/notifications/
+resources/views/vendor/pagination/
+storage/activations.sql
+storage/user.sql

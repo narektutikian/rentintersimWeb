@@ -1,4 +1,4 @@
-
+var reload = false;
 var edit_id;
 $(document).ready(function () {
     var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
@@ -43,11 +43,13 @@ $(document).ready(function () {
                     },
                     success: function (msg) {
                         // location.reload();
+                        reload = true;
                         $(".error_response").empty();
                          $(".success_response").empty();
                          $(".success_response").append("DONE");
                          $("#create-order").remove();
-                         $(".close").text("OK").attr("onClick", "window.location.reload()");
+                         $(".ok").text("OK").attr("onClick", "window.location.reload()");
+                         $("#new_actions").css("visibility","visible");
                          // $("#create-order").attr("id", "edit-order");
                          var order_new;
                          if (Array.isArray(msg)){
@@ -55,6 +57,8 @@ $(document).ready(function () {
                          } else {
                          order_new = msg;
                          }
+                        $(".print_new").attr("onClick", "initPrintForm(" + order_new.id + ")");
+                        $(".call_mail_new").attr("onClick", "initEmailForm(" + order_new.id + ", 'new_order')");
                          $('#order_status').val(order_new.status);
                          if (order_new.status != "waiting") {
                          $('#phone_number2').val(order_new.phone.phone);
@@ -260,12 +264,15 @@ $(document).ready(function () {
                     $(".success_response").append("Please wait <img src='/img/loader.gif' width='20'/>");
                 },
                 success: function (msg) {
-                    location.reload();
+                    // location.reload();
                     $(".error_response").empty();
                     $(".success_response").empty();
                     $(".success_response").append("MASSAGE SENT SUCCESSFULLY");
-                    $("#edit-order").remove();
+                    $("#send-order").remove();
                     $(".close").text("close");
+                    if ($("#refresh").val() == "list"){
+                        $("#refresh").val("refresh");
+                    }
                     // $("#create-order").attr("id", "edit-order");
 
                 },
@@ -459,81 +466,105 @@ window.operateEvent = {
     'click .print': function (e, value, row, index) {
         var row_id = $(this).parents('td').attr('data-row-id');
         // console.log(row_id);
+        initPrintForm(row_id);
 
-        $.get("/order/" + row_id + "/edit", function (order_data, order_status) {
-            if (order_status == "success") {
 
-                if (order_data[0].status != "waiting"){
-                    $('.email_phone_num').empty();
-                    $('.email_phone_num').append("Phone Number : " + order_data[0].phone.phone +
-                        " <br/> Sim Number : " + order_data[0].sim.number);
-                }
-
-                $('.selected_package_print').empty();
-                $('.selected_package_print').append("<label class='table_label'>Selected Package </label>" +
-                    "<a class='selected_package' title='"+ order_data[0].package.name +"'>" +
-                    "<h4>"+ order_data[0].package.name +"</h4>" +
-                    "<span>"+ order_data[0].package.description +"</span>" +
-                    "</a>");
-                $('.from_print').text(order_data[0].landing);
-                $('.to_print').text(order_data[0].departure);
-                $('.mail_order').text(" #" + order_data[0].id);
-
-            }
-
-        });
 
     },
     'click .call_mail': function (e, value, row, index) {
         var row_id = $(this).attr('data-row-id');
         edit_id = row_id;
-
-        $.get("/order/" + row_id + "/edit", function (order_data, order_status) {
-
-            if (order_status == "success") {
-
-                $.get("/type-provider/1", function (data, type_status) {
-
-                    if (type_status == "success") {
-
-                        $.each(data, function (i, item) {
+        initEmailForm(row_id, "list");
 
 
-
-                            if (item.id == order_data[0].package_id) {
-                                package_id = item.id;
-                                $(".single_package").empty();
-                                $(".single_package").append(
-                                    "<a title='Basic Package'  class='selected_package' title='" + item.name + "' > " +
-                                    "<h4>" + item.name + "</h4>" +
-                                    "<span>" + item.description + "</span>" +
-                                    "</a>" );
-                            }
-
-                        });
-                        if (order_data[0].status != "waiting"){
-
-                        $('.phone').val(order_data[0].phone.phone);
-                        }
-                        else {
-                            $('.phone').val("No number");
-                        }
-                        $('.mail_order').text("#" + order_data[0].id);
-
-
-
-                        $('.from').text(order_data[0].landing);
-                        $('.to').text(order_data[0].departure);
-
-
-                        // console.log(order_data[0].status)
-
-
-                    }
-                });
-            }
-        });
 
 
     }
 };
+
+function initEmailForm(orderId, from) {
+    $.get("/order/" + orderId + "/edit", function (order_data, order_status) {
+
+        if (order_status == "success") {
+
+            $.get("/type-provider/1", function (data, type_status) {
+
+                if (type_status == "success") {
+
+                    if (from == "new_order"){
+                        $("#refresh").val("new_order");
+                    }
+                    else if (from == "list"){
+                        $("#refresh").val("list");
+                    }
+
+                    $.each(data, function (i, item) {
+
+
+
+                        if (item.id == order_data[0].package_id) {
+                            package_id = item.id;
+                            $(".single_package").empty();
+                            $(".single_package").append(
+                                "<a title='Basic Package'  class='selected_package' title='" + item.name + "' > " +
+                                "<h4>" + item.name + "</h4>" +
+                                "<span>" + item.description + "</span>" +
+                                "</a>" );
+                        }
+
+                    });
+                    if (order_data[0].status != "waiting"){
+
+                        $('.phone').val(order_data[0].phone.phone);
+                    }
+                    else {
+                        $('.phone').val("No number");
+                    }
+                    $('.mail_order').text("#" + order_data[0].id);
+
+
+
+                    $('.from').text(order_data[0].landing);
+                    $('.to').text(order_data[0].departure);
+
+
+                    // console.log(order_data[0].status)
+
+
+                }
+            });
+        }
+    });
+
+}
+
+function initPrintForm(orderId) {
+    $.get("/order/" + orderId + "/edit", function (order_data, order_status) {
+        if (order_status == "success") {
+
+            $('.email_phone_num').empty();
+
+            if (order_data[0].status != "waiting"){
+
+                $('.email_phone_num').append("Phone Number : " + order_data[0].phone.phone +
+                    " <br/> Sim Number : " + order_data[0].sim.number);
+            }
+            else {
+                $('.email_phone_num').append("Sim Number : " + order_data[0].sim.number);
+            }
+
+            $('.selected_package_print').empty();
+            $('.selected_package_print').append("<label class='table_label'>Selected Package </label>" +
+                "<a class='selected_package' title='"+ order_data[0].package.name +"'>" +
+                "<h4>"+ order_data[0].package.name +"</h4>" +
+                "<span>"+ order_data[0].package.description +"</span>" +
+                "</a>");
+            $('.from_print').text(order_data[0].landing);
+            $('.to_print').text(order_data[0].departure);
+            $('.mail_order').text(" #" + order_data[0].id);
+
+        }
+
+    });
+
+}
