@@ -9,12 +9,16 @@ $(document).ready(function () {
     // console.log("edit id " + edit_id);
     $('#create-order').on('click', function (e) {
         e.stopPropagation(); // Stop stuff happening
+        $('.timepicker_wrap').fadeOut();
         if ($(this).closest(".vd_form").valid()) {
+
 
             var departure = $('#departure_date').val() + " " + $("#time_element2").val();
             var landing = $('#landing_date').val() + " " + $("#time_element").val();
 
             if ($("#time_element2").val() != "00:00" && $("#time_element").val() != "00:00") {
+
+
 
                 // console.log(departure + " " + landing);
                 var data = {
@@ -37,6 +41,7 @@ $(document).ready(function () {
                     url: '/order',
                     data: data,
                     beforeSend: function () {
+
                         $(".error_response").empty();
                         $(".success_response").empty();
                         $(".success_response").append("Please wait <img src='/img/loader.gif' width='20'/>");
