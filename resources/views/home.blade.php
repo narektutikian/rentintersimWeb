@@ -160,7 +160,7 @@
         <div class="modal-dialog vdf_modal" role="document">
             <div class="modal-content vdf_modal_content">
                 <div class="modal-header vdf_modal_header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <button type="button" class="close close_print" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <div class="vdf_modal_sub_header">
                         <div class="col-md-7">
                             <h3>Mail message: Order <span class="mail_order">error</span></h3>
@@ -229,7 +229,7 @@
                     </div>
                     <div class="modal-footer vdf_modal_footer">
                         <span class="c_support">Customer service: +44 2031501573 Ext. 1</span>
-                        <a href="#" class="inline_block_btn light_gray_btn close vd_form_reset" data-dismiss="modal" aria-label="Close">Cancel</a>
+                        <a href="#" class="inline_block_btn light_gray_btn close vd_form_reset close_print" data-dismiss="modal" aria-label="Close">Cancel</a>
                         <a href="#" class="inline_block_btn light_green_btn vd_form_submit" id="send-order">Send</a>
 
                         <span class="success_response"></span>

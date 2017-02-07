@@ -269,12 +269,13 @@ $(document).ready(function () {
                     $(".success_response").append("Please wait <img src='/img/loader.gif' width='20'/>");
                 },
                 success: function (msg) {
+                    $('#modal_order_email').modal('toggle');
                     // location.reload();
                     $(".error_response").empty();
                     $(".success_response").empty();
                     $(".success_response").append("MASSAGE SENT SUCCESSFULLY");
-                    $("#send-order").remove();
-                    $(".close").text("close");
+                    // $("#send-order").remove();
+                    $(".close_print").text("close");
                     if ($("#refresh").val() == "list"){
                         $("#refresh").val("refresh");
                     }
@@ -472,6 +473,8 @@ window.operateEvent = {
         var row_id = $(this).parents('td').attr('data-row-id');
         // console.log(row_id);
         initPrintForm(row_id);
+
+        //
 
 
 

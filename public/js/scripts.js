@@ -519,7 +519,7 @@ $( document ).ready(function() {
     /* Print Message in browser */
     $(document).on('click', '.email_send_print', function () {
 
-        window.print();
+        onPrintFinished(window.print());
     });
 
 /*    /!* Numeric inputs for time picker *!/
@@ -708,7 +708,9 @@ $(window).load(function() {
     $(".loader").delay(400).fadeOut("slow");
 });
 
-
+var onPrintFinished=function(printed){
+    $('#modal_print_order').modal('toggle');
+    console.log("do something...");}
 /*
 function actionFormatter(value, row, index) {
     return [

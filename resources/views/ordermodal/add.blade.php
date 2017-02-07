@@ -3,7 +3,7 @@
     <div class="modal-dialog vdf_modal" role="document">
         <div class="modal-content vdf_modal_content">
             <div class="modal-header vdf_modal_header">
-                <button type="button" class="close ok" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <div class="vdf_modal_sub_header">
                     <h3>New Order</h3>
                 </div>
