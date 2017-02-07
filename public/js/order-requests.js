@@ -478,7 +478,7 @@ window.operateEvent = {
     },
     'click .call_mail': function (e, value, row, index) {
         var row_id = $(this).attr('data-row-id');
-        edit_id = row_id;
+        // edit_id = row_id;
         initEmailForm(row_id, "list");
 
 
@@ -488,6 +488,7 @@ window.operateEvent = {
 };
 
 function initEmailForm(orderId, from) {
+    edit_id = orderId;
     $.get("/order/" + orderId + "/edit", function (order_data, order_status) {
 
         if (order_status == "success") {
@@ -544,6 +545,7 @@ function initEmailForm(orderId, from) {
 }
 
 function initPrintForm(orderId) {
+
     $.get("/order/" + orderId + "/edit", function (order_data, order_status) {
         if (order_status == "success") {
 

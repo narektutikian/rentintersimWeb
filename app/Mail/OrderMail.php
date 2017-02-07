@@ -30,6 +30,7 @@ class OrderMail extends Mailable
      */
     public function build()
     {
+
         $order = Order::find($this->data['order']);
 
         $address = 'service@syc.co.il';
