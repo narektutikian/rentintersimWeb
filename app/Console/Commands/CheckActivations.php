@@ -61,7 +61,7 @@ class CheckActivations extends Command
             $address = 'service@syc.co.il';
             if (env('APP_ENV') == 'local')
                 $address = 'narek@horizondvp.com';
-            Mail::to($address, 'RentInterSim')
+            Mail::to($address, 'SimRent')
                 ->queue(new ActivationReport($errors));
         }
     }

@@ -22,7 +22,7 @@ class UserManager
 //        echo '<pre/>';
 //        print_r($network);
 //        die();
-        $final = Auth::user()->toArray();
+        $final = User::find($id)->toArray();
         $final = $this->solveUsers(array($final))[0];
 //        dd($final);
         $final['child'] = $network;
@@ -36,7 +36,7 @@ class UserManager
 //        echo '<pre/>';
 //        print_r($flat);
 //        die();
-        $final = $this->solveUsers(array(Auth::user()->toArray()));
+        $final = $this->solveUsers(array(User::find($id)->toArray()));
 //        dd($flat);
         $final = array_merge($final, $flat);
 //        dd($final);
@@ -162,17 +162,26 @@ class UserManager
 
     }
 
-    public function subNetID ($flatNetwork)
+    public function subNetID ($flatNetwork, $id = null)
     {
+        if ($id == null)
+            $user = Auth::user();
+        else {
+
+            $user = User::find($id);
+//            dd($user);
+        }
         $ids= array();
-        if (Auth::user()->type != 'admin'){
-            $friends = User::select('id')->where('supervisor_id', Auth::user()->supervisor_id)->where('level', Auth::user()->level)->get()->toArray();
-            foreach ($friends as $friend){
-                $ids[] = $friend['id'];
-            }
-            $ids[] = Auth::user()->supervisor_id;
-
-
+//
+        if ($user->type != 'admin'){
+            $flatNetwork = $this->getMyFlatNetwork($user->supervisor_id);
+//
+//            foreach ($friends as $friend){
+//                $ids[] = $friend['id'];
+//            }
+//            $ids[] = $user->supervisor_id;
+//
+//
         }
 
         foreach ($flatNetwork as $item) {
@@ -181,6 +190,8 @@ class UserManager
 //        dd($ids);
         return $ids;
     }
+
+
     public function deleteUser($user)
     {
         DB::transaction(function () use ($user) {

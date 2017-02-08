@@ -2,7 +2,7 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>Vodafone</title>
+    <title>SimRent</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="js/perfect-scrollbar/css/perfect-scrollbar.css">
     <link rel="stylesheet" href="css/login.css">

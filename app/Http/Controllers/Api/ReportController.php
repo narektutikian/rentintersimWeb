@@ -401,8 +401,11 @@ class ReportController extends Controller
             $report = Order::withTrashed()->where(function ($q){
                 $q->where('status', 'done')->orWhere('status', 'active');
             })->whereIn('created_by', $net);
-            if ($request->has('username'))
-                $report = $report->where('created_by', $request->input('username'));
+            if ($request->has('username')){
+                $userID = $request->input('username');
+                $net = $this->userManager->subNetID($this->userManager->getMyFlatNetwork($userID), $userID);
+                $report = $report->whereIn('created_by', $net);
+            }
             if ($request->has('from')){
                 $from = Carbon::createFromFormat('d/m/Y', $request->input('from'))->setTime(0,0,0)->subHour();
                 $report = $report->where('from', '>', $from->timestamp);

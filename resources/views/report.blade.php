@@ -188,7 +188,7 @@
                                         {{--<td>{{$order['id']}}</td>--}}
                                         <td class="rwd-td0 table_id_cell editable_cell" data-th="Phone" data-row-id="{{$order['id']}}"  data-cell-id="{{$order['id']}}">
                                             @if($order['phone_id']==0)
-                                                <a id= "{{$order['id']}}" href="#" onClick = "getNumber({{$order['id']}});">Get Number</a>
+                                                <a id= "{{$order['id']}}" href="#" >No Number</a>
                                             @else
                                             {{$order['phone_id']}}
                                             @endif
@@ -216,12 +216,12 @@
                                                 {{$order['created_by']}}
                                             </a>
                                         </td>
-                                        <td class="rwd-td6 {{ ($order['reference_number'] != '') ? 'ref_number' : '' }} align_order" data-content="{{$order['reference_number']}}" data-field="Reference Number" data-th="Reference Number">
+                                        <td class="rwd-td6 {{ ($order['reference_number'] != '') ? 'ref_number' : '' }} align_order"  data-field="Reference Number" data-th="Reference Number">
                                             @if ($order['reference_number'] != '')
-                                            <span class="hint_text">
+                                            <span class="hint_text" data-toggle="tooltip"  data-trigger="click" data-original-title="{{$order['reference_number']}}">
                                                 {{substr($order['reference_number'], 0, 9)}}
-                                            </span>
                                             <span class="hint">i</span>
+                                            </span>
                                             @endif
                                         </td>
                                        {{-- <td class="rwd-td7 table_action_cell_large" data-field="Action" data-th="Action">

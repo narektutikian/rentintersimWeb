@@ -34,7 +34,7 @@ class OrderMail extends Mailable
         $order = Order::find($this->data['order']);
 
         $address = 'service@syc.co.il';
-        $name = 'RentInterSim';
+        $name = 'SimRent';
         $subject = 'Your Order #'. $order->id;
 //        dd($this->data);
 

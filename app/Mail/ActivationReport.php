@@ -35,7 +35,7 @@ class ActivationReport extends Mailable
         $address = 'service@syc.co.il';
         if (env('APP_ENV') == 'local')
             $address = 'narek@horizondvp.com';
-        $name = 'RentInterSim';
+        $name = 'SimRent';
         $subject = 'Failed Log';
 
         $activations = Activation::whereIn('id', $this->items)->get();

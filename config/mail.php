@@ -57,7 +57,7 @@ return [
 
     'from' => [
         'address' => 'vodafone@horizondvp.org',
-        'name' => 'Vodafone',
+        'name' => 'SimRent',
     ],
 
     /*

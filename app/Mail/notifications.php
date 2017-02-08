@@ -35,7 +35,7 @@ class notifications extends Mailable
         $address = 'service@syc.co.il';
         if (env('APP_ENV') == 'local')
             $address = 'narek@horizondvp.com';
-        $name = 'RentInterSim';
+        $name = 'SimRent';
         $subject = 'Your Order #'. $this->order->id . ' is "'. $this->order->status. '" now';
 
         $cc = array($this->order->creator->email);
