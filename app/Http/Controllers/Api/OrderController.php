@@ -88,8 +88,8 @@ class OrderController extends Controller
 //        'from' => 'required',
 //        'to' =>  'required',
         'sim' => 'required',
-        'landing' =>  'required',
-        'departure' =>  'required',
+        'landing_string' =>  'required',
+        'departure_string' =>  'required',
             'package_id' => 'required'
 //        'reference_number' =>  'required',
 //        'status' =>  'required',
@@ -115,8 +115,8 @@ class OrderController extends Controller
 //                dd($simId);
 
         $newOrder = Order::forceCreate([
-            'from' => $this->helper->setStartTime($request->input('landing')),
-            'to' =>  $this->helper->setEndTime($request->input('departure')),
+            'from' => $this->helper->setStartTime($request->input('landing_string')),
+            'to' =>  $this->helper->setEndTime($request->input('departure_string')),
             'landing' =>  $request->input('landing_string'),
             'departure' =>  $request->input('departure_string'),
             'reference_number' =>  $request->input('reference_number'),

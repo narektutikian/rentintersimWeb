@@ -96,10 +96,9 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
 
 
 Route::get('/test', function (){
-    $number = Activation::whereIn('id', [115,114])->get();
-    $message= [];
-        return view('mail.activation')->with('activations', $number)->with('message', $message);
-//dd($number);
+    $date = '08/02/2017 01:15';
+    $date = Carbon::createFromFormat('d/m/Y H:i', $date);
+    echo $date->subHours(1);
 
 });
 

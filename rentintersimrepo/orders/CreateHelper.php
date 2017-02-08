@@ -22,15 +22,15 @@ use DB;
 class CreateHelper
 {
     public function setStartTime($datetime){
-        return Carbon::createFromTimestamp($datetime)
-            ->subHours(1)
-            ->timestamp;
+//        $date = Carbon::createFromTimestamp($datetime);
+        $date = Carbon::createFromFormat('d/m/Y H:i', $datetime);
+        return $date->subHours(1)->timestamp;
     }
 
     public function setEndTime($datetime){
-        return Carbon::createFromTimestamp($datetime)
-            ->addHours(4)
-            ->timestamp;
+//        $date = Carbon::createFromTimestamp($datetime)
+        $date = Carbon::createFromFormat('d/m/Y H:i', $datetime);
+        return $date->subHours(3)->timestamp;
     }
 
     public function getSim($sim){
