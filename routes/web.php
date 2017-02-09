@@ -103,6 +103,8 @@ Route::get('/test2', function (){
     $orders = Order::where('status', 'pending')->orderBy('from', 'asc')->get();
     foreach ($orders as $order){
         $date = Carbon::createFromFormat('d/m/Y H:i', $order->landing)->subHours(1)->timestamp;
+        $order->from = $date;
+        $order->save();
         echo "id: ".$order->id." - activation time: ". Carbon::createFromTimestamp($order->from)->format('d/m/Y H:i'). " - ". " user chois: ". $order->landing ."<br>";
     }
 
