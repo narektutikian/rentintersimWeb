@@ -23,8 +23,11 @@ class CreateHelper
 {
     public function setStartTime($datetime){
 //        $date = Carbon::createFromTimestamp($datetime);
-        $date = Carbon::createFromFormat('d/m/Y H:i', $datetime);
-        return $date->subHours(1)->timestamp;
+        $date = Carbon::createFromFormat('d/m/Y H:i', $datetime)->subHours(1);
+        if ($date->hour >= 3 && $date->hour <= 8){
+            $date->setTime(1,0);
+           }
+        return $date->timestamp;
     }
 
     public function setEndTime($datetime){

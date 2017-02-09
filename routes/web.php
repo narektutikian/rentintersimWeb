@@ -96,9 +96,15 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
 
 
 Route::get('/test', function (){
-    $date = '08/02/2017 01:15';
-    $date = Carbon::createFromFormat('d/m/Y H:i', $date);
-    echo $date->subHours(1);
+
+});
+
+Route::get('/test2', function (){
+    $orders = Order::where('status', 'pending')->orderBy('from', 'asc')->get();
+    foreach ($orders as $order){
+        $date = Carbon::createFromFormat('d/m/Y H:i', $order->landing)->subHours(1)->timestamp;
+        echo "id: ".$order->id." - activation time: ". Carbon::createFromTimestamp($order->from)->format('d/m/Y H:i'). " - ". " user chois: ". $order->landing ."<br>";
+    }
 
 });
 
