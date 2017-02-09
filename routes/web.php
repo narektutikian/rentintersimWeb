@@ -103,11 +103,11 @@ Route::get('/test2', function (){
     $orders = Order::where('status', 'pending')->orWhere('status', 'waiting')->orderBy('from', 'asc')->get();
     foreach ($orders as $order){
         $date = Carbon::createFromFormat('d/m/Y H:i', $order->landing)->subHours(1);
-        if ($date->hour >= 3 && $date->hour <= 7){
+        if ($date->hour >= 2 && $date->hour <= 6){
             $date->setTime(1,0);
         }
-//        $order->from = $date->timestamp;
-//        $order->save();
+        $order->from = $date->timestamp;
+        $order->save();
         echo "id: ".$order->id." | activation time: ". Carbon::createFromTimestamp($order->from)->format('d/m/Y H:i'). " |  user chois: ". $order->landing ." | Status: " . $order->status. "<br>";
     }
 
