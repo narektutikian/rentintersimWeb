@@ -106,8 +106,8 @@ Route::get('/test2', function (){
         if ($date->hour >= 3 && $date->hour <= 7){
             $date->setTime(1,0);
         }
-        $order->from = $date->timestamp;
-        $order->save();
+//        $order->from = $date->timestamp;
+//        $order->save();
         echo "id: ".$order->id." - activation time: ". Carbon::createFromTimestamp($order->from)->format('d/m/Y H:i'). " - ". " user chois: ". $order->landing ." - Status:" . $order->status. "<br>";
     }
 
