@@ -103,7 +103,7 @@ Route::get('/test2', function (){
     $orders = Order::where('status', 'pending')->orderBy('from', 'asc')->get();
     foreach ($orders as $order){
         $date = Carbon::createFromFormat('d/m/Y H:i', $order->landing)->subHours(1);
-        if ($date->hour >= 3 && $date->hour <= 8){
+        if ($date->hour >= 3 && $date->hour <= 7){
             $date->setTime(1,0);
         }
         $order->from = $date->timestamp;
