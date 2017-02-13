@@ -171,7 +171,7 @@ class OrderController extends Controller
     public function edit($id)
     {
         //
-        $order = Order::find($id);
+        $order = Order::withTrashed()->find($id);
 //        dd($order);
         $orderSolved = $this->viewHelper->solveOrderList(array($order));
 
