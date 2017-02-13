@@ -131,17 +131,27 @@
                     {{$ordersArray->links()}}
                             </div><!--#wrap_orders_table-->
 
-                            {{--<table data-toggle="table" data-url="/user-flat-tree">--}}
-                                {{--<thead>--}}
-                                {{--<tr>--}}
-                                    {{--<th data-field="id" data-sortable="true">ID</th>--}}
-                                    {{--<th data-field="name" data-sortable="true">Name</th>--}}
-                                    {{--<th data-field="login">login</th>--}}
-                                    {{--<th data-field="level">level</th>--}}
-                                    {{--<th data-field="type">type</th>--}}
-                                {{--</tr>--}}
-                                {{--</thead>--}}
-                            </table>
+                                {{--<table id="order_table" data-toggle="table"--}}
+                                       {{--data-url="/api/order"--}}
+                                       {{--data-pagination="true"--}}
+                                       {{--data-side-pagination="server"--}}
+                                       {{--data-page-list="[5, 10, 20, 50, 100, 200]">--}}
+                                    {{--<thead>--}}
+                                    {{--<tr>--}}
+                                        {{--<th data-field="phone.phone" data-halign="center" data-align="left" data-sortable="true">Phone</th>--}}
+                                        {{--<th data-field="sim.number" data-halign="center" data-align="left" data-sortable="true">SIM number</th>--}}
+                                        {{--<th data-field="sim.provider.name" data-halign="center" data-align="center" data-sortable="true">Provider</th>--}}
+                                        {{--<th data-field="landing" data-halign="center" data-align="center" data-sortable="true">From</th>--}}
+                                        {{--<th data-field="departure" data-halign="center" data-align="center" data-sortable="true">To</th>--}}
+                                        {{--<th data-field="creator.name" data-halign="center" data-align="center" data-sortable="true">Dealer</th>--}}
+                                        {{--<th data-field="">Action</th>--}}
+                                        {{--<th data-field="status" data-halign="center" data-align="center" data-sortable="true">Status</th>--}}
+                                        {{--<th data-field=""></th>--}}
+
+                                    {{--</tr>--}}
+                                    {{--</thead>--}}
+                                {{--</table>--}}
+
                         </div>
                     </div>
                 </section>

@@ -76,6 +76,7 @@
 <script src="/js/validation.js"></script>
 <script src="/js/requests.js"></script>
 <script src="/js/order-requests.js"></script>
+<script src="/js/order_table.js"></script>
 
 </body>
 </html>

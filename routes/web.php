@@ -90,6 +90,8 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
     /**** Recover Routes ****/
     Route::post('sim/recover/{id}', 'SIMController@recover');
     Route::post('number/recover/{id}', 'PhoneController@recover');
+
+    Route::get('/api/order', 'OrderController@orderTable');
 });
 
 

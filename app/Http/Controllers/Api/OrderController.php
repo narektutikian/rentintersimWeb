@@ -434,5 +434,10 @@ class OrderController extends Controller
         })->download('xlsx');
     }
 
+    public function orderTable (Request $request)
+    {
+        return Order::with(['phone', 'sim', 'creator', 'sim.provider'])->paginate(3);
+    }
+
 
 }
