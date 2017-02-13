@@ -184,7 +184,7 @@
                                     </thead>
                                     <tbody>
                                     @foreach($ordersArray as $order)
-                                    <tr data-uniqueid="{{$order['id']}}>
+                                    <tr data-uniqueid="{{$order['id']}}">
                                         {{--<td>{{$order['id']}}</td>--}}
                                         <td class="rwd-td0 table_id_cell editable_cell" data-th="Phone" data-cell-id="{{$order['id']}}">
                                             @if($order['phone_id']==0)
