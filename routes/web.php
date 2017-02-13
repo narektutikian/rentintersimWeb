@@ -98,7 +98,7 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
 
 
 Route::get('/test', function (){
-
+echo Order::where('phone_id', 11)->where('status', 'pending')->count();
 });
 
 Route::get('/test2', function (){
