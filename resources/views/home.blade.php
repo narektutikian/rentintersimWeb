@@ -131,11 +131,11 @@
                     {{$ordersArray->links()}}
                             </div><!--#wrap_orders_table-->
 
-                                {{--<table id="order_table" data-toggle="table"--}}
+                                {{--<table id="order_table_html" data-toggle="table"--}}
                                        {{--data-url="/api/order"--}}
                                        {{--data-pagination="true"--}}
                                        {{--data-side-pagination="server"--}}
-                                       {{--data-page-list="[5, 10, 20, 50, 100, 200]">--}}
+                                       {{--data-page-list="[5, 10, 20]">--}}
                                     {{--<thead>--}}
                                     {{--<tr>--}}
                                         {{--<th data-field="phone.phone" data-halign="center" data-align="left" data-sortable="true">Phone</th>--}}
@@ -151,6 +151,7 @@
                                     {{--</tr>--}}
                                     {{--</thead>--}}
                                 {{--</table>--}}
+                            {{--<table id="order_table" ></table>--}}
 
                         </div>
                     </div>

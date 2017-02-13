@@ -436,7 +436,11 @@ class OrderController extends Controller
 
     public function orderTable (Request $request)
     {
-        return Order::with(['phone', 'sim', 'creator', 'sim.provider'])->paginate(3);
+        $q = $request->all();
+//        dd($q);
+        $total = Order::count();
+        $orders = Order::with(['phone', 'sim', 'creator', 'sim.provider'])->take($q['limit'])->skip($q['offset'])->get();
+        return  response()->json(['total' => $total, 'rows' => $orders]);
     }
 
 
