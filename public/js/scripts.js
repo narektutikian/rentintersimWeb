@@ -728,7 +728,7 @@ $( document ).ready(function() {
                         $('.remark-view').val(order_data[0].remark);
                         $('.reference_number-view').val(order_data[0].reference_number);
                         if (order_data[0].status != "waiting") {
-                            $('#phone_number-view2').val(order_data[0].phone.phone);
+                            $('#phone_number-view2').val(order_data[0].phone_id);
                         }
                         $('#order_status-view').val(order_data[0].status);
                         $('.creator').text(order_data[0].creator.name + " " + order_data[0].created_at);

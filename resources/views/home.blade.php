@@ -1,6 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
+    <script>
+        var auth_level = "{{Auth::user()->level}}";
+//        console.log(auth_level);
+    </script>
     <div class="layout">
         <div class="container">
             <div id="orders_list" class="no-print">
@@ -135,7 +139,14 @@
                                        {{--data-url="/api/order"--}}
                                        {{--data-pagination="true"--}}
                                        {{--data-side-pagination="server"--}}
-                                       {{--data-page-list="[5, 10, 20]">--}}
+                                       {{--data-page-list="[15, 30, 60, 100]"--}}
+                                       {{--data-unique-id="id"--}}
+                                       {{--data-page-size="15"--}}
+                                       {{--data-pagination-h-align="left"--}}
+                                       {{--data-pagination-detail-h-align="right"--}}
+                                       {{--data-search="true"--}}
+
+                                       {{--data-page="order">--}}
                                     {{--<thead>--}}
                                     {{--<tr>--}}
                                         {{--<th data-field="phone.phone" data-halign="center" data-align="left" data-sortable="true">Phone</th>--}}
@@ -143,10 +154,11 @@
                                         {{--<th data-field="sim.provider.name" data-halign="center" data-align="center" data-sortable="true">Provider</th>--}}
                                         {{--<th data-field="landing" data-halign="center" data-align="center" data-sortable="true">From</th>--}}
                                         {{--<th data-field="departure" data-halign="center" data-align="center" data-sortable="true">To</th>--}}
-                                        {{--<th data-field="creator.name" data-halign="center" data-align="center" data-sortable="true">Dealer</th>--}}
-                                        {{--<th data-field="">Action</th>--}}
+                                        {{--<th data-field="creator.login" data-halign="center" data-align="center" data-sortable="true">Dealer</th>--}}
+                                        {{--<th data-field="reference_number" data-halign="center" data-align="center">Reference #</th>--}}
+                                        {{--<th data-field="" data-formatter="formatActions" data-events="operateEvent">Action</th>--}}
                                         {{--<th data-field="status" data-halign="center" data-align="center" data-sortable="true">Status</th>--}}
-                                        {{--<th data-field=""></th>--}}
+                                        {{--<th data-field="" data-formatter="formatDelete"></th>--}}
 
                                     {{--</tr>--}}
                                     {{--</thead>--}}

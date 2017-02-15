@@ -32,3 +32,43 @@
 //         title: ''
 //     },]
 // });
+
+function formatActions(value, row, index) {
+    var dis = "";
+    if (row.status == "active" && auth_level != "Super admin" || row.status == "done")
+        dis = "disable";
+
+    return [
+        '<span class="table_icon call_edit ',
+        dis,
+        '" data-toggle="modal"  data-target="#modal_edit_order" data-form="#modal_edit_order">',
+        '<i class="icon-edit"></i>',
+        '</span>',
+        '<span class="table_icon print" data-toggle="modal" data-target="#modal_print_order" data-form="modal_print_order">',
+        '<i class="icon-print"></i>',
+        '</span>',
+        '<span class="table_icon call_mail"  data-toggle="modal" data-target="#modal_order_email">',
+        ' <i class="icon-email"></i>',
+        '  </span>'
+
+    ].join('');
+}
+
+function formatDelete(value, row, index) {
+    var dis = "";
+    if (row.status == "active" || auth_level != "Super admin" && row.status == "done")
+        dis = "disable";
+
+    return [
+        '<span class="remove_row  '+ dis +'" data-toggle="modal" data-target="#confirm_delete" data-row-id="">',
+        '<i class="icon-delete"></i>',
+        '</span>'
+    ]
+}
+
+// {{ ($order[\'status\'] == \'active\' && Auth::user()->level != \'Super admin\' || $order['status'] == 'done') ? 'disable' : ''
+// {{ ($order['status'] == 'active' || (Auth::user()->level != 'Super admin' && $order['status'] == 'done')) ? 'disable' : '' }}}}
+
+
+
+

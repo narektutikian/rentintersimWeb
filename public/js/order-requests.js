@@ -375,7 +375,10 @@ window.operateEvent = {
     'click .call_edit': function (e, value, row, index) {
         // console.log('You click like icon, row: ' + JSON.stringify(row));
         // console.log(value, row, index);
-        var row_id = $(this).parents('td').attr('data-row-id');
+        // var row_id = $(this).parents('td').attr('data-row-id');
+        var row_id = $(this).closest('tr').attr('data-uniqueid');
+        console.log("row.id " + row.id);
+        console.log("row_id " + row_id);
 
         edit_id = row_id;
         $.get("/order/" + row_id + "/edit", function (order_data, order_status) {
@@ -470,7 +473,7 @@ window.operateEvent = {
 
     },
     'click .print': function (e, value, row, index) {
-        var row_id = $(this).parents('td').attr('data-row-id');
+        var row_id = $(this).closest('tr').attr('data-uniqueid');
         // console.log(row_id);
         initPrintForm(row_id);
 
@@ -480,7 +483,7 @@ window.operateEvent = {
 
     },
     'click .call_mail': function (e, value, row, index) {
-        var row_id = $(this).attr('data-row-id');
+        var row_id = $(this).closest('tr').attr('data-uniqueid');
         // edit_id = row_id;
         initEmailForm(row_id, "list");
 

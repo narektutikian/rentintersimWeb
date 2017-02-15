@@ -438,8 +438,75 @@ class OrderController extends Controller
     {
         $q = $request->all();
 //        dd($q);
-        $total = Order::count();
-        $orders = Order::with(['phone', 'sim', 'creator', 'sim.provider'])->take($q['limit'])->skip($q['offset'])->get();
+
+
+        //
+        $user = Auth::user();
+        $orders = new Order();
+
+
+        if ($user->level != 'Super admin'){
+
+            $net = $this->userManager->subNetID($this->userManager->getMyFlatNetwork($user->id));
+            $orders = $orders->whereIn('created_by', $net);
+//            dd($orders);
+
+        }
+
+
+        if ($request->has('sort')){
+            if ($q['sort'] == 'phone.phone'){
+                $orders = $orders->join('phones', 'orders.phone_id', '=', 'phones.id')
+                    ->select('orders.*', 'phones.phone')
+                    ->orderBy('phone', $request->input('order'));
+
+            }
+            if ($q['sort'] == 'sim.number'){
+                $orders = $orders->join('sims', 'orders.sim_id', '=', 'sims.id')
+                    ->select('orders.*', 'sims.number')
+                    ->orderBy('number', $request->input('order'));
+
+            }
+            if ($q['sort'] == 'landing'){
+                $orders = $orders->orderBy('from', $q['order']);
+            }
+            if ($q['sort'] == 'departure'){
+            $orders = $orders->orderBy('to', $q['order']);
+            }
+            if ($q['sort'] == 'creator.login'){
+                $orders = $orders->join('users', 'orders.created_by', '=', 'users.id')
+                    ->select('orders.*', 'users.login')
+                    ->orderBy('login', $request->input('order'));
+
+            }
+            if ($q['sort'] == 'status'){
+                $orders = $orders->orderBy('status', $q['order']);
+            }
+            $orders = $orders->with(['phone', 'sim', 'creator', 'sim.provider']);
+
+
+        }
+        elseif ($request->has('search')){
+
+            $qs = $request->input('search');
+            $orders = $orders->where(function ($q) use ($qs) {
+                $q->whereIn('phone_id', function ($q) use ($qs) {
+                    $q->select('id')->from('phones')->
+                    where('phone', 'LIKE', '%' . $qs . '%');
+                })
+                    ->orWhereIn('sim_id', function ($q) use ($qs) {
+                        $q->select('id')->from('sims')->where('number', 'LIKE', '%' . $qs . '%');
+                    })
+                    ->orWhere('reference_number', 'LIKE', '%' . $qs . '%');
+            });
+        }
+        else {
+            $orders = $orders->with(['phone', 'sim', 'creator', 'sim.provider']);
+        }
+
+        $total = clone $orders;
+        $total = $total->count();
+        $orders = $orders->with(['phone', 'sim', 'creator', 'sim.provider'])->take($q['limit'])->skip($q['offset'])->get();
         return  response()->json(['total' => $total, 'rows' => $orders]);
     }
 
