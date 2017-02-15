@@ -16,7 +16,8 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         //
         Commands\Commandset::class,
-        Commands\CheckActivations::class
+        Commands\CheckActivations::class,
+        Commands\SimCheck::class
     ];
 
     /**
@@ -38,6 +39,7 @@ class Kernel extends ConsoleKernel
             ->withoutOverlapping()
             ->sendOutputTo(storage_path('logs/cron_backups_mail_' . date('Y-m-d_H-i') . '.log'));
         $schedule->command('check:activations')->everyFiveMinutes();
+        $schedule->command('check:sim')->everyFiveMinutes();
 
     }
 

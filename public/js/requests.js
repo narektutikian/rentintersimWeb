@@ -824,6 +824,38 @@ $(document).ready(function () {
 
     });
 
+    /***** Check CLI *****/
+
+    $('#cli_button').on('click', function (e) {
+        e.stopPropagation(); // Stop stuff happening
+        if ($(this).closest(".vd_form").valid()) {
+
+            // console.log(departure + " " + landing);
+            var data = {
+                _token: CSRF_TOKEN,
+                number: $('#cli_phone').val()
+            };
+
+            $.ajax({
+                type: "POST",
+                url: '/cli-check',
+                data: data,
+                beforeSend: function() {
+                    $("#response").empty();
+                    $("#response").append("Please wait <img src='/img/loader.gif' width='20'/>");
+                },
+                success: function (msg) {
+                    $("#response").empty();
+                    $("#response").append(msg);
+                    },
+                error: function (error) {
+                    $("#response").empty();
+                }
+            });
+        }
+    });
+
+
 }); // closes document ready
 
 function editUser(id) {

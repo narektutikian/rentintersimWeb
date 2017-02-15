@@ -7,8 +7,9 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Models\Activation;
+use App\User;
 
-class ActivationReport extends Mailable
+class MailSimCheck extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -32,15 +33,16 @@ class ActivationReport extends Mailable
      */
     public function build()
     {
-        $address = 'service@syc.co.il';
+        $user = User::where('level', 'Super admin')->first();
+        $address = $user->email;
         if (env('APP_ENV') == 'local')
             $address = 'narek@horizondvp.com';
         $name = 'SimRent';
-        $subject = 'Failed Log';
+        $subject = 'CLI error';
 
         $activations = Activation::whereIn('id', $this->items)->get();
-        return $this->view('mail.activation')->with('activations', $activations)
+        return $this->view('mail.clierror')->with('activations', $activations)
             ->from($address, $name)
-            ->subject($subject);
+            ->subject($subject);;
     }
 }

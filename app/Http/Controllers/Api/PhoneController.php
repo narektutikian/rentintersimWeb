@@ -309,5 +309,18 @@ class PhoneController extends Controller
         return $number;
     }
 
+    public function cli()
+    {
+        return view('cli')->with('viewName', 'cli');
+    }
+    public function cliCheck(Request $request)
+    {
+        $this->validate(request(), ['number' => 'required']);
+        $number = $this->validateNumber($request->input('number'));
+        $res = file_get_contents("http://176.35.171.143:8086/api/vfapi.php?key=7963ad6960b1088b94db2c32f2975e86&call=simcheck&cli=".$number);
+        return $res;
+
+    }
+
 
 }

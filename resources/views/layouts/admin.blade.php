@@ -31,7 +31,7 @@
                     <li class="{{ ($viewName == 'number') ? 'active' : '' }}"><a href="{{url('/number')}}" title="Number Management">Number Management</a></li>
                     <li class="{{ ($viewName == 'sim') ? 'active' : '' }}"><a href="{{url('/sim')}}" title="SIM Management">SIM Management</a></li>
                     <li class="{{ ($viewName == 'type') ? 'active' : '' }}"><a href="{{url('/type')}}" class="type_management " title="Type Management">Type Management</a></li>
-                    {{--<li><a href="{{url('/type')}}" title="Settings">Settings</a></li>--}}
+                    <li class="{{ ($viewName == 'cli') ? 'active' : '' }}"><a href="{{url('/cli')}}" title="CLI Check">CLI Check</a></li>
 
                     <!--<li  class="show_settings {{ ($viewName == 'type') ? 'active' : '' }}">
                         <a href="#" title="Settings" class="show_settings_link">Settings <i class="icon-dropdown"></i></a>

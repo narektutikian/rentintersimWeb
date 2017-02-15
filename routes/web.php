@@ -92,6 +92,10 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
     Route::post('number/recover/{id}', 'PhoneController@recover');
 
     Route::get('/api/order', 'OrderController@orderTable');
+
+    /****** CLI Check ******/
+    Route::get('/cli', 'PhoneController@cli');
+    Route::post('/cli-check', 'PhoneController@cliCheck');
 });
 
 
