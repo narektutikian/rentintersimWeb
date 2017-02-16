@@ -120,7 +120,7 @@ Route::get('/test2', function (){
 
 Route::get('test-delays', function (){
     $acts = Activation::take(30)->skip(135)->get();
-        echo '<table><tr><td>id</td><td>CLI</td><td>SIM</td><td>call</td><td>First Answer</td><td>order id</td><td>check delay</td><td>data</td></tr>';
+        echo '<table border="1"><tr><td>id</td><td>CLI</td><td>SIM</td><td>call</td><td>First Answer</td><td>order id</td><td>check delay</td><td>data</td></tr>';
     foreach ($acts as $item){
         echo'<tr>';
         echo "<td> $item->id </td><td> $item->phone_number</td> <td>$item->sim_number</td><td> $item->call</td><td> $item->answer</td><td>$item->order_id</td><td>$item->check_status</td><td>$item->created_at</td>";
