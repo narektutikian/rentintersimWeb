@@ -184,6 +184,9 @@ table {
   font-family: "proxima_nova_rgregular", Arial, Helvetica, sans-serif;
   border: 1px solid #bed5e4; }
 
+#response {
+  padding-top: 5px; }
+
 .s-hidden {
   visibility: hidden;
   padding-right: 10px; }

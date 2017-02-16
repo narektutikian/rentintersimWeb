@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use App\Models\Activation;
 use Mail;
 use App\Mail\MailSimCheck;
+use App\User;
 
 class SimCheck extends Command
 {
@@ -45,9 +46,12 @@ class SimCheck extends Command
         $errors = array();
         $date = Carbon::now()->subHours(2)->format('Y-m-d H:i:s');
 //        echo "Date - $date  \n";
-        $activations = Activation::where('check_status', 'unchecked')->where('created_at', '<=', $date)->get();
+        $activations = Activation::where('check_status', 'unchecked')->where('answer', 0)->where('created_at', '<=', $date)->get();
         foreach ($activations as $item){
+            if (env('APP_ENV') == 'local')
             $res = file_get_contents("http://176.35.171.143:8086/api/vfapi.php?key=7963ad6960b1088b94db2c32f2975e86&test=true&call=simcheck&cli=".$item->phone_number);
+            else
+                $res = file_get_contents("http://176.35.171.143:8086/api/vfapi.php?key=7963ad6960b1088b94db2c32f2975e86&call=simcheck&cli=".$item->phone_number);
             if ($res == $item->sim_number)
                 $item->check_status = 'OK';
             else {
@@ -57,10 +61,8 @@ class SimCheck extends Command
             $item->save();
         }
         if (!empty($errors)){
-//            dd($errors);
-            $address = 'service@syc.co.il';
-            if (env('APP_ENV') == 'local')
-                $address = 'narek@horizondvp.com';
+//
+            $address = User::where('level', 'Super admin')->first()->email;
             Mail::to($address, 'SimRent')
                 ->queue(new MailSimCheck($errors));
         }

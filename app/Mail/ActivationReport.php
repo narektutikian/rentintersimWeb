@@ -7,6 +7,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Models\Activation;
+use App\User;
 
 class ActivationReport extends Mailable
 {
@@ -32,15 +33,17 @@ class ActivationReport extends Mailable
      */
     public function build()
     {
-        $address = 'service@syc.co.il';
-        if (env('APP_ENV') == 'local')
-            $address = 'narek@horizondvp.com';
+        $user = User::where('level', 'Super admin')->first();
+        $address = $user->email;
         $name = 'SimRent';
         $subject = 'Failed Log';
+        if (env('APP_ENV') == 'local')
+        $subject = 'Failed Log (Dev)';
 
         $activations = Activation::whereIn('id', $this->items)->get();
         return $this->view('mail.activation')->with('activations', $activations)
             ->from($address, $name)
+            ->bcc($user->email2)
             ->subject($subject);
     }
 }

@@ -12,7 +12,7 @@
     </div>
 
     <div style="box-sizing: border-box;-moz-box-sizing: border-box; -webkit-box-sizing: border-box; background: #079fff; color: #ffffff; line-height: 1; padding: 14px 10px; min-width: 300px; font-size: 16px; font-weight: normal; font-style: normal; font-family: proxima_nova_rgregular, Arial, Helvetica, sans-serif;">
-        The list of faild CLI checks
+        The list of delayed swaps.
     </div>
 
     <table style="border-collapse:collapse;border-spacing:0;">

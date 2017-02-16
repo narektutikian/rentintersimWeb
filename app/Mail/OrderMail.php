@@ -7,6 +7,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Models\Order;
+use App\User;
 
 class OrderMail extends Mailable
 {
@@ -33,9 +34,12 @@ class OrderMail extends Mailable
 
         $order = Order::find($this->data['order']);
 
-        $address = 'service@syc.co.il';
+        $user = User::where('level', 'Super admin')->first();
+        $address = $user->email;
         $name = 'SimRent';
         $subject = 'Your Order #'. $order->id;
+        if (env('APP_ENV') == 'local')
+            $subject = '(Dev) Your Order #'. $order->id;
 //        dd($this->data);
 
 

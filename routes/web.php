@@ -102,12 +102,8 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
 
 
 Route::get('/test', function (){
-    $orders = new Order();
-    $orders = $orders->join('phones', 'orders.phone_id', '=', 'phones.id')->with('phone')->orderBy('phone', 'desc');
-
-
-//dd($orders->get());
-    return $orders->get();
+    echo User::where('level', 'Super admin')->first()->email;
+//    return $orders->get();
 });
 
 Route::get('/test2', function (){

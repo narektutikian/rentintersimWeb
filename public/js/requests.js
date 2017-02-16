@@ -843,13 +843,15 @@ $(document).ready(function () {
                 beforeSend: function() {
                     $("#response").empty();
                     $("#response").append("Please wait <img src='/img/loader.gif' width='20'/>");
+                    $("#response_text").val("");
                 },
                 success: function (msg) {
                     $("#response").empty();
-                    $("#response").append(msg);
+                    $("#response_text").val(msg);
                     },
                 error: function (error) {
                     $("#response").empty();
+                    $("#response_text").val("Error");
                 }
             });
         }

@@ -7,6 +7,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Models\Order;
+use App\User;
 
 class notifications extends Mailable
 {
@@ -32,11 +33,15 @@ class notifications extends Mailable
      */
     public function build()
     {
-        $address = 'service@syc.co.il';
-        if (env('APP_ENV') == 'local')
-            $address = 'narek@horizondvp.com';
+        $user = User::where('level', 'Super admin')->first();
+        $address = $user->email;
         $name = 'SimRent';
         $subject = 'Your Order #'. $this->order->id . ' is "'. $this->order->status. '" now';
+
+        if (env('APP_ENV') == 'local'){
+            $subject = '(Dev) Your Order #'. $this->order->id . ' is "'. $this->order->status. '" now';
+
+        }
 
         $cc = array($this->order->creator->email);
         if ($this->order->creator->email2 != '')

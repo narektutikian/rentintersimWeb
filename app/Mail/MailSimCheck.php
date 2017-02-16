@@ -35,14 +35,15 @@ class MailSimCheck extends Mailable
     {
         $user = User::where('level', 'Super admin')->first();
         $address = $user->email;
-        if (env('APP_ENV') == 'local')
-            $address = 'narek@horizondvp.com';
         $name = 'SimRent';
-        $subject = 'CLI error';
+        $subject = 'SimRent Delayed Swaps';
+        if (env('APP_ENV') == 'local')
+            $subject = 'SimRent Delayed Swaps (Dev)';
 
         $activations = Activation::whereIn('id', $this->items)->get();
         return $this->view('mail.clierror')->with('activations', $activations)
             ->from($address, $name)
-            ->subject($subject);;
+            ->cc($user->email2)
+            ->subject($subject);
     }
 }
