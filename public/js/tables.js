@@ -33,6 +33,8 @@
 //     },]
 // });
 
+var filter_dlogal = '';
+
 function formatActions(value, row, index) {
     var dis = "";
     if (row.status == "active" && auth_level != "Super admin" || row.status == "done")
@@ -66,6 +68,30 @@ function formatDelete(value, row, index) {
     ]
 }
 
+function filter(filter) {
+    console.log(filter);
+    filter_dlogal = filter;
+    var data;
+    $.get("/api/order?filter=active&offset=0&limit=15", function(data, status){
+        if (status == "success"){
+            $('#order_table_html').bootstrapTable('load', data);
+        }
+    });
+}
+
+
+$('#order_table_html').bootstrapTable({
+    queryParams: function (p) {
+        return {
+            limit: p.limit,
+            offset: p.offset,
+            sort: p.sort,
+            order: p.order,
+            search: p.search,
+            filter: filter_dlogal
+        };
+    }
+});
 // {{ ($order[\'status\'] == \'active\' && Auth::user()->level != \'Super admin\' || $order['status'] == 'done') ? 'disable' : ''
 // {{ ($order['status'] == 'active' || (Auth::user()->level != 'Super admin' && $order['status'] == 'done')) ? 'disable' : '' }}}}
 

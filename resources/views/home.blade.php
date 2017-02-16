@@ -135,6 +135,13 @@
                     {{$ordersArray->links()}}
                             </div><!--#wrap_orders_table-->
 
+                            {{--<div class="filter_buttons">--}}
+                                {{--<a class="filter_option" onclick="filter('active')">--}}
+                                    {{--<i class="icon-company_status"></i>All(12)--}}
+                                {{--</a>--}}
+
+                            {{--</div>--}}
+
                                 {{--<table id="order_table_html" data-toggle="table"--}}
                                        {{--data-url="/api/order"--}}
                                        {{--data-pagination="true"--}}

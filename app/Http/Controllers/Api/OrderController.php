@@ -461,25 +461,25 @@ class OrderController extends Controller
                     ->orderBy('phone', $request->input('order'));
 
             }
-            if ($q['sort'] == 'sim.number'){
+            elseif ($q['sort'] == 'sim.number'){
                 $orders = $orders->join('sims', 'orders.sim_id', '=', 'sims.id')
                     ->select('orders.*', 'sims.number')
                     ->orderBy('number', $request->input('order'));
 
             }
-            if ($q['sort'] == 'landing'){
+            elseif ($q['sort'] == 'landing'){
                 $orders = $orders->orderBy('from', $q['order']);
             }
-            if ($q['sort'] == 'departure'){
+            elseif ($q['sort'] == 'departure'){
             $orders = $orders->orderBy('to', $q['order']);
             }
-            if ($q['sort'] == 'creator.login'){
+            elseif ($q['sort'] == 'creator.login'){
                 $orders = $orders->join('users', 'orders.created_by', '=', 'users.id')
                     ->select('orders.*', 'users.login')
                     ->orderBy('login', $request->input('order'));
 
             }
-            if ($q['sort'] == 'status'){
+            elseif ($q['sort'] == 'status'){
                 $orders = $orders->orderBy('status', $q['order']);
             }
             $orders = $orders->with(['phone', 'sim', 'creator', 'sim.provider']);
@@ -499,6 +499,9 @@ class OrderController extends Controller
                     })
                     ->orWhere('reference_number', 'LIKE', '%' . $qs . '%');
             });
+        }
+        if ($request->has('filter')){
+            $orders = $orders->where('status', $q['filter']);
         }
         else {
             $orders = $orders->with(['phone', 'sim', 'creator', 'sim.provider']);
