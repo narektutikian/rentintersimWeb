@@ -33,7 +33,7 @@
 //     },]
 // });
 
-var filter_dlogal = '';
+var filter_global = '';
 
 function formatActions(value, row, index) {
     var dis = "";
@@ -51,7 +51,7 @@ function formatActions(value, row, index) {
         '</span>',
         '<span class="table_icon call_mail"  data-toggle="modal" data-target="#modal_order_email">',
         ' <i class="icon-email"></i>',
-        '  </span>'
+        ' </span>'
 
     ].join('');
 }
@@ -62,21 +62,37 @@ function formatDelete(value, row, index) {
         dis = "disable";
 
     return [
-        '<span class="remove_row  '+ dis +'" data-toggle="modal" data-target="#confirm_delete" data-row-id="">',
+        '<span class="remove_row  '+ dis +'" data-toggle="modal" data-target="#confirm_delete" data-row-id="'+ row.id +'">',
         '<i class="icon-delete"></i>',
         '</span>'
     ]
 }
 
+function formatNumber(value, row, index) {
+
+    if (row.status == 'waiting')
+        return '<a id="'+ row.id +'" onClick = "getNumber('+ row.id +');">In process</a>';
+    else
+        return value;
+
+}
+
+function formatReference(value, row, index) {
+    if (row.reference_number != ''){
+        return '<span class="hint_text ref_number" data-toggle="tooltip"  data-trigger="click" data-original-title="'+ row.reference_number +'">' +
+            row.reference_number.substr(0, 9) +
+            '<span class="hint">i</span></span>';
+    }
+    else return '';
+}
+
+
 function filter(filter) {
     console.log(filter);
-    filter_dlogal = filter;
-    var data;
-    $.get("/api/order?filter=active&offset=0&limit=15", function(data, status){
-        if (status == "success"){
-            $('#order_table_html').bootstrapTable('load', data);
-        }
-    });
+    filter_global = filter;
+    $('#order_table_html').bootstrapTable('refresh');
+    setFilterClass();
+
 }
 
 
@@ -88,12 +104,32 @@ $('#order_table_html').bootstrapTable({
             sort: p.sort,
             order: p.order,
             search: p.search,
-            filter: filter_dlogal
+            filter: filter_global
         };
     }
 });
-// {{ ($order[\'status\'] == \'active\' && Auth::user()->level != \'Super admin\' || $order['status'] == 'done') ? 'disable' : ''
-// {{ ($order['status'] == 'active' || (Auth::user()->level != 'Super admin' && $order['status'] == 'done')) ? 'disable' : '' }}}}
+
+function setFilterClass() {
+    $('.filter_buttons a').removeClass('blue');
+    switch (filter_global) {
+        case '':
+            $('#filter_all').addClass('blue');
+            break;
+        case 'pending':
+            $('#filter_pending').addClass('blue');
+            break;
+        case 'active':
+            $('#filter_active').addClass('blue');
+            break;
+        case 'waiting':
+            $('#filter_waiting').addClass('blue');
+            break;
+        case 'done':
+            $('#filter_done').addClass('blue');
+            break;
+    }
+}
+
 
 
 

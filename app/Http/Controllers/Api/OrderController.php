@@ -482,20 +482,23 @@ class OrderController extends Controller
             elseif ($q['sort'] == 'status'){
                 $orders = $orders->orderBy('status', $q['order']);
             }
-            $orders = $orders->with(['phone', 'sim', 'creator', 'sim.provider']);
+//            $orders = $orders->with(['phone', 'sim', 'creator', 'sim.provider']);
 
 
         }
-        elseif ($request->has('search')){
+        else {
+            $orders = $orders->orderBy('id', 'desc');
+        }
+        if ($request->has('search')){
 
             $qs = $request->input('search');
             $orders = $orders->where(function ($q) use ($qs) {
-                $q->whereIn('phone_id', function ($q) use ($qs) {
+                $q->orWhereIn('orders.phone_id', function ($q) use ($qs) {
                     $q->select('id')->from('phones')->
                     where('phone', 'LIKE', '%' . $qs . '%');
                 })
                     ->orWhereIn('sim_id', function ($q) use ($qs) {
-                        $q->select('id')->from('sims')->where('number', 'LIKE', '%' . $qs . '%');
+                        $q->select('sims.id')->from('sims')->where('number', 'LIKE', '%' . $qs . '%');
                     })
                     ->orWhere('reference_number', 'LIKE', '%' . $qs . '%');
             });
@@ -503,13 +506,16 @@ class OrderController extends Controller
         if ($request->has('filter')){
             $orders = $orders->where('status', $q['filter']);
         }
-        else {
-            $orders = $orders->with(['phone', 'sim', 'creator', 'sim.provider']);
-        }
 
         $total = clone $orders;
         $total = $total->count();
-        $orders = $orders->with(['phone', 'sim', 'creator', 'sim.provider'])->take($q['limit'])->skip($q['offset'])->get();
+        $orders = $orders->with(['phone'  => function ($q){
+            $q->withTrashed();
+        }, 'sim'  => function ($q){
+            $q->withTrashed();
+        }, 'creator'  => function ($q){
+            $q->withTrashed();
+        }, 'sim.provider'])->take($q['limit'])->skip($q['offset'])->get();
         return  response()->json(['total' => $total, 'rows' => $orders]);
     }
 

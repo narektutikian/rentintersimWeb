@@ -565,6 +565,9 @@ input[type="radio"].toggle.checked + label {
   .download_file i {
     font-size: 28px; }
 
+.pull-right.search input {
+  display: none; }
+
 @media (max-width: 640px) {
   .rwd-table .status_cell {
     overflow: hidden; } }

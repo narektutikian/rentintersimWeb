@@ -565,6 +565,9 @@ input[type="radio"].toggle.checked + label {
   .download_file i {
     font-size: 28px; }
 
+.pull-right.search input {
+  display: none; }
+
 @media (max-width: 640px) {
   .rwd-table .status_cell {
     overflow: hidden; } }
@@ -860,6 +863,21 @@ input[type="radio"].toggle.checked + label {
   display: block;
   opacity: 0.5;
   height: 12px; }
+
+.section_table .bootstrap-table .fixed-table-toolbar .pull-left {
+  float: none !important; }
+
+.section_table .bootstrap-table .fixed-table-toolbar {
+  position: static;
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 0; }
+
+.section_table .bootstrap-table .fixed-table-toolbar .bs_bar {
+  position: static;
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 0; }
 
 @media (min-width: 768px) and (max-width: 992px) {
   .table_id_cell {

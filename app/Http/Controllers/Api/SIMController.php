@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Order;
+use Illuminate\Auth\Access\Response;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Sim;
@@ -204,9 +205,10 @@ class SIMController extends Controller
 
     public function export()
     {
+//      TODO Sweech this
         ini_set('memory_limit','60m');
         $data = $this->solveSimList(Sim::get());
-        Excel::create('Sims', function($excel) use ($data) {
+        Excel::create('Sim', function($excel) use ($data) {
 
             $excel->sheet('Sim', function($sheet) use($data) {
 
@@ -217,15 +219,6 @@ class SIMController extends Controller
 
         })->export('xlsx');
 
-       /*
-
-//        fputcsv($out, array_keys($data[1]));
-        $out = fopen('php://output', 'w');
-        foreach($data as $line)
-        {
-            fputcsv($out, $line);
-        }
-        fclose($out);*/
     }
 
     public function search(Request $request)
