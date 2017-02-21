@@ -487,7 +487,7 @@ class OrderController extends Controller
 
         }
         else {
-//            $orders = $orders->orderBy('id', 'desc');
+            $orders = $orders->orderBy('id', 'desc');
         }
         if ($request->has('search')){
 
