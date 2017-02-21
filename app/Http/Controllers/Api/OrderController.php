@@ -509,6 +509,8 @@ class OrderController extends Controller
 
         $total = clone $orders;
         $total = $total->count();
+        if ($total < 15)
+            $q['offset'] = 0;
         $orders = $orders->with(['phone'  => function ($q){
             $q->withTrashed();
         }, 'sim'  => function ($q){
