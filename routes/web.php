@@ -18,7 +18,10 @@ use Carbon\Carbon;
 
 
 Route::get('/', function () {
+    if (env('APP_ENV')=='local')
     return view('errors.503');
+    else
+        return redirect('/home');
 });
 
 Auth::routes();
