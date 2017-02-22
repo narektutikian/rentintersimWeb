@@ -518,6 +518,7 @@ class OrderController extends Controller
         }, 'creator'  => function ($q){
             $q->withTrashed();
         }, 'sim.provider'])->take($q['limit'])->skip($q['offset'])->get();
+
         return  response()->json(['total' => $total, 'rows' => $orders]);
     }
 
