@@ -17,7 +17,7 @@ class Phone extends Model
      */
     protected $dates = ['deleted_at'];
 
-    protected $hidden = ['deleted_at', 'updated_at', 'created_at'];
+    protected $hidden = ['updated_at', 'created_at'];
 
 
 

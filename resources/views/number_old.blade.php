@@ -6,29 +6,27 @@
             <div class="number_management_wrapper">
                 <div class="filter_text">Filter by status:</div>
                 <div class="filter_buttons">
-                    <a class="filter_option filter_all light_blue blue" onclick="filterNumbers('')">
+                    <a class="filter_option {{ (Request::is('number')) ? 'blue' : 'light_blue' }} " href="{{url('/number')}}">
                         <i class="icon-company_status"></i> All ({{$counts['All']}})
                     </a>
-                    <a class="filter_option filter_active light_blue" onclick="filterNumbers('active')">
+                    <a class="filter_option {{ (Request::is('filter-numberlist/active')) ? 'blue' : 'light_blue' }}" href="{{url('/filter-numberlist/active')}}">
                         <span class="status active"></span> active ({{$counts['active']}})
                     </a>
-                        <a class="filter_option filter_pending light_blue" onclick="filterNumbers('pending')">
+                        <a class="filter_option {{ (Request::is('filter-numberlist/pending')) ? 'blue' : 'light_blue' }}" href="{{url('/filter-numberlist/pending')}}">
                         <span class="status inactive"></span> pending ({{$counts['pending']}})
                     </a>
-                    <a class="filter_option filter_notinuse light_blue" onclick="filterNumbers('not in use')">
+                    <a class="filter_option {{ (Request::is('filter-numberlist/not in use')) ? 'blue' : 'light_blue' }}" href="{{url('/filter-numberlist/not in use')}}">
                         <span class="status disabled"></span> not in use ({{$counts['not in use']}})
                     </a>
-                    <a class="filter_option filter_special light_blue" onclick="filterNumbers('specials')">
+                    <a class="filter_option {{ (Request::is('filter-numberlist/special')) ? 'blue' : 'light_blue' }} " href="{{url('/filter-numberlist/special')}}">
                         <span class="status done"></span> Special ({{$counts['specials']}})
                     </a>
-                    <a class="filter_option filter_deleted light_blue last" onclick="filterNumbers('deleted')">
+                    <a class="filter_option light_blue last" href="{{url('/filter-numberlist/deleted')}}">
                         <span class="show-deleted"><i class="icon-delete"></i></span>
                     </a>
                     <div class="search_management_option">
                         <form action="{{url('search/number')}}" class="search_form_option">
-                            <div class="pull-right search">
-                            <input type="text" style="display: inline-block" class="block_btn_30 search_input " name="query" placeholder="Search" value="{{ (isset($_GET['query'])) ? $_GET['query'] : '' }}">
-                            </div>
+                            <input type="text" class="block_btn_30 search_input" name="query" placeholder="Search" value="{{ (isset($_GET['query'])) ? $_GET['query'] : '' }}">
                             <button type="submit" class="search_button"><i class="icon-search"></i></button>
                         </form>
                         <a href="{{url('/exportnumber')}}" class="export_user"><i class="icon-export"></i>Export</a>
@@ -41,26 +39,66 @@
         <section class="section_table">
             <div class="row">
                 <div class="col-md-12">
-                    <table id="number_table"  class="rwd-table responsive_table table"
-                           data-toggle="table"
-                           data-pagination="true"
-                           data-side-pagination="server"
-                           data-page-list="[15, 30, 60, 100]"
-                           data-unique-id="id"
-                           data-page-size="15"
-                           data-pagination-h-align="left"
-                           data-pagination-detail-h-align="right"
-                           data-search="true"
-                           data-toolbar=".filter_status"
-                           data-toolbar-align="left"
-                           data-page="number">
+                    <table class="rwd-table responsive_table table" data-toggle="table" data-page="number">
                         <thead>
-                        <tr>
-                            <th data-formatter="formatNumber" data-halign="center" data-align="left" data-sortable="true">Deleted at</th>
-                        </tr>
+                            <tr>
+                                <th class="table_id_cell" data-field="id" data-sortable="true">Id</th>
+                                <th data-field="phone number" data-sortable="true">Phone Number</th>
+                                <th>SIM Number</th>
+                                <th data-field="provider" data-sortable="true">Provider </th>
+                                <th data-field="type" data-sortable="true">Type</th>
+                                @if(Request::is('filter-numberlist/deleted'))
+                                <th data-field="deleted_at" data-sortable="true">Deleted at</th>
+                                @endif
+                                <th>Action </th>
+                                <th data-field="status" data-sortable="true">Status </th>
+                                <th></th>
+                            </tr>
                         </thead>
-                        </table>
+                        <tbody>
 
+                        @foreach($phonesArray as $number)
+                            <tr>
+                                <td class="rwd-td0 table_id_cell editable_cell" data-th="Id">{{$number['id']}}</td>
+                                <td class="rwd-td1 editable_cell" data-th="Phone Number">{{$number['phone']}}</td>
+                                    <td class="rwd-td2 editable_cell {{ ($number['state'] == 'not in use') ? 'disable' : '' }}" data-th="SIM Number">{{$number['current_sim_id']}} </td>
+                                <td class="rwd-td3 editable_cell" data-th="Provider">{{$number['provider_id']}}</td>
+                                <td class="rwd-td4 editable_cell" data-th="Type">{{$number['package_id']}}</td>
+                                @if(Request::is('filter-numberlist/deleted'))
+                                <td class="rwd-td4 editable_cell" data-th="Deleted-at">{{$number['deleted']}}</td>
+                                @endif
+                                <td class="rwd-td5 table_action_cell" data-th="Action" data-row-id="{{$number['id']}}">
+                                    <span class="table_icon edit number_edit {{ ($number['state'] != 'not in use' || Request::is('filter-numberlist/deleted')) ? 'disable' : '' }}" data-toggle="modal" data-target="#modal_edit_number" data-form="#modal_edit_number">
+                                        <i class="icon-edit"></i>
+                                    </span>
+
+                                    <label class="vdf_checkbox disable">
+                                        <input type="checkbox" name="num_chkb{{$number['id']}}" value="" {{ ($number['is_special'] == 1) ? 'checked' : '' }}/>
+                                        <i class="icon-special"></i>
+                                    </label>
+                                </td>
+                                <td class="rwd-td6 " data-th="Status">
+                                    <span class="table_status_text not_used ">{{(Request::is('filter-numberlist/deleted')) ? 'deleted' : $number['state']}}</span>
+                                </td>
+                                <td class="rwd-td7 table_status_cell" data-th="Remove">
+                                    @if (!Request::is('filter-numberlist/deleted'))
+                                    <span class="remove_row {{ ($number['state'] != 'not in use') ? 'disable' : '' }}" data-toggle="modal" data-target="#confirm_delete" data-row-id="{{$number['id']}}">
+                                        <i class="icon-delete"></i>
+                                    </span>
+                                    @elseif(Request::is('filter-numberlist/deleted'))
+                                        <span class="recover_row {{ ($number['state'] != 'not in use') ? 'disable' : '' }}" data-toggle="modal" data-target="#confirm_recover" data-row-id="{{$number['id']}}">
+                                        <i class="icon-delete"></i>
+                                    </span>
+                                    @endif
+                                </td>
+                            </tr>
+
+                        @endforeach
+
+
+                        </tbody>
+                    </table>
+                    {{$phonesArray->links()}}
                 </div>
             </div>
         </section>
@@ -244,7 +282,7 @@
                                     <div class="col-md-12">
                                         <div class="special_number">
                                             <label class="vdf_checkbox">
-                                                <input type="checkbox" id="is_special-edit" value="" />
+                                                <input type="checkbox" id="is_special-edit" value="b" />
                                                 <i class="icon-special"></i>
                                             </label>
                                             <span class="vdf_checkbox_text">Special number</span>

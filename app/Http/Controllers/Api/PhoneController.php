@@ -274,7 +274,10 @@ class PhoneController extends Controller
 
                     $query = Phone::forceCreate($entity);
                     if ($query) continue;
-                    else {return response()->json(['error' => 'file content error']. 443);}
+                    else {
+                        return response('file content error', 443);
+//                        return false;
+                    }
 //
                 }
 
@@ -320,6 +323,66 @@ class PhoneController extends Controller
         $res = file_get_contents("http://176.35.171.143:8086/api/vfapi.php?key=7963ad6960b1088b94db2c32f2975e86&call=simcheck&cli=".$number);
         return $res;
 
+    }
+    public function numberTable (Request $request)
+    {
+        $q = $request->all();
+        $numbers = new Phone();
+
+        if ($request->has('sort')){
+            if ($q['sort'] == 'id'){
+                $numbers = $numbers->orderBy('id', $request->input('order'));
+            }
+            elseif ($q['sort'] == 'phone'){
+                $numbers = $numbers->orderBy('phone', $request->input('order'));
+            }
+            elseif ($q['sort'] == 'sim.number'){
+                $numbers = $numbers->join('sims', 'phones.current_sim_id', '=', 'sims.id')
+                    ->select('phones.*', 'sims.number')
+                    ->orderBy('number', $request->input('order'));
+            }
+            elseif ($q['sort'] == 'package.name'){
+                $numbers = $numbers->join('packages', 'phones.package_id', '=', 'packages.id')
+                    ->select('phones.*', 'packages.name')
+                    ->orderBy('name', $request->input('order'));
+            }
+            elseif ($q['sort'] == 'state'){
+                $numbers = $numbers->orderBy('state', $q['order']);
+            }
+            elseif ($q['sort'] == 'deleted_at'){
+                $numbers = $numbers->orderBy('deleted_at', $q['order']);
+            }
+//
+        }
+        else {
+            $numbers = $numbers->orderBy('id', 'desc');
+        }
+        if ($request->has('search')){
+            $qs = $request->input('search');
+            $numbers = $numbers->withTrashed()->where('phone', 'LIKE', '%'.$request->input('search').'%');
+        }
+        if ($request->has('filter')){
+            if ($request->input('filter') == 'deleted')
+                $numbers = $numbers->onlyTrashed();
+            elseif ($request->input('filter') == 'specials') {
+                $numbers = $numbers->where('is_special', 1);
+            }
+            else
+            $numbers = $numbers->where('state', $q['filter']);
+        }
+        $total = clone $numbers;
+        $total = $total->count();
+        if ($total < 15)
+            $q['offset'] = 0;
+        $numbers = $numbers->with(['sim'  => function ($q){
+            $q->withTrashed();
+        }, 'parking_sim'  => function ($q){
+            $q->withTrashed();
+        }, 'package' => function ($q) {
+            $q->withTrashed();
+        }, 'sim.provider'])->take($q['limit'])->skip($q['offset'])->get();
+
+        return  response()->json(['total' => $total, 'rows' => $numbers]);
     }
 
 

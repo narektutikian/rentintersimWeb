@@ -626,7 +626,7 @@ input[type="radio"].toggle.checked + label {
     font-weight: normal;
     font-style: normal;
     font-family: "proxima_nova_rgregular", Arial, Helvetica, sans-serif;
-    line-height: 1;
+    line-height: 1 !important;
     vertical-align: middle; }
     .table tbody tr td.pending {
       color: #dcb222; }

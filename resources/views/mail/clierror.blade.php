@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<div style="background: #ffffff; max-width: 600px; margin: 0 auto; padding: 0; font-size: 100%; font: inherit; vertical-align: baseline; border-collapse: collapse; border-spacing: 0;">
+<div style="background: #ffffff; max-width: 726px; margin: 0 auto; padding: 0; font-size: 100%; font: inherit; vertical-align: baseline; border-collapse: collapse; border-spacing: 0;">
     <div style="width: 76px; height: 47px; padding: 20px 20px 25px 7px;">
         <img src="{{$message->embed(public_path() .'/img/mail_logo.png')}}" alt="Logo">
     </div>

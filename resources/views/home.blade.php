@@ -140,19 +140,19 @@
                                 <div class="orders_list_wrapper" >
                                     <div class="filter_text">Filter by status:</div>
                                     <div class="filter_buttons">
-                                        <a class="filter_option light_blue blue" onclick="filter('')" id="filter_all">
+                                        <a class="filter_option filter_all light_blue blue" onclick="filter('')">
                                             <i class="icon-company_status"></i>All ({{$counts['All']}})
                                         </a>
-                                        <a class="filter_option light_blue" onclick="filter('active')" id="filter_active">
+                                        <a class="filter_option filter_active light_blue" onclick="filter('active')">
                                             <span class="status active blue" ></span>active ({{$counts['active']}})
                                         </a>
-                                        <a class="filter_option light_blue" onclick="filter('pending')" id="filter_pending">
+                                        <a class="filter_option filter_pending light_blue" onclick="filter('pending')">
                                             <span class="status inactive"></span> pending ({{$counts['pending']}})
                                         </a>
-                                        <a class="filter_option light_blue" onclick="filter('waiting')" id="filter_waiting">
+                                        <a class="filter_option filter_waiting light_blue" onclick="filter('waiting')">
                                             <span class="status waiting"></span> waiting ({{$counts['waiting']}}) </a>
                                         </a>
-                                        <a class="filter_option light_blue" onclick="filter('done')" id="filter_done">
+                                        <a class="filter_option filter_done light_blue" onclick="filter('done')">
                                             <span class="status done"></span> done ({{$counts['done']}}) </a>
                                         </a>
                                         <div class="search_management_option">
