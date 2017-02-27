@@ -269,9 +269,10 @@ class OrderController extends Controller
                 if($Order->status == 'done'){
                     $Order->delete();
                     return response()->json(['deleted'], 200);
-                }
+                } else {
                 $this->helper->freeResources($Order, 'deleted');
                 return response()->json(['deleted'], 200);
+                }
             }
             return response()->json(['not allowed'], 403);
         }

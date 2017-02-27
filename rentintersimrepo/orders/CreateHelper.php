@@ -291,8 +291,10 @@ class CreateHelper
             $phone = $order->phone;
 
             $phone->state = 'not in use';
-            if(Order::where('phone_id', $order->phone_id)->where('status', 'pending')->count() > 0) //not tested
+            if(Order::where('phone_id', $order->phone_id)->where('status', 'pending')->count() > 0 && $status == 'done') //not tested
                 $phone->state = 'pending';
+            elseif (Order::where('phone_id', $order->phone_id)->where('status', 'pending')->count() <= 1 && $status == 'deleted')
+                $phone->state = 'not in use';
 
             if (Order::where('phone_id', $order->phone_id)->where('status', 'active')->count() > 0 && $status != 'done')
                 $phone->state = 'active';
