@@ -95,6 +95,7 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
     Route::get('/api/order', 'OrderController@orderTable');
     Route::get('/api/number', 'PhoneController@numberTable');
     Route::get('/api/sim', 'SIMController@simTable');
+    Route::get('/api/type', 'PackageController@packageTable');
 
     /****** CLI Check ******/
     Route::get('/cli', 'PhoneController@cli');

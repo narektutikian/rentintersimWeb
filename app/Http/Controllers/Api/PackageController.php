@@ -69,7 +69,6 @@ class PackageController extends Controller
 
         $this->validate(request(), [
 
-            'type_code' => 'required|unique:packages',
             'name' => 'required',
             'description' => 'required',
             'provider_id' => 'required',
@@ -156,7 +155,7 @@ class PackageController extends Controller
     {
         //
         $package=Package::find($id);
-        $package->delete();
+        $package->forceDelete();
 
     }
 
@@ -250,5 +249,43 @@ class PackageController extends Controller
         else {return response()->json(['error uploading file'], 443);}
         return response()->json([$file]);
 
+    }
+
+    public function packageTable (Request $request)
+    {
+        $q = $request->all();
+        $package = new Package();
+
+        if ($request->has('sort')){
+            if ($q['sort'] == 'id'){
+                $package = $package->orderBy('id', $request->input('order'));
+            }
+            elseif ($q['sort'] == 'name'){
+                $package = $package->orderBy('name', $request->input('order'));
+            }
+            elseif ($q['sort'] == 'deleted_at'){
+                $package = $package->orderBy('deleted_at', $q['order']);
+            }
+//
+        }
+        else {
+            $package = $package->orderBy('id', 'desc');
+        }
+        if ($request->has('search')){
+            $package = $package->withTrashed()->where('name', 'LIKE', '%'.$request->input('search').'%')
+                ->orWhere('description', 'LIKE', '%'.$request->input('search').'%');
+        }
+        if ($request->has('filter')){
+            if ($request->input('filter') == 'Disabled')
+                $package = $package->onlyTrashed();
+            else
+                $package = $package->where('state', $q['filter']);
+        }
+        $total = clone $package;
+        $total = $total->count();
+        if ($q['offset'] != 0 && ($q['offset']/$q['limit']) >= (ceil($total/$q['limit'])))
+            $q['offset'] = 0;
+        $package = $package->with('provider')->take($q['limit'])->skip($q['offset'])->get();
+        return  response()->json(['total' => $total, 'rows' => $package]);
     }
 }

@@ -7,20 +7,19 @@
             <div class="type_management_wrapper">
                 <div class="filter_text">Filter by status:</div>
                 <div class="filter_buttons">
-                    <a class="filter_option light_blue  blue">
+                    <a class="filter_option {{ (Request::is('type')) ? 'blue' : 'light_blue' }}" href="{{url('/type')}}">
                         <i class="icon-company_status"></i> All ({{$counts['All']}})
                     </a>
-                    {{--<a class="filter_option {{ (Request::is('filter-packagelist/Enable')) ? 'blue' : 'light_blue' }}" href="{{url('/filter-packagelist/Enable')}}">--}}
-                        {{--<span class="status active"></span> enable ({{$counts['Enable']}})--}}
-                    {{--</a>--}}
-                    {{--<a class="filter_option {{ (Request::is('filter-packagelist/Disable')) ? 'blue' : 'light_blue' }}" href="{{url('/filter-packagelist/Disable')}}">--}}
-                        {{--<span class="status disabled"></span> disable ({{$counts['Disable']}})--}}
-                    {{--</a>--}}
+                    <a class="filter_option {{ (Request::is('filter-packagelist/Enable')) ? 'blue' : 'light_blue' }}" href="{{url('/filter-packagelist/Enable')}}">
+                        <span class="status active"></span> enable ({{$counts['Enable']}})
+                    </a>
+                    <a class="filter_option {{ (Request::is('filter-packagelist/Disable')) ? 'blue' : 'light_blue' }}" href="{{url('/filter-packagelist/Disable')}}">
+                        <span class="status disabled"></span> disable ({{$counts['Disable']}})
+                    </a>
                     <div class="search_management_option">
-                        <form action="{{url('search/sim')}}" class="search_form_option vd_form">
-                            <div class="pull-right search">
-                                <input type="text" style="display: inline-block" class="block_btn_30 search_input " name="query" placeholder="Search" value="{{ (isset($_GET['query'])) ? $_GET['query'] : '' }}">
-                            </div>
+                        <form action="{{url('search/type')}}" class="search_form_option vd_form">
+                            <input type="text" class="block_btn_30 search_input" name="query" placeholder="Search" value="{{ (isset($_GET['query'])) ? $_GET['query'] : '' }}">
+                            {{csrf_field()}}
                             <button type="submit" class="search_button"><i class="icon-search"></i></button>
                         </form>
                         <a href="{{url('/exporttypes')}}" class="export_user"><i class="icon-export"></i>Export</a>
@@ -33,20 +32,45 @@
         <section class="section_table">
             <div class="row">
                 <div class="col-md-12">
-                    <table id="type_table"  class="rwd-table responsive_table table"
-                           data-toggle="table"
-                           data-pagination="true"
-                           data-side-pagination="server"
-                           data-page-list="[15, 30, 60, 100]"
-                           data-unique-id="id"
-                           data-page-size="15"
-                           data-pagination-h-align="left"
-                           data-pagination-detail-h-align="right"
-                           data-search="true"
-                           data-toolbar=".filter_status"
-                           data-toolbar-align="left"
-                           data-page="type">
+                    <table class="rwd-table responsive_table table" data-toggle="table" data-page="type">
+                        <thead>
+                            <tr>
+                                <th class="table_id_cell" data-field="id" data-sortable="true">Id</th>
+                                <th data-field="type name" data-sortable="true">Type Name</th>
+                                <th data-field="provider" data-sortable="true">Provider</th>
+                                <th>Type Code</th>
+                                <th>Description</th>
+                                <th>Action </th>
+                                <th data-field="status" data-sortable="true">Status </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($packagesArray as $package)
+                        <tr>
+                            <td class="rwd-td0 table_id_cell editable_cell" data-toggle="modal" data-th="Id">{{$package['id']}}</td>
+                            <td class="rwd-td1 editable_cell" data-th="Type Name">{{$package['name']}}</td>
+                            <td class="rwd-td2 editable_cell" data-th="Provider">{{$package['provider_id']}}</td>
+                            <td class="rwd-td3 editable_cell" data-th="Type Code">{{$package['type_code']}}</td>
+                            <td class="rwd-td5 editable_cell" data-th="Description">{{$package['description']}}</td>
+                            <td class="rwd-td6 table_action_cell" data-th="Action">
+                                <span class="table_icon edit" data-toggle="modal" data-target="#modal_edit_new_type" data-form="#modal_edit_new_type">
+                                    <i class="icon-edit"></i>
+                                </span>
+                            </td>
+                            <td class="rwd-td7 table_status_cell" data-th="Status">
+                                <span class="table_status_text not_used">{{$package['status']}}</span>
+                            </td>
+                            <td class="table_status_cell" data-th="Remove">
+                                <span class="remove_row" data-toggle="modal" data-target="#confirm_delete"  data-row-id="{{$package['id']}}">
+                                    <i class="icon-delete"></i>
+                                </span>
+                            </td>
+                        </tr>
+                        @endforeach
+                        </tbody>
                     </table>
+                    {{$packagesArray->links()}}
                 </div>
             </div>
         </section>
@@ -93,9 +117,9 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-6">
-                                        <label class="table_label">Type Code </label>
+                                        <label class="table_label">Type Code <span class="required_mark">*</span></label>
                                         <div class="relative">
-                                            <input type="text" class="block_btn_30 modal_input" id="type_code" name="type_code" value=""/>
+                                            <input type="text" class="block_btn_30 modal_input vd_number" id="type_code" name="type_code" value=""/>
                                             <i class="input_icon icon-type"></i>
                                         </div>
                                     </div>
@@ -185,7 +209,7 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-6">
-                                        <label class="table_label">Type Code </label>
+                                        <label class="table_label">Type Code <span class="required_mark">*</span></label>
                                         <div class="relative">
                                             <input type="text" name="type_code" id="type_code-edit" class="block_btn_30 modal_input" data-th="Type Code" value=""/>
                                             <i class="input_icon icon-type"></i>

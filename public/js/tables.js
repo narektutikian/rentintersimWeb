@@ -30,6 +30,18 @@ var numberActionEvents = {
     }
 };
 
+var typeActionEvents = {
+    'click .edit': function (e, value, row, index) {
+        $('#name-edit').val(row.name);
+        $('#type_code-edit').val(row.type_code);
+        $('#provider_id-edit').val(row.provider.id);
+        $('#description-edit').val(row.description);
+        $('#id-edit').val(row.id);
+
+
+    }
+};
+
 var simActionEvents = {
     'click .sim_edit': function (e, value, row, index) {
         $('#provider_id').val(row.provider.id);
@@ -44,7 +56,6 @@ var simActionEvents = {
         }
     }
 };
-
 
 /*********  Columns *********/
 
@@ -189,6 +200,35 @@ var simColumnsDeleted = [{
     formatter: simDeleteFormatter
 }];
 
+var typeColums = [{
+    field: 'id',
+    title: 'ID',
+    sortable: true
+}, {
+    field: 'name',
+    title: 'Type Name',
+    sortable: true
+}, {
+    field: 'provider.name',
+    title: 'Provider',
+    sortable: true
+}, {
+    field: 'type_code',
+    title: 'Type Code'
+}, {
+    field: 'description',
+    title: 'Description'
+}, {
+    field: '',
+    title: 'Action',
+    formatter: typeActionFormatter,
+    events: typeActionEvents
+}, {
+    field: '',
+    title: '',
+    formatter: typeDeleteFormatter
+}];
+
 /****** Formators ******/
 
 function formatActions(value, row, index) {
@@ -287,6 +327,12 @@ function simDeleteFormatter(value, row, index) {
     }
     return false;
 }
+function typeDeleteFormatter(value, row, index) {
+
+        return '<span class="remove_row" data-toggle="modal" data-target="#confirm_delete" data-row-id="'+ row.id +'">' +
+            '<i class="icon-delete"></i></span>';
+
+}
 
 
 
@@ -306,6 +352,10 @@ function simActionFormatter(value, row, index) {
 
 }
 
+function typeActionFormatter(value, row, index) {
+    return '<span class="table_icon edit" data-toggle="modal" data-target="#modal_edit_new_type" data-form="#modal_edit_new_type">' +
+        '<i class="icon-edit"></i></span>';
+}
 
 /******  Filters ******/
 
@@ -438,6 +488,10 @@ $('#sim_table').bootstrapTable({
             filter: filter_global
         };
     }
+});
+$('#type_table').bootstrapTable({
+    url: '/api/type',
+    columns: typeColums
 });
 
 
