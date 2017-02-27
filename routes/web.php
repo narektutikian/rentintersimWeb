@@ -94,6 +94,7 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
 
     Route::get('/api/order', 'OrderController@orderTable');
     Route::get('/api/number', 'PhoneController@numberTable');
+    Route::get('/api/sim', 'SIMController@simTable');
 
     /****** CLI Check ******/
     Route::get('/cli', 'PhoneController@cli');
@@ -104,7 +105,7 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
 
 
 Route::get('/test', function (){
-    echo User::where('level', 'Super admin')->first()->email;
+//    echo floor(5/15);
 //    return $orders->get();
 });
 

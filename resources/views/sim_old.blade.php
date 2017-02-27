@@ -7,29 +7,28 @@
             <div class="sim_management_wrapper">
                 <div class="filter_text">Filter by status:</div>
                 <div class="filter_buttons">
-                    <a class="filter_option filter_all light_blue blue" onclick="filterSims('')" >
+                    <a class="filter_option  {{ (Request::is('sim')) ? 'blue' : 'light_blue' }}" href="{{url('/sim')}}">
                         <i class="icon-company_status"></i> All ({{$counts['All']}})
                     </a>
-                    <a class="filter_option filter_active light_blue" onclick="filterSims('active')">
+                    <a class="filter_option  {{ (Request::is('filter-simlist/active')) ? 'blue' : 'light_blue' }}" href="{{url('/filter-simlist/active')}}">
                         <span class="status active"></span> active ({{$counts['active']}})
                     </a>
-                    <a class="filter_option filter_pending light_blue" onclick="filterSims('pending')">
+                    <a class="filter_option  {{ (Request::is('filter-simlist/pending')) ? 'blue' : 'light_blue' }}" href="{{url('/filter-simlist/pending')}}">
                         <span class="status inactive"></span> pending ({{$counts['pending']}})
                     </a>
-                    <a class="filter_option filter_available light_blue" onclick="filterSims('available')">
+                    <a class="filter_option  {{ (Request::is('filter-simlist/available')) ? 'blue' : 'light_blue' }}" href="{{url('/filter-simlist/available')}}">
                         <span class="status available"></span> Available ({{$counts['Available']}})
                     </a>
-                    <a class="filter_option filter_parking light_blue" onclick="filterSims('parking')">
+                    <a class="filter_option  {{ (Request::is('filter-simlist/parking')) ? 'blue' : 'light_blue' }}" href="{{url('/filter-simlist/parking')}}">
                         <span class="status disabled"></span> Parking ({{$counts['Parking']}})
                     </a>
-                    <a class="filter_option filter_deleted light_blue last" onclick="filterSims('deleted')">
+                    <a class="filter_option light_blue last" href="{{url('/filter-simlist/deleted')}}">
                         <span class="show-deleted"><i class="icon-delete"></i></span>
                     </a>
                     <div class="search_management_option">
                         <form action="{{url('search/sim')}}" class="search_form_option vd_form">
-                            <div class="pull-right search">
-                                <input type="text" style="display: inline-block" class="block_btn_30 search_input " name="query" placeholder="Search" value="{{ (isset($_GET['query'])) ? $_GET['query'] : '' }}">
-                            </div>
+                            <input type="text" class="block_btn_30 search_input" placeholder="Search" name="query" value="{{ (isset($_GET['query'])) ? $_GET['query'] : '' }}">
+                            {{csrf_field()}}
                             <button type="submit" class="search_button"><i class="icon-search"></i></button>
                         </form>
                         <a href="{{url('/exportsims')}}" class="export_user"><i class="icon-export"></i>Export</a>
@@ -42,20 +41,53 @@
         <section class="section_table">
             <div class="row">
                 <div class="col-md-12">
-                    <table id="sim_table"  class="rwd-table responsive_table table"
-                           data-toggle="table"
-                           data-pagination="true"
-                           data-side-pagination="server"
-                           data-page-list="[15, 30, 60, 100]"
-                           data-unique-id="id"
-                           data-page-size="15"
-                           data-pagination-h-align="left"
-                           data-pagination-detail-h-align="right"
-                           data-search="true"
-                           data-toolbar=".filter_status"
-                           data-toolbar-align="left"
-                           data-page="sim">
+                    <table class="rwd-table responsive_table table" data-toggle="table" data-page="sim">
+                        <thead>
+                            <tr>
+                                <th class="table_id_cell" data-field="id" data-sortable="true">Id</th>
+                                <th data-th="Sim Number">Sim Number</th>
+                                <th data-field="provider" data-sortable="true" data-th="Provider">Provider</th>
+                                @if(Request::is('filter-simlist/deleted'))
+                                <th data-field="deleted_at" data-sortable="true" data-th="Deleted_at">Deleted at</th>
+                                @endif
+                                <th>Action </th>
+                                <th data-field="status" data-sortable="true" data-th="Status">Status </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($simsArray as $sim)
+                        <tr>
+                            <td class="rwd-td0 table_id_cell editable_cell" data-th="Id">{{$sim['id']}}</td>
+                            <td class="rwd-td1 editable_cell" data-th="SIM Number">{{$sim['number']}}</td>
+                            <td class="rwd-td2 editable_cell" data-th="Provider">{{$sim['provider_id']}}</td>
+                            @if(Request::is('filter-simlist/deleted'))
+                            <td class="rwd-td3 editable_cell" data-th="Provider">{{$sim['deleted']}}</td>
+                            @endif
+                            <td class="rwd-td4 table_action_cell" data-th="Action">
+                                <span class="table_icon edit {{ (!$sim['editable'] || Request::is('filter-simlist/deleted')) ? 'disable' : '' }}" data-toggle="modal" data-target="#modal_edit_sim" data-form="#modal_edit_sim">
+                                    <i class="icon-edit"></i>
+                                </span>
+                            </td>
+                            <td class="rwd-td5 editable_cell status_td" data-th="Status">
+                                <span class="table_status_text not_used ">{{(Request::is('filter-simlist/deleted')) ? 'deleted' : $sim['state']}}</span>
+                            </td>
+                            <td class="rwd-td6 table_status_cell" data-th="Remove">
+                                @if (!Request::is('filter-simlist/deleted'))
+                                <span class="remove_row {{ ($sim['editable']) ? '' : 'disable' }}" data-toggle="modal" data-target="#confirm_delete" data-row-id="{{$sim['id']}}">
+                                    <i class="icon-delete"></i>
+                                </span>
+                                    @elseif(Request::is('filter-simlist/deleted'))
+                                    <span class="recover_row {{ ($sim['editable']) ? '' : 'disable' }}" data-toggle="modal" data-target="#confirm_recover" data-row-id="{{$sim['id']}}">
+                                    <i class="icon-delete"></i>
+                                </span>
+                                    @endif
+                            </td>
+                        </tr>
+                        @endforeach
+                        </tbody>
                     </table>
+                    {{$simsArray->links()}}
                 </div>
             </div>
         </section>

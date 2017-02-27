@@ -54,11 +54,6 @@
                            data-toolbar=".filter_status"
                            data-toolbar-align="left"
                            data-page="number">
-                        <thead>
-                        <tr>
-                            <th data-formatter="formatNumber" data-halign="center" data-align="left" data-sortable="true">Deleted at</th>
-                        </tr>
-                        </thead>
                         </table>
 
                 </div>

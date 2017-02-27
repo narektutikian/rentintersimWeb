@@ -137,6 +137,8 @@ class SIMController extends Controller
         $simState = '';
         if ($request->input('is_parking') == 'true')
             $simState = 'parking';
+        elseif ($sim->state == 'parking' && $request->input('is_parking') != 'true')
+                $simState = 'available';
         else $simState = $sim->state;
 
 
@@ -291,10 +293,53 @@ class SIMController extends Controller
         if ($sim->state == 'available')
             return 1;
         elseif ($sim->state == 'parking'){
-            $count = Phone::where('initial_sim_id', $sim->id)->count();
+            $count = Phone::withTrashed()->where('initial_sim_id', $sim->id)->count();
             if ($count == 0)
                 return 1;
         } else {return 0;}
+    }
+
+    public function simTable (Request $request)
+    {
+        $q = $request->all();
+        $sims = new Sim();
+
+        if ($request->has('sort')){
+            if ($q['sort'] == 'id'){
+                $sims = $sims->orderBy('id', $request->input('order'));
+            }
+            elseif ($q['sort'] == 'number'){
+                $sims = $sims->orderBy('number', $request->input('order'));
+            }
+            elseif ($q['sort'] == 'state'){
+                $sims = $sims->orderBy('state', $q['order']);
+            }
+            elseif ($q['sort'] == 'deleted_at'){
+                $sims = $sims->orderBy('deleted_at', $q['order']);
+            }
+//
+        }
+        else {
+            $sims = $sims->orderBy('id', 'desc');
+        }
+        if ($request->has('search')){
+            $sims = $sims->withTrashed()->where('number', 'LIKE', '%'.$request->input('search').'%');
+        }
+        if ($request->has('filter')){
+            if ($request->input('filter') == 'deleted')
+                $sims = $sims->onlyTrashed();
+            else
+                $sims = $sims->where('state', $q['filter']);
+        }
+        $total = clone $sims;
+        $total = $total->count();
+        if ($q['offset'] != 0 && ($q['offset']/$q['limit']) >= (ceil($total/$q['limit'])))
+            $q['offset'] = 0;
+        $sims = $sims->with('provider')->take($q['limit'])->skip($q['offset'])->get();
+        foreach ($sims as $sim){
+            $sim->editable = $this->isEditable($sim);
+        }
+        return  response()->json(['total' => $total, 'rows' => $sims]);
     }
 
 }

@@ -219,7 +219,7 @@ class CreateHelper
         $res = null;
         sleep(5);
         if (env('APP_ENV') == 'local')
-            $res = '0';
+            $res = file_get_contents("http://176.35.171.143:8086/api/vfapi.php?key=7963ad6960b1088b94db2c32f2975e86&call=simswap&test=true&cli=".$order->phone->phone."&sim=".$order->sim->number);
         else
             $res = file_get_contents("http://176.35.171.143:8086/api/vfapi.php?key=7963ad6960b1088b94db2c32f2975e86&call=simswap&cli=".$order->phone->phone."&sim=".$order->sim->number);
 //        $res = 0;
@@ -268,7 +268,7 @@ class CreateHelper
 
         sleep(5);
         if (env('APP_ENV') == 'local')
-            $res = '0';
+            $res = file_get_contents("http://176.35.171.143:8086/api/vfapi.php?key=7963ad6960b1088b94db2c32f2975e86&test=true&call=simswap&cli=".$order->phone->phone."&sim=".$phone->parking_sim->number);
         else
         $res = file_get_contents("http://176.35.171.143:8086/api/vfapi.php?key=7963ad6960b1088b94db2c32f2975e86&call=simswap&cli=".$order->phone->phone."&sim=".$phone->parking_sim->number);
 //        $res = 0;

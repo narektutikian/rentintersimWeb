@@ -17,6 +17,7 @@ class Sim extends Model
      * @var array
      */
     protected $dates = ['deleted_at'];
+    protected $editable = 0;
 
     public function provider(){
         return $this->belongsTo('App\Models\Provider', 'provider_id');

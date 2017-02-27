@@ -376,7 +376,7 @@ $(document).ready(function () {
                     $(".error_response").empty();
                     $(".success_response").empty();
                     $(".success_response").append("DONE ");
-                    location.reload();
+                    // location.reload();
                 },
                 error: function (error) {
                     $(".error_response").empty();
