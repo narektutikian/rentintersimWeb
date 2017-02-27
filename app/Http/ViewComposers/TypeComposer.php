@@ -43,9 +43,9 @@ class TypeComposer
     {
 
         $counts = ([
-            'All' => Package::all()->count(),
-            'Enable' => Package::filter('Enable')->count(),
-            'Disable' => Package::filter('Disable')->count(),
+            'All' => Package::withTrashed()->get()->count(),
+            'Enable' => Package::all()->count(),
+            'Disable' => Package::onlyTrashed()->get()->count(),
         ]);
         $view->with('viewName', $view->getName())
             ->with('counts', $counts);

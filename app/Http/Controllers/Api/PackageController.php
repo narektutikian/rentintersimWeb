@@ -173,8 +173,10 @@ class PackageController extends Controller
     }
 
     public function filter($filter){
-
-        $packages = Package::filter($filter)->orderby('id', 'desc')->paginate(env('PAGINATE_DEFAULT'));
+        if ($filter == "Disable")
+        $packages = Package::onlyTrashed()->orderby('id', 'desc')->paginate(env('PAGINATE_DEFAULT'));
+        else
+            $packages = Package::orderby('id', 'desc')->paginate(env('PAGINATE_DEFAULT'));
         $packagesArray = $this->solvePackageList($packages);
 
 //        dd($packagesArray);
@@ -236,7 +238,7 @@ class PackageController extends Controller
 
                     if ($query) continue;
 
-                    else {return response()->json(['file content error']. 443);}
+//                    else {return response()->json(['file content error']. 443);}
 //
                 }
 
