@@ -38,26 +38,8 @@ class ReportController extends Controller
      */
     public function index()
     {
-        //
-        $user = Auth::user();
 
-        $orders = null;
-        if ($user->level != 'Super admin'){
-            $net = $this->userManager->getMyFlatNetwork($user->id);
-            $net = $this->userManager->subNetID($net);
-            $orders = Order::whereIn('created_by', $net)->orderby('id', 'desc')->paginate(env('PAGINATE_DEFAULT'));
-//            dd($orders);
-        }
-        if ($user->level == 'Super admin')
-            $orders = Order::orderby('id', 'desc')->paginate(env('PAGINATE_DEFAULT'));
-        $ordersArray = $this->viewHelper->solveOrderList($orders);
-        $counts = $this->viewHelper->getCounts($this->userManager);
-
-//        dd($specials);
-
-
-//        var_dump($ordersArray);
-        return view('report', compact('ordersArray'), compact('counts'));
+        return view('report');
 
 
     }
@@ -392,6 +374,7 @@ class ReportController extends Controller
 
     public function generateReport(Request $request)
     {
+        $q = $request->all();
         $fromS = '2017/01/01';
         $toS = '0000/00/00';
         $net = $this->userManager->subNetID($this->userManager->getMyFlatNetwork(Auth::user()->id));
@@ -425,10 +408,41 @@ class ReportController extends Controller
 
         }
 
+        if ($request->has('sort')){
+            if ($q['sort'] == 'phone.phone'){
+                $report = $report->join('phones', 'orders.phone_id', '=', 'phones.id')
+                    ->select('orders.*', 'phones.phone')
+                    ->orderBy('phone', $request->input('order'));
+
+            }
+            elseif ($q['sort'] == 'sim.number'){
+                $report = $report->join('sims', 'orders.sim_id', '=', 'sims.id')
+                    ->select('orders.*', 'sims.number')
+                    ->orderBy('number', $request->input('order'));
+
+            }
+            elseif ($q['sort'] == 'landing'){
+                $report = $report->orderBy('from', $q['order']);
+            }
+            elseif ($q['sort'] == 'departure'){
+                $report = $report->orderBy('to', $q['order']);
+            }
+            elseif ($q['sort'] == 'creator.login'){
+                $report = $report->join('users', 'orders.created_by', '=', 'users.id')
+                    ->select('orders.*', 'users.login')
+                    ->orderBy('login', $request->input('order'));
+
+            }
+            elseif ($q['sort'] == 'status'){
+                $report = $report->orderBy('status', $q['order']);
+            }
+//            $report = $report->with(['phone', 'sim', 'creator', 'sim.provider']);
 
 
-
-
+        }
+        else {
+            $report = $report->orderBy('id', 'desc');
+        }
             if ($request->has('export')){
             $report = $report->get();
             $ordersArray = $this->viewHelper->solveOrderList($report);
@@ -444,17 +458,22 @@ class ReportController extends Controller
             })->download('xlsx');
             }
 
-            else { $report = $report->paginate(env('PAGINATE_DEFAULT')); }
+            else {
+                $total = clone $report;
+                $total = $total->count();
+                $report = $report->with(['phone'  => function ($q){
+                    $q->withTrashed();
+                }, 'sim'  => function ($q){
+                    $q->withTrashed();
+                }, 'creator'  => function ($q){
+                    $q->withTrashed();
+                }, 'package', 'sim.provider'])->take($q['limit'])->skip($q['offset'])->get();
+            }
 
-            $ordersArray = $this->viewHelper->solveOrderList($report);
-            $total = $this->viewHelper->totalDuration($ordersArray);
-            $ordersArray->setPath("report?provider=".$request->input('provider').
-                "&level=".$request->input('level').
-                "&from=".$request->input('from').
-                "&username=".$request->input('username').
-                "&to=".$request->input('to').
-                "&number=".$request->input('number'));
-            return view('report', compact('ordersArray'), compact('total'));
+            foreach ($report as $item){
+               $item->duration = $this->viewHelper->calculateInterval($item->landing, $item->departure). ' day(s)';
+            }
+        return  response()->json(['total' => $total, 'rows' => $report]);
 
 
     }

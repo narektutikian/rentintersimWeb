@@ -85,7 +85,7 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
 
     Route::get('send-mail/{orderID}', 'OrderController@sendMail');
 
-    Route::get('report', 'ReportController@generateReport');
+    Route::get('report', 'ReportController@index');
     Route::get('phone/specials/{packageID}', 'PhoneController@specials');
 
     /**** Recover Routes ****/
@@ -96,6 +96,7 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
     Route::get('/api/number', 'PhoneController@numberTable');
     Route::get('/api/sim', 'SIMController@simTable');
     Route::get('/api/type', 'PackageController@packageTable');
+    Route::get('/api/report', 'ReportController@generateReport');
 
     /****** CLI Check ******/
     Route::get('/cli', 'PhoneController@cli');

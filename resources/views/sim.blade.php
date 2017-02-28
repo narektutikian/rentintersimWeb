@@ -28,7 +28,7 @@
                     <div class="search_management_option">
                         <form action="{{url('search/sim')}}" class="search_form_option vd_form">
                             <div class="pull-right search">
-                                <input type="text" style="display: inline-block" class="block_btn_30 search_input " name="query" placeholder="Search" value="{{ (isset($_GET['query'])) ? $_GET['query'] : '' }}">
+                                <input type="text" style="display: inline-block" class="block_btn_30  search_input" placeholder="Search" name="query" value="">
                             </div>
                             <button type="submit" class="search_button"><i class="icon-search"></i></button>
                         </form>

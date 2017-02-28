@@ -127,7 +127,7 @@ class ViewHelper
         return $result;
     }
 
-    private function calculateInterval ($timestampFrom, $timestampTo)
+    public function calculateInterval ($timestampFrom, $timestampTo)
     {
 //        return CarbonInterval::create($interval->y, $interval->m, 0, $interval->d, $interval->h, $interval->i, $interval->s);
         $from = Carbon::createFromFormat('d/m/Y H:i', $timestampFrom);

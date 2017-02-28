@@ -8,14 +8,14 @@
                     <div class="orders_list_wrapper">
                         {{--<div class="filter_text">Filter by status:</div>--}}
                         <div>
-                            <form method="get" action="{{url('/api/report')}}">
+                            <form method="get" action="{{url('report')}}">
                                 {{--{{csrf_field()}}--}}
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="table_label">Provider</label>
                                             <div class="select_wrapper">
-                                                <select name="provider" id="provider" class="block_btn_30 modal_input">
+                                                <select name="provider" class="block_btn_30 modal_input">
                                                     <option value=""></option>
                                                     <option value="1" selected>Vodafone</option>
                                                 </select>
@@ -26,7 +26,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="table_label">Phone Number</label>
-                                            <input type="text" class="block_btn_30 modal_input_without_icon" id="number" name="number" value="{{ (isset($_GET['number'])) ? $_GET['number'] : '' }}">
+                                            <input type="text" class="block_btn_30 modal_input_without_icon" name="number" value="{{ (isset($_GET['number'])) ? $_GET['number'] : '' }}">
                                         </div>
                                     </div>
                                 </div>
@@ -35,7 +35,7 @@
                                         <div class="form-group">
                                             <label class="table_label">Level</label>
                                             <div class="select_wrapper">
-                                                <select name="level" id="level" class="block_btn_30 modal_input" onchange="filterLevel(this.value)">
+                                                <select name="level" class="block_btn_30 modal_input" onchange="filterLevel(this.value)">
                                                     <option value="All">All</option>
                                                     @php if(isset ($_GET['level']))
                                                     $levelCur = $_GET['level'];
@@ -60,7 +60,7 @@
                                                             <div class="input-group-addon">
                                                                 <span class="glyphicon glyphicon-calendar"></span>
                                                             </div>
-                                                            <input type="text" id="from" name="from" class="inline_block_btn departure_date vd_date_required" data-date-format="DD/MM/YYYY" value="{{ (isset($_GET['from'])) ? $_GET['from'] : '' }}">
+                                                            <input type="text" name="from" class="inline_block_btn departure_date vd_date_required" data-date-format="DD/MM/YYYY" value="{{ (isset($_GET['from'])) ? $_GET['from'] : '' }}">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -72,7 +72,7 @@
                                                             <div class="input-group-addon">
                                                                 <span class="glyphicon glyphicon-calendar"></span>
                                                             </div>
-                                                            <input type="text" id="to" name="to" class="inline_block_btn departure_date vd_date_required" data-date-format="DD/MM/YYYY" value="{{ (isset($_GET['to'])) ? $_GET['to'] : '' }}">
+                                                            <input type="text" name="to" class="inline_block_btn departure_date vd_date_required" data-date-format="DD/MM/YYYY" value="{{ (isset($_GET['to'])) ? $_GET['to'] : '' }}">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -87,7 +87,7 @@
                                         <div class="form-group">
                                             <label class="table_label">Username</label>
                                             <div class="select_wrapper" id="user-select">
-                                                <select id="username" name="username" class="block_btn_30 modal_input username">
+                                                <select name="username" class="block_btn_30 modal_input username">
                                                     <option value="">All</option>
                                                     @php if(isset ($_GET['username']))
                                                     $id = $_GET['username'];
@@ -122,7 +122,7 @@
                                         <div class="form-group">
                                             <div class="report_buttons">
                                                 {{--<input type="reset" class="btn btn-warning" value="Clear">--}}
-                                                <input type="button" id="report" name="report" class="btn btn-info" value="Report">
+                                                <input type="submit" name="report" class="btn btn-info" value="Report">
                                                 <input type="submit" name="export" class="btn btn-info" value="Export">
                                             </div>
                                         </div>
@@ -145,12 +145,11 @@
                                         <span class="status waiting"></span> waiting ({{$counts['waiting']}}) </a>
                                     </a>--}}
 
-                            <div class="search_management_option" id="toolbar">
-                                <form class="search_form_option vd_form">
-                                    <div class="pull-right search">
-                                        <input type="text" style="display: inline-block" class="block_btn_30  search_input" placeholder="Search" name="query" value="">
-                                    </div>
-                                    <button type="submit" class="search_button"><i class="icon-search"></i></button>
+                            <div class="search_management_option">
+                                <form action="{{url('/search/report')}}" method="get" class="search_form_option">
+                                    <input type="text" class="block_btn_30 search_input" name="query" value="{{ (isset($_GET['query'])) ? $_GET['query'] : '' }}" placeholder="Search">
+                                    {{csrf_field()}}
+                                    <button type="submit" class="search_button low"><i class="icon-search"></i></button>
                                 </form>
                                 {{--<a href="{{url('/exportorders')}}" class="export_user"><i class="icon-export"></i>Export</a>--}}
                                 {{--<a href="#" class="add_new_btn" data-toggle="modal" data-target="#modal_new_order"><i class="icon-new_order"></i>New Order</a>--}}
@@ -166,32 +165,88 @@
                         <div class="col-md-12">
 
                             <div id="wrap_report_table">
-                                <table id="report_table"  class="rwd-table responsive_table table"
-                                       data-toggle="table"
-                                       data-url="/api/report"
-                                       data-pagination="true"
-                                       data-side-pagination="server"
-                                       data-page-list="[15, 30, 60, 100]"
-                                       data-unique-id="id"
-                                       data-page-size="15"
-                                       data-pagination-h-align="left"
-                                       data-pagination-detail-h-align="right"
-                                       data-search="true"
-                                       data-toolbar="#toolbar"
-                                       data-toolbar-align="left">
+                                <table class="rwd-table responsive_table table" data-toggle="table" data-page="order">
                                     <thead>
-                                    <tr>
-                                        <th data-field="phone.phone" data-formatter="formatNumber" data-halign="center" data-align="left" data-sortable="true">Phone</th>
-                                        <th data-field="sim.number" data-halign="center" data-align="left" data-sortable="true">SIM number</th>
-                                        <th data-field="sim.provider.name" data-halign="center" data-align="center" data-sortable="true">Provider</th>
-                                        <th data-field="landing" data-halign="center" data-align="center" data-sortable="true">From</th>
-                                        <th data-field="departure" data-halign="center" data-align="center" data-sortable="true">To</th>
-                                        <th data-field="creator.login" data-halign="center" data-align="center" data-sortable="true">Dealer</th>
-                                        <th data-field="reference_number" data-halign="center" data-align="center" data-formatter="formatReference">Reference #</th>
-                                        <th data-field="duration" data-halign="center" data-align="center" >Duration</th>
-                                    </tr>
+                                        <tr>
+                                            {{--<th data-field="id">ID</th>--}}
+                                            <th data-field="Phone" data-sortable="true">Phone</th>
+                                            <th data-field="SIM Number">SIM Number</th>
+                                            <th data-field="provider" data-sortable="true" data-th="Provider">Provider</th>
+                                            <th data-field="from" data-sortable="true" data-th="From">From</th>
+                                            <th data-field="to" data-sortable="true" data-th="To">To</th>
+                                            <th data-field="dealer" data-sortable="true" data-th="Dealer">Dealer </th>
+
+                                            <th data-th="Reference N">Reference #</th>
+                                            {{--<th data-th="action">Action</th>
+                                            <th data-field="status" data-sortable="true" data-th="Status">Status</th>--}}
+                                            <th>Duration</th>
+                                        </tr>
                                     </thead>
+                                    <tbody>
+                                    @foreach($ordersArray as $order)
+                                    <tr data-uniqueid="{{$order['id']}}">
+                                        {{--<td>{{$order['id']}}</td>--}}
+                                        <td class="rwd-td0 table_id_cell editable_cell" data-th="Phone" data-cell-id="{{$order['id']}}">
+                                            @if($order['phone_id']==0)
+                                                <a id= "{{$order['id']}}" href="#" >No Number</a>
+                                            @else
+                                            {{$order['phone_id']}}
+                                            @endif
+                                        </td>
+                                        <td class="rwd-td1 editable_cell" data-th="SIM Number" data-form="#modal_view_order">
+                                            <a href="#modal_view_order" role="button" class="link">
+                                                {{$order['sim_id']}}
+                                            </a>
+                                        </td>
+                                        <td class="rwd-td2 editable_cell align_order" data-th="Provider" data-target="#modal_view_order" data-form="#modal_view_order">
+                                            <a href="#modal_view_order" role="button" class="link">
+                                                {{$order['provider']}}
+                                            </a>
+                                        </td>
+                                        <td class="rwd-td3 table_time_cell_large from align_order" data-field="From" data-th="From"  data-target="#modal_view_order" data-form="#modal_view_order">
+                                            <a href="#modal_view_order" role="button" class="link">
+                                                {{$order['landing']}}
+                                            </a>
+                                        </td>
+                                        <td class="rwd-td4 table_time_cell_large to align_order" data-field="To" data-th="To" data-toggle="modal"  data-target="#modal_edit_order" data-form="#modal_edit_order">
+                                            {{$order['departure']}}
+                                        </td>
+                                        <td class="rwd-td5 editable_cell align_order" data-field="Created by" data-th="Created by" data-target="#modal_view_order" data-form="#modal_view_order">
+                                            <a href="#modal_view_order" role="button" class="link">
+                                                {{$order['created_by']}}
+                                            </a>
+                                        </td>
+                                        <td class="rwd-td6 {{ ($order['reference_number'] != '') ? 'ref_number' : '' }} align_order"  data-field="Reference Number" data-th="Reference Number">
+                                            @if ($order['reference_number'] != '')
+                                            <span class="hint_text" data-toggle="tooltip"  data-trigger="click" data-original-title="{{$order['reference_number']}}">
+                                                {{substr($order['reference_number'], 0, 9)}}
+                                            <span class="hint">i</span>
+                                            </span>
+                                            @endif
+                                        </td>
+                                       {{-- <td class="rwd-td7 table_action_cell_large" data-field="Action" data-th="Action">
+                                            <span class="table_icon call_edit {{ ($order['status'] == 'active') ? 'disable' : '' }}" data-toggle="modal" data-row-id="{{$order['id']}}" data-target="#modal_edit_order" data-form="#modal_edit_order">
+                                                <i class="icon-edit"></i>
+                                            </span>
+                                            <span class="table_icon print" data-toggle="modal" data-target="#modal_print_order" data-form="modal_print_order">
+                                                <i class="icon-print"></i>
+                                            </span>
+                                            <span class="table_icon call_mail"  data-toggle="modal" data-target="#modal_order_email" data-row-id="{{$order['id']}}">
+                                                <i class="icon-email"></i>
+                                            </span>
+                                        </td>
+                                        <td class="rwd-td8" data-field="Status" data-th="Status">
+                                            <span class="table_status_text not_used">{{$order['status']}}</span>
+                                        </td>--}}
+                                        <td class="rwd-td9 table_status_cell" data-th="Remove">
+                                            {{$order['duration']}} day(s)
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                    </tbody>
                                 </table>
+                                {{--<p>{{$total}}</p>--}}
+                    {{$ordersArray->links()}}
                             </div><!--#wrap_orders_table-->
                         </div>
                     </div>

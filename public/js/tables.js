@@ -360,7 +360,7 @@ function typeActionFormatter(value, row, index) {
 /******  Filters ******/
 
 function filter(filter) {
-    console.log(filter);
+    // console.log(filter);
     filter_global = filter;
     $('#order_table_html').bootstrapTable('refresh');
     setFilterClass();
@@ -494,5 +494,25 @@ $('#type_table').bootstrapTable({
     columns: typeColums
 });
 
+$('#report_table').bootstrapTable({
+    queryParams: function (p) {
+        return {
+            limit: p.limit,
+            offset: p.offset,
+            sort: p.sort,
+            order: p.order,
+            search: p.search,
+            provider: $('#provider').val(),
+            number: $('#number').val(),
+            level: $('#level').val(),
+            from: $('#from').val(),
+            to: $('#to').val(),
+            username: $('#username').val()
+        };
+    }
+});
+$('#report').on('click', function (e) {
+    $('#report_table').bootstrapTable('refresh');
 
+});
 

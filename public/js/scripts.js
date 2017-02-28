@@ -697,58 +697,28 @@ $( document ).ready(function() {
 
     $('.table').on('dbl-click-row.bs.table', function ($element, row, field) {
         $('#modal_view_order').modal('show');
-        var row_id = $(this).closest('tr').attr('data-uniqueid');
-        // console.log(field.attr('data-uniqueid'));
-
-        // event.preventDefault();
-
-
         /******* Open View modal  *******/
-
-        var row_id = field.attr('data-uniqueid');
-
-
-        $.get("/order/" + row_id + "/edit", function (order_data, order_status) {
-
-            if (order_status == "success") {
-
-                console.log(order_data); //TODO removew secund get call
-
-                $.get("/type-provider/1", function (data, type_status) {
-
-                    if (type_status == "success") {
-
-                        $('#wrap_package_list_view').empty();
-                        $('#wrap_package_list_view').append("<label class='table_label'>Selected Package </label>" +
-                            "<a class='selected_package' title='"+ order_data[0].package.name +"'>" +
-                            "<h4>"+ order_data[0].package.name +"</h4>" +
-                            "<span>"+ order_data[0].package.description +"</span>" +
-                            "</a>");
-                        $('.sim-edit').val(order_data[0].sim_id);
-                        $('.remark-view').val(order_data[0].remark);
-                        $('.reference_number-view').val(order_data[0].reference_number);
-                        if (order_data[0].status != "waiting") {
-                            $('#phone_number-view2').val(order_data[0].phone_id);
-                        }
-                        $('#order_status-view').val(order_data[0].status);
-                        $('.creator').text(order_data[0].creator.name + " " + order_data[0].created_at);
-                        if (order_data[0].editor != null)
-                            $('.editor').text(order_data[0].editor.name);
-                        $('.edited_at').text(" " + order_data[0].updated_at);
-                        $('.landing_date').val(order_data[0].landing.split(' ')[0]);
-                        $('.departure_date').val(order_data[0].departure.split(' ')[0]);
-                        $('.landing_time_val').val(order_data[0].landing.split(' ')[1]);
-                        $('.departure_time_val').val(order_data[0].departure.split(' ')[1]);
-
-
-
-                        // console.log(order_data[0].status)
-
-
-                    }
-                });
-            }
-        });
+        $('#wrap_package_list_view').empty();
+        $('#wrap_package_list_view').append("<label class='table_label'>Selected Package </label>" +
+            "<a class='selected_package' title='"+ row.package.name +"'>" +
+            "<h4>"+ row.package.name +"</h4>" +
+            "<span>"+ row.package.description +"</span>" +
+            "</a>");
+        $('.sim-edit').val(row.sim.number);
+        $('.remark-view').val(row.remark);
+        $('.reference_number-view').val(row.reference_number);
+        if (row.status != "waiting") {
+            $('#phone_number-view2').val(row.phone.phone);
+        }
+        $('#order_status-view').val(row.status);
+        $('.creator').text(row.creator.name + " " + row.created_at);
+        if (row.editor != null)
+            $('.editor').text(row.editor.name);
+        $('.edited_at').text(" " + row.updated_at);
+        $('.landing_date').val(row.landing.split(' ')[0]);
+        $('.departure_date').val(row.departure.split(' ')[0]);
+        $('.landing_time_val').val(row.landing.split(' ')[1]);
+        $('.departure_time_val').val(row.departure.split(' ')[1]);
 
     });
 
