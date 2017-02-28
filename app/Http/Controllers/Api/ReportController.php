@@ -443,6 +443,20 @@ class ReportController extends Controller
         else {
             $report = $report->orderBy('id', 'desc');
         }
+        if ($request->has('search')){
+
+            $qs = $request->input('search');
+            $report = $report->where(function ($q) use ($qs) {
+                $q->orWhereIn('orders.phone_id', function ($q) use ($qs) {
+                    $q->select('id')->from('phones')->
+                    where('phone', 'LIKE', '%' . $qs . '%');
+                })
+                    ->orWhereIn('sim_id', function ($q) use ($qs) {
+                        $q->select('sims.id')->from('sims')->where('number', 'LIKE', '%' . $qs . '%');
+                    })
+                    ->orWhere('reference_number', 'LIKE', '%' . $qs . '%');
+            });
+        }
             if ($request->has('export')){
             $report = $report->get();
             $ordersArray = $this->viewHelper->solveOrderList($report);

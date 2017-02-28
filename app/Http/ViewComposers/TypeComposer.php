@@ -43,7 +43,7 @@ class TypeComposer
     {
 
         $counts = ([
-            'All' => Package::withTrashed()->get()->count(),
+            'All' => Package::get()->count(),
             'Enable' => Package::all()->count(),
             'Disable' => Package::onlyTrashed()->get()->count(),
         ]);
