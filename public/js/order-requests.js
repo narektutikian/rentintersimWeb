@@ -109,6 +109,7 @@ $(document).ready(function () {
     });
 
 /**** Getting all types for provider vodafone ****/
+    if(window.location.pathname == "/home")
     $.get("/type-provider/1", function (data, status) {
         // console.log("type loading");
         if (status == "success") {

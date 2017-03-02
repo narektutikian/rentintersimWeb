@@ -512,6 +512,7 @@ $('#report_table').bootstrapTable({
     }
 });
 $('#report').on('click', function (e) {
+    $('#provider').val(1);
     $('#report_table').bootstrapTable('refresh');
 
 });

@@ -365,6 +365,8 @@ $(document).ready(function () {
     });
 
     /* User Management Nested Table */
+    // console.log(window.location.pathname);
+    if(window.location.pathname == "/user")
     $.ajax({
         url: '/user-tree',
         success: function (json) {

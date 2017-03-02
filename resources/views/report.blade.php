@@ -17,7 +17,7 @@
                                             <div class="select_wrapper">
                                                 <select name="provider" id="provider" class="block_btn_30 modal_input">
                                                     <option value=""></option>
-                                                    <option value="1" selected>Vodafone</option>
+                                                    <option value="1">Vodafone</option>
                                                 </select>
                                             </div>
 
