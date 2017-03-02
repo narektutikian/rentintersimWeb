@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/js/perfect-scrollbar/css/perfect-scrollbar.css">
     <link rel="stylesheet" href="/css/bootstrap-datepicker3.css">
     <link rel="stylesheet" href="/js/owl-carousel/assets/owl.carousel.css">
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/style.css?v=2">
 
 </head>
 <body>
@@ -101,10 +101,10 @@
 <script src="/js/moment.min.js"></script>
 <script src="/js/bootstrap-datetimepicker.js"></script>
 <script src="/js/owl-carousel/owl.carousel.js"></script>
-<script src="/js/scripts.js"></script>
+<script src="/js/scripts.js?v=3"></script>
 <script src="/js/validation.js"></script>
-<script src="/js/requests.js"></script>
-<script src="/js/order-requests.js"></script>
-<script src="/js/tables.js"></script>
+<script src="/js/requests.js?v=2"></script>
+<script src="/js/order-requests.js?v=2"></script>
+<script src="/js/tables.js?v=2"></script>
 </body>
 </html>

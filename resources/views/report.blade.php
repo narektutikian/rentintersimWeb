@@ -60,7 +60,7 @@
                                                             <div class="input-group-addon">
                                                                 <span class="glyphicon glyphicon-calendar"></span>
                                                             </div>
-                                                            <input type="text" id="from" name="from" class="inline_block_btn departure_date vd_date_required" data-date-format="DD/MM/YYYY" value="{{ (isset($_GET['from'])) ? $_GET['from'] : '' }}">
+                                                            <input type="text" id="from" name="from" class="inline_block_btn departure_date " data-date-format="DD/MM/YYYY" value="{{ (isset($_GET['from'])) ? $_GET['from'] : '' }}">
                                                         </div>
                                                     </div>
                                                 </div>

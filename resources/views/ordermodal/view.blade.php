@@ -46,7 +46,7 @@
                                             <div class="input-group-addon">
                                                 <span class="glyphicon glyphicon-calendar"></span>
                                             </div>
-                                            <input type="text" name="departure_date" class="inline_block_btn landing_date vd_date_required" data-date-format="DD/MM/YYYY" disabled>
+                                            <input type="text" name="departure_date" class="inline_block_btn landing_date vd_date_required" id="landing_date_view" data-date-format="DD/MM/YYYY" disabled>
                                         </div>
                                         <div class="wrap_time">
                                             <i class="departure_time icon-time"></i>
@@ -63,7 +63,7 @@
                                             <div class="input-group-addon">
                                                 <span class="glyphicon glyphicon-calendar"></span>
                                             </div>
-                                            <input type="text" name="departure_date" class="inline_block_btn departure_date vd_date_required" data-date-format="DD/MM/YYYY" disabled>
+                                            <input type="text"  class="inline_block_btn departure_date vd_date_required" id="departure_date_view" data-date-format="DD/MM/YYYY" disabled>
                                         </div>
                                         <div class="wrap_time">
                                             <i class="departure_time icon-time"></i>

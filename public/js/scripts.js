@@ -715,8 +715,8 @@ $( document ).ready(function() {
         if (row.editor != null)
             $('.editor').text(row.editor.name);
         $('.edited_at').text(" " + row.updated_at);
-        $('.landing_date').val(row.landing.split(' ')[0]);
-        $('.departure_date').val(row.departure.split(' ')[0]);
+        $('#landing_date_view').val(row.landing.split(' ')[0]);
+        $('#departure_date_view').val(row.departure.split(' ')[0]);
         $('.landing_time_val').val(row.landing.split(' ')[1]);
         $('.departure_time_val').val(row.departure.split(' ')[1]);
 
