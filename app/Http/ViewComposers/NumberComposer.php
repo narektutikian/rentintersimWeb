@@ -51,7 +51,7 @@ class NumberComposer
         ]);
         $counts['specials'] = Phone::where('is_special', 1)->count();
 
-        $parking = DB::table('sims')->select('id', 'state', 'number')->where('state','=', 'parking')->whereNotIn('id', function($q){
+        $parking = Sim::select('id', 'state', 'number')->where('state','=', 'parking')->whereNotIn('id', function($q){
             $q->select('initial_sim_id')->from('phones')->where('id', '>', 0);
         })->get();
 //$parking = json_decode($parking, true);
