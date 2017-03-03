@@ -225,5 +225,11 @@ class UserManager
             }
     }
 
+    public function getNetworkFromCache($id)
+    {
+        $user = User::find($id);
+        return json_decode($user->network);
+    }
+
 }
 

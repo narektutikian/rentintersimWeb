@@ -15,6 +15,7 @@ use App\User;
 use App\Models\Order;
 use App\Models\Activation;
 use Carbon\Carbon;
+use App\Jobs\CacheUsersTree;
 
 
 Route::get('/', function () {
@@ -107,8 +108,9 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
 
 
 Route::get('/test', function (){
-//    echo floor(5/15);
-//    return $orders->get();
+        $n = new Rentintersimrepo\users\UserManager();
+    $n = $n->getNetworkFromCache(15);
+    return $n;
 });
 
 Route::get('/test2', function (){
@@ -134,6 +136,10 @@ Route::get('test-delays', function (){
         echo '</tr>';
     }
     echo '</table>';
+});
+
+Route::get('/test-user-queue', function (){
+    dispatch(new CacheUsersTree(new Rentintersimrepo\users\UserManager()));
 });
 
 

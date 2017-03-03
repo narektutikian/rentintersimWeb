@@ -29,6 +29,16 @@ class User extends Authenticatable
     ];
 
     /**
+     * The event map for the model.
+     *
+     * @var array
+     */
+    protected $events = [
+        'saved' => UserSaved::class,
+        'deleted' => UserDeleted::class,
+    ];
+
+    /**
      * The attributes that should be hidden for arrays.
      *
      * @var array

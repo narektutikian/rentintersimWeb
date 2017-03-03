@@ -43,8 +43,7 @@ class OrderController extends Controller
 
         $orders = null;
         if ($user->level != 'Super admin'){
-            $net = $this->userManager->getMyFlatNetwork($user->id);
-            $net = $this->userManager->subNetID($net);
+            $net = $this->userManager->getNetworkFromCache($user->id);
             $orders = Order::whereIn('created_by', $net)->orderby('id', 'desc')->paginate(env('PAGINATE_DEFAULT'));
 //            dd($orders);
         }
@@ -282,7 +281,7 @@ class OrderController extends Controller
         $user = Auth::user();
         $orders = null;
         if ($user->level != 'Super admin'){
-            $net = $this->userManager->subNetID($this->userManager->getMyFlatNetwork($user->id));
+            $net = $this->userManager->getNetworkFromCache($user->id);
             $orders = Order::whereIn('created_by', $net)->filter($filter)->orderby('id', 'desc')->paginate(env('PAGINATE_DEFAULT'));
         }
         if ($user->level == 'Super admin')
@@ -391,7 +390,7 @@ class OrderController extends Controller
     public function search(Request $request)
     {
         $query = stripcslashes($request->input('query'));
-        $net = $this->userManager->subNetID($this->userManager->getMyFlatNetwork(Auth::user()->id));
+        $net = $this->userManager->getNetworkFromCache(Auth::user()->id);
 
         $result = Order::where(function ($q) use ($query) {
             $q->whereIn('phone_id', function ($q) use ($query) {
@@ -417,7 +416,7 @@ class OrderController extends Controller
         $user = Auth::user();
         $orders = null;
         if ($user->level != 'Super admin'){
-            $net = $this->userManager->subNetID($this->userManager->getMyFlatNetwork(Auth::user()->id));
+            $net = $this->userManager->getNetworkFromCache(Auth::user()->id);
             $orders = Order::whereIn('created_by', $net)->orderby('id', 'desc')->get();
         }
         if ($user->level == 'Super admin')
@@ -448,7 +447,7 @@ class OrderController extends Controller
 
         if ($user->level != 'Super admin'){
 
-            $net = $this->userManager->subNetID($this->userManager->getMyFlatNetwork($user->id));
+            $net = $this->userManager->getNetworkFromCache($user->id);
             $orders = $orders->whereIn('created_by', $net);
 //            dd($orders);
 
