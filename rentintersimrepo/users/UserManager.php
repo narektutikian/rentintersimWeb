@@ -113,9 +113,9 @@ class UserManager
 
     function typeValidator($level){
         if($level == 'Super admin')
-            return ['Distributor', 'Dealer', 'Subdealer'];
+            return ['Distributor'];
         elseif ($level == 'Distributor')
-            return ['Dealer', 'Subdealer'];
+            return ['Dealer'];
         elseif ($level == 'Dealer')
             return ['Subdealer'];
         else return array();

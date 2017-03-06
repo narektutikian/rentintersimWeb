@@ -146,12 +146,12 @@
                                     </a>--}}
 
                             <div class="search_management_option" id="toolbar">
-                                <form class="search_form_option vd_form">
+                                <div class="search_form_option">
                                     <div class="pull-right search">
-                                        <input type="text" style="display: inline-block" class="block_btn_30  search_input" placeholder="Search" name="query" value="">
+                                        <input type="text" style="display: inline-block" class="block_btn_30 search_input " name="query" placeholder="Search" value="{{ (isset($_GET['query'])) ? $_GET['query'] : '' }}">
                                     </div>
-                                    <button type="submit" class="search_button"><i class="icon-search"></i></button>
-                                </form>
+                                    <button type="button" class="search_button"><i class="icon-search"></i></button>
+                                </div>
                                 {{--<a href="{{url('/exportorders')}}" class="export_user"><i class="icon-export"></i>Export</a>--}}
                                 {{--<a href="#" class="add_new_btn" data-toggle="modal" data-target="#modal_new_order"><i class="icon-new_order"></i>New Order</a>--}}
                             </div>

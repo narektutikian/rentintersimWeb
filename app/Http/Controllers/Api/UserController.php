@@ -89,7 +89,7 @@ class UserController extends Controller
             'username' => 'required|unique:users,login',
             'password' => 'required',
             'type' => 'required',
-            'level' => 'required',
+//            'level' => 'required',
 //            'time_zone' => 'required',
             'email2' => 'unique:users',
 //            'phone' => 'required',
@@ -133,6 +133,13 @@ class UserController extends Controller
                 $newUser['supervisor_id'] =  $request->input('supervisor_id');
             }
         }
+
+        if ($submiter->level == 'Super admin')
+            $newUser['level'] = 'Distributor';
+        elseif ($submiter->level == 'Distributor')
+            $newUser['level'] = 'Dealer';
+        elseif ($submiter->level == 'Dealer')
+            $newUser['level'] = 'Subdealer';
 
         if ($this->manager->UserCreation($newUser, $submiter)){
             $createdUser = User::forceCreate($newUser);
