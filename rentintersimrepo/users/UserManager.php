@@ -207,8 +207,6 @@ class UserManager
             $child->supervisor_id = $parent->id;
             $child->save();
         }
-
-
             $this->changeOrderOwner($user, $parent);
 
         $user->delete();
