@@ -595,9 +595,9 @@ $(document).ready(function () {
             var data = {
                 _token: CSRF_TOKEN,
                 name: $(".name").val(),
-                level: $(".level").val(),
+                // level: $(".level").val(),
                 type: $(".type").val(),
-                supervisor_id: $(".supervisor_id").val(),
+                // supervisor_id: $(".supervisor_id").val(),
                 email: $(".email").val(),
                 email2: $(".email2").val(),
                 username: $(".login").val(),
@@ -694,14 +694,35 @@ $(document).ready(function () {
 function editUser(id) {
     $.get("/user/" + id + "/edit", function (data, status) {
         if (status == "success"){
+
             $(".name").val(data.name);
+            $(".password").val('');
             $(".user_edit_id").val(data.id);
-            $(".level").val(data.level);
-            $(".type").val(data.type);
+            // $(".level").val(data.level);
+
             $(".supervisor_id").val(data.supervisor_id);
             $(".email").val(data.email);
             $(".email2").val(data.email2);
             $(".login").val(data.login);
+
+            var options = "";
+            if (data.type == 'admin'){
+                options += "<option value='admin'>Admin</option>";
+
+            } else {
+                options += "<option value='manager'>Manager</option>" +
+                            "<option value='employee'>Employee</option>";
+
+            }
+            $('.type')
+                .find('option')
+                .remove()
+                .end()
+                .append(options);
+            $(".type").val(data.type);
+
+
+
 
         }
     });

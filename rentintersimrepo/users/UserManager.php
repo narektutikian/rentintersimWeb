@@ -205,7 +205,6 @@ class UserManager
         $children = User::where('supervisor_id', $user->id)->get();
         foreach ($children as $child){
             $child->supervisor_id = $parent->id;
-            $this->changeOrderOwner($child, $parent);
             $child->save();
         }
 

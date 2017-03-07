@@ -481,6 +481,7 @@ $( document ).ready(function() {
         });
 
 
+
         // Capture Modal Close Event
         $(target_form_id).one("hidden.bs.modal", function () {
 
@@ -726,6 +727,11 @@ $( document ).ready(function() {
     /* Responsive scroll bars */
     $('#wrap_tree_table').perfectScrollbar();
 
+    /*** Bootstrap modal open event ****/
+    $("#modal_add_user").on('shown.bs.modal', function(event){
+        $('#add-user')[0].reset();
+    });
+
 
 });
 
@@ -737,7 +743,7 @@ $(window).load(function() {
 
 var onPrintFinished=function(printed){
     $('#modal_print_order').modal('toggle');
-    }
+    };
 /*
 function actionFormatter(value, row, index) {
     return [

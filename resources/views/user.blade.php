@@ -52,10 +52,10 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="table_label">Level <span class="required_mark">*</span></label>
-                                        <div class="form_row">
+                                        <label class="table_label hidden">Level <span class="required_mark">*</span></label>
+                                        <div class="form_row hidden">
                                             <div class="select_wrapper">
-                                                <select class="block_btn_30 modal_input vd_select" name="level"  id="level">
+                                                <select class="block_btn_30 modal_input" name="level"  id="level">
                                                     <option value=""></option>
                                                     <option value="Distributor">Distributor</option>
                                                     <option value="Dealer">Dealer</option>
@@ -65,8 +65,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="form-group">
                                     <div class="col-md-6">
                                         <label class="table_label">Type <span class="required_mark">*</span></label>
                                         <div class="form_row">
@@ -76,20 +74,6 @@
                                                     <option value="admin">Admin</option>
                                                     <option value="manager">Manager</option>
                                                     <option value="employee">Employee</option>
-                                                </select>
-                                                <i class="input_icon icon-username"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="table_label {{ (Auth::user()->level != 'Super admin') ? 'hidden' : '' }}">Parent Username </label>
-                                        <div class="form_row {{ (Auth::user()->level != 'Super admin') ? 'hidden' : '' }}">
-                                            <div class="select_wrapper">
-                                                <select class="block_btn_30 modal_input" name="supervisor_id" id="supervisor_id">
-                                                    <option value="{{Auth::user()->id}}">{{Auth::user()->login}}</option>
-                                                    @foreach($users as $supervisor)
-                                                        <option value="{{$supervisor['id']}}">{{$supervisor['login']}}</option>
-                                                    @endforeach
                                                 </select>
                                                 <i class="input_icon icon-username"></i>
                                             </div>
@@ -113,6 +97,23 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <div class="col-md-6">
+                                        <label class="table_label {{ (Auth::user()->level != 'Super admin') ? 'hidden' : '' }}">Parent Username </label>
+                                        <div class="form_row {{ (Auth::user()->level != 'Super admin') ? 'hidden' : '' }}">
+                                            <div class="select_wrapper">
+                                                <select class="block_btn_30 modal_input" name="supervisor_id" id="supervisor_id">
+                                                    <option value="{{Auth::user()->id}}">{{Auth::user()->login}}</option>
+                                                    @foreach($users as $supervisor)
+                                                        <option value="{{$supervisor['id']}}">{{$supervisor['login']}} ({{$supervisor['level']}})</option>
+                                                    @endforeach
+                                                </select>
+                                                <i class="input_icon icon-username"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
 
                             </div>
 
@@ -174,7 +175,7 @@
                                         </div>
 
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 hidden">
                                         <label class="table_label">Level <span class="required_mark">*</span></label>
                                         <div class="select_wrapper">
                                             <select class="block_btn_30 modal_input level" name="level" data-th="Level">
@@ -187,22 +188,23 @@
                                         </div>
 
                                     </div>
-
-                                </div>
-                                <div class="form-group">
                                     <div class="col-md-6">
 
                                         <label class="table_label">Type <span class="required_mark">*</span></label>
                                         <div class="select_wrapper">
                                             <select class="block_btn_30 modal_input type" name="type" data-th="Type">
-                                                <option value=""></option>
-                                                <option value="admin">Admin</option>
-                                                <option value="manager">Manager</option>
-                                                <option value="employee">Employee</option>
+                                                {{--<option value=""></option>--}}
+                                                {{--<option value="admin">Admin</option>--}}
+                                                {{--<option value="manager">Manager</option>--}}
+                                                {{--<option value="employee">Employee</option>--}}
                                             </select>
                                             <i class="input_icon icon-username"></i>
                                         </div>
                                     </div>
+
+                                </div>
+                                <div class="form-group">
+
                                     <div class="col-md-6">
                                         <label class="table_label {{ (Auth::user()->level != 'Super admin') ? 'hidden' : 'hidden' }}">Parent Username</label>
                                         <div class="form_row {{ (Auth::user()->level != 'Super admin') ? 'hidden' : 'hidden' }}">
@@ -241,14 +243,14 @@
                                     <div class="col-md-6">
                                         <label class="table_label">Username <span class="required_mark">*</span></label>
                                         <div class="relative">
-                                            <input type="text" class="block_btn_30 modal_input login" data-th="Username" name="login" value=""/>
+                                            <input type="text" class="block_btn_30 modal_input login" data-th="Username" value=""/>
                                             <i class="input_icon icon-username"></i>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <label class="table_label">Password</label>
                                         <div class="relative">
-                                            <input type="password" class="block_btn_30 modal_input password" name="password" value=""/>
+                                            <input type="password" class="block_btn_30 modal_input password"  value=""/>
                                             <i class="input_icon icon-password"></i>
                                         </div>
                                     </div>

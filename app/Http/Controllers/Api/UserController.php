@@ -42,7 +42,7 @@ class UserController extends Controller
         $myNetwork['myNetwork'] = $net;
 
          dd($myNetwork);*/
-        $done = array();
+//        $done = array();
 //       $net = $this->manager->getMyNetwork($user);
 //        $new = $net[0];
 //        unset($new['child']);
@@ -50,7 +50,8 @@ class UserController extends Controller
 //        $done[] = $net[0];
 //        echo '<pre>';
 //        dd($net);
-
+        if (Auth::user()->type == 'employee')
+            return redirect('home');
         return view('user');
     }
 
@@ -134,12 +135,18 @@ class UserController extends Controller
             }
         }
 
-        if ($submiter->level == 'Super admin')
-            $newUser['level'] = 'Distributor';
-        elseif ($submiter->level == 'Distributor')
-            $newUser['level'] = 'Dealer';
-        elseif ($submiter->level == 'Dealer')
-            $newUser['level'] = 'Subdealer';
+        if ($newUser['type'] == 'admin'){
+            if ($submiter->level == 'Super admin')
+                $newUser['level'] = 'Distributor';
+            elseif ($submiter->level == 'Distributor')
+                $newUser['level'] = 'Dealer';
+            elseif ($submiter->level == 'Dealer')
+                $newUser['level'] = 'Subdealer';
+        }
+        elseif ($submiter->level != 'Super admin')
+            $newUser['level'] = $submiter->level;
+        else
+            return response('Super admin cannot have \'Manager\' or \'Employee\' ', 401);
 
         if ($this->manager->UserCreation($newUser, $submiter)){
             $createdUser = User::forceCreate($newUser);
@@ -201,7 +208,7 @@ class UserController extends Controller
             'username' => 'required',
 //            'password' => 'required',
             'type' => 'required',
-            'level' => 'required',
+//            'level' => 'required',
 //            'time_zone' => 'required',
 //            'email2' => 'unique:users',
 //            'phone' => 'required',
@@ -217,7 +224,7 @@ class UserController extends Controller
 
         $user = User::find($id);
         $userType = $user->type;
-        $userLevel = $user->level;
+//        $userLevel = $user->level;
         $submiter = User::find($user->supervisor_id);
             $user->name = $request->input('name');
 
@@ -238,7 +245,7 @@ class UserController extends Controller
             return response('You cannot change type admin', 403);
 
             $user->type = $request->input('type');
-            $user->level = $request->input('level');
+//            $user->level = $request->input('level');
 
         if ($request->has('email2') && $request->input('email2') != $user->email2){
             $this->validate(request(), ['email2' => 'unique:users,email2']);
@@ -268,7 +275,7 @@ class UserController extends Controller
                 $user->save();
             }
         }
-        elseif ($userLevel == $request->input('level'))
+        elseif ($userType == 'admin')
             $user->save();
         else {
 

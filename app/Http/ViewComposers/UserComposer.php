@@ -43,7 +43,7 @@ class UserComposer
     public function compose(View $view)
     {
 
-        $users = User::select('id', 'login', 'supervisor_id')->where('id', '!=', Auth::user()->id)->get()->toArray();
+        $users = User::select('id', 'login', 'supervisor_id', 'level')->where('id', '!=', Auth::user()->id)->where('type', 'admin')->orderBy('level', 'desc')->get()->toArray();
         $view->with('viewName', $view->getName())
                 ->with('users', $users);
     }
