@@ -80,6 +80,9 @@ class UserController extends Controller
     {
         //
 
+        $type = 'admin';
+        if ($request->has('type'))
+            $type = $request->input('type');
         $user = Auth::user();
         $submiter = $user;
         $this->validate(request(), [
@@ -89,7 +92,7 @@ class UserController extends Controller
 //            'logo' => 'required',
             'username' => 'required|unique:users,login',
             'password' => 'required',
-            'type' => 'required',
+//            'type' => 'required',
 //            'level' => 'required',
 //            'time_zone' => 'required',
             'email2' => 'unique:users',
@@ -98,22 +101,15 @@ class UserController extends Controller
 //            'sim_balance' => 'required',
 //            'phone_balance' => 'required',
 //            'supervisor_id' => 'required',
-//
-
-
         ]);
 
-
-
         $newUser = [
-
-
             'name' => $request->input('name'),
             'email' => $request->input('email'),
 //            'logo' => $request->input('name
             'login' => $request->input('username'),
             'password' => Hash::make($request->input('password')),
-            'type' => $request->input('type'),
+            'type' => $type,
             'level' => $request->input('level'),
 //            'time_zone' => $request->input('name
               'email2' => $request->input('email2'),
@@ -123,17 +119,15 @@ class UserController extends Controller
 //            'phone_balance' => $request->input('name'),
           'supervisor_id' => $user->id,
             'is_active' => 1,
-
-
        ];
 
-        if ($user->level == 'Super admin'){
+//        if ($user->level == 'Super admin'){
             if($request->has('supervisor_id') && $request->input('supervisor_id') != $user->id){
 
                 $submiter = User::find($request->input('supervisor_id'));
                 $newUser['supervisor_id'] =  $request->input('supervisor_id');
             }
-        }
+//        }
 
         if ($newUser['type'] == 'admin'){
             if ($submiter->level == 'Super admin')
@@ -148,17 +142,14 @@ class UserController extends Controller
         else
             return response('Super admin cannot have \'Manager\' or \'Employee\' ', 401);
 
+        if ($submiter->level == 'Subdealer' && $type == 'admin')
+            return response('Please select type Manager or Employee', 401);
         if ($this->manager->UserCreation($newUser, $submiter)){
             $createdUser = User::forceCreate($newUser);
         }
         else {
-
             return response('You cannot create this type of user', 401);
         }
-
-
-
-
         if($createdUser)
             return $createdUser;
     }
@@ -216,9 +207,6 @@ class UserController extends Controller
 //            'sim_balance' => 'required',
 //            'phone_balance' => 'required',
 //            'supervisor_id' => 'required',
-//
-
-
         ]);
 
 

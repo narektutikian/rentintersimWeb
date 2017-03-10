@@ -10,6 +10,7 @@ namespace App\Http\ViewComposers;
 use Illuminate\View\View;
 use App\User;
 use Auth;
+use Rentintersimrepo\Users\UserManager;
 
 
 
@@ -42,8 +43,16 @@ class UserComposer
      */
     public function compose(View $view)
     {
+        $net = new UserManager();
+        $net = $net->getNetworkFromCache(Auth::user()->id);
 
-        $users = User::select('id', 'login', 'supervisor_id', 'level')->where('id', '!=', Auth::user()->id)->where('type', 'admin')->orderBy('level', 'desc')->get()->toArray();
+
+        $users = User::select('id', 'login', 'supervisor_id', 'level')
+            ->where('id', '!=', Auth::user()->id)
+            ->where('type', 'admin')
+            ->orderBy('level', 'desc')
+            ->whereIn('id', $net)
+            ->get()->toArray();
         $view->with('viewName', $view->getName())
                 ->with('users', $users);
     }

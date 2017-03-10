@@ -51,32 +51,44 @@
                                             <i class="input_icon icon-username"></i>
                                         </div>
                                     </div>
+
+                                    <div class="col-md-6 hidden">
+                                        {{--<label class="table_label">Type <span class="required_mark">*</span></label>--}}
+                                        {{--<div class="form_row">--}}
+                                            {{--<div class="select_wrapper">--}}
+                                                {{--<select class="block_btn_30 modal_input" name="type" id="type">--}}
+                                                    {{--<option value=""></option>--}}
+                                                    {{--<option value="admin">Admin</option>--}}
+                                                    {{--<option value="manager">Manager</option>--}}
+                                                    {{--<option value="employee">Employee</option>--}}
+                                                {{--</select>--}}
+                                                {{--<i class="input_icon icon-username"></i>--}}
+                                            {{--</div>--}}
+                                        {{--</div>--}}
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <div class="col-md-6">
-                                        <label class="table_label hidden">Level <span class="required_mark">*</span></label>
-                                        <div class="form_row hidden">
+                                        <label class="table_label">Parent Username <span class="required_mark">*</span></label>
+                                        <div class="form_row">
                                             <div class="select_wrapper">
-                                                <select class="block_btn_30 modal_input" name="level"  id="level">
-                                                    <option value=""></option>
-                                                    <option value="Distributor">Distributor</option>
-                                                    <option value="Dealer">Dealer</option>
-                                                    <option value="Subdealer">Sub-Dealer</option>
+                                                <select class="block_btn_30 modal_input vd_select" name="supervisor_id" id="supervisor_id">
+                                                    <option value="">SELECT PARENT</option>
+                                                    <option value="{{Auth::user()->id}}">{{Auth::user()->login}}</option>
+                                                    @foreach($users as $supervisor)
+                                                        <option value="{{$supervisor['id']}}">{{$supervisor['login']}} ({{$supervisor['level']}})</option>
+                                                    @endforeach
                                                 </select>
-                                                <i class="input_icon icon-level"></i>
+                                                <i class="input_icon icon-username"></i>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="table_label">Type <span class="required_mark">*</span></label>
+                                        <label class="table_label">Type</label>
                                         <div class="form_row">
-                                            <div class="select_wrapper">
-                                                <select class="block_btn_30 modal_input vd_select" name="type" id="type">
-                                                    <option value=""></option>
-                                                    <option value="admin">Admin</option>
-                                                    <option value="manager">Manager</option>
-                                                    <option value="employee">Employee</option>
-                                                </select>
-                                                <i class="input_icon icon-username"></i>
-                                            </div>
+                                            Manager &nbsp;  <input type="radio" name="type" value="manager"> <br>
+                                            Employee <input type="radio" name="type" value="employee"> <br>
+                                            {{--<i class="input_icon icon-username"></i>--}}
                                         </div>
                                     </div>
                                 </div>
@@ -97,24 +109,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <div class="col-md-6">
-                                        <label class="table_label {{ (Auth::user()->level != 'Super admin') ? 'hidden' : '' }}">Parent Username </label>
-                                        <div class="form_row {{ (Auth::user()->level != 'Super admin') ? 'hidden' : '' }}">
-                                            <div class="select_wrapper">
-                                                <select class="block_btn_30 modal_input" name="supervisor_id" id="supervisor_id">
-                                                    <option value="{{Auth::user()->id}}">{{Auth::user()->login}}</option>
-                                                    @foreach($users as $supervisor)
-                                                        <option value="{{$supervisor['id']}}">{{$supervisor['login']}} ({{$supervisor['level']}})</option>
-                                                    @endforeach
-                                                </select>
-                                                <i class="input_icon icon-username"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
                             </div>
 
                             <div class="col-md-6 vdf_modal_right">
@@ -175,19 +169,7 @@
                                         </div>
 
                                     </div>
-                                    <div class="col-md-6 hidden">
-                                        <label class="table_label">Level <span class="required_mark">*</span></label>
-                                        <div class="select_wrapper">
-                                            <select class="block_btn_30 modal_input level" name="level" data-th="Level">
-                                                <option value=""></option>
-                                                <option value="Dealer">Dealer</option>
-                                                <option value="Subdealer">SubDealer</option>
-                                                <option value="Distributor">Distributor</option>
-                                            </select>
-                                            <i class="input_icon icon-level"></i>
-                                        </div>
 
-                                    </div>
                                     <div class="col-md-6">
 
                                         <label class="table_label">Type <span class="required_mark">*</span></label>
