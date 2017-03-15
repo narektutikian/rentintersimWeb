@@ -225,6 +225,9 @@ class UserManager
     public function getNetworkFromCache($id)
     {
         $user = User::find($id);
+        if ($user->network == null)
+            return [Auth::user()->id];
+        else
         return json_decode($user->network);
     }
 
