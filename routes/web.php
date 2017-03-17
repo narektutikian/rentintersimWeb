@@ -50,6 +50,7 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
     Route::resource('number', 'PhoneController');
     Route::resource('sim', 'SIMController');
     Route::resource('type', 'PackageController');
+    Route::resource('price-list', 'PriceListController');
 //    Route::resource('report', 'ReportController');
 
     /*****Get new Number******/
@@ -140,6 +141,20 @@ Route::get('test-delays', function (){
 
 Route::get('/test-user-queue', function (){
     dispatch(new CacheUsersTree(new Rentintersimrepo\users\UserManager()));
+});
+
+Route::get('/test-deactivation', function (){
+    $orders = Order::get();
+    foreach ($orders as $order){
+//        $date = Carbon::createFromFormat('d/m/Y H:i', $order->departure)->addHours(3);
+////        if ($date->hour >= 2 && $date->hour <= 6){
+////            $date->setTime(1,0);
+////        }
+//        $order->to = $date->timestamp;
+//        $order->save();
+        echo "id: ".$order->id." | deactivation time: ". Carbon::createFromTimestamp($order->to)->format('d/m/Y H:i'). " |  user chois: ". $order->departure ." | Status: " . $order->status. "<br>";
+    }
+
 });
 
 

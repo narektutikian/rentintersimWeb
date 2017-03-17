@@ -5,7 +5,7 @@
     <div id="sim_management">
         <section class="filter_status">
             <div class="sim_management_wrapper">
-                <div class="filter_text">Filter by status:</div>
+                <div class="filter_text"></div>
                 <div class="filter_buttons">
                     <a class="filter_option filter_all light_blue blue" onclick="filterSims('')" >
                         <i class="icon-company_status"></i> All ({{$counts['All']}})
