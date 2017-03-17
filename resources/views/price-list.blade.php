@@ -7,8 +7,8 @@
             <li>Price Lists</li>
             <ul>
                 <li>Vodafone</li>
-                <li>Default</li>
-                <li>My Price List</li>
+                <li class="pl_li" data-id="1">Default</li>
+                <li class="pl_li" data-pl-id="{{$myPl->id}}">My Price List</li>
             </ul>
         </ul>
     </div>
@@ -23,7 +23,7 @@
         </Ul>
         <div>
 
-            <table class="rwd-table responsive_table table">
+            <table id="pl_taple" class="rwd-table responsive_table table">
                 <tbody>
                 <tr>
                     <th>Item</th>

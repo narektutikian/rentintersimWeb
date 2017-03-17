@@ -12,6 +12,7 @@ use App\User;
 use Auth;
 use App\Models\PlName;
 use Rentintersimrepo\users\UserManager;
+use DB;
 
 
 
@@ -46,17 +47,24 @@ class PriceListComposer
     {
 //        $net = new UserManager();
 //        $net = $net->getNetworkFromCache(Auth::user()->id);
-        $defaultCost = PlName::where('id', 1)->with('priceLists', 'priceLists.package')->first()->toArray();
-        $default = PlName::where('id', 2)->with('priceLists', 'priceLists.package')->first()->toArray();
-        $myPl = PlName::where('id', Auth::user()->pl_name_id)->with('priceLists')->get();
-        $createdPl = PlName::where('created_by', Auth::user()->id)->where('id', '!=', Auth::user()->pl_name_id)->with('priceLists')->get();
+        $list['priceLists'] = array();
+        $providers = DB::table('providers')->where('deleted_at', null)->get();
+        foreach ($providers as $key=>$provider){
+            $list['priceLists'][$key]['name'] = $provider->name;
+            $list['priceLists'][$key]['id'] = $provider->id;
+            $defaultID = PlName::where('provider_id', $provider->id)->first();
+            if ($defaultID != null)
+            $list['priceLists'][$key]['default'] = $defaultID->id;
+            $list['priceLists'][$key]['myPriceList'] = Auth::user()->pl_name_id;
+//TODO continue building this array
+        }
+        dd($list);
+
 
 //        var_dump($defaultCost);
 //        die();
-//        dd($defaultCost);
+//        dd($myPl);
 
-        $view->with('viewName', $view->getName())
-                ->with('default', $default)
-                ->with('defaultCost', $defaultCost);
+        $view->with('viewName', $view->getName());
     }
 }

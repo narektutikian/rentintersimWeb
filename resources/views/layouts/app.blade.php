@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name') }}</title>
     <title>SIM Rent</title>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/bootstrap-table.min.css">
@@ -22,7 +22,8 @@
     <script>
         window.Laravel = <?php echo json_encode([
                 'csrfToken' => csrf_token(),
-        ]); ?>
+        ]); ?>;
+        var USER = <?php echo Auth::user()->toJson();?>;
     </script>
 </head>
 <body>
@@ -56,10 +57,6 @@
     </div>
 </div>
 
-
-
-
-
 <script src="/js/jquery-2.2.4.min.js"></script>
 <script src="/js/jquery-validation/jquery.validate.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
@@ -77,7 +74,5 @@
 <script src="/js/requests.js?v=2"></script>
 <script src="/js/order-requests.js?v=2"></script>
 <script src="/js/tables.js?v=2"></script>
-
 </body>
 </html>
-

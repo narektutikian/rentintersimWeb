@@ -109,9 +109,7 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
 
 
 Route::get('/test', function (){
-        $n = new Rentintersimrepo\users\UserManager();
-    $n = $n->getNetworkFromCache(15);
-    return $n;
+   return Auth::user()->toJson();
 });
 
 Route::get('/test2', function (){

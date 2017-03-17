@@ -11,6 +11,13 @@
     <link rel="stylesheet" href="/js/owl-carousel/assets/owl.carousel.css">
     <link rel="stylesheet" href="/css/style.css?v=2">
 
+    <!-- Scripts -->
+    <script>
+        window.Laravel = <?php echo json_encode([
+                'csrfToken' => csrf_token(),
+        ]); ?>;
+        var USER = <?php echo Auth::user()->toJson(); ?>;
+    </script>
 </head>
 <body>
 <div class="loader">
@@ -107,5 +114,6 @@
 <script src="/js/requests.js?v=2"></script>
 <script src="/js/order-requests.js?v=2"></script>
 <script src="/js/tables.js?v=2"></script>
+<script src="/js/price-list.js"></script>
 </body>
 </html>

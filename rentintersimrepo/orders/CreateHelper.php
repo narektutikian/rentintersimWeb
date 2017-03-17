@@ -33,7 +33,7 @@ class CreateHelper
     public function setEndTime($datetime){
 //        $date = Carbon::createFromTimestamp($datetime)
         $date = Carbon::createFromFormat('d/m/Y H:i', $datetime);
-        return $date->subHours(3)->timestamp;
+        return $date->addHours(3)->timestamp;
     }
 
     public function getSim($sim){
