@@ -517,10 +517,10 @@ class OrderController extends Controller
             $q->withTrashed();
         }, 'creator'  => function ($q){
             $q->withTrashed();
+        }, 'editor'  => function ($q){
+            $q->withTrashed();
         }, 'package', 'sim.provider'])->take($q['limit'])->skip($q['offset'])->get();
 
         return  response()->json(['total' => $total, 'rows' => $orders]);
     }
-
-
 }
