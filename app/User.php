@@ -76,9 +76,10 @@ class User extends Authenticatable
     {
         return $query->where([['supervisor_id', $id], ['level', 'Subdealer']]);
     }
+
     public function priceList()
     {
-        return $this->belongsTo('App\Models\PlName', 'pl_name_id');
+        return $this->belongsToMany('App\Models\PlName');
     }
 
 

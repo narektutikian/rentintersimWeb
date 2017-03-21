@@ -45,26 +45,46 @@ class PriceListComposer
      */
     public function compose(View $view)
     {
+
+        $user = Auth::user();
+        if ($user->type != 'admin')
+            $user = User::find(Auth::user()->supervisor_id);
+
+
 //        $net = new UserManager();
 //        $net = $net->getNetworkFromCache(Auth::user()->id);
         $list['priceLists'] = array();
         $providers = DB::table('providers')->where('deleted_at', null)->get();
         foreach ($providers as $key=>$provider){
-            $list['priceLists'][$key]['name'] = $provider->name;
-            $list['priceLists'][$key]['id'] = $provider->id;
-            $defaultID = PlName::where('provider_id', $provider->id)->first();
+            $list['priceLists'][$key]['providerName'] = $provider->name;
+            $list['priceLists'][$key]['providerId'] = $provider->id;
+            $defaultID = PlName::where('provider_id', $provider->id)->where('name', 'Default')->first();
             if ($defaultID != null)
-            $list['priceLists'][$key]['default'] = $defaultID->id;
-            $list['priceLists'][$key]['myPriceList'] = Auth::user()->pl_name_id;
-//TODO continue building this array
+                $list['priceLists'][$key]['defaultId'] = $defaultID->id;
+            $myPl = $user->priceList()->where([['provider_id', $provider->id],['name', '!=', 'Default']])->first();
+            if ($myPl != null)
+                $list['priceLists'][$key]['myPriceListId'] = $myPl->id;
+            else
+                if ($defaultID != null){
+                 $list['priceLists'][$key]['myPriceListId'] = $defaultID->id;
+                    $myPl = $defaultID;
+                }
+            $iCreated = PlName::select('id','name')
+                ->where([['provider_id', $provider->id],
+                        ['created_by', $user->id],
+                        ['name', '!=', 'Default_cost']])
+                ->whereNotIn('id', [$defaultID->id, $myPl->id])->get()->toArray();
+            if ($iCreated != null)
+                $list['priceLists'][$key]['iCreated'] = $iCreated;
+            else
+                $list['priceLists'][$key]['iCreated'] = [];
         }
-        dd($list);
 
 
 //        var_dump($defaultCost);
 //        die();
 //        dd($myPl);
 
-        $view->with('viewName', $view->getName());
+        $view->with('viewName', $view->getName())->with('list', $list);
     }
 }

@@ -13,4 +13,16 @@ class PlName extends Model
     {
         return $this->hasMany('App\Models\PriceList');
     }
+    public function users ()
+    {
+        return $this->belongsToMany('App\User');
+    }
+    public function provider()
+    {
+        return $this->belongsTo('App\Models\Provider');
+    }
+    public function plCost()
+    {
+        return $this->belongsTo('App\Models\PlName', 'cost_pl_name_id');
+    }
 }

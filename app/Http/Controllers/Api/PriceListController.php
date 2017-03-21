@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\PlName;
 
 class PriceListController extends Controller
 {
@@ -49,6 +50,13 @@ class PriceListController extends Controller
     public function show($id)
     {
         //
+        $pl = PlName::with(['priceLists' => function ($q){
+            $q->orderBy('package_id', 'asc');
+        }, 'priceLists.package', 'provider', 'plCost', 'plCost.priceLists' => function ($q){
+            $q->orderBy('package_id', 'asc');
+        }])->find($id);
+        $pl->users;
+        return response($pl);
     }
 
     /**

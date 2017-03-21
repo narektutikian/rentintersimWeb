@@ -16,6 +16,7 @@ use App\Models\Order;
 use App\Models\Activation;
 use Carbon\Carbon;
 use App\Jobs\CacheUsersTree;
+use App\Models\PlName;
 
 
 Route::get('/', function () {
@@ -109,7 +110,8 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
 
 
 Route::get('/test', function (){
-   return Auth::user()->toJson();
+    $pl = PlName::find(7)->plCost;
+    dd($pl);
 });
 
 Route::get('/test2', function (){

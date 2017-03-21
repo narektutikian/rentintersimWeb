@@ -15,7 +15,6 @@ $(document).ready(function () {
 
             var departure = $('#departure_date').val() + " " + $("#time_element2").val();
             var landing = $('#landing_date').val() + " " + $("#time_element").val();
-
             if ($("#time_element2").val() != "00:00" && $("#time_element").val() != "00:00") {
 
 
