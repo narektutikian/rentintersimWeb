@@ -4,13 +4,13 @@
 
    <div class="row">
     <div class="col-sm-3">
-        <ul>
-            <li>Price Lists</li>
-            <ul>
+        <ul class="main_nested_list">
+            <li class="nested_list_title">Price Lists</li>
+            <ul class="nested_list">
                 @foreach ($list['priceLists'] as $key => $li)
-                    <li data-provider-id="{{$li['providerId']}}">{{$li['providerName']}}</li>
-                        <ul>
-                            <li class="pl_li" data-pl-id="{{$li['defaultId']}}">Default</li>
+                    <li class="nested_list_brand" data-provider-id="{{$li['providerId']}}"><i class="icon-dropdown"></i><span class="nested_list_brand_title"></span>{{$li['providerName']}}</li>
+                        <ul class="nested_list expandable">
+                            <li class="pl_li active" data-pl-id="{{$li['defaultId']}}">Default</li>
                             @if(array_key_exists('myPriceListId', $li))
                             <li class="pl_li" data-pl-id="{{$li['myPriceListId']}}">My Price List</li>
                             @endif
@@ -43,12 +43,27 @@
     <div class="col-sm-4">
         <p>Price List Users</p>
         <span>User Icon</span>
-        <table id="pl_users_table" class="table">
-            <tbody>
-                <th>User</th>
-                <th>Level</th>
-            </tbody>
-        </table>
+        <div class="lists_users_table">
+            <table id="pl_users_table" class="table">
+                <thead>
+                    <th>
+                        <td>User</td>
+                        <td>Level</td>
+                    </th>
+                </thead>
+                <tbody>
+                    <tr><td>Maxi</td><td>Dealer</td></tr>
+                    <tr><td>David</td><td>Dealer</td></tr>
+                    <tr><td>G2T</td><td>Dealer</td></tr>
+                    <tr><td>Ann</td><td>Subdealer</td></tr>
+                    <tr><td>Karen</td><td>Dealer</td></tr>
+                    <tr><td>Leon</td><td>Subdealer</td></tr>
+                    <tr><td>John</td><td>Dealer</td></tr>
+                    <tr><td>Sara</td><td>Subdealer</td></tr>
+                </tbody>
+            </table>
+        </div>
+
     </div>
    </div>
 

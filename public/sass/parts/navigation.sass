@@ -82,6 +82,47 @@
             background: $dark_blue
             color: $white
 
+
+.main_nested_list
+  border: 1px solid #ddd
+  .nested_list_title
+    background: $table_head
+    color: $dark_blue
+    padding-left: 15px
+    @include fonts_stack(15px)
+  li
+    height: 45px
+    line-height: 45px
+    border-bottom: 1px solid #ddd
+    color: $total_numbers_title
+  ul
+    li
+      padding-left: 30px
+    ul
+      border: 1px solid red
+      li
+        padding-left: 60px
+  .icon-dropdown
+    color: $dark_blue
+    font-size: 12px
+    display: inline-block
+    @include transform(-90deg)
+    &.expanded
+      @include transform(0deg)
+  .nested_list_brand
+    cursor: pointer
+  .nested_list_brand_title
+    display: inline-block
+    vertical-align: middle
+    margin-left: 7px
+  .nested_list.expandable
+    display: none
+    .active
+      color: $dark_blue
+      font-weight: bold
+
+
+
 @media (max-width: 992px)
   .layout_nav
     height: auto
