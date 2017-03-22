@@ -738,7 +738,7 @@ function filterLevel(level) {
     $.get("/user-by-level/" + level, function (data, status) {
         if (status == "success"){
             // console.log(data);
-            var options = "<option value=''>All</option>";
+            var options = "<option value=''>Select User</option>";
             // console.log(data);
             $.each(data, function (i, item) {
                 options += "<option value=" +item.id +">" + item.login + "</option>";

@@ -305,6 +305,7 @@ class UserController extends Controller
     }
 
     public function imitate(Request $request){
+        $this->validate(request(), ['login' => 'required']);
         if($request->input('login')==Auth::user()->id)
             return redirect('dashboard');
         $admin = Auth::user();

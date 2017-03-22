@@ -17,7 +17,7 @@
             {{ csrf_field() }}
             <h3>User imitation</h3>
             <div class="form-group form_row">
-                <select class="block_btn login_input styled_select username" name="login">
+                <select class="block_btn login_input  username" name="login">
                     <option value="{{Auth::user()->id}}" >{{Auth::user()->login}}</option>
                     @foreach($net as $user)
                         <option value="{{$user['id']}}" {{ (Auth::user()->id == $user['id']) ? 'selected' : '' }}>{{$user['login']}}</option>
@@ -25,12 +25,13 @@
                  </select>
                 <i class="input_icon icon-password"></i>
             </div>
+            {{--styled_select--}}
             <div class="form-group form_row">
-                <select class="block_btn login_input styled_select" onchange="filterLevel(this.value)">
+                <select class="block_btn login_input " onchange="filterLevel(this.value)">
                     <option value="All" style="background-color: red; border-bottom: 1px solid #ffff00;">All</option>
-                    {{--<option value="Distributor" style="background-color: red; border-bottom: 1px solid #ffff00;">Distributor</option>--}}
-                    {{--<option value="Dealer" style="background-color: red; border-bottom: 1px solid #ffff00;">Dealer</option>--}}
-                    {{--<option value="Subdealer" style="background-color: red; border-bottom: 1px solid #ffff00;">Subdealer</option>--}}
+                    <option value="Distributor" style="background-color: red; border-bottom: 1px solid #ffff00;">Distributor</option>
+                    <option value="Dealer" style="background-color: red; border-bottom: 1px solid #ffff00;">Dealer</option>
+                    <option value="Subdealer" style="background-color: red; border-bottom: 1px solid #ffff00;">Subdealer</option>
                 </select>
                 <i class="input_icon icon-level"></i>
             </div>

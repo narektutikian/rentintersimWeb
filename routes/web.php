@@ -20,9 +20,9 @@ use App\Models\PlName;
 
 
 Route::get('/', function () {
-    if (env('APP_ENV')=='local')
-    return view('errors.503');
-    else
+//    if (env('APP_ENV')=='local')
+//    return view('errors.503');
+//    else
         return redirect('/home');
 });
 
