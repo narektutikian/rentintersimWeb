@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\PlName;
+use Illuminate\Support\Facades\Auth;
+use DB;
 
 class PriceListController extends Controller
 {
@@ -39,6 +41,29 @@ class PriceListController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate(request(), ['name' => 'required', 'provider' => 'required']);
+
+        $costPl = Auth::user()->priceList()->where('provider_id', $request->input('provider'))->first();
+        if ($costPl == null)
+            return response('You must have \"My Price List\".', 403);
+
+        $PL = DB::transaction(function () use ($request, $costPl) {
+            $newPl = new PlName();
+            $newPl->name = $request->input('name');
+            $newPl->cost_pl_name_id = $costPl->id;
+            $newPl->created_by = Auth::user()->id;
+            $newPl->provider_id = $request->input('provider');
+            $newPl->cost = $costPl->cost;
+            $newPl->save();
+
+            foreach ($costPl->priceLists as $item){
+                $newPlItem = $item->replicate();
+                $newPlItem->pl_name_id = $newPl->id;
+                $newPlItem->save();
+            }
+            return $newPl;
+        });
+        return response($PL);
     }
 
     /**
@@ -87,6 +112,35 @@ class PriceListController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $pl = PlName::find($id);
+        if ($request->input('row')['item'] == 'SIM card'){
+            if ($request->input('field') == 'sell'){
+                $pl->cost =  $request->input('row')['sell'];
+                $pl->save();
+            }
+            else if ($request->input('field') == 'cost' && $pl->name == 'Default'
+                && Auth::user()->level == 'Super admin'){
+                $pl = $pl->plCost;
+                $pl->cost = $request->input('row')['cost'];
+                $pl->save();
+            }
+        }
+        elseif ($request->input('row')['item'] != 'SIM card'){
+            if ($request->input('field') == 'sell'){
+                $pl = $pl->priceLists()->where('package_id', $request->input('row')['id'])->first();
+                $pl->cost =  $request->input('row')['sell'];
+                $pl->save();
+            }
+            else if ($request->input('field') == 'cost' && $pl->name == 'Default'
+                && Auth::user()->level == 'Super admin'){
+                $pl = $pl->plCost()->priceLists()->where('package_id', $request->input('row')['id'])->first();;
+                $pl->cost = $request->input('row')['cost'];
+                $pl->save();
+            }
+        }
+//        $pl = $request->all();
+//        dd($pl);
+        return response('success', 200);
     }
 
     /**
@@ -100,11 +154,4 @@ class PriceListController extends Controller
         //
     }
 
-    public function editCellPrice (Request $request)
-    {
-        $pl = $request->all();
-        dd($pl);
-//        return response('success', 200);
-
-    }
 }

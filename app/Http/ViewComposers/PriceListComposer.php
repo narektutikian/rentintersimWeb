@@ -11,6 +11,7 @@ use Illuminate\View\View;
 use App\User;
 use Auth;
 use App\Models\PlName;
+use App\Models\Provider;
 use Rentintersimrepo\users\UserManager;
 use DB;
 
@@ -79,6 +80,8 @@ class PriceListComposer
 //        die();
 //        dd($myPl);
 
-        $view->with('viewName', $view->getName())->with('list', $list);
+        $providers = Provider::select('id', 'name')->get();
+
+        $view->with('viewName', $view->getName())->with('list', $list)->with('providers', $providers);
     }
 }

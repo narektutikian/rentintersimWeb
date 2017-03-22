@@ -28,10 +28,10 @@
             {{--styled_select--}}
             <div class="form-group form_row">
                 <select class="block_btn login_input " onchange="filterLevel(this.value)">
-                    <option value="All" style="background-color: red; border-bottom: 1px solid #ffff00;">All</option>
-                    <option value="Distributor" style="background-color: red; border-bottom: 1px solid #ffff00;">Distributor</option>
-                    <option value="Dealer" style="background-color: red; border-bottom: 1px solid #ffff00;">Dealer</option>
-                    <option value="Subdealer" style="background-color: red; border-bottom: 1px solid #ffff00;">Subdealer</option>
+                    <option value="All">All</option>
+                    <option value="Distributor">Distributor</option>
+                    <option value="Dealer">Dealer</option>
+                    <option value="Subdealer">Subdealer</option>
                 </select>
                 <i class="input_icon icon-level"></i>
             </div>

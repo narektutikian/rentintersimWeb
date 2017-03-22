@@ -106,14 +106,13 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
     Route::post('/cli-check', 'PhoneController@cliCheck');
 
     /***** Price Lists *****/
-    Route::post('edit/sell-price', 'PriceListController@editCellPrice');
 });
 
 
 
 
 Route::get('/test', function (){
-    $pl = PlName::find(7)->plCost;
+    $pl = Auth::user()->priceList()->where('provider_id', 1)->first();
     dd($pl);
 });
 

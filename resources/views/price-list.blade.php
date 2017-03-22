@@ -28,7 +28,7 @@
         <p id="pl_name"></p>
         <p>
             <span>Copy Icon,</span>
-            <span>Edit Icon,</span>
+            <span data-toggle="modal" data-target="#pl_new_modal">New Icon,</span>
             <span>Delete Icon</span>
         </p>
         <div>
@@ -52,6 +52,52 @@
     </div>
    </div>
 
+   <!-- New Price List Modal-->
+   <!-- Modal -->
+   <div class="modal fade" id="pl_new_modal" role="dialog">
+       <div class="modal-dialog">
 
+           <!-- Modal content-->
+           <div class="modal-content">
+               <div class="modal-header">
+                   <button type="button" class="close" data-dismiss="modal">&times;</button>
+                   <h4 class="modal-title">Modal Header</h4>
+               </div>
+               <div class="modal-body">
+                   <form class="vd_form" id="pl_new_form">
+                       <div class="form-group">
+                           <div class="col-md-12">
+                               <label for="pl_new_name">New Price List Name</label>
+                               <input type="text" name="name" class="form-control" id="pl_new_name">
+                               {{csrf_field()}}
+                           </div>
+                           <div class="form-group">
+                               <label for="pl_new_provider">Select Provider</label>
+                               <select class="form-control" name="provider" id="pl_new_provider">
+                                   <option>Select Provider</option>
+                                   @foreach($providers as $provider)
+                                   <option value="{{$provider->id}}">{{$provider->name}}</option>
+                                   @endforeach
+                               </select>
+                           </div>
+                       </div>
+               <div class="modal-footer">
+                       <a href="#" id="cancel_order" class="inline_block_btn light_gray_btn close vd_form_reset">Cancel</a>
+                       {{--<button type="submit" href="#" class="inline_block_btn light_green_btn vd_form_submit" id="create-order">Create order</button>--}}
+                       <a href="#" class="inline_block_btn light_green_btn vd_form_submit" id="pl_new_submit_button">Create Order</a>
+
+                       <span class="required_mark_description">* Required field</span>
+                       <span class="success_response"></span>
+                       <span class="error_response"></span>
+               </div>
+                   </form>
+
+               </div>
+           </div>
+
+       </div>
+   </div>
+       </div>
+   <!--end Print Modal-->
 
 @endsection

@@ -118,7 +118,7 @@ $(document).ready(function () {
                     else
                         $plName.text("Price List: " + pl_data.name);
                 }
-                if (USER.level == "Super admin") {
+                if (USER.level == "Super admin" && $PL =="Default") {
                     $plTable.push({
                         plId: pl_data.id,
                         id: pl_data.id,
@@ -197,8 +197,8 @@ $(document).ready(function () {
         $bsTable.on('editable-save.bs.table', function (e, field, row, old, $el) {
             var data = {row: row, old: old, field: field, _token: CSRF_TOKEN};
             $.ajax({
-                    type: 'POST',
-                    url: '/edit/sell-price',
+                    type: 'PUT',
+                    url: '/price-list/' + row.plId,
                     data: data,
                     success: function (msg) {},
                     error: function (error) {}
@@ -206,6 +206,35 @@ $(document).ready(function () {
             console.log(data);
 
             return 'edited';
+        });
+
+        $('#pl_new_submit_button').on('click', function (e){
+            if ($(this).closest(".vd_form").valid()) {
+                console.log("submit new PL");
+                $.ajax({
+                    url: '/price-list',
+                    type: 'POST',
+                    data: new FormData($("#pl_new_form")[0]),
+                    cache: false,
+                    dataType: 'json',
+                    processData: false, // Don't process the files
+                    contentType: false, // Set content type to false as jQuery will tell the server its a query string request
+                    success: function (msg) {
+                        $(".error_response").empty();
+                        $(".success_response").empty();
+                        $(".success_response").append("DONE");
+                        // location.reload();
+                    },
+                    error: function (error) {
+                        // console.log(error);
+                        $(".error_response").empty();
+                        $(".success_response").empty();
+                        $(".error_response").append("ERROR " + error.responseText);
+                        // $("#sim-edit-response").append("<div>"+"ERROR "+ error.responseJSON.number[0]+ " ," +error.responseJSON.provider_id[0] +"</div>");
+                        // console.log(error.responseJSON.number[0]);
+                    }
+                });
+            }
         });
     }
 });
