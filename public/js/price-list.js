@@ -118,7 +118,7 @@ $(document).ready(function () {
                     else
                         $plName.text("Price List: " + pl_data.name);
                 }
-                if (USER.level == "Super admin" && $PL =="Default") {
+                if (USER.level == "Super admin" && $PL == "Default") {
                     $plTable.push({
                         plId: pl_data.id,
                         id: pl_data.id,
@@ -144,7 +144,7 @@ $(document).ready(function () {
                         })
                     });
                 }
-                else {
+                else if (USER.level != "Super admin" && $PL == "Default"){
                     $plTable.push({
                         plId: pl_data.id,
                         id: pl_data.id,
@@ -166,6 +166,32 @@ $(document).ready(function () {
                             id: item.id,
                             item: item.name,
                             cost: sell,
+                            sell: sell
+                        })
+                    });
+                }
+                else {
+                    $plTable.push({
+                        plId: pl_data.id,
+                        id: pl_data.id,
+                        item: "SIM card",
+                        cost: pl_data.pl_cost.cost,
+                        sell: pl_data.cost
+                    });
+
+                    $.each(pl_data.provider.packages, function (key, item) {
+                        var thisCost = 0;
+                        if (typeof pl_data.pl_cost.price_lists[key] != "undefined")
+                            thisCost = pl_data.pl_cost.price_lists[key].cost;
+                        var sell = 0;
+                        if (typeof pl_data.price_lists[key] != "undefined")
+                            sell = pl_data.price_lists[key].cost;
+                        else sell = thisCost;
+                        $plTable.push({
+                            plId: pl_data.id,
+                            id: item.id,
+                            item: item.name,
+                            cost: thisCost,
                             sell: sell
                         })
                     });
@@ -201,7 +227,7 @@ $(document).ready(function () {
                     url: '/price-list/' + row.plId,
                     data: data,
                     success: function (msg) {},
-                    error: function (error) {}
+                    error: function (error) {location.reload();}
             });
             console.log(data);
 
@@ -223,7 +249,7 @@ $(document).ready(function () {
                         $(".error_response").empty();
                         $(".success_response").empty();
                         $(".success_response").append("DONE");
-                        // location.reload();
+                        location.reload();
                     },
                     error: function (error) {
                         // console.log(error);
@@ -236,6 +262,8 @@ $(document).ready(function () {
                 });
             }
         });
+
+
     }
 });
 

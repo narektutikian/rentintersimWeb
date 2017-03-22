@@ -42,7 +42,7 @@
 
     <div class="col-sm-4">
         <p>Price List Users</p>
-        <span>User Icon</span>
+        <span data-toggle="modal" data-target="#pl_add_users_modal">User Icon</span>
         <table id="pl_users_table" class="table">
             <tbody>
                 <th>User</th>
@@ -97,7 +97,45 @@
 
        </div>
    </div>
+
+   <!--end new Price List Modal-->
+
+   <!-- Modal -->
+   <div class="modal fade" id="pl_add_users_modal" role="dialog">
+       <div class="modal-dialog">
+
+           <!-- Modal content-->
+           <div class="modal-content">
+               <div class="modal-header">
+                   <button type="button" class="close" data-dismiss="modal">&times;</button>
+                   <h4 class="modal-title">Add Users</h4>
+               </div>
+               <div class="modal-body">
+                   <form class="vd_form" id="pl_new_form">
+                       <div class="form-group">
+                           <div class="col-md-12">
+                               <label for="pl_add_user">New Price List Name</label>
+                               <input type="text" name="name" class="form-control" id="pl_add_user">
+                               {{csrf_field()}}
+                           </div>
+
+                       </div>
+                       <div class="modal-footer">
+                           <a href="#" id="cancel_order" class="inline_block_btn light_gray_btn close vd_form_reset">Cancel</a>
+                           <a href="#" class="inline_block_btn light_green_btn vd_form_submit" id="pl_new_submit_button">Save</a>
+
+                           <span class="required_mark_description">* Required field</span>
+                           <span class="success_response"></span>
+                           <span class="error_response"></span>
+                       </div>
+                   </form>
+
+               </div>
+           </div>
+
        </div>
+   </div>
+
    <!--end Print Modal-->
 
 @endsection

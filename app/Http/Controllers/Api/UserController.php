@@ -114,7 +114,7 @@ class UserController extends Controller
 //            'time_zone' => $request->input('name
               'email2' => $request->input('email2'),
 //            'phone' => $request->input('name
-            'language_id' => 1,
+//            'language_id' => 1,
 //            'sim_balance' => $request->input('name'),
 //            'phone_balance' => $request->input('name'),
           'supervisor_id' => $user->id,
@@ -239,8 +239,8 @@ class UserController extends Controller
             $this->validate(request(), ['email2' => 'unique:users,email2']);
             $user->email2 = $request->input('email2');
         }
-            $user->language_id = 1;
-            $user->is_active = 1;
+//            $user->language_id = 1;
+//            $user->is_active = 1;
 //            'phone' => $request->input('name
 //            'sim_balance' => $request->input('name'),
 //            'phone_balance' => $request->input('name'),

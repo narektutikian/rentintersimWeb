@@ -86,8 +86,8 @@
                                     <div class="col-md-6">
                                         <label class="table_label">Type</label>
                                         <div class="form_row">
-                                            Manager &nbsp;  <input type="radio" name="type" value="manager"> <br>
-                                            Employee <input type="radio" name="type" value="employee"> <br>
+                                             <input type="radio" name="type" value="manager"> Manager<br>
+                                             <input type="radio" name="type" value="employee"> Employee<br>
                                             {{--<i class="input_icon icon-username"></i>--}}
                                         </div>
                                     </div>
@@ -174,7 +174,7 @@
 
                                         <label class="table_label">Type <span class="required_mark">*</span></label>
                                         <div class="select_wrapper">
-                                            <select class="block_btn_30 modal_input type" name="type" data-th="Type">
+                                            <select class="block_btn_30 modal_input type {{ (Auth::user()->level != 'Super admin') ? 'disable' : '' }}" name="type" data-th="Type" {{ (Auth::user()->level != 'Super admin') ? 'disabled' : '' }}>
                                                 {{--<option value=""></option>--}}
                                                 {{--<option value="admin">Admin</option>--}}
                                                 {{--<option value="manager">Manager</option>--}}
@@ -225,7 +225,7 @@
                                     <div class="col-md-6">
                                         <label class="table_label">Username <span class="required_mark">*</span></label>
                                         <div class="relative">
-                                            <input type="text" class="block_btn_30 modal_input login" data-th="Username" value=""/>
+                                            <input type="text" class="block_btn_30 modal_input login {{ (Auth::user()->level != 'Super admin') ? 'disable' : '' }}" data-th="Username" value="" />
                                             <i class="input_icon icon-username"></i>
                                         </div>
                                     </div>
