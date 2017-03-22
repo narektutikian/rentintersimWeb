@@ -374,7 +374,7 @@ $(document).ready(function () {
             var string = '';
             var desabled_class = '';
             if (json[0]["level"] != "Super admin")
-                desabled_class  = 'disable';
+                desabled_class  = 'invisible';
 
             function recursiveIteration(json) {
 
