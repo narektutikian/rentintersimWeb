@@ -64,22 +64,16 @@ class PriceListComposer
             $myPl = $user->priceList()->where([['provider_id', $provider->id],['name', '!=', 'Default']])->first();
             if ($myPl != null)
                 $list['priceLists'][$key]['myPriceListId'] = $myPl->id;
-            else
-                if ($defaultID != null){
-                 $list['priceLists'][$key]['myPriceListId'] = $defaultID->id;
-                    $myPl = $defaultID;
-                }
             $iCreated = PlName::select('id','name')
                 ->where([['provider_id', $provider->id],
                         ['created_by', $user->id],
-                        ['name', '!=', 'Default_cost']])
-                ->whereNotIn('id', [$defaultID->id, $myPl->id])->get()->toArray();
+                        ['name', '!=', 'Default_cost']])->get()->toArray();
             if ($iCreated != null)
                 $list['priceLists'][$key]['iCreated'] = $iCreated;
             else
                 $list['priceLists'][$key]['iCreated'] = [];
         }
-
+//            dd($list);
 
 //        var_dump($defaultCost);
 //        die();

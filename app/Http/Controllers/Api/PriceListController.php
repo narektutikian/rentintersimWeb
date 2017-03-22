@@ -52,7 +52,9 @@ class PriceListController extends Controller
         //
         $pl = PlName::with(['priceLists' => function ($q){
             $q->orderBy('package_id', 'asc');
-        }, 'priceLists.package', 'provider', 'plCost', 'plCost.priceLists' => function ($q){
+        }, 'priceLists', 'provider.packages' => function ($q){
+        $q->orderBy('id', 'asc');
+    }, 'plCost', 'plCost.priceLists' => function ($q){
             $q->orderBy('package_id', 'asc');
         }])->find($id);
         $pl->users;
@@ -68,6 +70,11 @@ class PriceListController extends Controller
     public function edit($id)
     {
         //
+         $arr = array(['id' => 1, 'item' => 'SIM', 'cost'=> '11', 'sell'=> '11'],
+                            ['id' => 2, 'item' => 'SIM','cost'=> '11','sell'=> '11'],
+                            );
+        if ($id == 2)
+            return response($arr);
     }
 
     /**
@@ -91,5 +98,13 @@ class PriceListController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function editCellPrice (Request $request)
+    {
+        $pl = $request->all();
+        dd($pl);
+//        return response('success', 200);
+
     }
 }

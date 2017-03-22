@@ -104,6 +104,9 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
     /****** CLI Check ******/
     Route::get('/cli', 'PhoneController@cli');
     Route::post('/cli-check', 'PhoneController@cliCheck');
+
+    /***** Price Lists *****/
+    Route::post('edit/sell-price', 'PriceListController@editCellPrice');
 });
 
 

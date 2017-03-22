@@ -1,9 +1,9 @@
 /**
  * Created by narek on 12/2/16.
  */
-
+var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 $(document).ready(function () {
-    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
 
     //$('.close').click(function () {
         //location.reload();

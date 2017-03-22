@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="/js/perfect-scrollbar/css/perfect-scrollbar.css">
     <link rel="stylesheet" href="/css/bootstrap-datepicker3.css">
     <link rel="stylesheet" href="/js/owl-carousel/assets/owl.carousel.css">
+    <link rel="stylesheet" href="/js/bootstrap3-editable/css/bootstrap-editable.css">
+    {{--<link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap-editable/css/bootstrap-editable.css" rel="stylesheet"/>--}}
     <link rel="stylesheet" href="/css/style.css?v=2">
 
     <!-- Scripts -->
@@ -34,7 +36,7 @@
                     <li class="{{ ($viewName == 'dashboard') ? 'active' : '' }}"><a href="{{url('/dashboard')}}" title="DashboardUser Management">Dashboard</a></li>
                     @endif
                     <li class="{{ ($viewName == 'user') ? 'active' : '' }}"><a href="{{url('/user')}}" title="User Management">User Management</a></li>
-                    <li class="{{ ($viewName == 'price-list') ? 'active' : '' }}"><a href="{{url('/price-list')}}" title="Price Lists">Price Lists</a></li>
+                    {{--<li class="{{ ($viewName == 'price-list') ? 'active' : '' }}"><a href="{{url('/price-list')}}" title="Price Lists">Price Lists</a></li>--}}
                         @if(Auth::user()->level == 'Super admin')
                     <li class="{{ ($viewName == 'number') ? 'active' : '' }}"><a href="{{url('/number')}}" title="Number Management">Number Management</a></li>
                     <li class="{{ ($viewName == 'sim') ? 'active' : '' }}"><a href="{{url('/sim')}}" title="SIM Management">SIM Management</a></li>
@@ -104,6 +106,9 @@
 <script src="/js/pie-chart/pie-chart.js"></script>
 <script src="/js/bootstrap-table.min.js"></script>
 <script src="/js/bootstrap-table-en-US.min.js"></script>
+<script src="/js/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
+<script src="/js/bootstrap-table-editable.js"></script>
+{{--<script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap-editable/js/bootstrap-editable.min.js"></script>--}}
 <script src="/js/perfect-scrollbar/js/perfect-scrollbar.min.js"></script>
 <script src="/js/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js"></script>
 <script src="/js/moment.min.js"></script>

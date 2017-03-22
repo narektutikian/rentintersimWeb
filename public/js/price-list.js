@@ -4,7 +4,7 @@
 $(document).ready(function () {
     if (window.location.pathname == "/price-list") {
        var $PL = "";
-       var $plItemColumns = [{
+       var plItemColumns = [{
                title: "Item",
                field: "item"
            },{
@@ -12,21 +12,94 @@ $(document).ready(function () {
                 field: "cost"
             },{
                title: "Sell price",
-               field: "sell"
+               field: "sell",
+           editable: {
+               type: 'text',
+               title: 'Item Price',
+               validate: function (value) {
+                   value = $.trim(value);
+                   if (!value) {
+                       return 'This field is required';
+                   }
+                   if (!$.isNumeric(value)){
+                       return 'Please enter valid number';
+                   }
+                   return '';
+               }
            }
-
-       ];
+           }];
+        var plItemColumnsSuper = [{
+            title: "Item",
+            field: "item"
+        },{
+            title: "Cost",
+            field: "cost",
+            editable: {
+                type: 'text',
+                title: 'Item Price',
+                validate: function (value) {
+                    value = $.trim(value);
+                    if (!value) {
+                        return 'This field is required';
+                    }
+                    if (!$.isNumeric(value)){
+                        return 'Please enter valid number';
+                    }
+                    return '';
+                }
+            }
+        },{
+            title: "Sell price",
+            field: "sell",
+            editable: {
+                type: 'text',
+                title: 'Item Price',
+                validate: function (value) {
+                    value = $.trim(value);
+                    if (!value) {
+                        return 'This field is required';
+                    }
+                    if (!$.isNumeric(value)){
+                        return 'Please enter valid number';
+                    }
+                    return '';
+                }
+            }
+        }];
+        var plItemColumnsDefault = [{
+            title: "Item",
+            field: "item"
+        },{
+            title: "Cost",
+            field: "cost"
+        },{
+            title: "Sell price",
+            field: "sell"
+        }];
+        var $plUsersColumns = [{
+            title: "User",
+            field: "login"
+        },{
+            title: "Level",
+            field: "level"
+        }];
         var $bsTable = $('#pl_item_table');
+        var $bsUsersTable = $('#pl_users_table');
         var $plTable = [];
-        $bsTable.bootstrapTable({
-            data:$plTable,
-            columns:$plItemColumns
+        var $plUsers = [];
+        $bsUsersTable.bootstrapTable({
+            data:$plUsers,
+            columns:$plUsersColumns
         });
+
         $bsTable.bootstrapTable({
-            data:$plTable,
-            columns:$plItemColumns
-        });
+            uniqueId: 'id',
+            idField: 'id'
+            });
+
         console.log("price_list");
+
+
 /****** Open Price List ******/
         $('.pl_li').on('click', function (e) {
             $plId = $(this).attr('data-pl-id');
@@ -45,20 +118,70 @@ $(document).ready(function () {
                     else
                         $plName.text("Price List: " + pl_data.name);
                 }
-                $plTable.push({
-                    item: "SIM card",
-                    cost: pl_data.pl_cost.cost,
-                    sell: pl_data.cost
-                });
-
-                $.each(pl_data.price_lists, function (key, item) {
+                if (USER.level == "Super admin") {
                     $plTable.push({
-                        item: item.package.name,
-                        cost: pl_data.pl_cost.price_lists[key].cost,
-                        sell:item.cost
-                    })
-                });
+                        plId: pl_data.id,
+                        id: pl_data.id,
+                        item: "SIM card",
+                        cost: pl_data.pl_cost.cost,
+                        sell: pl_data.cost
+                    });
+
+                    $.each(pl_data.provider.packages, function (key, item) {
+                        var thisCost = 0;
+                        if (typeof pl_data.pl_cost.price_lists[key] != "undefined")
+                            thisCost = pl_data.pl_cost.price_lists[key].cost;
+                        var sell = 0;
+                        if (typeof pl_data.price_lists[key] != "undefined")
+                            sell = pl_data.price_lists[key].cost;
+                        else sell = thisCost;
+                        $plTable.push({
+                            plId: pl_data.id,
+                            id: item.id,
+                            item: item.name,
+                            cost: thisCost,
+                            sell: sell
+                        })
+                    });
+                }
+                else {
+                    $plTable.push({
+                        plId: pl_data.id,
+                        id: pl_data.id,
+                        item: "SIM card",
+                        cost: pl_data.cost,
+                        sell: pl_data.cost
+                    });
+
+                    $.each(pl_data.provider.packages, function (key, item) {
+                        var thisCost = 0;
+                        if (typeof pl_data.pl_cost.price_lists[key] != "undefined")
+                            thisCost = pl_data.pl_cost.price_lists[key].cost;
+                        var sell = 0;
+                        if (typeof pl_data.price_lists[key] != "undefined")
+                            sell = pl_data.price_lists[key].cost;
+                        else sell = thisCost;
+                        $plTable.push({
+                            plId: pl_data.id,
+                            id: item.id,
+                            item: item.name,
+                            cost: sell,
+                            sell: sell
+                        })
+                    });
+                }
                 console.log($plTable);
+
+                        $bsTable.bootstrapTable('refreshOptions', {columns: plItemColumns});
+                if ($PL == "Default"){
+                    if (USER.level == "Super admin"){
+                        $bsTable.bootstrapTable('refreshOptions', {columns: plItemColumnsSuper});
+                    }
+                    else
+                        $bsTable.bootstrapTable('refreshOptions', {columns: plItemColumnsDefault});
+                }
+
+                refreshUsersTable(pl_data.users);
                 refreshItemsTable($plTable);
             });
 
@@ -67,6 +190,23 @@ $(document).ready(function () {
         function refreshItemsTable(data) {
             $bsTable.bootstrapTable('load', data);
         }
+        function refreshUsersTable(data) {
+            $bsUsersTable.bootstrapTable('load', data);
+        }
+
+        $bsTable.on('editable-save.bs.table', function (e, field, row, old, $el) {
+            var data = {row: row, old: old, field: field, _token: CSRF_TOKEN};
+            $.ajax({
+                    type: 'POST',
+                    url: '/edit/sell-price',
+                    data: data,
+                    success: function (msg) {},
+                    error: function (error) {}
+            });
+            console.log(data);
+
+            return 'edited';
+        });
     }
 });
 

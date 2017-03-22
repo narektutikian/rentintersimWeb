@@ -16,4 +16,9 @@ class Provider extends Model
      * @var array
      */
     protected $dates = ['deleted_at'];
+
+    public function packages()
+    {
+        return $this->hasMany('App\Models\Package');
+    }
 }
