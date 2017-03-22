@@ -55,7 +55,7 @@
 <script src="{{asset('js/moment.min.js')}}"></script>
 <script src="{{asset('js/bootstrap-datetimepicker.js')}}"></script>
 <script src="{{asset('js/scripts.js')}}"></script>
-<script src="{{asset('js/requests.js')}}"></script>
+<script src="{{asset('js/requests.js?v=2')}}"></script>
 </body>
 </html>
 
