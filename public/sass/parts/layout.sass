@@ -123,11 +123,47 @@
       font-size: 0
     .price_list_wrapper
       padding: 15px
+      margin-bottom: 30px
       overflow: hidden
       .search_input
         display: inline-block
     .search_button.low
-      top: 2px  
+      top: 2px
+
+    .price_list_table_caption
+      overflow: hidden
+      margin-bottom: 15px
+      &.right
+        margin-right: 20px
+    .price_list_caption_text
+      display: inline-block
+      vertical-align: middle
+      margin-top: 10px
+      color: $dark_blue
+      @include fonts_stack(14px)
+    .price_list_item_text
+      display: inline-block
+      vertical-align: middle
+      margin-top: 10px
+      color: $total_numbers_title
+      @include fonts_stack(14px)
+    .align_icon
+      margin-top: 8px
+      cursor: pointer
+
+    .wrap_icon
+      display: inline-block
+      vertical-align: middle
+      margin-left: 6px
+      padding: 5px
+      font-size: 16px
+      cursor: pointer
+      color: $total_numbers_title
+      border: 1px solid $total_numbers_title
+      @include border_radius(3px)
+      &:hover
+        color: $dark_blue
+        border: 1px solid $dark_blue
 
 @media (max-width: 1200px)
 
@@ -160,6 +196,14 @@
           display: block
           width: 100%
 
+    #price_list
+      .price_list_table_caption
+        margin-top: 20px
+        padding: 0 15px 0 10px
+      .pull-right.search
+        float: none !important
+
+
 @media (max-width: 768px)
   .layout
     #user_management
@@ -186,3 +230,16 @@
               margin: 0 auto 15px
             .phone_chart_status
               margin-top: 15px
+
+    #price_list
+      .price_list_table_caption
+        .pull-right
+          display: block
+          float: none !important
+          text-align: center
+      .price_list_caption_text
+        display: block
+        margin-bottom: 10px
+        text-align: center  
+      .wrap_icon
+        padding: 10px

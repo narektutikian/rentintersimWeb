@@ -923,6 +923,8 @@ input[type="radio"].toggle.checked + label {
   .lists_users_table .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {
     background-color: #1b6db2;
     margin: 5px auto; }
+  .lists_users_table .mCSB_inside > .mCSB_container {
+    margin-right: 18px; }
 
 .lists_price_lists_table table thead th {
   text-align: left;
@@ -1469,11 +1471,11 @@ input[type="radio"].toggle.checked + label {
         color: #ffffff; }
       .single_package a.selected_package span {
         color: #ffffff; }
-  .single_package#wrap_package_list_view {
+  .single_package#wrap_package_list_edit, .single_package#wrap_package_list_view {
     float: none; }
-    .single_package#wrap_package_list_view .selected_package {
+    .single_package#wrap_package_list_edit .selected_package, .single_package#wrap_package_list_view .selected_package {
       padding: 0 10px; }
-      .single_package#wrap_package_list_view .selected_package h4 {
+      .single_package#wrap_package_list_edit .selected_package h4, .single_package#wrap_package_list_view .selected_package h4 {
         margin-top: 10px;
         margin-bottom: 12px; }
 
@@ -1511,6 +1513,36 @@ input[type="radio"].toggle.checked + label {
   font-weight: normal;
   font-style: normal;
   font-family: "proxima_nova_rgregular", Arial, Helvetica, sans-serif; }
+
+label.checkbox_wrapper {
+  color: #69717e;
+  padding: 5px 2px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: normal;
+  font-style: normal;
+  font-family: "proxima_nova_rgregular", Arial, Helvetica, sans-serif; }
+
+label.checkbox_wrapper input[type=checkbox] {
+  display: none; }
+
+label.checkbox_wrapper .checkbox_replace {
+  height: 15px;
+  width: 15px;
+  border: 1px solid #8d97a6;
+  display: inline-block;
+  vertical-align: middle;
+  position: relative; }
+
+label.checkbox_wrapper [type=checkbox]:checked + span:before {
+  content: "✓";
+  font-weight: bold;
+  font-style: normal;
+  position: absolute;
+  top: -1px;
+  left: 0;
+  color: #1b6db2;
+  font-size: 16px; }
 
 @media (max-width: 1200px) {
   .filter_text {
@@ -2028,6 +2060,35 @@ input[type="radio"].toggle.checked + label {
   #new_actions span {
     margin-top: 5px; }
 
+#modal_copy_price_list .vdf_modal {
+  width: 472px; }
+  #modal_copy_price_list .vdf_modal .vdf_modal_content {
+    width: auto; }
+  #modal_copy_price_list .vdf_modal .vdf_modal_body {
+    padding: 45px 25px 40px 25px; }
+  #modal_copy_price_list .vdf_modal .modal-footer {
+    text-align: center; }
+
+#modal_price_list_user .vdf_modal {
+  width: 530px; }
+  #modal_price_list_user .vdf_modal .vdf_modal_content {
+    width: auto; }
+  #modal_price_list_user .vdf_modal .vdf_modal_body {
+    padding: 36px 60px 36px 60px; }
+  #modal_price_list_user .vdf_modal .modal-footer {
+    text-align: center; }
+#modal_price_list_user .lists_users_table {
+  height: 309px; }
+
+#pl_new_modal .vdf_modal {
+  width: 530px; }
+  #pl_new_modal .vdf_modal .vdf_modal_content {
+    width: auto; }
+  #pl_new_modal .vdf_modal .vdf_modal_body {
+    padding: 36px 60px 36px 60px; }
+  #pl_new_modal .vdf_modal .modal-footer {
+    text-align: center; }
+
 @media print {
   .no-print, .no-print * {
     display: none !important; } }
@@ -2123,7 +2184,16 @@ input[type="radio"].toggle.checked + label {
     .vdf_modal .vdf_modal_content {
       width: 100%; }
     .vdf_modal .file_container {
-      width: 40%; } }
+      width: 40%; }
+
+  #modal_price_list_user .vdf_modal,
+  #modal_copy_price_list .vdf_modal,
+  #pl_new_modal .vdf_modal {
+    width: 92%; }
+  #modal_price_list_user .vdf_modal_content,
+  #modal_copy_price_list .vdf_modal_content,
+  #pl_new_modal .vdf_modal_content {
+    width: 100%; } }
 @media (max-width: 480px) {
   .time_pick {
     width: 100px; }
@@ -2858,11 +2928,54 @@ header {
     font-size: 0; }
   .layout #price_list .price_list_wrapper {
     padding: 15px;
+    margin-bottom: 30px;
     overflow: hidden; }
     .layout #price_list .price_list_wrapper .search_input {
       display: inline-block; }
   .layout #price_list .search_button.low {
     top: 2px; }
+  .layout #price_list .price_list_table_caption {
+    overflow: hidden;
+    margin-bottom: 15px; }
+    .layout #price_list .price_list_table_caption.right {
+      margin-right: 20px; }
+  .layout #price_list .price_list_caption_text {
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: 10px;
+    color: #1b6db2;
+    font-size: 14px;
+    font-weight: normal;
+    font-style: normal;
+    font-family: "proxima_nova_rgregular", Arial, Helvetica, sans-serif; }
+  .layout #price_list .price_list_item_text {
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: 10px;
+    color: #69717e;
+    font-size: 14px;
+    font-weight: normal;
+    font-style: normal;
+    font-family: "proxima_nova_rgregular", Arial, Helvetica, sans-serif; }
+  .layout #price_list .align_icon {
+    margin-top: 8px;
+    cursor: pointer; }
+  .layout #price_list .wrap_icon {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 6px;
+    padding: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    color: #69717e;
+    border: 1px solid #69717e;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    border-radius: 3px; }
+    .layout #price_list .wrap_icon:hover {
+      color: #1b6db2;
+      border: 1px solid #1b6db2; }
 
 @media (max-width: 1200px) {
   .layout #number_management .filter_status .filter_status_wrapper .filter_buttons {
@@ -2881,7 +2994,12 @@ header {
       margin-left: 0;
       margin-top: 15px;
       display: block;
-      width: 100%; } }
+      width: 100%; }
+  .layout #price_list .price_list_table_caption {
+    margin-top: 20px;
+    padding: 0 15px 0 10px; }
+  .layout #price_list .pull-right.search {
+    float: none !important; } }
 @media (max-width: 768px) {
   .layout #number_management .filter_status .filter_status_wrapper .filter_buttons {
     font-size: 0;
@@ -2896,6 +3014,16 @@ header {
       .layout #dashboard .dashboard_charts .total_numbers .phone_charts.middle {
         margin: 0 auto 15px; }
       .layout #dashboard .dashboard_charts .total_numbers .phone_charts .phone_chart_status {
-        margin-top: 15px; } }
+        margin-top: 15px; }
+  .layout #price_list .price_list_table_caption .pull-right {
+    display: block;
+    float: none !important;
+    text-align: center; }
+  .layout #price_list .price_list_caption_text {
+    display: block;
+    margin-bottom: 10px;
+    text-align: center; }
+  .layout #price_list .wrap_icon {
+    padding: 10px; } }
 
 /*# sourceMappingURL=style.css.map */
