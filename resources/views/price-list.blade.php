@@ -6,9 +6,18 @@
     <div class="row">
         <div class="col-md-12">
             <div class="filter_buttons">
-                <div class="search_management_option">
-                    <a href="#" class="add_new_btn" data-toggle="modal" data-target="#pl_new_modal"><i class="icon-new_order"></i>New Pricelist</a>
+                <div class="price_list_wrapper">
+                    <div class="search_management_option">
+                        <div class="search_form_option">
+                            <div class="pull-right search">
+                                <input type="text" class="block_btn_30 search_input" name="query" placeholder="Search" value="{{ (isset($_GET['query'])) ? $_GET['query'] : '' }}">
+                            </div>
+                            <button type="button" class="search_button low"><i class="icon-search"></i></button>
+                        </div>
+                        <a href="#" class="add_new_btn" data-toggle="modal" data-target="#pl_new_modal"><i class="icon-new_order"></i>New Pricelist</a>
+                    </div>
                 </div>
+
             </div>
         </div>
     </div>
@@ -21,7 +30,7 @@
                 @foreach ($list['priceLists'] as $key => $li)
                     <li class="nested_list_brand" data-provider-id="{{$li['providerId']}}"><i class="icon-dropdown"></i><span class="nested_list_brand_title"></span>{{$li['providerName']}}</li>
                         <ul class="nested_list expandable">
-                            <li class="pl_li active" data-pl-id="{{$li['defaultId']}}">Default</li>
+                            <li class="pl_li" data-pl-id="{{$li['defaultId']}}">Default</li>
                             @if(array_key_exists('myPriceListId', $li))
                             <li class="pl_li" data-pl-id="{{$li['myPriceListId']}}">My Price List</li>
                             @endif
@@ -34,7 +43,7 @@
         </ul>
     </div>
 
-    <div class="col-sm-4">
+    <div class="col-sm-5">
         <p id="pl_provider_name"></p>
         <p id="pl_name"></p>
         <p>
@@ -43,7 +52,6 @@
             <span>Delete Icon</span>
         </p>
         <div class="lists_price_lists_table">
-
             <table id="pl_item_table" class="table">
                 <thead>
                     <th>Item</th>
@@ -58,9 +66,7 @@
                     </tr>
                 </tbody>
             </table>
-
         </div>
-
     </div>
 
     <div class="col-sm-4">

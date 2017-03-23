@@ -760,11 +760,4 @@ function actionFormatter(value, row, index) {
 }
 */
 
-$(document).on('click', '.nested_list_brand', function () {
-
-    $(this).next('.nested_list.expandable').slideToggle();
-    $(this).find('.icon-dropdown').toggleClass('expanded');
-});
-
-$('.lists_users_table').mCustomScrollbar({ axis: "y"});
 

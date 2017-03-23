@@ -2672,6 +2672,9 @@ header {
     line-height: 45px;
     border-bottom: 1px solid #ddd;
     color: #69717e; }
+    .main_nested_list li:hover {
+      background-color: #f5f5f5;
+      cursor: pointer; }
   .main_nested_list ul li {
     padding-left: 30px; }
   .main_nested_list ul ul {
@@ -2849,6 +2852,17 @@ header {
       margin-left: 25px; }
   .layout #orders_list .search_button.low {
     top: 1px; }
+.layout #price_list {
+  background: #ffffff; }
+  .layout #price_list .filter_buttons {
+    font-size: 0; }
+  .layout #price_list .price_list_wrapper {
+    padding: 15px;
+    overflow: hidden; }
+    .layout #price_list .price_list_wrapper .search_input {
+      display: inline-block; }
+  .layout #price_list .search_button.low {
+    top: 2px; }
 
 @media (max-width: 1200px) {
   .layout #number_management .filter_status .filter_status_wrapper .filter_buttons {
