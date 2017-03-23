@@ -3,136 +3,136 @@
 @section('dashboard')
     <div id="price_list">
 
-    <div class="row">
-        <div class="col-md-12">
-            <section class="filter_status">
-                <div class="filter_buttons">
-                    <div class="price_list_wrapper">
-                        <div class="search_management_option">
-                            <div class="search_form_option">
-                                <div class="pull-right search">
-                                    <input type="text" class="block_btn_30 search_input" name="query" placeholder="Search" value="{{ (isset($_GET['query'])) ? $_GET['query'] : '' }}">
+        <div class="row">
+            <div class="col-md-12">
+                <section class="filter_status">
+                    <div class="filter_buttons">
+                        <div class="price_list_wrapper">
+                            <div class="search_management_option">
+                                <div class="search_form_option">
+                                    <div class="pull-right search">
+                                        <input type="text" class="block_btn_30 search_input" name="query" placeholder="Search" value="{{ (isset($_GET['query'])) ? $_GET['query'] : '' }}">
+                                    </div>
+                                    <button type="button" class="search_button low"><i class="icon-search"></i></button>
                                 </div>
-                                <button type="button" class="search_button low"><i class="icon-search"></i></button>
+                                <a href="#" class="add_new_btn" data-toggle="modal" data-target="#pl_new_modal"><i class="icon-new_order"></i>New Pricelist</a>
                             </div>
-                            <a href="#" class="add_new_btn" data-toggle="modal" data-target="#pl_new_modal"><i class="icon-new_order"></i>New Pricelist</a>
                         </div>
                     </div>
+                </section>
+
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-sm-12 col-md-3">
+                <ul class="main_nested_list">
+                    <li class="nested_list_title">Price Lists</li>
+                    <ul class="nested_list">
+                        @foreach ($list['priceLists'] as $key => $li)
+                            <li class="nested_list_brand" data-provider-id="{{$li['providerId']}}"><i class="icon-dropdown"></i><span class="nested_list_brand_title"></span>{{$li['providerName']}}</li>
+                                <ul class="nested_list expandable">
+                                    <li class="pl_li" data-pl-id="{{$li['defaultId']}}">Default</li>
+                                    @if(array_key_exists('myPriceListId', $li))
+                                    <li class="pl_li" data-pl-id="{{$li['myPriceListId']}}">My Price List</li>
+                                    @endif
+                                    @foreach($li['iCreated'] as $pl)
+                                    <li class="pl_li" data-pl-id="{{$pl['id']}}">{{$pl['name']}}</li>
+                                    @endforeach
+                                </ul>
+                        @endforeach
+                    </ul>
+                </ul>
+            </div>
+
+            <div class="col-sm-12 col-md-5">
+                <p id="pl_provider_name"></p>
+                <p id="pl_name"></p>
+                <div class="price_list_table_caption">
+                    <span class="price_list_caption_text" data-toggle="modal" data-target="#pl_new_modal">Provider: Vodafone / Pricelist: Default </span>
+                    <div class="pull-right">
+                        <span class="wrap_icon" title="Copy" data-toggle="modal" data-target="#modal_copy_price_list"><i class="icon-copy"></i></span></span>
+                        <span class="wrap_icon" title="Delete" data-toggle="modal" data-target="#modal_delete_price_list"><i class="icon-delete"></i></span></span>
+                    </div>
                 </div>
-            </section>
-
-        </div>
-    </div>
-   <div class="row">
-
-    <div class="col-sm-3">
-        <ul class="main_nested_list">
-            <li class="nested_list_title">Price Lists</li>
-            <ul class="nested_list">
-                @foreach ($list['priceLists'] as $key => $li)
-                    <li class="nested_list_brand" data-provider-id="{{$li['providerId']}}"><i class="icon-dropdown"></i><span class="nested_list_brand_title"></span>{{$li['providerName']}}</li>
-                        <ul class="nested_list expandable">
-                            <li class="pl_li" data-pl-id="{{$li['defaultId']}}">Default</li>
-                            @if(array_key_exists('myPriceListId', $li))
-                            <li class="pl_li" data-pl-id="{{$li['myPriceListId']}}">My Price List</li>
-                            @endif
-                            @foreach($li['iCreated'] as $pl)
-                            <li class="pl_li" data-pl-id="{{$pl['id']}}">{{$pl['name']}}</li>
-                            @endforeach
-                        </ul>
-                @endforeach
-            </ul>
-        </ul>
-    </div>
-
-    <div class="col-sm-5">
-        <p id="pl_provider_name"></p>
-        <p id="pl_name"></p>
-        <div class="price_list_table_caption">
-            <span class="price_list_caption_text" data-toggle="modal" data-target="#pl_new_modal">Provider: Vodafone / Pricelist: Default </span>
-            <div class="pull-right">
-                <span class="wrap_icon" title="Copy" data-toggle="modal" data-target="#modal_copy_price_list"><i class="icon-copy"></i></span></span>
-                <span class="wrap_icon" title="Delete" data-toggle="modal" data-target="#modal_delete_price_list"><i class="icon-delete"></i></span></span>
-            </div>
-        </div>
-        <div class="lists_price_lists_table">
-            <table id="pl_item_table" class="table">
-                <thead>
-                    <th>Item</th>
-                    <th>Cost</th>
-                    <th>Place</th>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><span class="price_list_item_text">SIM Card</span></td>
-                        <td><span class="price_list_item_text">1 </span><span class="pull-right align_icon"><i class="icon-edit"></i></span></td>
-                        <td><span class="price_list_item_text">4 </span><span class="pull-right align_icon"><i class="icon-edit"></i></span></td>
-                    </tr>
-                    <tr>
-                        <td><span class="price_list_item_text">SIM Card</span></td>
-                        <td><span class="price_list_item_text">2 </span><span class="pull-right align_icon"><i class="icon-edit"></i></span></td>
-                        <td><span class="price_list_item_text">8 </span><span class="pull-right align_icon"><i class="icon-edit"></i></span></td>
-                    </tr>
-                    <tr>
-                        <td><span class="price_list_item_text">SIM Card</span></td>
-                        <td><span class="price_list_item_text">4 </span><span class="pull-right align_icon"><i class="icon-edit"></i></span></td>
-                        <td><span class="price_list_item_text">3 </span><span class="pull-right align_icon"><i class="icon-edit"></i></span></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-    <div class="col-sm-4">
-        <div class="price_list_table_caption right">
-            <span class="price_list_caption_text">Pricelist: Default / Pricelist </span>
-            <div class="pull-right">
-                <span class="wrap_icon" title="Users" data-toggle="modal" data-target="#modal_price_list_user">
-                    <i class="icon-add_user"></i>
-                </span>
+                <div class="lists_price_lists_table">
+                    <table id="pl_item_table" class="table">
+                        <thead>
+                            <th>Item</th>
+                            <th>Cost</th>
+                            <th>Place</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="price_list_item_text">SIM Card</span></td>
+                                <td><span class="price_list_item_text">1 </span><span class="pull-right align_icon"><i class="icon-edit"></i></span></td>
+                                <td><span class="price_list_item_text">4 </span><span class="pull-right align_icon"><i class="icon-edit"></i></span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="price_list_item_text">SIM Card</span></td>
+                                <td><span class="price_list_item_text">2 </span><span class="pull-right align_icon"><i class="icon-edit"></i></span></td>
+                                <td><span class="price_list_item_text">8 </span><span class="pull-right align_icon"><i class="icon-edit"></i></span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="price_list_item_text">SIM Card</span></td>
+                                <td><span class="price_list_item_text">4 </span><span class="pull-right align_icon"><i class="icon-edit"></i></span></td>
+                                <td><span class="price_list_item_text">3 </span><span class="pull-right align_icon"><i class="icon-edit"></i></span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
-        </div>
+            <div class="col-sm-12 col-md-4">
+                <div class="price_list_table_caption right">
+                    <span class="price_list_caption_text">Pricelist: Default / Pricelist </span>
+                    <div class="pull-right">
+                        <span class="wrap_icon" title="Users" data-toggle="modal" data-target="#modal_price_list_user">
+                            <i class="icon-add_user"></i>
+                        </span>
+                    </div>
 
-        <div class="lists_users_table">
-            <table id="pl_users_table" class="table">
-                <thead>
-                    <th>
-                        <td>User</td>
-                        <td>Level</td>
-                    </th>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Maxi</td><td>Dealer</td>
-                    </tr>
-                    <tr>
-                        <td>David</td><td>Dealer</td>
-                    </tr>
-                    <tr>
-                        <td>G2T</td><td>Dealer</td>
-                    </tr>
-                    <tr>
-                        <td>Ann</td><td>Subdealer</td>
-                    </tr>
-                    <tr>
-                        <td>Karen</td><td>Dealer</td>
-                    </tr>
-                    <tr>
-                        <td>Leon</td><td>Subdealer</td>
-                    </tr>
-                    <tr>
-                        <td>John</td><td>Dealer</td>
-                    </tr>
-                    <tr>
-                        <td>Sara</td><td>Subdealer</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+                </div>
 
-    </div>
-   </div>
+                <div class="lists_users_table">
+                    <table id="pl_users_table" class="table">
+                        <thead>
+                            <th>
+                                <td>User</td>
+                                <td>Level</td>
+                            </th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Maxi</td><td>Dealer</td>
+                            </tr>
+                            <tr>
+                                <td>David</td><td>Dealer</td>
+                            </tr>
+                            <tr>
+                                <td>G2T</td><td>Dealer</td>
+                            </tr>
+                            <tr>
+                                <td>Ann</td><td>Subdealer</td>
+                            </tr>
+                            <tr>
+                                <td>Karen</td><td>Dealer</td>
+                            </tr>
+                            <tr>
+                                <td>Leon</td><td>Subdealer</td>
+                            </tr>
+                            <tr>
+                                <td>John</td><td>Dealer</td>
+                            </tr>
+                            <tr>
+                                <td>Sara</td><td>Subdealer</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+       </div>
 
 
     </div><!-- Price_list-->
