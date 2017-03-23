@@ -126,6 +126,9 @@
 .icon-edit:before {
   content: "\e90e";
 }
+.icon-edit2:after {
+  content: "\e90e";
+}
 .icon-email:before {
   content: "\e90f";
 }

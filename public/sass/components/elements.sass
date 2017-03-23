@@ -302,7 +302,7 @@
       span
         color: $white
 
-  &#wrap_package_list_edit
+  &#wrap_package_list_edit,
   &#wrap_package_list_view
     float: none
     .selected_package
@@ -339,6 +339,37 @@
   border-top-right-radius: 0px
   border-bottom-right-radius: 0px
   @include fonts_stack(15px)
+
+
+label.checkbox_wrapper
+  color: $total_numbers_title
+  padding: 5px 2px
+  cursor: pointer
+  @include fonts-stack(15px)
+
+label.checkbox_wrapper input[type=checkbox]
+  display: none
+
+label.checkbox_wrapper .checkbox_replace
+  height: 15px
+  width: 15px
+  border: 1px solid $dark_gray
+  display: inline-block
+  vertical-align: middle
+  position: relative
+
+label.checkbox_wrapper [type=checkbox]:checked + span:before
+  content: '\2713'
+  font-weight: bold
+  font-style: normal
+  position: absolute
+  top: -1px
+  left: 0
+  color: $dark_blue
+  font-size: 16px
+
+
+
 
 @media (max-width: 1200px)
 
