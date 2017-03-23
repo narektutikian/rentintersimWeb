@@ -106,13 +106,16 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
     Route::post('/cli-check', 'PhoneController@cliCheck');
 
     /***** Price Lists *****/
+    Route::get('/pl-users/{id}', 'PriceListController@showUsers');
 });
 
 
 
 
 Route::get('/test', function (){
-    $pl = Auth::user()->priceList()->where('provider_id', 1)->first();
+    $pl = User::select('login', 'id', 'level')->whereIn('id', [30,15,18,7,25,29,20,32,33,31,36,38,40,41,35,51,34])->whereNotIn('id', function ($q){
+        $q->select('user_id')->from('pl_name_user')->get();
+    })->get();
     dd($pl);
 });
 
