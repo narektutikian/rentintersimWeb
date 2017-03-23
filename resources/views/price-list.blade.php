@@ -175,13 +175,16 @@
                                <i class="input_icon_small icon-provider"></i>
                            </div>
                        </div>
+                       <div class="text-center small_modal_response">
+                           <span class="success_response"></span>
+                           <span class="error_response">ERROR   Please select SIM Package</span>
+                       </div>
+
                    </div>
                    <div class="modal-footer vdf_modal_footer">
                        <a href="#" class="inline_block_btn light_gray_btn vd_form_reset close_print" data-dismiss="modal" aria-label="Close">Cancel</a>
-                       <a href="#" class="inline_block_btn light_green_btn vd_form_submit">Add</a>
+                       <a href="#" class="inline_block_btn light_green_btn vd_form_submit" id="save-price-list">Add</a>
 
-                       <span class="success_response"></span>
-                       <span class="error_response"></span>
                    </div>
 
                </form>
@@ -221,13 +224,18 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="text-center small_modal_response">
+                            <span class="success_response"></span>
+                            <span class="error_response">ERROR   Please select SIM Package</span>
+                        </div>
+
                     </div>
                     <div class="modal-footer vdf_modal_footer">
                         <a href="#" class="inline_block_btn light_gray_btn vd_form_reset close_print" data-dismiss="modal" aria-label="Close">Cancel</a>
-                        <a href="#" class="inline_block_btn light_green_btn vd_form_submit">Save</a>
+                        <a href="#" class="inline_block_btn light_green_btn vd_form_submit" id="send-order">Save</a>
 
-                        <span class="success_response"></span>
-                        <span class="error_response"></span>
+
                     </div>
                 </form>
             </div>
@@ -337,13 +345,18 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="text-center small_modal_response">
+                            <span class="success_response"></span>
+                            <span class="error_response">ERROR   Please select SIM Package</span>
+                        </div>
                     </div>
                     <div class="modal-footer vdf_modal_footer">
                         <a href="#" class="inline_block_btn light_gray_btn vd_form_reset close_print" data-dismiss="modal" aria-label="Close">Cancel</a>
-                        <a href="#" class="inline_block_btn light_green_btn vd_form_submit" id="send-order">Save</a>
+                        <a href="#" class="inline_block_btn light_green_btn vd_form_submit" id="save-price-list-user">Save</a>
 
-                        <span class="success_response"></span>
-                        <span class="error_response"></span>
+                        {{--<span class="success_response"></span>--}}
+                        {{--<span class="error_response"></span>--}}
                     </div>
                 </form>
             </div>
