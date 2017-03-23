@@ -27,12 +27,34 @@
 
 .table
   border: 1px solid $gray_border
+  margin-bottom: 0
   thead
     background: $table_head
     th
       color: $dark_blue
       @include fonts_stack(15px)
       line-height: 1
+      border-left: 1px solid $th_arrow
+      border-bottom: 1px solid $th_arrow
+      .th_text
+        display: inline-block
+        vertical-align: middle
+        width: calc(100% - 20px)
+      .th_arrows
+        display: inline-block
+        vertical-align: middle
+        width: 15px
+        i
+          display: block
+          margin: 1px auto
+          text-align: center
+          color: $th_arrow
+          font-size: 11px
+          cursor: pointer
+          &.active
+            color: $light_blue
+          &:hover
+            color: $light_blue
   tbody
     tr
       td
@@ -40,6 +62,8 @@
         @include fonts_stack(14px)
         line-height: 1 !important
         vertical-align: middle
+        border-top: 1px solid $th_arrow
+        border-left: 1px solid $th_arrow
         &.pending
           color: $pending_yellow
         &.waiting
@@ -205,28 +229,26 @@
 
 .updated_by
   display: block
-.rwd-table
+.responsive_table
   margin: 1em 0
   min-width: 300px
 
-.rwd-table tr
+.responsive_table tr
   border-top: 1px solid #ddd
   border-bottom: 1px solid #ddd
 
-.rwd-table th,
+.responsive_table th,
 .my-table th,
-.rwd-table td,
+.responsive_table td,
 .my-table td
   display: table-cell
 
-.rwd-table th:last-child,
-.rwd-table td:last-child
+.responsive_table th:last-child,
+.responsive_table td:last-child
   padding-right: 0
 
 .user_management_table > thead > tr > th:first-child,
 .user_management_table > tbody > tr > td:first-child
-  //padding: 0 !important
-  //border: none
   text-align: center
 
 .user_management_table > thead > tr.nested_row > th:first-child,
@@ -239,11 +261,14 @@
 .user_management_table > tbody > tr > td:nth-child(2)
   border-left: none
 
-.rwd-table td:before
+.responsive_table td:before
   display: none
 
 .my-table td:before
   display: none
+
+.wrap_orders_table
+  overflow: scroll
 
 #wrap_tree_table.ps-container > .ps-scrollbar-x-rail > .ps-scrollbar-x
   background-color: $active_green
@@ -290,6 +315,40 @@
   top: 58px !important
   padding-top: 10px
 
+.lists_users_table
+  height: 279px
+  table
+    thead
+      th
+        text-align: left
+        padding-left: 15px
+    tbody
+      tr
+        td
+          height: 45px
+          line-height: 45px
+          color: $total_numbers_title
+          padding-left: 15px
+  .mCSB_scrollTools
+    .mCSB_dragger
+      .mCSB_dragger_bar
+        background-color: $dark_blue
+        margin: 5px auto
+
+.lists_price_lists_table
+  table
+    thead
+      th
+        text-align: left
+        padding-left: 15px
+    tbody
+      tr
+        td
+          height: 45px
+          line-height: 45px
+          color: $total_numbers_title
+          @include fonts_stack(15px)
+
 @media (min-width: 768px) and (max-width: 992px)
 
   .table_id_cell
@@ -322,7 +381,8 @@
     height: 25px
     line-height: 27px
 
-  #wrap_orders_table
+  .wrap_orders_table
+    overflow: scroll
     padding-bottom: 12px
 
 @media (max-width: 768px)
@@ -337,7 +397,7 @@
     position: relative
     width: 100%
     overflow: auto
-  #wrap_orders_table
+  .wrap_orders_table
     .bootstrap-table
       width: auto
       padding-bottom: 45px
@@ -369,15 +429,15 @@
   .table_status_cell
     text-align: left
 
-  .rwd-table th,
+  .responsive_table th,
   .my-table th
     display: none
 
-  .rwd-table td,
+  .responsive_table td,
   .my-table td
     display: block
 
-  .rwd-table td:before,
+  .responsive_table td:before,
   .my-table td:before
     content: attr(data-th) ": "
     font-weight: bold

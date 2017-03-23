@@ -212,7 +212,7 @@ $( document ).ready(function() {
     $('#modal_new_order').on('show.bs.modal', function () {
         // do something…
         setTimeout(function(){
-            
+
             $('#time_element').timepicki({
                 show_meridian:false,
                 min_hour_value:0,
@@ -743,7 +743,7 @@ $(window).load(function() {
 
 var onPrintFinished=function(printed){
     $('#modal_print_order').modal('toggle');
-    };
+};
 /*
 function actionFormatter(value, row, index) {
     return [
@@ -759,4 +759,5 @@ function actionFormatter(value, row, index) {
     ].join('');
 }
 */
+
 

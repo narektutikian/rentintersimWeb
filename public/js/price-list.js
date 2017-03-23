@@ -106,6 +106,13 @@ $(document).ready(function () {
             // console.log($(this));
             $PL = $(this).text();
 
+
+            if(!$(this).hasClass('active')){
+                $(this).closest('.main_nested_list').find('li').removeClass('active');
+                $(this).addClass('active');
+
+            }
+
             // console.log($PL);
            var $plName = $('#pl_name');
             $plTable = [];
@@ -267,5 +274,15 @@ $(document).ready(function () {
 
 
     }
+
+
+    $(document).on('click', '.nested_list_brand', function () {
+
+        $(this).next('.nested_list.expandable').slideToggle();
+        $(this).find('.icon-dropdown').toggleClass('expanded');
+    });
+
+    $('.lists_users_table').mCustomScrollbar({ axis: "y"});
+
 });
 
