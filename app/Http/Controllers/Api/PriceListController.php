@@ -151,7 +151,7 @@ class PriceListController extends Controller
             } else if ($request->input('field') == 'cost' && $pl->name == 'Default'
                 && Auth::user()->level == 'Super admin'
             ) {
-                $pl = $pl->plCost()->priceLists()->where('package_id', $request->input('row')['id'])->first();;
+                $pl = $pl->plCost()->first()->pricelists->where('package_id', $request->input('row')['id'])->first();
                 $pl->cost = $request->input('row')['cost'];
                 $pl->save();
             }

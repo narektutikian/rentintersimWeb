@@ -10,6 +10,7 @@ $(document).ready(function () {
            },{
                 title: "Cost",
                 field: "cost"
+
             },{
                title: "Sell price",
                field: "sell",
@@ -117,107 +118,111 @@ $(document).ready(function () {
            var $plName = $('#pl_name');
             $plTable = [];
             $.get("/price-list/" + $plId, function (pl_data, pl_status) {
-                if (pl_status == "success"){
+                if (pl_status == "success") {
                     console.log(pl_data);
                     $('#pl_provider_name').text("Provider: " + pl_data.provider.name);
                     if ($PL == "My Price List")
                         $plName.text("Price List: My Price List");
                     else
                         $plName.text("Price List: " + pl_data.name);
-                }
-                if (USER.level == "Super admin" && $PL == "Default") {
-                    $plTable.push({
-                        plId: pl_data.id,
-                        id: pl_data.id,
-                        item: "SIM card",
-                        cost: pl_data.pl_cost.cost,
-                        sell: pl_data.cost
-                    });
 
-                    $.each(pl_data.provider.packages, function (key, item) {
-                        var thisCost = 0;
-                        if (typeof pl_data.pl_cost.price_lists[key] != "undefined")
-                            thisCost = pl_data.pl_cost.price_lists[key].cost;
-                        var sell = 0;
-                        if (typeof pl_data.price_lists[key] != "undefined")
-                            sell = pl_data.price_lists[key].cost;
-                        else sell = thisCost;
+                    if (USER.level == "Super admin" && $PL == "Default") {
                         $plTable.push({
                             plId: pl_data.id,
-                            id: item.id,
-                            item: item.name,
-                            cost: thisCost,
-                            sell: sell
-                        })
-                    });
-                }
-                else if (USER.level != "Super admin" && $PL == "Default"){
-                    $plTable.push({
-                        plId: pl_data.id,
-                        id: pl_data.id,
-                        item: "SIM card",
-                        cost: pl_data.cost,
-                        sell: pl_data.cost
-                    });
+                            id: pl_data.id,
+                            item: "SIM card",
+                            cost: pl_data.pl_cost.cost,
+                            sell: pl_data.cost
+                        });
 
-                    $.each(pl_data.provider.packages, function (key, item) {
-                        var thisCost = 0;
-                        if (typeof pl_data.pl_cost.price_lists[key] != "undefined")
-                            thisCost = pl_data.pl_cost.price_lists[key].cost;
-                        var sell = 0;
-                        if (typeof pl_data.price_lists[key] != "undefined")
-                            sell = pl_data.price_lists[key].cost;
-                        else sell = thisCost;
-                        $plTable.push({
-                            plId: pl_data.id,
-                            id: item.id,
-                            item: item.name,
-                            cost: sell,
-                            sell: sell
-                        })
-                    });
-                }
-                else {
-                    $plTable.push({
-                        plId: pl_data.id,
-                        id: pl_data.id,
-                        item: "SIM card",
-                        cost: pl_data.pl_cost.cost,
-                        sell: pl_data.cost
-                    });
-
-                    $.each(pl_data.provider.packages, function (key, item) {
-                        var thisCost = 0;
-                        if (typeof pl_data.pl_cost.price_lists[key] != "undefined")
-                            thisCost = pl_data.pl_cost.price_lists[key].cost;
-                        var sell = 0;
-                        if (typeof pl_data.price_lists[key] != "undefined")
-                            sell = pl_data.price_lists[key].cost;
-                        else sell = thisCost;
-                        $plTable.push({
-                            plId: pl_data.id,
-                            id: item.id,
-                            item: item.name,
-                            cost: thisCost,
-                            sell: sell
-                        })
-                    });
-                }
-                console.log($plTable);
-
-                        $bsTable.bootstrapTable('refreshOptions', {columns: plItemColumns});
-                if ($PL == "Default"){
-                    if (USER.level == "Super admin"){
-                        $bsTable.bootstrapTable('refreshOptions', {columns: plItemColumnsSuper});
+                        $.each(pl_data.provider.packages, function (key, item) {
+                            var thisCost = 0;
+                            if (typeof pl_data.pl_cost.price_lists[key] != "undefined")
+                                thisCost = pl_data.pl_cost.price_lists[key].cost;
+                            var sell = 0;
+                            if (typeof pl_data.price_lists[key] != "undefined")
+                                sell = pl_data.price_lists[key].cost;
+                            else sell = thisCost;
+                            $plTable.push({
+                                plId: pl_data.id,
+                                id: item.id,
+                                item: item.name,
+                                cost: thisCost,
+                                sell: sell
+                            })
+                        });
                     }
-                    else
-                        $bsTable.bootstrapTable('refreshOptions', {columns: plItemColumnsDefault});
+                    else if (USER.level != "Super admin" && $PL == "Default") {
+                        $plTable.push({
+                            plId: pl_data.id,
+                            id: pl_data.id,
+                            item: "SIM card",
+                            cost: pl_data.cost,
+                            sell: pl_data.cost
+                        });
+
+                        $.each(pl_data.provider.packages, function (key, item) {
+                            var thisCost = 0;
+                            if (typeof pl_data.pl_cost.price_lists[key] != "undefined")
+                                thisCost = pl_data.pl_cost.price_lists[key].cost;
+                            var sell = 0;
+                            if (typeof pl_data.price_lists[key] != "undefined")
+                                sell = pl_data.price_lists[key].cost;
+                            else sell = thisCost;
+                            $plTable.push({
+                                plId: pl_data.id,
+                                id: item.id,
+                                item: item.name,
+                                cost: sell,
+                                sell: sell
+                            })
+                        });
+                    }
+                    else {
+                        $plTable.push({
+                            plId: pl_data.id,
+                            id: pl_data.id,
+                            item: "SIM card",
+                            cost: pl_data.pl_cost.cost,
+                            sell: pl_data.cost
+                        });
+
+                        $.each(pl_data.provider.packages, function (key, item) {
+                            var thisCost = 0;
+                            if (typeof pl_data.pl_cost.price_lists[key] != "undefined")
+                                thisCost = pl_data.pl_cost.price_lists[key].cost;
+                            var sell = 0;
+                            if (typeof pl_data.price_lists[key] != "undefined")
+                                sell = pl_data.price_lists[key].cost;
+                            else sell = thisCost;
+                            $plTable.push({
+                                plId: pl_data.id,
+                                id: item.id,
+                                item: item.name,
+                                cost: thisCost,
+                                sell: sell
+                            })
+                        });
+                    }
+                    console.log($plTable);
+
+                    $bsTable.bootstrapTable('refreshOptions', {columns: plItemColumns});
+                    if ($PL == "Default") {
+                        if (USER.level == "Super admin") {
+                            $bsTable.bootstrapTable('refreshOptions', {columns: plItemColumnsSuper});
+                        }
+                        else
+                            $bsTable.bootstrapTable('refreshOptions', {columns: plItemColumnsDefault});
+                    }
+
+                    refreshUsersTable(pl_data.users);
+                    refreshItemsTable($plTable);
+
+                    $('.pl_id').attr('data-pl-id', pl_data.id);
+                    $('.editable').addClass('icon-edit2');
                 }
-
-                refreshUsersTable(pl_data.users);
-                refreshItemsTable($plTable);
-
-                $('.pl_id').attr('data-pl-id', pl_data.id);
+                else
+                    location.reload();
             });
 
 
@@ -272,7 +277,6 @@ $(document).ready(function () {
             }
         });
 
-
     }
 
 
@@ -285,4 +289,3 @@ $(document).ready(function () {
     $('.lists_users_table').mCustomScrollbar({ axis: "y"});
 
 });
-

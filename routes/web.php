@@ -113,9 +113,8 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
 
 
 Route::get('/test', function (){
-    $pl = User::select('login', 'id', 'level')->whereIn('id', [30,15,18,7,25,29,20,32,33,31,36,38,40,41,35,51,34])->whereNotIn('id', function ($q){
-        $q->select('user_id')->from('pl_name_user')->get();
-    })->get();
+    $pl = PlName::find(2);
+    $pl = $pl->plCost()->first()->pricelists->where('package_id', 21)->first();
     dd($pl);
 });
 

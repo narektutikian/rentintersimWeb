@@ -111,6 +111,11 @@
 .icon-edit:before {
     content: "\e90d";
 }
+.icon-edit2:after {
+    content: "\e90d";
+    display: inline-block;
+    margin-left: 3px;
+}
 .icon-email:before {
     content: "\e90e";
 }
