@@ -2752,10 +2752,8 @@ header {
       cursor: pointer; }
   .main_nested_list ul li {
     padding-left: 30px; }
-  .main_nested_list ul ul {
-    border: 1px solid red; }
-    .main_nested_list ul ul li {
-      padding-left: 60px; }
+  .main_nested_list ul ul li {
+    padding-left: 60px; }
   .main_nested_list .icon-dropdown {
     color: #1b6db2;
     font-size: 12px;
