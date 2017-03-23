@@ -209,6 +209,8 @@ $(document).ready(function () {
 
                 refreshUsersTable(pl_data.users);
                 refreshItemsTable($plTable);
+
+                $('.pl_id').attr('data-pl-id', pl_data.id);
             });
 
 

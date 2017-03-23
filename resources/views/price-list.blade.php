@@ -27,9 +27,9 @@
         <p id="pl_provider_name"></p>
         <p id="pl_name"></p>
         <p>
-            <span>Copy Icon,</span>
+            <span id="pl_copy_modal" class="pl_id" data-pl-id="">Copy Icon,</span>
             <span data-toggle="modal" data-target="#pl_new_modal">New Icon,</span>
-            <span>Delete Icon</span>
+            <span data-pl-id="" class="pl_id">Delete Icon</span>
         </p>
         <div>
 
@@ -42,7 +42,7 @@
 
     <div class="col-sm-4">
         <p>Price List Users</p>
-        <span data-toggle="modal" data-target="#pl_add_users_modal">User Icon</span>
+        <span class="pl_id" data-toggle="modal" data-target="#pl_add_users_modal">User Icon</span>
         <table id="pl_users_table" class="table">
             <tbody>
                 <th>User</th>

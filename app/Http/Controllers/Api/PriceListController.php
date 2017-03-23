@@ -172,7 +172,7 @@ class PriceListController extends Controller
         //
     }
 
-    public function showUsers($id=3)
+    public function showUsers($id)
     {
 //        $pl = PlName::find($id);
         $users = User::where('supervisor_id', Auth::user()->id)->where('type', 'admin')->with(['priceList' => function($q) use ($id){
@@ -180,5 +180,25 @@ class PriceListController extends Controller
     }])->get();
         return response($users);
     }
+    public function copyPriceList(Request $request, $id) //TODO test this function
+    {
+        $pl = PlName::find($id);
+        $newName = $request->input('name');
+        $newPl = $pl->replicate();
+        $newPl->name = $newName;
+        $newPl->save();
+
+        foreach ($pl->priceLists as $item){
+            $newItem = $item->replicate();
+            $newItem->pl_name_id = $newPl->id;
+            $newItem->save();
+        }
+    }
+
+    public function attachPlToUser(Request $request, $id)
+    {
+        $attachedUsers = $request;
+    }
+
 
 }
