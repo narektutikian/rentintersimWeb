@@ -123,11 +123,38 @@
       font-size: 0
     .price_list_wrapper
       padding: 15px
+      margin-bottom: 30px
       overflow: hidden
       .search_input
         display: inline-block
     .search_button.low
-      top: 2px  
+      top: 2px
+
+    .price_list_table_caption
+      overflow: hidden
+      margin-bottom: 15px
+      &.right
+        margin-right: 20px
+    .price_list_caption_text
+      display: inline-block
+      vertical-align: middle
+      margin-top: 10px
+      color: $dark_blue
+      @include fonts_stack(14px)
+
+    .wrap_icon
+      display: inline-block
+      vertical-align: middle
+      margin-left: 6px
+      padding: 5px
+      font-size: 16px
+      cursor: pointer
+      color: $total_numbers_title
+      border: 1px solid $total_numbers_title
+      @include border_radius(3px)
+      &:hover
+        color: $dark_blue
+        border: 1px solid $dark_blue
 
 @media (max-width: 1200px)
 
