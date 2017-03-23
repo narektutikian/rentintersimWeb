@@ -1,8 +1,19 @@
 @extends('layouts.admin')
 
 @section('dashboard')
+    <div id="price_list">
 
+    <div class="row">
+        <div class="col-md-12">
+            <div class="filter_buttons">
+                <div class="search_management_option">
+                    <a href="#" class="add_new_btn" data-toggle="modal" data-target="#pl_new_modal"><i class="icon-new_order"></i>New Pricelist</a>
+                </div>
+            </div>
+        </div>
+    </div>
    <div class="row">
+
     <div class="col-sm-3">
         <ul class="main_nested_list">
             <li class="nested_list_title">Price Lists</li>
@@ -31,9 +42,21 @@
             <span data-toggle="modal" data-target="#pl_new_modal">New Icon,</span>
             <span>Delete Icon</span>
         </p>
-        <div>
+        <div class="lists_price_lists_table">
 
-            <table id="pl_item_table">
+            <table id="pl_item_table" class="table">
+                <thead>
+                    <th>Item</th>
+                    <th>Cost</th>
+                    <th>Place</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>SIM Card</td>
+                        <td><span>1 </span><span><i class="icon-edit"></i></span></td>
+                        <td><span>4 </span><span><i class="icon-edit"></i></span></td>
+                    </tr>
+                </tbody>
             </table>
 
         </div>
@@ -52,20 +75,39 @@
                     </th>
                 </thead>
                 <tbody>
-                    <tr><td>Maxi</td><td>Dealer</td></tr>
-                    <tr><td>David</td><td>Dealer</td></tr>
-                    <tr><td>G2T</td><td>Dealer</td></tr>
-                    <tr><td>Ann</td><td>Subdealer</td></tr>
-                    <tr><td>Karen</td><td>Dealer</td></tr>
-                    <tr><td>Leon</td><td>Subdealer</td></tr>
-                    <tr><td>John</td><td>Dealer</td></tr>
-                    <tr><td>Sara</td><td>Subdealer</td></tr>
+                    <tr>
+                        <td>Maxi</td><td>Dealer</td>
+                    </tr>
+                    <tr>
+                        <td>David</td><td>Dealer</td>
+                    </tr>
+                    <tr>
+                        <td>G2T</td><td>Dealer</td>
+                    </tr>
+                    <tr>
+                        <td>Ann</td><td>Subdealer</td>
+                    </tr>
+                    <tr>
+                        <td>Karen</td><td>Dealer</td>
+                    </tr>
+                    <tr>
+                        <td>Leon</td><td>Subdealer</td>
+                    </tr>
+                    <tr>
+                        <td>John</td><td>Dealer</td>
+                    </tr>
+                    <tr>
+                        <td>Sara</td><td>Subdealer</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
 
     </div>
    </div>
+
+
+    </div><!-- Price_list-->
 
    <!-- New Price List Modal-->
    <!-- Modal -->

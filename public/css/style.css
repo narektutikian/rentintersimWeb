@@ -924,6 +924,18 @@ input[type="radio"].toggle.checked + label {
     background-color: #1b6db2;
     margin: 5px auto; }
 
+.lists_price_lists_table table thead th {
+  text-align: left;
+  padding-left: 15px; }
+.lists_price_lists_table table tbody tr td {
+  height: 45px;
+  line-height: 45px;
+  color: #69717e;
+  font-size: 15px;
+  font-weight: normal;
+  font-style: normal;
+  font-family: "proxima_nova_rgregular", Arial, Helvetica, sans-serif; }
+
 @media (min-width: 768px) and (max-width: 992px) {
   .table_id_cell {
     width: 40px;
