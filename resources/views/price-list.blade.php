@@ -10,10 +10,10 @@
                         <div class="price_list_wrapper">
                             <div class="search_management_option">
                                 <div class="search_form_option">
-                                    <div class="pull-right search">
-                                        <input type="text" class="block_btn_30 search_input" name="query" placeholder="Search" value="{{ (isset($_GET['query'])) ? $_GET['query'] : '' }}">
-                                    </div>
-                                    <button type="button" class="search_button low"><i class="icon-search"></i></button>
+                                    <!--<div class="pull-right search">
+                                            <input type="text" class="block_btn_30 search_input" name="query" placeholder="Search" value="{{ (isset($_GET['query'])) ? $_GET['query'] : '' }}">
+                                        </div>
+                                        <button type="button" class="search_button low"><i class="icon-search"></i></button>-->
                                 </div>
                                 <a href="#" class="add_new_btn" data-toggle="modal" data-target="#pl_new_modal"><i class="icon-new_order"></i>New Pricelist</a>
                             </div>
@@ -49,10 +49,10 @@
                 <p id="pl_provider_name"></p>
                 <p id="pl_name"></p>
                 <div class="price_list_table_caption">
-                    <span class="price_list_caption_text" data-toggle="modal" data-target="#pl_new_modal">Provider: Vodafone / Pricelist: Default </span>
+                    <span class="price_list_caption_text">Provider: Vodafone / Pricelist: Default </span>
                     <div class="pull-right">
                         <span class="wrap_icon" title="Copy" data-toggle="modal" data-target="#modal_copy_price_list"><i class="icon-copy"></i></span></span>
-                        <span class="wrap_icon" title="Delete" data-toggle="modal" data-target="#modal_delete_price_list"><i class="icon-delete"></i></span></span>
+                        <span class="wrap_icon" title="Delete" data-toggle="modal" data-target="#confirm_delete" data-row-id="36"><i class="icon-delete"></i></span></span>
                     </div>
                 </div>
                 <div class="lists_price_lists_table">
@@ -175,13 +175,16 @@
                                <i class="input_icon_small icon-provider"></i>
                            </div>
                        </div>
+                       <div class="text-center small_modal_response">
+                           <span class="success_response"></span>
+                           <span class="error_response">ERROR   Please select SIM Package</span>
+                       </div>
+
                    </div>
                    <div class="modal-footer vdf_modal_footer">
                        <a href="#" class="inline_block_btn light_gray_btn vd_form_reset close_print" data-dismiss="modal" aria-label="Close">Cancel</a>
-                       <a href="#" class="inline_block_btn light_green_btn vd_form_submit">Add</a>
+                       <a href="#" class="inline_block_btn light_green_btn vd_form_submit" id="save-price-list">Add</a>
 
-                       <span class="success_response"></span>
-                       <span class="error_response"></span>
                    </div>
 
                </form>
@@ -221,13 +224,18 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="text-center small_modal_response">
+                            <span class="success_response"></span>
+                            <span class="error_response">ERROR   Please select SIM Package</span>
+                        </div>
+
                     </div>
                     <div class="modal-footer vdf_modal_footer">
                         <a href="#" class="inline_block_btn light_gray_btn vd_form_reset close_print" data-dismiss="modal" aria-label="Close">Cancel</a>
-                        <a href="#" class="inline_block_btn light_green_btn vd_form_submit">Save</a>
+                        <a href="#" class="inline_block_btn light_green_btn vd_form_submit" id="send-order">Save</a>
 
-                        <span class="success_response"></span>
-                        <span class="error_response"></span>
+
                     </div>
                 </form>
             </div>
@@ -337,13 +345,18 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="text-center small_modal_response">
+                            <span class="success_response"></span>
+                            <span class="error_response">ERROR   Please select SIM Package</span>
+                        </div>
                     </div>
                     <div class="modal-footer vdf_modal_footer">
                         <a href="#" class="inline_block_btn light_gray_btn vd_form_reset close_print" data-dismiss="modal" aria-label="Close">Cancel</a>
-                        <a href="#" class="inline_block_btn light_green_btn vd_form_submit" id="send-order">Save</a>
+                        <a href="#" class="inline_block_btn light_green_btn vd_form_submit" id="save-price-list-user">Save</a>
 
-                        <span class="success_response"></span>
-                        <span class="error_response"></span>
+                        {{--<span class="success_response"></span>--}}
+                        {{--<span class="error_response"></span>--}}
                     </div>
                 </form>
             </div>

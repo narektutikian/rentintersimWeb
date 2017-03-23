@@ -671,6 +671,17 @@ textarea.error {
   font-style: normal;
   font-family: "proxima_nova_rgregular", Arial, Helvetica, sans-serif; }
 
+.small_modal_response .success_response {
+  position: relative;
+  bottom: 0;
+  left: 0;
+  right: 0; }
+.small_modal_response .error_response {
+  position: relative;
+  bottom: 0;
+  left: 0;
+  right: 0; }
+
 .required_mark {
   color: red;
   font-size: 14px;

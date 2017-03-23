@@ -2066,8 +2066,6 @@ label.checkbox_wrapper [type=checkbox]:checked + span:before {
     width: auto; }
   #modal_copy_price_list .vdf_modal .vdf_modal_body {
     padding: 45px 25px 40px 25px; }
-  #modal_copy_price_list .vdf_modal .modal-footer {
-    text-align: center; }
 
 #modal_price_list_user .vdf_modal {
   width: 530px; }
@@ -2075,8 +2073,6 @@ label.checkbox_wrapper [type=checkbox]:checked + span:before {
     width: auto; }
   #modal_price_list_user .vdf_modal .vdf_modal_body {
     padding: 36px 60px 36px 60px; }
-  #modal_price_list_user .vdf_modal .modal-footer {
-    text-align: center; }
 #modal_price_list_user .lists_users_table {
   height: 309px; }
 
@@ -2086,8 +2082,6 @@ label.checkbox_wrapper [type=checkbox]:checked + span:before {
     width: auto; }
   #pl_new_modal .vdf_modal .vdf_modal_body {
     padding: 36px 60px 36px 60px; }
-  #pl_new_modal .vdf_modal .modal-footer {
-    text-align: center; }
 
 @media print {
   .no-print, .no-print * {
@@ -2290,6 +2284,17 @@ textarea.error {
   font-weight: normal;
   font-style: normal;
   font-family: "proxima_nova_rgregular", Arial, Helvetica, sans-serif; }
+
+.small_modal_response .success_response {
+  position: relative;
+  bottom: 0;
+  left: 0;
+  right: 0; }
+.small_modal_response .error_response {
+  position: relative;
+  bottom: 0;
+  left: 0;
+  right: 0; }
 
 .required_mark {
   color: red;
@@ -2747,10 +2752,8 @@ header {
       cursor: pointer; }
   .main_nested_list ul li {
     padding-left: 30px; }
-  .main_nested_list ul ul {
-    border: 1px solid red; }
-    .main_nested_list ul ul li {
-      padding-left: 60px; }
+  .main_nested_list ul ul li {
+    padding-left: 60px; }
   .main_nested_list .icon-dropdown {
     color: #1b6db2;
     font-size: 12px;
