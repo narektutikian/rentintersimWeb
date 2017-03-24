@@ -114,6 +114,7 @@ class PriceListController extends Controller
     public function edit($id)
     {
         //
+
         $arr = array(['id' => 1, 'item' => 'SIM', 'cost' => '11', 'sell' => '11'],
             ['id' => 2, 'item' => 'SIM', 'cost' => '11', 'sell' => '11'],
         );
@@ -170,6 +171,22 @@ class PriceListController extends Controller
     public function destroy($id)
     {
         //
+        $pl = PlName::find($id);
+
+        $user = Auth::user()->id;
+
+        if ($pl->cretaed_by == Auth::user()->id){
+
+        $pl->users()->detach();
+
+        foreach ($pl->priceLists as $item){
+            $item->delete();
+        }
+        $pl->delete();
+        return response(['id' => $id]);
+        }
+        else
+            return response(['data' => 'Forbidden'], 403);
     }
 
     public function showUsers($id)
@@ -180,12 +197,14 @@ class PriceListController extends Controller
     }])->get();
         return response($users);
     }
-    public function copyPriceList(Request $request, $id) //TODO test this function
+    public function copyPriceList(Request $request) //TODO test this function
     {
-        $pl = PlName::find($id);
+
+        $pl = PlName::find($request->input('plId'));
         $newName = $request->input('name');
         $newPl = $pl->replicate();
         $newPl->name = $newName;
+        $newPl->created_by = Auth::user()->id;
         $newPl->save();
 
         foreach ($pl->priceLists as $item){
@@ -193,11 +212,30 @@ class PriceListController extends Controller
             $newItem->pl_name_id = $newPl->id;
             $newItem->save();
         }
+        return response(['data' => 'success']);
     }
 
-    public function attachPlToUser(Request $request, $id)
+    public function attacheUser(Request $request)
     {
-        $attachedUsers = $request;
+        $uIds = array();
+//        $myUsers = User::select('id')->where('supervisor_id', Auth::user()->id)->where('type', 'admin')->get()->toArray();
+        $users = $request->all();
+        unset($users['plId']);
+        unset($users['_token']);
+        foreach ($users as $key => $item){
+            $uIds[] = $key;
+        }
+        $pl = PlName::find($request->input('plId'));
+        $pl->users()->detach();
+        $allPl = PlName::where('provider_id', $pl->provider_id)->get();
+//        dd($allPl);
+        foreach ($allPl as $plItem){
+            $plItem->users()->detach($uIds);
+        }
+
+
+        $pl->users()->attach($uIds);
+        return response(['data' => 'success']);
     }
 
 

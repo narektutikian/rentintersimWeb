@@ -46,13 +46,11 @@
             </div>
 
             <div class="col-sm-12 col-md-5">
-                <p id="pl_provider_name"></p>
-                <p id="pl_name"></p>
                 <div class="price_list_table_caption">
-                    <span class="price_list_caption_text">Provider: Vodafone / Pricelist: Default </span>
+                    <span class="price_list_caption_text" id="pl_provider_name"></span><span id="pl_name" class="price_list_caption_text"></span>
                     <div class="pull-right">
-                        <span class="wrap_icon" title="Copy" data-toggle="modal" data-target="#modal_copy_price_list"><i class="icon-copy"></i></span></span>
-                        <span class="wrap_icon" title="Delete" data-toggle="modal" data-target="#confirm_delete" data-row-id="36"><i class="icon-delete"></i></span></span>
+                        <span id="pl_copy_button" class="wrap_icon" title="Copy" data-toggle="modal" data-target="#modal_copy_price_list"><i class="icon-copy"></i></span></span>
+                        <span id="pl_delete_button" class="wrap_icon" title="Delete" data-toggle="modal" data-target="#confirm_delete" data-row-id="36"><i class="icon-delete"></i></span></span>
                     </div>
                 </div>
                 <div class="lists_price_lists_table">
@@ -62,32 +60,16 @@
                             <th>Cost</th>
                             <th>Place</th>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td><span class="price_list_item_text">SIM Card</span></td>
-                                <td><span class="price_list_item_text">1 </span><span class="pull-right align_icon"><i class="icon-edit"></i></span></td>
-                                <td><span class="price_list_item_text">4 </span><span class="pull-right align_icon"><i class="icon-edit"></i></span></td>
-                            </tr>
-                            <tr>
-                                <td><span class="price_list_item_text">SIM Card</span></td>
-                                <td><span class="price_list_item_text">2 </span><span class="pull-right align_icon"><i class="icon-edit"></i></span></td>
-                                <td><span class="price_list_item_text">8 </span><span class="pull-right align_icon"><i class="icon-edit"></i></span></td>
-                            </tr>
-                            <tr>
-                                <td><span class="price_list_item_text">SIM Card</span></td>
-                                <td><span class="price_list_item_text">4 </span><span class="pull-right align_icon"><i class="icon-edit"></i></span></td>
-                                <td><span class="price_list_item_text">3 </span><span class="pull-right align_icon"><i class="icon-edit"></i></span></td>
-                            </tr>
-                        </tbody>
+
                     </table>
                 </div>
             </div>
 
             <div class="col-sm-12 col-md-4">
                 <div class="price_list_table_caption right">
-                    <span class="price_list_caption_text">Pricelist: Default / Pricelist </span>
+                    <span class="price_list_caption_text">Price List Users </span>
                     <div class="pull-right">
-                        <span class="wrap_icon" title="Users" data-toggle="modal" data-target="#modal_price_list_user">
+                        <span id="pl_user_button" class="wrap_icon" title="Users" data-toggle="modal" data-target="#modal_price_list_user">
                             <i class="icon-add_user"></i>
                         </span>
                     </div>
@@ -102,32 +84,7 @@
                                 <td>Level</td>
                             </th>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>Maxi</td><td>Dealer</td>
-                            </tr>
-                            <tr>
-                                <td>David</td><td>Dealer</td>
-                            </tr>
-                            <tr>
-                                <td>G2T</td><td>Dealer</td>
-                            </tr>
-                            <tr>
-                                <td>Ann</td><td>Subdealer</td>
-                            </tr>
-                            <tr>
-                                <td>Karen</td><td>Dealer</td>
-                            </tr>
-                            <tr>
-                                <td>Leon</td><td>Subdealer</td>
-                            </tr>
-                            <tr>
-                                <td>John</td><td>Dealer</td>
-                            </tr>
-                            <tr>
-                                <td>Sara</td><td>Subdealer</td>
-                            </tr>
-                        </tbody>
+
                     </table>
                 </div>
 
@@ -158,7 +115,7 @@
                        <div class="form-group col-md-12">
                            <label class="table_label">Please give name to new pricelist</label>
                            <div class="relative">
-                               <input type="text" name="pricelist" class="block_btn_30 modal_input vd_email vd_required" value=""/>
+                               <input type="text" name="name" class="block_btn_30 modal_input vd_required" value=""/>
                                <i class="input_icon icon-name"></i>
                            </div>
                            {{csrf_field()}}
@@ -166,8 +123,8 @@
                        <div class="form-group col-md-12">
                            <label class="table_label">Choose provider</label>
                            <div class="select_wrapper">
-                               <select name="prk_sim_num" class="block_btn_30 modal_input vd_select">
-                                   <option value="vodafone">Vodafone</option>
+                               <select name="provider" class="block_btn_30 modal_input vd_select">
+                                   <option value=""></option>
                                    @foreach($providers as $provider)
                                        <option value="{{$provider->id}}">{{$provider->name}}</option>
                                    @endforeach
@@ -177,13 +134,13 @@
                        </div>
                        <div class="text-center small_modal_response">
                            <span class="success_response"></span>
-                           <span class="error_response">ERROR   Please select SIM Package</span>
+                           <span class="error_response"></span>
                        </div>
 
                    </div>
                    <div class="modal-footer vdf_modal_footer">
                        <a href="#" class="inline_block_btn light_gray_btn vd_form_reset close_print" data-dismiss="modal" aria-label="Close">Cancel</a>
-                       <a href="#" class="inline_block_btn light_green_btn vd_form_submit" id="save-price-list">Add</a>
+                       <a href="#" class="inline_block_btn light_green_btn vd_form_submit" id="pl_new_submit_button">Add</a>
 
                    </div>
 
@@ -205,35 +162,37 @@
                     <button type="button" class="close close_print" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <div class="vdf_modal_sub_header">
                         <div class="col-md-12">
-                            <h3>Copying “Default” Pricelist</h3>
+                            <h3 >Copying “<span class="pl_name">Default</span>” Pricelist</h3>
                         </div>
                     </div>
                 </div>
-                <form action="/" class="form-horizontal vd_form">
+                <form action="/price-list/copy" class="form-horizontal vd_form" id="pl_copy_form" method="post">
                     <div class="modal-body vdf_modal_body">
                         <div class="form-group">
                             <div class="col-md-12">
                                 <div class="price_list_sm_modal">
-                                    <form action="/" class="vd_form">
-                                        <label class="table_label">Please give name to new pricelist</label>
+
+                                        <label class="table_label">Please give name to new price list <span class="required_mark">*</span></label>
                                         <div class="relative">
-                                            <input type="text" name="pricelist" class="block_btn_30 modal_input vd_email vd_required" value=""/>
+                                            <input type="text" name="name" class="block_btn_30 modal_input vd_required" value=""/>
+                                            <input type="hidden" name="plId" class="pl_id ">
+                                            {{csrf_field()}}
                                             <i class="input_icon icon-name"></i>
                                         </div>
-                                    </form>
+
                                 </div>
                             </div>
                         </div>
 
                         <div class="text-center small_modal_response">
                             <span class="success_response"></span>
-                            <span class="error_response">ERROR   Please select SIM Package</span>
+                            <span class="error_response"></span>
                         </div>
 
                     </div>
                     <div class="modal-footer vdf_modal_footer">
                         <a href="#" class="inline_block_btn light_gray_btn vd_form_reset close_print" data-dismiss="modal" aria-label="Close">Cancel</a>
-                        <a href="#" class="inline_block_btn light_green_btn vd_form_submit" id="send-order">Save</a>
+                        <a href="#" class="inline_block_btn light_green_btn vd_form_submit" id="pl_copy_submit_button">Save</a>
 
 
                     </div>
@@ -255,12 +214,14 @@
                         </div>
                     </div>
                 </div>
-                <form action="/" class="form-horizontal vd_form">
+                <form action="/price-list/attache_user" class="form-horizontal vd_form" method="post">
+                    <input type="hidden" name="plId" class="pl_id ">
+                    {{csrf_field()}}
                     <div class="modal-body vdf_modal_body">
                         <div class="form-group">
                             <div class="col-md-12">
                                 <div class="lists_users_table">
-                                    <table id="pl_users_table" class="table">
+                                    <table id="pl_assigned_users" class="table">
                                         <thead>
                                             <tr>
                                                 <th class="table_id_cell"></th>
@@ -269,77 +230,8 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>
-                                                    <label class="checkbox_wrapper">
-                                                        <input type="checkbox" class="checkbox_hide">
-                                                        <span class="checkbox_replace"></span>
-                                                    </label>
-                                                </td>
-                                                <td>Maxi</td>
-                                                <td>Dealer</td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <label class="checkbox_wrapper">
-                                                        <input type="checkbox" class="checkbox_hide">
-                                                        <span class="checkbox_replace"></span>
-                                                    </label>
-                                                </td><td>David</td><td>Dealer</td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <label class="checkbox_wrapper">
-                                                        <input type="checkbox" class="checkbox_hide">
-                                                        <span class="checkbox_replace"></span>
-                                                    </label>
-                                                </td><td>G2T</td><td>Dealer</td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <label class="checkbox_wrapper">
-                                                        <input type="checkbox" class="checkbox_hide">
-                                                        <span class="checkbox_replace"></span>
-                                                    </label>
-                                                </td>
-                                                <td>Ann</td><td>Subdealer</td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <label class="checkbox_wrapper">
-                                                        <input type="checkbox" class="checkbox_hide">
-                                                        <span class="checkbox_replace"></span>
-                                                    </label>
-                                                </td>
-                                                <td>Karen</td><td>Dealer</td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <label class="checkbox_wrapper">
-                                                        <input type="checkbox" class="checkbox_hide">
-                                                        <span class="checkbox_replace"></span>
-                                                    </label>
-                                                </td>
-                                                <td>Leon</td><td>Subdealer</td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <label class="checkbox_wrapper">
-                                                        <input type="checkbox" class="checkbox_hide">
-                                                        <span class="checkbox_replace"></span>
-                                                    </label>
-                                                </td>
-                                                <td>John</td><td>Dealer</td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <label class="checkbox_wrapper">
-                                                        <input type="checkbox" class="checkbox_hide">
-                                                        <span class="checkbox_replace"></span>
-                                                    </label>
-                                                </td>
-                                                <td>Sara</td><td>Subdealer</td>
-                                            </tr>
+
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -348,7 +240,7 @@
 
                         <div class="text-center small_modal_response">
                             <span class="success_response"></span>
-                            <span class="error_response">ERROR   Please select SIM Package</span>
+                            <span class="error_response"></span>
                         </div>
                     </div>
                     <div class="modal-footer vdf_modal_footer">

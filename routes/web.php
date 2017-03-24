@@ -107,6 +107,9 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
 
     /***** Price Lists *****/
     Route::get('/pl-users/{id}', 'PriceListController@showUsers');
+    Route::post('/price-list/copy', 'PriceListController@copyPriceList');
+    Route::post('/price-list/attache_user', 'PriceListController@attacheUser');
+
 });
 
 
