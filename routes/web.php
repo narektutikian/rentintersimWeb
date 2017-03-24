@@ -116,9 +116,11 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
 
 
 Route::get('/test', function (){
-    $pl = PlName::find(2);
-    $pl = $pl->plCost()->first()->pricelists->where('package_id', 21)->first();
-    dd($pl);
+
+    $pl = PlName::find(20);
+    if (empty($pl->users->toArray()))
+        echo 'empty';
+    var_dump($pl->users->toArray());
 });
 
 Route::get('/test2', function (){

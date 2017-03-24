@@ -84,6 +84,7 @@ class PriceListController extends Controller
     public function show($id)
     {
         //
+        $network = $this->userManager->getNetworkFromCache(Auth::user()->id);
         $pl = PlName::with(['priceLists' => function ($q) {
             $q->orderBy('package_id', 'asc');
         }, 'priceLists', 'provider.packages' => function ($q) {
@@ -93,10 +94,12 @@ class PriceListController extends Controller
         }])->find($id);
 
         if ($pl->name == 'Default') {
-            $network = $this->userManager->getNetworkFromCache(Auth::user()->id);
+
             $pl->users = User::select('login', 'id', 'level')->where('type', 'admin')->whereIn('id', $network)
-                ->whereNotIn('id', function ($q) {
-                $q->select('user_id')->from('pl_name_user')->get();
+                ->whereNotIn('id', function ($q) use ($pl) {
+                $q->select('user_id')->from('pl_name_user')->whereNotIn('pl_name_id', function ($q) use ($pl){
+                    $q->select('id')->from('pl_names')->where('provider_id', '!=', $pl->provider_id)->get();
+                })->get();
             })->get();
         } else {
             $pl->users;
@@ -172,17 +175,17 @@ class PriceListController extends Controller
     {
         //
         $pl = PlName::find($id);
+        if ($pl->created_by == Auth::user()->id){
+            if (empty($pl->users->toArray())){
+                foreach ($pl->priceLists as $item){
+                    $item->delete();
+                }
+                $pl->delete();
+            }
+        else {
 
-        $user = Auth::user()->id;
 
-        if ($pl->cretaed_by == Auth::user()->id){
-
-        $pl->users()->detach();
-
-        foreach ($pl->priceLists as $item){
-            $item->delete();
         }
-        $pl->delete();
         return response(['id' => $id]);
         }
         else
@@ -199,12 +202,18 @@ class PriceListController extends Controller
     }
     public function copyPriceList(Request $request) //TODO test this function
     {
-
         $pl = PlName::find($request->input('plId'));
-        $newName = $request->input('name');
+        $costPl = Auth::user()->priceList()->where('provider_id', $pl->provider_id)->first();
+        if ($costPl == null)
+            return response('You must have "My Price List". Please contact your supervisor', 403);
+
+
         $newPl = $pl->replicate();
-        $newPl->name = $newName;
+        $newPl->name = $request->input('name');
         $newPl->created_by = Auth::user()->id;
+//        if ($pl->name == 'Default')
+//            if (Auth::user()->level != 'Super admin')
+            $newPl->cost_pl_name_id = $pl->id;
         $newPl->save();
 
         foreach ($pl->priceLists as $item){

@@ -78,6 +78,7 @@ $(document).ready(function () {
             title: "Sell price",
             field: "sell"
         }];
+
         var $plUsersColumns = [{
             title: "User",
             field: "login"
@@ -85,6 +86,7 @@ $(document).ready(function () {
             title: "Level",
             field: "level"
         }];
+
         var $bsTable = $('#pl_item_table');
         var $bsUsersTable = $('#pl_users_table');
         var $plTable = [];
@@ -221,6 +223,9 @@ $(document).ready(function () {
                             $bsTable.bootstrapTable('refreshOptions', {columns: plItemColumnsDefault});
                     }
 
+                    if ($PL == "My Price List")
+                        refreshUsersTable([{login: USER.login, level: USER.level}]);
+                    else
                     refreshUsersTable(pl_data.users);
                     refreshItemsTable($plTable);
 
@@ -343,7 +348,7 @@ $(document).ready(function () {
                     $(".error_response").empty();
                     $(".success_response").empty();
                     $(".success_response").append("DONE");
-                    // location.reload();
+                    location.reload();
                 },
                 error: function (error) {
                     // console.log(error);
