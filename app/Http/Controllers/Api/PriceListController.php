@@ -87,11 +87,10 @@ class PriceListController extends Controller
         $network = $this->userManager->getNetworkFromCache(Auth::user()->id);
         $pl = PlName::with(['priceLists' => function ($q) {
             $q->orderBy('package_id', 'asc');
-        }, 'priceLists', 'provider.packages' => function ($q) {
+        }, 'provider.packages' => function ($q) {
             $q->orderBy('id', 'asc');
-        }, 'plCost', 'plCost.priceLists' => function ($q) {
-            $q->orderBy('package_id', 'asc');
-        }])->find($id);
+        }, ])->find($id);
+        $pl->pl_cost = Auth::user()->priceList()->where('provider_id', $pl->provider_id)->with('priceLists')->first();
 
         if ($pl->name == 'Default') {
 
@@ -103,6 +102,8 @@ class PriceListController extends Controller
             })->get();
         } else {
             $pl->users;
+
+
         }
 
         return response($pl);
@@ -213,7 +214,7 @@ class PriceListController extends Controller
         $newPl->created_by = Auth::user()->id;
 //        if ($pl->name == 'Default')
 //            if (Auth::user()->level != 'Super admin')
-            $newPl->cost_pl_name_id = $pl->id;
+//            $newPl->cost_pl_name_id = $pl->id;
         $newPl->save();
 
         foreach ($pl->priceLists as $item){

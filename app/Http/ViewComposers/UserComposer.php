@@ -46,14 +46,20 @@ class UserComposer
         $net = new UserManager();
         $net = $net->getNetworkFromCache(Auth::user()->id);
 
+        if (Auth::user()->type == 'admin')
+            $defUser = Auth::user();
+        else
+            $defUser = User::find(Auth::user()->supervisor_id);
+
 
         $users = User::select('id', 'login', 'supervisor_id', 'level')
-            ->where('id', '!=', Auth::user()->id)
+            ->whereNotIn('id', [Auth::user()->id, $defUser->id])
             ->where('type', 'admin')
             ->orderBy('level', 'desc')
             ->whereIn('id', $net)
             ->get()->toArray();
         $view->with('viewName', $view->getName())
-                ->with('users', $users);
+                ->with('users', $users)
+                ->with('defUser', $defUser);
     }
 }

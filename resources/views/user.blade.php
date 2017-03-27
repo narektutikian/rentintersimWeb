@@ -74,7 +74,7 @@
                                             <div class="select_wrapper">
                                                 <select class="block_btn_30 modal_input vd_select" name="supervisor_id" id="supervisor_id">
                                                     <option value="">SELECT PARENT</option>
-                                                    <option value="{{Auth::user()->id}}">{{Auth::user()->login}}</option>
+                                                    <option class="" value="{{$defUser->id}}">{{$defUser->login}}</option>
                                                     @foreach($users as $supervisor)
                                                         <option value="{{$supervisor['id']}}">{{$supervisor['login']}} ({{$supervisor['level']}})</option>
                                                     @endforeach
