@@ -48,7 +48,7 @@ class ReportComposer
         $level = [$authUser->level];
         $level = $this->userManager->subTyps($level[0]);
         $net = $this->userManager->subNetID($this->userManager->getMyFlatNetwork($authUser->id));
-        $users = User::select('id', 'login', 'supervisor_id', 'type')->whereIn('id', $net)->get();
+        $users = User::select('id', 'login', 'supervisor_id', 'type')->whereIn('id', $net)->where('type', 'admin')->get();
 
 
 //        $id = Auth::user()->id;
