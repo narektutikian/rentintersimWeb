@@ -260,7 +260,7 @@ $(document).ready(function () {
             return 'edited';
         });
 
-        $('#pl_new_submit_button').on('click', function (e){
+/*        $('#pl_new_submit_button').on('click', function (e){
             e.stopPropagation(); // Stop stuff happening
             if ($(this).closest(".vd_form").valid()) {
                 // console.log("submit new PL");
@@ -288,7 +288,7 @@ $(document).ready(function () {
                     }
                 });
             }
-        });
+        });*/
 
     }
     /**** Open Copy Modal  ****/
@@ -331,7 +331,7 @@ $(document).ready(function () {
 
 
 
-    /**** Copy PL submiy  ****/
+    /**** Submit forms  ****/
     $('.vd_form_submit').on('click', function (e) {
         e.stopPropagation(); // Stop stuff happening
         if ($(this).closest(".vd_form").valid()) {

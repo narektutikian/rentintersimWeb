@@ -49,7 +49,7 @@ class UserComposer
         if (Auth::user()->type == 'admin')
             $defUser = Auth::user();
         else
-            $defUser = User::find(Auth::user()->supervisor_id);
+            $defUser = Auth::user()->parent;
 
 
         $users = User::select('id', 'login', 'supervisor_id', 'level')

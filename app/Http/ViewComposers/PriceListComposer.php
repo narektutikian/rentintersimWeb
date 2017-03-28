@@ -49,7 +49,7 @@ class PriceListComposer
 
         $user = Auth::user();
         if ($user->type != 'admin')
-            $user = User::find(Auth::user()->supervisor_id);
+            $user = $user->parent;
 
 
 //        $net = new UserManager();
@@ -62,13 +62,16 @@ class PriceListComposer
             $defaultID = PlName::where('provider_id', $provider->id)->where('name', 'Default')->first();
             if ($defaultID != null)
                 $list['priceLists'][$key]['defaultId'] = $defaultID->id;
-            $myPl = $user->priceList()->where([['provider_id', $provider->id],['name', '!=', 'Default']])->first();
+            $myPl = PlName::where([['provider_id', $provider->id],
+                                ['name', 'My Price List'],
+                                ['created_by', $user->id]])->first();
             if ($myPl != null)
                 $list['priceLists'][$key]['myPriceListId'] = $myPl->id;
             $iCreated = PlName::select('id','name')
                 ->where([['provider_id', $provider->id],
                         ['created_by', $user->id],
-                        ['name', '!=', 'Default_cost']])->get()->toArray();
+                        ['name', '!=', 'Default_cost'],
+                        ['name', '!=', 'My Price List']])->get()->toArray();
             if ($iCreated != null)
                 $list['priceLists'][$key]['iCreated'] = $iCreated;
             else

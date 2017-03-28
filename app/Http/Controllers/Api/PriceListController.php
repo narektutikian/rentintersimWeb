@@ -9,6 +9,7 @@ use App\Models\PlName;
 use Illuminate\Support\Facades\Auth;
 use DB;
 use Rentintersimrepo\users\UserManager;
+use Symfony\Component\Yaml\Tests\A;
 
 class PriceListController extends Controller
 {
@@ -52,7 +53,7 @@ class PriceListController extends Controller
         //
         $this->validate(request(), ['name' => 'required', 'provider' => 'required']);
 
-        $costPl = Auth::user()->priceList()->where('provider_id', $request->input('provider'))->first();
+        $costPl = $this->userManager->getCostPl(Auth::user()->id, $request->input('provider'));
         if ($costPl == null)
             return response('You must have "My Price List". Please contact your supervisor', 403);
 
@@ -90,7 +91,8 @@ class PriceListController extends Controller
         }, 'provider.packages' => function ($q) {
             $q->orderBy('id', 'asc');
         }, ])->find($id);
-        $pl->pl_cost = Auth::user()->priceList()->where('provider_id', $pl->provider_id)->with('priceLists')->first();
+//        $pl->pl_cost = Auth::user()->priceList()->where('provider_id', $pl->provider_id)->first();
+        $pl->pl_cost = $this->userManager->getCostPl(Auth::user()->id, $pl->provider_id);
 
         if ($pl->name == 'Default') {
 
@@ -204,7 +206,9 @@ class PriceListController extends Controller
     public function copyPriceList(Request $request) //TODO test this function
     {
         $pl = PlName::find($request->input('plId'));
-        $costPl = Auth::user()->priceList()->where('provider_id', $pl->provider_id)->first();
+        $costPl = PlName::where([['provider_id', $pl->provider_id],
+            ['name', 'My Price List'],
+            ['created_by', Auth::user()->id]])->first();
         if ($costPl == null)
             return response('You must have "My Price List". Please contact your supervisor', 403);
 
@@ -212,9 +216,9 @@ class PriceListController extends Controller
         $newPl = $pl->replicate();
         $newPl->name = $request->input('name');
         $newPl->created_by = Auth::user()->id;
-//        if ($pl->name == 'Default')
-//            if (Auth::user()->level != 'Super admin')
-//            $newPl->cost_pl_name_id = $pl->id;
+        if ($pl->name == 'Default')
+            if (Auth::user()->level != 'Super admin')
+            $newPl->cost_pl_name_id = $costPl->cost_pl_name_id;
         $newPl->save();
 
         foreach ($pl->priceLists as $item){
@@ -227,8 +231,9 @@ class PriceListController extends Controller
 
     public function attacheUser(Request $request)
     {
+        $transaction = DB::transaction(function () use ($request) {
+//       Initialise necessary info
         $uIds = array();
-//        $myUsers = User::select('id')->where('supervisor_id', Auth::user()->id)->where('type', 'admin')->get()->toArray();
         $users = $request->all();
         unset($users['plId']);
         unset($users['_token']);
@@ -236,16 +241,59 @@ class PriceListController extends Controller
             $uIds[] = $key;
         }
         $pl = PlName::find($request->input('plId'));
-        $pl->users()->detach();
-        $allPl = PlName::where('provider_id', $pl->provider_id)->get();
-//        dd($allPl);
-        foreach ($allPl as $plItem){
-            $plItem->users()->detach($uIds);
+        $authUserPl = Auth::user()->priceList()->where('provider_id', $pl->provider_id)->first();
+        if ($authUserPl == null)
+            $authUserPl = PlName::where('provider_id', $pl->provider_id)->where('name', 'Default')->first();
+        $authUserChildren = Auth::user()->children()->where('type', 'admin')->get();
+
+//        Clear all the attachments
+
+
+            $pl->users()->detach();
+        foreach ($authUserChildren as $child){
+            $childPl = PlName::where([['provider_id', $pl->provider_id],
+                                        ['name', 'My Price List'],
+                                        ['created_by', $child->id]])->first();
+            if ($childPl != null){
+            $childPl->cost_pl_name_id = $authUserPl->id;
+            $childPl->save();
+            }
+            $child->priceList()->detach($pl->id);
         }
 
-
-        $pl->users()->attach($uIds);
+//        Attache PL to User
+        foreach ($uIds as $user){
+            User::find($user)->priceList()->detach();
+            $userPl = PlName::where('created_by', $user)->where('name', 'My Price List')->first();
+            if ($userPl == null){
+                $myPl = $pl->replicate();
+                $myPl->name = 'My Price List';
+                $myPl->cost_pl_name_id = $pl->id;
+                $myPl->created_by = $user;
+                $myPl->save();
+                foreach ($pl->priceLists as $item){
+                    $newItem = $item->replicate();
+                    $newItem->pl_name_id = $myPl->id;
+                    $newItem->save();
+                }
+            }
+            else {
+                $userPl->cost_pl_name_id = $pl->id;
+                $userPl->save();
+            }
+            $pl->users()->attach($user);
+        }
+        }, 5);
+        if ($transaction == null)
         return response(['data' => 'success']);
+    }
+
+    public function getMyPl($providerID)
+    {
+//      $myPl =  PlName::where([['provider_id', $providerID],
+//            ['name', 'My Price List'],
+//            ['created_by', Auth::user()->id]])->first();
+//      if ($myPl)
     }
 
 

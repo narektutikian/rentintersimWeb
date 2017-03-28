@@ -12,7 +12,7 @@ use App\User;
 use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
 use DB;
-
+use App\Models\PlName;
 
 class UserManager
 {
@@ -229,6 +229,26 @@ class UserManager
             return [Auth::user()->id];
         else
         return json_decode($user->network);
+    }
+
+    public function getCostPl($userId, $providerId)
+    {
+        $myPl =  PlName::where([['provider_id', $providerId],
+            ['name', 'My Price List'],
+            ['created_by', $userId]])->first()->plCost()->with(['priceLists' => function($q){
+            $q->orderBy('package_id', 'asc');
+        }])->first();
+
+      if ($myPl == null){
+          $myPl = PlName::where([['provider_id', $providerId],
+              ['name', 'Default'],
+              ])->with(['priceLists' => function($q){
+              $q->orderBy('package_id', 'asc');
+          }])->first();
+
+          return $myPl;
+      }
+      else  return $myPl;
     }
 
 }

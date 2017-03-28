@@ -117,10 +117,8 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
 
 Route::get('/test', function (){
 
-    $pl = PlName::find(20);
-    if (empty($pl->users->toArray()))
-        echo 'empty';
-    var_dump($pl->users->toArray());
+    $pl = PlName::find(30);
+    dd($pl);
 });
 
 Route::get('/test2', function (){
