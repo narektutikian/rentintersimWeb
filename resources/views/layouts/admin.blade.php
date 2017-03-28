@@ -118,7 +118,7 @@
 <script src="/js/owl-carousel/owl.carousel.js"></script>
 <script src="/js/scripts.js?v=3"></script>
 <script src="/js/validation.js"></script>
-<script src="/js/requests.js?v=2"></script>
+<script src="/js/requests.js?v=3"></script>
 <script src="/js/order-requests.js?v=2"></script>
 <script src="/js/tables.js?v=2"></script>
 <script src="/js/price-list.js"></script>
