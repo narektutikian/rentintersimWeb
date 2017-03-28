@@ -46,7 +46,7 @@ class ReportComposer
     {
         $authUser = Auth::user();
         $level = [$authUser->level];
-        $level = array_merge($level, $this->userManager->typeValidator($level[0]));
+        $level = $this->userManager->subTyps($level[0]);
         $net = $this->userManager->subNetID($this->userManager->getMyFlatNetwork($authUser->id));
         $users = User::select('id', 'login', 'supervisor_id', 'type')->whereIn('id', $net)->get();
 

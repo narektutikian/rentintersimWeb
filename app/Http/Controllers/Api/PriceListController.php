@@ -53,7 +53,7 @@ class PriceListController extends Controller
         //
         $this->validate(request(), ['name' => 'required', 'provider' => 'required']);
 
-        $costPl = $this->userManager->getCostPl(Auth::user()->id, $request->input('provider'));
+        $costPl = $this->userManager->getCostPl($this->userManager->getAdminUser(Auth::user())->id, $request->input('provider'));
         if ($costPl == null)
             return response('You must have "My Price List". Please contact your supervisor', 403);
 
@@ -61,7 +61,7 @@ class PriceListController extends Controller
             $newPl = new PlName();
             $newPl->name = $request->input('name');
             $newPl->cost_pl_name_id = $costPl->id;
-            $newPl->created_by = Auth::user()->id;
+            $newPl->created_by = $this->userManager->getAdminUser(Auth::user())->id;
             $newPl->provider_id = $request->input('provider');
             $newPl->cost = $costPl->cost;
             $newPl->save();
@@ -92,7 +92,7 @@ class PriceListController extends Controller
             $q->orderBy('id', 'asc');
         }, ])->find($id);
 //        $pl->pl_cost = Auth::user()->priceList()->where('provider_id', $pl->provider_id)->first();
-        $pl->pl_cost = $this->userManager->getCostPl(Auth::user()->id, $pl->provider_id);
+        $pl->pl_cost = $this->userManager->getCostPl($this->userManager->getAdminUser(Auth::user())->id, $pl->provider_id);
 
         if ($pl->name == 'Default') {
 
@@ -180,7 +180,7 @@ class PriceListController extends Controller
         $pl = PlName::find($id);
         if ($pl->created_by == Auth::user()->id && $pl->name != 'My Price List'){
             if (!empty($pl->users->toArray())){
-                $authUserPl = Auth::user()->priceList()->where('provider_id', $pl->provider_id)->first();
+                $authUserPl = $this->userManager->getAdminUser(Auth::user())->priceList()->where('provider_id', $pl->provider_id)->first();
                 if ($authUserPl == null)
                     $authUserPl = PlName::where('provider_id', $pl->provider_id)->where('name', 'Default')->first();
             foreach ($pl->users as $child){
@@ -211,7 +211,7 @@ class PriceListController extends Controller
     public function showUsers($id)
     {
 //        $pl = PlName::find($id);
-        $users = User::where('supervisor_id', Auth::user()->id)->where('type', 'admin')->with(['priceList' => function($q) use ($id){
+        $users = User::where('supervisor_id', $this->userManager->getAdminUser(Auth::user())->id)->where('type', 'admin')->with(['priceList' => function($q) use ($id){
             $q->where('pl_names.id', $id);
     }])->get();
         return response($users);
@@ -221,14 +221,14 @@ class PriceListController extends Controller
         $pl = PlName::find($request->input('plId'));
         $costPl = PlName::where([['provider_id', $pl->provider_id],
             ['name', 'My Price List'],
-            ['created_by', Auth::user()->id]])->first();
+            ['created_by', $this->userManager->getAdminUser(Auth::user())->id]])->first();
         if ($costPl == null)
             return response('You must have "My Price List". Please contact your supervisor', 403);
 
 
         $newPl = $pl->replicate();
         $newPl->name = $request->input('name');
-        $newPl->created_by = Auth::user()->id;
+        $newPl->created_by = $this->userManager->getAdminUser(Auth::user())->id;
         if ($pl->name == 'Default')
             if (Auth::user()->level != 'Super admin')
             $newPl->cost_pl_name_id = $costPl->cost_pl_name_id;
@@ -254,10 +254,10 @@ class PriceListController extends Controller
             $uIds[] = $key;
         }
         $pl = PlName::find($request->input('plId'));
-        $authUserPl = Auth::user()->priceList()->where('provider_id', $pl->provider_id)->first();
+        $authUserPl = $this->userManager->getAdminUser(Auth::user())->id->priceList()->where('provider_id', $pl->provider_id)->first();
         if ($authUserPl == null)
             $authUserPl = PlName::where('provider_id', $pl->provider_id)->where('name', 'Default')->first();
-        $authUserChildren = Auth::user()->children()->where('type', 'admin')->get();
+        $authUserChildren = $this->userManager->getAdminUser(Auth::user())->children()->where('type', 'admin')->get();
 
 //        Clear all the attachments
 

@@ -334,12 +334,15 @@ class UserController extends Controller
         return response()->json($tree);
     }
 
-    public function getByLevel($level){
-        $tree = $this->manager->subNetID($this->manager->getMyFlatNetwork(Auth::user()->id));
+    public function getByLevel(Request $request, $level){
+        $tree = $this->manager->getNetworkFromCache(Auth::user()->id);
+        $users = User::select('id', 'login', 'supervisor_id', 'type')->whereIn('id', $tree);
+        if ($request->has('type'))
+            $users = $users->where('type', $request->input('type'));
         if ($level == 'All')
-            $users = User::select('id', 'login', 'supervisor_id', 'type')->whereIn('id', $tree)->get()->toArray();
+            $users = $users->get()->toArray();
         else
-        $users = User::select('id', 'login', 'supervisor_id', 'type')->where('level', $level)->whereIn('id', $tree)->get()->toArray();
+        $users = $users->where('level', $level)->get()->toArray();
         return response()->json($users);
     }
 

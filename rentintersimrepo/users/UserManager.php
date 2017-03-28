@@ -86,30 +86,7 @@ class UserManager
 
         return $flatArray;
     }
-/*****  Not working one  *****
-    function flatten($element)
-    {
-        $flatArray = array();
-        if (count($element) == 1 && !array_key_exists('child', $element) && !is_array($element)) {
-            $flatArray[] = $element;
-        }
-        foreach ($element as $key => $node) {
-//            if (is_array($node))
-            if (array_key_exists('child', $node)) {
-                $flatArray =  array_merge($flatArray, $this->flatten($node['child']));
-                unset($node['child']);
-                $flatArray[] = $node;
-//                    if (count($flat)>1)
-//                    $flatArray[] = $flat;
 
-            } else {
-                $flatArray[] = $node;
-            }
-        }
-
-
-        return $flatArray;
-    }*/
 
     function typeValidator($level){
         if($level == 'Super admin')
@@ -119,7 +96,16 @@ class UserManager
         elseif ($level == 'Dealer')
             return ['Subdealer'];
         else return array();
+    }
 
+    function subTyps($level){
+        if($level == 'Super admin' || $level == 'Distributor')
+            return ['Distributor', 'Dealer', 'Subdealer'];
+        elseif ($level == 'Dealer')
+            return ['Dealer', 'Subdealer'];
+        elseif ($level == 'Subdealer')
+            return ['Subdealer'];
+        else return array();
     }
 
     function UserCreation($newUser, $user){
@@ -235,20 +221,30 @@ class UserManager
     {
         $myPl =  PlName::where([['provider_id', $providerId],
             ['name', 'My Price List'],
-            ['created_by', $userId]])->first()->plCost()->with(['priceLists' => function($q){
+            ['created_by', $userId]])->first();
+        if ($myPl != null){
+        $myPl = $myPl->plCost()->with(['priceLists' => function($q){
             $q->orderBy('package_id', 'asc');
         }])->first();
-
-      if ($myPl == null){
+//        dd($myPl);
+        }
+      if ($myPl == null) {
           $myPl = PlName::where([['provider_id', $providerId],
               ['name', 'Default'],
               ])->with(['priceLists' => function($q){
               $q->orderBy('package_id', 'asc');
           }])->first();
 
-          return $myPl;
+//          return $myPl;
       }
-      else  return $myPl;
+       return $myPl;
+    }
+    public function getAdminUser($user)
+    {
+       if ($user->type != 'admin')
+            return $user->parent;
+        else
+            return $user;
     }
 
 }

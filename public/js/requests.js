@@ -728,14 +728,14 @@ function editUser(id) {
     });
 }
 
-function filterLevel(level) {
+function filterLevel(level, type) {
 
     var $icon = $('#user-select>i');
 
     $icon.removeClass('icon-username');
     $icon.addClass('icon-time');
 
-    $.get("/user-by-level/" + level, function (data, status) {
+    $.get("/user-by-level/" + level + '?type=' + type, function (data, status) {
         if (status == "success"){
             // console.log(data);
             var options = "<option value=''>Select User</option>";

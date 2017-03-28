@@ -35,7 +35,7 @@
                                         <div class="form-group">
                                             <label class="table_label">Level</label>
                                             <div class="select_wrapper">
-                                                <select name="level" id="level" class="block_btn_30 modal_input" onchange="filterLevel(this.value)">
+                                                <select name="level" id="level" class="block_btn_30 modal_input" onchange="filterLevel(this.value, 'admin')">
                                                     <option value="All">All</option>
                                                     @php if(isset ($_GET['level']))
                                                     $levelCur = $_GET['level'];

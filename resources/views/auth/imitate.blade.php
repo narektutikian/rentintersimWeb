@@ -27,7 +27,7 @@
             </div>
             {{--styled_select--}}
             <div class="form-group form_row">
-                <select class="block_btn login_input " onchange="filterLevel(this.value)">
+                <select class="block_btn login_input " onchange="filterLevel(this.value, '')">
                     <option value="All">All</option>
                     <option value="Distributor">Distributor</option>
                     <option value="Dealer">Dealer</option>

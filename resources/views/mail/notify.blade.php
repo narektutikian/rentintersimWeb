@@ -79,7 +79,7 @@
                 Updated by
             </div>
             <div style="box-sizing: border-box;-moz-box-sizing: border-box; -webkit-box-sizing: border-box; display:inline-block; vertical-align: middle; width: 300px; padding: 13px 10px 10px 8px; color: #494949; line-height: 1; border-bottom: 1px solid #DDDDDD; border-right: 1px solid #DDDDDD; border-left: 1px solid #DDDDDD; text-align: left; font-size: 15px; font-weight: normal; font-style: normal; font-family: proxima_nova_rgregular, Arial, Helvetica, sans-serif;">
-                {{($order->editor != null) ? $order->editor->login : $order->creator->name}} at {{$order->updated_at}}
+                {{($order->editor != null) ? $order->editor->login : $order->creator->login}} at {{$order->updated_at}}
             </div>
         </div>
 
