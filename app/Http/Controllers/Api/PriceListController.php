@@ -178,17 +178,30 @@ class PriceListController extends Controller
     {
         //
         $pl = PlName::find($id);
-        if ($pl->created_by == Auth::user()->id){
-            if (empty($pl->users->toArray())){
-                foreach ($pl->priceLists as $item){
-                    $item->delete();
+        if ($pl->created_by == Auth::user()->id && $pl->name != 'My Price List'){
+            if (!empty($pl->users->toArray())){
+                $authUserPl = Auth::user()->priceList()->where('provider_id', $pl->provider_id)->first();
+                if ($authUserPl == null)
+                    $authUserPl = PlName::where('provider_id', $pl->provider_id)->where('name', 'Default')->first();
+            foreach ($pl->users as $child){
+                $childPl = PlName::where([['provider_id', $pl->provider_id],
+                    ['name', 'My Price List'],
+                    ['created_by', $child->id]])->first();
+                if ($childPl != null){
+                    if ($childPl->cost_pl_name_id == $pl->id){
+                            $childPl->cost_pl_name_id = $authUserPl->id;
+                            $childPl->save();
+                    }
                 }
-                $pl->delete();
+                $child->priceList()->detach($pl->id);
             }
-        else {
-
+            $pl->users()->detach();
 
         }
+            foreach ($pl->priceLists as $item){
+                $item->delete();
+            }
+            $pl->delete();
         return response(['id' => $id]);
         }
         else
@@ -255,8 +268,10 @@ class PriceListController extends Controller
                                         ['name', 'My Price List'],
                                         ['created_by', $child->id]])->first();
             if ($childPl != null){
+                if ($childPl->cost_pl_name_id == $pl->id){
             $childPl->cost_pl_name_id = $authUserPl->id;
             $childPl->save();
+                }
             }
             $child->priceList()->detach($pl->id);
         }
