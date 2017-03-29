@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\ViewComposers\NumberComposer;
+use App\Models\Report;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
@@ -10,6 +11,7 @@ use Rentintersimrepo\orders\CreateHelper as Helper;
 use Auth;
 use App\Http\Controllers\HomeController;
 use Rentintersimrepo\orders\ViewHelper;
+use Rentintersimrepo\report\ReportHelper;
 use Mail;
 use DB;
 use Excel;
@@ -22,12 +24,14 @@ class ReportController extends Controller
     protected $helper;
     protected $viewHelper;
     protected $userManager;
+    protected $reportHelper;
 
-    public function __construct(Helper $helper, ViewHelper $viewHelper, UserManager $userManager)
+    public function __construct(Helper $helper, ViewHelper $viewHelper, UserManager $userManager, ReportHelper $reportHelper)
     {
         $this->helper = $helper;
         $this->viewHelper = $viewHelper;
         $this->userManager = $userManager;
+        $this->reportHelper = $reportHelper;
     }
 
     /**
@@ -71,6 +75,22 @@ class ReportController extends Controller
     public function show($id)
     {
         //
+        $report = null;
+        $orders = Order::withTrashed()->where('status', 'done')->get();
+        foreach ($orders as $order) {
+
+        if ($order != null)
+            if ($order->status == 'done'){
+                $report = Report::where('order_id', $order->id)->first();
+                if ($report == null){
+                    $report = $this->reportHelper->calculateReport($order);
+                    $report->save();
+                }
+            }
+        }
+        return response($report);
+
+
     }
 
     /**
@@ -216,7 +236,7 @@ class ReportController extends Controller
                     $q->withTrashed();
                 }, 'creator'  => function ($q){
                     $q->withTrashed();
-                }, 'package', 'sim.provider'])->take($q['limit'])->skip($q['offset'])->get();
+                }, 'package', 'report', 'sim.provider'])->take($q['limit'])->skip($q['offset'])->get();
             }
 
             foreach ($report as $item){

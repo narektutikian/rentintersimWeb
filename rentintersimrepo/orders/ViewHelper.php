@@ -138,15 +138,6 @@ class ViewHelper
         if ($seconds == 0)
             return 1;
         $interval = ceil($seconds / 86400);
-////        if ($seconds % 86400 > 0)
-////            $interval++;
-//        $resultDay = $from->addDays($interval);
-////        dd($resultDay);
-//        if ($resultDay->day != $to->day)
-//            $interval++;
-
-//        dd($interval);
-
         return ++$interval;
 
     }

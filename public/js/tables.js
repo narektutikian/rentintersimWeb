@@ -273,6 +273,13 @@ function formatNumber(value, row, index) {
 
 }
 
+function formatTotal(value, row, index) {
+
+
+        return row.report.total_sell_price + row.report.sim_sell_price;
+
+}
+
 function formatReference(value, row, index) {
     if (row.reference_number != ''){
         return '<span class="hint_text ref_number" data-toggle="tooltip"  data-trigger="click" data-original-title="'+ row.reference_number +'">' +

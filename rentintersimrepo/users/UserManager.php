@@ -217,6 +217,31 @@ class UserManager
         return json_decode($user->network);
     }
 
+    public function getPl($userId, $providerId)
+    {
+        $myPl =  PlName::where([['provider_id', $providerId],
+            ['name', 'My Price List'],
+            ['created_by', $userId]])->with(['priceLists' => function($q){
+            $q->orderBy('package_id', 'asc');
+        }])->first();
+//        if ($myPl != null){
+//            $myPl = $myPl->with(['priceLists' => function($q){
+//                $q->orderBy('package_id', 'asc');
+//            }])->first();
+//        }
+//        dd($myPl);
+        if ($myPl == null) {
+            $myPl = PlName::where([['provider_id', $providerId],
+                ['name', 'Default'],
+            ])->with(['priceLists' => function($q){
+                $q->orderBy('package_id', 'asc');
+            }])->first();
+
+//          return $myPl;
+        }
+        return $myPl;
+    }
+
     public function getCostPl($userId, $providerId)
     {
         $myPl =  PlName::where([['provider_id', $providerId],
