@@ -239,6 +239,7 @@ class ReportController extends Controller
                 }, 'package', 'report', 'sim.provider'])->take($q['limit'])->skip($q['offset'])->get();
             }
 
+
             foreach ($report as $item){
                $item->duration = $this->viewHelper->calculateInterval($item->landing, $item->departure). ' day(s)';
             }
