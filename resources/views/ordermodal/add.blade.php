@@ -54,23 +54,6 @@
                                         </div>
                                     </div>
 
-
-                                    <!--    <div class="wrap_time">
-                                            <i class="departure_time icon-time"></i>
-                                            <div class="time_picker">
-                                                <div  class="inline_block_btn numeric_input vdf_time vdf_hour" id="landing_hour">0</div>
-
-                                                <span class="arrow-down"><i class="icon-arrow_down"></i></span>
-                                                <span class="arrow-up"><i class="icon-arrow_up"></i></span>
-                                            </div>
-                                            <div class="time_picker">
-                                                <div class="inline_block_btn vdf_minute_picker vdf_time vdf_min" id="landing_minute">0</div>
-
-                                                <span class="arrow-down"><i class="icon-arrow_down"></i></span>
-                                                <span class="arrow-up"><i class="icon-arrow_up"></i></span>
-                                            </div>
-                                        </div>-->
-
                                 </div>
                                 <div class="col-md-6">
                                     <div class="departure"><i class="icon-departure"></i> Departure date and time</div>
@@ -86,23 +69,6 @@
                                             <input type="text" name="timepicker2" id="time_element2" class="inline_block_btn time_element vd_time_required departure_time_val"/>
                                         </div>
                                     </div>
-
-
-                                    <!--    <div class="wrap_time">
-                                            <i class="departure_time icon-time"></i>
-                                            <div class="time_picker">
-                                                <div  class="inline_block_btn numeric_input vdf_time vdf_hour" id="departure_hour">0</div>
-
-                                                <span class="arrow-down"><i class="icon-arrow_down"></i></span>
-                                                <span class="arrow-up"><i class="icon-arrow_up"></i></span>
-                                            </div>
-                                            <div class="time_picker">
-                                                <div class="inline_block_btn vdf_time vdf_min" id="departure_minute">0</div>
-
-                                                <span class="arrow-down"><i class="icon-arrow_down"></i></span>
-                                                <span class="arrow-up"><i class="icon-arrow_up"></i></span>
-                                            </div>
-                                        </div>-->
 
                                 </div>
                             </div>
@@ -153,7 +119,6 @@
                                             </span>
                     </div>
                     <a href="#" id="cancel_order" class="inline_block_btn light_gray_btn close reset_time vd_form_reset ok">Cancel</a>
-                    {{--<button type="submit" href="#" class="inline_block_btn light_green_btn vd_form_submit" id="create-order">Create order</button>--}}
                     <a href="#" class="inline_block_btn light_green_btn vd_form_submit" id="create-order">Create Order</a>
 
                     <span class="required_mark_description">* Required field</span>

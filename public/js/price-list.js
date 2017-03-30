@@ -108,6 +108,7 @@ $(document).ready(function () {
         $('.pl_li').on('click', function (e) {
             $plId = $(this).attr('data-pl-id');
             // console.log($(this));
+            // $('.loader1').text("<img src='/img/loader.gif' width='20'/>");
             $PL = $(this).text();
             $('.wrap_icon').addClass('disable');
             if ($PL == 'Default' || $PL == 'My Price List')
@@ -235,7 +236,7 @@ $(document).ready(function () {
                 else
                     location.reload();
             });
-
+            // $('.loader1').empty();
 
         });
         function refreshItemsTable(data) {

@@ -188,67 +188,72 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-        $this->validate(request(), [
-//        'from' => 'required',
-//        'to' =>  'required',
-//            'sim_id' => 'required',
-//            'landing' =>  'required',
-//            'departure' =>  'required',
-//            'package_id' => 'required'
-//        'reference_number' =>  'required',
-//        'status' =>  'required',
-//        'remark' =>  'required',
-//        'costomer_id' =>  'required',
-//        'employee_id' =>  'required',
-//        'created_by' =>  'required',
-//        'updated_by' =>  'required',
-
-        ]);
 
         $Order = Order::find($id);
+        $now = Carbon::now();
+        $now->addDay();
+        $from = $this->helper->setStartTime($request->input('landing_string'));
+        $to = $this->helper->setEndTime($request->input('departure_string'));
 
 
-//            $Order->from = $this->helper->setStartTime($request->input('landing'));
-//            $Order->to =  $this->helper->setEndTime($request->input('departure'));
-//            $Order->landing =  $request->input('landing_string');
-//            $Order->departure =  $request->input('departure_string');
-            $Order->reference_number =  $request->input('reference_number');
+        if ($request->input('landing') >= $request->input('departure') ||
+            ($request->input('departure') - $request->input('landing')) < 2700
+        )
+            return response()->json(['sim' => 'The landing or departure selection is not correct'], 403);
+
+        if ($Order->status == 'pending' || $Order->status == 'waiting') {
+            if ($Order->from <= $now->timestamp) {
+                return response(['sim' => 'Sorry. The activation time is less then 24 hours.'], 403);
+            } //               elseif ($from <= $Order->to + 72000  && $to >= $Order->from - 72000){
+            elseif ($from <= $Order->to && $to >= $Order->from) {
+                $Order->from = $from;
+                $Order->to = $to;
+                $Order->landing = $request->input('landing_string');
+                $Order->departure = $request->input('departure_string');
+                $Order->reference_number = $request->input('reference_number');
 //            $Order->costumer_number =  $request->input('costumer_number');
 //            $Order->package_id = $request->input('package_id');
-            $Order->remark =  $request->input('remark');
-            $Order->updated_by =  Auth::user()->id;
+                $Order->remark = $request->input('remark');
+                $Order->updated_by = Auth::user()->id;
 
-/*
-            if ($request->has('sim')) {
-                $sim = $this->helper->getSim($request->input('sim'));
-                if ($sim != null) {
-                    if ($sim->number != $request->input('sim')) {
-                        if ($sim->state != 'available')
-                            return response()->json(['sim' => 'sim is already taken'], 403);
-                        $sim->state = 'pending';
-                        $sim->save();
-                        $Order->sim_id = $sim->id;
+                /*
+                            if ($request->has('sim')) {
+                                $sim = $this->helper->getSim($request->input('sim'));
+                                if ($sim != null) {
+                                    if ($sim->number != $request->input('sim')) {
+                                        if ($sim->state != 'available')
+                                            return response()->json(['sim' => 'sim is already taken'], 403);
+                                        $sim->state = 'pending';
+                                        $sim->save();
+                                        $Order->sim_id = $sim->id;
+                                    }
+                                } else {
+                                    return response()->json(['sim' => 'sim not found'], 403);
+                                }
+                            }
+                            */
+                $oldOrder = $Order::find($id);
+                if ($this->helper->isNumberCompatible($Order, $oldOrder))
+                    $Order->save();
+                else
+                    return response(['sim' => 'Conflict with other number'], 403);
+
+                $number = null;
+                if ($request->has('phone_id') && $request->input('phone_id') != '' && $request->input('phone_id') != $Order->phone_id) {
+                    if (Auth::user()->level == 'Super admin') {
+                        $number = $this->helper->setNumber($Order->id, $request->input('phone_id'));
                     }
-                } else {
-                    return response()->json(['sim' => 'sim not found'], 403);
                 }
-            }
-            */
-            $Order->save();
-
-            $number = null;
-            if ($request->has('phone_id') && $request->input('phone_id') != '' && $request->input('phone_id') != $Order->phone_id) {
-                if (Auth::user()->level == 'Super admin') {
-                    $number = $this->helper->setNumber($Order->id, $request->input('phone_id'));
+                if ($number != null) {
+                    return $this->edit($Order->id);
                 }
-            }
-            if ($number != null) {
-                return $this->edit($Order->id);
-            }
 
-            return response($Order->toArray(), 200);
-
+                return response($Order->toArray(), 200);
+            } else
+                return response(['sim' => 'Sorry. The new time is grater than 24 hours.'], 403);
+        } else {
+            return response(['sim' => 'This order cannot be edited due to status.'], 403);
+        }
 
     }
 

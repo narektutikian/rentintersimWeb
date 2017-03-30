@@ -130,10 +130,10 @@ class CreateHelper
 
     }
 
-    protected function isNumberCompatible($newOrder, $oldOrder)
+    public function isNumberCompatible($newOrder, $oldOrder)
     {
 //        Log::info('Create Helper -> isNumberCompatible'. date('H:i:s'));
-        $allOrders = Order::where('phone_id', $oldOrder->phone_id);
+        $allOrders = Order::where('phone_id', $oldOrder->phone_id)->where('status', '!=', 'done')->where('id', '!=', $oldOrder->id);
         $count = clone ($allOrders);
         $c = $count->count();
         if($c > 0){

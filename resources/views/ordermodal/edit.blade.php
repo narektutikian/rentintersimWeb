@@ -59,26 +59,13 @@
                                             <div class="input-group-addon">
                                                 <span class="glyphicon glyphicon-calendar"></span>
                                             </div>
-                                            <input type="text" name="landing_date" id="landing_date" class="inline_block_btn landing_date vd_date_required" data-date-format="DD/MM/YYYY" disabled>
+                                            <input type="text" name="landing_date" id="landing_date_edit" class="inline_block_btn landing_date vd_date_required" data-date-format="DD/MM/YYYY" disabled>
                                         </div>
                                         <div class="wrap_time">
                                             <i class="departure_time icon-time"></i>
-                                            <input type="text" name="timepicker3" id="time_element3" class="inline_block_btn time_element vd_time_requiredc landing_time_val" disabled/>
+                                            <input type="text" name="timepicker3" id="time_element3" class="inline_block_btn time_element vd_time_requiredc landing_time_val"/>
                                         </div>
                                     </div>
-                                    {{--<div class="wrap_time from">--}}
-                                        {{--<i class="departure_time icon-time"></i>--}}
-                                        {{--<div class="time_picker">--}}
-                                            {{--<div  class="inline_block_btn numeric_input vdf_time vdf_hour" id="landing_hour-edit">0</div>--}}
-                                            {{--<span class="arrow-down"><i class="icon-arrow_down"></i></span>--}}
-                                            {{--<span class="arrow-up"><i class="icon-arrow_up"></i></span>--}}
-                                            {{--</div>--}}
-                                        {{--<div class="time_picker">--}}
-                                            {{--<div class="inline_block_btn vdf_minute_picker vdf_time vdf_min" id="landing_minute-edit">0</div>--}}
-                                            {{--<span class="arrow-down disable"><i class="icon-arrow_down"></i></span>--}}
-                                            {{--<span class="arrow-up disable"><i class="icon-arrow_up"></i></span>--}}
-                                            {{--</div>--}}
-                                        {{--</div>--}}
                                 </div>
                                 <div class="col-md-6">
                                     <div class="departure"><i class="icon-departure"></i> Departure date and time</div>
@@ -87,26 +74,13 @@
                                             <div class="input-group-addon">
                                                 <span class="glyphicon glyphicon-calendar"></span>
                                             </div>
-                                            <input type="text" name="departure_date" id="departure_date" class="inline_block_btn departure_date vd_date_required" data-date-format="DD/MM/YYYY" disabled>
+                                            <input type="text" name="departure_date" id="departure_date_edit" class="inline_block_btn departure_date vd_date_required" data-date-format="DD/MM/YYYY" disabled>
                                         </div>
                                         <div class="wrap_time">
                                             <i class="departure_time icon-time"></i>
-                                            <input type="text" name="timepicker4" id="time_element4" class="inline_block_btn time_element vd_time_requiredc departure_time_val" disabled/>
+                                            <input type="text" name="timepicker4" id="time_element4" class="inline_block_btn time_element vd_time_requiredc departure_time_val"/>
                                         </div>
                                     </div>
-                                    {{--<div class="wrap_time to">--}}
-                                        {{--<i class="departure_time icon-time"></i>--}}
-                                        {{--<div class="time_picker">--}}
-                                            {{--<div  class="inline_block_btn numeric_input vdf_time vdf_hour" id="departure_hour-edit">0</div>--}}
-                                            {{--<span class="arrow-down"><i class="icon-arrow_down"></i></span>--}}
-                                            {{--<span class="arrow-up"><i class="icon-arrow_up"></i></span>--}}
-                                            {{--</div>--}}
-                                        {{--<div class="time_picker">--}}
-                                            {{--<div class="inline_block_btn vdf_minute_picker vdf_time vdf_min" id="departure_minute-edit">0</div>--}}
-                                            {{--<span class="arrow-down"><i class="icon-arrow_down"></i></span>--}}
-                                            {{--<span class="arrow-up"><i class="icon-arrow_up"></i></span>--}}
-                                            {{--</div>--}}
-                                        {{--</div>--}}
                                 </div>
                             </div>
 
@@ -154,7 +128,6 @@
                 </div>
                 <div class="modal-footer vdf_modal_footer">
                     <a href="#" class="inline_block_btn light_gray_btn close vd_form_reset" data-dismiss="modal" aria-label="Close">Cancel</a>
-                    {{--<button type="submit" href="#" class="inline_block_btn light_green_btn vd_form_submit" id="create-order">Edit order</button>--}}
                     <a href="#" class="inline_block_btn light_green_btn vd_form_submit" id="edit-order">Update order</a>
                     <span class="success_response"></span>
                     <span class="error_response"></span>

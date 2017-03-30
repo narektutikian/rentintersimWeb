@@ -174,69 +174,80 @@ $(document).ready(function () {
         e.stopPropagation(); // Stop stuff happening
         if ($(this).closest(".vd_form").valid()) {
 
-            var departure = $('#departure_date-edit').val() + " "
-                + $('#departure_hour-edit').text() + ":" + $('#departure_minute-edit').text();
-            var landing = $('#landing_date-edit').val() + " "
-                + $('#landing_hour-edit').text() + ":" + $('#landing_minute-edit').text();
+            var departure = $('#departure_date_edit').val() + $('#time_element4').val();
+            var landing = $('#landing_date_edit').val() + $('#time_element3').val();
+            if ($("#time_element3").val() != "00:00" && $("#time_element4").val() != "00:00") {
 
-            console.log($('#time_element').val());
-            var data = {
-                _token: CSRF_TOKEN,
-                sim: $('#sim-edit').val(),
-                phone_id: $('#phone_number-edit').val(),
-                landing: moment(landing, "DD/MM/YYYY HH:mm").valueOf() / 1000,
-                departure: moment(departure, "DD/MM/YYYY HH:mm").valueOf() / 1000,
-                landing_string: moment(landing, "DD/MM/YYYY HH:mm").format("DD/MM/YYYY HH:mm"),
-                departure_string: moment(departure, "DD/MM/YYYY HH:mm").format("DD/MM/YYYY HH:mm"),
-                package_id: package_id, // put package id
-                reference_number: $('#reference_number-edit').val(),
-                remark: $('#remark-edit').val(),
-            };
+                console.log($('#time_element').val());
+                var data = {
+                    _token: CSRF_TOKEN,
+                    sim: $('#sim-edit').val(),
+                    phone_id: $('#phone_number-edit').val(),
+                    landing: moment(landing, "DD/MM/YYYY HH:mm").valueOf() / 1000,
+                    departure: moment(departure, "DD/MM/YYYY HH:mm").valueOf() / 1000,
+                    landing_string: moment(landing, "DD/MM/YYYY HH:mm").format("DD/MM/YYYY HH:mm"),
+                    departure_string: moment(departure, "DD/MM/YYYY HH:mm").format("DD/MM/YYYY HH:mm"),
+                    package_id: package_id, // put package id
+                    reference_number: $('#reference_number-edit').val(),
+                    remark: $('#remark-edit').val(),
+                };
 
-            $.ajax({
-                type: "PUT",
-                url: '/order/' + edit_id,
-                data: data,
-                success: function (msg) {
-                    location.reload();
-                    $(".error_response").empty();
-                    $(".success_response").empty();
-                    $(".success_response").append("DONE");
-                    $("#edit-order").remove();
-                    $(".close").text("close");
-                    // $("#create-order").attr("id", "edit-order");
-                    var order_new;
-                    if (Array.isArray(msg)){
-                        order_new = msg[0];
-                    } else {
-                        order_new = msg;
-                    }
-                    $('#order_status').val(order_new.status);
-                    if (order_new.status != "waiting") {
-                        $('#phone_number2').val(order_new.phone.phone);
-                        $('#phone_number').append($('<option>', {
-                            value: order_new.phone.id,
-                            text: order_new.phone.phone
-                        }));
-                        $("#phone_number").val(order_new.phone.id);
-                        // edit_id = msg[0].id;
-                        // console.log("edit id " + edit_id);
-                        // edit_id = msg.id;
-                        // console.log("edit id " + edit_id);
-                    } else {
+                $.ajax({
+                    type: "PUT",
+                    url: '/order/' + edit_id,
+                    data: data,
+                    success: function (msg) {
+                        location.reload();
                         $(".error_response").empty();
                         $(".success_response").empty();
-                        $(".success_response").append("Order edited but there is no available number. Try getting number in Order table.");
+                        $(".success_response").append("DONE");
+                        $("#edit-order").remove();
+                        $(".close").text("close");
+                        // $("#create-order").attr("id", "edit-order");
+                        var order_new;
+                        if (Array.isArray(msg)) {
+                            order_new = msg[0];
+                        } else {
+                            order_new = msg;
+                        }
+                        $('#order_status').val(order_new.status);
+                        if (order_new.status != "waiting") {
+                            $('#phone_number2').val(order_new.phone.phone);
+                            $('#phone_number').append($('<option>', {
+                                value: order_new.phone.id,
+                                text: order_new.phone.phone
+                            }));
+                            $("#phone_number").val(order_new.phone.id);
+                            // edit_id = msg[0].id;
+                            // console.log("edit id " + edit_id);
+                            // edit_id = msg.id;
+                            // console.log("edit id " + edit_id);
+                        } else {
+                            $(".error_response").empty();
+                            $(".success_response").empty();
+                            $(".success_response").append("Order edited but there is no available number. Try getting number in Order table.");
+                        }
+                    },
+                    error: function (error) {
+                        // console.log(error);
+                        $(".error_response").empty();
+                        $(".success_response").empty();
+                        $(".error_response").append("ERROR  ");
+                        if ('sim' in error.responseJSON)
+                            $(".error_response").append(error.responseJSON.sim);
+                        else if ('package_id' in error.responseJSON)
+                            $(".error_response").append(" Please select SIM Package");
+                        else
+                            $(".error_response").append(error.responseText);
+
+                        // console.log(error.responseJSON.number[0]);
                     }
-                },
-                error: function (error) {
-                    $(".error_response").empty();
-                    $(".success_response").empty();
-                    $(".error_response").append("ERROR");
-                    // $("#sim-edit-response").append("<div>"+"ERROR "+ error.responseJSON.number[0]+ " ," +error.responseJSON.provider_id[0] +"</div>");
-                    // console.log(error.responseJSON.number[0]);
-                }
-            });
+                });
+            } else  {
+                $(".error_response").empty();
+                $(".success_response").empty();
+                $(".error_response").append("ERROR  Time can not be 00:00");
+            }
         }
     });
 

@@ -275,7 +275,9 @@ function formatNumber(value, row, index) {
 
 function formatTotal(value, row, index) {
 
-
+    if (row.report == null)
+        return '-';
+    else
         return row.report.total_sell_price + row.report.sim_sell_price;
 
 }

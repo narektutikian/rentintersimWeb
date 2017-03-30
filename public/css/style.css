@@ -938,6 +938,10 @@ input[type="radio"].toggle.checked + label {
   font-style: normal;
   font-family: "proxima_nova_rgregular", Arial, Helvetica, sans-serif; }
 
+.daily_sell_price {
+  width: 40px;
+  max-width: 40px; }
+
 @media (min-width: 768px) and (max-width: 992px) {
   .table_id_cell {
     width: 40px;

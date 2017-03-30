@@ -135,39 +135,6 @@ $( document ).ready(function() {
     $('.options').perfectScrollbar();
     /************ end of styling select tag *************/
 
-
-    /************ Styling Radio buttons *************/
-
-    //$(document).on('click', 'label.label_unchecked', function(e){
-    //    // prevent label from being called twice
-    //    e.stopPropagation();
-    //    e.preventDefault();
-    //    e.stopImmediatePropagation();
-
-    //    if($(this).closest('.toggle_container').hasClass('disabled')){
-
-    //        $(this).closest('.toggle_container').removeClass('disabled');
-    //        /* Enable rows in table */
-    //        $(this).closest('.table_status_cell').prevAll('td').removeClass('disable');
-    //        $(this).closest('.vdf_radio').siblings('.table_status_text').removeClass('disable');
-
-    //    }else if(!$(this).closest('.toggle_container').hasClass('disabled')){
-
-    //        $(this).closest('.toggle_container').addClass('disabled');
-    //        /* Disable rows in table */
-    //        $(this).closest('.table_status_cell').prevAll('td').addClass('disable');
-    //        $(this).closest('.vdf_radio').siblings('.table_status_text').addClass('disable');
-    //    }
-    //    if($(this).hasClass('label_unchecked')){
-
-    //        $(this).removeClass('label_unchecked').addClass('label_checked');
-    //        $(this).siblings('label').addClass('label_unchecked').removeClass('label_checked');
-    //    }
-    //});
-
-    /********** end of Styling Radio buttons ***********/
-
-
     // rotate arrow for nested rows
     $(document).on('click', '.open_nested', function (e) {
 
@@ -307,6 +274,28 @@ $( document ).ready(function() {
 
 
     $('#modal_edit_order').on('show.bs.modal', function () {
+
+        $('#time_element3').timepicki({
+            show_meridian:false,
+            min_hour_value:0,
+            max_hour_value:23,
+            step_size_minutes:15,
+            overflow_minutes:true,
+            increase_direction:'up',
+            disable_keyboard_mobile: true,
+            start_time: ["00", "00"]
+        });
+
+        $('#time_element4').timepicki({
+            show_meridian:false,
+            min_hour_value:0,
+            max_hour_value:23,
+            step_size_minutes:15,
+            overflow_minutes:true,
+            increase_direction:'up',
+            disable_keyboard_mobile: true,
+            start_time: ["00", "00"]
+        });
 
         // do something…
         setTimeout(function(){
@@ -523,103 +512,6 @@ $( document ).ready(function() {
         onPrintFinished(window.print());
     });
 
-/*    /!* Numeric inputs for time picker *!/
-    $('.numeric_input').keydown(function(event) {
-
-        if (event.keyCode == 8 || (event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 96 && event.keyCode <= 105)) {
-            // 0-9 only
-            console.log('0-9 only ');
-
-        }else{
-            $(this).val($(this).val().replace(/[^\d].+/, ""));
-
-            if (event.keyCode != 8 || (event.which < 48 || event.which > 57)) {
-                console.log('letters are not allowed ');
-                event.preventDefault();
-            }
-        }
-
-    });
-
-        /!* Change hours/minutes by click *!/
-        $('.arrow-up').on('click', function(){
-
-            if($(this).siblings().hasClass('vdf_hour')){
-
-                var el = $(this).siblings('.vdf_hour').text();
-
-                if(parseInt($(this).siblings('.vdf_hour').text()) == 23) {
-
-                    $(this).siblings('.vdf_hour').text(parseInt(0));
-                }else{
-                    $(this).siblings('.vdf_hour').text(parseInt(el) + 1);
-                }
-
-            }
-            if($(this).siblings().hasClass('vdf_min')){
-
-                var el = $(this).siblings('.vdf_min').text();
-
-                if(parseInt($(this).siblings('.vdf_min').text()) == 45){
-
-                    $(this).siblings('.vdf_min').text(parseInt(0));
-                }else{
-
-                    $(this).siblings('.vdf_min').text(parseInt(el) + 15);
-                }
-
-            }
-
-        });
-        $('.arrow-down').on('click', function(){
-            
-            if($(this).siblings().hasClass('vdf_hour')){
-
-                var el = $(this).siblings('.vdf_hour').text();
-
-                if(parseInt($(this).siblings('.vdf_hour').text()) == 0){
-
-                    $(this).siblings('.vdf_hour').text(23);
-                }else{
-                    $(this).siblings('.vdf_hour').text(parseInt(el) - 1);
-                }
-
-            }
-            if($(this).siblings().hasClass('vdf_min')){
-
-                var el = $(this).siblings('.vdf_min').text();
-
-                if(parseInt($(this).siblings('.vdf_min').text()) == 0){
-
-                    $(this).siblings('.vdf_min').text(parseInt(45));
-                }else{
-
-                    $(this).siblings('.vdf_min').text(parseInt(el) - 15);
-                }
-
-            }
-
-        });*/
-
-        /* end of Change hours/minutes by click */
-    /* end of Numeric inputs for time picker */
-
-    // $('.ref_number').on('click', function () {
-    //     var data_content = $(this).attr('data-content');
-    //
-    //     if($(this).closest('tr').siblings('tr').find('.show_data_content').length > 0){
-    //
-    //         $(this).closest('tr').siblings('tr').find('.show_data_content').remove();
-    //     }
-    //
-    //     if($(this).find('.show_data_content').length > 0){
-    //
-    //         $(this).find('.show_data_content').remove();
-    //     }else{
-    //         $(this).append('<span class="show_data_content">' + data_content + '</span>');
-    //     }
-    //
-    // });
 
     $(function () {
         $('[data-toggle="tooltip"]').tooltip();
@@ -630,71 +522,11 @@ $( document ).ready(function() {
         });
     });
 
-/*
-*
-* */
-
-
-
     /* Open order modal after double click */
 
     $('.link').on('click', function (event) {
         event.preventDefault();
     });
-
-   /* $('.link').on('dblclick', function (event) {
-
-        event.preventDefault();
-        $('#modal_view_order').modal('toggle');
-
-        /!******* Open View modal  *******!/
-
-            var row_id = $(this).parents('td').attr('data-row-id');
-
-
-            $.get("/order/" + row_id + "/edit", function (order_data, order_status) {
-
-                if (order_status == "success") {
-
-                    // console.log(order_data);
-
-                    $.get("/type-provider/1", function (data, type_status) {
-
-                        if (type_status == "success") {
-
-                            $('#wrap_package_list_view').empty();
-                            $('#wrap_package_list_view').append("<label class='table_label'>Selected Package </label>" +
-                                "<a class='selected_package' title='"+ order_data[0].package.name +"'>" +
-                                "<h4>"+ order_data[0].package.name +"</h4>" +
-                                "<span>"+ order_data[0].package.description +"</span>" +
-                                "</a>");
-                            $('.sim-edit').val(order_data[0].sim_id);
-                            $('.remark-view').val(order_data[0].remark);
-                            $('.reference_number-view').val(order_data[0].reference_number);
-                            if (order_data[0].status != "waiting") {
-                                $('#phone_number-view2').val(order_data[0].phone.phone);
-                                 }
-                            $('#order_status-view').val(order_data[0].status);
-                            $('.creator').text(order_data[0].creator.name + " " + order_data[0].created_at);
-                            if (order_data[0].editor != null)
-                                $('.editor').text(order_data[0].editor.name);
-                            $('.edited_at').text(" " + order_data[0].updated_at);
-                            $('.landing_date').val(order_data[0].landing.split(' ')[0]);
-                            $('.departure_date').val(order_data[0].departure.split(' ')[0]);
-                            $('.landing_time_val').val(order_data[0].landing.split(' ')[1]);
-                            $('.departure_time_val').val(order_data[0].departure.split(' ')[1]);
-
-
-
-                            // console.log(order_data[0].status)
-
-
-                        }
-                    });
-                }
-            });
-
-    });*/
 
     $('.table').on('dbl-click-row.bs.table', function ($element, row, field) {
         $('#modal_view_order').modal('show');
@@ -744,20 +576,6 @@ $(window).load(function() {
 var onPrintFinished=function(printed){
     $('#modal_print_order').modal('toggle');
 };
-/*
-function actionFormatter(value, row, index) {
-    return [
-        '<a class="like" href="javascript:void(0)" title="Like">',
-        '<i class="glyphicon glyphicon-heart"></i>',
-        '</a>',
-        '<a class="edit ml10" href="javascript:void(0)" title="Edit">',
-        '<i class="glyphicon glyphicon-edit"></i>',
-        '</a>',
-        '<a class="remove ml10" href="javascript:void(0)" title="Remove">',
-        '<i class="glyphicon glyphicon-remove"></i>',
-        '</a>'
-    ].join('');
-}
-*/
+
 
 
