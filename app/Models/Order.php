@@ -59,6 +59,11 @@ class Order extends Model
         return $this->belongsToMany('App\Models\Phone');
     }
 
+    public function report()
+    {
+        return $this->hasOne('App\Models\Report');
+    }
+
 //    protected function getDateFormat()
 //    {
 //        return 'd.m.Y H:i:s';

@@ -52,7 +52,7 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
     Route::resource('sim', 'SIMController');
     Route::resource('type', 'PackageController');
     Route::resource('price-list', 'PriceListController');
-//    Route::resource('report', 'ReportController');
+    Route::resource('report', 'ReportController');
 
     /*****Get new Number******/
     Route::get('get-number/{orderId}', 'OrderController@getNumberExternal');
@@ -88,7 +88,7 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
 
     Route::get('send-mail/{orderID}', 'OrderController@sendMail');
 
-    Route::get('report', 'ReportController@index');
+//    Route::get('report', 'ReportController@index');
     Route::get('phone/specials/{packageID}', 'PhoneController@specials');
 
     /**** Recover Routes ****/
@@ -116,9 +116,7 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
 
 
 Route::get('/test', function (){
-
-    $pl = PlName::find(30);
-    dd($pl);
+echo '<a href="/test-delays" target="_parent">a</a>';
 });
 
 Route::get('/test2', function (){
@@ -162,6 +160,12 @@ Route::get('/test-deactivation', function (){
         echo "id: ".$order->id." | deactivation time: ". Carbon::createFromTimestamp($order->to)->format('d/m/Y H:i'). " |  user chois: ". $order->departure ." | Status: " . $order->status. "<br>";
     }
 
+});
+
+Route::get('string-to-timestamp', function (){
+    $date = Carbon::createFromFormat('d/m/Y H:i', request()->input('string'));
+    echo request()->input('string'). "\n";
+    return response($date->timestamp);
 });
 
 
