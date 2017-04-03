@@ -2,9 +2,12 @@
 
 namespace App\Providers;
 
+use App\Models\PlName;
 use Illuminate\Support\ServiceProvider;
 use App\User;
+use App\Models\PriceList;
 use App\Observers\UserObserver;
+use App\Observers\ReportObserver;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -17,6 +20,8 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         User::observe(UserObserver::class);
+        PlName::observe(ReportObserver::class);
+        PriceList::observe(ReportObserver::class);
     }
 
     /**

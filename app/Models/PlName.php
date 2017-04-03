@@ -9,6 +9,13 @@ class PlName extends Model
 {
     //
     use SoftDeletes;
+
+    protected $events = [
+        'saved',
+        'deleted',
+        'updated'
+    ];
+
     public function priceLists ()
     {
         return $this->hasMany('App\Models\PriceList');

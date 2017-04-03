@@ -13,6 +13,8 @@ use App\Models\Report;
 use App\Models\PlName;
 use Rentintersimrepo\users\UserManager;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Log;
+use App\Models\ReportHistory;
 
 class ReportHelper
 {
@@ -96,6 +98,51 @@ class ReportHelper
         $report->total_profit = ($report->total_sell_price + $report->sim_sell_price) -
             ($report->total_package_cost + $report->sim_cost);
         return $report;
+    }
+
+    public function logReportChanges()
+    {
+        Log::info('Price List Event dispatched');
+        $orders = Order::where('status', 'active')->get();
+        foreach ($orders as $order){
+            if ($order->report->histories == null){
+                if (($order->report->daily_sell_price == $this->getPackageSell($order))
+                    || ($order->report->sim_sell_price == $this->getSimSell($order))
+                        || ($order->report->package_cost == $this->getPackageCost($order))
+                            || ($order->report->sim_cost == $this->getSimCost($order)))
+                    continue;
+                    else $this->createNewHistory($order);
+               }
+            else {
+                $story = $order->report->histories()->orderBy('created_at', 'desc')->first();
+                    if (($story->new_package_sell == $this->getPackageSell($order))
+                            || ($story->new_sim_sell == $this->getSimSell($order))
+                            || ($story->new_package_cost == $this->getPackageCost($order))
+                            || ($story->new_sim_cost == $this->getSimCost($order)))
+                            continue;
+                else {
+                    //TODO create new story by copiing
+                }
+
+            }
+
+        }
+
+    }
+
+    protected function createNewHistory ($order)
+    {
+        $history = new ReportHistory();
+        $history->report_id = $order->report->id;
+        $history->new_sim_cost = $this->getSimCost($order);
+        $history->new_sim_sell = $this->getSimSell($order);
+        $history->new_package_cost = $this->getPackageCost($order);
+        $history->new_package_sell = $this->getPackageSell($order);
+        $history->old_sim_cost = $order->report->sim_cost;
+        $history->old_sim_sell = $order->report->sim_sell_price;
+        $history->old_package_cost = $order->report->package_cost;
+        $history->old_package_sell = $order->report->daily_sell_price;
+        $history->save();
     }
 
 }

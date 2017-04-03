@@ -9,6 +9,12 @@ class PriceList extends Model
 {
     //
     use SoftDeletes;
+
+    protected $events = [
+        'saved',
+        'deleted'
+    ];
+
     public function plName (){
         return $this->belongsTo('Models\PlName');
     }
