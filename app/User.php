@@ -34,8 +34,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $events = [
-        'saved' => UserSaved::class,
-        'deleted' => UserDeleted::class,
+        'saved',
+        'deleted'
     ];
 
     /**

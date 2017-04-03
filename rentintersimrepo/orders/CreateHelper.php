@@ -18,6 +18,7 @@ use App\Models\Activation;
 use Illuminate\Support\Facades\Log;
 use Mail;
 use DB;
+use App\Events\ReportEvent;
 
 class CreateHelper
 {
@@ -210,7 +211,7 @@ class CreateHelper
 
     public function activate ($orderId)
     {
-        DB::transaction(function () use ($orderId) {
+        $activatedOrder = DB::transaction(function () use ($orderId) {
         $order = Order::find($orderId);
         if ($order->status != 'pending')
             exit();
@@ -237,7 +238,9 @@ class CreateHelper
         $order->from = Carbon::createFromFormat('d/m/Y H:i', $order->landing)->timestamp;
         $order->save();
         $this->setStatus($order, 'active');
+            return $order;
         }, 5);
+        event(new ReportEvent($activatedOrder));
     }
 
     public function startDeactivation()
