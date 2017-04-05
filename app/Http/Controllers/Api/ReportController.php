@@ -76,11 +76,11 @@ class ReportController extends Controller
     {
         //
         $report = null;
-        $orders = Order::withTrashed()->where('status', 'done')->get();
+        $orders = Order::withTrashed()->where('status', 'active')->get();
         foreach ($orders as $order) {
 
         if ($order != null)
-            if ($order->status == 'done'){
+            if ($order->status == 'active'){
                 $report = Report::where('order_id', $order->id)->first();
                 if ($report == null){
                     $report = $this->reportHelper->calculateReport($order);
@@ -102,6 +102,8 @@ class ReportController extends Controller
     public function edit($id)
     {
         //
+        $order = Order::find($id);
+        $this->reportHelper->calculateFinalReport($order);
     }
 
     /**

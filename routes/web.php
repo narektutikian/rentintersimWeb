@@ -16,7 +16,8 @@ use App\Models\Order;
 use App\Models\Activation;
 use Carbon\Carbon;
 use App\Jobs\CacheUsersTree;
-use App\Models\PlName;
+use App\Models\Report;
+use App\Models\ReportHistory;
 
 
 Route::get('/', function () {
@@ -116,7 +117,22 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
 
 
 Route::get('/test', function (){
-echo '<a href="/test-delays" target="_parent">a</a>';
+        $report = ReportHistory::find(21);
+    $report->delete();
+//    $histories = $report->histories()->orderBy('created_at', 'asc')->get();
+//    foreach ($histories as $key => $history){
+//        if ($histories->values()->get($key + 1) != null){
+//            if ($history->day == $histories->values()->get($key + 1)->day){
+//                $history->delete();
+//                echo "$history->id <br>";
+//                unset($history);
+//            }
+//        }
+//        else break;
+//    }
+//    dd($histories);
+
+
 });
 
 Route::get('/test2', function (){
@@ -149,7 +165,7 @@ Route::get('/test-user-queue', function (){
 });
 
 Route::get('/test-deactivation', function (){
-    $orders = Order::get();
+    $orders = Order::where('status', 'pending')->get();
     foreach ($orders as $order){
 //        $date = Carbon::createFromFormat('d/m/Y H:i', $order->departure)->addHours(3);
 ////        if ($date->hour >= 2 && $date->hour <= 6){

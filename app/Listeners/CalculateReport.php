@@ -37,9 +37,11 @@ class CalculateReport
         $order = $event->order;
         $report = $order->report;
         if ($report == null){
-            $report = $report = $this->reportHelper->calculateReport($order);
+            $report = $this->reportHelper->calculateReport($order);
             $report->save();
-
         }
+        else
+            $this->reportHelper->calculateFinalReport($order);
+            Log::info('Final Report calculated');
     }
 }

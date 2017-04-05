@@ -262,8 +262,8 @@ class CreateHelper
 
     public function deactivate ($orderID)
     {
-        DB::transaction(function () use ($orderID) {
-            $order = Order::find($orderID);
+        $order = Order::find($orderID);
+        DB::transaction(function () use ($order) {
         if ($order == null)
             exit();
         $phone = $order->phone;
@@ -285,6 +285,7 @@ class CreateHelper
 
         $this->freeResources($order, 'done');
     }, 5);
+        event(new ReportEvent($order));
 
     }
 
