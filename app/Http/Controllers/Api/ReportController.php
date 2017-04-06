@@ -52,7 +52,7 @@ class ReportController extends Controller
     public function create()
     {
         //
-        return view('ordercreate');
+        return view('financial-report');
     }
 
     /**
@@ -131,6 +131,7 @@ class ReportController extends Controller
 
     public function generateReport(Request $request)
     {
+        $total = 1;
         $q = $request->all();
         $fromS = '2017/01/01';
         $toS = '0000/00/00';
@@ -139,7 +140,7 @@ class ReportController extends Controller
             $report = Order::where('id', '<', 0);
         else {
             $report = Order::withTrashed()->where(function ($q){
-                $q->where('status', 'done')->orWhere('status', 'active');
+                $q->where('orders.status', 'done')->orWhere('orders.status', 'active');
             })->whereIn('created_by', $net);
             if ($request->has('username')){
                 $userID = $request->input('username');
@@ -188,10 +189,14 @@ class ReportController extends Controller
                 $report = $report->join('users', 'orders.created_by', '=', 'users.id')
                     ->select('orders.*', 'users.login')
                     ->orderBy('login', $request->input('order'));
-
             }
             elseif ($q['sort'] == 'status'){
                 $report = $report->orderBy('status', $q['order']);
+            }
+            elseif ($q['sort'] == 'package.name'){
+                $report = $report->join('packages', 'orders.package_id', '=', 'packages.id')
+                    ->select('orders.*', 'packages.name')
+                    ->orderBy('packages.name', $request->input('order'));
             }
 //            $report = $report->with(['phone', 'sim', 'creator', 'sim.provider']);
 
@@ -200,6 +205,7 @@ class ReportController extends Controller
         else {
             $report = $report->orderBy('id', 'desc');
         }
+
         if ($request->has('search')){
 
             $qs = $request->input('search');
@@ -214,7 +220,16 @@ class ReportController extends Controller
                     ->orWhere('reference_number', 'LIKE', '%' . $qs . '%');
             });
         }
-            if ($request->has('export')){
+
+        $report = $report->with(['phone'  => function ($q){
+            $q->withTrashed();
+        }, 'sim'  => function ($q){
+            $q->withTrashed();
+        }, 'creator'  => function ($q){
+            $q->withTrashed();
+        }, 'package', 'report', 'sim.provider']);
+
+/*            if ($request->has('export')){
             $report = $report->get();
             $ordersArray = $this->viewHelper->solveOrderList($report);
             $ordersArray = $this->viewHelper->prepareExport($ordersArray, 'report');
@@ -227,25 +242,86 @@ class ReportController extends Controller
                 });
 
             })->download('xlsx');
+            }*/
+            if ($request->has('export')){
+                if($request->input('page') == 'financial')
+                    $this->exportFinancialReport($report)->download('xlsx');
+                else
+                    $this->exportBasicReport($report)->download('xlsx');
+
             }
 
             else {
                 $total = clone $report;
                 $total = $total->count();
-                $report = $report->with(['phone'  => function ($q){
-                    $q->withTrashed();
-                }, 'sim'  => function ($q){
-                    $q->withTrashed();
-                }, 'creator'  => function ($q){
-                    $q->withTrashed();
-                }, 'package', 'report', 'sim.provider'])->take($q['limit'])->skip($q['offset'])->get();
+                $report = $report->take($q['limit'])->skip($q['offset'])->get();
             }
 
 
             foreach ($report as $item){
                $item->duration = $this->viewHelper->calculateInterval($item->landing, $item->departure). ' day(s)';
             }
+//            echo '<pre>';
+//            var_dump($report);
+//        echo '</pre>';
+//        die();
         return  response()->json(['total' => $total, 'rows' => $report]);
+
+    }
+
+    public function exportBasicReport($builder)
+    {
+        Excel::create('Report', function($excel) use ($builder) {
+            $excel->sheet('report', function($sheet) use($builder) {
+                $sheet->appendRow(array(
+                    'id', 'Phone', 'Sim number', 'Provider', 'Type', 'From', 'To', 'Dealer',
+                    'Reference #', 'Duration (in days)', 'Price per day', 'SIM price', 'Total'
+                ));
+                $sheet->setColumnFormat(array('C' => '0'));
+                $sheet->freezeFirstRowAndColumn();
+                $builder->chunk(100, function($rows) use ($sheet)
+                {
+                    foreach ($rows as $row)
+                    {
+                        $sheet->appendRow(array(
+                            $row->id, $row->phone->phone, $row->sim->number, $row->sim->provider->name,
+                            $row->package->name, $row->landing, $row->departure, $row->creator->login,
+                            $row->reference_number, $row->report->duration, $row->report->daily_sell_price,
+                            $row->report->sim_sell_price, $row->report->total_sell_price + $row->report->sim_sell_price
+                        ));
+                    }
+                });
+            });
+        })->download('xlsx');
+
+    }
+
+    public function exportFinancialReport($builder)
+    {
+      return  Excel::create('Report', function($excel) use ($builder) {
+            $excel->sheet('report', function($sheet) use($builder) {
+                $sheet->appendRow(array(
+                    'id', 'Phone', 'Sim number', 'Provider', 'Type', 'From', 'To', 'Dealer',
+                    'Duration (in days)', 'Daily sell price', 'Total sell price', 'SIM price',
+                    'Package cost', 'Total Package cost', 'SIM cost', 'Total profit'
+                ));
+                $sheet->setColumnFormat(array('C' => '0'));
+                $sheet->freezeFirstRowAndColumn();
+                $builder->chunk(100, function($rows) use ($sheet)
+                {
+                    foreach ($rows as $row)
+                    {
+                        $sheet->appendRow(array(
+                            $row->id, $row->phone->phone, $row->sim->number, $row->sim->provider->name,
+                            $row->package->name, $row->landing, $row->departure, $row->creator->login,
+                            $row->report->duration, $row->report->daily_sell_price, $row->report->total_sell_price,
+                            $row->report->sim_sell_price, $row->report->package_cost, $row->report->total_package_cost,
+                            $row->report->sim_cost, $row->report->total_profit,
+                        ));
+                    }
+                });
+            });
+        });
 
     }
 

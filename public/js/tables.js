@@ -516,7 +516,8 @@ $('#report_table').bootstrapTable({
             level: $('#level').val(),
             from: $('#from').val(),
             to: $('#to').val(),
-            username: $('#username').val()
+            username: $('#username').val(),
+            page: $('#page').val()
         };
     }
 });

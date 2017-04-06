@@ -9,7 +9,7 @@
                         {{--<div class="filter_text">Filter by status:</div>--}}
                         <div>
                             <form method="get" action="{{url('/api/report')}}">
-                                <input type="hidden" id="page" name="page" value="basic">
+                                <input type="hidden" id="page" name="page" value="financial">
                                 {{--{{csrf_field()}}--}}
                                 <div class="row">
                                     <div class="col-md-6">
@@ -26,14 +26,34 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
+                                            <label class="table_label">Username</label>
+                                            <div class="select_wrapper" id="user-select">
+                                                <select id="username" name="username" class="block_btn_30 modal_input username">
+                                                    <option value="">All</option>
+                                                    @php if(isset ($_GET['username']))
+                                                    $id = $_GET['username'];
+                                                else
+                                                    $id =  Auth::user()->id;
+                                                    @endphp
+                                                    @foreach($users as $user)
+                                                        <option value="{{$user->id}}" {{ ($id == $user->id) ? 'selected' : '' }}>{{$user->login}}</option>
+                                                    @endforeach
+                                                </select>
+                                                <i class="input_icon_small icon-username"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 hidden">
+                                        <div class="form-group">
                                             <label class="table_label">Phone Number</label>
                                             <input type="text" class="block_btn_30 modal_input_without_icon" id="number" name="number" value="{{ (isset($_GET['number'])) ? $_GET['number'] : '' }}">
                                         </div>
                                     </div>
+
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <div class="form-group">
+                                        <div class="form-group hidden">
                                             <label class="table_label">Level</label>
                                             <div class="select_wrapper">
                                                 <select name="level" id="level" class="block_btn_30 modal_input" onchange="filterLevel(this.value, 'admin')">
@@ -78,34 +98,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-
-
                                         </div>
-
-
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="table_label">Username</label>
-                                            <div class="select_wrapper" id="user-select">
-                                                <select id="username" name="username" class="block_btn_30 modal_input username">
-                                                    <option value="">All</option>
-                                                    @php if(isset ($_GET['username']))
-                                                    $id = $_GET['username'];
-                                                else
-                                                    $id =  Auth::user()->id;
-                                                    @endphp
-                                                    @foreach($users as $user)
-                                                    <option value="{{$user->id}}" {{ ($id == $user->id) ? 'selected' : '' }}>{{$user->login}}</option>
-                                                    @endforeach
-                                                </select>
-                                                <i class="input_icon_small icon-username"></i>
-                                            </div>
-                                        </div>
-
-
-
-
                                     </div>
                                 </div>
 
@@ -189,11 +182,15 @@
                                         <th data-field="landing" data-halign="center" data-align="center" data-sortable="true">From</th>
                                         <th data-field="departure" data-halign="center" data-align="center" data-sortable="true">To</th>
                                         <th data-field="creator.login" data-halign="center" data-align="center" data-sortable="true">Dealer</th>
-                                        <th data-field="reference_number" data-halign="center" data-align="center" data-formatter="formatReference">Reference #</th>
+                                        {{--<th data-field="reference_number" data-halign="center" data-align="center" data-formatter="formatReference">Reference #</th>--}}
                                         <th data-field="duration" data-halign="center" data-align="center" >Duration</th>
-                                        <th data-field="report.daily_sell_price" class="daily_sell_price" data-halign="center" data-align="center" title="Price per day">Price per day</th>
+                                        <th data-field="report.daily_sell_price" class="daily_sell_price" data-halign="center" data-align="center" title="Daily sell price">Daily sell price</th>
+                                        <th data-field="report.total_sell_price" class="daily_sell_price" data-halign="center" data-align="center" title="Total sell price">Total sell price</th>
                                         <th data-field="report.sim_sell_price" class="daily_sell_price" data-halign="center" data-align="center" title="SIM price">SIM price</th>
-                                        <th data-field="report.sim_sell_price" data-formatter="formatTotal" data-halign="center" data-align="center" >Total</th>
+                                        <th data-field="report.package_cost" class="daily_sell_price" data-halign="center" data-align="center" title="Package cost">Package cost</th>
+                                        <th data-field="report.total_package_cost" class="daily_sell_price" data-halign="center" data-align="center" title="Total Package cost">Total Package cost</th>
+                                        <th data-field="report.sim_cost" class="daily_sell_price" data-halign="center" data-align="center" title="SIM cost">SIM cost</th>
+                                        <th data-field="report.total_profit" data-halign="center" data-align="center" >Total profit</th>
                                     </tr>
                                     </thead>
                                 </table>

@@ -111,27 +111,32 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
     Route::post('/price-list/copy', 'PriceListController@copyPriceList');
     Route::post('/price-list/attache_user', 'PriceListController@attacheUser');
 
+
+
 });
 
 
 
 
 Route::get('/test', function (){
-        $report = ReportHistory::find(21);
-    $report->delete();
-//    $histories = $report->histories()->orderBy('created_at', 'asc')->get();
-//    foreach ($histories as $key => $history){
-//        if ($histories->values()->get($key + 1) != null){
-//            if ($history->day == $histories->values()->get($key + 1)->day){
-//                $history->delete();
-//                echo "$history->id <br>";
-//                unset($history);
-//            }
-//        }
-//        else break;
-//    }
-//    dd($histories);
 
+    $orders = Order::withTrashed()->where('status', 'done');
+    Excel::create('Report', function($excel) use ($orders) {
+        $excel->sheet('report', function($sheet) use($orders) {
+            $sheet->appendRow(array(
+                'id', 'landing', 'departure', 'phone_id'
+            ));
+            $orders->chunk(1, function($rows) use ($sheet)
+            {
+                foreach ($rows as $row)
+                {
+                    $sheet->appendRow(array(
+                        $row->id, $row->landing, $row->departure, $row->phone_id
+                    ));
+                }
+            });
+        });
+    })->download('xlsx');
 
 });
 

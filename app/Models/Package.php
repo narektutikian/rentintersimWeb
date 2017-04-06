@@ -17,7 +17,7 @@ class Package extends Model
      */
 //    protected $dates = ['deleted_at'];
 
-
+    protected $hidden = ['status'];
 
     public function provider(){
         return $this->belongsTo('App\Models\Provider', 'provider_id');
