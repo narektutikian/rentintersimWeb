@@ -126,7 +126,7 @@ Route::get('/test', function (){
             $sheet->appendRow(array(
                 'id', 'landing', 'departure', 'phone_id'
             ));
-            $orders->chunk(1, function($rows) use ($sheet)
+            $orders->chunk(100, function($rows) use ($sheet)
             {
                 foreach ($rows as $row)
                 {

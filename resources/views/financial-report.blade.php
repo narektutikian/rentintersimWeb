@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
-@section('content')
+@section('dashboard')
     <div class="layout">
         <div class="container">
             <div id="orders_list" class="no-print">
@@ -183,14 +183,15 @@
                                         <th data-field="departure" data-halign="center" data-align="center" data-sortable="true">To</th>
                                         <th data-field="creator.login" data-halign="center" data-align="center" data-sortable="true">Dealer</th>
                                         {{--<th data-field="reference_number" data-halign="center" data-align="center" data-formatter="formatReference">Reference #</th>--}}
-                                        <th data-field="duration" data-halign="center" data-align="center" >Duration</th>
+                                        <th data-field="report.duration" data-halign="center" data-align="center" >Duration</th>
                                         <th data-field="report.daily_sell_price" class="daily_sell_price" data-halign="center" data-align="center" title="Daily sell price">Daily sell price</th>
                                         <th data-field="report.total_sell_price" class="daily_sell_price" data-halign="center" data-align="center" title="Total sell price">Total sell price</th>
                                         <th data-field="report.sim_sell_price" class="daily_sell_price" data-halign="center" data-align="center" title="SIM price">SIM price</th>
                                         <th data-field="report.package_cost" class="daily_sell_price" data-halign="center" data-align="center" title="Package cost">Package cost</th>
                                         <th data-field="report.total_package_cost" class="daily_sell_price" data-halign="center" data-align="center" title="Total Package cost">Total Package cost</th>
                                         <th data-field="report.sim_cost" class="daily_sell_price" data-halign="center" data-align="center" title="SIM cost">SIM cost</th>
-                                        <th data-field="report.total_profit" data-halign="center" data-align="center" >Total profit</th>
+                                        <th data-field="report.total_profit" data-halign="center" data-align="center" title="Total Profit">Profit</th>
+                                        <th data-field="report.histories" data-halign="center" data-align="center" data-events="reportInfo" data-formatter="formatHistory"></th>
                                     </tr>
                                     </thead>
                                 </table>
@@ -291,6 +292,58 @@
     </div>
     <!--end of Email Modal-->
 
+    <!--Copy Modal-->
+    <div class="modal fade" id="modal_report_info" tabindex="-1" role="dialog" aria-labelledby="modal_report_info">
+        <div class="modal-dialog vdf_modal" role="document">
+            <div class="modal-content vdf_modal_content">
+                <div class="modal-header vdf_modal_header">
+                    <button type="button" class="close close_print" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <div class="vdf_modal_sub_header">
+                        <div class="col-md-12">
+                            <h3>Financial Report Log</h3>
+                        </div>
+                    </div>
+                </div>
+                    <div class="modal-body vdf_modal_body">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <div class="lists_users_table">
+                                    <table id="report_info_table" class="table"
+                                           data-toggle="table"
+                                           data-unique-id="id"
+                                           data-pagination-h-align="left"
+                                           data-pagination-detail-h-align="right"
+                                           data-toolbar-align="left">
+                                        <thead>
+                                        <tr>
+                                            <th data-field="new_sim_cost" data-halign="center" data-align="left">Sim Cost</th>
+                                            <th data-field="new_sim_sell" data-halign="center" data-align="left">Sim Sell</th>
+                                            <th data-field="new_package_cost" data-halign="center" data-align="left">Package Cost</th>
+                                            <th data-field="new_package_sell" data-halign="center" data-align="left">Package Sell</th>
+                                            <th data-field="created_at" data-halign="center" data-align="left">Starting From</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-center small_modal_response">
+                            <span class="success_response"></span>
+                            <span class="error_response"></span>
+                        </div>
+                    </div>
+                    <div class="modal-footer vdf_modal_footer">
+                        <a href="#" class="inline_block_btn light_gray_btn vd_form_reset close_print" data-dismiss="modal" aria-label="Close">Cancel</a>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <!--end of Copy Modal-->
 
 
 

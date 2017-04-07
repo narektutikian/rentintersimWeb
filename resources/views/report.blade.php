@@ -190,7 +190,7 @@
                                         <th data-field="departure" data-halign="center" data-align="center" data-sortable="true">To</th>
                                         <th data-field="creator.login" data-halign="center" data-align="center" data-sortable="true">Dealer</th>
                                         <th data-field="reference_number" data-halign="center" data-align="center" data-formatter="formatReference">Reference #</th>
-                                        <th data-field="duration" data-halign="center" data-align="center" >Duration</th>
+                                        <th data-field="report.duration" data-halign="center" data-align="center" >Duration</th>
                                         <th data-field="report.daily_sell_price" class="daily_sell_price" data-halign="center" data-align="center" title="Price per day">Price per day</th>
                                         <th data-field="report.sim_sell_price" class="daily_sell_price" data-halign="center" data-align="center" title="SIM price">SIM price</th>
                                         <th data-field="report.sim_sell_price" data-formatter="formatTotal" data-halign="center" data-align="center" >Total</th>

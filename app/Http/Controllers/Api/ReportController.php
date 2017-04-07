@@ -225,22 +225,8 @@ class ReportController extends Controller
             $q->withTrashed();
         }, 'creator'  => function ($q){
             $q->withTrashed();
-        }, 'package', 'report', 'sim.provider']);
+        }, 'package', 'report', 'report.histories', 'sim.provider']);
 
-/*            if ($request->has('export')){
-            $report = $report->get();
-            $ordersArray = $this->viewHelper->solveOrderList($report);
-            $ordersArray = $this->viewHelper->prepareExport($ordersArray, 'report');
-            Excel::create('Report from-'.$fromS. '&to-'.$toS , function($excel) use ($ordersArray) {
-
-                $excel->sheet('report', function($sheet) use($ordersArray) {
-
-                    $sheet->fromArray($ordersArray);
-
-                });
-
-            })->download('xlsx');
-            }*/
             if ($request->has('export')){
                 if($request->input('page') == 'financial')
                     $this->exportFinancialReport($report)->download('xlsx');
@@ -256,9 +242,9 @@ class ReportController extends Controller
             }
 
 
-            foreach ($report as $item){
-               $item->duration = $this->viewHelper->calculateInterval($item->landing, $item->departure). ' day(s)';
-            }
+//            foreach ($report as $item){
+//               $item->duration = $this->viewHelper->calculateInterval($item->landing, $item->departure). ' day(s)';
+//            }
 //            echo '<pre>';
 //            var_dump($report);
 //        echo '</pre>';

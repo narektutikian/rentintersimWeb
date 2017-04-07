@@ -202,7 +202,7 @@
     </div>
     <!--end of Copy Modal-->
 
-    <!--Copy Modal-->
+    <!--Attache user Modal-->
     <div class="modal fade" id="modal_price_list_user" tabindex="-1" role="dialog" aria-labelledby="modal_price_list_user">
         <div class="modal-dialog vdf_modal" role="document">
             <div class="modal-content vdf_modal_content">
@@ -254,6 +254,6 @@
             </div>
         </div>
     </div>
-    <!--end of Copy Modal-->
+    <!--end of Attach user Modal-->
 
 @endsection

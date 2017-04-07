@@ -87,9 +87,10 @@ class ReportHelper
         return $totalProfit;
     }
 
-    public function calculateReport($order)
+    public function calculateReport($order, $report = null)
     {
-        $report = new Report();
+        if ($report == null)
+            $report = new Report();
         $report->order_id = $order->id;
         $report->duration = $this->calculateInterval($order->landing, $order->departure);
         $report->daily_sell_price = $this->getPackageSell($order);
@@ -161,16 +162,17 @@ class ReportHelper
             $report->save();
             return $report;
         } elseif ($report->histories->isEmpty()) {
+            $report = $this->calculateReport($order, $report);
+            $report->save();
             return $report;
         } else {
-
                 if ($report->histories->count() > 1)
-                $histories = $this->filterHistoryByDay($report->histories()->orderBy('created_at', 'asc')->get());
-                $start = Carbon::createFromFormat('d/m/Y H:i', $order->landing);
-                $totalCost = 0;
-                $totalSell = 0;
-                $i = 1;
-                $previous = null;
+                    $histories = $this->filterHistoryByDay($report->histories()->orderBy('created_at', 'asc')->get());
+            $start = Carbon::createFromFormat('d/m/Y H:i', $order->landing);
+            $totalCost = 0;
+            $totalSell = 0;
+            $i = 1;
+            $previous = null;
             $totalDuration = $report->duration;
                 foreach ($histories as $key => $item) {
                      $duration = $this->calculateInterval($start->format('d/m/Y H:i'), $item->created_at->format('d/m/Y H:i'), true);

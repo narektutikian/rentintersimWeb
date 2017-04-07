@@ -279,7 +279,13 @@ function formatTotal(value, row, index) {
         return '-';
     else
         return row.report.total_sell_price + row.report.sim_sell_price;
+}
+function formatHistory(value, row, index) {
 
+    if (value.length == 0)
+        return '';
+    else
+        return '<span class="hint show_info">i</span>';
 }
 
 function formatReference(value, row, index) {
@@ -527,3 +533,15 @@ $('#report').on('click', function (e) {
 
 });
 
+$('#report_info_table').bootstrapTable({
+
+});
+
+window.reportInfo = {
+    'click .show_info': function (e, value, row, index) {
+        console.log(row.report.histories);
+        $('#modal_report_info').modal('show');
+        $('#report_info_table').bootstrapTable('load', row.report.histories);
+    }
+
+};
