@@ -380,11 +380,14 @@ function filter(filter) {
     $('#order_table_html').bootstrapTable('refresh');
     setFilterClass();
 
+
 }
 
 
 
 function setFilterClass() {
+    $_href = $('.export_user').attr('href').split('?');
+    $('.export_user').attr('href', $_href[0] +'?filter='+ filter_global);
     $('.filter_buttons a').removeClass('blue');
     switch (filter_global) {
         case '':

@@ -106,8 +106,8 @@ class OrderController extends Controller
 
             $sim = $this->helper->getSim($request->input('sim'));
         if($sim != null){
-            if ($sim->state != 'available')
-            return response()->json(['sim'=>'sim is already taken'], 403);
+//            if ($sim->state != 'available')
+//            return response()->json(['sim'=>'sim is already taken'], 403);
         $sim->state = 'pending';
         $sim->save();
         } else {return response()->json(['sim' => 'sim not found'], 403);}
@@ -416,16 +416,20 @@ class OrderController extends Controller
         return view('home', compact('ordersArray'), compact('counts'));
     }
 
-    public function export()
+    public function export(Request $request)
     {
         $user = Auth::user();
-        $orders = null;
+        if ($request->has('filter')){
+            $orders = Order::filter($request->input('filter'));
+        }
+        else $orders = Order::where('id', '>', 0);
+
         if ($user->level != 'Super admin'){
             $net = $this->userManager->getNetworkFromCache(Auth::user()->id);
-            $orders = Order::whereIn('created_by', $net)->orderby('id', 'desc')->get();
+            $orders = $orders->whereIn('created_by', $net)->orderby('id', 'desc')->get();
         }
         if ($user->level == 'Super admin')
-            $orders = Order::get();
+            $orders = $orders->get();
         $ordersArray = $this->viewHelper->prepareExport($this->viewHelper->solveOrderList($orders), 'order');
 
         Excel::create('Orders', function($excel) use ($ordersArray) {

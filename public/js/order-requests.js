@@ -396,7 +396,7 @@ window.operateEvent = {
 
             if (order_status == "success") {
 
-
+                $('.vdf_modal_sub_header > h3').text('Edit Order #' + order_data[0].id);
 
                 $('#wrap_package_list_edit').empty();
                 $('#wrap_package_list_edit').append("<label class='table_label'>Selected Package </label>" +
@@ -571,7 +571,8 @@ function initPrintForm(orderId) {
             if (order_data[0].status != "waiting"){
 
                 $('.email_phone_num').append("Phone Number : " + order_data[0].phone.phone +
-                    " <br/> Sim Number : " + order_data[0].sim.number);
+                    " <br/> Sim Number : " + order_data[0].sim.number + "<br />" +
+                    (order_data[0].reference_number != ''? "Reference Number : " + order_data[0].reference_number : ""));
             }
             else {
                 $('.email_phone_num').append("Sim Number : " + order_data[0].sim.number);
@@ -585,7 +586,7 @@ function initPrintForm(orderId) {
                 "</a>");
             $('.from_print').text(order_data[0].landing);
             $('.to_print').text(order_data[0].departure);
-            $('.mail_order').text(" #" + order_data[0].id);
+            $('.vdf_modal_sub_header > h3').text('Print Order #' + order_data[0].id);
 
         }
 

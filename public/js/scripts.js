@@ -531,6 +531,7 @@ $( document ).ready(function() {
     $('.table').on('dbl-click-row.bs.table', function ($element, row, field) {
         $('#modal_view_order').modal('show');
         /******* Open View modal  *******/
+        $('.vdf_modal_sub_header > h3').text('View Order #' + row.id);
         $('#wrap_package_list_view').empty();
         $('#wrap_package_list_view').append("<label class='table_label'>Selected Package </label>" +
             "<a class='selected_package' title='"+ row.package.name +"'>" +
