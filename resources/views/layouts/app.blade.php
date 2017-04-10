@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="/css/bootstrap-datepicker3.css">
     <link rel="stylesheet" href="/js/owl-carousel/assets/owl.carousel.css">
     <link rel="stylesheet" href="/js/bootstrap3-editable/css/bootstrap-editable.css">
+    <link rel="stylesheet" type="text/css" href="/js/timepicki/css/timepicki.css">
+
     {{--<link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap-editable/css/bootstrap-editable.css" rel="stylesheet"/>--}}
     <link rel="stylesheet" href="/css/style.css?v=2">
 
