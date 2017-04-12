@@ -455,7 +455,7 @@ class OrderController extends Controller
                     {
                         $sheet->appendRow(array(
                             $row->id,
-                            $row->phone->phone,
+                            (($row->phone == null) ? 'No Number' : $row->phone->phone),
                             $row->sim->number,
                             $row->sim->provider->name,
                             $row->package->name, $row->landing, $row->departure, $row->creator->login,
