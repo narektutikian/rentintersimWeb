@@ -33,7 +33,7 @@ class Phone extends Model
 
     public function provider()
     {
-        return $this->belongsTo('App\Models\Provide', 'provider_id');
+        return $this->belongsTo('App\Models\Provider', 'provider_id');
     }
 
     public function package()

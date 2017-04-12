@@ -205,20 +205,41 @@ class SIMController extends Controller
         return view('sim', compact('simsArray'));
     }
 
-    public function export()
+public function increment(int $number)
+{
+    return ++$number;
+}
+
+
+    public function export(Request $request)
     {
-//      TODO Sweech this
-        ini_set('memory_limit','60m');
-        $data = $this->solveSimList(Sim::get());
-        Excel::create('Sim', function($excel) use ($data) {
+        $sims = new Sim();
+        if ($request->has('filter')){
+            if ($request->input('filter') != 'deleted')
+                $sims = $sims->filter($request->input('filter'));
+            else $sims = $sims->onlyTrashed();
+        }
 
-            $excel->sheet('Sim', function($sheet) use($data) {
+        Excel::create('Sim', function($excel) use ($sims) {
+            $excel->sheet('SIM', function($sheet) use($sims) {
 
-                $sheet->fromArray($data);
+            $sheet->appendRow(array(
+                'ID', 'Status', 'Number', 'Provider'
+            ));
+            $sheet->setColumnFormat(array('C' => '0'));
+            $sheet->freezeFirstRowAndColumn();
+
+                $sims->chunk(100, function($rows) use ($sheet)
+                {
+                    foreach ($rows as $row)
+                    {
+                        $sheet->appendRow(array(
+                            $row->id, (($row->deleted_at == null)? $row->state : 'deleted'), $row->number, $row->provider->name
+                        ));
+                    }
+                });
 
             });
-
-
         })->export('xlsx');
 
     }

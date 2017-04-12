@@ -419,25 +419,50 @@ class OrderController extends Controller
     public function export(Request $request)
     {
         $user = Auth::user();
+        $orders = Order::with(['phone'  => function ($q){
+            $q->withTrashed();
+        }, 'sim'  => function ($q){
+            $q->withTrashed();
+        }, 'creator'  => function ($q){
+            $q->withTrashed();
+        }, 'editor'  => function ($q){
+            $q->withTrashed();
+        }, 'package', 'sim.provider']);
         if ($request->has('filter')){
-            $orders = Order::filter($request->input('filter'));
+            $orders = $orders->filter($request->input('filter'));
         }
-        else $orders = Order::where('id', '>', 0);
+        else $orders = $orders->where('id', '>', 0);
 
         if ($user->level != 'Super admin'){
             $net = $this->userManager->getNetworkFromCache(Auth::user()->id);
-            $orders = $orders->whereIn('created_by', $net)->orderby('id', 'desc')->get();
+            $orders = $orders->whereIn('created_by', $net)->orderby('id', 'desc');
         }
-        if ($user->level == 'Super admin')
-            $orders = $orders->get();
-        $ordersArray = $this->viewHelper->prepareExport($this->viewHelper->solveOrderList($orders), 'order');
 
-        Excel::create('Orders', function($excel) use ($ordersArray) {
+//        $ordersArray = $this->viewHelper->prepareExport($this->viewHelper->solveOrderList($orders), 'order');
 
-            $excel->sheet('orders', function($sheet) use($ordersArray) {
+        Excel::create('Orders', function($excel) use ($orders) {
 
-                $sheet->fromArray($ordersArray);
+            $excel->sheet('orders', function($sheet) use($orders) {
+                $sheet->appendRow(array(
+                    'ID', 'Phone', 'Sim number', 'Provider', 'Type', 'From', 'To', 'Dealer', 'Reference #', 'Status'
+                ));
+                $sheet->setColumnFormat(array('C' => '0', 'I' => '@ '));
+                $sheet->freezeFirstRowAndColumn();
 
+                $orders->chunk(100, function($rows) use ($sheet)
+                {
+                    foreach ($rows as $row)
+                    {
+                        $sheet->appendRow(array(
+                            $row->id,
+                            $row->phone->phone,
+                            $row->sim->number,
+                            $row->sim->provider->name,
+                            $row->package->name, $row->landing, $row->departure, $row->creator->login,
+                            $row->reference_number, $row->status
+                        ));
+                    }
+                });
             });
 
         })->download('xlsx');

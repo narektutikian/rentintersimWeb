@@ -219,28 +219,40 @@ class PhoneController extends Controller
 //        dd($phonesArray);
     }
 
-    public function export()
+    public function export(Request $request)
     {
-        $data = $this->solvePhoneList(Phone::get());
-        Excel::create('Phones', function($excel) use ($data) {
+        $phones = new Phone();
+        if ($request->has('filter')){
+            if ($request->input('filter') == 'deleted')
+             $phones = $phones->onlyTrashed();
+            elseif ($request->input('filter') == 'specials')
+                $phones = $phones->where('is_special', 1);
+            else    $phones = $phones->filter($request->input('filter'));
+        }
 
-            $excel->sheet('Phones', function($sheet) use($data) {
+        Excel::create('phone', function($excel) use ($phones) {
+            $excel->sheet('phone', function($sheet) use($phones) {
 
-                $sheet->fromArray($data);
+                $sheet->appendRow(array(
+                    'ID', 'Number', 'Status', 'Parking SIM', 'Current SIM', 'Package name', 'Provider', 'Special'
+                ));
+                $sheet->setColumnFormat(array('B' => '0', 'D' => '0', 'E' => '0'));
+                $sheet->freezeFirstRowAndColumn();
+
+                $phones->chunk(100, function($rows) use ($sheet)
+                {
+                    foreach ($rows as $row)
+                    {
+                        $sheet->appendRow(array(
+                            $row->id, $row->phone, (($row->deleted_at == null)? $row->state : 'deleted'), $row->parking_sim->number, $row->sim->number,
+                            $row->package->name, $row->provider->name,  (($row->is_special) ? 'Yes' : 'No')
+                        ));
+                    }
+                });
 
             });
+        })->export('xlsx');
 
-        })->download('xlsx');
-
-        /*
-
- //        fputcsv($out, array_keys($data[1]));
-         $out = fopen('php://output', 'w');
-         foreach($data as $line)
-         {
-             fputcsv($out, $line);
-         }
-         fclose($out);*/
     }
 
     public function search(Request $request)
@@ -249,7 +261,7 @@ class PhoneController extends Controller
                 ->paginate(env('PAGINATE_DEFAULT'));
         $phonesArray = $this->solvePhoneList($result);
 
-//        dd($simsArray);
+//        dd($phonesArray);
         return view('number', compact('phonesArray'));
     }
 
