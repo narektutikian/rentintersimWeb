@@ -205,15 +205,15 @@ class SIMController extends Controller
         return view('sim', compact('simsArray'));
     }
 
-public function increment(int $number)
-{
-    return ++$number;
-}
+
 
 
     public function export(Request $request)
     {
-        $sims = new Sim();
+        $sims = Sim::with(['provider'  => function ($q){
+                    $q->withTrashed();
+                }
+        ]);
         if ($request->has('filter')){
             if ($request->input('filter') != 'deleted')
                 $sims = $sims->filter($request->input('filter'));

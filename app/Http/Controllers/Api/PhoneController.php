@@ -221,7 +221,15 @@ class PhoneController extends Controller
 
     public function export(Request $request)
     {
-        $phones = new Phone();
+        $phones =Phone::with([
+            'sim'  => function ($q){
+                $q->withTrashed();
+            }, 'parking_sim'  => function ($q){
+                $q->withTrashed();
+            }, 'provider'  => function ($q){
+                $q->withTrashed();
+            }, 'package',
+        ]);
         if ($request->has('filter')){
             if ($request->input('filter') == 'deleted')
              $phones = $phones->onlyTrashed();
