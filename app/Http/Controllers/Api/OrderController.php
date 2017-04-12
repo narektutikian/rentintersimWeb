@@ -106,8 +106,8 @@ class OrderController extends Controller
 
             $sim = $this->helper->getSim($request->input('sim'));
         if($sim != null){
-//            if ($sim->state != 'available')
-//            return response()->json(['sim'=>'sim is already taken'], 403);
+            if ($sim->state == 'parking')
+            return response()->json(['sim'=>'You cannot use this SIM'], 403);
         $sim->state = 'pending';
         $sim->save();
         } else {return response()->json(['sim' => 'sim not found'], 403);}

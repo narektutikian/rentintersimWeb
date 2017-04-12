@@ -18,6 +18,7 @@ use Carbon\Carbon;
 use App\Jobs\CacheUsersTree;
 use App\Models\Report;
 use App\Models\ReportHistory;
+use App\Models\Phone;
 
 
 Route::get('/', function () {
@@ -120,23 +121,8 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
 
 Route::get('/test', function (){
 
-    $orders = Order::withTrashed()->where('status', 'done');
-    Excel::create('Report', function($excel) use ($orders) {
-        $excel->sheet('report', function($sheet) use($orders) {
-            $sheet->appendRow(array(
-                'id', 'landing', 'departure', 'phone_id'
-            ));
-            $orders->chunk(100, function($rows) use ($sheet)
-            {
-                foreach ($rows as $row)
-                {
-                    $sheet->appendRow(array(
-                        $row->id, $row->landing, $row->departure, $row->phone_id
-                    ));
-                }
-            });
-        });
-    })->download('xlsx');
+    $phones = Phone::where([['is_active', 1], ['package_id', 21], ['state', 'not in use'], ['is_special', '0']])->get();
+    dd(!$phones->isEmpty());
 
 });
 

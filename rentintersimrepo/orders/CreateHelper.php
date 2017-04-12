@@ -46,7 +46,7 @@ class CreateHelper
 
     public function getNumber($order){
 //        dd($order);
-        DB::transaction(function () use ($order) {
+       $newNumber  =  DB::transaction(function () use ($order) {
             $number = null;
             $number = $this->retryGetNumber($order);
             if ($number == null) {
@@ -55,6 +55,7 @@ class CreateHelper
 
             return $number;
         },5 );
+        return $newNumber;
     }
 
     protected function getNewNumber($order)
@@ -62,13 +63,22 @@ class CreateHelper
 //        Log::info('Create Helper -> getNewNumber');
         $number = null;
 
-        $phone = Phone::where([['is_active', 1], ['package_id', $order->package_id], ['state', 'not in use'], ['is_special', '0']])->first();
-//            dd($phone);
-        if ($phone != null)
-            if($phone->exists){
-                $number = $phone->id;
-//                dd($number);
-                $this->assignNumber($order, $number);
+        $phones = Phone::where([['is_active', 1], ['package_id', $order->package_id], ['state', 'not in use'], ['is_special', '0']])->get();
+//            dd($phones);
+        if (!$phones->isEmpty())
+            foreach ($phones as $phone){
+                if (Order::whereIn('status', ['active', 'pending'])->where('phone_id', $phone->id)->count() > 0){
+                    Log::error('Phone #' . $phone->id . ' has wrong state');
+                    continue;
+                }
+                else {
+                    if($phone->exists){
+                        $number = $phone->id;//
+                        $this->assignNumber($order, $number);
+                        break;
+                }
+            }
+
             }
 
         return $number;
@@ -293,16 +303,11 @@ class CreateHelper
     {
         if ($order->status != 'waiting'){
             $phone = $order->phone;
-
             $phone->state = 'not in use';
-            if(Order::where('phone_id', $order->phone_id)->where('status', 'pending')->count() > 0 && $status == 'done') //not tested
+            if(Order::where([['phone_id', $order->phone_id], ['status', 'pending'], ['id', '!=', $order->id]])->count() > 0) //not tested
                 $phone->state = 'pending';
-            elseif (Order::where('phone_id', $order->phone_id)->where('status', 'pending')->count() <= 1 && $status == 'deleted')
-                $phone->state = 'not in use';
-
-            if (Order::where('phone_id', $order->phone_id)->where('status', 'active')->count() > 0 && $status != 'done')
+            if (Order::where([['phone_id', $order->phone_id], ['status', 'active'], ['id', '!=', $order->id]])->count() > 0)
                 $phone->state = 'active';
-
             $phone->save();
         }
         $order->status = $status;
