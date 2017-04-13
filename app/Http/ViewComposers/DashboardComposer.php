@@ -86,13 +86,13 @@ class DashboardComposer
                     ['from', '<=', $lastDayOfThisMonth->timestamp]])
                 ->whereIn('status', ['pending', 'active', 'done']);
         })->sum('duration');
-        $avgMonthlyTime = floor((($totalActiveNumberCount * $totalDuration) / (Phone::count() * date("t"))) * 100);
+        $avgMonthlyTime = 100 - floor((($totalActiveNumberCount * $totalDuration) / (Phone::count() * date("t"))) * 100);
 
 //       dd($avgMonthlyTime);
 
         $view->with('viewName', $view->getName())
             ->with('net', $net)
             ->with('counts', $counts)
-            ->with('avgMonthlyTime', 20);
+            ->with('avgMonthlyTime', $avgMonthlyTime);
     }
 }
