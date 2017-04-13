@@ -76,7 +76,7 @@
                         <div class="wrap_average">
                             <div class="average_value">
                                 <span class="value"></span>
-                                <span class="av_status">Inactive</span>
+                                <span class="av_status">active</span>
                             </div>
                             <div class="phone_charts">
                                 <div id="chart_average"  class="pie-title-center" data-percent="{{$avgMonthlyTime}}">
@@ -85,7 +85,7 @@
                             </div>
                             <div class="remainder_value">
                                 <span class="value"></span>
-                                <span class="av_status">active</span>
+                                <span class="av_status">Inactive</span>
                             </div>
                         </div>
                     </div>

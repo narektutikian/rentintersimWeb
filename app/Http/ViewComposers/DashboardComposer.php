@@ -86,7 +86,7 @@ class DashboardComposer
                     ['from', '<=', $lastDayOfThisMonth->timestamp]])
                 ->whereIn('status', ['pending', 'active', 'done']);
         })->sum('duration');
-        $avgMonthlyTime = 100 - floor((($totalActiveNumberCount * $totalDuration) / (Phone::count() * date("t"))) * 100);
+        $avgMonthlyTime = ceil((($totalActiveNumberCount * $totalDuration) / (Phone::count() * date("t"))) * 100);
 
 //       dd($avgMonthlyTime);
 
