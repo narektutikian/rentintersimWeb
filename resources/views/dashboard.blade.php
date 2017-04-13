@@ -79,7 +79,7 @@
                                 <span class="av_status">Inactive</span>
                             </div>
                             <div class="phone_charts">
-                                <div id="chart_average"  class="pie-title-center" data-percent="45">
+                                <div id="chart_average"  class="pie-title-center" data-percent="{{$avgMonthlyTime}}">
                                     <span class="pie-value"></span>
                                 </div>
                             </div>
