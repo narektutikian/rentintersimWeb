@@ -48,9 +48,17 @@ class DashboardComposer
     public function compose(View $view)
     {
 //        $id = Auth::user()->id;
+        $firstDayOfThisMonth  = Carbon::now();
+        $firstDayOfThisMonth->day = 1;
+        $firstDayOfThisMonth->setTime(0,0,0);
+        $lastDayOfThisMonth = clone $firstDayOfThisMonth;
+        $lastDayOfThisMonth->day = date("t");
+        $lastDayOfThisMonth->setTime(23,59,59);
 
-        $neverUsedNumbers = Phone::whereNotIn('id', function ($q){
-           $q->select('phone_id')->from('orders');
+
+        $neverUsedNumbers = Phone::whereNotIn('id', function ($q) use ($firstDayOfThisMonth, $lastDayOfThisMonth) {
+           $q->select('phone_id')->from('orders')->where([['from', '>=', $firstDayOfThisMonth->timestamp],
+                ['from', '<=', $lastDayOfThisMonth->timestamp]]);
         })->count();
 //        dd($neverUsedNumbers);
         $net = ([
@@ -60,17 +68,17 @@ class DashboardComposer
         ]);
         $counts = ([
             'All' => Phone::all()->count(),
-            'active' => Order::filter('active')->count(),
-            'pending' => Order::filter('pending')->count(),
+            'active' => Order::withTrashed()->where([['from', '>=', $firstDayOfThisMonth->timestamp],
+                ['from', '<=', $lastDayOfThisMonth->timestamp]])
+                ->whereIn('status', ['active', 'done'])->count(),
+            'pending' => Order::withTrashed()->where([['from', '>=', $firstDayOfThisMonth->timestamp],
+                ['from', '<=', $lastDayOfThisMonth->timestamp]])
+                ->whereIn('status', ['pending', 'done'])->count(),
             'not in use' => $neverUsedNumbers,
         ]);
+//        dd($counts);
 
-        $firstDayOfThisMonth  = Carbon::now();
-        $firstDayOfThisMonth->day = 1;
-        $firstDayOfThisMonth->setTime(0,0,0);
-        $lastDayOfThisMonth = clone $firstDayOfThisMonth;
-        $lastDayOfThisMonth->day = date("t");
-        $lastDayOfThisMonth->setTime(23,59,59);
+
 //        dd($firstDayOfThisMonth->timestamp, $lastDayOfThisMonth->timestamp);
 //        die();
         $totalActiveNumberCount = Order::withTrashed()->where([['from', '>=', $firstDayOfThisMonth->timestamp],

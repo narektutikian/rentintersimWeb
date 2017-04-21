@@ -72,7 +72,7 @@
 
                 <div class="col-md-6">
                     <div class="average_numbers">
-                        <h2 class="total_numbers_title">Average time(monthly in percent)</h2>
+                        <h2 class="total_numbers_title">Efficiency (monthly in percent)</h2>
                         <div class="wrap_average">
                             <div class="average_value">
                                 <span class="value"></span>
