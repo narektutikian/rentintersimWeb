@@ -329,4 +329,23 @@ class CreateHelper
             ->queue(new notifications($orderID));
     }
 
+    public function validateSim($sim, $order)
+    {
+        if ($sim->state == 'available')
+            return true;
+        elseif ($sim->state == 'parking')
+            return false;
+        else
+        {
+            $oldOrders = Order::whereIn('status', ['active', 'pending'])->where('sim_id', $sim->id)->get();
+            foreach ($oldOrders as $oldOrder){
+                if ($this->isTimeCompatible($order, $oldOrder))
+                continue;
+                else
+                    return false;
+            }
+            return true;
+        }
+    }
+
 }

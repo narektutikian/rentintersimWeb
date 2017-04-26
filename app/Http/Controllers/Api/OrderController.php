@@ -104,31 +104,33 @@ class OrderController extends Controller
             ($request->input('departure') - $request->input('landing')) < 2700 )
             return response()->json(['sim' => 'The landing or departure selection is not correct'], 403);
 
-            $sim = $this->helper->getSim($request->input('sim'));
+
+
+        $newOrder = new Order();
+            $newOrder->from = $this->helper->setStartTime($request->input('landing_string'));
+            $newOrder->to =  $this->helper->setEndTime($request->input('departure_string'));
+            $newOrder->landing =  $request->input('landing_string');
+            $newOrder->departure =  $request->input('departure_string');
+            $newOrder->reference_number =  $request->input('reference_number');
+            $newOrder->status =  $status;
+            $newOrder->costumer_number =  $request->input('costumer_number');
+            $newOrder->package_id = $request->input('package_id');
+            $newOrder->remark =  $request->input('remark');
+            $newOrder->created_by =  Auth::user()->id;
+            $newOrder->updated_by =  Auth::user()->id;
+            $newOrder->phone_id = 0;
+
+        $sim = $this->helper->getSim($request->input('sim'));
         if($sim != null){
-            if ($sim->state == 'parking')
-            return response()->json(['sim'=>'You cannot use this SIM'], 403);
-        $sim->state = 'pending';
-        $sim->save();
+            if (!$this->helper->validateSim($sim, $newOrder))
+                return response()->json(['sim'=>'You cannot use this SIM'], 403);
+            $sim->state = 'pending';
+            $sim->save();
         } else {return response()->json(['sim' => 'sim not found'], 403);}
 //                dd($simId);
 
-        $newOrder = Order::forceCreate([
-            'from' => $this->helper->setStartTime($request->input('landing_string')),
-            'to' =>  $this->helper->setEndTime($request->input('departure_string')),
-            'landing' =>  $request->input('landing_string'),
-            'departure' =>  $request->input('departure_string'),
-            'reference_number' =>  $request->input('reference_number'),
-            'status' =>  $status,
-            'costumer_number' =>  $request->input('costumer_number'),
-            'package_id' => $request->input('package_id'),
-            'remark' =>  $request->input('remark'),
-            'created_by' =>  Auth::user()->id,
-            'updated_by' =>  Auth::user()->id,
-            'sim_id' => $sim->id,
-            'phone_id' => 0,
-
-        ]);
+        $newOrder->sim_id = $sim->id;
+        $newOrder->save();
 
         if($request->has('phone_id') && $request->input('phone_id') != ''){
             if (Auth::user()->level == 'Super admin'){
@@ -557,4 +559,6 @@ class OrderController extends Controller
 
         return  response()->json(['total' => $total, 'rows' => $orders]);
     }
+
+
 }
