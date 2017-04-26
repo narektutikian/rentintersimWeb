@@ -58,7 +58,7 @@
                                     </div>
                                 </section>
 
-                                <table id="order_table_html" class="rwd-table responsive_table table"
+                                <table id="order_table_html" class="rwd-table table"
                                        data-toggle="table"
                                        data-url="/api/order"
                                        data-pagination="true"
@@ -71,7 +71,8 @@
                                        data-search="true"
                                        data-toolbar="#toolbar"
                                        data-toolbar-align="left"
-
+                                       data-mobile-responsive="true"
+                                       data-min-width="990"
                                        data-page="order">
                                     <thead>
                                     <tr>

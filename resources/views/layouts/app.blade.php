@@ -67,6 +67,7 @@
 <script src="/js/pie-chart/pie-chart.js"></script>
 <script src="/js/bootstrap-table.min.js"></script>
 <script src="/js/bootstrap-table-en-US.min.js"></script>
+<script src="/js/bootstrap-table-mobile.js"></script>
 <script src="/js/perfect-scrollbar/js/perfect-scrollbar.min.js"></script>
 <script src="/js/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js"></script>
 <script src="/js/moment.min.js"></script>
@@ -78,5 +79,6 @@
 <script src="/js/requests.js?v=3"></script>
 <script src="/js/order-requests.js?v=2"></script>
 <script src="/js/tables.js?v=2"></script>
+
 </body>
 </html>

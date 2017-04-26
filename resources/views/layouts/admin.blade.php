@@ -108,6 +108,7 @@
 <script src="/js/pie-chart/pie-chart.js"></script>
 <script src="/js/bootstrap-table.min.js"></script>
 <script src="/js/bootstrap-table-en-US.min.js"></script>
+<script src="/js/bootstrap-table-mobile.js"></script>
 <script src="/js/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
 <script src="/js/bootstrap-table-editable.js"></script>
 {{--<script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap-editable/js/bootstrap-editable.min.js"></script>--}}
