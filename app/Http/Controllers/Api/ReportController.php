@@ -259,7 +259,8 @@ class ReportController extends Controller
             $excel->sheet('report', function($sheet) use($builder) {
                 $sheet->appendRow(array(
                     'id', 'Phone', 'Sim number', 'Provider', 'Type', 'From', 'To', 'Dealer',
-                    'Reference #', 'Duration (in days)', 'Price per day', 'SIM price', 'Total'
+                    'Reference #', 'Duration (in days)'
+//                , 'Price per day', 'SIM price', 'Total'
                 ));
                 $sheet->setColumnFormat(array('C' => '0'));
                 $sheet->freezeFirstRowAndColumn();
@@ -270,8 +271,9 @@ class ReportController extends Controller
                         $sheet->appendRow(array(
                             $row->id, $row->phone->phone, $row->sim->number, $row->sim->provider->name,
                             $row->package->name, $row->landing, $row->departure, $row->creator->login,
-                            $row->reference_number, $row->report->duration, $row->report->daily_sell_price,
-                            $row->report->sim_sell_price, $row->report->total_sell_price + $row->report->sim_sell_price
+                            $row->reference_number, $row->report->duration
+//                        , $row->report->daily_sell_price,
+//                            $row->report->sim_sell_price, $row->report->total_sell_price + $row->report->sim_sell_price
                         ));
                     }
                 });
