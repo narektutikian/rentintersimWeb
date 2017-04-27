@@ -66,7 +66,7 @@ class UserController extends Controller
         //
         $supervisors = array();
         if (Auth::user()->level == 'Super admin')
-          $supervisors =  User::select('id', 'login', 'supervisor_id')->where('id', '!=', Auth::user()->id)->get()->toArray();
+          $supervisors = $this->manager->getNetworkFromCache(Auth::user()->id);
         return view('usercreate', compact('supervisors'));
     }
 

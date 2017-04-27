@@ -207,6 +207,12 @@ class UserManager
             $order->save();
             }
     }
+    /**
+     * Get User list from cashed list.
+     *
+     * @param  int $id
+     * @return array
+     */
 
     public function getNetworkFromCache($id)
     {
@@ -216,6 +222,13 @@ class UserManager
         else
         return json_decode($user->network);
     }
+
+    /**
+     * Get Price List.
+     *
+     * @param  int $userId, int $providerId
+     * @return App\Model\PlName
+     */
 
     public function getPl($userId, $providerId)
     {
