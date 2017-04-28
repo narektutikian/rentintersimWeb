@@ -4,11 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Scopes\Account;
+use App\Models\Traits\BaseObserverTrait;
+use Auth;
 
 class Phone extends Model
 {
     //
     use SoftDeletes;
+    use Account;
+    use BaseObserverTrait;
 
     /**
      * The attributes that should be mutated to dates.
@@ -18,6 +23,26 @@ class Phone extends Model
     protected $dates = ['deleted_at'];
 
     protected $hidden = ['updated_at', 'created_at'];
+
+//    protected $events = ['creating'];
+
+//    /**
+//     * The "booting" method of the model.
+//     *
+//     * @return void
+//     */
+//    protected static function boot()
+//    {
+//        parent::boot();
+//
+//        static::creating(function ($model)
+//        {
+//            $model->account_id = Auth::user()->account_id;
+//
+//        });
+//    }
+
+
 
 
 

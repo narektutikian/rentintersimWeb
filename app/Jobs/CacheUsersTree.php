@@ -38,7 +38,7 @@ class CacheUsersTree implements ShouldQueue
         //
         $users = User::all();
         foreach ($users as $user){
-            $json = json_encode($this->userManager->subNetID($this->userManager->getMyFlatNetwork($user->id), $user->id));
+            $json = json_encode($this->userManager->subNetID($this->userManager->getMyFlatNetwork($user->id, false), $user->id));
             $user->network = $json;
             $user->save();
         }

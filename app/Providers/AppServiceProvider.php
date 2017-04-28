@@ -9,6 +9,7 @@ use App\Models\PriceList;
 use App\Observers\UserObserver;
 use App\Observers\ReportObserver;
 
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -22,6 +23,7 @@ class AppServiceProvider extends ServiceProvider
         User::observe(UserObserver::class);
         PlName::observe(ReportObserver::class);
         PriceList::observe(ReportObserver::class);
+
     }
 
     /**

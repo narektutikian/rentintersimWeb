@@ -38,25 +38,26 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
-        $user = Auth::user();
-
-        $orders = null;
-        if ($user->level != 'Super admin'){
-            $net = $this->userManager->getNetworkFromCache($user->id);
-            $orders = Order::whereIn('created_by', $net)->orderby('id', 'desc')->paginate(env('PAGINATE_DEFAULT'));
-//            dd($orders);
-        }
-        if ($user->level == 'Super admin')
-            $orders = Order::orderby('id', 'desc')->paginate(env('PAGINATE_DEFAULT'));
-        $ordersArray = $this->viewHelper->solveOrderList($orders);
+//        //
+//        $user = Auth::user();
+//
+//        $orders = null;
+//        if ($user->level != 'Super admin'){
+//            $net = $this->userManager->getNetworkFromCache($user->id);
+//            $orders = Order::whereIn('created_by', $net)->orderby('id', 'desc')->paginate(env('PAGINATE_DEFAULT'));
+////            dd($orders);
+//        }
+//        if ($user->level == 'Super admin')
+//            $orders = Order::orderby('id', 'desc')->paginate(env('PAGINATE_DEFAULT'));
+//        $ordersArray = $this->viewHelper->solveOrderList($orders);
         $counts = $this->viewHelper->getCounts($this->userManager);
 
 //        dd($specials);
 
 
 //        var_dump($ordersArray);
-        return view('home', compact('ordersArray'), compact('counts'));
+//        return view('home', compact('ordersArray'), compact('counts'));
+        return view('home', compact('counts'));
 
 
     }

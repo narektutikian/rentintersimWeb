@@ -18,7 +18,7 @@
             <h3>User imitation</h3>
             <div class="form-group form_row">
                 <select class="block_btn login_input  username" name="login">
-                    <option value="{{Auth::user()->id}}" >{{Auth::user()->login}}</option>
+                    {{--<option value="{{Auth::user()->id}}" >{{Auth::user()->login}}</option>--}}
                     @foreach($net as $user)
                         <option value="{{$user['id']}}" {{ (Auth::user()->id == $user['id']) ? 'selected' : '' }}>{{$user['login']}}</option>
                     @endforeach
@@ -29,6 +29,7 @@
             <div class="form-group form_row">
                 <select class="block_btn login_input " onchange="filterLevel(this.value, '')">
                     <option value="All">All</option>
+                    <option value="Super admin">Super admin</option>
                     <option value="Distributor">Distributor</option>
                     <option value="Dealer">Dealer</option>
                     <option value="Subdealer">Subdealer</option>

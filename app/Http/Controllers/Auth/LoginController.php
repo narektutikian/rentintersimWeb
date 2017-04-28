@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request as AuthRequest;
 
 class LoginController extends Controller
 {
@@ -18,7 +19,9 @@ class LoginController extends Controller
     |
     */
 
-    use AuthenticatesUsers;
+    use AuthenticatesUsers {
+        authenticated as protected traitauthenticated;
+    }
 
     /**
      * Where to redirect users after login.
@@ -35,5 +38,28 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest', ['except' => 'logout']);
+    }
+
+    protected function authenticated(AuthRequest $request, $user)
+    {
+
+        if ($user->level == 'Super admin' || $user->level == 'root')//
+            return redirect('imitate');
+        if ($user->type == 'employee')
+            return redirect('home');
+        if ($user->type == 'manager')
+            return redirect('dashboard');
+//        else {return redirect()->intended($this->redirectPath());}
+        return $this->authenticated($request, $user);
+    }
+
+    /**
+     * Get the login username to be used by the controller.
+     *
+     * @return string
+     */
+    public function username()
+    {
+        return 'login';
     }
 }

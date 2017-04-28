@@ -17,7 +17,7 @@ class UserController extends Controller
     public function __construct(Manager $manager)
     {
         $this->manager = $manager;
-        $this->middleware('superAdmin')->only(['showImitation', 'imitate']);
+//        $this->middleware('superAdmin')->only(['showImitation', 'imitate']);
     }
 
     /**
@@ -297,10 +297,13 @@ class UserController extends Controller
 
     public function showImitation(){
         $user = Auth::user();
-        if($user->level == 'Super admin'){
-            $net = User::select('id', 'login')->where('id', '!=', $user->id)->get()->toArray();
+        if($user->level == 'Super admin' || $user->level == 'root'){
+//            dd($user);
+            $net = User::select('id', 'login')->whereIn('id', $this->manager->getNetworkFromCache($user->id))->get()->toArray();
             return view('auth.imitate', compact('net'));
         }
+        else
+            return redirect('/home');
 
     }
 

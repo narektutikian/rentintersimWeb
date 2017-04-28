@@ -28,15 +28,22 @@ class UserManager
         $final['child'] = $network;
         return [$final];
     }
-    public function getMyFlatNetwork($id){
+    public function getMyFlatNetwork($id, $solve=true){
         $users = User::select('id', 'login', 'level', 'type', 'supervisor_id', 'name')->orderBy('level', 'asc')->get()->toArray();
+        if ($solve)
         $network = $this->buildTree($this->solveUsers($users), $id);
+        else
+            $network = $this->buildTree($users, $id);
         $flat = $this->flatten($network);
 
 //        echo '<pre/>';
 //        print_r($flat);
 //        die();
+        if ($solve)
         $final = $this->solveUsers(array(User::find($id)->toArray()));
+        else
+            $final = array(User::find($id)->toArray());
+
 //        dd($flat);
         $final = array_merge($final, $flat);
 //        dd($final);
@@ -137,6 +144,7 @@ class UserManager
     protected function solveUsers($users)
     {
 
+
         foreach ($users as $key => $user) {
 
             $users[$key]['active'] = Order::employee($user['id'])->filter('active')->count();
@@ -160,7 +168,7 @@ class UserManager
         $ids= array();
 //
         if ($user->type != 'admin'){
-            $flatNetwork = $this->getMyFlatNetwork($user->supervisor_id);
+            $flatNetwork = $this->getMyFlatNetwork($user->supervisor_id, false);
 //
 //            foreach ($friends as $friend){
 //                $ids[] = $friend['id'];

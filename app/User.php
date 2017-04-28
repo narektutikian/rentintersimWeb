@@ -6,11 +6,13 @@ use App\Models\Order;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Traits\BaseObserverTrait;
 
 class User extends Authenticatable
 {
     use Notifiable;
     use SoftDeletes;
+    use BaseObserverTrait;
 
     /**
      * The attributes that should be mutated to dates.
@@ -37,6 +39,13 @@ class User extends Authenticatable
         'saved',
         'deleted'
     ];
+
+    /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+
 
     /**
      * The attributes that should be hidden for arrays.
