@@ -123,7 +123,7 @@ class OrderController extends Controller
         $sim = $this->helper->getSim($request->input('sim'));
         if($sim != null){
             if (!$this->helper->validateSim($sim, $newOrder))
-                return response()->json(['sim'=>'You cannot use this SIM'], 403);
+                return response()->json(['sim'=>'The sim is already in use in these dates.'], 403);
             $sim->state = 'pending';
             $sim->save();
         } else {return response()->json(['sim' => 'sim not found'], 403);}
