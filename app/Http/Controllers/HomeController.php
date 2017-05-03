@@ -61,7 +61,7 @@ class HomeController extends Controller
         if (Auth::user()->type == 'employee')
             return redirect('home');
         if (Auth::user()->level == 'root')
-            return view('welcome');
+            return redirect('user');
         if (Auth::user()->level != 'Super admin')
             return redirect('user');
         if (Auth::user()->level == 'Super admin')

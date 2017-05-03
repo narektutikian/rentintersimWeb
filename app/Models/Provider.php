@@ -11,8 +11,8 @@ class Provider extends Model
 {
     //
     use SoftDeletes;
-    use Account;
-    use BaseObserverTrait;
+//    use Account;
+//    use BaseObserverTrait;
 
     /**
      * The attributes that should be mutated to dates.

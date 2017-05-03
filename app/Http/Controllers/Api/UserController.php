@@ -130,7 +130,9 @@ class UserController extends Controller
 //        }
 
         if ($newUser['type'] == 'admin'){
-            if ($submiter->level == 'Super admin')
+            if ($submiter->level == 'root')
+                $newUser['level'] = 'Super admin';
+            elseif ($submiter->level == 'Super admin')
                 $newUser['level'] = 'Distributor';
             elseif ($submiter->level == 'Distributor')
                 $newUser['level'] = 'Dealer';

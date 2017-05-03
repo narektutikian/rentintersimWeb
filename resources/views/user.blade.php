@@ -83,7 +83,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 ">
                                         <label class="table_label">Type</label>
                                         <div class="form_row">
                                              <input type="radio" name="type" value="manager"> Manager<br>

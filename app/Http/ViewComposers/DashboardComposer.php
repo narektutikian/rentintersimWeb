@@ -62,9 +62,9 @@ class DashboardComposer
         })->count();
 //        dd($neverUsedNumbers);
         $net = ([
-           'distributors' => User::where('level', 'distributor')->count(),
-           'dealers' => User::where('level', 'dealer')->count(),
-           'subdealers' => User::where('level', 'subdealer')->count(),
+           'distributors' => User::where('level', 'distributor')->where('account_id', Auth::user()->account_id)->count(),
+           'dealers' => User::where('level', 'dealer')->where('account_id', Auth::user()->account_id)->count(),
+           'subdealers' => User::where('level', 'subdealer')->where('account_id', Auth::user()->account_id)->count(),
         ]);
         $counts = ([
             'All' => Phone::all()->count(),
@@ -94,7 +94,11 @@ class DashboardComposer
                     ['from', '<=', $lastDayOfThisMonth->timestamp]])
                 ->whereIn('status', ['pending', 'active', 'done']);
         })->sum('duration');
-        $avgMonthlyTime = floor((($totalActiveNumberCount * $totalDuration) / (Phone::count() * date("t"))) * 100);
+        $phoneCount = Phone::count();
+        if ($phoneCount != 0)
+        $avgMonthlyTime = floor((($totalActiveNumberCount * $totalDuration) / ($phoneCount * date("t"))) * 100);
+        else
+        $avgMonthlyTime = 0;
 
 //       dd($avgMonthlyTime);
 

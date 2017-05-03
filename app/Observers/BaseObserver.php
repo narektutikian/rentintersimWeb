@@ -26,7 +26,13 @@ class BaseObserver
     public function creating(Model $model)
     {
         //
-        $model->account_id = Auth::user()->account_id;
+        $user = Auth::user();
+        if ($user->level == 'root'){
+            $next = ++User::select('account_id')->orderBy('account_id', 'desc')->first()->account_id;
+            $model->account_id = $next;
+        }
+        else
+        $model->account_id = $user->account_id;
 //        $model->save();
     }
 

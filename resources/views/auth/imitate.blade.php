@@ -29,7 +29,9 @@
             <div class="form-group form_row">
                 <select class="block_btn login_input " onchange="filterLevel(this.value, '')">
                     <option value="All">All</option>
-                    <option value="Super admin">Super admin</option>
+                    @if (Auth::user()->level == 'root')
+                        <option value="Super admin">Super admin</option>
+                    @endif
                     <option value="Distributor">Distributor</option>
                     <option value="Dealer">Dealer</option>
                     <option value="Subdealer">Subdealer</option>

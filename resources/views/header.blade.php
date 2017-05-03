@@ -7,7 +7,7 @@
                     <a href="{{url('/dashboard')}}"><img src="/img/logo.png" alt="Logo"></a>
 
                 </div>
-                <nav class="main_nav">
+                <nav class="main_nav {{Auth::user()->level == 'root'? 'hidden' : ''}}">
                     <ul>
                         <li><a href="{{url('home')}}">Orders List</a></li>
                         <li><a href="{{url('report')}}">Reports</a></li>

@@ -120,9 +120,9 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
 
 
 Route::get('/test', function (){
-
-    $phones = Phone::where([['is_active', 1], ['package_id', 21], ['state', 'not in use'], ['is_special', '0']])->get();
-    dd(!$phones->isEmpty());
+    $next = ++User::select('account_id')->orderBy('account_id', 'desc')->first()->account_id;
+//   dd($next);
+    echo $next;
 
 });
 
