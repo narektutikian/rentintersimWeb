@@ -17,7 +17,8 @@ class Kernel extends ConsoleKernel
         //
         Commands\Commandset::class,
         Commands\CheckActivations::class,
-        Commands\SimCheck::class
+        Commands\SimCheck::class,
+        Commands\StartActivation::class
     ];
 
     /**
@@ -33,7 +34,9 @@ class Kernel extends ConsoleKernel
         //          ->hourly();
 
         $schedule->call('Rentintersimrepo\orders\CreateHelper@startDeactivation')->everyFiveMinutes();
-        $schedule->call('Rentintersimrepo\orders\CreateHelper@startActivation')->everyFiveMinutes();
+        $schedule->command('start:activations')->everyMinute()
+            ->withoutOverlapping()
+            ->sendOutputTo(storage_path('logs/cron_activate_' . date('Y-m-d_H-i') . '.log'));
         $schedule->command('queue:work', ['--daemon', '--timeout' => 60, '--sleep' => '3', '--tries' => 3])
             ->everyTenMinutes()
             ->withoutOverlapping()

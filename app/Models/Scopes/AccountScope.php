@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Scope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Auth;
+use App\User;
 
 class AccountScope implements Scope
 {
@@ -23,7 +24,17 @@ class AccountScope implements Scope
      */
     public function apply(Builder $builder, Model $model)
     {
-        $id = Auth::user()->account_id;
-        $builder->where('account_id', $id);
+        $user = Auth::user();
+        $ids = array();
+        if ($user == null){
+            $items = User::select('account_id')->distinct('account_id')->get();
+            foreach ($items as $item){
+                $ids[] = $item->account_id;
+            }
+        }
+        else
+        $ids[] = $user->account_id;
+
+        $builder->whereIn('account_id', $ids);
     }
 }

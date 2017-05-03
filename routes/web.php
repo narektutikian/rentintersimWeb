@@ -21,6 +21,7 @@ use App\Models\ReportHistory;
 use App\Models\Phone;
 
 
+
 Route::get('/', function () {
 //    if (env('APP_ENV')=='local')
 //    return view('errors.503');
@@ -120,9 +121,10 @@ Route::group(['namespace' => 'Api', 'middleware'=> 'auth'], function () {
 
 
 Route::get('/test', function (){
-    $next = ++User::select('account_id')->orderBy('account_id', 'desc')->first()->account_id;
-//   dd($next);
-    echo $next;
+
+    $order = Order::find(377);
+
+    var_dump($order);
 
 });
 

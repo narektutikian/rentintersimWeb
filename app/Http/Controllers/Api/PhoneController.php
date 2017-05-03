@@ -25,11 +25,12 @@ class PhoneController extends Controller
     {
         //
 
-        $phones = Phone::orderby('id', 'desc')->paginate(env('PAGINATE_DEFAULT'));
-        $phonesArray = $this->solvePhoneList($phones);
+//        $phones = Phone::orderby('id', 'desc')->paginate(env('PAGINATE_DEFAULT'));
+//        $phonesArray = $this->solvePhoneList($phones);
 
 //      dd($phonesArray);
-        return view('number', compact('phonesArray'));
+//        return view('number', compact('phonesArray'));
+        return view('number');
     }
 
     /**

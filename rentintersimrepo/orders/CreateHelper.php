@@ -20,6 +20,7 @@ use Mail;
 use DB;
 use App\Events\ReportEvent;
 
+
 class CreateHelper
 {
     public function setStartTime($datetime){
@@ -212,35 +213,43 @@ class CreateHelper
 //        $orders = Order::where('status', 'pending')->get();
         if ($orders != null){
             foreach ($orders as $order){
-                $this->activate($order->id);
+                $this->activate($order);
                 sleep(10);
             }
         }
 //        dd($orders, $now->timestamp);
     }
 
-    public function activate ($orderId)
+    public function activate ($order)
     {
-        $activatedOrder = DB::transaction(function () use ($orderId) {
-        $order = Order::find($orderId);
-        if ($order->status != 'pending')
-            exit();
+        $activatedOrder = DB::transaction(function () use ($order) {
         if ($order == null)
             exit();
         $res = null;
         sleep(5);
-        if (env('APP_ENV') == 'local')
-            $res = file_get_contents("http://176.35.171.143:8086/api/vfapi.php?key=7963ad6960b1088b94db2c32f2975e86&call=simswap&test=true&cli=".$order->phone->phone."&sim=".$order->sim->number);
-        else
-            $res = file_get_contents("http://176.35.171.143:8086/api/vfapi.php?key=7963ad6960b1088b94db2c32f2975e86&call=simswap&cli=".$order->phone->phone."&sim=".$order->sim->number);
+            if (env('APP_ENV') == 'local'){
+                try {
+                    $res = file_get_contents("http://176.35.171.143:8086/api/vfapi.php?key=7963ad6960b1088b94db2c32f2975e86&call=simswap&test=true&cli=" . $order->phone->phone . "&sim=" . $order->sim->number);
+                } catch (Exception $e) {
+                    Log::error('(Dev) activation error');
+                }
+            }
+            else {
+                try {
+                    $res = file_get_contents("http://176.35.171.143:8086/api/vfapi.php?key=7963ad6960b1088b94db2c32f2975e86&call=simswap&cli=" . $order->phone->phone . "&sim=" . $order->sim->number);
+                } catch (Exception $e) {
+                    Log::error('activation error');
+                }
+            }
 //        $res = 0;
-        Activation::forceCreate([
-            'phone_number' =>  $order->phone->phone,
-            'sim_number' => $order->sim->number,
-            'call' => 'activate',
-            'answer' => $res,
-            'order_id' => $order->id
-        ]);
+            $activation = new Activation();
+            $activation->phone_number =  $order->phone->phoned;
+            $activation->sim_number = $order->sim->numberd;
+            $activation->call = 'activate';
+            $activation->answer = $res;
+            $activation->order_id = $order->id;
+            $activation->save();
+
 
         $phone = $order->phone;
         $phone->current_sim_id = $order->sim_id;

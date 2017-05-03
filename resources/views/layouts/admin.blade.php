@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="/css/bootstrap-datepicker3.css">
     <link rel="stylesheet" href="/js/owl-carousel/assets/owl.carousel.css">
     <link rel="stylesheet" href="/js/bootstrap3-editable/css/bootstrap-editable.css">
-    {{--<link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap-editable/css/bootstrap-editable.css" rel="stylesheet"/>--}}
     <link rel="stylesheet" href="/css/style.css?v=2">
 
     <!-- Scripts -->
@@ -111,10 +110,9 @@
 <script src="/js/bootstrap-table-mobile.js"></script>
 <script src="/js/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
 <script src="/js/bootstrap-table-editable.js"></script>
-{{--<script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap-editable/js/bootstrap-editable.min.js"></script>--}}
 <script src="/js/perfect-scrollbar/js/perfect-scrollbar.min.js"></script>
 <script src="/js/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js"></script>
-<script src="/js/custom-scrollbar/jquery.mCustomScrollbar.js"></script>
+{{--<script src="/js/custom-scrollbar/jquery.mCustomScrollbar.js"></script>--}}
 <script src="/js/moment.min.js"></script>
 <script src="/js/bootstrap-datetimepicker.js"></script>
 <script src="/js/owl-carousel/owl.carousel.js"></script>

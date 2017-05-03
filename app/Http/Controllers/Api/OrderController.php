@@ -346,7 +346,7 @@ class OrderController extends Controller
                 $order->landing = Carbon::now()->format('d/m/Y H:i');
                 $order->from = Carbon::now()->timestamp;
                 $order->save();
-                $this->helper->activate($order->id);
+                $this->helper->activate($order);
             }, 5);
 
 
