@@ -37,8 +37,8 @@
                     <li class="{{ ($viewName == 'dashboard') ? 'active' : '' }}"><a href="{{url('/dashboard')}}" title="DashboardUser Management">Dashboard</a></li>
                     @endif
                     <li class="{{ ($viewName == 'user') ? 'active' : '' }}"><a href="{{url('/user')}}" title="User Management">User Management</a></li>
-                    {{--<li class="{{ ($viewName == 'price-list') ? 'active' : '' }}"><a href="{{url('/price-list')}}" title="Price Lists">Price Lists</a></li>--}}
-                    {{--<li class="{{ ($viewName == 'financial-report') ? 'active' : '' }}"><a href="{{url('/report/create')}}" title="Price Lists">Financial Report</a></li>--}}
+                    <li class="{{ ($viewName == 'price-list') ? 'active' : '' }}"><a href="{{url('/price-list')}}" title="Price Lists">Price Lists</a></li>
+                    <li class="{{ ($viewName == 'financial-report') ? 'active' : '' }}"><a href="{{url('/report/create')}}" title="Price Lists">Financial Report</a></li>
                         @if(Auth::user()->level == 'Super admin')
                     <li class="{{ ($viewName == 'number') ? 'active' : '' }}"><a href="{{url('/number')}}" title="Number Management">Number Management</a></li>
                     <li class="{{ ($viewName == 'sim') ? 'active' : '' }}"><a href="{{url('/sim')}}" title="SIM Management">SIM Management</a></li>
