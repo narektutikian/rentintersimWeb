@@ -112,7 +112,7 @@
 <script src="/js/bootstrap-table-editable.js"></script>
 <script src="/js/perfect-scrollbar/js/perfect-scrollbar.min.js"></script>
 <script src="/js/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js"></script>
-{{--<script src="/js/custom-scrollbar/jquery.mCustomScrollbar.js"></script>--}}
+<script src="/js/custom-scrollbar/jquery.mCustomScrollbar.js"></script>
 <script src="/js/moment.min.js"></script>
 <script src="/js/bootstrap-datetimepicker.js"></script>
 <script src="/js/owl-carousel/owl.carousel.js"></script>
