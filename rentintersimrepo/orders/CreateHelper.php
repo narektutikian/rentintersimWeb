@@ -243,8 +243,8 @@ class CreateHelper
             }
 //        $res = 0;
             $activation = new Activation();
-            $activation->phone_number =  $order->phone->phoned;
-            $activation->sim_number = $order->sim->numberd;
+            $activation->phone_number =  $order->phone->phone;
+            $activation->sim_number = $order->sim->number;
             $activation->call = 'activate';
             $activation->answer = $res;
             $activation->order_id = $order->id;
