@@ -71,7 +71,8 @@ class PriceListComposer
                 ->where([['provider_id', $provider->id],
                         ['created_by', $user->id],
                         ['name', '!=', 'Default_cost'],
-                        ['name', '!=', 'My Price List']])->get()->toArray();
+                        ['name', '!=', 'My Price List'],
+                        ['name', '!=', 'Default']])->get()->toArray();
             if ($iCreated != null)
                 $list['priceLists'][$key]['iCreated'] = $iCreated;
             else
